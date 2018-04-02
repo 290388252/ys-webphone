@@ -1,0 +1,9 @@
+.slide-image {
+  width: 100%;
+}
+.carousel-indicators li{
+  width: 10px!important;
+  height: 10px!important;
+  border-radius: 5px!important;
+  cursor: pointer!important;
+}

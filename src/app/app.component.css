@@ -1,0 +1,14 @@
+.containers{
+  margin: 30px;
+}
+.search{
+
+}
+.carousel-product{
+  margin-left: 10px;
+}
+@media (min-width: 1403px){
+  .carousels{
+    margin-left: 90px;
+  }
+}

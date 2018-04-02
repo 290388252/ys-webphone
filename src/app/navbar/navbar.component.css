@@ -1,0 +1,5 @@
+@media screen and (max-width: 470px){
+  .phone-screen-navbar{
+    margin-right: -16px;
+  }
+}
