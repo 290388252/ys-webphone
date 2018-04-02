@@ -15,5 +15,5 @@
   box-shadow:3px 3px 3px 3px gray;
 }
 .box:active{
-  box-shadow:3px 3px 3px 3px white;
+  box-shadow:2px 2px 2px 2px #c7c7c7;
 }
