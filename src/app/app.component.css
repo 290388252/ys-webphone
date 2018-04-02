@@ -1,14 +1,19 @@
-.containers{
-  margin: 30px;
+.logo{
+  text-align: center;
+  margin: 50px 0 50px 0;
 }
-.search{
-
+.context{
+  text-align: center
 }
-.carousel-product{
-  margin-left: 10px;
+.my-detail{
+  margin-top: 10px;
+  float: right;
 }
-@media (min-width: 1403px){
-  .carousels{
-    margin-left: 90px;
-  }
+.box{
+  -webkit-box-shadow:3px 3px 3px 3px gray;
+  -moz-box-shadow:3px 3px 3px 3px gray;
+  box-shadow:3px 3px 3px 3px gray;
+}
+.box:active{
+  box-shadow:3px 3px 3px 3px white;
 }
