@@ -1,43 +1,46 @@
-<app-navbar></app-navbar>
-<div class="container">
+<div class="containers">
+</div>
+<!--<app-navbar></app-navbar>-->
+<div>
   <div class="bgimg">
     <div class="logo">
-      <img src="../favicon.ico" alt="..." class="rounded-circle">
+      <img src="../../assets/main/ys_logo.png" alt="..." class="rounded-circle">
     </div>
     <div class="context">
-    <div style="display: flex">
+    <div>
       <div class="box card text-white bg-primary mb-3" style="width: 180px; height: 180px; margin-right: 15px">
         <div class="card-header">优水到家</div>
         <div class="card-body">
-          <h5 class="card-title">怡宝大桶装水</h5>
+          <h5 class="card-title" style="color: white">怡宝大桶装水</h5>
           <p class="card-text">点击我开门</p>
         </div>
       </div>
       <div class="box card text-white bg-secondary mb-3" style="width: 180px; height: 180px;">
         <div class="card-header">优水到家</div>
         <div class="card-body">
-          <h5 class="card-title">农夫山泉桶水</h5>
+          <h5 class="card-title" style="color: white">农夫山泉桶水</h5>
           <p class="card-text">点击我开门</p>
         </div>
       </div>
     </div>
-    <div style="display: flex">
+    <div>
       <div class="box card text-white bg-success mb-3" style="width: 180px; height: 180px; margin-right: 15px">
         <div class="card-header">优水到家</div>
         <div class="card-body">
-          <h5 class="card-title">鼎湖泉桶装水</h5>
+          <h5 class="card-title" style="color: white">鼎湖泉桶装水</h5>
           <p class="card-text">点击我开门</p>
         </div>
       </div>
       <div class="box card text-white bg-warning mb-3" style="width: 180px; height: 180px;">
         <div class="card-header">优水到家</div>
         <div class="card-body">
-          <h5 class="card-title">昆仑山桶装水</h5>
+          <h5 class="card-title" style="color: white">昆仑山桶装水</h5>
           <p class="card-text">点击我开门</p>
         </div>
       </div>
     </div>
     </div>
+    <h5 style="position: relative; color: white;margin: 10px">广州优水到家工程有限公司</h5>
     <div class="my-detail">
       <button (click)="detail()" type="button" class="btn btn-success" [routerLink]="['comPageMain']" [routerLinkActive]="['router-link-active']">我的订单</button>
     </div>
