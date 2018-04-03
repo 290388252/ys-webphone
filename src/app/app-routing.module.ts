@@ -7,7 +7,8 @@ const routes: Routes = [/*
     { path: '**', redirectTo: 'not-found' }*/
     { path: '', redirectTo: '/main', pathMatch: 'full' },
     // { path: 'main', loadChildren: './system/common/main/main.module#MainModule' },
-    { path: 'main', loadChildren: './main/main.module#MainModule' }
+    { path: 'main', loadChildren: './main/main.module#MainModule' },
+    { path: 'product', loadChildren: './product/product.module#ProductModule' }
 ];
 
 @NgModule({

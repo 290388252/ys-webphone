@@ -8,7 +8,6 @@ import { MainRoutingModule } from './main-routing.module';
 import { FooterComponent } from '../footer/footer.component';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { CarouselComponent } from '../carousel/carousel.component';
-import { ProductComponent } from '../product/product.component';
 import { SearchComponent } from '../search/search.component';
 
 
@@ -18,7 +17,6 @@ import { SearchComponent } from '../search/search.component';
     FooterComponent,
     NavbarComponent,
     CarouselComponent,
-    ProductComponent,
     SearchComponent,
   ],
   imports: [
