@@ -5,9 +5,9 @@ import {AppComponent} from "./app.component";
 const routes: Routes = [/*
     { path: '', loadChildren: './layout/layout.module#LayoutModule', canActivate: [AuthGuard] },
     { path: '**', redirectTo: 'not-found' }*/
-    { path: '', redirectTo: '/comPageMain', pathMatch: 'full' },
+    { path: '', redirectTo: '/main', pathMatch: 'full' },
     // { path: 'main', loadChildren: './system/common/main/main.module#MainModule' },
-    { path: 'comPageMain', loadChildren: './search/search.module#SearchModule' }
+    { path: 'main', loadChildren: './main/main.module#MainModule' }
 ];
 
 @NgModule({

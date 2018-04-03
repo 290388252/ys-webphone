@@ -6,21 +6,11 @@ import { CommonModule } from '@angular/common';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { FooterComponent } from './footer/footer.component';
-import { NavbarComponent } from './navbar/navbar.component';
-import { CarouselComponent } from './carousel/carousel.component';
-import { ProductComponent } from './product/product.component';
-import { SearchComponent } from './search/search.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent,
-    FooterComponent,
-    NavbarComponent,
-    CarouselComponent,
-    ProductComponent,
-    SearchComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
