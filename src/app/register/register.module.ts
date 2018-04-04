@@ -1,24 +1,24 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
-
-import { ProductComponent } from './product.component';
-import { ProductRoutingModule } from './product-routing.module';
+import { RegisterComponent } from './register.component';
+import { RegisterRoutingModule } from './register-routing.module';
 
 
 @NgModule({
   declarations: [
-    ProductComponent
+    RegisterComponent,
   ],
   imports: [
     FormsModule,
     HttpClientModule,
     CommonModule,
-    ProductRoutingModule,
-    NgZorroAntdModule
+    RegisterRoutingModule,
+    NgZorroAntdModule,
+    ReactiveFormsModule
   ],
   providers: []
 })
-export class ProductModule { }
+export class RegisterModule { }
