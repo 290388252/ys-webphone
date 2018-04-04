@@ -1,10 +1,12 @@
+<div class="containers">
+</div>
 <div class="logo">
   <img src="../../assets/main/ys_logo.png" alt="..." class="rounded-circle" (ngSubmit)="_submitForm()">
 </div>
 <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="_submitForm()">
   <div nz-form-item>
     <div nz-form-control>
-      <nz-input formControlName="userName" [nzPlaceHolder]="'手机号'" [nzSize]="'large'">
+      <nz-input [(ngModel)]="phone"  formControlName="userName" [nzPlaceHolder]="'手机号'" [nzSize]="'large'">
         <ng-template #prefix>
           <i class="anticon anticon-tablet"></i>
         </ng-template>
@@ -22,14 +24,14 @@
       </nz-input>
       <div nz-form-explain *ngIf="validateForm.controls.password.dirty&&validateForm.controls.password.hasError('required')">请输入验证码!</div>
       <!--<div nz-form-explain *ngIf="!validateValue">请输入验证码!</div>-->
-      <button nz-button [nzType]="'primary'">
+      <button (click)="sendCode($event)" nz-button [nzType]="'primary'" [disabled]='buttonNoTouch' [ngClass]="{'btn-no-touch':buttonNoTouch}">
         <span>发送验证码</span>
       </button>
     </div>
   </div>
   <div nz-form-item>
     <div nz-form-control>
-      <button (click)="register()" nz-button class="login-form-button" [nzType]="'primary'" [nzSize]="'large'">注册并且登陆</button>
+      <button nz-button class="login-form-button" [nzType]="'primary'" [nzSize]="'large'">注册并且登陆</button>
     </div>
   </div>
 </form>

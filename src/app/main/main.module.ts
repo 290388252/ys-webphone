@@ -7,7 +7,7 @@ import { MainRoutingModule } from './main-routing.module';
 import { FooterComponent } from '../footer/footer.component';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { CarouselComponent } from '../carousel/carousel.component';
-import { SearchComponent } from '../search/search.component';
+import { SearchComponent } from '../product/product.component';
 
 
 @NgModule({

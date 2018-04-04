@@ -12,6 +12,6 @@ export class MainComponent implements OnInit {
   }
   detail() {
     // this.router.navigate(['register']);
-    // console.log('TODO......');
+    // TODO;
   }
 }
