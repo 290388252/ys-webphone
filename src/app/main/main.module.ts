@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
-
 import { MainComponent } from './main.component';
 import { MainRoutingModule } from './main-routing.module';
 import { FooterComponent } from '../footer/footer.component';

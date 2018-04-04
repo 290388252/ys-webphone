@@ -11,7 +11,7 @@ export class MainComponent implements OnInit {
   ngOnInit(): void {
   }
   detail() {
-    this.router.navigate(['product']);
-    console.log('turn to');
+    // this.router.navigate(['register']);
+    // console.log('TODO......');
   }
 }
