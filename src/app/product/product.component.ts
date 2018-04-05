@@ -6,10 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./product.component.css']
 })
 export class ProductComponent implements OnInit {
-
-  constructor() { }
+  constructor( ) { }
 
   ngOnInit() {
+  }
+
+  myVm() {
+    console.log('myVm')
   }
 
 }

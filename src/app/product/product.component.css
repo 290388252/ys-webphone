@@ -36,6 +36,9 @@
   margin: 10px;
   color: gray;
 }
+.pop{
+  text-align: center;
+}
 .bottom-text{
   text-align: center;
   display: block;     /*设置为块级元素会独占一行形成上下居中的效果*/
