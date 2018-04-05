@@ -9,6 +9,7 @@ const routes: Routes = [/*
     // { path: 'main', loadChildren: './system/common/main/main.module#MainModule' },
     { path: 'register', loadChildren: './register/register.module#RegisterModule' },
     { path: 'main', loadChildren: './main/main.module#MainModule' },
+    { path: 'product', loadChildren: './product/product.module#ProductModule' }
 ];
 
 @NgModule({

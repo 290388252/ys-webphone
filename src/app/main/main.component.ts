@@ -16,7 +16,7 @@ export class MainComponent implements OnInit, AfterViewInit{
 
   }
   detail() {
-    // this.router.navigate(['register']);
+    this.router.navigate(['product']);
     // TODO;
   }
 }
