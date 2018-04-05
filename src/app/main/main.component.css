@@ -11,9 +11,9 @@
   display:flex;justify-content:center;align-items:center;
 }
 .my-detail{
-  margin-top: 10px;
-  float: right;
-  position: relative;
+  position: absolute;
+  bottom: 0;
+  right: 0;
 }
 .box{
   -webkit-box-shadow:3px 3px 3px 3px gray;

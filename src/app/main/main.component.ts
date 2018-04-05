@@ -1,4 +1,4 @@
-import { Component , OnInit} from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import {Router} from '@angular/router';
 
 @Component({
@@ -6,9 +6,14 @@ import {Router} from '@angular/router';
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.css']
 })
-export class MainComponent implements OnInit {
-  constructor(private router: Router) {}
+export class MainComponent implements OnInit, AfterViewInit{
+  constructor(private router: Router) {
+  }
   ngOnInit(): void {
+
+  }
+  ngAfterViewInit() {
+
   }
   detail() {
     // this.router.navigate(['register']);

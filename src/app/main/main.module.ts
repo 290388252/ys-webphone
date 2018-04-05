@@ -7,7 +7,6 @@ import { MainRoutingModule } from './main-routing.module';
 import { FooterComponent } from '../footer/footer.component';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { CarouselComponent } from '../carousel/carousel.component';
-import { SearchComponent } from '../product/product.component';
 
 
 @NgModule({
@@ -16,7 +15,6 @@ import { SearchComponent } from '../product/product.component';
     FooterComponent,
     NavbarComponent,
     CarouselComponent,
-    SearchComponent,
   ],
   imports: [
     FormsModule,
