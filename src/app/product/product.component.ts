@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-product',
@@ -6,13 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./product.component.css']
 })
 export class ProductComponent implements OnInit {
-  constructor( ) { }
+  constructor(private router: Router) {}
 
   ngOnInit() {
   }
 
   myVm() {
-    console.log('myVm')
+    this.router.navigate(['myproductregister']);
   }
 
 }
