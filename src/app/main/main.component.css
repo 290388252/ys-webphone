@@ -28,4 +28,18 @@
   height: 100%;
   position: absolute;
   background: url("../../assets/main/bg.jpg");
+  background-size: 100% 100%;
+}
+.foot{
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+.foot-img{
+  height: 30px;
+  width: 180px;
+  margin-bottom: 40px;
+  border: 0;
+  vertical-align: middle;
 }
