@@ -10,6 +10,7 @@ const routes: Routes = [/*
     { path: 'register', loadChildren: './register/register.module#RegisterModule' },
     { path: 'main', loadChildren: './main/main.module#MainModule' },
     { path: 'product', loadChildren: './product/product.module#ProductModule' },
+    { path: 'detail', loadChildren: './detail/detail.module#DetailModule' },
     { path: 'myproductregister', loadChildren: './myproductregister/myproductregister.module#MyproductregisterModule' },
 ];
 

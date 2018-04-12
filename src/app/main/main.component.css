@@ -3,9 +3,9 @@
   position: relative;
 }
 .rounded-circle{
-  margin: 50px 0 50px 0;
-  width: 100px;
-  height: 100px;
+  margin: 35px 0 50px 0;
+  width: 80px;
+  height: 80px;
 }
 .context{
   display:flex;justify-content:center;align-items:center;
@@ -39,7 +39,7 @@
 .foot-img{
   height: 30px;
   width: 180px;
-  margin-bottom: 40px;
+  margin-bottom: 45px;
   border: 0;
   vertical-align: middle;
 }
