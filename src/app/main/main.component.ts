@@ -38,7 +38,7 @@ export class MainComponent implements OnInit, AfterViewInit {
     }});
   }
   ngAfterViewInit() {
-
+    // TODO
   }
   detail() {
     this.router.navigate(['product']);
