@@ -7,6 +7,8 @@ import { MainRoutingModule } from './main-routing.module';
 import { FooterComponent } from '../footer/footer.component';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { CarouselComponent } from '../carousel/carousel.component';
+import {AppService} from '../app-service';
+import {AppProperties} from '../app.properties';
 
 
 @NgModule({
@@ -22,7 +24,7 @@ import { CarouselComponent } from '../carousel/carousel.component';
     CommonModule,
     MainRoutingModule
   ],
-  providers: [],
+  providers: [AppService, AppProperties],
   bootstrap: [MainComponent]
 })
 export class MainModule { }

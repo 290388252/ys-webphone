@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { ProductComponent } from './product.component';
 import { ProductRoutingModule } from './product-routing.module';
+import {PopoverModule} from 'ngx-bootstrap';
 
 
 @NgModule({
@@ -14,7 +15,10 @@ import { ProductRoutingModule } from './product-routing.module';
       CommonModule,
       ProductRoutingModule,
       NgZorroAntdModule,
-      ReactiveFormsModule
+      ReactiveFormsModule,
+      ProductRoutingModule,
+      NgZorroAntdModule,
+      PopoverModule.forRoot()
     ],
     declarations: [ProductComponent]
 })

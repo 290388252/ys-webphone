@@ -1,6 +1,7 @@
 import { Component , OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {AppService} from '../app-service';
+import {AppProperties} from '../app.properties';
 
 @Component({
   selector: 'app-main',
@@ -8,7 +9,7 @@ import {AppService} from '../app-service';
   styleUrls: ['./main.component.css']
 })
 export class MainComponent implements OnInit {
-  constructor(private router: Router, private appService: AppService) {}
+  constructor(private router: Router, private appProperties: AppProperties, private appService: AppService) {}
   ngOnInit(): void {
   }
   detail() {

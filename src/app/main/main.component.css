@@ -11,9 +11,9 @@
   display:flex;justify-content:center;align-items:center;
 }
 .my-detail{
-  margin-top: 10px;
-  float: right;
-  position: relative;
+  position: absolute;
+  bottom: 0;
+  right: 0;
 }
 .box{
   -webkit-box-shadow:3px 3px 3px 3px gray;
@@ -28,4 +28,18 @@
   height: 100%;
   position: absolute;
   background: url("../../assets/main/bg.jpg");
+  background-size: 100% 100%;
+}
+.foot{
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+.foot-img{
+  height: 30px;
+  width: 180px;
+  margin-bottom: 40px;
+  border: 0;
+  vertical-align: middle;
 }
