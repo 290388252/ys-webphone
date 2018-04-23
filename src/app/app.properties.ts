@@ -6,7 +6,8 @@ export class AppProperties {
     public appUrl: string;
 
     constructor() {
-      this.appUrl = 'http://mw.youshuidaojia.com/ws-microservice-consumer-mobile-web';
+        // this.appUrl = 'http://192.168.0.110:8092';
+      this.appUrl = 'http://127.0.0.1:8092'; // localtest
     }
     getUrl(): string {
         return this.appUrl;

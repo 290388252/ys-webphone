@@ -3,17 +3,17 @@
   position: relative;
 }
 .rounded-circle{
-  margin: 35px 0 50px 0;
-  width: 80px;
-  height: 80px;
+  margin: 50px 0 50px 0;
+  width: 100px;
+  height: 100px;
 }
 .context{
   display:flex;justify-content:center;align-items:center;
 }
 .my-detail{
-  position: absolute;
-  bottom: 0;
-  right: 0;
+  margin-top: 10px;
+  float: right;
+  position: relative;
 }
 .box{
   -webkit-box-shadow:3px 3px 3px 3px gray;
@@ -28,18 +28,4 @@
   height: 100%;
   position: absolute;
   background: url("../../assets/main/bg.jpg");
-  background-size: 100% 100%;
-}
-.foot{
-  text-align: center;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-}
-.foot-img{
-  height: 30px;
-  width: 180px;
-  margin-bottom: 45px;
-  border: 0;
-  vertical-align: middle;
 }

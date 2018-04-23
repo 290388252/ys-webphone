@@ -4,15 +4,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { MainComponent } from './main.component';
 import { MainRoutingModule } from './main-routing.module';
+import { FooterComponent } from '../footer/footer.component';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { CarouselComponent } from '../carousel/carousel.component';
-import {AppProperties} from '../app.properties';
-import {AppService} from '../app-service';
 
 
 @NgModule({
   declarations: [
     MainComponent,
+    FooterComponent,
     NavbarComponent,
     CarouselComponent,
   ],
@@ -22,7 +22,7 @@ import {AppService} from '../app-service';
     CommonModule,
     MainRoutingModule
   ],
-  providers: [AppService, AppProperties],
+  providers: [],
   bootstrap: [MainComponent]
 })
 export class MainModule { }

@@ -9,7 +9,7 @@ import {Router} from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
   validateForm: FormGroup;
-  public validateValue = false;
+  public validateValue = true;
   public phone: number;
   public buttonNoTouch = false;
   _submitForm() {
@@ -29,7 +29,6 @@ export class RegisterComponent implements OnInit {
   constructor(private fb: FormBuilder, private router: Router) { }
 
   ngOnInit() {
-    console.log($('div'));
     this.validateForm = this.fb.group({
       userName: [ null, [ Validators.required ] ],
       password: [ null, [ Validators.required ] ]
@@ -39,21 +38,14 @@ export class RegisterComponent implements OnInit {
     if (!(/^1[34578]\d{9}$/.test(phone))) {
       console.log('手机号有误');
       return false;
-    } else {
-      return true;
     }
   }
   sendCode(e: TouchEvent) {
     e.preventDefault();
-    if (this.checkPhone(this.phone)) {
-      // TODO 发送验证码接口 60秒
-      this.validateValue = false;
-      this.buttonNoTouch = true;
-      setTimeout(() => {
-        this.buttonNoTouch = false;
-      }, 60000);
-    } else {
-      this.validateValue = true;
-    }
+    this.checkPhone(this.phone);
+    this.buttonNoTouch = true;
+    setTimeout(() => {
+      this.buttonNoTouch = false;
+    }, 60000);
   }
 }
