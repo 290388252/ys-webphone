@@ -18,7 +18,7 @@ export class AppService {
     // 配置请求头
     const myHeaders: HttpHeaders = new HttpHeaders({
       'Content-Type': 'application/json',
-      'token': sessionStorage.getItem('token')
+      // 'token': sessionStorage.getItem('token')
     });
     // tslint:disable-next-line:forin
     for (const key in myheaders) {
