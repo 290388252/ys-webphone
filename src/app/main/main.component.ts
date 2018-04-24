@@ -21,44 +21,53 @@ export class MainComponent implements OnInit {
         console.log(data);
         if (data.code === 0) {
           this.indexList = data.data;
-        } else {
-          alert('登陆失败');
+        } else if (data.code === -1) {
+          this.login();
         }
-      },
-      error => {
-        console.log(error);
-      }
-    );
-    this.appService.getData(this.appProperties.wechatOauth2Url, '').subscribe(
-      data => {
-        console.log(data);
-        let newData;
-        if (typeof(data.data) === 'string' && data.data.length > 0) {
-          newData = data.data.replace(data.data.substring(data.data.indexOf('state=') + 6, data.data.length),
-            'http://localhost:4300/register');
-          console.log(newData);
-          window.location.href = newData;
-        }
-        // this.appService.getData(data, '').subscribe(
-        //   data2 => {
-        //     this.openId = data2;
-        //     console.log(this.openId);
-        //   },
-        //   error2 => {
-        //     console.log(error2);
-        //   }
-        // );
       },
       error => {
         console.log(error);
       }
     );
   }
-  open(item) {
+  openDoor(item) {
     console.log(item);
+    this.appService.getData(this.appProperties.indexOpenDoor, {vmCode: '1988000072', way: item.wayNumber}).subscribe(
+      data => {
+        console.log(data);
+        if (data.code === 0) {
+          console.log(data.data);
+        } else if (data.code === -1) {
+          this.login();
+          // alert('no');
+        }
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
   detail() {
     this.router.navigate(['product']);
     // TODO;
+  }
+  login() {
+    this.appService.getData(this.appProperties.wechatOauth2Url, '').subscribe(
+      data => {
+        console.log(data);
+        let newData;
+        const wlhUrl = window.location.href;
+        const newWlhUrl = wlhUrl.replace(wlhUrl.substring(wlhUrl.indexOf('main'), wlhUrl.length), 'register');
+        if (typeof(data.data) === 'string' && data.data.length > 0) {
+          newData = data.data.replace(data.data.substring(data.data.indexOf('state=') + 6, data.data.length),
+            newWlhUrl);
+          console.log(newData);
+          window.location.href = newData;
+        }
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
 }
