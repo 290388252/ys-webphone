@@ -24,7 +24,10 @@ export class RegisterComponent implements OnInit {
       return { error: true, phoneForm: true };
     }
   }
-  constructor(private fb: FormBuilder, private router: Router, private appProperties: AppProperties, private appService: AppService) {}
+  constructor(private fb: FormBuilder,
+              private router: Router,
+              private appProperties: AppProperties,
+              private appService: AppService) {}
 
   ngOnInit() {
     this.validateForm = this.fb.group({
@@ -41,7 +44,6 @@ export class RegisterComponent implements OnInit {
       }
     }
     if (this.validateForm.controls.phoneForm.value !== null && this.validateForm.controls.password.value !== null) {
-      // this.router.navigate(['main']);
       this.appService.getData(this.appProperties.wechatRegisterUrl,
         {openId: this.openId,
           phone: this.validateForm.controls.phoneForm.value,
@@ -52,6 +54,7 @@ export class RegisterComponent implements OnInit {
               alert('登陆失败');
             } else if (data.code === 0) {
               console.log(data);
+              this.router.navigate(['main'], {queryParams: {'token': data.data.token}});
             }
           },
           error => {

@@ -1,5 +1,5 @@
 import { Component , OnInit} from '@angular/core';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {AppService} from '../app-service';
 import {AppProperties} from '../app.properties';
 
@@ -11,8 +11,15 @@ import {AppProperties} from '../app.properties';
 export class MainComponent implements OnInit {
   public indexList: Array<object>;
   public openId: string;
-  constructor(private router: Router, private appProperties: AppProperties, private appService: AppService) {}
+  private token: string;
+  constructor(private router: Router,
+              private activatedRoute: ActivatedRoute,
+              private appProperties: AppProperties,
+              private appService: AppService) {}
   ngOnInit() {
+    this.activatedRoute.queryParams.subscribe(queryParams => {
+      this.token = queryParams.token;
+    });
     this.getInitData();
   }
   getInitData() {
@@ -31,8 +38,8 @@ export class MainComponent implements OnInit {
     );
   }
   openDoor(item) {
-    console.log(item);
-    this.appService.getData(this.appProperties.indexOpenDoor, {vmCode: '1988000072', way: item.wayNumber}).subscribe(
+    console.log(this.token);
+    this.appService.getData(this.appProperties.indexOpenDoor, {vmCode: '1988000072', way: item.wayNumber}, this.token).subscribe(
       data => {
         console.log(data);
         if (data.code === 0) {
@@ -60,7 +67,7 @@ export class MainComponent implements OnInit {
         const newWlhUrl = wlhUrl.replace(wlhUrl.substring(wlhUrl.indexOf('main'), wlhUrl.length), 'register');
         if (typeof(data.data) === 'string' && data.data.length > 0) {
           newData = data.data.replace(data.data.substring(data.data.indexOf('state=') + 6, data.data.length),
-            newWlhUrl);
+            newWlhUrl + '-' + wlhUrl);
           console.log(newData);
           window.location.href = newData;
         }
