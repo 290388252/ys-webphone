@@ -15,6 +15,7 @@ export class RegisterComponent implements OnInit {
   public phone: number;
   public buttonNoTouch = false;
   public truePhone = true;
+  public times = 60;
   private openId: string;
   private phoneValidator = (control: FormControl): { [s: string]: boolean } => {
     if (!control.value) {
@@ -40,11 +41,27 @@ export class RegisterComponent implements OnInit {
       }
     }
     if (this.validateForm.controls.phoneForm.value !== null && this.validateForm.controls.password.value !== null) {
-      this.router.navigate(['main']);
+      // this.router.navigate(['main']);
+      this.appService.getData(this.appProperties.wechatRegisterUrl,
+        {openId: this.openId,
+          phone: this.validateForm.controls.phoneForm.value,
+          smsCode: this.validateForm.controls.password.value
+        }).subscribe(
+          data => {
+            if (data.code !== 0) {
+              alert('登陆失败');
+            } else if (data.code === 0) {
+              console.log(data);
+            }
+          },
+          error => {
+            console.log(error);
+          }
+      );
       console.log(this.validateForm.controls.phoneForm.value);
       console.log(this.validateForm.controls.password.value);
     } else {
-      console.log('请输入手机号和密码');
+      alert('请输入手机号码');
     }
   }
   checkPhone(phone) {
@@ -65,19 +82,30 @@ export class RegisterComponent implements OnInit {
   sendCode(e: TouchEvent) {
     e.preventDefault();
     if (this.checkPhone(this.phone)) {
-      this.buttonNoTouch = true;
-      this.truePhone = true;
-      this.appService.postData(this.appProperties.smsSend, {phone: this.phone}).subscribe(
+      this.appService.getData(this.appProperties.smsSendUrl, {phone: this.phone}).subscribe(
         data => {
-          console.log(data);
+          if (data.code !== 0) {
+              alert('发送失败');
+          } else {
+            this.times = 60;
+            this.buttonNoTouch = true;
+            this.truePhone = true;
+            const timer = setInterval(() => {
+              this.times --;
+              if (this.times <= 0) {
+                this.buttonNoTouch = false;
+                clearInterval(timer);
+              }
+            }, 1000);
+            setTimeout(() => {
+              this.buttonNoTouch = false;
+            }, 60100);
+          }
         },
         error => {
           console.log(error);
         }
       );
-      setTimeout(() => {
-        this.buttonNoTouch = false;
-      }, 60000);
     } else {
       this.truePhone = false;
     }

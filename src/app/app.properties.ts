@@ -7,7 +7,8 @@ export class AppProperties {
     public indexListUrl: string;
     public indexOpenDoor: string;
     public wechatOauth2Url: string;
-    public smsSend: string;
+    public smsSendUrl: string;
+    public wechatRegisterUrl: string;
 
     constructor() {
         // this.appUrl = 'http://192.168.0.110:8092';
@@ -15,6 +16,7 @@ export class AppProperties {
       this.indexListUrl = this.appUrl + '/index/listWay';
       this.indexOpenDoor = this.appUrl + '/index/openDoor';
       this.wechatOauth2Url = this.appUrl + '/wechat/oauth2';
-      this.smsSend = this.appUrl + '/sms/send';
+      this.smsSendUrl = this.appUrl + '/sms/send';
+      this.wechatRegisterUrl = this.appUrl + '/wechat/register';
     }
 }

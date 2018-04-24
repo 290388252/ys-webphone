@@ -14,9 +14,9 @@ export class MyproductregisterComponent implements OnInit {
   public buttonNoTouch = false;
   _submitForm() {
     for (const i in this.validateForm.controls) {
-      // if (true) {
+      if (true) {
         this.validateForm.controls[i].markAsDirty();
-      // }
+      }
     }
     if (this.validateForm.controls.userName.value !== null && this.validateForm.controls.password.value !== null) {
       console.log(this.validateForm.controls.userName.value);
