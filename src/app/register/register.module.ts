@@ -5,6 +5,8 @@ import { CommonModule } from '@angular/common';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { RegisterComponent } from './register.component';
 import { RegisterRoutingModule } from './register-routing.module';
+import {AppProperties} from '../app.properties';
+import {AppService} from '../app-service';
 
 
 @NgModule({
@@ -19,6 +21,6 @@ import { RegisterRoutingModule } from './register-routing.module';
     NgZorroAntdModule,
     ReactiveFormsModule
   ],
-  providers: []
+  providers: [AppService, AppProperties]
 })
 export class RegisterModule { }

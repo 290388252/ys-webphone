@@ -38,8 +38,7 @@ export class AppService {
   postData(url: string, options: any, tokens?: any | null): Observable<any> {
     const myHttpHead = { headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'token': sessionStorage.getItem('token')
-        // 'token': tokens
+        // 'token': sessionStorage.getItem('token')
       })};
     /* const myHeaders: HttpHeaders = new HttpHeaders();
      myHeaders.append('Content-Type', 'application/json');
