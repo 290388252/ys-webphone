@@ -18,8 +18,9 @@ export class MainComponent implements OnInit {
   getInitData() {
     this.appService.getData(this.appProperties.indexListUrl, {vmCode: '1988000072'}).subscribe(
       data => {
-        if (data.status === 1) {
-          this.indexList = data.returnObject;
+        console.log(data);
+        if (data.code === 0) {
+          this.indexList = data.data;
         } else {
           alert('登陆失败');
         }
@@ -31,7 +32,13 @@ export class MainComponent implements OnInit {
     this.appService.getData(this.appProperties.wechatOauth2Url, '').subscribe(
       data => {
         console.log(data);
-        console.log(window.location.href);
+        let newData;
+        if (typeof(data.data) === 'string' && data.data.length > 0) {
+          newData = data.data.replace(data.data.substring(data.data.indexOf('state=') + 6, data.data.length),
+            'http://localhost:4300/register');
+          console.log(newData);
+          window.location.href = newData;
+        }
         // this.appService.getData(data, '').subscribe(
         //   data2 => {
         //     this.openId = data2;
