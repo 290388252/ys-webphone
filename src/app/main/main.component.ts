@@ -17,10 +17,13 @@ export class MainComponent implements OnInit {
               private appProperties: AppProperties,
               private appService: AppService) {}
   ngOnInit() {
-    this.activatedRoute.queryParams.subscribe(queryParams => {
-      this.token = queryParams.token;
-    });
+    // this.activatedRoute.queryParams.subscribe(queryParams => {
+    //   this.token = queryParams.token;
+    // });
     this.getInitData();
+    this.getCookies();
+    console.log(this.token);
+    console.log(this.urlParse());
   }
   getInitData() {
     this.appService.getData(this.appProperties.indexListUrl, {vmCode: '1988000072'}).subscribe(
@@ -38,21 +41,19 @@ export class MainComponent implements OnInit {
     );
   }
   openDoor(item) {
-    console.log(this.token);
-    this.appService.getData(this.appProperties.indexOpenDoor, {vmCode: '1988000072', way: item.wayNumber}, this.token).subscribe(
-      data => {
-        console.log(data);
-        if (data.code === 0) {
-          console.log(data.data);
-        } else if (data.code === -1) {
-          this.login();
-          // alert('no');
+      this.appService.getDataOpen(this.appProperties.indexOpenDoor, {vmCode: '1988000072', way: item.wayNumber}, this.token).subscribe(
+        data => {
+          console.log(data);
+          if (data.code === 0) {
+            console.log(data.data);
+          } else if (data.code === -1) {
+            this.login();
+          }
+        },
+        error => {
+          console.log(error);
         }
-      },
-      error => {
-        console.log(error);
-      }
-    );
+      );
   }
   detail() {
     this.router.navigate(['product']);
@@ -76,5 +77,36 @@ export class MainComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+  getCookies() {
+    if (this.token === undefined) {
+      const strCookie = document.cookie;
+      const arrCookie = strCookie.split(';');
+      for (let i = 0; i < arrCookie.length; i++) {
+        const arr = arrCookie[i].split('=');
+        if (arr[0] === 'token') {
+          this.token = arr[1];
+        }
+      }
+    }
+  }
+  urlParse() {
+    const url = window.location.search;
+    const obj = {};
+    const reg = /[?&][^?&]+=[^?&]+/g;
+    const arr = url.match(reg);
+
+    if (arr) {
+      arr.forEach(function (item) {
+        const tempArr = item.substring(1).split('=');
+        const key = decodeURIComponent(tempArr[0]);
+        const val = decodeURIComponent(tempArr[1]);
+        obj[key] = val;
+      });
+    }
+    if (obj['token']) {
+      this.token = obj['token'];
+    }
+    return obj;
   }
 }

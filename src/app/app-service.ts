@@ -14,31 +14,29 @@ export class AppService {
    * @memberof ServiceBaseService
    * @title: 封装一个get请求的基础类
    */
-  getData(url: string, options?: any, myheaders?: any | null): Observable<any> {
+  getData(url: string, options?: any): Observable<any> {
     // 配置请求头
     const myHeaders: HttpHeaders = new HttpHeaders({
       'Content-Type': 'application/json',
       // 'token': sessionStorage.getItem('token')
     });
     // tslint:disable-next-line:forin
-    for (const key in myheaders) {
-      myHeaders.append(key, myheaders[key]);
-    }
     url += (url.indexOf('?') < 0 ? '?' : '&') + this.param(options);
     console.log(url);
     return this.http.get(url, { headers: myHeaders });
   }
 
-  getDataOpen(url: string, options?: any, myheaders?: any | null, tokens?: string): Observable<any> {
+  getDataOpen(url: string, options?: any, tokens?: string): Observable<any> {
     // 配置请求头
     const myHeaders: HttpHeaders = new HttpHeaders({
       'Content-Type': 'application/json',
-      'token': tokens
+      // 'Authorization': tokens
+      'Authorization': 'Bearer ' + tokens
     });
     // tslint:disable-next-line:forin
-    for (const key in myheaders) {
-      myHeaders.append(key, myheaders[key]);
-    }
+    // for (const key in myheaders) {
+    //   myHeaders.append(key, myheaders[key]);
+    // }
     url += (url.indexOf('?') < 0 ? '?' : '&') + this.param(options);
     console.log(url);
     return this.http.get(url, { headers: myHeaders });

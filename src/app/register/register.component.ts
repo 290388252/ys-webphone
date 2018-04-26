@@ -54,7 +54,11 @@ export class RegisterComponent implements OnInit {
               alert('登陆失败');
             } else if (data.code === 0) {
               console.log(data);
-              this.router.navigate(['main'], {queryParams: {'token': data.data.token}});
+              const exp = new Date();
+              exp.setTime(exp.getTime() + 1000 * 60 * 60 * 24);
+              document.cookie = 'token=' + data.data.token + ';expires=' + exp.toUTCString();
+              this.router.navigate(['main']);
+              // this.router.navigate(['main'], {queryParams: {'token': data.data.token}});
             }
           },
           error => {
