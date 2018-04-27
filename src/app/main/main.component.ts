@@ -41,6 +41,9 @@ export class MainComponent implements OnInit {
     );
   }
   openDoor(item) {
+    if (this.token === null || this.token === undefined) {
+      this.login();
+    } else {
       this.appService.getDataOpen(this.appProperties.indexOpenDoor, {vmCode: '1988000072', way: item.wayNumber}, this.token).subscribe(
         data => {
           console.log(data);
@@ -54,6 +57,7 @@ export class MainComponent implements OnInit {
           console.log(error);
         }
       );
+    }
   }
   detail() {
     this.router.navigate(['product']);

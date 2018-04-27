@@ -18,7 +18,7 @@
   </div>
   <div nz-form-item>
     <div nz-form-control>
-      <nz-input formControlName="password" [nzType]="'password'" [nzPlaceHolder]="'验证码'" [nzSize]="'large'">
+      <nz-input formControlName="password" [nzType]="'number'" [nzPlaceHolder]="'验证码'" [nzSize]="'large'">
         <ng-template #prefix>
           <i class="anticon anticon-mail"></i>
         </ng-template>
@@ -33,7 +33,7 @@
   </div>
   <div nz-form-item>
     <div nz-form-control>
-      <button nz-button class="login-form-button" [nzType]="'primary'" [nzSize]="'large'">注册并且登陆</button>
+      <button nz-button class="login-form-button" [nzType]="'primary'" [nzSize]="'large'">登陆</button>
     </div>
   </div>
 </form>
