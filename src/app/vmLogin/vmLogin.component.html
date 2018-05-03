@@ -1,0 +1,37 @@
+<div class="containers">
+</div>
+<div class="logo">
+  <img src="../../assets/main/ys_logo.png" alt="..." class="rounded-circle" (ngSubmit)="_submitForm()">
+  <br>
+  <span class="title">补货人员登陆系统</span>
+</div>
+<form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="_submitForm()">
+  <div nz-form-item>
+    <div nz-form-control>
+      <nz-input [(ngModel)]="phone"  formControlName="phoneForm" [nzPlaceHolder]="'账号'" [nzSize]="'large'">
+        <ng-template #prefix>
+          <i class="anticon anticon-user"></i>
+        </ng-template>
+      </nz-input>
+      <div nz-form-explain *ngIf="validateForm.controls['phoneForm'].dirty&&validateForm.controls['phoneForm'].hasError('required')">请输入账号!</div>
+      <!--<div [hidden]="truePhone" style="color: red">请输入正确手机号!</div>-->
+    </div>
+  </div>
+  <div nz-form-item>
+    <div nz-form-control>
+      <nz-input formControlName="password" [nzType]="'password'" [nzPlaceHolder]="'密码'" [nzSize]="'large'">
+        <ng-template #prefix>
+          <i class="anticon anticon-lock"></i>
+        </ng-template>
+      </nz-input>
+      <div nz-form-explain *ngIf="validateForm.controls['password'].dirty&&validateForm.controls['password'].hasError('required')">请输入密码!</div>
+      <!--<div nz-form-explain *ngIf="!validateValue">请输入验证码!</div>-->
+    </div>
+  </div>
+  <div nz-form-item>
+    <div nz-form-control>
+      <button nz-button class="login-form-button" [nzType]="'primary'" [nzSize]="'large'">登陆</button>
+    </div>
+  </div>
+</form>
+

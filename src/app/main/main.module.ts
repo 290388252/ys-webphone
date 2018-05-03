@@ -6,7 +6,6 @@ import { MainComponent } from './main.component';
 import { MainRoutingModule } from './main-routing.module';
 import { FooterComponent } from '../footer/footer.component';
 import { NavbarComponent } from '../navbar/navbar.component';
-import { CarouselComponent } from '../carousel/carousel.component';
 import {AppService} from '../app-service';
 import {AppProperties} from '../app.properties';
 
@@ -16,7 +15,6 @@ import {AppProperties} from '../app.properties';
     MainComponent,
     FooterComponent,
     NavbarComponent,
-    CarouselComponent,
   ],
   imports: [
     FormsModule,

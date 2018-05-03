@@ -59,6 +59,10 @@ export class MainComponent implements OnInit {
       );
     }
   }
+  vmLogin() {
+    this.router.navigate(['vmLogin']);
+    // TODO;
+  }
   detail() {
     this.router.navigate(['product']);
     // TODO;
