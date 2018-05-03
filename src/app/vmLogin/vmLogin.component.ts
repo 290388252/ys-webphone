@@ -36,31 +36,32 @@ export class VmLoginComponent implements OnInit {
         this.validateForm.controls[i].markAsDirty();
       }
     }
-    if (this.validateForm.controls.phoneForm.value !== null && this.validateForm.controls.password.value !== null) {
-      this.appService.getData(this.appProperties.wechatRegisterUrl,
-        {openId: this.openId,
-          phone: this.validateForm.controls.phoneForm.value,
-          smsCode: this.validateForm.controls.password.value
-        }).subscribe(
-        data => {
-          if (data.code !== 0) {
-            alert('登陆失败');
-          } else if (data.code === 0) {
-            console.log(data);
-            const exp = new Date();
-            exp.setTime(exp.getTime() + 1000 * 60 * 60 * 24 * 365 * 10);
-            document.cookie = 'token=' + data.data.token + ';expires=' + exp.toUTCString();
-            this.router.navigate(['main']);
-            // this.router.navigate(['main'], {queryParams: {'token': data.data.token}});
-          }
-        },
-        error => {
-          console.log(error);
-        }
-      );
-    } else {
-      alert('请输入手机号码');
-    }
+    this.router.navigate(['vmDetail']);
+    // if (this.validateForm.controls.phoneForm.value !== null && this.validateForm.controls.password.value !== null) {
+    //   this.appService.getData(this.appProperties.wechatRegisterUrl,
+    //     {openId: this.openId,
+    //       phone: this.validateForm.controls.phoneForm.value,
+    //       smsCode: this.validateForm.controls.password.value
+    //     }).subscribe(
+    //     data => {
+    //       if (data.code !== 0) {
+    //         alert('登陆失败');
+    //       } else if (data.code === 0) {
+    //         console.log(data);
+    //         const exp = new Date();
+    //         exp.setTime(exp.getTime() + 1000 * 60 * 60 * 24 * 365 * 10);
+    //         document.cookie = 'token=' + data.data.token + ';expires=' + exp.toUTCString();
+    //         this.router.navigate(['main']);
+    //         // this.router.navigate(['main'], {queryParams: {'token': data.data.token}});
+    //       }
+    //     },
+    //     error => {
+    //       console.log(error);
+    //     }
+    //   );
+    // } else {
+    //   alert('请输入账号密码');
+    // }
   }
   getOpenId() {
     const url = window.location.href.toString();
