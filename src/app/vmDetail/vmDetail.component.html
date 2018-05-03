@@ -1,6 +1,6 @@
 <div class="container">
 <div class="title">
-<span>vmDetail</span>
+  <nz-input id="input"  [nzType]="'search'" [nzPlaceHolder]="'输入信息'" [(ngModel)]="_value" (nzOnSearch)="onSearch($event)"></nz-input>
 </div>
 <div class="content"></div>
 </div>
