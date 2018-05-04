@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, DoCheck, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 
@@ -7,7 +7,7 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './detail.component.html',
   styleUrls: ['./detail.component.css']
 })
-export class DetailComponent implements OnInit {
+export class DetailComponent implements OnInit, DoCheck {
   public queryParamsTitle: string;
   public title: string;
   constructor(private router: Router, private activatedRoute: ActivatedRoute) {
@@ -24,7 +24,10 @@ export class DetailComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.title);
+    document.getElementById('containers').style.height = document.documentElement.offsetHeight + 80 + 'px';
+    // console.log(document.getElementById('content').clientHeight);
   }
 
+  ngDoCheck(): void {
+  }
 }

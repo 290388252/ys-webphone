@@ -23,10 +23,15 @@ export class MainComponent implements OnInit {
     this.getInitData();
     this.getCookies();
     console.log(this.token);
-    console.log(this.urlParse());
+    if (this.token === null || this.token === undefined) {
+      const exp = new Date();
+      exp.setTime(exp.getTime() + 1000 * 60 * 60 * 24 * 365 * 10);
+      document.cookie = 'token=' + this.urlParse(window.location.search)['token'] + ';expires=' + exp.toUTCString();
+    }
+    console.log(this.urlParse(window.location.search)['vmCode']);
   }
   getInitData() {
-    this.appService.getData(this.appProperties.indexListUrl, {vmCode: '1988000072'}).subscribe(
+    this.appService.getData(this.appProperties.indexListUrl, {vmCode: this.urlParse(window.location.search)['vmCode']}).subscribe(
       data => {
         console.log(data);
         if (data.code === 0) {
@@ -44,7 +49,8 @@ export class MainComponent implements OnInit {
     if (this.token === null || this.token === undefined) {
       this.login();
     } else {
-      this.appService.getDataOpen(this.appProperties.indexOpenDoor, {vmCode: '1988000072', way: item.wayNumber}, this.token).subscribe(
+      this.appService.getDataOpen(this.appProperties.indexOpenDoor,
+        {vmCode: this.urlParse(window.location.search)['vmCode'], way: item.wayNumber}, this.token).subscribe(
         data => {
           console.log(data);
           if (data.code === 0) {
@@ -74,7 +80,8 @@ export class MainComponent implements OnInit {
         let newData;
         // const wlhUrl = 'http://youshui.natapp1.cc/main';
         const wlhUrl = window.location.href;
-        const newWlhUrl = wlhUrl.replace(wlhUrl.substring(wlhUrl.indexOf('main'), wlhUrl.length), 'register');
+        const newWlhUrl = window.location.href.replace('main', 'register');
+        // const newWlhUrl = wlhUrl.replace(wlhUrl.substring(wlhUrl.indexOf('main'), wlhUrl.length), 'register');
         if (typeof(data.data) === 'string' && data.data.length > 0) {
           newData = data.data.replace(data.data.substring(data.data.indexOf('state=') + 6, data.data.length),
             newWlhUrl + '-' + wlhUrl);
@@ -99,8 +106,7 @@ export class MainComponent implements OnInit {
       }
     }
   }
-  urlParse() {
-    const url = window.location.search;
+  urlParse(url) {
     const obj = {};
     const reg = /[?&][^?&]+=[^?&]+/g;
     const arr = url.match(reg);

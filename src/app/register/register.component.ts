@@ -60,7 +60,10 @@ export class RegisterComponent implements OnInit {
               const exp = new Date();
               exp.setTime(exp.getTime() + 1000 * 60 * 60 * 24 * 365 * 10);
               document.cookie = 'token=' + data.data.token + ';expires=' + exp.toUTCString();
-              this.router.navigate(['main']);
+              this.router.navigate(['main'], {
+                queryParams: {
+                  vmCode: this.getVmCode()
+                }});
               // this.router.navigate(['main'], {queryParams: {'token': data.data.token}});
             }
           },
@@ -77,12 +80,24 @@ export class RegisterComponent implements OnInit {
   checkPhone(phone) {
       return /^1[34578]\d{9}$/.test(phone);
   }
+  getVmCode() {
+    const url = window.location.href.toString();
+    const arrUrl = url.split('?');
+    let vmCode: string;
+    if (arrUrl[1] !== undefined) {
+      const firstArr = arrUrl[1].split('&')[0];
+      vmCode =  firstArr.substring(firstArr.indexOf('=') + 1, firstArr.length);
+    } else {
+      vmCode = '';
+    }
+    return vmCode;
+  }
   getOpenId() {
     const url = window.location.href.toString();
     const arrUrl = url.split('?');
     let openId: string;
     if (arrUrl[1] !== undefined) {
-      const firstArr = arrUrl[1].split('&')[0];
+      const firstArr = arrUrl[1].split('&')[1];
       openId =  firstArr.substring(firstArr.indexOf('=') + 1, firstArr.length);
     } else {
       openId = '';

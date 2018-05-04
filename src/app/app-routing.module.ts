@@ -11,6 +11,7 @@ const routes: Routes = [/*
     { path: 'vmLogin', loadChildren: './vmLogin/vmLogin.module#VmLoginModule' },
     { path: 'vmDetail', loadChildren: './vmDetail/vmDetail.module#VmDetailModule' },
     { path: 'main', loadChildren: './main/main.module#MainModule' },
+    { path: 'detail', loadChildren: './detail/detail.module#DetailModule' },
     { path: 'product', loadChildren: './product/product.module#ProductModule' },
 ];
 
