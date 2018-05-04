@@ -3,7 +3,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {AppProperties} from '../app.properties';
 import {AppService} from '../app-service';
-
+import * as $ from 'jquery';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -30,6 +30,11 @@ export class RegisterComponent implements OnInit {
               private appService: AppService) {}
 
   ngOnInit() {
+    // const myInput = document.getElementById('code');
+    // setInterval(function() {
+      // myInput.scrollIntoView(false);
+      document.getElementById('containers').style.height = (document.documentElement.offsetWidth + 50) + 'px';
+    // }, 200);
     this.validateForm = this.fb.group({
       phoneForm: [ null, [ this.phoneValidator ] ],
       password: [ null, [ Validators.required ] ]

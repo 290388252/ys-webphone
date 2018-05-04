@@ -72,6 +72,7 @@ export class MainComponent implements OnInit {
       data => {
         console.log(data);
         let newData;
+        // const wlhUrl = 'http://youshui.natapp1.cc/main';
         const wlhUrl = window.location.href;
         const newWlhUrl = wlhUrl.replace(wlhUrl.substring(wlhUrl.indexOf('main'), wlhUrl.length), 'register');
         if (typeof(data.data) === 'string' && data.data.length > 0) {

@@ -11,5 +11,6 @@ export class ProductComponent implements OnInit {
 
   ngOnInit() {
   }
-
+  myVm() {}
+  detail(flag) {}
 }

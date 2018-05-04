@@ -1,4 +1,4 @@
-<div class="containers">
+<div id="containers" class="containers">
 </div>
 <div class="logo">
   <img src="../../assets/main/ys_logo.png" alt="..." class="rounded-circle">
@@ -18,7 +18,7 @@
   </div>
   <div nz-form-item>
     <div nz-form-control>
-      <nz-input formControlName="password" [nzType]="'number'" [nzPlaceHolder]="'验证码'" [nzSize]="'large'">
+      <nz-input id="code" formControlName="password" [nzType]="'number'" [nzPlaceHolder]="'验证码'" [nzSize]="'large'">
         <ng-template #prefix>
           <i class="anticon anticon-mail"></i>
         </ng-template>
