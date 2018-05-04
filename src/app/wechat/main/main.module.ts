@@ -6,8 +6,8 @@ import { MainComponent } from './main.component';
 import { MainRoutingModule } from './main-routing.module';
 import { FooterComponent } from '../footer/footer.component';
 import { NavbarComponent } from '../navbar/navbar.component';
-import {AppService} from '../app-service';
-import {AppProperties} from '../app.properties';
+import {AppService} from '../../app-service';
+import {AppProperties} from '../../app.properties';
 
 
 @NgModule({

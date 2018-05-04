@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
-import {AppProperties} from '../app.properties';
-import {AppService} from '../app-service';
+import {AppProperties} from '../../app.properties';
+import {AppService} from '../../app-service';
 import * as $ from 'jquery';
 @Component({
   selector: 'app-register',

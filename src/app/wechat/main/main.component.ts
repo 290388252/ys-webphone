@@ -1,7 +1,7 @@
 import { Component , OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {AppService} from '../app-service';
-import {AppProperties} from '../app.properties';
+import {AppService} from '../../app-service';
+import {AppProperties} from '../../app.properties';
 
 @Component({
   selector: 'app-main',

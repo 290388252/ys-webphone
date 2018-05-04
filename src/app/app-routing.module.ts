@@ -5,14 +5,14 @@ import {AppComponent} from "./app.component";
 const routes: Routes = [/*
     { path: '', loadChildren: './layout/layout.module#LayoutModule', canActivate: [AuthGuard] },
     { path: '**', redirectTo: 'not-found' }*/
-    { path: '', redirectTo: '/register', pathMatch: 'full' },
-    // { path: 'main', loadChildren: './system/common/main/main.module#MainModule' },
-    { path: 'register', loadChildren: './register/register.module#RegisterModule' },
-    { path: 'vmLogin', loadChildren: './vmLogin/vmLogin.module#VmLoginModule' },
-    { path: 'vmDetail', loadChildren: './vmDetail/vmDetail.module#VmDetailModule' },
-    { path: 'main', loadChildren: './main/main.module#MainModule' },
-    { path: 'detail', loadChildren: './detail/detail.module#DetailModule' },
-    { path: 'product', loadChildren: './product/product.module#ProductModule' },
+    { path: '', redirectTo: '/middle', pathMatch: 'full' },
+    { path: 'register', loadChildren: './wechat/register/register.module#RegisterModule' },
+    { path: 'middle', loadChildren: './middle/middle.module#MiddleModule' },
+    { path: 'vmLogin', loadChildren: './wechat/vmLogin/vmLogin.module#VmLoginModule' },
+    { path: 'vmDetail', loadChildren: './wechat/vmDetail/vmDetail.module#VmDetailModule' },
+    { path: 'main', loadChildren: './wechat/main/main.module#MainModule' },
+    { path: 'detail', loadChildren: './wechat/detail/detail.module#DetailModule' },
+    { path: 'product', loadChildren: './wechat/product/product.module#ProductModule' },
 ];
 
 @NgModule({

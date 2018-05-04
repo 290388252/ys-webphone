@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {AppProperties} from '../app.properties';
-import {AppService} from '../app-service';
+import {AppProperties} from '../../app.properties';
+import {AppService} from '../../app-service';
 
 @Component({
   selector: 'app-carousel',

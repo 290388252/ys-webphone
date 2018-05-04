@@ -5,8 +5,8 @@ import { CommonModule } from '@angular/common';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { VmLoginComponent } from './vmLogin.component';
 import { VmLoginRoutingModule } from './vmLogin-routing.module';
-import {AppProperties} from '../app.properties';
-import {AppService} from '../app-service';
+import {AppProperties} from '../../app.properties';
+import {AppService} from '../../app-service';
 
 
 @NgModule({
