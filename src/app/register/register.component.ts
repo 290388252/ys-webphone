@@ -30,17 +30,15 @@ export class RegisterComponent implements OnInit {
               private appService: AppService) {}
 
   ngOnInit() {
-    // const myInput = document.getElementById('code');
-    // setInterval(function() {
-      // myInput.scrollIntoView(false);
-      document.getElementById('containers').style.height = (document.documentElement.offsetWidth + 50) + 'px';
-    // }, 200);
     this.validateForm = this.fb.group({
       phoneForm: [ null, [ this.phoneValidator ] ],
       password: [ null, [ Validators.required ] ]
     });
     this.openId = this.getOpenId();
     console.log(this.getOpenId());
+  }
+  focusCode() {
+    document.getElementById('containers').style.height = (document.documentElement.offsetWidth + 50) + 'px';
   }
   _submitForm() {
     for (const i in this.validateForm.controls) {
