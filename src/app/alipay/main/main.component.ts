@@ -29,10 +29,8 @@ export class MainComponent implements OnInit {
     this.appService.getData(this.appProperties.aliIndexListUrl, {vmCode: this.urlParse(window.location.search)['vmCode']}).subscribe(
       data => {
         console.log(data);
-        if (data.code === 0) {
-          this.indexList = data.data;
-        } else if (data.code === -1) {
-          this.login();
+        if (data.status === 1) {
+          this.indexList = data.returnObject;
         }
       },
       error => {
@@ -46,7 +44,7 @@ export class MainComponent implements OnInit {
   //     this.login();
   //   } else {
   //     this.appService.getDataOpen(this.appProperties.indexOpenDoor,
-  //       {vmCode: this.urlParse(window.location.search)['vmCode'], way: item.wayNumber}, this.token).subscribe(
+  //       {vmCode: this.urlParse(window.location.search)['vmCode'], way: item.doorNO}, this.token).subscribe(
   //       data => {
   //         console.log(data);
   //         if (data.code === 0) {

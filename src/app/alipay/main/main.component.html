@@ -9,14 +9,14 @@
       <!--<div style="margin-right: 15px">-->
         <div (click)="openDoor(item)" *ngFor="let item of indexList" class="box card text-white mb-3">
           <div class="card-header min-padding">点击开门</div>
-          <div class="card-body box-body">
-            <img src="../../../favicon.ico" alt="">
+          <div class="box-body">
+            <img style="margin-top: 10px" src="../../../favicon.ico" alt="">
             <br/>
             <span class="card-title" style="color: white">{{item['itemName']}}</span>
             <br/>
             <span class="card-title" style="color: white">{{item['num']}}桶</span>
             <br/>
-            <span class="card-title" style="color: white">{{item['costPrice']}}元</span>
+            <span class="card-title" style="color: white">{{item['price']}}元</span>
           </div>
         </div>
         <!--<div class="box card text-white bg-secondary mb-3" style="width: 165px; height: 165px;">-->
