@@ -13,6 +13,13 @@ const routes: Routes = [/*
     { path: 'main', loadChildren: './wechat/main/main.module#MainModule' },
     { path: 'detail', loadChildren: './wechat/detail/detail.module#DetailModule' },
     { path: 'product', loadChildren: './wechat/product/product.module#ProductModule' },
+
+    { path: 'aliRegister', loadChildren: './alipay/register/register.module#RegisterModule' },
+    { path: 'aliVmLogin', loadChildren: './alipay/vmLogin/vmLogin.module#VmLoginModule' },
+    { path: 'aliVmDetail', loadChildren: './alipay/vmDetail/vmDetail.module#VmDetailModule' },
+    { path: 'aliMain', loadChildren: './alipay/main/main.module#MainModule' },
+    { path: 'aliDetail', loadChildren: './alipay/detail/detail.module#DetailModule' },
+    { path: 'aliProduct', loadChildren: './alipay/product/product.module#ProductModule' }
 ];
 
 @NgModule({

@@ -74,20 +74,6 @@ export class AppService {
   postDataDownLoad(url: string, body: any): Observable<any> {
     return this.http.post(url, body, {responseType: 'arraybuffer', headers: {'token': sessionStorage.getItem('token')}});
   }
-  deleteData(url: string, options?: any, myheaders?: any | null): Observable<any> {
-    // 配置请求头
-    const myHeaders: HttpHeaders = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'token': sessionStorage.getItem('token')
-    });
-    // tslint:disable-next-line:forin
-    for (const key in myheaders) {
-      myHeaders.append(key, myheaders[key]);
-    }
-    url += (url.indexOf('?') < 0 ? '?' : '&') + this.param(options);
-    console.log(url);
-    return this.http.delete(url, { headers: myHeaders });
-  }
   /**
    * @param {any} data
    * @returns
