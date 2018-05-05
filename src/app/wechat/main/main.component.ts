@@ -23,11 +23,6 @@ export class MainComponent implements OnInit {
     this.getInitData();
     this.getCookies();
     console.log(this.token);
-    if (this.token === null || this.token === undefined) {
-      const exp = new Date();
-      exp.setTime(exp.getTime() + 1000 * 60 * 60 * 24 * 365 * 10);
-      document.cookie = 'token=' + this.urlParse(window.location.search)['token'] + ';expires=' + exp.toUTCString();
-    }
     console.log(this.urlParse(window.location.search)['vmCode']);
   }
   getInitData() {
@@ -46,7 +41,8 @@ export class MainComponent implements OnInit {
     );
   }
   openDoor(item) {
-    if (this.token === null || this.token === undefined) {
+    if (this.token === null || this.token === undefined || this.token === 'undefined') {
+      alert('点击确认登陆');
       this.login();
     } else {
       this.appService.getDataOpen(this.appProperties.indexOpenDoor,
@@ -95,7 +91,7 @@ export class MainComponent implements OnInit {
     );
   }
   getCookies() {
-    if (this.token === undefined) {
+    if (this.token === null || this.token === undefined || this.token === 'undefined') {
       const strCookie = document.cookie;
       const arrCookie = strCookie.split(';');
       for (let i = 0; i < arrCookie.length; i++) {
@@ -121,6 +117,9 @@ export class MainComponent implements OnInit {
     }
     if (obj['token']) {
       this.token = obj['token'];
+      const exp = new Date();
+      exp.setTime(exp.getTime() + 1000 * 60 * 60 * 24 * 365 * 10);
+      document.cookie = 'token=' + this.token + ';expires=' + exp.toUTCString();
     }
     return obj;
   }
