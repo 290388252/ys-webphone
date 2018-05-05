@@ -11,10 +11,11 @@ export class ProductComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit() {
+    console.log('alip')
   }
   myVm() {}
   detail(flag) {
-    this.router.navigate(['detail'], {
+    this.router.navigate(['aliDetail'], {
       queryParams: {
         title: flag
       }});

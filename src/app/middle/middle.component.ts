@@ -25,8 +25,7 @@ export class MiddleComponent implements OnInit {
           }
         });
       }
-    }
-    if (ua.match(/AlipayClient/i)) {
+    } else if (ua.match(/AlipayClient/i)) {
       if (ua.match(/AlipayClient/i)[0] === 'alipayclient') {
         // this.router.navigate(['aliMain']);
         this.appService.getAliData(this.appProperties.aliGetUserIdUrl, {vmCode: this.urlParse(window.location.href)['vmCode']}).subscribe(

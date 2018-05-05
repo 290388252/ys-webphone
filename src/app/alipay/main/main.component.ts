@@ -62,11 +62,11 @@ export class MainComponent implements OnInit {
       );
   }
   vmLogin() {
-    this.router.navigate(['vmLogin']);
+    this.router.navigate(['aliVmLogin']);
     // TODO;
   }
   detail() {
-    this.router.navigate(['product']);
+    this.router.navigate(['aliProduct']);
     // TODO;
   }
   getCookies() {

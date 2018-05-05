@@ -4,6 +4,8 @@ import { DetailRoutingModule } from './detail-routing.module';
 import { DetailComponent } from './detail.component';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { PopoverModule } from 'ngx-bootstrap';
+import {AppService} from '../../app-service';
+import {AppProperties} from '../../app.properties';
 
 @NgModule({
     imports: [
@@ -12,6 +14,7 @@ import { PopoverModule } from 'ngx-bootstrap';
         NgZorroAntdModule,
         PopoverModule.forRoot()
     ],
-    declarations: [DetailComponent]
+    declarations: [DetailComponent],
+    providers: [AppService, AppProperties],
 })
 export class DetailModule {}

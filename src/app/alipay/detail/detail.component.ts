@@ -1,6 +1,8 @@
 import {Component, DoCheck, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
+import {AppService} from '../../app-service';
+import {AppProperties} from '../../app.properties';
 
 @Component({
   selector: 'app-detail',
@@ -10,7 +12,9 @@ import { ActivatedRoute } from '@angular/router';
 export class DetailComponent implements OnInit, DoCheck {
   public queryParamsTitle: string;
   public title: string;
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) {
+  constructor(private router: Router, private activatedRoute: ActivatedRoute,
+              private appProperties: AppProperties,
+              private appService: AppService) {
     activatedRoute.queryParams.subscribe(queryParams => {
       this.queryParamsTitle = queryParams.title;
       if (this.queryParamsTitle === '1') {
@@ -24,8 +28,40 @@ export class DetailComponent implements OnInit, DoCheck {
   }
 
   ngOnInit() {
+    console.log(this.title);
     document.getElementById('containers').style.height = document.documentElement.offsetHeight + 80 + 'px';
     // console.log(document.getElementById('content').clientHeight);
+    if (this.title === '我的订单') {
+      console.log('我的订单');
+      this.appService.postAliData(this.appProperties.aliFindAllUserOrderUrl, {}).subscribe(
+        data => {
+          console.log(data);
+        },
+        error => {
+          console.log(error);
+        }
+      );
+    } else if (this.title === '已付款订单') {
+      console.log('已付款订单');
+      this.appService.postAliData(this.appProperties.aliFindPayOrderUrl, {}).subscribe(
+        data => {
+          console.log(data);
+        },
+        error => {
+          console.log(error);
+        }
+      );
+    } else if (this.title === '未付款订单') {
+      console.log('未付款订单');
+      this.appService.postAliData(this.appProperties.aliFindNotPayOrderUrl, {}).subscribe(
+        data => {
+          console.log(data);
+        },
+        error => {
+          console.log(error);
+        }
+      );
+    }
   }
 
   ngDoCheck(): void {

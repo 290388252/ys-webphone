@@ -17,6 +17,9 @@ export class AppProperties {
     public aliOpenDoorUrl: string;
     public aliRegisterUrl: string;
     public aliSmsSendUrl: string;
+    public aliFindAllUserOrderUrl: string;
+    public aliFindPayOrderUrl: string;
+    public aliFindNotPayOrderUrl: string;
 
     constructor() {
       // WeChat
@@ -36,5 +39,8 @@ export class AppProperties {
       this.aliOpenDoorUrl = this.aliAppUrl + '/business/weightOpenDoor';
       this.aliRegisterUrl = this.aliAppUrl + '/business/register';
       this.aliSmsSendUrl = this.aliAppUrl + '/sms/send';
+      this.aliFindAllUserOrderUrl = this.aliAppUrl + '/business/findAllUserOrder';
+      this.aliFindPayOrderUrl = this.aliAppUrl + '/business/findPayOrder';
+      this.aliFindNotPayOrderUrl = this.aliAppUrl + '/business/findNotPayOrder';
     }
 }
