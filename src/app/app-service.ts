@@ -33,10 +33,6 @@ export class AppService {
       // 'Authorization': tokens
       'Authorization': 'Bearer ' + tokens
     });
-    // tslint:disable-next-line:forin
-    // for (const key in myheaders) {
-    //   myHeaders.append(key, myheaders[key]);
-    // }
     url += (url.indexOf('?') < 0 ? '?' : '&') + this.param(options);
     console.log(url);
     return this.http.get(url, { headers: myHeaders });
@@ -63,12 +59,23 @@ export class AppService {
     return this.http.post(url, options, myHttpHead);
   }
 
-  postDataLogin(url: string, options: any): Observable<any> {
-    const myHttpHead = { headers: new HttpHeaders({
+  getAliData(url: string, options?: any): Observable<any> {
+    // 配置请求头
+    const myHeaders: HttpHeaders = new HttpHeaders({
+      'Content-Type': 'application/json',
+      // 'token': sessionStorage.getItem('token')
+    });
+    // tslint:disable-next-line:forin
+    url += (url.indexOf('?') < 0 ? '?' : '&') + this.param(options);
+    console.log(url);
+    return this.http.get(url, { headers: myHeaders , withCredentials: true});
+  }
+
+  postAliData(url: string, options: any): Observable<any> {
+    const myHttpHead = new HttpHeaders({
         'Content-Type': 'application/json',
-        'token': 'login'
-      })};
-    return this.http.post(url, options, myHttpHead);
+      });
+    return this.http.post(url, options, {headers: myHttpHead, withCredentials: true });
   }
 
   postDataDownLoad(url: string, body: any): Observable<any> {

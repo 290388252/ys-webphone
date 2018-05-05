@@ -13,6 +13,10 @@ export class AppProperties {
     // AliPay
     public aliAppUrl: string;
     public aliIndexListUrl: string;
+    public aliGetUserIdUrl: string;
+    public aliOpenDoorUrl: string;
+    public aliRegisterUrl: string;
+    public aliSmsSendUrl: string;
 
     constructor() {
       // WeChat
@@ -28,5 +32,9 @@ export class AppProperties {
       // AliPay
       this.aliAppUrl = 'http://youshuismallhe.natapp1.cc'; // localtest
       this.aliIndexListUrl = this.aliAppUrl + '/aliUser/queryItem';
+      this.aliGetUserIdUrl = this.aliAppUrl + '/aliUser/vv?alipayUserId=2088802567388960';
+      this.aliOpenDoorUrl = this.aliAppUrl + '/business/weightOpenDoor';
+      this.aliRegisterUrl = this.aliAppUrl + '/business/register';
+      this.aliSmsSendUrl = this.aliAppUrl + '/sms/send';
     }
 }

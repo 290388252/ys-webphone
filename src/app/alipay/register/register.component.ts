@@ -16,7 +16,6 @@ export class RegisterComponent implements OnInit {
   public buttonNoTouch = false;
   public truePhone = true;
   public times = 60;
-  private openId: string;
   private phoneValidator = (control: FormControl): { [s: string]: boolean } => {
     if (!control.value) {
       return { required: true };
@@ -34,8 +33,6 @@ export class RegisterComponent implements OnInit {
       phoneForm: [ null, [ this.phoneValidator ] ],
       password: [ null, [ Validators.required ] ]
     });
-    this.openId = this.getOpenId();
-    console.log(this.getOpenId());
   }
   focusCode() {
     document.getElementById('containers').style.height = (document.documentElement.offsetWidth + 50) + 'px';
@@ -47,24 +44,20 @@ export class RegisterComponent implements OnInit {
       }
     }
     if (this.validateForm.controls.phoneForm.value !== null && this.validateForm.controls.password.value !== null) {
-      this.appService.getData(this.appProperties.wechatRegisterUrl,
-        {openId: this.openId,
+      this.appService.postAliData(this.appProperties.aliRegisterUrl,
+        {
           phone: this.validateForm.controls.phoneForm.value,
-          smsCode: this.validateForm.controls.password.value
+          code: this.validateForm.controls.password.value,
+          vmCode: this.getVmCode()
         }).subscribe(
           data => {
-            if (data.code !== 0) {
-              alert('登陆失败');
-            } else if (data.code === 0) {
+            if (data.status !== 1) {
+              alert(data.message);
+            } else if (data.status === 1) {
               console.log(data);
-              const exp = new Date();
-              exp.setTime(exp.getTime() + 1000 * 60 * 60 * 24 * 365 * 10);
-              document.cookie = 'token=' + data.data.token + ';expires=' + exp.toUTCString();
-              this.router.navigate(['main'], {
-                queryParams: {
-                  vmCode: this.getVmCode()
-                }});
-              // this.router.navigate(['main'], {queryParams: {'token': data.data.token}});
+              if (data.willGo) {
+                window.location.href = data.returnObject;
+              }
             }
           },
           error => {
@@ -92,24 +85,12 @@ export class RegisterComponent implements OnInit {
     }
     return vmCode;
   }
-  getOpenId() {
-    const url = window.location.href.toString();
-    const arrUrl = url.split('?');
-    let openId: string;
-    if (arrUrl[1] !== undefined) {
-      const firstArr = arrUrl[1].split('&')[1];
-      openId =  firstArr.substring(firstArr.indexOf('=') + 1, firstArr.length);
-    } else {
-      openId = '';
-    }
-    return openId;
-  }
   sendCode(e: TouchEvent) {
     e.preventDefault();
     if (this.checkPhone(this.phone)) {
-      this.appService.getData(this.appProperties.smsSendUrl, {phone: this.phone}).subscribe(
+      this.appService.getAliData(this.appProperties.aliSmsSendUrl, {phone: this.phone}).subscribe(
         data => {
-          if (data.code !== 0) {
+          if (data.status !== 1) {
               alert('发送失败');
           } else {
             this.times = 60;

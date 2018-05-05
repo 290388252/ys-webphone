@@ -30,7 +30,11 @@ export class MainComponent implements OnInit {
       data => {
         console.log(data);
         if (data.status === 1) {
-          this.indexList = data.returnObject;
+          if (!data.willGo) {
+            this.indexList = data.returnObject;
+          }
+        } else {
+          alert(data.message);
         }
       },
       error => {
@@ -38,27 +42,25 @@ export class MainComponent implements OnInit {
       }
     );
   }
-  // openDoor(item) {
-  //   if (this.token === null || this.token === undefined || this.token === 'undefined') {
-  //     alert('点击确认登陆');
-  //     this.login();
-  //   } else {
-  //     this.appService.getDataOpen(this.appProperties.indexOpenDoor,
-  //       {vmCode: this.urlParse(window.location.search)['vmCode'], way: item.doorNO}, this.token).subscribe(
-  //       data => {
-  //         console.log(data);
-  //         if (data.code === 0) {
-  //           console.log(data.data);
-  //         } else if (data.code === -1) {
-  //           this.login();
-  //         }
-  //       },
-  //       error => {
-  //         console.log(error);
-  //       }
-  //     );
-  //   }
-  // }
+  openDoor(item) {
+      this.appService.postAliData(this.appProperties.aliOpenDoorUrl,
+        {vmCode: this.urlParse(window.location.search)['vmCode'], openType: 1, doorNO: item.doorNO}).subscribe(
+        data => {
+          if (data.status === 1) {
+            console.log(data);
+          } else {
+            console.log(data);
+            alert(data.message);
+            if (data.willGo) {
+              window.location.href = data.returnObject;
+            }
+          }
+        },
+        error => {
+          console.log(error);
+        }
+      );
+  }
   vmLogin() {
     this.router.navigate(['vmLogin']);
     // TODO;
@@ -66,27 +68,6 @@ export class MainComponent implements OnInit {
   detail() {
     this.router.navigate(['product']);
     // TODO;
-  }
-  login() {
-    this.appService.getData(this.appProperties.wechatOauth2Url, '').subscribe(
-      data => {
-        console.log(data);
-        let newData;
-        // const wlhUrl = 'http://youshui.natapp1.cc/main';
-        const wlhUrl = window.location.href;
-        const newWlhUrl = window.location.href.replace('main', 'register');
-        // const newWlhUrl = wlhUrl.replace(wlhUrl.substring(wlhUrl.indexOf('main'), wlhUrl.length), 'register');
-        if (typeof(data.data) === 'string' && data.data.length > 0) {
-          newData = data.data.replace(data.data.substring(data.data.indexOf('state=') + 6, data.data.length),
-            newWlhUrl + '-' + wlhUrl);
-          console.log(newData);
-          window.location.href = newData;
-        }
-      },
-      error => {
-        console.log(error);
-      }
-    );
   }
   getCookies() {
     if (this.token === null || this.token === undefined || this.token === 'undefined') {
