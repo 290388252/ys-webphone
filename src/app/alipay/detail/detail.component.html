@@ -4,37 +4,13 @@
 </div>
 <div id="content" class="content">
   <nz-collapseset>
-      <nz-collapse class="nz-collapse"  [nzTitle]="'订单号:123165726542313'" [nzActive]="true"
+      <nz-collapse class="nz-collapse" *ngFor="let item of aliFindAllUserOrderList"  [nzTitle]="'订单号:'+item.orderId" [nzActive]="true"
                    [nzDisabled]="false">
-        <p>下单时间</p>
-        <p>农夫山泉5L</p>
-        <p>单价：6元</p>
-        <p>数量：1</p>
-        <p>总价：6元</p>
-      </nz-collapse>
-      <nz-collapse class="nz-collapse"  [nzTitle]="'订单号:123165726542313'" [nzActive]="true"
-                   [nzDisabled]="false">
-        <p>下单时间</p>
-        <p>农夫山泉5L</p>
-        <p>单价：6元</p>
-        <p>数量：1</p>
-        <p>总价：6元</p>
-      </nz-collapse>
-      <nz-collapse class="nz-collapse"  [nzTitle]="'订单号:123165726542313'" [nzActive]="true"
-                   [nzDisabled]="false">
-        <p>下单时间</p>
-        <p>农夫山泉5L</p>
-        <p>单价：6元</p>
-        <p>数量：1</p>
-        <p>总价：6元</p>
-      </nz-collapse>
-      <nz-collapse class="nz-collapse"  [nzTitle]="'订单号:123165726542313'" [nzActive]="true"
-                   [nzDisabled]="false">
-        <p>下单时间</p>
-        <p>农夫山泉5L</p>
-        <p>单价：6元</p>
-        <p>数量：1</p>
-        <p>总价：6元</p>
+        <p>下单时间:{{item.createTime}}</p>
+        <p>商品名称:{{item.itemName}}</p>
+        <p>单价：{{item.price}}元</p>
+        <p>数量：{{item.num}}</p>
+        <p>总价：{{item.totalPrice}}元</p>
       </nz-collapse>
   </nz-collapseset>
 </div>

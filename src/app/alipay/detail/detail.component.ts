@@ -12,6 +12,7 @@ import {AppProperties} from '../../app.properties';
 export class DetailComponent implements OnInit, DoCheck {
   public queryParamsTitle: string;
   public title: string;
+  public list;
   constructor(private router: Router, private activatedRoute: ActivatedRoute,
               private appProperties: AppProperties,
               private appService: AppService) {
@@ -28,34 +29,45 @@ export class DetailComponent implements OnInit, DoCheck {
   }
 
   ngOnInit() {
-    console.log(this.title);
     document.getElementById('containers').style.height = document.documentElement.offsetHeight + 80 + 'px';
     // console.log(document.getElementById('content').clientHeight);
     if (this.title === '我的订单') {
-      console.log('我的订单');
       this.appService.postAliData(this.appProperties.aliFindAllUserOrderUrl, {}).subscribe(
         data => {
           console.log(data);
+          if (data.status === 1) {
+            this.list = data.returnObject;
+          } else if (data.status !== 1) {
+            alert(data.message);
+          }
         },
         error => {
           console.log(error);
         }
       );
     } else if (this.title === '已付款订单') {
-      console.log('已付款订单');
       this.appService.postAliData(this.appProperties.aliFindPayOrderUrl, {}).subscribe(
         data => {
           console.log(data);
+          if (data.status === 1) {
+            this.list = data.returnObject;
+          } else if (data.status !== 1) {
+            alert(data.message);
+          }
         },
         error => {
           console.log(error);
         }
       );
     } else if (this.title === '未付款订单') {
-      console.log('未付款订单');
       this.appService.postAliData(this.appProperties.aliFindNotPayOrderUrl, {}).subscribe(
         data => {
           console.log(data);
+          if (data.status === 1) {
+            this.list = data.returnObject;
+          } else if (data.status !== 1) {
+            alert(data.message);
+          }
         },
         error => {
           console.log(error);
