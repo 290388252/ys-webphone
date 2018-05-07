@@ -4,7 +4,7 @@
 </div>
 <div id="content" class="content">
   <nz-collapseset>
-      <nz-collapse class="nz-collapse" *ngFor="let item of aliFindAllUserOrderList"  [nzTitle]="'订单号:'+item.orderId" [nzActive]="true"
+      <nz-collapse class="nz-collapse" *ngFor="let item of list"  [nzTitle]="'订单号:'+item.orderId" [nzActive]="true"
                    [nzDisabled]="false">
         <p>下单时间:{{item.createTime}}</p>
         <p>商品名称:{{item.itemName}}</p>
@@ -14,5 +14,5 @@
       </nz-collapse>
   </nz-collapseset>
 </div>
-  <div class="footer"><span>1111111111111111</span></div>
+  <div class="footer"><span>总价:{{totalPrice}}</span></div>
 </div>

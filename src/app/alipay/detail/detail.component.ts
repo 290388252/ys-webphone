@@ -13,6 +13,7 @@ export class DetailComponent implements OnInit, DoCheck {
   public queryParamsTitle: string;
   public title: string;
   public list;
+  public totalPrice;
   constructor(private router: Router, private activatedRoute: ActivatedRoute,
               private appProperties: AppProperties,
               private appService: AppService) {
@@ -37,6 +38,9 @@ export class DetailComponent implements OnInit, DoCheck {
           console.log(data);
           if (data.status === 1) {
             this.list = data.returnObject;
+            this.list.forEach((item => {
+              this.totalPrice += item.totalPrice;
+            }));
           } else if (data.status !== 1) {
             alert(data.message);
           }
@@ -51,6 +55,9 @@ export class DetailComponent implements OnInit, DoCheck {
           console.log(data);
           if (data.status === 1) {
             this.list = data.returnObject;
+            this.list.forEach((item => {
+              this.totalPrice += item.totalPrice;
+            }));
           } else if (data.status !== 1) {
             alert(data.message);
           }
@@ -65,6 +72,9 @@ export class DetailComponent implements OnInit, DoCheck {
           console.log(data);
           if (data.status === 1) {
             this.list = data.returnObject;
+            this.list.forEach((item => {
+              this.totalPrice += item.totalPrice;
+            }));
           } else if (data.status !== 1) {
             alert(data.message);
           }

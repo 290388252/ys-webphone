@@ -27,10 +27,10 @@ export class MiddleComponent implements OnInit {
       }
     } else if (ua.match(/AlipayClient/i)) {
       if (ua.match(/AlipayClient/i)[0] === 'alipayclient') {
-        // this.router.navigate(['aliMain']);
         this.appService.getAliData(this.appProperties.aliGetUserIdUrl, {vmCode: this.urlParse(window.location.href)['vmCode']}).subscribe(
           data => {
             console.log(data.returnObject);
+            window.location.href = data.returnObject;
           },
           error2 => {
             console.log(error2);
@@ -38,16 +38,15 @@ export class MiddleComponent implements OnInit {
         );
       }
     } else {
-      this.appService.getAliData(this.appProperties.aliGetUserIdUrl, {vmCode: this.urlParse(window.location.href)['vmCode']}).subscribe(
-        data => {
-          console.log(data.returnObject);
-          window.location.href = data.returnObject;
-        },
-        error2 => {
-          console.log(error2);
-        }
-      );
-      // this.router.navigate(['aliMain']);
+      // this.appService.getAliData(this.appProperties.aliGetUserIdUrl, {vmCode: this.urlParse(window.location.href)['vmCode']}).subscribe(
+      //   data => {
+      //     console.log(data.returnObject);
+      //     window.location.href = data.returnObject;
+      //   },
+      //   error2 => {
+      //     console.log(error2);
+      //   }
+      // );
     }
   }
   urlParse(url): object {
