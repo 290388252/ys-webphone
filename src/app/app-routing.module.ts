@@ -19,7 +19,8 @@ const routes: Routes = [/*
     { path: 'aliVmDetail', loadChildren: './alipay/vmDetail/vmDetail.module#VmDetailModule' },
     { path: 'aliMain', loadChildren: './alipay/main/main.module#MainModule' },
     { path: 'aliDetail', loadChildren: './alipay/detail/detail.module#DetailModule' },
-    { path: 'aliProduct', loadChildren: './alipay/product/product.module#ProductModule' }
+    { path: 'aliProduct', loadChildren: './alipay/product/product.module#ProductModule' },
+    { path: 'aliCreditPayment', loadChildren: './alipay/creditPayment/creditPayment.module#CreditPaymentModule' }
 ];
 
 @NgModule({

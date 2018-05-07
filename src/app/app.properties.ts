@@ -16,6 +16,7 @@ export class AppProperties {
     public aliIndexListUrl: string;
     public aliGetUserIdUrl: string;
     public aliOpenDoorUrl: string;
+    public aliGetCreditWithheldUrl: string;
     public aliRegisterUrl: string;
     public aliSmsSendUrl: string;
     public aliFindAllUserOrderUrl: string;
@@ -45,5 +46,6 @@ export class AppProperties {
       this.aliFindAllUserOrderUrl = this.aliAppUrl + '/business/findAllUserOrder';
       this.aliFindPayOrderUrl = this.aliAppUrl + '/business/findPayOrder';
       this.aliFindNotPayOrderUrl = this.aliAppUrl + '/business/findNotPayOrder';
+      this.aliGetCreditWithheldUrl = this.aliAppUrl + '/aliUser/getCreditWithheld?vmCode=198800072';
     }
 }
