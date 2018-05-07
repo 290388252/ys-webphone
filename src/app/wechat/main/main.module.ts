@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { MainComponent } from './main.component';
 import { MainRoutingModule } from './main-routing.module';
+import { NgZorroAntdModule } from 'ng-zorro-antd';
 import {AppService} from '../../app-service';
 import {AppProperties} from '../../app.properties';
 
@@ -16,7 +17,8 @@ import {AppProperties} from '../../app.properties';
     FormsModule,
     HttpClientModule,
     CommonModule,
-    MainRoutingModule
+    MainRoutingModule,
+    NgZorroAntdModule
   ],
   providers: [AppService, AppProperties],
   bootstrap: [MainComponent]

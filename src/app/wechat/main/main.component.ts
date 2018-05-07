@@ -2,6 +2,7 @@ import { Component , OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AppService} from '../../app-service';
 import {AppProperties} from '../../app.properties';
+import {NzModalService} from 'ng-zorro-antd';
 
 @Component({
   selector: 'app-main',
@@ -10,9 +11,11 @@ import {AppProperties} from '../../app.properties';
 })
 export class MainComponent implements OnInit {
   public indexList: Array<object>;
-  public openId: string;
+  public isVisible = false;
   private token: string;
+  currentModal;
   constructor(private router: Router,
+              private modalService: NzModalService,
               private activatedRoute: ActivatedRoute,
               private appProperties: AppProperties,
               private appService: AppService) {}
@@ -31,8 +34,6 @@ export class MainComponent implements OnInit {
         console.log(data);
         if (data.code === 0) {
           this.indexList = data.data;
-        } else if (data.code === -1) {
-          this.login();
         }
       },
       error => {
@@ -40,10 +41,10 @@ export class MainComponent implements OnInit {
       }
     );
   }
-  openDoor(item) {
+  openDoor(item, titleTpl, contentTpl, footerTpl) {
     if (this.token === null || this.token === undefined || this.token === 'undefined') {
       alert('点击确认登陆');
-      this.login();
+      this.login(titleTpl, contentTpl, footerTpl);
     } else {
       this.appService.getDataOpen(this.appProperties.indexOpenDoor,
         {vmCode: this.urlParse(window.location.search)['vmCode'], way: item.wayNumber}, this.token).subscribe(
@@ -52,7 +53,7 @@ export class MainComponent implements OnInit {
           if (data.code === 0) {
             console.log(data.data);
           } else if (data.code === -1) {
-            this.login();
+            this.login(titleTpl, contentTpl, footerTpl);
           }
         },
         error => {
@@ -63,13 +64,21 @@ export class MainComponent implements OnInit {
   }
   vmLogin() {
     this.router.navigate(['vmLogin']);
-    // TODO;
   }
   detail() {
     this.router.navigate(['product']);
     // TODO;
   }
-  login() {
+  login(titleTpl, contentTpl, footerTpl) {
+    this.currentModal = this.modalService.open({
+      title       : titleTpl,
+      content     : contentTpl,
+      footer      : footerTpl,
+      maskClosable: false,
+      onOk() {
+        console.log('Click ok');
+      }
+    });
     this.appService.getData(this.appProperties.wechatOauth2Url, '').subscribe(
       data => {
         console.log(data);
@@ -89,6 +98,10 @@ export class MainComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+  handleOk($event) {
+    window.location.href = this.appProperties.followWechatSubscription;
+    this.currentModal.destroy('onOk');
   }
   getCookies() {
     if (this.token === null || this.token === undefined || this.token === 'undefined') {

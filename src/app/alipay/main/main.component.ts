@@ -10,7 +10,6 @@ import {AppProperties} from '../../app.properties';
 })
 export class MainComponent implements OnInit {
   public indexList: Array<object>;
-  public openId: string;
   private token: string;
   constructor(private router: Router,
               private activatedRoute: ActivatedRoute,

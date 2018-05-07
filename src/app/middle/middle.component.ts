@@ -27,15 +27,20 @@ export class MiddleComponent implements OnInit {
       }
     } else if (ua.match(/AlipayClient/i)) {
       if (ua.match(/AlipayClient/i)[0] === 'alipayclient') {
-        this.appService.getAliData(this.appProperties.aliGetUserIdUrl, {vmCode: this.urlParse(window.location.href)['vmCode']}).subscribe(
-          data => {
-            console.log(data.returnObject);
-            window.location.href = data.returnObject;
-          },
-          error2 => {
-            console.log(error2);
-          }
-        );
+        window.location.href = this.appProperties.aliGetUserIdUrl + this.urlParse(window.location.search)['vmCode'];
+        // this.text = 'apiTest';
+        // // {vmCode: this.urlParse(window.location.href)['vmCode']
+        // this.appService.getData(this.appProperties.aliGetUserIdUrl).subscribe(
+        //   data => {
+        //     console.log(data.returnObject);
+        //     this.text = data.returnObject;
+        //     window.location.href = data.returnObject;
+        //   },
+        //   error2 => {
+        //     console.log(error2);
+        //     this.text = 'apiError';
+        //   }
+        // );
       }
     } else {
       // this.appService.getAliData(this.appProperties.aliGetUserIdUrl, {vmCode: this.urlParse(window.location.href)['vmCode']}).subscribe(

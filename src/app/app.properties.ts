@@ -9,6 +9,7 @@ export class AppProperties {
     public indexOpenDoor: string;
     public wechatOauth2Url: string;
     public smsSendUrl: string;
+    public followWechatSubscription: string;
     public wechatRegisterUrl: string;
     // AliPay
     public aliAppUrl: string;
@@ -31,11 +32,13 @@ export class AppProperties {
       this.wechatOauth2Url = this.appUrl + '/wechat/oauth2';
       this.smsSendUrl = this.appUrl + '/sms/send';
       this.wechatRegisterUrl = this.appUrl + '/wechat/register';
+      this.followWechatSubscription = 'weixin://contacts/profile/gh_1e90fc1adb7f';
 
       // AliPay
       this.aliAppUrl = 'http://youshuismallhe.natapp1.cc'; // localtest
       this.aliIndexListUrl = this.aliAppUrl + '/aliUser/queryItem';
-      this.aliGetUserIdUrl = this.aliAppUrl + '/aliUser/vv?alipayUserId=2088802567388960';
+      this.aliGetUserIdUrl = 'https://openauth.alipaydev.com/oauth2/publicAppAuthorize.htm' +
+        '?app_id=2016091600520953&scope=auth_user&redirect_uri=http://youshuismallhe.natapp1.cc/aliUser/';
       this.aliOpenDoorUrl = this.aliAppUrl + '/business/weightOpenDoor';
       this.aliRegisterUrl = this.aliAppUrl + '/business/register';
       this.aliSmsSendUrl = this.aliAppUrl + '/sms/send';
