@@ -1,6 +1,5 @@
-import {Component, DoCheck, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
-import { ActivatedRoute } from '@angular/router';
 import {AppService} from '../../app-service';
 import {AppProperties} from '../../app.properties';
 
@@ -9,7 +8,7 @@ import {AppProperties} from '../../app.properties';
   templateUrl: './creditPayment.component.html',
   styleUrls: ['./creditPayment.component.css']
 })
-export class CreditPaymentComponent implements OnInit, DoCheck {
+export class CreditPaymentComponent implements OnInit {
   constructor(private router: Router,
               private appProperties: AppProperties,
               private appService: AppService) {
@@ -24,8 +23,5 @@ export class CreditPaymentComponent implements OnInit, DoCheck {
         console.log(error);
       }
     );
-  }
-
-  ngDoCheck(): void {
   }
 }
