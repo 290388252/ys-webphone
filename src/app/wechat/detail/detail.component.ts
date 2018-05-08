@@ -25,8 +25,8 @@ export class DetailComponent implements OnInit, DoCheck {
   }
 
   ngOnInit() {
-    document.getElementById('containers').style.height = document.documentElement.offsetHeight + 80 + 'px';
-    // console.log(document.getElementById('content').clientHeight);
+    document.getElementById('containers').style.height = document.getElementById('content').clientHeight - 120 + 'px';
+    console.log(document.getElementById('content').clientHeight);
   }
 
   ngDoCheck(): void {

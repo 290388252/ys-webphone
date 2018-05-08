@@ -42,7 +42,7 @@ export class AppProperties {
         '?app_id=2016091600520953&scope=auth_user&redirect_uri=http://youshuismallhe.natapp1.cc/aliUser/';
       this.aliOpenDoorUrl = this.aliAppUrl + '/business/weightOpenDoor';
       this.aliRegisterUrl = this.aliAppUrl + '/business/register';
-      this.aliSmsSendUrl = this.aliAppUrl + '/sms/send';
+      this.aliSmsSendUrl = this.aliAppUrl + '/alisms/send';
       this.aliFindAllUserOrderUrl = this.aliAppUrl + '/business/findAllUserOrder';
       this.aliFindPayOrderUrl = this.aliAppUrl + '/business/findPayOrder';
       this.aliFindNotPayOrderUrl = this.aliAppUrl + '/business/findNotPayOrder';
