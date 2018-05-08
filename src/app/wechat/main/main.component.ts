@@ -70,15 +70,15 @@ export class MainComponent implements OnInit {
     // TODO;
   }
   login(titleTpl, contentTpl, footerTpl) {
-    this.currentModal = this.modalService.open({
-      title       : titleTpl,
-      content     : contentTpl,
-      footer      : footerTpl,
-      maskClosable: false,
-      onOk() {
-        console.log('Click ok');
-      }
-    });
+    // this.currentModal = this.modalService.open({
+    //   title       : titleTpl,
+    //   content     : contentTpl,
+    //   footer      : footerTpl,
+    //   maskClosable: false,
+    //   onOk() {
+    //     console.log('Click ok');
+    //   }
+    // });
     this.appService.getData(this.appProperties.wechatOauth2Url, '').subscribe(
       data => {
         console.log(data);

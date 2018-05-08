@@ -11,6 +11,7 @@ export class DetailComponent implements OnInit, DoCheck {
   public queryParamsTitle: string;
   public title: string;
   public totalPrice: string;
+  mark;
   constructor(private router: Router, private activatedRoute: ActivatedRoute) {
     activatedRoute.queryParams.subscribe(queryParams => {
       this.queryParamsTitle = queryParams.title;
@@ -28,7 +29,9 @@ export class DetailComponent implements OnInit, DoCheck {
     document.getElementById('containers').style.height = document.getElementById('content').clientHeight - 120 + 'px';
     console.log(document.getElementById('content').clientHeight);
   }
-
+  he() {
+    document.getElementById('fi').style.height = 90 + 'px';
+  }
   ngDoCheck(): void {
   }
 }

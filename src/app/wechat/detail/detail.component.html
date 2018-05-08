@@ -73,9 +73,11 @@
         <!--</div>-->
       <!--</nz-collapse>-->
   <!--</nz-collapseset>-->
-    <div style="background: white;padding: 5px;margin: 5px">
-      <span>title</span>
-      <div nz-row [nzType]="'flex'" [nzJustify]="'space-around'" [nzAlign]="'middle'">
+    <div style="background: white;padding: 5px;margin: 5px;border-radius: 3px;">
+      <span (click)="he()">title</span>
+      <br>
+      <hr>
+      <div id="fi" nz-row [nzType]="'flex'" [nzJustify]="'space-around'" [nzAlign]="'middle'">
         <div nz-col [nzSpan]="20">
           <p>下单时间</p>
           <p>农夫山泉5L</p>
@@ -193,5 +195,6 @@
     </div>
   </div>
 </div>
+
   <div class="footer"><span>总价:{{totalPrice}}</span></div>
 </div>
