@@ -6,11 +6,20 @@
   <nz-collapseset>
       <nz-collapse class="nz-collapse" *ngFor="let item of list"  [nzTitle]="'订单号:'+item.orderId" [nzActive]="true"
                    [nzDisabled]="false">
-        <p>下单时间:{{item.createTime}}</p>
-        <p>商品名称:{{item.itemName}}</p>
-        <p>单价：{{item.price}}元</p>
-        <p>数量：{{item.num}}</p>
-        <p>总价：{{item.totalPrice}}元</p>
+        <div nz-row [nzType]="'flex'" [nzJustify]="'space-around'" [nzAlign]="'middle'">
+          <div nz-col [nzSpan]="20">
+            <p>下单时间:{{item.createTime}}</p>
+            <p>商品名称:{{item.itemName}}</p>
+            <p>单价：{{item.price}}元</p>
+            <p>数量：{{item.num}}</p>
+            <p>总价：{{item.totalPrice}}元</p>
+          </div>
+          <div nz-col [nzSpan]="4">
+            <button nz-button [nzType]="'primary'">
+              <span>支付</span>
+            </button>
+          </div>
+        </div>
       </nz-collapse>
   </nz-collapseset>
 </div>

@@ -10,6 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 export class DetailComponent implements OnInit, DoCheck {
   public queryParamsTitle: string;
   public title: string;
+  public totalPrice: string;
   constructor(private router: Router, private activatedRoute: ActivatedRoute) {
     activatedRoute.queryParams.subscribe(queryParams => {
       this.queryParamsTitle = queryParams.title;

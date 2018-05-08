@@ -41,6 +41,7 @@ export class DetailComponent implements OnInit, DoCheck {
             this.list.forEach((item => {
               this.totalPrice += item.totalPrice;
             }));
+            console.log(this.totalPrice);
           } else if (data.status !== 1) {
             alert(data.message);
           }
