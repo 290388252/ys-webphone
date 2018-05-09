@@ -23,6 +23,7 @@ export class MainComponent implements OnInit {
     this.getCookies();
     console.log(this.token);
     console.log(this.urlParse(window.location.search)['vmCode']);
+    sessionStorage.setItem('vmCode', this.urlParse(window.location.search)['vmCode']);
   }
   getInitData() {
     this.appService.getData(this.appProperties.aliIndexListUrl, {vmCode: this.urlParse(window.location.search)['vmCode']}).subscribe(

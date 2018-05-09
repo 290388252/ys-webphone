@@ -91,13 +91,10 @@ export class DetailComponent implements OnInit, DoCheck {
     }
   }
   nzSpan(flag) {
-    let num;
-    if (flag !== '支付失败') {
-        num = 24;
-    } else {
-      num = 20;
-    }
-    return num;
+    return flag !== '支付失败' ? 24 : 20;
+  }
+  pay(item) {
+    window.location.href = this.appProperties.alipayWapPayUrl + item.orderId + '&vmCode=' + sessionStorage.getItem('vmCode');
   }
   ngDoCheck(): void {
   }

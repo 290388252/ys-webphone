@@ -14,7 +14,7 @@
         <p>状态：{{item.state}}</p>
         <p>总价：{{item.totalPrice}}元</p>
       </div>
-      <div [hidden]="item.state !== '支付失败'" nz-col [nzSpan]="4">
+      <div (click)="pay(item)" [hidden]="item.state !== '支付失败'" nz-col [nzSpan]="4">
         <button nz-button [nzType]="'primary'">
           <span>支付</span>
         </button>
