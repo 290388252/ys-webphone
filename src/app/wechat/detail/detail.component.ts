@@ -35,7 +35,7 @@ export class DetailComponent implements OnInit, DoCheck {
       document.getElementById('containers').style.height = document.getElementById('content').clientHeight - 70 + 'px';
     }
     if (this.title === '我的订单') {
-      this.appService.postAliData(this.appProperties.findAllUserOrderUrl, {}).subscribe(
+      this.appService.getDataOpen(this.appProperties.findAllUserOrderUrl, {}).subscribe(
         data => {
           console.log(data);
           if (data.status === 1) {
@@ -53,7 +53,7 @@ export class DetailComponent implements OnInit, DoCheck {
         }
       );
     } else if (this.title === '已付款订单') {
-      this.appService.postAliData(this.appProperties.findPayOrderUrl, {}).subscribe(
+      this.appService.getDataOpen(this.appProperties.findAllUserOrderUrl, {}).subscribe(
         data => {
           console.log(data);
           if (data.status === 1) {
@@ -70,7 +70,7 @@ export class DetailComponent implements OnInit, DoCheck {
         }
       );
     } else if (this.title === '未付款订单') {
-      this.appService.postAliData(this.appProperties.findNotPayOrderUrl, {}).subscribe(
+      this.appService.getDataOpen(this.appProperties.findAllUserOrderUrl, {}).subscribe(
         data => {
           console.log(data);
           if (data.status === 1) {
@@ -87,6 +87,9 @@ export class DetailComponent implements OnInit, DoCheck {
         }
       );
     }
+  }
+  nzSpan(flag) {
+    return flag !== '10004' ? 24 : 20;
   }
   ngDoCheck(): void {
   }
