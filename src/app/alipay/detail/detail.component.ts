@@ -1,4 +1,4 @@
-import {Component, DoCheck, OnInit} from '@angular/core';
+import {AfterViewChecked, Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import {AppService} from '../../app-service';
@@ -9,7 +9,7 @@ import {AppProperties} from '../../app.properties';
   templateUrl: './detail.component.html',
   styleUrls: ['./detail.component.css']
 })
-export class DetailComponent implements OnInit, DoCheck {
+export class DetailComponent implements OnInit, AfterViewChecked {
   public queryParamsTitle: string;
   public title: string;
   public list;
@@ -96,6 +96,11 @@ export class DetailComponent implements OnInit, DoCheck {
   pay(item) {
     window.location.href = this.appProperties.alipayWapPayUrl + item.orderId + '&vmCode=' + sessionStorage.getItem('vmCode');
   }
-  ngDoCheck(): void {
+  ngAfterViewChecked(): void {
+    if (document.documentElement.offsetHeight > document.getElementById('content').clientHeight) {
+      document.getElementById('containers').style.height = document.documentElement.offsetHeight + 'px';
+    } else if (document.documentElement.offsetHeight < document.getElementById('content').clientHeight) {
+      document.getElementById('containers').style.height = document.getElementById('content').clientHeight + 70 + 'px';
+    }
   }
 }

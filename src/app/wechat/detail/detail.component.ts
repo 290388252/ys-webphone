@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, AfterViewChecked, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import {AppService} from '../../app-service';
@@ -9,7 +9,7 @@ import {AppProperties} from '../../app.properties';
   templateUrl: './detail.component.html',
   styleUrls: ['./detail.component.css']
 })
-export class DetailComponent implements OnInit {
+export class DetailComponent implements OnInit , AfterViewChecked {
   public queryParamsTitle: string;
   public queryParamsToken: string;
   public title: string;
@@ -34,11 +34,6 @@ export class DetailComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (document.documentElement.offsetHeight > document.getElementById('content').clientHeight) {
-      document.getElementById('containers').style.height = document.documentElement.offsetHeight + 'px';
-    } else {
-      document.getElementById('containers').style.height = document.getElementById('content').clientHeight - 70 + 'px';
-    }
     if (this.title === '我的订单') {
       this.appService.getDataOpen(this.appProperties.findAllUserOrderUrl, {}, this.queryParamsToken).subscribe(
         data => {
@@ -97,9 +92,24 @@ export class DetailComponent implements OnInit {
       );
     }
   }
+  ngAfterViewChecked(): void {
+    if (document.documentElement.offsetHeight > document.getElementById('content').clientHeight) {
+      document.getElementById('containers').style.height = document.documentElement.offsetHeight + 'px';
+    } else if (document.documentElement.offsetHeight < document.getElementById('content').clientHeight) {
+      document.getElementById('containers').style.height = document.getElementById('content').clientHeight + 70 + 'px';
+    }
+  }
   nzSpan(flag) {
     return flag !== '10002' ? 24 : 20;
   }
   pay(item) {
+    this.appService.getDataOpen(this.appProperties.orderUnifiedOrderUrl, {orderId: item.id}, this.queryParamsToken).subscribe(
+      data => {
+        console.log(data);
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
 }

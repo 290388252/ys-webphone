@@ -66,6 +66,7 @@ export class MainComponent implements OnInit {
     this.router.navigate(['vmLogin']);
   }
   detail() {
+    this.getCookies();
     this.router.navigate(['product'], {
       queryParams: {
         token: this.token
@@ -87,9 +88,11 @@ export class MainComponent implements OnInit {
         console.log(data);
         let newData;
         // const wlhUrl = 'http://youshui.natapp1.cc/main';
-        const wlhUrl = window.location.href;
-        const newWlhUrl = window.location.href.replace('main', 'register');
+        // const wlhUrl = window.location.href;
+        // const newWlhUrl = window.location.href.replace('main', 'register');
         // const newWlhUrl = wlhUrl.replace(wlhUrl.substring(wlhUrl.indexOf('main'), wlhUrl.length), 'register');
+        const wlhUrl = '/main?vmCode=' + this.urlParse(window.location.href)['vmCode'];
+        const newWlhUrl = '/register?vmCode=' + this.urlParse(window.location.href)['vmCode'];
         if (typeof(data.data) === 'string' && data.data.length > 0) {
           newData = data.data.replace(data.data.substring(data.data.indexOf('state=') + 6, data.data.length),
             newWlhUrl + '-' + wlhUrl);
