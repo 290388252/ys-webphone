@@ -122,69 +122,21 @@ export class DetailComponent implements OnInit , AfterViewChecked {
   onBridgeUndefindeReady(data) {
     if (document.addEventListener) {
       document.addEventListener('WeixinJSBridgeReady', () => {
-        WeixinJSBridge.invoke(
-          'getBrandWCPayRequest', {
-            appId: data.appId,
-            timeStamp: data.timeStamp,
-            nonceStr: data.nonceStr,
-            package: data.prepayId,
-            signType: 'MD5',
-            paySign: data.sign
-          }, function(res) {
-            if (res.err_msg === 'get_brand_wcpay_request:ok') {
-              alert('支付成功');
-              window.location.reload();
-            } else if (res.err_msg === 'get_brand_wcpay_request:cancel') {
-              alert('取消支付');
-              window.location.reload();
-            }
-          }
-        );
+        this.weixinJSBridge(data);
       }, false);
     } else if (document['attachEvent']) {
       document['attachEvent']('WeixinJSBridgeReady', () => {
-        WeixinJSBridge.invoke(
-          'getBrandWCPayRequest', {
-            appId: data.appId,
-            timeStamp: data.timeStamp,
-            nonceStr: data.nonceStr,
-            package: data.prepayId,
-            signType: 'MD5',
-            paySign: data.sign
-          }, function(res) {
-            if (res.err_msg === 'get_brand_wcpay_request:ok') {
-              alert('支付成功');
-              window.location.reload();
-            } else if (res.err_msg === 'get_brand_wcpay_request:cancel') {
-              alert('取消支付');
-              window.location.reload();
-            }
-          }
-        );
+        this.weixinJSBridge(data);
       });
       document['attachEvent']('onWeixinJSBridgeReady', () => {
-        WeixinJSBridge.invoke(
-          'getBrandWCPayRequest', {
-            appId: data.appId,
-            timeStamp: data.timeStamp,
-            nonceStr: data.nonceStr,
-            package: data.prepayId,
-            signType: 'MD5',
-            paySign: data.sign
-          }, function(res) {
-            if (res.err_msg === 'get_brand_wcpay_request:ok') {
-              alert('支付成功');
-              window.location.reload();
-            } else if (res.err_msg === 'get_brand_wcpay_request:cancel') {
-              alert('取消支付');
-              window.location.reload();
-            }
-          }
-        );
+        this.weixinJSBridge(data);
       });
     }
   }
   onBridgeReady(data) {
+   this.weixinJSBridge(data);
+  }
+  weixinJSBridge(data) {
     WeixinJSBridge.invoke(
       'getBrandWCPayRequest',
       {
