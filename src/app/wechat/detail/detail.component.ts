@@ -18,6 +18,7 @@ export class DetailComponent implements OnInit , AfterViewChecked {
   public totalPrice: string;
   public list;
   public unList;
+  public token;
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private appProperties: AppProperties,
   private appService: AppService) {
     activatedRoute.queryParams.subscribe(queryParams => {
@@ -36,8 +37,9 @@ export class DetailComponent implements OnInit , AfterViewChecked {
   }
 
   ngOnInit() {
+    this.getCookies();
     if (this.title === '我的订单') {
-      this.appService.getDataOpen(this.appProperties.findAllUserOrderUrl, {}, this.queryParamsToken).subscribe(
+      this.appService.getDataOpen(this.appProperties.findAllUserOrderUrl, {}, this.token).subscribe(
         data => {
           console.log(data);
           if (data.status === 1) {
@@ -55,7 +57,7 @@ export class DetailComponent implements OnInit , AfterViewChecked {
         }
       );
     } else if (this.title === '已付款订单') {
-      this.appService.getDataOpen(this.appProperties.findAllUserOrderUrl, {}, this.queryParamsToken).subscribe(
+      this.appService.getDataOpen(this.appProperties.findAllUserOrderUrl, {}, this.token).subscribe(
         data => {
           console.log(data);
           if (data.status === 1) {
@@ -74,7 +76,7 @@ export class DetailComponent implements OnInit , AfterViewChecked {
         }
       );
     } else if (this.title === '未付款订单') {
-      this.appService.getDataOpen(this.appProperties.findAllUserOrderUrl, {}, this.queryParamsToken).subscribe(
+      this.appService.getDataOpen(this.appProperties.findAllUserOrderUrl, {}, this.token).subscribe(
         data => {
           console.log(data);
           if (data.status === 1) {
@@ -105,7 +107,7 @@ export class DetailComponent implements OnInit , AfterViewChecked {
     return flag !== '10002' ? 24 : 20;
   }
   pay(item) {
-    this.appService.getDataOpen(this.appProperties.orderUnifiedOrderUrl, {orderId: item.id}, this.queryParamsToken).subscribe(
+    this.appService.getDataOpen(this.appProperties.orderUnifiedOrderUrl, {orderId: item.id}, this.token).subscribe(
       data => {
         console.log(data);
         if (typeof(WeixinJSBridge) === 'undefined') {
@@ -141,7 +143,7 @@ export class DetailComponent implements OnInit , AfterViewChecked {
       'getBrandWCPayRequest',
       {
         appId: data.appId,
-        timeStamp: data.timeStamp,
+        timestamp: data.timeStamp,
         nonceStr: data.nonceStr,
         package: data.prepayId,
         signType: 'MD5',
@@ -157,5 +159,28 @@ export class DetailComponent implements OnInit , AfterViewChecked {
         }
       }
     );
+  }
+  test(data) {
+    wx.config({
+      debug: false,
+      appId: data.appId,
+      timestamp: data.timeStamp,
+      nonceStr: data.nonceStr,
+      package: data.prepayId,
+      signature: data.sign,
+      jsApiList: ['chooseWXPay']
+    });
+  }
+  getCookies() {
+    if (this.token === null || this.token === undefined || this.token === 'undefined') {
+      const strCookie = document.cookie;
+      const arrCookie = strCookie.split(';');
+      for (let i = 0; i < arrCookie.length; i++) {
+        const arr = arrCookie[i].split('=');
+        if (arr[0].trim() === 'token') {
+          this.token = arr[1];
+        }
+      }
+    }
   }
 }
