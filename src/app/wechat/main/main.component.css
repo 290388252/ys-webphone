@@ -69,7 +69,7 @@
     text-align: center;
   }
   .context{
-    width: 290px;
+    width: 310px;
     margin: 0 auto;
   }
   .rounded-circle{
@@ -79,8 +79,8 @@
   }
   .box{
     float: left;
-    width: 135px;
-    height: 135px;
+    width: 145px;
+    height: 145px;
     margin-right: 10px;
     -webkit-box-shadow:2px 2px 2px 2px gray;
     -moz-box-shadow:2px 2px 2px 2px gray;

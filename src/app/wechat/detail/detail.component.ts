@@ -1,4 +1,4 @@
-import {Component, DoCheck, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import {AppService} from '../../app-service';
@@ -9,15 +9,18 @@ import {AppProperties} from '../../app.properties';
   templateUrl: './detail.component.html',
   styleUrls: ['./detail.component.css']
 })
-export class DetailComponent implements OnInit, DoCheck {
+export class DetailComponent implements OnInit {
   public queryParamsTitle: string;
+  public queryParamsToken: string;
   public title: string;
   public totalPrice: string;
   public list;
+  public unList;
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private appProperties: AppProperties,
   private appService: AppService) {
     activatedRoute.queryParams.subscribe(queryParams => {
       this.queryParamsTitle = queryParams.title;
+      this.queryParamsToken = queryParams.token;
       if (this.queryParamsTitle === '1') {
         this.title = '我的订单';
       } else if (this.queryParamsTitle === '2') {
@@ -26,6 +29,8 @@ export class DetailComponent implements OnInit, DoCheck {
         this.title = '未付款订单';
       }
     });
+    this.list = [];
+    this.unList = [];
   }
 
   ngOnInit() {
@@ -35,13 +40,13 @@ export class DetailComponent implements OnInit, DoCheck {
       document.getElementById('containers').style.height = document.getElementById('content').clientHeight - 70 + 'px';
     }
     if (this.title === '我的订单') {
-      this.appService.getDataOpen(this.appProperties.findAllUserOrderUrl, {}).subscribe(
+      this.appService.getDataOpen(this.appProperties.findAllUserOrderUrl, {}, this.queryParamsToken).subscribe(
         data => {
           console.log(data);
           if (data.status === 1) {
             this.list = data.returnObject;
             this.list.forEach((item => {
-              this.totalPrice += item.totalPrice;
+              this.totalPrice += item.price;
             }));
             console.log(this.totalPrice);
           } else if (data.status !== 1) {
@@ -53,13 +58,15 @@ export class DetailComponent implements OnInit, DoCheck {
         }
       );
     } else if (this.title === '已付款订单') {
-      this.appService.getDataOpen(this.appProperties.findAllUserOrderUrl, {}).subscribe(
+      this.appService.getDataOpen(this.appProperties.findAllUserOrderUrl, {}, this.queryParamsToken).subscribe(
         data => {
           console.log(data);
           if (data.status === 1) {
-            this.list = data.returnObject;
-            this.list.forEach((item => {
-              this.totalPrice += item.totalPrice;
+            data.returnObject.forEach((item => {
+              this.totalPrice += item.price;
+              if (item.state !== '10002') {
+                this.list.push(item);
+              }
             }));
           } else if (data.status !== 1) {
             alert(data.message);
@@ -70,13 +77,15 @@ export class DetailComponent implements OnInit, DoCheck {
         }
       );
     } else if (this.title === '未付款订单') {
-      this.appService.getDataOpen(this.appProperties.findAllUserOrderUrl, {}).subscribe(
+      this.appService.getDataOpen(this.appProperties.findAllUserOrderUrl, {}, this.queryParamsToken).subscribe(
         data => {
           console.log(data);
           if (data.status === 1) {
-            this.list = data.returnObject;
-            this.list.forEach((item => {
-              this.totalPrice += item.totalPrice;
+            data.returnObject.forEach((item => {
+              this.totalPrice += item.price;
+              if (item.state === '10002') {
+                this.list.push(item);
+              }
             }));
           } else if (data.status !== 1) {
             alert(data.message);
@@ -89,8 +98,8 @@ export class DetailComponent implements OnInit, DoCheck {
     }
   }
   nzSpan(flag) {
-    return flag !== '10004' ? 24 : 20;
+    return flag !== '10002' ? 24 : 20;
   }
-  ngDoCheck(): void {
+  pay(item) {
   }
 }

@@ -79,12 +79,12 @@
       <div nz-col [nzSpan]="nzSpan(item.state)">
         <p>下单时间:{{item.createTime}}</p>
         <p>商品名称:{{item.itemName}}</p>
-        <p>单价：{{item.price}}元</p>
+        <p>单价：{{(item.price)/(item.num)}}元</p>
         <p>数量：{{item.num}}</p>
-        <p>状态：{{item.state}}</p>
-        <p>总价：{{item.totalPrice}}元</p>
+        <p>状态：{{item.stateLabel}}</p>
+        <p>总价：{{item.price}}元</p>
       </div>
-      <div (click)="pay(item)" [hidden]="item.state !== '支付失败'" nz-col [nzSpan]="4">
+      <div (click)="pay(item)" [hidden]="item.state !== '10002'" nz-col [nzSpan]="4">
         <button nz-button [nzType]="'primary'">
           <span>支付</span>
         </button>

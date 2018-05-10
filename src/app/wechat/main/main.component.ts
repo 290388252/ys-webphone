@@ -66,7 +66,10 @@ export class MainComponent implements OnInit {
     this.router.navigate(['vmLogin']);
   }
   detail() {
-    this.router.navigate(['product']);
+    this.router.navigate(['product'], {
+      queryParams: {
+        token: this.token
+      }});
     // TODO;
   }
   login(titleTpl, contentTpl, footerTpl) {
