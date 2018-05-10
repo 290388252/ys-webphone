@@ -25,7 +25,6 @@ export class MainComponent implements OnInit {
     // });
     this.getInitData();
     this.getCookies();
-    console.log(this.token);
     console.log(this.urlParse(window.location.search)['vmCode']);
   }
   getInitData() {
@@ -66,7 +65,6 @@ export class MainComponent implements OnInit {
     this.router.navigate(['vmLogin']);
   }
   detail() {
-    this.getCookies();
     this.router.navigate(['product'], {
       queryParams: {
         token: this.token
@@ -115,7 +113,7 @@ export class MainComponent implements OnInit {
       const arrCookie = strCookie.split(';');
       for (let i = 0; i < arrCookie.length; i++) {
         const arr = arrCookie[i].split('=');
-        if (arr[0] === 'token') {
+        if (arr[0].trim() === 'token') {
           this.token = arr[1];
         }
       }

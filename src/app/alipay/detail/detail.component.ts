@@ -33,7 +33,7 @@ export class DetailComponent implements OnInit, AfterViewChecked {
     if (document.documentElement.offsetHeight > document.getElementById('content').clientHeight) {
       document.getElementById('containers').style.height = document.documentElement.offsetHeight + 'px';
     } else {
-      document.getElementById('containers').style.height = document.getElementById('content').clientHeight - 70 + 'px';
+      document.getElementById('containers').style.height = document.getElementById('content').clientHeight + 50 + 'px';
     }
     // console.log(document.getElementById('content').clientHeight);
     if (this.title === '我的订单') {

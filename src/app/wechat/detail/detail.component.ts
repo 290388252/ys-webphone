@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import {AppService} from '../../app-service';
 import {AppProperties} from '../../app.properties';
+declare var wx: any;
+declare var WeixinJSBridge: any;
 
 @Component({
   selector: 'app-detail',
@@ -41,9 +43,9 @@ export class DetailComponent implements OnInit , AfterViewChecked {
           if (data.status === 1) {
             this.list = data.returnObject;
             this.list.forEach((item => {
-              this.totalPrice += item.price;
+              this.totalPrice += Number.parseInt(item.price);
+              console.log(Number.parseInt(item.price));
             }));
-            console.log(this.totalPrice);
           } else if (data.status !== 1) {
             alert(data.message);
           }
@@ -58,7 +60,7 @@ export class DetailComponent implements OnInit , AfterViewChecked {
           console.log(data);
           if (data.status === 1) {
             data.returnObject.forEach((item => {
-              this.totalPrice += item.price;
+              this.totalPrice += Number.parseInt(item.price);
               if (item.state !== '10002') {
                 this.list.push(item);
               }
@@ -77,7 +79,7 @@ export class DetailComponent implements OnInit , AfterViewChecked {
           console.log(data);
           if (data.status === 1) {
             data.returnObject.forEach((item => {
-              this.totalPrice += item.price;
+              this.totalPrice += Number.parseInt(item.price);
               if (item.state === '10002') {
                 this.list.push(item);
               }
@@ -96,7 +98,7 @@ export class DetailComponent implements OnInit , AfterViewChecked {
     if (document.documentElement.offsetHeight > document.getElementById('content').clientHeight) {
       document.getElementById('containers').style.height = document.documentElement.offsetHeight + 'px';
     } else if (document.documentElement.offsetHeight < document.getElementById('content').clientHeight) {
-      document.getElementById('containers').style.height = document.getElementById('content').clientHeight + 70 + 'px';
+      document.getElementById('containers').style.height = document.getElementById('content').clientHeight + 50 + 'px';
     }
   }
   nzSpan(flag) {
@@ -106,9 +108,101 @@ export class DetailComponent implements OnInit , AfterViewChecked {
     this.appService.getDataOpen(this.appProperties.orderUnifiedOrderUrl, {orderId: item.id}, this.queryParamsToken).subscribe(
       data => {
         console.log(data);
+        if (typeof(WeixinJSBridge) === 'undefined') {
+          this.onBridgeUndefindeReady(data);
+        } else {
+          this.onBridgeReady(data);
+        }
       },
       error => {
         console.log(error);
+      }
+    );
+  }
+  onBridgeUndefindeReady(data) {
+    if (document.addEventListener) {
+      document.addEventListener('WeixinJSBridgeReady', () => {
+        WeixinJSBridge.invoke(
+          'getBrandWCPayRequest', {
+            appId: data.appId,
+            timeStamp: data.timeStamp,
+            nonceStr: data.nonceStr,
+            package: data.prepayId,
+            signType: 'MD5',
+            paySign: data.sign
+          }, function(res) {
+            if (res.err_msg === 'get_brand_wcpay_request:ok') {
+              alert('支付成功');
+              window.location.reload();
+            } else if (res.err_msg === 'get_brand_wcpay_request:cancel') {
+              alert('取消支付');
+              window.location.reload();
+            }
+          }
+        );
+      }, false);
+    } else if (document['attachEvent']) {
+      document['attachEvent']('WeixinJSBridgeReady', () => {
+        WeixinJSBridge.invoke(
+          'getBrandWCPayRequest', {
+            appId: data.appId,
+            timeStamp: data.timeStamp,
+            nonceStr: data.nonceStr,
+            package: data.prepayId,
+            signType: 'MD5',
+            paySign: data.sign
+          }, function(res) {
+            if (res.err_msg === 'get_brand_wcpay_request:ok') {
+              alert('支付成功');
+              window.location.reload();
+            } else if (res.err_msg === 'get_brand_wcpay_request:cancel') {
+              alert('取消支付');
+              window.location.reload();
+            }
+          }
+        );
+      });
+      document['attachEvent']('onWeixinJSBridgeReady', () => {
+        WeixinJSBridge.invoke(
+          'getBrandWCPayRequest', {
+            appId: data.appId,
+            timeStamp: data.timeStamp,
+            nonceStr: data.nonceStr,
+            package: data.prepayId,
+            signType: 'MD5',
+            paySign: data.sign
+          }, function(res) {
+            if (res.err_msg === 'get_brand_wcpay_request:ok') {
+              alert('支付成功');
+              window.location.reload();
+            } else if (res.err_msg === 'get_brand_wcpay_request:cancel') {
+              alert('取消支付');
+              window.location.reload();
+            }
+          }
+        );
+      });
+    }
+  }
+  onBridgeReady(data) {
+    WeixinJSBridge.invoke(
+      'getBrandWCPayRequest',
+      {
+        appId: data.appId,
+        timeStamp: data.timeStamp,
+        nonceStr: data.nonceStr,
+        package: data.prepayId,
+        signType: 'MD5',
+        paySign: data.sign
+      },
+      function(res) {
+        if (res.err_msg === 'get_brand_wcpay_request:ok') {
+          alert('支付成功');
+          window.location.reload();
+        } else if (res.err_msg === 'get_brand_wcpay_request:cancel') {
+          alert('取消支付');
+          window.location.reload();
+        }
       }
     );
   }
