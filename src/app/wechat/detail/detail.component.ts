@@ -15,8 +15,10 @@ export class DetailComponent implements OnInit , AfterViewChecked {
   public queryParamsTitle: string;
   public queryParamsToken: string;
   public title: string;
-  public totalPrice: string;
+  public totalPrice = 0;
   public list;
+  public list1;
+  public list2;
   public unList;
   public token;
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private appProperties: AppProperties,
@@ -39,62 +41,47 @@ export class DetailComponent implements OnInit , AfterViewChecked {
   ngOnInit() {
     this.getCookies();
     if (this.title === '我的订单') {
-      this.appService.getDataOpen(this.appProperties.findAllUserOrderUrl, {}, this.token).subscribe(
-        data => {
-          console.log(data);
-          if (data.status === 1) {
-            this.list = data.returnObject;
-            this.list.forEach((item => {
-              this.totalPrice += Number.parseInt(item.price);
-              console.log(Number.parseInt(item.price));
-            }));
-          } else if (data.status !== 1) {
-            alert(data.message);
-          }
-        },
-        error => {
-          console.log(error);
-        }
-      );
+      this.getData(this.appProperties.findAllUserOrderUrl, '我的订单');
     } else if (this.title === '已付款订单') {
-      this.appService.getDataOpen(this.appProperties.findAllUserOrderUrl, {}, this.token).subscribe(
-        data => {
-          console.log(data);
-          if (data.status === 1) {
-            data.returnObject.forEach((item => {
-              this.totalPrice += Number.parseInt(item.price);
-              if (item.state !== '10002') {
-                this.list.push(item);
-              }
-            }));
-          } else if (data.status !== 1) {
-            alert(data.message);
-          }
-        },
-        error => {
-          console.log(error);
-        }
-      );
+      this.getData(this.appProperties.findAllUserOrderUrl, '已付款订单');
     } else if (this.title === '未付款订单') {
-      this.appService.getDataOpen(this.appProperties.findAllUserOrderUrl, {}, this.token).subscribe(
-        data => {
-          console.log(data);
-          if (data.status === 1) {
-            data.returnObject.forEach((item => {
-              this.totalPrice += Number.parseInt(item.price);
-              if (item.state === '10002') {
-                this.list.push(item);
-              }
-            }));
-          } else if (data.status !== 1) {
-            alert(data.message);
-          }
-        },
-        error => {
-          console.log(error);
-        }
-      );
+      this.getData(this.appProperties.findAllUserOrderUrl, '未付款订单');
     }
+  }
+  getData(url, title) {
+    this.appService.getDataOpen(url, {}, this.token).subscribe(
+      data => {
+        console.log(data);
+        if (data.status === 1) {
+          if (title === '我的订单') {
+            data.returnObject.forEach((item => {
+                  this.totalPrice += item.price;
+                  this.totalPrice = Math.floor(this.totalPrice * 100) / 100;
+                  this.list.push(item);
+              }));
+          } else if (title === '已付款订单') {
+            data.returnObject.forEach((item => {
+              if (item.state !== '10002') {
+              this.totalPrice += item.price;
+              this.totalPrice = Math.floor(this.totalPrice * 100) / 100;
+              this.list.push(item);
+            }}));
+          } else if (title === '未付款订单') {
+            data.returnObject.forEach((item => {
+              if (item.state === '10002') {
+                this.totalPrice += item.price;
+                this.totalPrice = Math.floor(this.totalPrice * 100) / 100;
+                this.list.push(item);
+              }}));
+          }
+        } else if (data.status !== 1) {
+          alert(data.message);
+        }
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
   ngAfterViewChecked(): void {
     if (document.documentElement.offsetHeight > document.getElementById('content').clientHeight) {
@@ -124,26 +111,26 @@ export class DetailComponent implements OnInit , AfterViewChecked {
   onBridgeUndefindeReady(data) {
     if (document.addEventListener) {
       document.addEventListener('WeixinJSBridgeReady', () => {
-        this.weixinJSBridge(data);
+        this.test(data);
       }, false);
     } else if (document['attachEvent']) {
       document['attachEvent']('WeixinJSBridgeReady', () => {
-        this.weixinJSBridge(data);
+        this.test(data);
       });
       document['attachEvent']('onWeixinJSBridgeReady', () => {
-        this.weixinJSBridge(data);
+        this.test(data);
       });
     }
   }
   onBridgeReady(data) {
-   this.weixinJSBridge(data);
+   this.test(data);
   }
   weixinJSBridge(data) {
     WeixinJSBridge.invoke(
       'getBrandWCPayRequest',
       {
         appId: data.appId,
-        timestamp: data.timeStamp,
+        timeStamp: data.timeStamp,
         nonceStr: data.nonceStr,
         package: data.prepayId,
         signType: 'MD5',
@@ -164,7 +151,7 @@ export class DetailComponent implements OnInit , AfterViewChecked {
     wx.config({
       debug: false,
       appId: data.appId,
-      timestamp: data.timeStamp,
+      timeStamp: data.timeStamp,
       nonceStr: data.nonceStr,
       package: data.prepayId,
       signature: data.sign,
