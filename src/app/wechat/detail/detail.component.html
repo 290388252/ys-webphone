@@ -1,6 +1,6 @@
 <div id="containers" class="containers">
 <div class="title">
-<span>{{title}}</span>
+<span>我的订单</span>
 </div>
 <div id="content" class="content">
   <!--<nz-collapseset>-->
@@ -74,7 +74,7 @@
       <!--</nz-collapse>-->
   <!--</nz-collapseset>-->
   <div style="background: white;padding: 5px;margin: 5px;border-radius: 3px;" *ngFor="let item of list">
-    <span>订单号:{{item.orderId}}</span>
+    <span>订单号:{{item.payCode}}</span>
     <div nz-row [nzType]="'flex'" [nzJustify]="'space-around'" [nzAlign]="'middle'">
       <div nz-col [nzSpan]="nzSpan(item.state)">
         <p>下单时间:{{item.createTime}}</p>

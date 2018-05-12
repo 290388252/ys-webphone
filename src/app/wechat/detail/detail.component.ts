@@ -18,6 +18,7 @@ export class DetailComponent implements OnInit , AfterViewChecked {
   public token;
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private appProperties: AppProperties,
   private appService: AppService) {
+    this.list = [];
   }
 
   ngOnInit() {
@@ -56,15 +57,14 @@ export class DetailComponent implements OnInit , AfterViewChecked {
   pay(item) {
     this.appService.getDataOpen(this.appProperties.orderUnifiedOrderUrl,
       {
-        orderId: item.id,
-        url: window.location.href
+        orderId: item.id
       }, this.token).subscribe(
       data => {
         console.log(data);
         if (typeof(WeixinJSBridge) === 'undefined') {
-          this.onBridgeUndefindeReady(data);
+          this.onBridgeUndefindeReady(data, item);
         } else {
-          this.onBridgeReady(data);
+          this.onBridgeReady(data, item);
         }
       },
       error => {
@@ -72,22 +72,22 @@ export class DetailComponent implements OnInit , AfterViewChecked {
       }
     );
   }
-  onBridgeUndefindeReady(data) {
+  onBridgeUndefindeReady(data, item) {
     if (document.addEventListener) {
       document.addEventListener('WeixinJSBridgeReady', () => {
-        this.test(data);
+        this.test(data, item);
       }, false);
     } else if (document['attachEvent']) {
       document['attachEvent']('WeixinJSBridgeReady', () => {
-        this.test(data);
+        this.test(data, item);
       });
       document['attachEvent']('onWeixinJSBridgeReady', () => {
-        this.test(data);
+        this.test(data, item);
       });
     }
   }
-  onBridgeReady(data) {
-   this.test(data);
+  onBridgeReady(data, item) {
+   this.test(data, item);
   }
   weixinJSBridge(data) {
     WeixinJSBridge.invoke(
@@ -113,7 +113,7 @@ export class DetailComponent implements OnInit , AfterViewChecked {
       }
     );
   }
-  test(data) {
+  test(data, item) {
     wx.config({
       debug: false,
       appId: data.config.appId,
@@ -133,9 +133,9 @@ export class DetailComponent implements OnInit , AfterViewChecked {
         signType: 'MD5', // 签名方式，默认为'SHA1'，使用新版支付需传入'MD5'
         paySign: data.payInfo.sign, // 支付签名
         success: (res) => {
-          alert(res + '+');
           if (res.errMsg === 'chooseWXPay:ok') {
             alert('支付成功');
+            item.state = '10002';
           } else {
             alert('支付失败');
           }

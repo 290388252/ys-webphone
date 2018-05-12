@@ -13,6 +13,7 @@ export class AppProperties {
     public wechatRegisterUrl: string;
     public findAllUserOrderUrl: string;
     public orderUnifiedOrderUrl: string;
+    public nonePassWordPayUrl: string;
     // AliPay
     public aliAppUrl: string;
     public aliIndexListUrl: string;
@@ -39,6 +40,7 @@ export class AppProperties {
       this.followWechatSubscription = 'weixin://contacts/profile/gh_1e90fc1adb7f';
       this.findAllUserOrderUrl = this.appUrl + '/order/myOrderList';
       this.orderUnifiedOrderUrl = this.appUrl + '/order/unifiedOrder';
+      this.nonePassWordPayUrl = this.appUrl + '/wechat/entrustweb';
 
       // AliPay
       this.aliAppUrl = 'http://youshuismallhe.natapp1.cc'; // localtest

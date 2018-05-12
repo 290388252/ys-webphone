@@ -41,6 +41,14 @@ export class MainComponent implements OnInit {
     );
   }
   openDoor(item, titleTpl, contentTpl, footerTpl) {
+    // this.appService.getDataOpen(this.appProperties.nonePassWordPayUrl).subscribe(
+    //   data => {
+    //     console.log(data);
+    //   },
+    //   error => {
+    //     console.log(error);
+    //   }
+    // );
     if (this.token === null || this.token === undefined || this.token === 'undefined') {
       alert('点击确认登陆');
       this.login(titleTpl, contentTpl, footerTpl);
@@ -53,6 +61,15 @@ export class MainComponent implements OnInit {
             console.log(data.data);
           } else if (data.code === -1) {
             this.login(titleTpl, contentTpl, footerTpl);
+          } else if (data.code === -90) {
+            this.appService.getDataOpen(this.appProperties.nonePassWordPayUrl).subscribe(
+              data1 => {
+                window.location.href =  data1;
+              },
+              error1 => {
+                console.log(error1);
+              }
+            );
           }
         },
         error => {
