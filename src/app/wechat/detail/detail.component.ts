@@ -12,65 +12,28 @@ declare var WeixinJSBridge: any;
   styleUrls: ['./detail.component.css']
 })
 export class DetailComponent implements OnInit , AfterViewChecked {
-  public queryParamsTitle: string;
-  public queryParamsToken: string;
   public title: string;
   public totalPrice = 0;
   public list;
   public token;
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private appProperties: AppProperties,
   private appService: AppService) {
-    activatedRoute.queryParams.subscribe(queryParams => {
-      this.queryParamsTitle = queryParams.title;
-      this.queryParamsToken = queryParams.token;
-      if (this.queryParamsTitle === '1') {
-        this.title = '我的订单';
-      } else if (this.queryParamsTitle === '2') {
-        this.title = '已付款订单';
-      } else if (this.queryParamsTitle === '3') {
-        this.title = '未付款订单';
-      }
-    });
-    this.list = [];
   }
 
   ngOnInit() {
     this.getCookies();
-    this.title = '我的订单';
-    if (this.title === '我的订单') {
-      this.getData(this.appProperties.findAllUserOrderUrl, '我的订单');
-    } else if (this.title === '已付款订单') {
-      this.getData(this.appProperties.findAllUserOrderUrl, '已付款订单');
-    } else if (this.title === '未付款订单') {
-      this.getData(this.appProperties.findAllUserOrderUrl, '未付款订单');
-    }
+    this.getData(this.appProperties.findAllUserOrderUrl);
   }
-  getData(url, title) {
+  getData(url) {
     this.appService.getDataOpen(url, {}, this.token).subscribe(
       data => {
         console.log(data);
         if (data.status === 1) {
-          if (title === '我的订单') {
             data.returnObject.forEach((item => {
                   this.totalPrice += item.price;
                   this.totalPrice = Math.floor(this.totalPrice * 100) / 100;
                   this.list.push(item);
               }));
-          } else if (title === '已付款订单') {
-            data.returnObject.forEach((item => {
-              if (item.state !== '10002') {
-              this.totalPrice += item.price;
-              this.totalPrice = Math.floor(this.totalPrice * 100) / 100;
-              this.list.push(item);
-            }}));
-          } else if (title === '未付款订单') {
-            data.returnObject.forEach((item => {
-              if (item.state === '10002') {
-                this.totalPrice += item.price;
-                this.totalPrice = Math.floor(this.totalPrice * 100) / 100;
-                this.list.push(item);
-              }}));
-          }
         } else if (data.status !== 1) {
           alert(data.message);
         }
@@ -91,7 +54,11 @@ export class DetailComponent implements OnInit , AfterViewChecked {
     return flag !== '10002' ? 24 : 20;
   }
   pay(item) {
-    this.appService.getDataOpen(this.appProperties.orderUnifiedOrderUrl, {orderId: item.id}, this.token).subscribe(
+    this.appService.getDataOpen(this.appProperties.orderUnifiedOrderUrl,
+      {
+        orderId: item.id,
+        url: window.location.href
+      }, this.token).subscribe(
       data => {
         console.log(data);
         if (typeof(WeixinJSBridge) === 'undefined') {
@@ -165,20 +132,20 @@ export class DetailComponent implements OnInit , AfterViewChecked {
         package: data.payInfo.package,
         signType: 'MD5', // 签名方式，默认为'SHA1'，使用新版支付需传入'MD5'
         paySign: data.payInfo.sign, // 支付签名
-        success: function (res) {
+        success: (res) => {
           alert(res + '+');
           if (res.errMsg === 'chooseWXPay:ok') {
-            alert(res.errMsg);
+            alert('支付成功');
           } else {
-            alert(res.errMsg);
+            alert('支付失败');
           }
         },
-        cancel: function(res) {
-          alert(res + '*');
+        cancel: (res) => {
+          alert('您取消了支付');
           // 支付取消
         },
-        error: function(res) {
-          alert(res + '-');
+        error: (res) => {
+          alert('出错了，请联系优水到家管理员');
         }
       });
     });
