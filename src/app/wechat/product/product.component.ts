@@ -14,9 +14,10 @@ export class ProductComponent implements OnInit {
   }
   myVm() {}
   detail(flag) {
-    this.router.navigate(['detail'], {
-      queryParams: {
-        title: flag
-      }});
+    this.router.navigate(['detail']);
+    // this.router.navigate(['detail'], {
+    //   queryParams: {
+    //     title: flag
+    //   }});
   }
 }

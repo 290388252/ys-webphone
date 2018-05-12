@@ -29,7 +29,7 @@ export class AppProperties {
     constructor() {
       // WeChat
       // this.appUrl = 'http://192.168.0.110:8092';
-      this.appUrl = 'http://youshui.natapp1.cc'; // localtest
+      this.appUrl = 'http://youshuicmp.natapp1.cc'; // localtest
       // this.appUrl = 'http://127.0.0.1:8099'; // localtest
       this.indexListUrl = this.appUrl + '/index/listWay';
       this.indexOpenDoor = this.appUrl + '/index/openDoor';

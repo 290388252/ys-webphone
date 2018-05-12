@@ -17,9 +17,6 @@ export class DetailComponent implements OnInit , AfterViewChecked {
   public title: string;
   public totalPrice = 0;
   public list;
-  public list1;
-  public list2;
-  public unList;
   public token;
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private appProperties: AppProperties,
   private appService: AppService) {
@@ -35,11 +32,11 @@ export class DetailComponent implements OnInit , AfterViewChecked {
       }
     });
     this.list = [];
-    this.unList = [];
   }
 
   ngOnInit() {
     this.getCookies();
+    this.title = '我的订单';
     if (this.title === '我的订单') {
       this.getData(this.appProperties.findAllUserOrderUrl, '我的订单');
     } else if (this.title === '已付款订单') {
@@ -133,16 +130,18 @@ export class DetailComponent implements OnInit , AfterViewChecked {
         timeStamp: data.timeStamp,
         nonceStr: data.nonceStr,
         package: data.prepayId,
-        signType: 'MD5',
-        paySign: data.sign
+        signType: 'SHA1',
+        paySign: data.signature
       },
       function(res) {
         if (res.err_msg === 'get_brand_wcpay_request:ok') {
           alert('支付成功');
-          window.location.reload();
+          // window.location.reload();
         } else if (res.err_msg === 'get_brand_wcpay_request:cancel') {
           alert('取消支付');
-          window.location.reload();
+          // window.location.reload();
+        } else {
+          alert(res.err_msg);
         }
       }
     );
@@ -150,12 +149,38 @@ export class DetailComponent implements OnInit , AfterViewChecked {
   test(data) {
     wx.config({
       debug: false,
-      appId: data.appId,
-      timeStamp: data.timeStamp,
-      nonceStr: data.nonceStr,
-      package: data.prepayId,
-      signature: data.sign,
-      jsApiList: ['chooseWXPay']
+      appId: data.config.appId,
+      timestamp: data.config.timestamp,
+      nonceStr: data.config.nonceStr,
+      signature: data.config.signature,
+      jsApiList: ['checkJsApi',
+        'chooseWXPay',
+        ]
+    });
+    wx.ready(() => {
+      wx.chooseWXPay({
+        debug: false,
+        timestamp: data.payInfo.timeStamp, // 支付签名时间戳，注意微信jssdk中的所有使用timestamp字段均为小写。但最新版的支付后台生成签名使用的timeStamp字段名需大写其中的S字符
+        nonceStr: data.payInfo.nonceStr, // 支付签名随机串，不长于 32 位
+        package: data.payInfo.package,
+        signType: 'MD5', // 签名方式，默认为'SHA1'，使用新版支付需传入'MD5'
+        paySign: data.payInfo.sign, // 支付签名
+        success: function (res) {
+          alert(res + '+');
+          if (res.errMsg === 'chooseWXPay:ok') {
+            alert(res.errMsg);
+          } else {
+            alert(res.errMsg);
+          }
+        },
+        cancel: function(res) {
+          alert(res + '*');
+          // 支付取消
+        },
+        error: function(res) {
+          alert(res + '-');
+        }
+      });
     });
   }
   getCookies() {
