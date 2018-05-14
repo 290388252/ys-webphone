@@ -36,32 +36,31 @@ export class VmLoginComponent implements OnInit {
         this.validateForm.controls[i].markAsDirty();
       }
     }
-    this.router.navigate(['vmDetail']);
-    // if (this.validateForm.controls.phoneForm.value !== null && this.validateForm.controls.password.value !== null) {
-    //   this.appService.getData(this.appProperties.wechatRegisterUrl,
-    //     {openId: this.openId,
-    //       phone: this.validateForm.controls.phoneForm.value,
-    //       smsCode: this.validateForm.controls.password.value
-    //     }).subscribe(
-    //     data => {
-    //       if (data.code !== 0) {
-    //         alert('登陆失败');
-    //       } else if (data.code === 0) {
-    //         console.log(data);
-    //         const exp = new Date();
-    //         exp.setTime(exp.getTime() + 1000 * 60 * 60 * 24 * 365 * 10);
-    //         document.cookie = 'token=' + data.data.token + ';expires=' + exp.toUTCString();
-    //         this.router.navigate(['main']);
-    //         // this.router.navigate(['main'], {queryParams: {'token': data.data.token}});
-    //       }
-    //     },
-    //     error => {
-    //       console.log(error);
-    //     }
-    //   );
-    // } else {
-    //   alert('请输入账号密码');
-    // }
+    if (this.validateForm.controls.phoneForm.value !== null && this.validateForm.controls.password.value !== null) {
+      this.appService.getData(this.appProperties.adminLoginUrl,
+        {
+          phone: this.validateForm.controls.phoneForm.value,
+          smsCode: this.validateForm.controls.password.value
+        }).subscribe(
+        data => {
+          console.log(data);
+          if (data.code !== 0) {
+            alert(data.msg);
+          } else if (data.code === 0) {
+            console.log(data);
+            this.router.navigate(['addMain'], {
+              queryParams: {
+                token: data.data.token
+              }});
+          }
+        },
+        error => {
+          console.log(error);
+        }
+      );
+    } else {
+      alert('请输入账号密码');
+    }
   }
   getOpenId() {
     const url = window.location.href.toString();
@@ -74,5 +73,40 @@ export class VmLoginComponent implements OnInit {
       openId = '';
     }
     return openId;
+  }
+  focusCode() {
+    document.getElementById('containers').style.height = (document.documentElement.offsetWidth + 80) + 'px';
+  }
+  sendCode(e: TouchEvent) {
+    e.preventDefault();
+    if (/^1[34578]\d{9}$/.test(this.phone.toString())) {
+      this.appService.getData(this.appProperties.smsSendUrl, {phone: this.phone}).subscribe(
+        data => {
+          console.log(data);
+          if (data.code !== 0) {
+            alert('发送失败');
+          } else {
+            this.times = 60;
+            this.buttonNoTouch = true;
+            this.truePhone = true;
+            const timer = setInterval(() => {
+              this.times --;
+              if (this.times <= 0) {
+                this.buttonNoTouch = false;
+                clearInterval(timer);
+              }
+            }, 1000);
+            setTimeout(() => {
+              this.buttonNoTouch = false;
+            }, 60100);
+          }
+        },
+        error => {
+          console.log(error);
+        }
+      );
+    } else {
+      this.truePhone = false;
+    }
   }
 }

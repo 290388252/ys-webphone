@@ -14,6 +14,8 @@ export class AppProperties {
     public findAllUserOrderUrl: string;
     public orderUnifiedOrderUrl: string;
     public nonePassWordPayUrl: string;
+    public isClosedUrl: string;
+    public adminLoginUrl: string;
     // AliPay
     public aliAppUrl: string;
     public aliIndexListUrl: string;
@@ -38,16 +40,18 @@ export class AppProperties {
       this.wechatOauth2Url = this.appUrl + '/wechat/oauth2';
       this.smsSendUrl = this.appUrl + '/sms/send';
       this.wechatRegisterUrl = this.appUrl + '/wechat/register';
-      this.followWechatSubscription = 'weixin://contacts/profile/gh_1e90fc1adb7f';
+      this.followWechatSubscription = 'https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzU0NzQ4MTY0Mg==&scene=124#wechat_redirect';
       this.findAllUserOrderUrl = this.appUrl + '/order/myOrderList';
       this.orderUnifiedOrderUrl = this.appUrl + '/order/unifiedOrder';
       this.nonePassWordPayUrl = this.appUrl + '/wechat/entrustweb';
+      this.isClosedUrl = this.appUrl + '/wechat/isClosed';
+      this.adminLoginUrl = this.appUrl + '/admin/login';
 
       // AliPay
       this.aliAppUrl = 'http://youshuismallhe.natapp1.cc'; // localtest
       this.aliIndexListUrl = this.aliAppUrl + '/aliUser/queryItem';
-      this.aliGetUserIdUrl = 'https://openauth.alipaydev.com/oauth2/publicAppAuthorize.htm' +
-        '?app_id=2016091600520953&scope=auth_user&redirect_uri=http://youshuismallhe.natapp1.cc/aliUser/';
+      this.aliGetUserIdUrl = 'https://openauth.alipay.com/oauth2/publicAppAuthorize.htm' +
+        '?app_id=2017120900470709&scope=auth_user&redirect_uri=http://youshuismallhe.natapp1.cc/aliUser/';
       this.aliOpenDoorUrl = this.aliAppUrl + '/aliBusiness/weightOpenDoor';
       this.aliRegisterUrl = this.aliAppUrl + '/aliBusiness/register';
       this.aliSmsSendUrl = this.aliAppUrl + '/alisms/send';
@@ -55,7 +59,7 @@ export class AppProperties {
       this.aliFindPayOrderUrl = this.aliAppUrl + '/aliBusiness/findPayOrder';
       this.aliFindNotPayOrderUrl = this.aliAppUrl + '/aliBusiness/findNotPayOrder';
       this.alipayWapPayUrl = this.aliAppUrl + '/alipay/wapPay?payRecordId=';
-      this.aliGetCreditWithheldUrl = this.aliAppUrl + '/aliUser/getCreditWithheld?vmCode=198800072';
+      this.aliGetCreditWithheldUrl = this.aliAppUrl + '/aliUser/getCreditWithheld?vmCode=198800083';
       this.aliLoginVerifyOperateUrl = this.aliAppUrl + '/aliLogin/verifyOperate';
     }
 }

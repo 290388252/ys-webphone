@@ -15,6 +15,7 @@ export class MainComponent implements OnInit {
   private token: string;
   private newUser: boolean;
   private wayNumber: number;
+  public isVisibleOpen = false;
   currentModal;
   constructor(private router: Router,
               private modalService: NzModalService,
@@ -35,9 +36,13 @@ export class MainComponent implements OnInit {
         data => {
           console.log(data);
           if (data.code === 0) {
-            console.log(data.data);
+            this.isVisibleOpen = true;
           } else if (data.code === -1) {
             this.login('', '', '');
+          } else if (data.code === -87) {
+            window.location.href = this.appProperties.followWechatSubscription;
+          } else if (data.code === -88) {
+            alert('您有未支付订单请点击我的订单支付完毕再进行购水！');
           } else if (data.code === -89) {
             alert('门已开，请误点击多次');
           } else if (data.code === -90) {
@@ -63,9 +68,13 @@ export class MainComponent implements OnInit {
         data => {
           console.log(data);
           if (data.code === 0) {
-            console.log(data.data);
+            this.isVisibleOpen = true;
           } else if (data.code === -1) {
             this.login('', '', '');
+          } else if (data.code === -87) {
+            window.location.href = this.appProperties.followWechatSubscription;
+          } else if (data.code === -88) {
+            alert('您有未支付订单请点击我的订单支付完毕再进行购水！');
           } else if (data.code === -89) {
             alert('门已开，请误点击多次');
           } else if (data.code === -90) {
@@ -120,11 +129,17 @@ export class MainComponent implements OnInit {
         data => {
           console.log(data);
           if (data.code === 0) {
-            console.log(data.data);
+            // alert('优水到家提醒您,为了您账号资金安全,提水后请随手关门');
+            // this.isClosed(this.urlParse(window.location.search)['vmCode'], titleTpl, contentTpl, footerTpl);
+            this.isVisibleOpen = true;
           } else if (data.code === -1) {
             this.login(titleTpl, contentTpl, footerTpl);
+          } else if (data.code === -87) {
+            window.location.href = this.appProperties.followWechatSubscription;
+          } else if (data.code === -88) {
+            alert('您有未支付订单请点击我的订单支付完毕再进行购水！');
           } else if (data.code === -89) {
-            alert('门已开，请误点击多次');
+            alert('门已开，请误点击多次！');
           } else if (data.code === -90) {
             this.appService.getDataOpen(this.appProperties.nonePassWordPayUrl).subscribe(
               data1 => {
@@ -147,12 +162,29 @@ export class MainComponent implements OnInit {
   vmLogin() {
     this.router.navigate(['vmLogin']);
   }
-  detail() {
+  product() {
     this.router.navigate(['product'], {
       queryParams: {
         token: this.token
       }});
     // TODO;
+  }
+  isClosed(vmCode) {
+    this.appService.getDataOpen(this.appProperties.isClosedUrl, {vmCode: vmCode}).subscribe(
+      data2 => {
+        if (data2.data === false) {
+          // alert('您的门还未关闭！优水到家提醒您,为了您账号资金安全,提水后请随手关门');
+          this.isVisibleOpen = true;
+          this.isClosed(this.urlParse(window.location.search)['vmCode']);
+        } else if (data2.data === true) {
+          this.isVisibleOpen = false;
+          this.router.navigate(['detail']);
+        }
+      },
+      error2 => {
+        console.log(error2);
+      }
+    );
   }
   login(titleTpl, contentTpl, footerTpl) {
     // this.currentModal = this.modalService.open({
@@ -189,6 +221,10 @@ export class MainComponent implements OnInit {
   handleOk($event) {
     window.location.href = this.appProperties.followWechatSubscription;
     this.currentModal.destroy('onOk');
+  }
+  openOk() {
+    this.isVisibleOpen = true;
+    this.isClosed(this.urlParse(window.location.search)['vmCode']);
   }
   getCookies() {
     if (this.token === null || this.token === undefined || this.token === 'undefined') {
