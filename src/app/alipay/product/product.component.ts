@@ -11,7 +11,7 @@ export class ProductComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit() {
-    console.log('alip')
+    console.log('alip');
   }
   myVm() {}
   detail(flag) {

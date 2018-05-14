@@ -13,6 +13,8 @@ export class MainComponent implements OnInit {
   public indexList: Array<object>;
   public isVisible = false;
   private token: string;
+  private newUser: boolean;
+  private wayNumber: number;
   currentModal;
   constructor(private router: Router,
               private modalService: NzModalService,
@@ -26,6 +28,62 @@ export class MainComponent implements OnInit {
     this.getInitData();
     this.getCookies();
     console.log(this.urlParse(window.location.search)['vmCode']);
+    console.log(this.urlParse(window.location.search)['newUser']);
+    if (this.urlParse(window.location.search)['newUser'] === '1') {
+      this.appService.getDataOpen(this.appProperties.indexOpenDoor,
+        {vmCode: this.urlParse(window.location.search)['vmCode'], way: sessionStorage.getItem('wayNumber')}, this.token).subscribe(
+        data => {
+          console.log(data);
+          if (data.code === 0) {
+            console.log(data.data);
+          } else if (data.code === -1) {
+            this.login('', '', '');
+          } else if (data.code === -89) {
+            alert('门已开，请误点击多次');
+          } else if (data.code === -90) {
+            this.appService.getDataOpen(this.appProperties.nonePassWordPayUrl).subscribe(
+              data1 => {
+                window.location.href =  data1;
+                sessionStorage.setItem('open', '1');
+              },
+              error1 => {
+                console.log(error1);
+              }
+            );
+          }
+        },
+        error => {
+          console.log(error);
+        }
+      );
+    }
+    if (sessionStorage.getItem('open') === '1') {
+      this.appService.getDataOpen(this.appProperties.indexOpenDoor,
+        {vmCode: this.urlParse(window.location.search)['vmCode'], way: sessionStorage.getItem('wayNumber')}, this.token).subscribe(
+        data => {
+          console.log(data);
+          if (data.code === 0) {
+            console.log(data.data);
+          } else if (data.code === -1) {
+            this.login('', '', '');
+          } else if (data.code === -89) {
+            alert('门已开，请误点击多次');
+          } else if (data.code === -90) {
+            this.appService.getDataOpen(this.appProperties.nonePassWordPayUrl).subscribe(
+              data1 => {
+                window.location.href =  data1;
+              },
+              error1 => {
+                console.log(error1);
+              }
+            );
+          }
+        },
+        error => {
+          console.log(error);
+        }
+      );
+    }
   }
   getInitData() {
     this.appService.getData(this.appProperties.indexListUrl, {vmCode: this.urlParse(window.location.search)['vmCode']}).subscribe(
@@ -53,7 +111,8 @@ export class MainComponent implements OnInit {
     //   }
     // );
     if (this.token === null || this.token === undefined || this.token === 'undefined') {
-      alert('点击确认登陆');
+      sessionStorage.setItem('wayNumber', item.wayNumber);
+      alert('请点击确认，注册登陆');
       this.login(titleTpl, contentTpl, footerTpl);
     } else {
       this.appService.getDataOpen(this.appProperties.indexOpenDoor,
@@ -64,10 +123,14 @@ export class MainComponent implements OnInit {
             console.log(data.data);
           } else if (data.code === -1) {
             this.login(titleTpl, contentTpl, footerTpl);
+          } else if (data.code === -89) {
+            alert('门已开，请误点击多次');
           } else if (data.code === -90) {
             this.appService.getDataOpen(this.appProperties.nonePassWordPayUrl).subscribe(
               data1 => {
                 window.location.href =  data1;
+                sessionStorage.setItem('open', '1');
+                sessionStorage.setItem('wayNumber', item.wayNumber);
               },
               error1 => {
                 console.log(error1);

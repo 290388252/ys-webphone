@@ -134,8 +134,9 @@ export class DetailComponent implements OnInit , AfterViewChecked {
         paySign: data.payInfo.sign, // 支付签名
         success: (res) => {
           if (res.errMsg === 'chooseWXPay:ok') {
-            alert('支付成功');
+            this.getData(this.appProperties.findAllUserOrderUrl);
             item.state = '10002';
+            alert('支付成功');
           } else {
             alert('支付失败');
           }

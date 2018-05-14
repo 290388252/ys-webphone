@@ -26,6 +26,7 @@ export class AppProperties {
     public aliFindPayOrderUrl: string;
     public aliFindNotPayOrderUrl: string;
     public alipayWapPayUrl: string;
+    public aliLoginVerifyOperateUrl: string;
 
     constructor() {
       // WeChat
@@ -47,13 +48,14 @@ export class AppProperties {
       this.aliIndexListUrl = this.aliAppUrl + '/aliUser/queryItem';
       this.aliGetUserIdUrl = 'https://openauth.alipaydev.com/oauth2/publicAppAuthorize.htm' +
         '?app_id=2016091600520953&scope=auth_user&redirect_uri=http://youshuismallhe.natapp1.cc/aliUser/';
-      this.aliOpenDoorUrl = this.aliAppUrl + '/business/weightOpenDoor';
-      this.aliRegisterUrl = this.aliAppUrl + '/business/register';
+      this.aliOpenDoorUrl = this.aliAppUrl + '/aliBusiness/weightOpenDoor';
+      this.aliRegisterUrl = this.aliAppUrl + '/aliBusiness/register';
       this.aliSmsSendUrl = this.aliAppUrl + '/alisms/send';
-      this.aliFindAllUserOrderUrl = this.aliAppUrl + '/business/findAllUserOrder';
-      this.aliFindPayOrderUrl = this.aliAppUrl + '/business/findPayOrder';
-      this.aliFindNotPayOrderUrl = this.aliAppUrl + '/business/findNotPayOrder';
+      this.aliFindAllUserOrderUrl = this.aliAppUrl + '/aliBusiness/findAllUserOrder';
+      this.aliFindPayOrderUrl = this.aliAppUrl + '/aliBusiness/findPayOrder';
+      this.aliFindNotPayOrderUrl = this.aliAppUrl + '/aliBusiness/findNotPayOrder';
       this.alipayWapPayUrl = this.aliAppUrl + '/alipay/wapPay?payRecordId=';
       this.aliGetCreditWithheldUrl = this.aliAppUrl + '/aliUser/getCreditWithheld?vmCode=198800072';
+      this.aliLoginVerifyOperateUrl = this.aliAppUrl + '/aliLogin/verifyOperate';
     }
 }
