@@ -32,6 +32,9 @@ export class MainComponent implements OnInit {
         if (data.status === 1) {
           if (!data.willGo) {
             this.indexList = data.returnObject;
+            for (let i = 0; i < 2; i++) {
+              this.indexList.unshift(this.indexList.pop());
+            }
           }
         } else {
           alert(data.message);

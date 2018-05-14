@@ -33,6 +33,9 @@ export class MainComponent implements OnInit {
         console.log(data);
         if (data.code === 0) {
           this.indexList = data.data;
+          for (let i = 0; i < 2; i++) {
+            this.indexList.unshift(this.indexList.pop());
+          }
         }
       },
       error => {
