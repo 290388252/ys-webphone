@@ -160,7 +160,10 @@ export class MainComponent implements OnInit {
     }
   }
   vmLogin() {
-    this.router.navigate(['vmLogin']);
+    this.router.navigate(['vmLogin'], {
+      queryParams: {
+        vmCode: this.urlParse(window.location.search)['vmCode']
+      }});
   }
   product() {
     this.router.navigate(['product'], {

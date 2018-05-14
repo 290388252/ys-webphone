@@ -59,7 +59,7 @@ export class AppProperties {
       this.aliFindPayOrderUrl = this.aliAppUrl + '/aliBusiness/findPayOrder';
       this.aliFindNotPayOrderUrl = this.aliAppUrl + '/aliBusiness/findNotPayOrder';
       this.alipayWapPayUrl = this.aliAppUrl + '/alipay/wapPay?payRecordId=';
-      this.aliGetCreditWithheldUrl = this.aliAppUrl + '/aliUser/getCreditWithheld?vmCode=198800083';
+      this.aliGetCreditWithheldUrl = this.aliAppUrl + '/aliUser/getCreditWithheld?vmCode=';
       this.aliLoginVerifyOperateUrl = this.aliAppUrl + '/aliLogin/verifyOperate';
     }
 }
