@@ -16,7 +16,7 @@ export class VmLoginComponent implements OnInit {
   public buttonNoTouch = false;
   public truePhone = true;
   public times = 60;
-  private openId: string;
+  private vmCode: string;
   constructor(private fb: FormBuilder,
               private router: Router,
               private appProperties: AppProperties,
@@ -27,8 +27,7 @@ export class VmLoginComponent implements OnInit {
       phoneForm: [ null, [ Validators.required  ] ],
       password: [ null, [ Validators.required ] ]
     });
-    this.openId = this.getOpenId();
-    console.log(this.getOpenId());
+    this.vmCode = this.getVmCode();
   }
   _submitForm() {
     for (const i in this.validateForm.controls) {
@@ -50,7 +49,8 @@ export class VmLoginComponent implements OnInit {
             console.log(data);
             this.router.navigate(['addMain'], {
               queryParams: {
-                token: data.data.token
+                adminToken: data.data,
+                vmCode: this.vmCode
               }});
           }
         },
@@ -62,17 +62,17 @@ export class VmLoginComponent implements OnInit {
       alert('请输入账号密码');
     }
   }
-  getOpenId() {
+  getVmCode() {
     const url = window.location.href.toString();
     const arrUrl = url.split('?');
-    let openId: string;
+    let vmCode: string;
     if (arrUrl[1] !== undefined) {
       const firstArr = arrUrl[1].split('&')[0];
-      openId =  firstArr.substring(firstArr.indexOf('=') + 1, firstArr.length);
+      vmCode =  firstArr.substring(firstArr.indexOf('=') + 1, firstArr.length);
     } else {
-      openId = '';
+      vmCode = '';
     }
-    return openId;
+    return vmCode;
   }
   focusCode() {
     document.getElementById('containers').style.height = (document.documentElement.offsetWidth + 80) + 'px';

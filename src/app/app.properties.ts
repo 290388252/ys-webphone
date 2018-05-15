@@ -16,6 +16,7 @@ export class AppProperties {
     public nonePassWordPayUrl: string;
     public isClosedUrl: string;
     public adminLoginUrl: string;
+    public addOpendoorUrl: string;
     // AliPay
     public aliAppUrl: string;
     public aliIndexListUrl: string;
@@ -46,6 +47,7 @@ export class AppProperties {
       this.nonePassWordPayUrl = this.appUrl + '/wechat/entrustweb';
       this.isClosedUrl = this.appUrl + '/wechat/isClosed';
       this.adminLoginUrl = this.appUrl + '/admin/login';
+      this.addOpendoorUrl = this.appUrl + '/index/yunWeiOpenDoor';
 
       // AliPay
       this.aliAppUrl = 'http://youshuismallhe.natapp1.cc'; // localtest

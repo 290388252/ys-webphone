@@ -72,7 +72,10 @@ export class MainComponent implements OnInit {
     // TODO;
   }
   detail() {
-    this.router.navigate(['aliProduct']);
+    this.router.navigate(['aliDetail'], {
+      queryParams: {
+        title: 1
+      }});
     // TODO;
   }
   getCookies() {

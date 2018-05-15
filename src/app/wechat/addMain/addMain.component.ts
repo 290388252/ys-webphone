@@ -23,7 +23,7 @@ export class AddMainComponent implements OnInit {
               private appService: AppService) {}
   ngOnInit() {
     this.getInitData();
-    console.log(this.urlParse(window.location.search)['token']);
+    console.log(this.urlParse(window.location.search)['adminToken']);
   }
   getInitData() {
     this.appService.getData(this.appProperties.indexListUrl, {vmCode: this.urlParse(window.location.search)['vmCode']}).subscribe(
@@ -41,43 +41,24 @@ export class AddMainComponent implements OnInit {
       }
     );
   }
-  openDoor(item, titleTpl, contentTpl, footerTpl) {
-    // this.appService.getDataOpen(this.appProperties.nonePassWordPayUrl).subscribe(
-    //   data => {
-    //     console.log(data);
-    //   },
-    //   error => {
-    //     console.log(error);
-    //   }
-    // );
-    if (this.token === null || this.token === undefined || this.token === 'undefined') {
+  openDoor(item) {
+    if (this.urlParse(window.location.search)['adminToken'] === null
+      || this.urlParse(window.location.search)['adminToken'] === undefined
+      || this.urlParse(window.location.search)['adminToken'] === 'undefined') {
+      alert('登陆超时,请重新登陆');
+      this.router.navigate(['vmLogin']);
     } else {
-      this.appService.getDataOpen(this.appProperties.indexOpenDoor,
-        {vmCode: this.urlParse(window.location.search)['vmCode'], way: item.wayNumber}, this.token).subscribe(
+      this.appService.getDataOpen(this.appProperties.addOpendoorUrl,
+        {vmCode: this.urlParse(window.location.search)['vmCode'], way: item.wayNumber},
+        this.urlParse(window.location.search)['adminToken']).subscribe(
         data => {
           console.log(data);
           if (data.code === 0) {
-            // alert('优水到家提醒您,为了您账号资金安全,提水后请随手关门');
-            // this.isClosed(this.urlParse(window.location.search)['vmCode'], titleTpl, contentTpl, footerTpl);
             this.isVisibleOpen = true;
           } else if (data.code === -1) {
-          } else if (data.code === -87) {
-            window.location.href = this.appProperties.followWechatSubscription;
-          } else if (data.code === -88) {
-            alert('您有未支付订单请点击我的订单支付完毕再进行购水！');
+            this.router.navigate(['vmLogin']);
           } else if (data.code === -89) {
             alert('门已开，请误点击多次！');
-          } else if (data.code === -90) {
-            this.appService.getDataOpen(this.appProperties.nonePassWordPayUrl).subscribe(
-              data1 => {
-                window.location.href =  data1;
-                sessionStorage.setItem('open', '1');
-                sessionStorage.setItem('wayNumber', item.wayNumber);
-              },
-              error1 => {
-                console.log(error1);
-              }
-            );
           }
         },
         error => {
@@ -101,7 +82,7 @@ export class AddMainComponent implements OnInit {
           this.isClosed(this.urlParse(window.location.search)['vmCode']);
         } else if (data2.data === true) {
           this.isVisibleOpen = false;
-          this.router.navigate(['detail']);
+          this.getInitData();
         }
       },
       error2 => {
@@ -124,9 +105,6 @@ export class AddMainComponent implements OnInit {
         const val = decodeURIComponent(tempArr[1]);
         obj[key] = val;
       });
-    }
-    if (obj['token']) {
-      this.token = obj['token'];
     }
     return obj;
   }

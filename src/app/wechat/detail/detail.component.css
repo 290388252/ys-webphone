@@ -12,6 +12,7 @@
 }
 .content{
   margin-top: 5px;
+  margin-bottom: 5px;
   background: #adafb1;
   width: 100%;
   padding: 0;
@@ -26,6 +27,17 @@
 .footer>span{
   float: right;
 }
+.page__title {
+  text-align: left;
+  font-size: 20px;
+  font-weight: 400;
+}
+.page__desc {
+  margin-top: 5px;
+  color: #888;
+  text-align: left;
+  font-size: 14px;
+}
 .weui-form-preview {
   position: relative;
   background-color: #FFFFFF;
@@ -35,10 +47,6 @@
   padding: 10px 15px;
   text-align: right;
   line-height: 2.2em;
-}
-.weui-form-preview__hd .weui-form-preview__value {
-  font-style: normal;
-  font-size: 1.6em;
 }
 .weui-form-preview__bd {
   padding: 10px 15px;
@@ -86,7 +94,49 @@
   text-align: center;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
-
+.weui-form-preview__hd .weui-form-preview__label {
+  float: left;
+  margin-right: 1em;
+  font-size: 1.3em;
+  min-width: 4em;
+  color: black;
+  text-align: justify;
+  text-align-last: justify;
+}
+.weui-form-preview__hd .weui-form-preview__value {
+  font-style: normal;
+  font-size: 2em;
+  font-weight: 400;
+  color: #000;
+}
+.weui-btn_primary:not(.weui-btn_disabled):active {
+  color: rgba(255, 255, 255, 0.6);
+  background-color: #179B16;
+}
+.weui-btn_primary:not(.weui-btn_disabled):visited {
+  color: #FFFFFF;
+}
+.weui-btn_primary {
+  background-color: #1AAD19;
+}
+.weui-btn {
+  width: 95%;
+  position: relative;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 14px;
+  padding-right: 14px;
+  box-sizing: border-box;
+  font-size: 18px;
+  text-align: center;
+  text-decoration: none;
+  color: #FFFFFF;
+  line-height: 2.05555556;
+  border-radius: 5px;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  overflow: hidden;
+}
 a {
   text-decoration: none;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);

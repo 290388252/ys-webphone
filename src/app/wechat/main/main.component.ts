@@ -166,10 +166,11 @@ export class MainComponent implements OnInit {
       }});
   }
   product() {
-    this.router.navigate(['product'], {
-      queryParams: {
-        token: this.token
-      }});
+    // this.router.navigate(['product'], {
+    //   queryParams: {
+    //     token: this.token
+    //   }});
+    this.router.navigate(['detail']);
     // TODO;
   }
   isClosed(vmCode) {
