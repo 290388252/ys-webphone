@@ -11,6 +11,7 @@ import {AppProperties} from '../../app.properties';
 export class MainComponent implements OnInit {
   public indexList: Array<object>;
   private token: string;
+  public img = 'http://lenvar-resource-products.oss-cn-shenzhen.aliyuncs.com/';
   constructor(private router: Router,
               private activatedRoute: ActivatedRoute,
               private appProperties: AppProperties,

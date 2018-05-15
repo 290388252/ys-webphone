@@ -15,6 +15,7 @@ export class AddMainComponent implements OnInit {
   private wayNumber: number;
   public isVisibleOpen = false;
   public token: string;
+  public img = 'http://lenvar-resource-products.oss-cn-shenzhen.aliyuncs.com/';
   constructor(private router: Router,
               private modalService: NzModalService,
               private activatedRoute: ActivatedRoute,
