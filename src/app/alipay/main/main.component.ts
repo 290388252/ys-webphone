@@ -65,7 +65,7 @@ export class MainComponent implements OnInit {
       );
   }
   vmLogin() {
-    this.router.navigate(['aliVmLogin'], {
+    this.router.navigate(['vmLogin'], {
       queryParams: {
         vmCode: this.urlParse(window.location.search)['vmCode']
       }});
