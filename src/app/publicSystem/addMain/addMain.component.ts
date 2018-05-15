@@ -27,7 +27,6 @@ export class AddMainComponent implements OnInit {
     if (this.token === null
       || this.token === undefined
       || this.token === 'undefined') {
-      alert('登陆超时,请重新登陆');
       this.router.navigate(['vmLogin'], {
         queryParams: {
           vmCode: this.urlParse(window.location.search)['vmCode']

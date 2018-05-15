@@ -6,6 +6,7 @@ import { MainComponent } from './main.component';
 import { MainRoutingModule } from './main-routing.module';
 import {AppService} from '../../app-service';
 import {AppProperties} from '../../app.properties';
+import {NgZorroAntdModule} from 'ng-zorro-antd';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import {AppProperties} from '../../app.properties';
     FormsModule,
     HttpClientModule,
     CommonModule,
-    MainRoutingModule
+    MainRoutingModule,
+    NgZorroAntdModule
   ],
   providers: [AppService, AppProperties],
   bootstrap: [MainComponent]

@@ -30,6 +30,7 @@ export class AppProperties {
     public aliFindNotPayOrderUrl: string;
     public alipayWapPayUrl: string;
     public aliLoginVerifyOperateUrl: string;
+    public aliBusinessIsAttentionUrl: string;
 
     constructor() {
       // WeChat
@@ -63,5 +64,6 @@ export class AppProperties {
       this.alipayWapPayUrl = this.aliAppUrl + '/alipay/wapPay?payRecordId=';
       this.aliGetCreditWithheldUrl = this.aliAppUrl + '/aliUser/getCreditWithheld?vmCode=';
       this.aliLoginVerifyOperateUrl = this.aliAppUrl + '/aliLogin/verifyOperate';
+      this.aliBusinessIsAttentionUrl = this.aliAppUrl + '/aliBusiness/isAttention';
     }
 }

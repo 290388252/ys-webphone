@@ -12,6 +12,7 @@ export class MainComponent implements OnInit {
   public indexList: Array<object>;
   private token: string;
   public img = 'http://lenvar-resource-products.oss-cn-shenzhen.aliyuncs.com/';
+  public isVisibleOpen = false;
   constructor(private router: Router,
               private activatedRoute: ActivatedRoute,
               private appProperties: AppProperties,
@@ -51,6 +52,7 @@ export class MainComponent implements OnInit {
         {vmCode: this.urlParse(window.location.search)['vmCode'], openType: 1, doorNO: item.doorNO}).subscribe(
         data => {
           if (data.status === 1) {
+            this.isVisibleOpen = true;
             console.log(data);
           } else {
             console.log(data);
@@ -64,6 +66,43 @@ export class MainComponent implements OnInit {
           console.log(error);
         }
       );
+  }
+  openOk() {
+    this.isClosed(this.urlParse(window.location.search)['vmCode']);
+  }
+  isClosed(vmCode) {
+    this.appService.getDataOpen(this.appProperties.isClosedUrl, {vmCode: vmCode}).subscribe(
+      data2 => {
+        if (data2.data === false) {
+          this.isVisibleOpen = true;
+          this.isClosed(this.urlParse(window.location.search)['vmCode']);
+        } else if (data2.data === true) {
+          this.getInitData();
+          this.isVisibleOpen = false;
+          this.isAttention();
+        }
+      },
+      error2 => {
+        console.log(error2);
+      }
+    );
+  }
+  isAttention() {
+    this.appService.getAliData(this.appProperties.aliBusinessIsAttentionUrl).subscribe(
+      data2 => {
+        if (data2.status === 1) {
+          // stop
+        } else if (data2.status !== 1) {
+          if (data2.willGo) {
+            alert('点击确定前往关注我们生活号有惊喜');
+            window.location.href = data2.returnObject;
+          }
+        }
+      },
+      error2 => {
+        console.log(error2);
+      }
+    );
   }
   vmLogin() {
     this.router.navigate(['addMain'], {
