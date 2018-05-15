@@ -65,7 +65,7 @@ export class MainComponent implements OnInit {
       );
   }
   vmLogin() {
-    this.router.navigate(['vmLogin'], {
+    this.router.navigate(['addMain'], {
       queryParams: {
         vmCode: this.urlParse(window.location.search)['vmCode']
       }});

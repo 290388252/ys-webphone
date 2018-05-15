@@ -12,18 +12,26 @@ import {AddMainModule} from './addMain.module';
 })
 export class AddMainComponent implements OnInit {
   public indexList: Array<object>;
-  public isVisible = false;
-  private token: string;
   private wayNumber: number;
   public isVisibleOpen = false;
+  public token: string;
   constructor(private router: Router,
               private modalService: NzModalService,
               private activatedRoute: ActivatedRoute,
               private appProperties: AppProperties,
               private appService: AppService) {}
   ngOnInit() {
+    this.token = sessionStorage.getItem('adminToken');
     this.getInitData();
-    console.log(this.urlParse(window.location.search)['adminToken']);
+    if (this.token === null
+      || this.token === undefined
+      || this.token === 'undefined') {
+      alert('登陆超时,请重新登陆');
+      this.router.navigate(['vmLogin'], {
+        queryParams: {
+          vmCode: this.urlParse(window.location.search)['vmCode']
+        }});
+    }
   }
   getInitData() {
     this.appService.getData(this.appProperties.indexListUrl, {vmCode: this.urlParse(window.location.search)['vmCode']}).subscribe(
@@ -42,15 +50,18 @@ export class AddMainComponent implements OnInit {
     );
   }
   openDoor(item) {
-    if (this.urlParse(window.location.search)['adminToken'] === null
-      || this.urlParse(window.location.search)['adminToken'] === undefined
-      || this.urlParse(window.location.search)['adminToken'] === 'undefined') {
+    if (this.token === null
+      || this.token === undefined
+      || this.token === 'undefined') {
       alert('登陆超时,请重新登陆');
-      this.router.navigate(['vmLogin']);
+      this.router.navigate(['vmLogin'], {
+        queryParams: {
+          vmCode: this.urlParse(window.location.search)['vmCode']
+        }});
     } else {
       this.appService.getDataOpen(this.appProperties.addOpendoorUrl,
         {vmCode: this.urlParse(window.location.search)['vmCode'], way: item.wayNumber},
-        this.urlParse(window.location.search)['adminToken']).subscribe(
+        this.token).subscribe(
         data => {
           console.log(data);
           if (data.code === 0) {
@@ -81,8 +92,8 @@ export class AddMainComponent implements OnInit {
           this.isVisibleOpen = true;
           this.isClosed(this.urlParse(window.location.search)['vmCode']);
         } else if (data2.data === true) {
-          this.isVisibleOpen = false;
           this.getInitData();
+          this.isVisibleOpen = false;
         }
       },
       error2 => {

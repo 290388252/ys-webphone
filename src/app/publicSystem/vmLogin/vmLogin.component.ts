@@ -42,14 +42,13 @@ export class VmLoginComponent implements OnInit {
           smsCode: this.validateForm.controls.password.value
         }).subscribe(
         data => {
-          console.log(data);
           if (data.code !== 0) {
             alert(data.msg);
           } else if (data.code === 0) {
             console.log(data);
+            sessionStorage.setItem('adminToken', data.data);
             this.router.navigate(['addMain'], {
               queryParams: {
-                adminToken: data.data,
                 vmCode: this.vmCode
               }});
           }
