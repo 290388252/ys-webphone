@@ -26,13 +26,13 @@
     <div class="weui-form-preview__hd">
       <div class="weui-form-preview__item">
         <label class="weui-form-preview__label">付款金额</label>
-        <em class="weui-form-preview__value">¥{{(item.price)/(item.num)}}</em>
+        <em class="weui-form-preview__value">¥{{item.totalPrice}}</em>
       </div>
     </div>
     <div class="weui-form-preview__bd">
       <div class="weui-form-preview__item">
         <label class="weui-form-preview__label">订单号:</label>
-        <span class="weui-form-preview__value">{{item.payCode}}</span>
+        <span class="weui-form-preview__value">{{item.orderId}}</span>
       </div>
       <div class="weui-form-preview__item">
         <label class="weui-form-preview__label">下单时间:</label>
@@ -48,14 +48,10 @@
       </div>
       <div class="weui-form-preview__item">
         <label class="weui-form-preview__label">状态：</label>
-        <span class="weui-form-preview__value">{{item.stateLabel}}</span>
-      </div>
-      <div class="weui-form-preview__item">
-        <label class="weui-form-preview__label">总价：</label>
-        <span class="weui-form-preview__value">{{item.price}}元</span>
+        <span class="weui-form-preview__value">{{item.state}}</span>
       </div>
     </div>
-    <div class="weui-form-preview__ft" [hidden]="item.state !== '10002'">
+    <div class="weui-form-preview__ft" [hidden]="item.state !== '支付失败'">
       <a class="weui-form-preview__btn weui-form-preview__btn_primary" href="javascript:" (click)="pay(item)">支付</a>
     </div>
     <div style="margin-top: 10px;width: 100%"></div>

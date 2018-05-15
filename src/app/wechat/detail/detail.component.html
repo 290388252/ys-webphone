@@ -25,7 +25,7 @@
       <div class="weui-form-preview__hd">
         <div class="weui-form-preview__item">
           <label class="weui-form-preview__label">付款金额</label>
-          <em class="weui-form-preview__value">¥{{(item.price)/(item.num)}}</em>
+          <em class="weui-form-preview__value">¥{{item.price}}</em>
         </div>
       </div>
       <div class="weui-form-preview__bd">
@@ -51,9 +51,9 @@
         </div>
       </div>
       <div class="weui-form-preview__ft" [hidden]="item.state !== '10002'">
-        <hr>
-        <a class="weui-btn weui-btn_primary" href="javascript:" (click)="pay(item)">支付</a>
-        <!--<a class="weui-form-preview__btn weui-form-preview__btn_primary" href="javascript:" (click)="pay(item)">支付</a>-->
+        <div></div>
+        <!--<a class="weui-btn weui-btn_primary" href="javascript:" (click)="pay(item)">支付</a>-->
+        <a class="weui-form-preview__btn weui-form-preview__btn_primary" href="javascript:" (click)="pay(item)">支付</a>
       </div>
       <div style="margin-top: 10px;width: 100%"></div>
     </div>

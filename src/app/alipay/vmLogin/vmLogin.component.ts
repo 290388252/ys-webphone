@@ -58,7 +58,7 @@ export class VmLoginComponent implements OnInit {
             const exp = new Date();
             exp.setTime(exp.getTime() + 1000 * 60 * 60 * 24 * 365 * 10);
             document.cookie = 'token=' + data.data.token + ';expires=' + exp.toUTCString();
-            this.router.navigate(['main']);
+            this.router.navigate(['aliAddMain']);
             // this.router.navigate(['main'], {queryParams: {'token': data.data.token}});
           }
         },

@@ -18,6 +18,7 @@ const routes: Routes = [/*
     { path: 'aliVmLogin', loadChildren: './alipay/vmLogin/vmLogin.module#VmLoginModule' },
     { path: 'aliVmDetail', loadChildren: './alipay/vmDetail/vmDetail.module#VmDetailModule' },
     { path: 'aliMain', loadChildren: './alipay/main/main.module#MainModule' },
+    { path: 'aliAddMain', loadChildren: './alipay/addMain/addMain.module#AddMainModule' },
     { path: 'aliDetail', loadChildren: './alipay/detail/detail.module#DetailModule' },
     { path: 'aliProduct', loadChildren: './alipay/product/product.module#ProductModule' },
     { path: 'aliCreditPayment', loadChildren: './alipay/creditPayment/creditPayment.module#CreditPaymentModule' }
