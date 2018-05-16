@@ -37,6 +37,7 @@ export class AppProperties {
     constructor() {
       // WeChat
       // this.appUrl = 'http://192.168.0.110:8092';
+      // this.appUrl = 'http://112.74.173.67';
       this.appUrl = 'http://youshuicmp.natapp1.cc'; // localtest
       // this.appUrl = 'http://127.0.0.1:8099'; // localtest
       this.indexListUrl = this.appUrl + '/index/listWay';
@@ -69,6 +70,6 @@ export class AppProperties {
       this.isClosedUrl = this.appUrl + '/wechat/isClosed';
       this.adminLoginUrl = this.appUrl + '/admin/login';
       this.addOpendoorUrl = this.appUrl + '/index/yunWeiOpenDoor';
-      this.orderResetWaysNumUrl = this.appUrl + '/order/resetWaysNum';
+      this.orderResetWaysNumUrl = this.appUrl + '/order/resetWaysNum/';
     }
 }

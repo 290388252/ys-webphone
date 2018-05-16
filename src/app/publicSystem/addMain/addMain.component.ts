@@ -102,10 +102,12 @@ export class AddMainComponent implements OnInit {
     );
   }
   resetNum() {
-    this.appService.postData(this.appProperties.orderResetWaysNumUrl, {vmCode: this.urlParse(window.location.search)['vmCode']}).subscribe(
+    console.log(this.urlParse(window.location.search)['vmCode']);
+    this.appService.postData(this.appProperties.orderResetWaysNumUrl + this.urlParse(window.location.search)['vmCode'],
+      '', this.token).subscribe(
       data => {
         console.log(data);
-        alert('校准完毕');
+        alert(data.msg);
         this.getInitData();
       },
       error => {
