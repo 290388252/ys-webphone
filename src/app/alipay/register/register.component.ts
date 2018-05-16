@@ -3,7 +3,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {AppProperties} from '../../app.properties';
 import {AppService} from '../../app-service';
-import * as $ from 'jquery';
+import {checkPhone, getVmCode} from '../../utils/util';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -11,7 +11,6 @@ import * as $ from 'jquery';
 })
 export class RegisterComponent implements OnInit {
   validateForm: FormGroup;
-  public validateValue = true;
   public phone: number;
   public buttonNoTouch = false;
   public truePhone = true;
@@ -48,7 +47,7 @@ export class RegisterComponent implements OnInit {
         {
           phone: this.validateForm.controls.phoneForm.value,
           code: this.validateForm.controls.password.value,
-          vmCode: this.getVmCode()
+          vmCode: getVmCode()
         }).subscribe(
           data => {
             if (data.status !== 1) {
@@ -70,24 +69,9 @@ export class RegisterComponent implements OnInit {
       alert('请输入手机号码');
     }
   }
-  checkPhone(phone) {
-      return /^1[34578]\d{9}$/.test(phone);
-  }
-  getVmCode() {
-    const url = window.location.href.toString();
-    const arrUrl = url.split('?');
-    let vmCode: string;
-    if (arrUrl[1] !== undefined) {
-      const firstArr = arrUrl[1].split('&')[0];
-      vmCode =  firstArr.substring(firstArr.indexOf('=') + 1, firstArr.length);
-    } else {
-      vmCode = '';
-    }
-    return vmCode;
-  }
   sendCode(e: TouchEvent) {
     e.preventDefault();
-    if (this.checkPhone(this.phone)) {
+    if (checkPhone(this.phone)) {
       this.appService.getAliData(this.appProperties.aliSmsSendUrl, {phone: this.phone}).subscribe(
         data => {
           if (data.status !== 1) {

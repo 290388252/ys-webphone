@@ -3,6 +3,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {AppProperties} from '../../app.properties';
 import {AppService} from '../../app-service';
+import {getOpenId, getVmCode, checkPhone} from '../../utils/util';
 import * as $ from 'jquery';
 @Component({
   selector: 'app-register',
@@ -34,8 +35,8 @@ export class RegisterComponent implements OnInit {
       phoneForm: [ null, [ this.phoneValidator ] ],
       password: [ null, [ Validators.required ] ]
     });
-    this.openId = this.getOpenId();
-    console.log(this.getOpenId());
+    this.openId = getOpenId();
+    console.log(getOpenId());
   }
   focusCode() {
     document.getElementById('containers').style.height = (document.documentElement.offsetWidth + 50) + 'px';
@@ -51,7 +52,7 @@ export class RegisterComponent implements OnInit {
         {openId: this.openId,
           phone: this.validateForm.controls.phoneForm.value,
           smsCode: this.validateForm.controls.password.value,
-          vmCode: this.getVmCode()
+          vmCode: getVmCode()
         }).subscribe(
           data => {
             if (data.code !== 0) {
@@ -64,7 +65,7 @@ export class RegisterComponent implements OnInit {
               document.cookie = 'token=' + data.data.token + ';expires=' + exp.toUTCString();
               this.router.navigate(['main'], {
                 queryParams: {
-                  vmCode: this.getVmCode(),
+                  vmCode: getVmCode(),
                   newUser: 1
                 }});
               // this.router.navigate(['main'], {queryParams: {'token': data.data.token}});
@@ -80,36 +81,9 @@ export class RegisterComponent implements OnInit {
       alert('请输入手机号码');
     }
   }
-  checkPhone(phone) {
-      return /^1[34578]\d{9}$/.test(phone);
-  }
-  getVmCode() {
-    const url = window.location.href.toString();
-    const arrUrl = url.split('?');
-    let vmCode: string;
-    if (arrUrl[1] !== undefined) {
-      const firstArr = arrUrl[1].split('&')[0];
-      vmCode =  firstArr.substring(firstArr.indexOf('=') + 1, firstArr.length);
-    } else {
-      vmCode = '';
-    }
-    return vmCode;
-  }
-  getOpenId() {
-    const url = window.location.href.toString();
-    const arrUrl = url.split('?');
-    let openId: string;
-    if (arrUrl[1] !== undefined) {
-      const firstArr = arrUrl[1].split('&')[1];
-      openId =  firstArr.substring(firstArr.indexOf('=') + 1, firstArr.length);
-    } else {
-      openId = '';
-    }
-    return openId;
-  }
   sendCode(e: TouchEvent) {
     e.preventDefault();
-    if (this.checkPhone(this.phone)) {
+    if (checkPhone(this.phone)) {
       this.appService.getData(this.appProperties.smsSendUrl, {phone: this.phone}).subscribe(
         data => {
           if (data.code !== 0) {

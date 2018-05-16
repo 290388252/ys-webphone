@@ -13,7 +13,7 @@ export let urlParse = (url) => {
     });
   }
   return obj;
-}
+};
 export let getCookies = (token) => {
   if (token === null || token === undefined || token === 'undefined') {
     const strCookie = document.cookie;
@@ -25,4 +25,31 @@ export let getCookies = (token) => {
       }
     }
   }
-}
+};
+export let getOpenId = () => {
+  const url = window.location.href.toString();
+  const arrUrl = url.split('?');
+  let openId: string;
+  if (arrUrl[1] !== undefined) {
+    const firstArr = arrUrl[1].split('&')[1];
+    openId =  firstArr.substring(firstArr.indexOf('=') + 1, firstArr.length);
+  } else {
+    openId = '';
+  }
+  return openId;
+};
+export let getVmCode = () => {
+  const url = window.location.href.toString();
+  const arrUrl = url.split('?');
+  let vmCode: string;
+  if (arrUrl[1] !== undefined) {
+    const firstArr = arrUrl[1].split('&')[0];
+    vmCode =  firstArr.substring(firstArr.indexOf('=') + 1, firstArr.length);
+  } else {
+    vmCode = '';
+  }
+  return vmCode;
+};
+export let checkPhone = (phone) => {
+  return /^1[34578]\d{9}$/.test(phone);
+};
