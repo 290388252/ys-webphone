@@ -3,7 +3,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {AppService} from '../../app-service';
 import {AppProperties} from '../../app.properties';
 import {NzModalService} from 'ng-zorro-antd';
-import {getCookies, urlParse} from '../../utils/util';
+import {urlParse} from '../../utils/util';
 
 @Component({
   selector: 'app-main',
@@ -28,7 +28,7 @@ export class MainComponent implements OnInit {
     //   this.token = queryParams.token;
     // });
     this.getInitData();
-    getCookies(this.token);
+    this.getCookies();
     console.log(this.token);
     if (urlParse(window.location.search)['token']) {
       this.token = urlParse(window.location.search)['token'];
@@ -237,5 +237,17 @@ export class MainComponent implements OnInit {
   openOk() {
     this.isVisibleOpen = true;
     this.isClosed(urlParse(window.location.search)['vmCode']);
+  }
+  getCookies () {
+    if (this.token === null || this.token === undefined || this.token === 'undefined') {
+      const strCookie = document.cookie;
+      const arrCookie = strCookie.split(';');
+      for (let i = 0; i < arrCookie.length; i++) {
+        const arr = arrCookie[i].split('=');
+        if (arr[0].trim() === 'token') {
+          this.token = arr[1];
+        }
+      }
+    }
   }
 }

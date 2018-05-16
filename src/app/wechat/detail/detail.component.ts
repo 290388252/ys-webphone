@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import {AppService} from '../../app-service';
 import {AppProperties} from '../../app.properties';
-import {getCookies} from '../../utils/util';
 declare var wx: any;
 declare var WeixinJSBridge: any;
 
@@ -23,7 +22,7 @@ export class DetailComponent implements OnInit , AfterViewChecked {
   }
 
   ngOnInit() {
-    getCookies(this.token);
+    this.getCookies();
     console.log(this.token);
     this.getData(this.appProperties.findAllUserOrderUrl);
   }
@@ -152,5 +151,17 @@ export class DetailComponent implements OnInit , AfterViewChecked {
         }
       });
     });
+  }
+  getCookies () {
+    if (this.token === null || this.token === undefined || this.token === 'undefined') {
+      const strCookie = document.cookie;
+      const arrCookie = strCookie.split(';');
+      for (let i = 0; i < arrCookie.length; i++) {
+        const arr = arrCookie[i].split('=');
+        if (arr[0].trim() === 'token') {
+          this.token = arr[1];
+        }
+      }
+    }
   }
 }
