@@ -12,7 +12,6 @@ import {getCookies, urlParse} from '../../utils/util';
 })
 export class MainComponent implements OnInit {
   public indexList: Array<object>;
-  public isVisible = false;
   private token: string;
   private newUser: boolean;
   private wayNumber: number;
