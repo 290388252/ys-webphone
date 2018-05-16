@@ -73,7 +73,7 @@
     text-align: center;
   }
   .context{
-    width: 330px;
+    width: 340px;
     margin: 0 auto;
   }
   .rounded-circle{
@@ -84,7 +84,7 @@
   .box{
     float: left;
     width: 150px;
-    height: 155px;
+    height: 165px;
     margin-right: 10px;
     -webkit-box-shadow:2px 2px 2px 2px gray;
     -moz-box-shadow:2px 2px 2px 2px gray;
@@ -102,7 +102,7 @@
     text-align: center;
   }
   .context{
-    width: 370px;
+    width: 375px;
     margin-left: 20px;
   }
   .rounded-circle{
@@ -113,7 +113,7 @@
   .box{
     float: left;
     width: 155px;
-    height: 155px;
+    height: 165px;
     margin-right: 10px;
     -webkit-box-shadow:2px 2px 2px 2px gray;
     -moz-box-shadow:2px 2px 2px 2px gray;

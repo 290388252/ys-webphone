@@ -14,9 +14,6 @@ export class AppProperties {
     public findAllUserOrderUrl: string;
     public orderUnifiedOrderUrl: string;
     public nonePassWordPayUrl: string;
-    public isClosedUrl: string;
-    public adminLoginUrl: string;
-    public addOpendoorUrl: string;
     // AliPay
     public aliAppUrl: string;
     public aliIndexListUrl: string;
@@ -31,6 +28,11 @@ export class AppProperties {
     public alipayWapPayUrl: string;
     public aliLoginVerifyOperateUrl: string;
     public aliBusinessIsAttentionUrl: string;
+    // public
+    public isClosedUrl: string;
+    public adminLoginUrl: string;
+    public addOpendoorUrl: string;
+    public orderResetWaysNumUrl: string;
 
     constructor() {
       // WeChat
@@ -46,9 +48,6 @@ export class AppProperties {
       this.findAllUserOrderUrl = this.appUrl + '/order/myOrderList';
       this.orderUnifiedOrderUrl = this.appUrl + '/order/unifiedOrder';
       this.nonePassWordPayUrl = this.appUrl + '/wechat/entrustweb';
-      this.isClosedUrl = this.appUrl + '/wechat/isClosed';
-      this.adminLoginUrl = this.appUrl + '/admin/login';
-      this.addOpendoorUrl = this.appUrl + '/index/yunWeiOpenDoor';
 
       // AliPay
       this.aliAppUrl = 'http://youshuismallhe.natapp1.cc'; // localtest
@@ -65,5 +64,11 @@ export class AppProperties {
       this.aliGetCreditWithheldUrl = this.aliAppUrl + '/aliUser/getCreditWithheld?vmCode=';
       this.aliLoginVerifyOperateUrl = this.aliAppUrl + '/aliLogin/verifyOperate';
       this.aliBusinessIsAttentionUrl = this.aliAppUrl + '/aliBusiness/isAttention';
+
+      // public
+      this.isClosedUrl = this.appUrl + '/wechat/isClosed';
+      this.adminLoginUrl = this.appUrl + '/admin/login';
+      this.addOpendoorUrl = this.appUrl + '/index/yunWeiOpenDoor';
+      this.orderResetWaysNumUrl = this.appUrl + '/order/resetWaysNum';
     }
 }

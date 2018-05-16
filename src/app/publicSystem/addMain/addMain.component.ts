@@ -101,6 +101,18 @@ export class AddMainComponent implements OnInit {
       }
     );
   }
+  resetNum() {
+    this.appService.postData(this.appProperties.orderResetWaysNumUrl, {vmCode: this.urlParse(window.location.search)['vmCode']}).subscribe(
+      data => {
+        console.log(data);
+        alert('校准完毕');
+        this.getInitData();
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
   openOk() {
     this.isClosed(this.urlParse(window.location.search)['vmCode']);
   }

@@ -11,11 +11,13 @@
         <div (click)="openDoor(item)" *ngFor="let item of indexList" class="box card text-white mb-3">
           <div class="card-header min-padding">点击开门</div>
           <div class="box-body">
-            <img style="margin-top: 5px;width: 30px;height: 30px" src="{{img}}{{item['pic']}}" alt="">
+            <img style="margin-top: 3px;width: 30px;height: 30px" src="{{img}}{{item['pic']}}" alt="">
             <br/>
             <span class="card-title" style="color: white">{{item['itemName']}}</span>
             <br/>
-            <span class="card-title" style="color: white">{{item['num']}}桶</span>
+            <span class="card-title" style="color: white">当前{{item['num']}}桶</span>
+            <br/>
+            <span class="card-title" style="color: white">最大容量{{item['fullNum']}}桶</span>
             <br/>
             <span class="card-title" style="color: white">{{item['price']}}元</span>
           </div>
@@ -24,9 +26,9 @@
     <!--<div class="foot">-->
       <!--<img class="foot-img" src="../../../assets/main/logo1.png" alt="">-->
     <!--</div>-->
-    <!--<div class="my-product">-->
-      <!--<button (click)="product()" type="button" class="btn btn-success">我的机器</button>-->
-    <!--</div>-->
+    <div class="my-product">
+      <button (click)="resetNum()" type="button" class="btn btn-success">校准所有数量</button>
+    </div>
   </div>
 
   <nz-modal [nzVisible]="isVisibleOpen" [nzTitle]="'提示'" [nzContent]="modalContent" (nzOnOk)="openOk()">
