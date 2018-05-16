@@ -2,6 +2,7 @@ import { Component , OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AppService} from '../../app-service';
 import {AppProperties} from '../../app.properties';
+import {getCookies, urlParse} from '../../utils/util';
 
 @Component({
   selector: 'app-main',
@@ -22,13 +23,19 @@ export class MainComponent implements OnInit {
     //   this.token = queryParams.token;
     // });
     this.getInitData();
-    this.getCookies();
+    getCookies(this.token);
     console.log(this.token);
-    console.log(this.urlParse(window.location.search)['vmCode']);
-    sessionStorage.setItem('vmCode', this.urlParse(window.location.search)['vmCode']);
+    if (urlParse(window.location.search)['token']) {
+      this.token = urlParse(window.location.search)['token'];
+      const exp = new Date();
+      exp.setTime(exp.getTime() + 1000 * 60 * 60 * 24 * 365 * 10);
+      document.cookie = 'token=' + this.token + ';expires=' + exp.toUTCString();
+    }
+    console.log(urlParse(window.location.search)['vmCode']);
+    sessionStorage.setItem('vmCode', urlParse(window.location.search)['vmCode']);
   }
   getInitData() {
-    this.appService.getData(this.appProperties.aliIndexListUrl, {vmCode: this.urlParse(window.location.search)['vmCode']}).subscribe(
+    this.appService.getData(this.appProperties.aliIndexListUrl, {vmCode: urlParse(window.location.search)['vmCode']}).subscribe(
       data => {
         console.log(data);
         if (data.status === 1) {
@@ -49,7 +56,7 @@ export class MainComponent implements OnInit {
   }
   openDoor(item) {
       this.appService.postAliData(this.appProperties.aliOpenDoorUrl,
-        {vmCode: this.urlParse(window.location.search)['vmCode'], openType: 1, doorNO: item.doorNO}).subscribe(
+        {vmCode: urlParse(window.location.search)['vmCode'], openType: 1, doorNO: item.doorNO}).subscribe(
         data => {
           if (data.status === 1) {
             this.isVisibleOpen = true;
@@ -68,14 +75,14 @@ export class MainComponent implements OnInit {
       );
   }
   openOk() {
-    this.isClosed(this.urlParse(window.location.search)['vmCode']);
+    this.isClosed(urlParse(window.location.search)['vmCode']);
   }
   isClosed(vmCode) {
     this.appService.getDataOpen(this.appProperties.isClosedUrl, {vmCode: vmCode}).subscribe(
       data2 => {
         if (data2.data === false) {
           this.isVisibleOpen = true;
-          this.isClosed(this.urlParse(window.location.search)['vmCode']);
+          this.isClosed(urlParse(window.location.search)['vmCode']);
         } else if (data2.data === true) {
           this.getInitData();
           this.isVisibleOpen = false;
@@ -107,7 +114,7 @@ export class MainComponent implements OnInit {
   vmLogin() {
     this.router.navigate(['addMain'], {
       queryParams: {
-        vmCode: this.urlParse(window.location.search)['vmCode']
+        vmCode: urlParse(window.location.search)['vmCode']
       }});
     // TODO;
   }
@@ -117,38 +124,5 @@ export class MainComponent implements OnInit {
         title: 1
       }});
     // TODO;
-  }
-  getCookies() {
-    if (this.token === null || this.token === undefined || this.token === 'undefined') {
-      const strCookie = document.cookie;
-      const arrCookie = strCookie.split(';');
-      for (let i = 0; i < arrCookie.length; i++) {
-        const arr = arrCookie[i].split('=');
-        if (arr[0] === 'token') {
-          this.token = arr[1];
-        }
-      }
-    }
-  }
-  urlParse(url) {
-    const obj = {};
-    const reg = /[?&][^?&]+=[^?&]+/g;
-    const arr = url.match(reg);
-
-    if (arr) {
-      arr.forEach(function (item) {
-        const tempArr = item.substring(1).split('=');
-        const key = decodeURIComponent(tempArr[0]);
-        const val = decodeURIComponent(tempArr[1]);
-        obj[key] = val;
-      });
-    }
-    if (obj['token']) {
-      this.token = obj['token'];
-      const exp = new Date();
-      exp.setTime(exp.getTime() + 1000 * 60 * 60 * 24 * 365 * 10);
-      document.cookie = 'token=' + this.token + ';expires=' + exp.toUTCString();
-    }
-    return obj;
   }
 }

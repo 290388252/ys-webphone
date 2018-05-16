@@ -3,6 +3,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {AppService} from '../../app-service';
 import {AppProperties} from '../../app.properties';
 import {NzModalService} from 'ng-zorro-antd';
+import {getCookies, urlParse} from '../../utils/util';
 
 @Component({
   selector: 'app-main',
@@ -28,12 +29,19 @@ export class MainComponent implements OnInit {
     //   this.token = queryParams.token;
     // });
     this.getInitData();
-    this.getCookies();
-    console.log(this.urlParse(window.location.search)['vmCode']);
-    console.log(this.urlParse(window.location.search)['newUser']);
-    if (this.urlParse(window.location.search)['newUser'] === '1') {
+    getCookies(this.token);
+    console.log(this.token);
+    if (urlParse(window.location.search)['token']) {
+      this.token = urlParse(window.location.search)['token'];
+      const exp = new Date();
+      exp.setTime(exp.getTime() + 1000 * 60 * 60 * 24 * 365 * 10);
+      document.cookie = 'token=' + this.token + ';expires=' + exp.toUTCString();
+    }
+    console.log(urlParse(window.location.search)['vmCode']);
+    console.log(urlParse(window.location.search)['newUser']);
+    if (urlParse(window.location.search)['newUser'] === '1') {
       this.appService.getDataOpen(this.appProperties.indexOpenDoor,
-        {vmCode: this.urlParse(window.location.search)['vmCode'], way: sessionStorage.getItem('wayNumber')}, this.token).subscribe(
+        {vmCode: urlParse(window.location.search)['vmCode'], way: sessionStorage.getItem('wayNumber')}, this.token).subscribe(
         data => {
           console.log(data);
           if (data.code === 0) {
@@ -65,7 +73,7 @@ export class MainComponent implements OnInit {
     }
     if (sessionStorage.getItem('open') === '1') {
       this.appService.getDataOpen(this.appProperties.indexOpenDoor,
-        {vmCode: this.urlParse(window.location.search)['vmCode'], way: sessionStorage.getItem('wayNumber')}, this.token).subscribe(
+        {vmCode: urlParse(window.location.search)['vmCode'], way: sessionStorage.getItem('wayNumber')}, this.token).subscribe(
         data => {
           console.log(data);
           if (data.code === 0) {
@@ -96,7 +104,7 @@ export class MainComponent implements OnInit {
     }
   }
   getInitData() {
-    this.appService.getData(this.appProperties.indexListUrl, {vmCode: this.urlParse(window.location.search)['vmCode']}).subscribe(
+    this.appService.getData(this.appProperties.indexListUrl, {vmCode: urlParse(window.location.search)['vmCode']}).subscribe(
       data => {
         console.log(data);
         if (data.code === 0) {
@@ -126,7 +134,7 @@ export class MainComponent implements OnInit {
       this.login(titleTpl, contentTpl, footerTpl);
     } else {
       this.appService.getDataOpen(this.appProperties.indexOpenDoor,
-        {vmCode: this.urlParse(window.location.search)['vmCode'], way: item.wayNumber}, this.token).subscribe(
+        {vmCode: urlParse(window.location.search)['vmCode'], way: item.wayNumber}, this.token).subscribe(
         data => {
           console.log(data);
           if (data.code === 0) {
@@ -163,7 +171,7 @@ export class MainComponent implements OnInit {
   vmLogin() {
     this.router.navigate(['addMain'], {
       queryParams: {
-        vmCode: this.urlParse(window.location.search)['vmCode']
+        vmCode: urlParse(window.location.search)['vmCode']
       }});
   }
   product() {
@@ -180,7 +188,7 @@ export class MainComponent implements OnInit {
         if (data2.data === false) {
           // alert('您的门还未关闭！优水到家提醒您,为了您账号资金安全,提水后请随手关门');
           this.isVisibleOpen = true;
-          this.isClosed(this.urlParse(window.location.search)['vmCode']);
+          this.isClosed(urlParse(window.location.search)['vmCode']);
         } else if (data2.data === true) {
           this.isVisibleOpen = false;
           this.router.navigate(['detail']);
@@ -209,8 +217,8 @@ export class MainComponent implements OnInit {
         // const wlhUrl = window.location.href;
         // const newWlhUrl = window.location.href.replace('main', 'register');
         // const newWlhUrl = wlhUrl.replace(wlhUrl.substring(wlhUrl.indexOf('main'), wlhUrl.length), 'register');
-        const wlhUrl = '/main?vmCode=' + this.urlParse(window.location.href)['vmCode'];
-        const newWlhUrl = '/register?vmCode=' + this.urlParse(window.location.href)['vmCode'];
+        const wlhUrl = '/main?vmCode=' + urlParse(window.location.href)['vmCode'];
+        const newWlhUrl = '/register?vmCode=' + urlParse(window.location.href)['vmCode'];
         if (typeof(data.data) === 'string' && data.data.length > 0) {
           newData = data.data.replace(data.data.substring(data.data.indexOf('state=') + 6, data.data.length),
             newWlhUrl + '-' + wlhUrl);
@@ -229,39 +237,6 @@ export class MainComponent implements OnInit {
   }
   openOk() {
     this.isVisibleOpen = true;
-    this.isClosed(this.urlParse(window.location.search)['vmCode']);
-  }
-  getCookies() {
-    if (this.token === null || this.token === undefined || this.token === 'undefined') {
-      const strCookie = document.cookie;
-      const arrCookie = strCookie.split(';');
-      for (let i = 0; i < arrCookie.length; i++) {
-        const arr = arrCookie[i].split('=');
-        if (arr[0].trim() === 'token') {
-          this.token = arr[1];
-        }
-      }
-    }
-  }
-  urlParse(url) {
-    const obj = {};
-    const reg = /[?&][^?&]+=[^?&]+/g;
-    const arr = url.match(reg);
-
-    if (arr) {
-      arr.forEach(function (item) {
-        const tempArr = item.substring(1).split('=');
-        const key = decodeURIComponent(tempArr[0]);
-        const val = decodeURIComponent(tempArr[1]);
-        obj[key] = val;
-      });
-    }
-    if (obj['token']) {
-      this.token = obj['token'];
-      const exp = new Date();
-      exp.setTime(exp.getTime() + 1000 * 60 * 60 * 24 * 365 * 10);
-      document.cookie = 'token=' + this.token + ';expires=' + exp.toUTCString();
-    }
-    return obj;
+    this.isClosed(urlParse(window.location.search)['vmCode']);
   }
 }

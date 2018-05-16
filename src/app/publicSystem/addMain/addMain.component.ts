@@ -3,6 +3,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {AppService} from '../../app-service';
 import {AppProperties} from '../../app.properties';
 import {NzModalService} from 'ng-zorro-antd';
+import {urlParse} from '../../utils/util';
 import {AddMainModule} from './addMain.module';
 
 @Component({
@@ -29,12 +30,12 @@ export class AddMainComponent implements OnInit {
       || this.token === 'undefined') {
       this.router.navigate(['vmLogin'], {
         queryParams: {
-          vmCode: this.urlParse(window.location.search)['vmCode']
+          vmCode: urlParse(window.location.search)['vmCode']
         }});
     }
   }
   getInitData() {
-    this.appService.getData(this.appProperties.indexListUrl, {vmCode: this.urlParse(window.location.search)['vmCode']}).subscribe(
+    this.appService.getData(this.appProperties.indexListUrl, {vmCode: urlParse(window.location.search)['vmCode']}).subscribe(
       data => {
         console.log(data);
         if (data.code === 0) {
@@ -56,11 +57,11 @@ export class AddMainComponent implements OnInit {
       alert('登陆超时,请重新登陆');
       this.router.navigate(['vmLogin'], {
         queryParams: {
-          vmCode: this.urlParse(window.location.search)['vmCode']
+          vmCode: urlParse(window.location.search)['vmCode']
         }});
     } else {
       this.appService.getDataOpen(this.appProperties.addOpendoorUrl,
-        {vmCode: this.urlParse(window.location.search)['vmCode'], way: item.wayNumber},
+        {vmCode: urlParse(window.location.search)['vmCode'], way: item.wayNumber},
         this.token).subscribe(
         data => {
           console.log(data);
@@ -78,19 +79,12 @@ export class AddMainComponent implements OnInit {
       );
     }
   }
-  // product() {
-  //   this.router.navigate(['product'], {
-  //     queryParams: {
-  //       token: this.token
-  //     }});
-  //   // TODO;
-  // }
   isClosed(vmCode) {
     this.appService.getDataOpen(this.appProperties.isClosedUrl, {vmCode: vmCode}).subscribe(
       data2 => {
         if (data2.data === false) {
           this.isVisibleOpen = true;
-          this.isClosed(this.urlParse(window.location.search)['vmCode']);
+          this.isClosed(urlParse(window.location.search)['vmCode']);
         } else if (data2.data === true) {
           this.getInitData();
           this.isVisibleOpen = false;
@@ -102,8 +96,8 @@ export class AddMainComponent implements OnInit {
     );
   }
   resetNum() {
-    console.log(this.urlParse(window.location.search)['vmCode']);
-    this.appService.postData(this.appProperties.orderResetWaysNumUrl + this.urlParse(window.location.search)['vmCode'],
+    console.log(urlParse(window.location.search)['vmCode']);
+    this.appService.postData(this.appProperties.orderResetWaysNumUrl + urlParse(window.location.search)['vmCode'],
       '', this.token).subscribe(
       data => {
         console.log(data);
@@ -116,21 +110,6 @@ export class AddMainComponent implements OnInit {
     );
   }
   openOk() {
-    this.isClosed(this.urlParse(window.location.search)['vmCode']);
-  }
-  urlParse(url) {
-    const obj = {};
-    const reg = /[?&][^?&]+=[^?&]+/g;
-    const arr = url.match(reg);
-
-    if (arr) {
-      arr.forEach(function (item) {
-        const tempArr = item.substring(1).split('=');
-        const key = decodeURIComponent(tempArr[0]);
-        const val = decodeURIComponent(tempArr[1]);
-        obj[key] = val;
-      });
-    }
-    return obj;
+    this.isClosed(urlParse(window.location.search)['vmCode']);
   }
 }
