@@ -54,7 +54,7 @@ export class AppProperties {
       this.aliAppUrl = 'http://youshuismallhe.natapp1.cc'; // localtest
       this.aliIndexListUrl = this.aliAppUrl + '/aliUser/queryItem';
       this.aliGetUserIdUrl = 'https://openauth.alipay.com/oauth2/publicAppAuthorize.htm' +
-        '?app_id=2017120900470709&scope=auth_user&redirect_uri=http://youshuismallhe.natapp1.cc/aliUser/';
+        '?app_id=2017120900470709&scope=auth_user&redirect_uri=' + this.aliAppUrl + '/aliUser/';
       this.aliOpenDoorUrl = this.aliAppUrl + '/aliBusiness/weightOpenDoor';
       this.aliRegisterUrl = this.aliAppUrl + '/aliBusiness/register';
       this.aliSmsSendUrl = this.aliAppUrl + '/alisms/send';
