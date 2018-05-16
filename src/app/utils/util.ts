@@ -14,7 +14,7 @@ export let urlParse = (url) => {
   }
   return obj;
 };
-export let getCookies = (token) => {
+export let getCookie = (token) => {
   if (token === null || token === undefined || token === 'undefined') {
     const strCookie = document.cookie;
     const arrCookie = strCookie.split(';');
