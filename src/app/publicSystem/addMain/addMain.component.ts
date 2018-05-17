@@ -23,7 +23,7 @@ export class AddMainComponent implements OnInit {
               private appProperties: AppProperties,
               private appService: AppService) {}
   ngOnInit() {
-    this.token = sessionStorage.getItem('adminToken');
+    this.getCookies();
     this.getInitData();
     if (this.token === null
       || this.token === undefined
@@ -111,5 +111,17 @@ export class AddMainComponent implements OnInit {
   }
   openOk() {
     this.isClosed(urlParse(window.location.search)['vmCode']);
+  }
+  getCookies () {
+    if (this.token === null || this.token === undefined || this.token === 'undefined') {
+      const strCookie = document.cookie;
+      const arrCookie = strCookie.split(';');
+      for (let i = 0; i < arrCookie.length; i++) {
+        const arr = arrCookie[i].split('=');
+        if (arr[0].trim() === 'adminToken') {
+          this.token = arr[1];
+        }
+      }
+    }
   }
 }

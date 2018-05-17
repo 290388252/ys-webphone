@@ -46,7 +46,9 @@ export class VmLoginComponent implements OnInit {
             alert(data.msg);
           } else if (data.code === 0) {
             console.log(data);
-            sessionStorage.setItem('adminToken', data.data);
+            const exp = new Date();
+            exp.setTime(exp.getTime() + 1000 * 60 * 60 * 24 * 3);
+            document.cookie = 'adminToken=' + data.data + ';expired=' + exp.toUTCString();
             this.router.navigate(['addMain'], {
               queryParams: {
                 vmCode: this.vmCode
