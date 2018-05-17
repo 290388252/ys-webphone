@@ -30,7 +30,7 @@ export class AppService {
     const myHeaders: HttpHeaders = new HttpHeaders({
       'Content-Type': 'application/json',
       // 'Authorization': tokens
-      'Authorization': 'Bearer ' + tokens
+      'ysToken': 'Bearer ' + tokens
     });
     url += (url.indexOf('?') < 0 ? '?' : '&') + this.param(options);
     return this.http.get(url, { headers: myHeaders });

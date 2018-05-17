@@ -191,7 +191,8 @@ export class MainComponent implements OnInit {
           // this.isClosed(urlParse(window.location.search)['vmCode']);
         } else if (data2.data === true) {
           this.isVisibleOpen = false;
-          this.router.navigate(['detail']);
+          // this.router.navigate(['detail']);
+          alert('谢谢惠顾,祝您生活愉快');
         }
       },
       error2 => {

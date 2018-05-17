@@ -82,7 +82,7 @@ export class MainComponent implements OnInit {
       data2 => {
         if (data2.data === false) {
           this.isVisibleOpen = true;
-          this.isClosed(urlParse(window.location.search)['vmCode']);
+          // this.isClosed(urlParse(window.location.search)['vmCode']);
         } else if (data2.data === true) {
           this.getInitData();
           this.isVisibleOpen = false;
