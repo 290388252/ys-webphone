@@ -57,22 +57,41 @@ export class AppService {
     return this.http.post(url, options, myHttpHead);
   }
 
-  getAliData(url: string, options?: any): Observable<any> {
+  // getAliData(url: string, options?: any): Observable<any> {
+  //   // 配置请求头
+  //   const myHeaders: HttpHeaders = new HttpHeaders({
+  //     'Content-Type': 'application/json',
+  //     // 'token': sessionStorage.getItem('token')
+  //   });
+  //   // tslint:disable-next-line:forin
+  //   url += (url.indexOf('?') < 0 ? '?' : '&') + this.param(options);
+  //   return this.http.get(url, { headers: myHeaders , withCredentials: true});
+  // }
+
+  // postAliData(url: string, options: any): Observable<any> {
+  //   const myHttpHead = new HttpHeaders({
+  //       'Content-Type': 'application/json',
+  //     });
+  //   return this.http.post(url, options, {headers: myHttpHead, withCredentials: true });
+  // }
+
+  getAliData(url: string, options?: any, tokens?: any | null): Observable<any> {
     // 配置请求头
     const myHeaders: HttpHeaders = new HttpHeaders({
       'Content-Type': 'application/json',
-      // 'token': sessionStorage.getItem('token')
+      'ysToken': 'Bearer ' + tokens
     });
     // tslint:disable-next-line:forin
     url += (url.indexOf('?') < 0 ? '?' : '&') + this.param(options);
-    return this.http.get(url, { headers: myHeaders , withCredentials: true});
+    return this.http.get(url, { headers: myHeaders });
   }
 
-  postAliData(url: string, options: any): Observable<any> {
+  postAliData(url: string, options: any, tokens?: any | null): Observable<any> {
     const myHttpHead = new HttpHeaders({
-        'Content-Type': 'application/json',
-      });
-    return this.http.post(url, options, {headers: myHttpHead, withCredentials: true });
+      'Content-Type': 'application/json',
+      'ysToken': 'Bearer ' + tokens
+    });
+    return this.http.post(url, options, {headers: myHttpHead});
   }
 
   postDataDownLoad(url: string, body: any): Observable<any> {

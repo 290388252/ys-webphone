@@ -15,6 +15,7 @@ export class RegisterComponent implements OnInit {
   public buttonNoTouch = false;
   public truePhone = true;
   public times = 60;
+  public token: string;
   private phoneValidator = (control: FormControl): { [s: string]: boolean } => {
     if (!control.value) {
       return { required: true };
@@ -28,6 +29,7 @@ export class RegisterComponent implements OnInit {
               private appService: AppService) {}
 
   ngOnInit() {
+    this.getCookies();
     this.validateForm = this.fb.group({
       phoneForm: [ null, [ this.phoneValidator ] ],
       password: [ null, [ Validators.required ] ]
@@ -48,7 +50,7 @@ export class RegisterComponent implements OnInit {
           phone: this.validateForm.controls.phoneForm.value,
           code: this.validateForm.controls.password.value,
           vmCode: getVmCode()
-        }).subscribe(
+        }, this.token).subscribe(
           data => {
             if (data.status !== 1) {
               alert(data.message);
@@ -72,7 +74,7 @@ export class RegisterComponent implements OnInit {
   sendCode(e: TouchEvent) {
     e.preventDefault();
     if (checkPhone(this.phone)) {
-      this.appService.getAliData(this.appProperties.aliSmsSendUrl, {phone: this.phone}).subscribe(
+      this.appService.getAliData(this.appProperties.aliSmsSendUrl, {phone: this.phone}, this.token).subscribe(
         data => {
           if (data.status !== 1) {
               alert('发送失败');
@@ -98,6 +100,18 @@ export class RegisterComponent implements OnInit {
       );
     } else {
       this.truePhone = false;
+    }
+  }
+  getCookies () {
+    if (this.token === null || this.token === undefined || this.token === 'undefined') {
+      const strCookie = document.cookie;
+      const arrCookie = strCookie.split(';');
+      for (let i = 0; i < arrCookie.length; i++) {
+        const arr = arrCookie[i].split('=');
+        if (arr[0].trim() === 'token') {
+          this.token = arr[1];
+        }
+      }
     }
   }
 }

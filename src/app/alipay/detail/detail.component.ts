@@ -12,6 +12,7 @@ import {AppProperties} from '../../app.properties';
 export class DetailComponent implements OnInit, AfterViewChecked {
   public queryParamsTitle: string;
   public title: string;
+  public token: string;
   public list;
   public totalPrice = 0;
   constructor(private router: Router, private activatedRoute: ActivatedRoute,
@@ -30,6 +31,7 @@ export class DetailComponent implements OnInit, AfterViewChecked {
   }
 
   ngOnInit() {
+    this.getCookies();
     if (this.title === '我的订单') {
       this.postData(this.appProperties.aliFindAllUserOrderUrl);
     } else if (this.title === '已付款订单') {
@@ -42,7 +44,7 @@ export class DetailComponent implements OnInit, AfterViewChecked {
     return flag !== '支付失败' ? 24 : 20;
   }
   postData(url) {
-    this.appService.postAliData(url, {}).subscribe(
+    this.appService.postAliData(url, {}, this.token).subscribe(
       data => {
         console.log(data);
         if (data.status === 1) {
@@ -61,13 +63,28 @@ export class DetailComponent implements OnInit, AfterViewChecked {
     );
   }
   pay(item) {
-    window.location.href = this.appProperties.alipayWapPayUrl + item.orderId + '&vmCode=' + sessionStorage.getItem('vmCode');
+    window.location.href = this.appProperties.alipayWapPayUrl
+      + item.orderId
+      + '&vmCode=' + sessionStorage.getItem('vmCode')
+      + '&token=' + this.token;
   }
   ngAfterViewChecked(): void {
     if (document.documentElement.offsetHeight > document.getElementById('content').clientHeight) {
       document.getElementById('containers').style.height = document.documentElement.offsetHeight + 'px';
     } else if (document.documentElement.offsetHeight < document.getElementById('content').clientHeight) {
       document.getElementById('containers').style.height = document.getElementById('content').clientHeight + 70 + 'px';
+    }
+  }
+  getCookies () {
+    if (this.token === null || this.token === undefined || this.token === 'undefined') {
+      const strCookie = document.cookie;
+      const arrCookie = strCookie.split(';');
+      for (let i = 0; i < arrCookie.length; i++) {
+        const arr = arrCookie[i].split('=');
+        if (arr[0].trim() === 'token') {
+          this.token = arr[1];
+        }
+      }
     }
   }
 }

@@ -35,7 +35,8 @@ export class MainComponent implements OnInit {
     sessionStorage.setItem('vmCode', urlParse(window.location.search)['vmCode']);
   }
   getInitData() {
-    this.appService.getData(this.appProperties.aliIndexListUrl, {vmCode: urlParse(window.location.search)['vmCode']}).subscribe(
+    this.appService.getAliData(this.appProperties.aliIndexListUrl,
+      {vmCode: urlParse(window.location.search)['vmCode']}, this.token).subscribe(
       data => {
         console.log(data);
         if (data.status === 1) {
@@ -56,7 +57,7 @@ export class MainComponent implements OnInit {
   }
   openDoor(item) {
       this.appService.postAliData(this.appProperties.aliOpenDoorUrl,
-        {vmCode: urlParse(window.location.search)['vmCode'], openType: 1, doorNO: item.doorNO}).subscribe(
+        {vmCode: urlParse(window.location.search)['vmCode'], openType: 1, doorNO: item.doorNO}, this.token).subscribe(
         data => {
           if (data.status === 1) {
             this.isVisibleOpen = true;
@@ -78,7 +79,7 @@ export class MainComponent implements OnInit {
     this.isClosed(urlParse(window.location.search)['vmCode']);
   }
   isClosed(vmCode) {
-    this.appService.getDataOpen(this.appProperties.isClosedUrl, {vmCode: vmCode}).subscribe(
+    this.appService.getDataOpen(this.appProperties.isClosedUrl, {vmCode: vmCode}, this.token).subscribe(
       data2 => {
         if (data2.data === false) {
           this.isVisibleOpen = true;
@@ -95,7 +96,7 @@ export class MainComponent implements OnInit {
     );
   }
   isAttention() {
-    this.appService.getAliData(this.appProperties.aliBusinessIsAttentionUrl).subscribe(
+    this.appService.getAliData(this.appProperties.aliBusinessIsAttentionUrl, '' , this.token).subscribe(
       data2 => {
         if (data2.status === 1) {
           // stop
