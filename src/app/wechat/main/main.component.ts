@@ -184,10 +184,11 @@ export class MainComponent implements OnInit {
   isClosed(vmCode) {
     this.appService.getDataOpen(this.appProperties.isClosedUrl, {vmCode: vmCode}).subscribe(
       data2 => {
+        console.log(data2);
         if (data2.data === false) {
           // alert('您的门还未关闭！优水到家提醒您,为了您账号资金安全,提水后请随手关门');
           this.isVisibleOpen = true;
-          this.isClosed(urlParse(window.location.search)['vmCode']);
+          // this.isClosed(urlParse(window.location.search)['vmCode']);
         } else if (data2.data === true) {
           this.isVisibleOpen = false;
           this.router.navigate(['detail']);

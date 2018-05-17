@@ -14,18 +14,6 @@ export let urlParse = (url) => {
   }
   return obj;
 };
-export let getCookie = (token) => {
-  if (token === null || token === undefined || token === 'undefined') {
-    const strCookie = document.cookie;
-    const arrCookie = strCookie.split(';');
-    for (let i = 0; i < arrCookie.length; i++) {
-      const arr = arrCookie[i].split('=');
-      if (arr[0].trim() === 'token') {
-        token = arr[1];
-      }
-    }
-  }
-};
 export let getOpenId = () => {
   const url = window.location.href.toString();
   const arrUrl = url.split('?');
