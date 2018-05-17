@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import {AppService} from '../../app-service';
 import {AppProperties} from '../../app.properties';
+import {urlParse} from '../../utils/util';
 
 @Component({
   selector: 'app-detail',
@@ -32,6 +33,9 @@ export class DetailComponent implements OnInit, AfterViewChecked {
 
   ngOnInit() {
     this.getCookies();
+    if (this.token === null || this.token === undefined || this.token === 'undefined') {
+      this.token = urlParse(window.location.search)['token'];
+    }
     if (this.title === '我的订单') {
       this.postData(this.appProperties.aliFindAllUserOrderUrl);
     } else if (this.title === '已付款订单') {
