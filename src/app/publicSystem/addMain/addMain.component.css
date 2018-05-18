@@ -28,7 +28,7 @@
   -webkit-box-shadow:2px 2px 2px 2px gray;
   -moz-box-shadow:2px 2px 2px 2px gray;
   box-shadow:2px 2px 2px 2px gray;
-  background-color: rgba(0,0,0,0.3);
+  background-color: rgba(0,0,0,0.2);
   overflow: hidden;
 }
 .box:after{
@@ -89,7 +89,7 @@
     -webkit-box-shadow:2px 2px 2px 2px gray;
     -moz-box-shadow:2px 2px 2px 2px gray;
     box-shadow:2px 2px 2px 2px gray;
-    background-color: rgba(0,0,0,0.3);
+    background-color: rgba(0,0,0,0.2);
     overflow: hidden;
   }
 }
@@ -118,7 +118,7 @@
     -webkit-box-shadow:2px 2px 2px 2px gray;
     -moz-box-shadow:2px 2px 2px 2px gray;
     box-shadow:2px 2px 2px 2px gray;
-    background-color: rgba(0,0,0,0.3);
+    background-color: rgba(0,0,0,0.2);
     overflow: hidden;
   }
 }
