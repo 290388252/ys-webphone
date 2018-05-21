@@ -16,15 +16,53 @@
     <tr nz-tbody-tr>
     <!--<tr nz-tbody-tr *ngFor="let data of nzTable.data; index as i;">-->
       <td nz-td>
-        <a>哎哎哎</a>
+        <a>1988000072</a>
       </td>
-      <td style="text-align: center" nz-td>啊啊啊啊啊</td>
+      <td style="text-align: center;word-wrap: break-word;width: 100px" nz-td>广州某个地方广州某个地方广州某个地方广州某个地方</td>
       <td style="text-align: center" nz-td>
-        <button nz-button [nzType]="'primary'">
-        <span>详情</span>
-      </button></td>
+        <button style="margin-bottom: 5px;display: block" (click)="sails(1)" nz-button [nzType]="'primary'">
+          <span>销售情况</span>
+        </button>
+        <button style="display: block" (click)="detail(1)" nz-button [nzType]="'primary'">
+          <span>详情</span>
+        </button>
+      </td>
     </tr>
     </tbody>
   </nz-table>
+  <nz-modal [(nzVisible)]="isVisibleSails" [nzTitle]="modalTitleSails" [nzContent]="modalContentSails" [nzFooter]="modalFooterSails" (nzOnCancel)="handleCancelSails()">
+    <ng-template #modalTitleSails>
+      销售情况
+    </ng-template>
+
+    <ng-template #modalContentSails>
+      <p>Modal 1</p>
+      <p>Modal 1</p>
+      <p>Modal 1</p>
+      <p>Modal 1</p>
+      <p>Modal 1</p>
+    </ng-template>
+
+    <ng-template #modalFooterSails>
+      <button nz-button nzType="primary" (click)="handleOkSails()" [nzLoading]="isConfirmLoadingSails">关闭</button>
+    </ng-template>
+  </nz-modal>
+  <nz-modal [(nzVisible)]="isVisible" [nzTitle]="modalTitle" [nzContent]="modalContent" [nzFooter]="modalFooter" (nzOnCancel)="handleCancel()">
+    <ng-template #modalTitle>
+      详情
+    </ng-template>
+
+    <ng-template #modalContent>
+      <p>Modal Content</p>
+      <p>Modal Content</p>
+      <p>Modal Content</p>
+      <p>Modal Content</p>
+      <p>Modal Content</p>
+    </ng-template>
+
+    <ng-template #modalFooter>
+      <button nz-button nzType="primary" (click)="handleOk()" [nzLoading]="isConfirmLoading">关闭</button>
+    </ng-template>
+  </nz-modal>
 </div>
 </div>

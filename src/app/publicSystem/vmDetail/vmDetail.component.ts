@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
+import {NzModalService} from 'ng-zorro-antd';
+import {AppService} from '../../app-service';
+import {AppProperties} from '../../app.properties';
+import {urlParse} from '../../utils/util';
 
 @Component({
   selector: 'app-detail',
@@ -8,13 +12,59 @@ import { Router } from '@angular/router';
 })
 export class VmDetailComponent implements OnInit {
   public _value = '';
-  constructor(private router: Router) {
+  public isVisible = false;
+  public isVisibleSails = false;
+  public isConfirmLoading = false;
+  public isConfirmLoadingSails = false;
+  constructor(private router: Router,
+              private modalService: NzModalService,
+              private activatedRoute: ActivatedRoute,
+              private appProperties: AppProperties,
+              private appService: AppService) {
   }
 
   ngOnInit() {
+    this.appService.postAliData(this.appProperties.aliMachineQueryVMListUrl, '' , 'eyJhbGciOiJIUzUxMiJ9.eyJyYW5kb21LZXkiOiJvdmFoY2IiLCJzdWIiOiJ7XCJpZFwiOlwiNTY5MVwiLFwib3BlbklkXCI6XCJvS2taeTA0cVZxWXBkMk1HQTVSdUxLYUtxZ1prXCIsXCJwYXlUeXBlXCI6XCIxXCIsXCJ0eXBlXCI6MX0iLCJleHAiOjE1Mjc0NjkzMTIsImlhdCI6MTUyNjg2NDUxMn0.UP5Gve9w1t27-V97ZYAukL8ZhE9QXYtwb8q36gTbhKWlzuqArUe4U0Mp1Y_NHzJZqYYys3u3xa7wkZMtIDIQTA').subscribe(
+    // this.appService.postAliData(this.appProperties.aliMachineQueryVMListUrl, '' , urlParse(window.location.search)['token']).subscribe(
+      data => {
+        console.log(data);
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
 
   onSearch(event: string): void {
     console.log(event);
+  }
+  detail(vmCode) {
+    this.isVisible = true;
+    this.appService.postAliData(this.appProperties.aliMachineQueryDetailUrl, {vmCode: vmCode} , 'eyJhbGciOiJIUzUxMiJ9.eyJyYW5kb21LZXkiOiJvdmFoY2IiLCJzdWIiOiJ7XCJpZFwiOlwiNTY5MVwiLFwib3BlbklkXCI6XCJvS2taeTA0cVZxWXBkMk1HQTVSdUxLYUtxZ1prXCIsXCJwYXlUeXBlXCI6XCIxXCIsXCJ0eXBlXCI6MX0iLCJleHAiOjE1Mjc0NjkzMTIsImlhdCI6MTUyNjg2NDUxMn0.UP5Gve9w1t27-V97ZYAukL8ZhE9QXYtwb8q36gTbhKWlzuqArUe4U0Mp1Y_NHzJZqYYys3u3xa7wkZMtIDIQTA').subscribe(
+      // this.appService.postAliData(this.appProperties.aliMachineQueryVMListUrl, {vmCode: vmCode} , urlParse(window.location.search)['token']).subscribe(
+      data => {
+        console.log(data);
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+  sails(vmCode) {}
+  handleOk(): void {
+    this.isVisible = false;
+    this.isConfirmLoading = false;
+  }
+
+  handleCancel(): void {
+    this.isVisible = false;
+  }
+  handleOkSails(): void {
+    this.isVisible = false;
+    this.isConfirmLoading = false;
+  }
+
+  handleCancelSails(): void {
+    this.isVisible = false;
   }
 }

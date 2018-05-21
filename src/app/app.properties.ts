@@ -33,6 +33,8 @@ export class AppProperties {
     public adminLoginUrl: string;
     public addOpendoorUrl: string;
     public orderResetWaysNumUrl: string;
+    public aliMachineQueryVMListUrl: string;
+    public aliMachineQueryDetailUrl: string;
 
     constructor() {
       // WeChat
@@ -71,5 +73,7 @@ export class AppProperties {
       this.adminLoginUrl = this.appUrl + '/admin/login';
       this.addOpendoorUrl = this.appUrl + '/index/yunWeiOpenDoor';
       this.orderResetWaysNumUrl = this.appUrl + '/order/resetWaysNum/';
+      this.aliMachineQueryVMListUrl = this.appUrl + '/aliMachine/queryVMList';
+      this.aliMachineQueryDetailUrl = this.appUrl + '/aliMachine/queryDetail';
     }
 }

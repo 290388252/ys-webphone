@@ -6,6 +6,8 @@ import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { PopoverModule } from 'ngx-bootstrap';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
+import {AppService} from '../../app-service';
+import {AppProperties} from '../../app.properties';
 
 @NgModule({
     imports: [
@@ -17,6 +19,7 @@ import {HttpClientModule} from '@angular/common/http';
         NgZorroAntdModule,
         PopoverModule.forRoot()
     ],
+    providers: [AppService, AppProperties],
     declarations: [VmDetailComponent]
 })
 export class VmDetailModule {}
