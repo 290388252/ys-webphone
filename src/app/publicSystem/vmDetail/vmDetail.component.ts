@@ -66,8 +66,8 @@ export class VmDetailComponent implements OnInit {
   }
   detail(vmCode) {
     this.isVisible = true;
-    this.appService.postAliData(this.appProperties.aliMachineQueryDetailUrl,
-      {vmCode: vmCode} ,
+    this.appService.postAliData(this.appProperties.aliMachineQueryDetailUrl + '?vmCode=' + vmCode,
+      '',
       'eyJhbGciOiJIUzUxMiJ9.eyJyYW5kb21LZXkiOiJvdmFoY2' +
       'IiLCJzdWIiOiJ7XCJpZFwiOlwiNTY5MVwiLFwib3BlbklkXCI6XCJvS2taeTA0c' +
       'VZxWXBkMk1HQTVSdUxLYUtxZ1prXCIsXCJwYXlUeXBlXCI6XCIxXCIsXCJ0eXBlXCI6MX0iLC' +
@@ -84,6 +84,21 @@ export class VmDetailComponent implements OnInit {
   }
   sails(vmCode) {
     this.isVisibleSails = true;
+    this.appService.postAliData(this.appProperties.aliMachineQueryTradeDetailUrl + '?vmCode=' + vmCode,
+      '',
+      'eyJhbGciOiJIUzUxMiJ9.eyJyYW5kb21LZXkiOiJvdmFoY2' +
+      'IiLCJzdWIiOiJ7XCJpZFwiOlwiNTY5MVwiLFwib3BlbklkXCI6XCJvS2taeTA0c' +
+      'VZxWXBkMk1HQTVSdUxLYUtxZ1prXCIsXCJwYXlUeXBlXCI6XCIxXCIsXCJ0eXBlXCI6MX0iLC' +
+      'JleHAiOjE1Mjc0NjkzMTIsImlhdCI6MTUyNjg2NDUxMn0.UP5Gve9w1t27-V97ZYAuk' +
+      'L8ZhE9QXYtwb8q36gTbhKWlzuqArUe4U0Mp1Y_NHzJZqYYys3u3xa7wkZMtIDIQTA').subscribe(
+      // this.appService.postAliData(this.appProperties.aliMachineQueryVMListUrl, {vmCode: vmCode} , urlParse(window.location.search)['token']).subscribe(
+      data => {
+        console.log(data);
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
   handleOk(): void {
     this.isVisible = false;

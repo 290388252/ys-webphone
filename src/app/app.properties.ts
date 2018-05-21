@@ -35,6 +35,7 @@ export class AppProperties {
     public orderResetWaysNumUrl: string;
     public aliMachineQueryVMListUrl: string;
     public aliMachineQueryDetailUrl: string;
+    public aliMachineQueryTradeDetailUrl: string;
 
     constructor() {
       // WeChat
@@ -75,5 +76,6 @@ export class AppProperties {
       this.orderResetWaysNumUrl = this.appUrl + '/order/resetWaysNum/';
       this.aliMachineQueryVMListUrl = this.aliAppUrl + '/aliMachine/queryVMList';
       this.aliMachineQueryDetailUrl = this.aliAppUrl + '/aliMachine/queryDetail';
+      this.aliMachineQueryTradeDetailUrl = this.aliAppUrl + '/aliMachine/queryTradeDetail';
     }
 }
