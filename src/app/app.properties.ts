@@ -73,7 +73,7 @@ export class AppProperties {
       this.adminLoginUrl = this.appUrl + '/admin/login';
       this.addOpendoorUrl = this.appUrl + '/index/yunWeiOpenDoor';
       this.orderResetWaysNumUrl = this.appUrl + '/order/resetWaysNum/';
-      this.aliMachineQueryVMListUrl = this.appUrl + '/aliMachine/queryVMList';
-      this.aliMachineQueryDetailUrl = this.appUrl + '/aliMachine/queryDetail';
+      this.aliMachineQueryVMListUrl = this.aliAppUrl + '/aliMachine/queryVMList';
+      this.aliMachineQueryDetailUrl = this.aliAppUrl + '/aliMachine/queryDetail';
     }
 }

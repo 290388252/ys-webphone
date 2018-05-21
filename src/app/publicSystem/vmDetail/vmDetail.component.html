@@ -1,6 +1,6 @@
 <div class="container">
 <div class="title">
-  <nz-input id="input"  [nzType]="'search'" [nzPlaceHolder]="'输入信息'" [(ngModel)]="_value" (nzOnSearch)="onSearch($event)"></nz-input>
+  <nz-input id="input"  [nzType]="'search'" [nzPlaceHolder]="'输入售货机编码或者地址'" [(ngModel)]="_value" (nzOnSearch)="onSearch($event)"></nz-input>
 </div>
 <div class="content">
   <nz-table #nzTable [nzPageSize]="10" nzBordered>
@@ -13,17 +13,17 @@
     </tr>
     </thead>
     <tbody nz-tbody>
-    <tr nz-tbody-tr>
+    <tr nz-tbody-tr *ngFor="let item of vmList">
     <!--<tr nz-tbody-tr *ngFor="let data of nzTable.data; index as i;">-->
       <td nz-td>
-        <a>1988000072</a>
+        <a>{{item.vmCode}}</a>
       </td>
-      <td style="text-align: center;word-wrap: break-word;width: 100px" nz-td>广州某个地方广州某个地方广州某个地方广州某个地方</td>
+      <td style="text-align: center;word-wrap: break-word;width: 130px" nz-td>{{item.locationName}}</td>
       <td style="text-align: center" nz-td>
-        <button style="margin-bottom: 5px;display: block" (click)="sails(1)" nz-button [nzType]="'primary'">
+        <button style="margin-bottom: 5px;display: block" (click)="sails(item.vmCode)" nz-button [nzType]="'primary'">
           <span>销售情况</span>
         </button>
-        <button style="display: block" (click)="detail(1)" nz-button [nzType]="'primary'">
+        <button style="display: block" (click)="detail(item.vmCode)" nz-button [nzType]="'primary'">
           <span>详情</span>
         </button>
       </td>
