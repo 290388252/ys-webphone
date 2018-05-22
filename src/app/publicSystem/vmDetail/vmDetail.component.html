@@ -32,15 +32,28 @@
   </nz-table>
   <nz-modal [(nzVisible)]="isVisibleSails" [nzTitle]="modalTitleSails" [nzContent]="modalContentSails" [nzFooter]="modalFooterSails" (nzOnCancel)="handleCancelSails()">
     <ng-template #modalTitleSails>
-      销售情况
+      近三天销售情况
     </ng-template>
 
     <ng-template #modalContentSails>
-      <p>Modal 1</p>
-      <p>Modal 1</p>
-      <p>Modal 1</p>
-      <p>Modal 1</p>
-      <p>Modal 1</p>
+      <nz-table #nzTable [nzPageSize]="10" nzBordered>
+        <thead nz-thead>
+        <tr>
+          <th nz-th><span>订单创建日期</span></th>
+          <th style="text-align: center" nz-th><span>商品名字</span></th>
+          <th style="text-align: center" nz-th><span>销量</span></th>
+          <th style="text-align: center" nz-th><span>总价</span></th>
+        </tr>
+        </thead>
+        <tbody nz-tbody>
+        <tr nz-tbody-tr *ngFor="let item of tradeDetailList">
+          <td style="text-align: center;word-wrap: break-word;width: 130px" nz-td>{{item.createTime}}</td>
+          <td style="text-align: center;word-wrap: break-word;width: 130px" nz-td>{{item.itemName}}</td>
+          <td style="text-align: center" nz-td>{{item.num}}</td>
+          <td style="text-align: center" nz-td>{{item.totalPrice}}</td>
+        </tr>
+        </tbody>
+      </nz-table>
     </ng-template>
 
     <ng-template #modalFooterSails>
@@ -49,15 +62,28 @@
   </nz-modal>
   <nz-modal [(nzVisible)]="isVisible" [nzTitle]="modalTitle" [nzContent]="modalContent" [nzFooter]="modalFooter" (nzOnCancel)="handleCancel()">
     <ng-template #modalTitle>
-      详情
+      {{vmCode}}机器详情
     </ng-template>
 
     <ng-template #modalContent>
-      <p>Modal Content</p>
-      <p>Modal Content</p>
-      <p>Modal Content</p>
-      <p>Modal Content</p>
-      <p>Modal Content</p>
+      <nz-table #nzTable [nzPageSize]="10" nzBordered>
+        <thead nz-thead>
+        <tr>
+          <th nz-th><span>门号</span></th>
+          <th style="text-align: center" nz-th><span>当前容量</span></th>
+          <th style="text-align: center" nz-th><span>最大容量</span></th>
+        </tr>
+        </thead>
+        <tbody nz-tbody>
+        <tr nz-tbody-tr *ngFor="let item of detailList">
+          <td nz-td>
+            <a>{{item.wayNumber}}</a>
+          </td>
+          <td style="text-align: center;word-wrap: break-word;width: 130px" nz-td>{{item.num}}</td>
+          <td style="text-align: center" nz-td>{{item.fullNum}}</td>
+        </tr>
+        </tbody>
+      </nz-table>
     </ng-template>
 
     <ng-template #modalFooter>

@@ -17,6 +17,9 @@ export class VmDetailComponent implements OnInit {
   public isConfirmLoading = false;
   public isConfirmLoadingSails = false;
   public vmList = [];
+  public detailList = [];
+  public tradeDetailList = [];
+  public vmCode: string;
   constructor(private router: Router,
               private modalService: NzModalService,
               private activatedRoute: ActivatedRoute,
@@ -66,6 +69,7 @@ export class VmDetailComponent implements OnInit {
   }
   detail(vmCode) {
     this.isVisible = true;
+    this.vmCode = vmCode;
     this.appService.postAliData(this.appProperties.aliMachineQueryDetailUrl + '?vmCode=' + vmCode,
       '',
       'eyJhbGciOiJIUzUxMiJ9.eyJyYW5kb21LZXkiOiJvdmFoY2' +
@@ -75,7 +79,11 @@ export class VmDetailComponent implements OnInit {
       'L8ZhE9QXYtwb8q36gTbhKWlzuqArUe4U0Mp1Y_NHzJZqYYys3u3xa7wkZMtIDIQTA').subscribe(
       // this.appService.postAliData(this.appProperties.aliMachineQueryVMListUrl, {vmCode: vmCode} , urlParse(window.location.search)['token']).subscribe(
       data => {
-        console.log(data);
+        if (data.status === 1) {
+          this.detailList = data.returnObject;
+        } else {
+          alert(data.message);
+        }
       },
       error => {
         console.log(error);
@@ -83,9 +91,16 @@ export class VmDetailComponent implements OnInit {
     );
   }
   sails(vmCode) {
+    const yesterday = new Date(new Date().getTime() - 1000 * 60 * 60 * 24 * 2);
+    const startDate = `${yesterday.getFullYear()}-${yesterday.getMonth() + 1}-${yesterday.getDate()}`;
+    const endDate = `${new Date().getFullYear()}-${new Date().getMonth() + 1}-${new Date().getDate()}`;
     this.isVisibleSails = true;
-    this.appService.postAliData(this.appProperties.aliMachineQueryTradeDetailUrl + '?vmCode=' + vmCode,
-      '',
+    this.appService.postAliData(this.appProperties.aliMachineQueryTradeDetailUrl,
+      {
+        vmCode: vmCode,
+        startDate: startDate,
+        endDate: endDate
+      },
       'eyJhbGciOiJIUzUxMiJ9.eyJyYW5kb21LZXkiOiJvdmFoY2' +
       'IiLCJzdWIiOiJ7XCJpZFwiOlwiNTY5MVwiLFwib3BlbklkXCI6XCJvS2taeTA0c' +
       'VZxWXBkMk1HQTVSdUxLYUtxZ1prXCIsXCJwYXlUeXBlXCI6XCIxXCIsXCJ0eXBlXCI6MX0iLC' +
@@ -93,7 +108,11 @@ export class VmDetailComponent implements OnInit {
       'L8ZhE9QXYtwb8q36gTbhKWlzuqArUe4U0Mp1Y_NHzJZqYYys3u3xa7wkZMtIDIQTA').subscribe(
       // this.appService.postAliData(this.appProperties.aliMachineQueryVMListUrl, {vmCode: vmCode} , urlParse(window.location.search)['token']).subscribe(
       data => {
-        console.log(data);
+        if (data.status === 1) {
+          this.tradeDetailList = data.returnObject;
+        } else {
+          alert(data.message);
+        }
       },
       error => {
         console.log(error);
