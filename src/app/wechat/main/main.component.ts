@@ -16,7 +16,8 @@ export class MainComponent implements OnInit {
   private newUser: boolean;
   private wayNumber: number;
   public isVisibleOpen = false;
-  public img = 'http://lenvar-resource-products.oss-cn-shenzhen.aliyuncs.com/';
+  // public img = 'http://lenvar-resource-products.oss-cn-shenzhen.aliyuncs.com/';
+  public img = 'http://47.106.92.82:6663/files/';
   currentModal;
   constructor(private router: Router,
               private modalService: NzModalService,
