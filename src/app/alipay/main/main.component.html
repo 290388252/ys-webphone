@@ -25,9 +25,12 @@
       <button (click)="detail()" type="button" class="btn btn-success">我的订单</button>
     </div>
   </div>
-  <nz-modal [nzVisible]="isVisibleOpen" [nzTitle]="'提示'" [nzContent]="modalContent" (nzOnOk)="openOk()">
+  <nz-modal [nzVisible]="isVisibleOpen" [nzTitle]="'提示'" [nzContent]="modalContent" [nzFooter]="modalFooter">
     <ng-template #modalContent>
       <p>优水到家提醒您,为了您账号资金安全,提水后请随手关门</p>
+    </ng-template>
+    <ng-template #modalFooter>
+      <button nz-button nzType="primary" (click)="openOk()">关闭</button>
     </ng-template>
   </nz-modal>
 </div>
