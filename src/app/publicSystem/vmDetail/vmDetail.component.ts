@@ -20,6 +20,8 @@ export class VmDetailComponent implements OnInit {
   public detailList = [];
   public tradeDetailList = [];
   public vmCode: string;
+  public detailListLoading = true;
+  public tradeDetailListLoading = true;
   constructor(private router: Router,
               private modalService: NzModalService,
               private activatedRoute: ActivatedRoute,
@@ -79,10 +81,14 @@ export class VmDetailComponent implements OnInit {
       'L8ZhE9QXYtwb8q36gTbhKWlzuqArUe4U0Mp1Y_NHzJZqYYys3u3xa7wkZMtIDIQTA').subscribe(
       // this.appService.postAliData(this.appProperties.aliMachineQueryVMListUrl, {vmCode: vmCode} , urlParse(window.location.search)['token']).subscribe(
       data => {
+        console.log(data);
         if (data.status === 1) {
           this.detailList = data.returnObject;
+          this.detailListLoading = false;
         } else {
-          alert(data.message);
+          alert('查询失败无数据');
+          this.isVisible = false;
+          this.detailListLoading = true;
         }
       },
       error => {
@@ -108,10 +114,14 @@ export class VmDetailComponent implements OnInit {
       'L8ZhE9QXYtwb8q36gTbhKWlzuqArUe4U0Mp1Y_NHzJZqYYys3u3xa7wkZMtIDIQTA').subscribe(
       // this.appService.postAliData(this.appProperties.aliMachineQueryVMListUrl, {vmCode: vmCode} , urlParse(window.location.search)['token']).subscribe(
       data => {
+        console.log(data);
         if (data.status === 1) {
           this.tradeDetailList = data.returnObject;
+          this.tradeDetailListLoading = false;
         } else {
-          alert(data.message);
+          alert('查询失败无数据');
+          this.isVisibleSails = false;
+          this.tradeDetailListLoading = true;
         }
       },
       error => {
@@ -122,17 +132,25 @@ export class VmDetailComponent implements OnInit {
   handleOk(): void {
     this.isVisible = false;
     this.isConfirmLoading = false;
+    this.detailListLoading = true;
+    this.detailList = [];
   }
 
   handleCancel(): void {
     this.isVisible = false;
+    this.detailListLoading = true;
+    this.detailList = [];
   }
   handleOkSails(): void {
     this.isVisibleSails = false;
     this.isConfirmLoadingSails = false;
+    this.tradeDetailListLoading = true;
+    this.tradeDetailList = [];
   }
 
   handleCancelSails(): void {
     this.isVisibleSails = false;
+    this.tradeDetailListLoading = true;
+    this.tradeDetailList = [];
   }
 }

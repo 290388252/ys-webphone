@@ -30,16 +30,16 @@
     </tr>
     </tbody>
   </nz-table>
-  <nz-modal [(nzVisible)]="isVisibleSails" [nzTitle]="modalTitleSails" [nzContent]="modalContentSails" [nzFooter]="modalFooterSails" (nzOnCancel)="handleCancelSails()">
+  <nz-modal [nzStyle]="{ top: '20px' }" [(nzVisible)]="isVisibleSails" [nzTitle]="modalTitleSails" [nzContent]="modalContentSails" [nzFooter]="modalFooterSails" (nzOnCancel)="handleCancelSails()">
     <ng-template #modalTitleSails>
       近三天销售情况
     </ng-template>
 
     <ng-template #modalContentSails>
-      <div class="example">
+      <div class="example" [hidden]="!tradeDetailListLoading">
         <nz-spin></nz-spin>
       </div>
-      <nz-table [hidden]="true" #nzTable [nzPageSize]="10" nzBordered>
+      <nz-table [hidden]="tradeDetailListLoading" #nzTable [nzPageSize]="10" nzBordered>
         <thead nz-thead>
         <tr>
           <th nz-th><span>订单创建日期</span></th>
@@ -50,8 +50,8 @@
         </thead>
         <tbody nz-tbody>
         <tr nz-tbody-tr *ngFor="let item of tradeDetailList">
-          <td style="text-align: center;word-wrap: break-word;width: 130px" nz-td>{{item.createTime}}</td>
-          <td style="text-align: center;word-wrap: break-word;width: 130px" nz-td>{{item.itemName}}</td>
+          <td style="text-align: center;word-wrap: break-word;width: 80px" nz-td>{{item.createTime}}</td>
+          <td style="text-align: center;word-wrap: break-word;width: 100px" nz-td>{{item.itemName}}</td>
           <td style="text-align: center" nz-td>{{item.num}}</td>
           <td style="text-align: center" nz-td>{{item.totalPrice}}</td>
         </tr>
@@ -63,16 +63,16 @@
       <button nz-button nzType="primary" (click)="handleOkSails()" [nzLoading]="isConfirmLoadingSails">关闭</button>
     </ng-template>
   </nz-modal>
-  <nz-modal [(nzVisible)]="isVisible" [nzTitle]="modalTitle" [nzContent]="modalContent" [nzFooter]="modalFooter" (nzOnCancel)="handleCancel()">
+  <nz-modal [nzStyle]="{ top: '20px' }" [(nzVisible)]="isVisible" [nzTitle]="modalTitle" [nzContent]="modalContent" [nzFooter]="modalFooter" (nzOnCancel)="handleCancel()">
     <ng-template #modalTitle>
       {{vmCode}}机器详情
     </ng-template>
 
     <ng-template #modalContent>
-      <div class="example">
+      <div class="example" [hidden]="!detailListLoading">
         <nz-spin></nz-spin>
       </div>
-      <nz-table [hidden]="true" #nzTable [nzPageSize]="10" nzBordered>
+      <nz-table [hidden]="detailListLoading" #nzTable [nzPageSize]="10" nzBordered>
         <thead nz-thead>
         <tr>
           <th nz-th><span>门号</span></th>
