@@ -120,7 +120,8 @@ export class MainComponent implements OnInit {
   vmLogin() {
     this.router.navigate(['addMain'], {
       queryParams: {
-        vmCode: urlParse(window.location.search)['vmCode']
+        vmCode: urlParse(window.location.search)['vmCode'],
+        payType: 2
       }});
     // TODO;
   }

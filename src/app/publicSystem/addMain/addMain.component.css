@@ -11,6 +11,14 @@
   color: #6c757d;
   font-size: 17px;
 }
+.text-custom {
+  color: white;
+  font-weight: 900;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 135px;
+}
 .context{
   width: 350px;
   margin: 0 auto;

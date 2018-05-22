@@ -31,6 +31,7 @@ export class AppProperties {
     // public
     public isClosedUrl: string;
     public adminLoginUrl: string;
+    public adminOauth2Url: string;
     public addOpendoorUrl: string;
     public orderResetWaysNumUrl: string;
     public aliMachineQueryVMListUrl: string;
@@ -77,5 +78,6 @@ export class AppProperties {
       this.aliMachineQueryVMListUrl = this.aliAppUrl + '/aliMachine/queryVMList';
       this.aliMachineQueryDetailUrl = this.aliAppUrl + '/aliMachine/queryDetail';
       this.aliMachineQueryTradeDetailUrl = this.aliAppUrl + '/aliMachine/queryTradeDetail';
+      this.adminOauth2Url = this.aliAppUrl + '/admin/oauth2';
     }
 }

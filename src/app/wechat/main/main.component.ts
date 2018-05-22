@@ -104,7 +104,7 @@ export class MainComponent implements OnInit {
     }
   }
   getInitData() {
-    this.appService.getData(this.appProperties.indexListUrl, {vmCode: urlParse(window.location.search)['vmCode']}).subscribe(
+    this.appService.getData(this.appProperties.indexListUrl, {vmCode: urlParse(window.location.search)['vmCode'], type: 1}).subscribe(
       data => {
         console.log(data);
         if (data.code === 0) {
@@ -174,7 +174,8 @@ export class MainComponent implements OnInit {
   vmLogin() {
     this.router.navigate(['addMain'], {
       queryParams: {
-        vmCode: urlParse(window.location.search)['vmCode']
+        vmCode: urlParse(window.location.search)['vmCode'],
+        payType: 1
       }});
   }
   product() {

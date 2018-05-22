@@ -29,14 +29,34 @@ export class AddMainComponent implements OnInit {
     if (this.token === null
       || this.token === undefined
       || this.token === 'undefined') {
-      this.router.navigate(['vmLogin'], {
-        queryParams: {
-          vmCode: urlParse(window.location.search)['vmCode']
-        }});
+      if (urlParse(window.location.search)['payType'] === '1') {
+        this.appService.getData(this.appProperties.adminOauth2Url, '').subscribe(
+          data => {
+            console.log(data);
+            let newData;
+            const newWlhUrl = '/vmLogin?vmCode=' + urlParse(window.location.search)['vmCode'];
+            if (typeof(data.data) === 'string' && data.data.length > 0) {
+              newData = data.data.replace(data.data.substring(data.data.indexOf('state=') + 6, data.data.length),
+                newWlhUrl);
+              console.log(newData);
+              window.location.href = newData;
+            }
+          },
+          error => {
+            console.log(error);
+          }
+        );
+      } else {
+        this.router.navigate(['vmLogin'], {
+          queryParams: {
+            vmCode: urlParse(window.location.search)['vmCode'],
+            payType: urlParse(window.location.search)['payType']
+          }});
+      }
     }
   }
   getInitData() {
-    this.appService.getData(this.appProperties.indexListUrl, {vmCode: urlParse(window.location.search)['vmCode']}).subscribe(
+    this.appService.getData(this.appProperties.indexListUrl, {vmCode: urlParse(window.location.search)['vmCode'], type: 2}).subscribe(
       data => {
         console.log(data);
         if (data.code === 0) {

@@ -3,6 +3,7 @@ import {Router} from '@angular/router';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {AppProperties} from '../../app.properties';
 import {AppService} from '../../app-service';
+import {urlParse} from '../../utils/util';
 
 @Component({
   selector: 'app-carousel',
@@ -39,7 +40,9 @@ export class VmLoginComponent implements OnInit {
       this.appService.getData(this.appProperties.adminLoginUrl,
         {
           phone: this.validateForm.controls.phoneForm.value,
-          smsCode: this.validateForm.controls.password.value
+          smsCode: this.validateForm.controls.password.value,
+          payType: urlParse(window.location.search)['payType'],
+          openId: urlParse(window.location.search)['openId']
         }).subscribe(
         data => {
           if (data.code !== 0) {
@@ -51,7 +54,8 @@ export class VmLoginComponent implements OnInit {
             document.cookie = 'adminToken=' + data.data + ';expired=' + exp.toUTCString();
             this.router.navigate(['addMain'], {
               queryParams: {
-                vmCode: this.vmCode
+                vmCode: this.vmCode,
+                payType: Number.parseInt(urlParse(window.location.search)['payType'])
               }});
           }
         },
