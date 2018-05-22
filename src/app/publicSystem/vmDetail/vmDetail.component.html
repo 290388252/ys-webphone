@@ -36,7 +36,10 @@
     </ng-template>
 
     <ng-template #modalContentSails>
-      <nz-table #nzTable [nzPageSize]="10" nzBordered>
+      <div class="example">
+        <nz-spin></nz-spin>
+      </div>
+      <nz-table [hidden]="true" #nzTable [nzPageSize]="10" nzBordered>
         <thead nz-thead>
         <tr>
           <th nz-th><span>订单创建日期</span></th>
@@ -66,7 +69,10 @@
     </ng-template>
 
     <ng-template #modalContent>
-      <nz-table #nzTable [nzPageSize]="10" nzBordered>
+      <div class="example">
+        <nz-spin></nz-spin>
+      </div>
+      <nz-table [hidden]="true" #nzTable [nzPageSize]="10" nzBordered>
         <thead nz-thead>
         <tr>
           <th nz-th><span>门号</span></th>
