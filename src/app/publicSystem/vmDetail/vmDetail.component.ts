@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {AfterViewChecked, Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {NzModalService} from 'ng-zorro-antd';
 import {AppService} from '../../app-service';
@@ -10,7 +10,7 @@ import {urlParse} from '../../utils/util';
   templateUrl: './vmDetail.component.html',
   styleUrls: ['./vmDetail.component.css']
 })
-export class VmDetailComponent implements OnInit {
+export class VmDetailComponent implements OnInit, AfterViewChecked{
   public _value = '';
   public isVisible = false;
   public isVisibleSails = false;
@@ -45,7 +45,8 @@ export class VmDetailComponent implements OnInit {
       }
     );
   }
-
+  ngAfterViewChecked(): void {
+  }
   onSearch(event: string): void {
     console.log(event);
     this.appService.postAliData(this.appProperties.aliMachineQueryVMListUrl + '?form=' + event,
@@ -98,8 +99,9 @@ export class VmDetailComponent implements OnInit {
   }
   sails(vmCode) {
     const yesterday = new Date(new Date().getTime() - 1000 * 60 * 60 * 24 * 2);
+    const tomorrow = new Date(new Date().getTime() + 1000 * 60 * 60 * 24);
     const startDate = `${yesterday.getFullYear()}-${yesterday.getMonth() + 1}-${yesterday.getDate()}`;
-    const endDate = `${new Date().getFullYear()}-${new Date().getMonth() + 1}-${new Date().getDate()}`;
+    const endDate = `${tomorrow.getFullYear()}-${tomorrow.getMonth() + 1}-${tomorrow.getDate()}`;
     this.isVisibleSails = true;
     this.appService.postAliData(this.appProperties.aliMachineQueryTradeDetailUrl,
       {

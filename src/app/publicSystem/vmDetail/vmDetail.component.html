@@ -3,8 +3,7 @@
   <nz-input id="input"  [nzType]="'search'" [nzPlaceHolder]="'输入售货机编码或者地址'" [(ngModel)]="_value" (nzOnSearch)="onSearch($event)"></nz-input>
 </div>
 <div class="content">
-  <nz-table #nzTable [nzPageSize]="10" nzBordered>
-  <!--<nz-table #nzTable [nzDataSource]="data" [nzPageSize]="10" nzBordered>-->
+  <nz-table #nzTable [nzPageSize]="10" [nzCustomNoResult]="true" nzBordered>
     <thead nz-thead>
     <tr>
       <th nz-th><span>机器编号</span></th>
@@ -39,7 +38,7 @@
       <div class="example" [hidden]="!tradeDetailListLoading">
         <nz-spin></nz-spin>
       </div>
-      <nz-table [hidden]="tradeDetailListLoading" #nzTable [nzPageSize]="10" nzBordered>
+      <nz-table [hidden]="tradeDetailListLoading" [nzCustomNoResult]="true" #nzTable [nzPageSize]="10" nzBordered>
         <thead nz-thead>
         <tr>
           <th nz-th><span>订单创建日期</span></th>
@@ -72,7 +71,7 @@
       <div class="example" [hidden]="!detailListLoading">
         <nz-spin></nz-spin>
       </div>
-      <nz-table [hidden]="detailListLoading" #nzTable [nzPageSize]="10" nzBordered>
+      <nz-table [hidden]="detailListLoading" [nzCustomNoResult]="true" #nzTable [nzPageSize]="10" nzBordered>
         <thead nz-thead>
         <tr>
           <th nz-th><span>门号</span></th>

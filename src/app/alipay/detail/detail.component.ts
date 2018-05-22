@@ -36,7 +36,7 @@ export class DetailComponent implements OnInit, AfterViewChecked {
     if (this.token === null || this.token === undefined || this.token === 'undefined') {
       this.token = urlParse(window.location.search)['token'];
     }
-    console.log(this.token);
+    this.title = '我的订单';
     if (this.title === '我的订单') {
       this.postData(this.appProperties.aliFindAllUserOrderUrl);
     } else if (this.title === '已付款订单') {

@@ -56,6 +56,9 @@ export class MainComponent implements OnInit {
     );
   }
   openDoor(item) {
+    if (item.num === 0) {
+      alert('水已经卖完无法开门');
+    } else {
       this.appService.postAliData(this.appProperties.aliOpenDoorUrl,
         {vmCode: urlParse(window.location.search)['vmCode'], openType: 1, doorNO: item.doorNO}, this.token).subscribe(
         data => {
@@ -74,6 +77,7 @@ export class MainComponent implements OnInit {
           console.log(error);
         }
       );
+    }
   }
   openOk() {
     this.isClosed(urlParse(window.location.search)['vmCode']);
