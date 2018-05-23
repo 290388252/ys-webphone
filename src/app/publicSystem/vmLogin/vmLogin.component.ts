@@ -40,9 +40,9 @@ export class VmLoginComponent implements OnInit {
       this.appService.getData(this.appProperties.adminLoginUrl,
         {
           phone: this.validateForm.controls.phoneForm.value,
-          smsCode: this.validateForm.controls.password.value,
-          payType: urlParse(window.location.search)['payType'],
-          openId: urlParse(window.location.search)['openId']
+          smsCode: this.validateForm.controls.password.value
+          // payType: urlParse(window.location.search)['payType']
+          // openId: urlParse(window.location.search)['openId']
         }).subscribe(
         data => {
           if (data.code !== 0) {
