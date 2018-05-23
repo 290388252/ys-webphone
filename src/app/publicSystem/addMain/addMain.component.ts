@@ -34,7 +34,7 @@ export class AddMainComponent implements OnInit {
           data => {
             console.log(data);
             let newData;
-            const newWlhUrl = '/vmLogin?vmCode=' + urlParse(window.location.search)['vmCode'];
+            const newWlhUrl = '/vmLogin?vmCode=' + urlParse(window.location.search)['vmCode'] + '&payType=1';
             if (typeof(data.data) === 'string' && data.data.length > 0) {
               newData = data.data.replace(data.data.substring(data.data.indexOf('state=') + 6, data.data.length),
                 newWlhUrl);
@@ -50,7 +50,7 @@ export class AddMainComponent implements OnInit {
         this.router.navigate(['vmLogin'], {
           queryParams: {
             vmCode: urlParse(window.location.search)['vmCode'],
-            payType: urlParse(window.location.search)['payType']
+            payType: 2
           }});
       }
     }
