@@ -15,9 +15,9 @@ export class AppProperties {
     public orderUnifiedOrderUrl: string;
     public nonePassWordPayUrl: string;
     // AliPay
-    public aliAppUrl: string;
     public aliIndexListUrl: string;
     public aliGetUserIdUrl: string;
+    public aliVmGetUserIdUrl: string;
     public aliOpenDoorUrl: string;
     public aliGetCreditWithheldUrl: string;
     public aliRegisterUrl: string;
@@ -40,10 +40,7 @@ export class AppProperties {
 
     constructor() {
       // WeChat
-      // this.appUrl = 'http://192.168.0.110:8092';
-      // this.appUrl = 'http://112.74.173.67';
-      this.appUrl = 'http://youshuicmp.natapp1.cc'; // localtest
-      // this.appUrl = 'http://127.0.0.1:8099'; // localtest
+      this.appUrl = 'http://youshuismallhe.natapp1.cc'; // localtest
       this.indexListUrl = this.appUrl + '/index/listWay';
       this.indexOpenDoor = this.appUrl + '/index/openDoor';
       this.wechatOauth2Url = this.appUrl + '/wechat/oauth2';
@@ -55,29 +52,32 @@ export class AppProperties {
       this.nonePassWordPayUrl = this.appUrl + '/wechat/entrustweb';
 
       // AliPay
-      this.aliAppUrl = 'http://youshuismallhe.natapp1.cc'; // localtest
-      this.aliIndexListUrl = this.aliAppUrl + '/aliUser/queryItem';
-      this.aliGetUserIdUrl = 'https://openauth.alipay.com/oauth2/publicAppAuthorize.htm' +
-        '?app_id=2017120900470709&scope=auth_user&redirect_uri=http://youshuismallhe.natapp1.cc/aliUser/';
-      this.aliOpenDoorUrl = this.aliAppUrl + '/aliBusiness/weightOpenDoor';
-      this.aliRegisterUrl = this.aliAppUrl + '/aliBusiness/register';
-      this.aliSmsSendUrl = this.aliAppUrl + '/alisms/send';
-      this.aliFindAllUserOrderUrl = this.aliAppUrl + '/aliBusiness/findAllUserOrder';
-      this.aliFindPayOrderUrl = this.aliAppUrl + '/aliBusiness/findPayOrder';
-      this.aliFindNotPayOrderUrl = this.aliAppUrl + '/aliBusiness/findNotPayOrder';
-      this.alipayWapPayUrl = this.aliAppUrl + '/alipay/wapPay?payRecordId=';
-      this.aliGetCreditWithheldUrl = this.aliAppUrl + '/aliUser/getCreditWithheld?vmCode=';
-      this.aliLoginVerifyOperateUrl = this.aliAppUrl + '/aliLogin/verifyOperate';
-      this.aliBusinessIsAttentionUrl = this.aliAppUrl + '/aliBusiness/isAttention';
+      this.aliIndexListUrl = this.appUrl + '/aliUser/queryItem';
+      // this.aliGetUserIdUrl = 'https://openauth.alipay.com/oauth2/publicAppAuthorize.htm' +
+      //   '?app_id=2017120900470709&scope=auth_user&redirect_uri=http://youshuismallhe.natapp1.cc/aliUser/';
+      this.aliGetUserIdUrl = 'https://openauth.alipaydev.com/oauth2/publicAppAuthorize.htm' +
+        '?app_id=2016091600520953&scope=auth_user&redirect_uri=http://youshuismallhe.natapp1.cc/aliUser/';
+      this.aliVmGetUserIdUrl = 'https://openauth.alipaydev.com/oauth2/publicAppAuthorize.htm' +
+        '?app_id=2016091600520953&scope=auth_user&redirect_uri=http://youshuismallhe.natapp1.cc/aliUser/getAliInfo';
+      this.aliOpenDoorUrl = this.appUrl + '/aliBusiness/weightOpenDoor';
+      this.aliRegisterUrl = this.appUrl + '/aliBusiness/register';
+      this.aliSmsSendUrl = this.appUrl + '/alisms/send';
+      this.aliFindAllUserOrderUrl = this.appUrl + '/aliBusiness/findAllUserOrder';
+      this.aliFindPayOrderUrl = this.appUrl + '/aliBusiness/findPayOrder';
+      this.aliFindNotPayOrderUrl = this.appUrl + '/aliBusiness/findNotPayOrder';
+      this.alipayWapPayUrl = this.appUrl + '/alipay/wapPay?payRecordId=';
+      this.aliGetCreditWithheldUrl = this.appUrl + '/aliUser/getCreditWithheld?vmCode=';
+      this.aliLoginVerifyOperateUrl = this.appUrl + '/aliLogin/verifyOperate';
+      this.aliBusinessIsAttentionUrl = this.appUrl + '/aliBusiness/isAttention';
 
       // public
       this.isClosedUrl = this.appUrl + '/wechat/isClosed';
       this.adminLoginUrl = this.appUrl + '/admin/login';
       this.addOpendoorUrl = this.appUrl + '/index/yunWeiOpenDoor';
       this.orderResetWaysNumUrl = this.appUrl + '/order/resetWaysNum/';
-      this.aliMachineQueryVMListUrl = this.aliAppUrl + '/aliMachine/queryVMList';
-      this.aliMachineQueryDetailUrl = this.aliAppUrl + '/aliMachine/queryDetail';
-      this.aliMachineQueryTradeDetailUrl = this.aliAppUrl + '/aliMachine/queryTradeDetail';
-      this.adminOauth2Url = this.aliAppUrl + '/admin/oauth2';
+      this.aliMachineQueryVMListUrl = this.appUrl + '/aliMachine/queryVMList';
+      this.aliMachineQueryDetailUrl = this.appUrl + '/aliMachine/queryDetail';
+      this.aliMachineQueryTradeDetailUrl = this.appUrl + '/aliMachine/queryTradeDetail';
+      this.adminOauth2Url = this.appUrl + '/admin/oauth2';
     }
 }

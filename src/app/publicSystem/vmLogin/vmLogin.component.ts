@@ -40,9 +40,9 @@ export class VmLoginComponent implements OnInit {
       this.appService.getData(this.appProperties.adminLoginUrl,
         {
           phone: this.validateForm.controls.phoneForm.value,
-          smsCode: this.validateForm.controls.password.value
-          // payType: urlParse(window.location.search)['payType']
-          // openId: urlParse(window.location.search)['openId']
+          smsCode: this.validateForm.controls.password.value,
+          payType: urlParse(window.location.search)['payType'],
+          openId: urlParse(window.location.search)['openId']
         }).subscribe(
         data => {
           if (data.code !== 0) {
@@ -52,6 +52,9 @@ export class VmLoginComponent implements OnInit {
             const exp = new Date();
             exp.setTime(exp.getTime() + 1000 * 60 * 60 * 24 * 3);
             document.cookie = 'adminToken=' + data.data + ';expired=' + exp.toUTCString();
+            if (data.msg !== 'success') {
+              alert(data.msg);
+            }
             this.router.navigate(['addMain'], {
               queryParams: {
                 vmCode: this.vmCode,

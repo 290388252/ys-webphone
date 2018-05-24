@@ -30,14 +30,6 @@ export class VmDetailComponent implements OnInit, AfterViewChecked {
   }
 
   ngOnInit() {
-    // this.appService.postAliData(this.appProperties.aliMachineQueryVMListUrl, '' ,
-    //   'eyJhbGciOiJIUzUxMiJ9.eyJyYW5kb' +
-    //   '21LZXkiOiJvdmFoY2IiLCJzdWIiOiJ7XCJpZFwiO' +
-    //   'lwiNTY5MVwiLFwib3BlbklkXCI6XCJvS2taeTA0cVZ' +
-    //   'xWXBkMk1HQTVSdUxLYUtxZ1prXCIsXCJwYXlUeXBlXCI' +
-    //   '6XCIxXCIsXCJ0eXBlXCI6MX0iLCJleHAiOjE1Mjc0NjkzM' +
-    //   'TIsImlhdCI6MTUyNjg2NDUxMn0.UP5Gve9w1t27-V97Z' +
-    //   'YAukL8ZhE9QXYtwb8q36gTbhKWlzuqArUe4U0Mp1Y_NHzJZqYYys3u3xa7wkZMtIDIQTA').subscribe(
     this.appService.postAliData(this.appProperties.aliMachineQueryVMListUrl, '' , urlParse(window.location.search)['token']).subscribe(
       data => {
         console.log(data);
@@ -56,13 +48,6 @@ export class VmDetailComponent implements OnInit, AfterViewChecked {
   }
   onSearch(event: string): void {
     console.log(event);
-    // this.appService.postAliData(this.appProperties.aliMachineQueryVMListUrl + '?form=' + event,
-    //   '',
-    //   'eyJhbGciOiJIUzUxMiJ9.eyJyYW' +
-    //   '5kb21LZXkiOiJvdmFoY2IiLCJzdWIiOiJ7XCJpZFwiOlwiNTY5MVwiLFwib3' +
-    //   'BlbklkXCI6XCJvS2taeTA0cVZxWXBkMk1HQTVSdUxLYUtxZ1prXCIsXCJwYXlUeXBlXCI' +
-    //   '6XCIxXCIsXCJ0eXBlXCI6MX0iLCJleHAiOjE1Mjc0NjkzMTIsImlhdCI6MTUyNjg2NDUxMn0.U' +
-    //   'P5Gve9w1t27-V97ZYAukL8ZhE9QXYtwb8q36gTbhKWlzuqArUe4U0Mp1Y_NHzJZqYYys3u3xa7wkZMtIDIQTA').subscribe(
       this.appService.postAliData(this.appProperties.aliMachineQueryVMListUrl + '?form=' + event,
         '' , urlParse(window.location.search)['token']).subscribe(
       data => {
@@ -81,13 +66,6 @@ export class VmDetailComponent implements OnInit, AfterViewChecked {
   detail(vmCode) {
     this.isVisible = true;
     this.vmCode = vmCode;
-    // this.appService.postAliData(this.appProperties.aliMachineQueryDetailUrl + '?vmCode=' + vmCode,
-    //   '',
-    //   'eyJhbGciOiJIUzUxMiJ9.eyJyYW5kb21LZXkiOiJvdmFoY2' +
-    //   'IiLCJzdWIiOiJ7XCJpZFwiOlwiNTY5MVwiLFwib3BlbklkXCI6XCJvS2taeTA0c' +
-    //   'VZxWXBkMk1HQTVSdUxLYUtxZ1prXCIsXCJwYXlUeXBlXCI6XCIxXCIsXCJ0eXBlXCI6MX0iLC' +
-    //   'JleHAiOjE1Mjc0NjkzMTIsImlhdCI6MTUyNjg2NDUxMn0.UP5Gve9w1t27-V97ZYAuk' +
-    //   'L8ZhE9QXYtwb8q36gTbhKWlzuqArUe4U0Mp1Y_NHzJZqYYys3u3xa7wkZMtIDIQTA').subscribe(
       this.appService.postAliData(this.appProperties.aliMachineQueryDetailUrl + '?vmCode=' + vmCode,
         '' , urlParse(window.location.search)['token']).subscribe(
       data => {
@@ -112,17 +90,6 @@ export class VmDetailComponent implements OnInit, AfterViewChecked {
     const startDate = `${yesterday.getFullYear()}-${yesterday.getMonth() + 1}-${yesterday.getDate()}`;
     const endDate = `${tomorrow.getFullYear()}-${tomorrow.getMonth() + 1}-${tomorrow.getDate()}`;
     this.isVisibleSails = true;
-    // this.appService.postAliData(this.appProperties.aliMachineQueryTradeDetailUrl,
-    //   {
-    //     vmCode: vmCode,
-    //     startDate: startDate,
-    //     endDate: endDate
-    //   },
-    //   'eyJhbGciOiJIUzUxMiJ9.eyJyYW5kb21LZXkiOiJvdmFoY2' +
-    //   'IiLCJzdWIiOiJ7XCJpZFwiOlwiNTY5MVwiLFwib3BlbklkXCI6XCJvS2taeTA0c' +
-    //   'VZxWXBkMk1HQTVSdUxLYUtxZ1prXCIsXCJwYXlUeXBlXCI6XCIxXCIsXCJ0eXBlXCI6MX0iLC' +
-    //   'JleHAiOjE1Mjc0NjkzMTIsImlhdCI6MTUyNjg2NDUxMn0.UP5Gve9w1t27-V97ZYAuk' +
-    //   'L8ZhE9QXYtwb8q36gTbhKWlzuqArUe4U0Mp1Y_NHzJZqYYys3u3xa7wkZMtIDIQTA').subscribe(
       this.appService.postAliData(this.appProperties.aliMachineQueryTradeDetailUrl,
         {
             vmCode: vmCode,
