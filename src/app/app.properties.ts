@@ -3,8 +3,17 @@ import 'rxjs/Rx';
 
 @Injectable()
 export class AppProperties {
-    // WeChat
+    // public
     public appUrl: string;
+    public isClosedUrl: string;
+    public adminLoginUrl: string;
+    public adminOauth2Url: string;
+    public addOpendoorUrl: string;
+    public orderResetWaysNumUrl: string;
+    public aliMachineQueryVMListUrl: string;
+    public aliMachineQueryDetailUrl: string;
+    public aliMachineQueryTradeDetailUrl: string;
+    // WeChat
     public indexListUrl: string;
     public indexOpenDoor: string;
     public wechatOauth2Url: string;
@@ -28,19 +37,20 @@ export class AppProperties {
     public alipayWapPayUrl: string;
     public aliLoginVerifyOperateUrl: string;
     public aliBusinessIsAttentionUrl: string;
-    // public
-    public isClosedUrl: string;
-    public adminLoginUrl: string;
-    public adminOauth2Url: string;
-    public addOpendoorUrl: string;
-    public orderResetWaysNumUrl: string;
-    public aliMachineQueryVMListUrl: string;
-    public aliMachineQueryDetailUrl: string;
-    public aliMachineQueryTradeDetailUrl: string;
 
     constructor() {
-      // WeChat
+      // Public
       this.appUrl = 'http://youshuismallhe.natapp1.cc'; // localtest
+      this.isClosedUrl = this.appUrl + '/wechat/isClosed';
+      this.adminLoginUrl = this.appUrl + '/admin/login';
+      this.addOpendoorUrl = this.appUrl + '/index/yunWeiOpenDoor';
+      this.orderResetWaysNumUrl = this.appUrl + '/order/resetWaysNum/';
+      this.aliMachineQueryVMListUrl = this.appUrl + '/aliMachine/queryVMList';
+      this.aliMachineQueryDetailUrl = this.appUrl + '/aliMachine/queryDetail';
+      this.aliMachineQueryTradeDetailUrl = this.appUrl + '/aliMachine/queryTradeDetail';
+      this.adminOauth2Url = this.appUrl + '/admin/oauth2';
+
+      // WeChat
       this.indexListUrl = this.appUrl + '/index/listWay';
       this.indexOpenDoor = this.appUrl + '/index/openDoor';
       this.wechatOauth2Url = this.appUrl + '/wechat/oauth2';
@@ -70,14 +80,5 @@ export class AppProperties {
       this.aliLoginVerifyOperateUrl = this.appUrl + '/aliLogin/verifyOperate';
       this.aliBusinessIsAttentionUrl = this.appUrl + '/aliBusiness/isAttention';
 
-      // public
-      this.isClosedUrl = this.appUrl + '/wechat/isClosed';
-      this.adminLoginUrl = this.appUrl + '/admin/login';
-      this.addOpendoorUrl = this.appUrl + '/index/yunWeiOpenDoor';
-      this.orderResetWaysNumUrl = this.appUrl + '/order/resetWaysNum/';
-      this.aliMachineQueryVMListUrl = this.appUrl + '/aliMachine/queryVMList';
-      this.aliMachineQueryDetailUrl = this.appUrl + '/aliMachine/queryDetail';
-      this.aliMachineQueryTradeDetailUrl = this.appUrl + '/aliMachine/queryTradeDetail';
-      this.adminOauth2Url = this.appUrl + '/admin/oauth2';
     }
 }
