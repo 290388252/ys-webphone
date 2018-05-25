@@ -16,6 +16,7 @@ export class MainComponent implements OnInit {
   private newUser: boolean;
   private wayNumber: number;
   public isVisibleOpen = false;
+  public clickMore = false;
   // public img = 'http://lenvar-resource-products.oss-cn-shenzhen.aliyuncs.com/';
   public img = 'http://47.106.92.82:6663/files/';
   currentModal;
@@ -131,43 +132,50 @@ export class MainComponent implements OnInit {
     if (item.num === 0) {
       alert('水已经卖完无法开门');
     } else {
-      if (this.token === null || this.token === undefined || this.token === 'undefined') {
-        sessionStorage.setItem('wayNumber', item.wayNumber);
-        alert('请点击确认，注册登陆');
-        this.login(titleTpl, contentTpl, footerTpl);
+      if (this.clickMore) {
+        alert('亲,服务器还没反应过来,请勿再点击');
       } else {
-        this.appService.getDataOpen(this.appProperties.indexOpenDoor,
-          {vmCode: urlParse(window.location.search)['vmCode'], way: item.wayNumber}, this.token).subscribe(
-          data => {
-            console.log(data);
-            if (data.code === 0) {
-              // alert('优水到家提醒您,为了您账号资金安全,提水后请随手关门');
-              this.isVisibleOpen = true;
-            } else if (data.code === -1) {
-              this.login(titleTpl, contentTpl, footerTpl);
-            } else if (data.code === -87) {
-              window.location.href = this.appProperties.followWechatSubscription;
-            } else if (data.code === -88) {
-              alert('您有未支付订单请点击我的订单支付完毕再进行购水！');
-            } else if (data.code === -89) {
-              alert('门已开，请误点击多次！');
-            } else if (data.code === -90) {
-              this.appService.getDataOpen(this.appProperties.nonePassWordPayUrl).subscribe(
-                data1 => {
-                  window.location.href =  data1;
-                  sessionStorage.setItem('open', '1');
-                  sessionStorage.setItem('wayNumber', item.wayNumber);
-                },
-                error1 => {
-                  console.log(error1);
-                }
-              );
+        this.clickMore = true;
+        if (this.token === null || this.token === undefined || this.token === 'undefined') {
+          sessionStorage.setItem('wayNumber', item.wayNumber);
+          alert('请点击确认，注册登陆');
+          this.clickMore = false;
+          this.login(titleTpl, contentTpl, footerTpl);
+        } else {
+          this.appService.getDataOpen(this.appProperties.indexOpenDoor,
+            {vmCode: urlParse(window.location.search)['vmCode'], way: item.wayNumber}, this.token).subscribe(
+            data => {
+              console.log(data);
+              this.clickMore = false;
+              if (data.code === 0) {
+                // alert('优水到家提醒您,为了您账号资金安全,提水后请随手关门');
+                this.isVisibleOpen = true;
+              } else if (data.code === -1) {
+                this.login(titleTpl, contentTpl, footerTpl);
+              } else if (data.code === -87) {
+                window.location.href = this.appProperties.followWechatSubscription;
+              } else if (data.code === -88) {
+                alert('您有未支付订单请点击我的订单支付完毕再进行购水！');
+              } else if (data.code === -89) {
+                alert('门已开，请误点击多次！');
+              } else if (data.code === -90) {
+                this.appService.getDataOpen(this.appProperties.nonePassWordPayUrl).subscribe(
+                  data1 => {
+                    window.location.href =  data1;
+                    sessionStorage.setItem('open', '1');
+                    sessionStorage.setItem('wayNumber', item.wayNumber);
+                  },
+                  error1 => {
+                    console.log(error1);
+                  }
+                );
+              }
+            },
+            error => {
+              console.log(error);
             }
-          },
-          error => {
-            console.log(error);
-          }
-        );
+          );
+        }
       }
     }
   }

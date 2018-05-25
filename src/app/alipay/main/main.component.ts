@@ -15,6 +15,7 @@ export class MainComponent implements OnInit {
   // public img = 'http://lenvar-resource-products.oss-cn-shenzhen.aliyuncs.com/';
   public img = 'http://47.106.92.82:6663/files/';
   public isVisibleOpen = false;
+  public clickMore = false;
   constructor(private router: Router,
               private activatedRoute: ActivatedRoute,
               private appProperties: AppProperties,
@@ -60,24 +61,30 @@ export class MainComponent implements OnInit {
     if (item.num === 0) {
       alert('水已经卖完无法开门');
     } else {
-      this.appService.postAliData(this.appProperties.aliOpenDoorUrl,
-        {vmCode: urlParse(window.location.search)['vmCode'], openType: 1, doorNO: item.doorNO}, this.token).subscribe(
-        data => {
-          if (data.status === 1) {
-            this.isVisibleOpen = true;
-            console.log(data);
-          } else {
-            console.log(data);
-            alert(data.message);
-            if (data.willGo) {
-              window.location.href = data.returnObject;
+      if (this.clickMore) {
+        alert('亲,服务器还没反应过来,请勿再点击');
+      } else {
+        this.clickMore = true;
+        this.appService.postAliData(this.appProperties.aliOpenDoorUrl,
+          {vmCode: urlParse(window.location.search)['vmCode'], openType: 1, doorNO: item.doorNO}, this.token).subscribe(
+          data => {
+            this.clickMore = false;
+            if (data.status === 1) {
+              this.isVisibleOpen = true;
+              console.log(data);
+            } else {
+              console.log(data);
+              alert(data.message);
+              if (data.willGo) {
+                window.location.href = data.returnObject;
+              }
             }
+          },
+          error => {
+            console.log(error);
           }
-        },
-        error => {
-          console.log(error);
-        }
-      );
+        );
+      }
     }
   }
   openOk() {

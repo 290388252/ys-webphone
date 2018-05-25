@@ -18,6 +18,7 @@ export class AddMainComponent implements OnInit {
   public token: string;
   // public img = 'http://lenvar-resource-products.oss-cn-shenzhen.aliyuncs.com/';
   public img = 'http://47.106.92.82:6663/files/';
+  public clickMore = false;
   constructor(private router: Router,
               private modalService: NzModalService,
               private activatedRoute: ActivatedRoute,
@@ -83,23 +84,29 @@ export class AddMainComponent implements OnInit {
           vmCode: urlParse(window.location.search)['vmCode']
         }});
     } else {
-      this.appService.getDataOpen(this.appProperties.addOpendoorUrl,
-        {vmCode: urlParse(window.location.search)['vmCode'], way: item.wayNumber},
-        this.token).subscribe(
-        data => {
-          console.log(data);
-          if (data.code === 0) {
-            this.isVisibleOpen = true;
-          } else if (data.code === -1) {
-            this.router.navigate(['vmLogin']);
-          } else if (data.code === -89) {
-            alert('门已开，请误点击多次！');
+      if (this.clickMore) {
+        alert('亲,服务器还没反应过来,请勿再点击');
+      } else {
+        this.clickMore = true;
+        this.appService.getDataOpen(this.appProperties.addOpendoorUrl,
+          {vmCode: urlParse(window.location.search)['vmCode'], way: item.wayNumber},
+          this.token).subscribe(
+          data => {
+            console.log(data);
+            this.clickMore = false;
+            if (data.code === 0) {
+              this.isVisibleOpen = true;
+            } else if (data.code === -1) {
+              this.router.navigate(['vmLogin']);
+            } else if (data.code === -89) {
+              alert('门已开，请误点击多次！');
+            }
+          },
+          error => {
+            console.log(error);
           }
-        },
-        error => {
-          console.log(error);
-        }
-      );
+        );
+      }
     }
   }
   isClosed(vmCode) {
