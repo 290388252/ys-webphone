@@ -55,6 +55,7 @@ export class VmDetailLoginComponent implements OnInit {
             }
             this.router.navigate(['vmDetail'], {
               queryParams: {
+                token: data.data
               }});
           }
         },
