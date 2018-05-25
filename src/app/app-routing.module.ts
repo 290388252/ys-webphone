@@ -19,6 +19,7 @@ const routes: Routes = [/*
     { path: 'aliCreditPayment', loadChildren: './alipay/creditPayment/creditPayment.module#CreditPaymentModule' },
 // public
     { path: 'vmLogin', loadChildren: './publicSystem/vmLogin/vmLogin.module#VmLoginModule' },
+    { path: 'vmDetailLogin', loadChildren: './publicSystem/vmDetailLogin/vmDetailLogin.module#VmDetailLoginModule' },
     { path: 'addMain', loadChildren: './publicSystem/addMain/addMain.module#AddMainModule' },
     { path: 'vmDetail', loadChildren: './publicSystem/vmDetail/vmDetail.module#VmDetailModule' }
 ];
