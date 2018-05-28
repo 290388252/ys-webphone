@@ -25,6 +25,15 @@
       <button (click)="detail()" type="button" class="btn btn-success">我的订单</button>
     </div>
   </div>
+  <nz-modal [nzVisible]="isVisibleOpenDoor" [nzTitle]="'提示'" [nzContent]="modalContents" [nzFooter]="modalFooters">
+    <ng-template #modalContents>
+      <p>是否要开门</p>
+    </ng-template>
+    <ng-template #modalFooters>
+      <button nz-button nzType="primary" (click)="noOpenDoor()">否</button>
+      <button nz-button nzType="primary" (click)="yesOpenDoor()">是</button>
+    </ng-template>
+  </nz-modal>
   <nz-modal [nzVisible]="isVisibleOpen" [nzTitle]="'提示'" [nzContent]="modalContent" [nzFooter]="modalFooter">
     <ng-template #modalContent>
       <p>优水到家提醒您,为了您账号资金安全,提水后请随手关门</p>

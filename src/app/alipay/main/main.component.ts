@@ -15,7 +15,9 @@ export class MainComponent implements OnInit {
   // public img = 'http://lenvar-resource-products.oss-cn-shenzhen.aliyuncs.com/';
   public img = 'http://47.106.92.82:6663/files/';
   public isVisibleOpen = false;
+  public isVisibleOpenDoor = false;
   public clickMore = false;
+  public item;
   constructor(private router: Router,
               private activatedRoute: ActivatedRoute,
               private appProperties: AppProperties,
@@ -58,21 +60,32 @@ export class MainComponent implements OnInit {
     );
   }
   openDoor(item) {
-    if (item.num === 0) {
+    this.item = item;
+    this.isVisibleOpenDoor = true;
+  }
+  openOk() {
+    this.isClosed(urlParse(window.location.search)['vmCode']);
+  }
+  yesOpenDoor() {
+    if (this.item.num === 0) {
+      this.isVisibleOpenDoor = false;
       alert('水已经卖完无法开门');
     } else {
       if (this.clickMore) {
+        this.isVisibleOpenDoor = false;
         alert('亲,服务器还没反应过来,请勿再点击');
       } else {
         this.clickMore = true;
         this.appService.postAliData(this.appProperties.aliOpenDoorUrl,
-          {vmCode: urlParse(window.location.search)['vmCode'], openType: 1, doorNO: item.doorNO}, this.token).subscribe(
+          {vmCode: urlParse(window.location.search)['vmCode'], openType: 1, doorNO: this.item.doorNO}, this.token).subscribe(
           data => {
             this.clickMore = false;
             if (data.status === 1) {
+              this.isVisibleOpenDoor = false;
               this.isVisibleOpen = true;
               console.log(data);
             } else {
+              this.isVisibleOpenDoor = false;
               console.log(data);
               alert(data.message);
               if (data.willGo) {
@@ -87,8 +100,8 @@ export class MainComponent implements OnInit {
       }
     }
   }
-  openOk() {
-    this.isClosed(urlParse(window.location.search)['vmCode']);
+  noOpenDoor() {
+    this.isVisibleOpenDoor = false;
   }
   isClosed(vmCode) {
     this.appService.getDataOpen(this.appProperties.isClosedUrl, {vmCode: vmCode}, this.token).subscribe(
