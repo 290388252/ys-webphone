@@ -61,16 +61,16 @@ export class MainComponent implements OnInit {
   }
   openDoor(item) {
     this.item = item;
-    this.isVisibleOpenDoor = true;
+    if (item.num === 0) {
+      alert('水已经卖完无法开门');
+    } else {
+      this.isVisibleOpenDoor = true;
+    }
   }
   openOk() {
     this.isClosed(urlParse(window.location.search)['vmCode']);
   }
   yesOpenDoor() {
-    if (this.item.num === 0) {
-      this.isVisibleOpenDoor = false;
-      alert('水已经卖完无法开门');
-    } else {
       if (this.clickMore) {
         this.isVisibleOpenDoor = false;
         alert('亲,服务器还没反应过来,请勿再点击');
@@ -98,7 +98,6 @@ export class MainComponent implements OnInit {
           }
         );
       }
-    }
   }
   noOpenDoor() {
     this.isVisibleOpenDoor = false;
