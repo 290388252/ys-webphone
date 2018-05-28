@@ -4,6 +4,7 @@ import {AppService} from '../../app-service';
 import {AppProperties} from '../../app.properties';
 import {NzModalService} from 'ng-zorro-antd';
 import {urlParse} from '../../utils/util';
+declare var wx: any;
 
 @Component({
   selector: 'app-main',
@@ -48,16 +49,22 @@ export class MainComponent implements OnInit {
         data => {
           console.log(data);
           if (data.code === 0) {
+            this.isVisibleOpenDoor = false;
             this.isVisibleOpen = true;
           } else if (data.code === -1) {
+            this.isVisibleOpenDoor = false;
             this.login();
           } else if (data.code === -87) {
+            this.isVisibleOpenDoor = false;
             window.location.href = this.appProperties.followWechatSubscription;
           } else if (data.code === -88) {
+            this.isVisibleOpenDoor = false;
             alert('您有未支付订单请点击我的订单支付完毕再进行购水！');
           } else if (data.code === -89) {
+            this.isVisibleOpenDoor = false;
             alert('门已开，请误点击多次');
           } else if (data.code === -90) {
+            this.isVisibleOpenDoor = false;
             this.appService.getDataOpen(this.appProperties.nonePassWordPayUrl).subscribe(
               data1 => {
                 window.location.href =  data1;
@@ -80,16 +87,22 @@ export class MainComponent implements OnInit {
         data => {
           console.log(data);
           if (data.code === 0) {
+            this.isVisibleOpenDoor = false;
             this.isVisibleOpen = true;
           } else if (data.code === -1) {
+            this.isVisibleOpenDoor = false;
             this.login();
           } else if (data.code === -87) {
+            this.isVisibleOpenDoor = false;
             window.location.href = this.appProperties.followWechatSubscription;
           } else if (data.code === -88) {
+            this.isVisibleOpenDoor = false;
             alert('您有未支付订单请点击我的订单支付完毕再进行购水！');
           } else if (data.code === -89) {
+            this.isVisibleOpenDoor = false;
             alert('门已开，请误点击多次');
           } else if (data.code === -90) {
+            this.isVisibleOpenDoor = false;
             this.appService.getDataOpen(this.appProperties.nonePassWordPayUrl).subscribe(
               data1 => {
                 window.location.href =  data1;
@@ -105,6 +118,7 @@ export class MainComponent implements OnInit {
         }
       );
     }
+    wx.closeWindow();
   }
   getInitData() {
     this.appService.getData(this.appProperties.indexListUrl, {vmCode: urlParse(window.location.search)['vmCode'], type: 1}).subscribe(

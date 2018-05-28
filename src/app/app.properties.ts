@@ -40,7 +40,8 @@ export class AppProperties {
 
     constructor() {
       // Public
-      this.appUrl = 'http://youshuismallhe.natapp1.cc'; // localtest
+      this.appUrl = 'http://47.106.92.82:6662/ys_sms'; // localtest
+      // this.appUrl = 'http://youshuismallhe.natapp1.cc'; // localtest
       this.isClosedUrl = this.appUrl + '/wechat/isClosed';
       this.adminLoginUrl = this.appUrl + '/admin/login';
       this.addOpendoorUrl = this.appUrl + '/index/yunWeiOpenDoor';

@@ -3,7 +3,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {AppService} from '../../app-service';
 import {AppProperties} from '../../app.properties';
 import {urlParse} from '../../utils/util';
-
+declare var AlipayJSBridge: any;
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
@@ -37,6 +37,11 @@ export class MainComponent implements OnInit {
     }
     console.log(urlParse(window.location.search)['vmCode']);
     sessionStorage.setItem('vmCode', urlParse(window.location.search)['vmCode']);
+    if (document.addEventListener) {
+      document.addEventListener('AlipayJSBridgeReady', () => {
+        AlipayJSBridge.call('closeWebview');
+      }, false);
+    }
   }
   getInitData() {
     this.appService.getAliData(this.appProperties.aliIndexListUrl,
