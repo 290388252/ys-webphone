@@ -81,18 +81,18 @@
     text-align: center;
   }
   .context{
-    width: 340px;
-    margin: 0 auto;
+    width: 330px;
+    margin-left: 20px;
   }
   .rounded-circle{
-    margin: 15px 0 15px 0;
+    margin: 25px 0 25px 0;
     width: 42%;
-    height: 60px;
+    height: 70px;
   }
   .box{
     float: left;
     width: 150px;
-    height: 165px;
+    height: 155px;
     margin-right: 10px;
     -webkit-box-shadow:2px 2px 2px 2px gray;
     -moz-box-shadow:2px 2px 2px 2px gray;

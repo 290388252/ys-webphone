@@ -48,23 +48,18 @@ export class MainComponent implements OnInit {
         {vmCode: urlParse(window.location.search)['vmCode'], way: sessionStorage.getItem('wayNumber')}, this.token).subscribe(
         data => {
           console.log(data);
+          this.isVisibleOpenDoor = false;
           if (data.code === 0) {
-            this.isVisibleOpenDoor = false;
             this.isVisibleOpen = true;
           } else if (data.code === -1) {
-            this.isVisibleOpenDoor = false;
             this.login();
           } else if (data.code === -87) {
-            this.isVisibleOpenDoor = false;
             window.location.href = this.appProperties.followWechatSubscription;
           } else if (data.code === -88) {
-            this.isVisibleOpenDoor = false;
             alert('您有未支付订单请点击我的订单支付完毕再进行购水！');
           } else if (data.code === -89) {
-            this.isVisibleOpenDoor = false;
             alert('门已开，请误点击多次');
           } else if (data.code === -90) {
-            this.isVisibleOpenDoor = false;
             this.appService.getDataOpen(this.appProperties.nonePassWordPayUrl).subscribe(
               data1 => {
                 window.location.href =  data1;
@@ -86,23 +81,18 @@ export class MainComponent implements OnInit {
         {vmCode: urlParse(window.location.search)['vmCode'], way: sessionStorage.getItem('wayNumber')}, this.token).subscribe(
         data => {
           console.log(data);
+          this.isVisibleOpenDoor = false;
           if (data.code === 0) {
-            this.isVisibleOpenDoor = false;
             this.isVisibleOpen = true;
           } else if (data.code === -1) {
-            this.isVisibleOpenDoor = false;
             this.login();
           } else if (data.code === -87) {
-            this.isVisibleOpenDoor = false;
             window.location.href = this.appProperties.followWechatSubscription;
           } else if (data.code === -88) {
-            this.isVisibleOpenDoor = false;
             alert('您有未支付订单请点击我的订单支付完毕再进行购水！');
           } else if (data.code === -89) {
-            this.isVisibleOpenDoor = false;
             alert('门已开，请误点击多次');
           } else if (data.code === -90) {
-            this.isVisibleOpenDoor = false;
             this.appService.getDataOpen(this.appProperties.nonePassWordPayUrl).subscribe(
               data1 => {
                 window.location.href =  data1;
@@ -118,7 +108,7 @@ export class MainComponent implements OnInit {
         }
       );
     }
-    wx.closeWindow();
+    // wx.closeWindow();
   }
   getInitData() {
     this.appService.getData(this.appProperties.indexListUrl, {vmCode: urlParse(window.location.search)['vmCode'], type: 1}).subscribe(
@@ -219,14 +209,13 @@ export class MainComponent implements OnInit {
     this.isClosed(urlParse(window.location.search)['vmCode']);
   }
   yesOpenDoor() {
+    this.isVisibleOpenDoor = false;
       if (this.clickMore) {
-        this.isVisibleOpenDoor = false;
         alert('亲,服务器还没反应过来,请勿再点击');
       } else {
         this.clickMore = true;
         if (this.token === null || this.token === undefined || this.token === 'undefined') {
           this.clickMore = false;
-          this.isVisibleOpenDoor = false;
           sessionStorage.setItem('wayNumber', this.item.wayNumber);
           alert('请点击确认，注册登陆');
           this.login();
@@ -237,23 +226,17 @@ export class MainComponent implements OnInit {
               console.log(data);
               this.clickMore = false;
               if (data.code === 0) {
-                this.isVisibleOpenDoor = false;
                 // alert('优水到家提醒您,为了您账号资金安全,提水后请随手关门');
                 this.isVisibleOpen = true;
               } else if (data.code === -1) {
-                this.isVisibleOpenDoor = false;
                 this.login();
               } else if (data.code === -87) {
-                this.isVisibleOpenDoor = false;
                 window.location.href = this.appProperties.followWechatSubscription;
               } else if (data.code === -88) {
-                this.isVisibleOpenDoor = false;
                 alert('您有未支付订单请点击我的订单支付完毕再进行购水！');
               } else if (data.code === -89) {
-                this.isVisibleOpenDoor = false;
                 alert('门已开，请误点击多次！');
               } else if (data.code === -90) {
-                this.isVisibleOpenDoor = false;
                 this.appService.getDataOpen(this.appProperties.nonePassWordPayUrl).subscribe(
                   data1 => {
                     window.location.href =  data1;
@@ -275,6 +258,42 @@ export class MainComponent implements OnInit {
   }
   noOpenDoor() {
     this.isVisibleOpenDoor = false;
+  }
+  test(data) {
+    wx.config({
+      debug: false,
+      appId: data.config.appId,
+      timestamp: data.config.timestamp,
+      nonceStr: data.config.nonceStr,
+      signature: data.config.signature,
+      jsApiList: ['checkJsApi',
+        'chooseWXPay',
+      ]
+    });
+    wx.ready(() => {
+      wx.chooseWXPay({
+        debug: false,
+        timestamp: data.payInfo.timeStamp, // 支付签名时间戳，注意微信jssdk中的所有使用timestamp字段均为小写。但最新版的支付后台生成签名使用的timeStamp字段名需大写其中的S字符
+        nonceStr: data.payInfo.nonceStr, // 支付签名随机串，不长于 32 位
+        package: data.payInfo.package,
+        signType: 'MD5', // 签名方式，默认为'SHA1'，使用新版支付需传入'MD5'
+        paySign: data.payInfo.sign, // 支付签名
+        success: (res) => {
+          if (res.errMsg === 'chooseWXPay:ok') {
+            alert('支付成功');
+          } else {
+            alert('支付失败');
+          }
+        },
+        cancel: (res) => {
+          alert('您取消了支付');
+          // 支付取消
+        },
+        error: (res) => {
+          alert('出错了，请联系优水到家管理员');
+        }
+      });
+    });
   }
   getCookies () {
     if (this.token === null || this.token === undefined || this.token === 'undefined') {

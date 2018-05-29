@@ -4,6 +4,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {AppProperties} from '../../app.properties';
 import {AppService} from '../../app-service';
 import {urlParse} from '../../utils/util';
+declare var wx: any;
 
 @Component({
   selector: 'app-carousel',
@@ -29,6 +30,7 @@ export class VmLoginComponent implements OnInit {
       password: [ null, [ Validators.required ] ]
     });
     this.vmCode = this.getVmCode();
+    // wx.closeWindow();
   }
   _submitForm() {
     for (const i in this.validateForm.controls) {

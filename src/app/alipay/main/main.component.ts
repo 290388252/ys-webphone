@@ -3,7 +3,6 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {AppService} from '../../app-service';
 import {AppProperties} from '../../app.properties';
 import {urlParse} from '../../utils/util';
-declare var AlipayJSBridge: any;
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
@@ -37,11 +36,6 @@ export class MainComponent implements OnInit {
     }
     console.log(urlParse(window.location.search)['vmCode']);
     sessionStorage.setItem('vmCode', urlParse(window.location.search)['vmCode']);
-    if (document.addEventListener) {
-      document.addEventListener('AlipayJSBridgeReady', () => {
-        AlipayJSBridge.call('closeWebview');
-      }, false);
-    }
   }
   getInitData() {
     this.appService.getAliData(this.appProperties.aliIndexListUrl,
@@ -76,8 +70,8 @@ export class MainComponent implements OnInit {
     this.isClosed(urlParse(window.location.search)['vmCode']);
   }
   yesOpenDoor() {
+    this.isVisibleOpenDoor = false;
       if (this.clickMore) {
-        this.isVisibleOpenDoor = false;
         alert('亲,服务器还没反应过来,请勿再点击');
       } else {
         this.clickMore = true;
@@ -86,11 +80,9 @@ export class MainComponent implements OnInit {
           data => {
             this.clickMore = false;
             if (data.status === 1) {
-              this.isVisibleOpenDoor = false;
               this.isVisibleOpen = true;
               console.log(data);
             } else {
-              this.isVisibleOpenDoor = false;
               console.log(data);
               alert(data.message);
               if (data.willGo) {
