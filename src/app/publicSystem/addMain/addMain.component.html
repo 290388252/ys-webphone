@@ -28,9 +28,9 @@
     </div>
   </div>
 
-  <nz-modal [nzVisible]="isVisibleOpen" [nzTitle]="'提示'" [nzContent]="modalContent" [nzFooter]="modalFooter">
+  <nz-modal [nzVisible]="isVisibleOpen" [nzContent]="modalContent" [nzFooter]="modalFooter" [nzClosable]="false">
     <ng-template #modalContent>
-      <p>优水到家提醒您,补水后请随手关门</p>
+      <p style="font-size: medium;">优水到家提醒您,补水后请随手关门</p>
     </ng-template>
     <ng-template #modalFooter>
       <button nz-button nzType="primary" (click)="openOk()">关闭</button>

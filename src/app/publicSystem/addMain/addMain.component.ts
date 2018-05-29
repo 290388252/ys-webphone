@@ -117,6 +117,17 @@ export class AddMainComponent implements OnInit {
           // this.isClosed(urlParse(window.location.search)['vmCode']);
         } else if (data2.data === true) {
           this.getInitData();
+          this.appService.postAliData(this.appProperties.orderResetWaysNumUrl + urlParse(window.location.search)['vmCode'],
+            '', this.token).subscribe(
+            data => {
+              console.log(data);
+              alert(data.msg);
+              this.getInitData();
+            },
+            error => {
+              console.log(error);
+            }
+          );
           this.isVisibleOpen = false;
         }
       },

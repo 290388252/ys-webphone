@@ -60,6 +60,9 @@
   border: 0;
   vertical-align: middle;
 }
+.ant-modal-footer{
+  text-align: center!important;
+}
 @media screen and (max-height: 570px){
   .min-padding {
     padding: 5px;

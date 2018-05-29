@@ -60,7 +60,7 @@ export class MainComponent implements OnInit {
   }
   openDoor(item) {
     this.item = item;
-    if (item.num === 0) {
+    if (item.num <= 0) {
       alert('水已经卖完无法开门');
     } else {
       this.isVisibleOpenDoor = true;

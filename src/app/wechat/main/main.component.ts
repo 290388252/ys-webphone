@@ -29,9 +29,7 @@ export class MainComponent implements OnInit {
               private appProperties: AppProperties,
               private appService: AppService) {}
   ngOnInit() {
-    // this.activatedRoute.queryParams.subscribe(queryParams => {
-    //   this.token = queryParams.token;
-    // });
+    // console.log(document.getElementsByClassName('ant-modal-footer')[0].id = 'ant-modal-footer');
     this.getInitData();
     this.getCookies();
     console.log(this.token);
@@ -128,7 +126,7 @@ export class MainComponent implements OnInit {
   }
   openDoor(item) {
     this.item = item;
-    if (item.num === 0) {
+    if (item.num <= 0) {
       alert('水已经卖完无法开门');
     } else {
       this.isVisibleOpenDoor = true;
@@ -156,7 +154,6 @@ export class MainComponent implements OnInit {
         if (data2.data === false) {
           // alert('您的门还未关闭！优水到家提醒您,为了您账号资金安全,提水后请随手关门');
           this.isVisibleOpen = true;
-          // this.isClosed(urlParse(window.location.search)['vmCode']);
         } else if (data2.data === true) {
           this.isVisibleOpen = false;
           // this.router.navigate(['detail']);
