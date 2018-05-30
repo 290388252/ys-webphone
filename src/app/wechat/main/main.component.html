@@ -4,6 +4,8 @@
   <div class="bgimg">
     <div class="logo">
       <img (click)="vmLogin()" src="../../../assets/main/d.png" alt="..." class="rounded-circle">
+      <br/>
+      <span>点击下面窗口开门买水</span>
     </div>
     <div class="context">
         <div (click)="openDoor(item)" *ngFor="let item of indexList" class="box card text-white mb-3">
@@ -22,7 +24,7 @@
       <!--<img class="foot-img" src="../../../assets/main/logo1.png" alt="">-->
     <!--</div>-->
     <div class="my-product">
-      <button (click)="product()" type="button" class="btn btn-primary">我的订单</button>
+      <button (click)="product()" type="button" class="btn btn-primary" style="background: #117cbb">我的订单</button>
     </div>
   </div>
   <nz-modal [nzVisible]="isVisibleOpenDoor" [nzContent]="modalContents" [nzFooter]="modalFooters" [nzClosable]="false">
@@ -30,8 +32,11 @@
       <p style="font-size: medium;">是否要开门</p>
     </ng-template>
     <ng-template #modalFooters style="text-align: center">
-      <button nz-button nzType="primary" (click)="noOpenDoor()">否</button>
+      <button nz-button nzType="primary" style="visibility: hidden">否</button>
       <button nz-button nzType="primary" (click)="yesOpenDoor()">是</button>
+      <button nz-button nzType="primary" (click)="noOpenDoor()">否</button>
+      <button nz-button nzType="primary" style="visibility: hidden">否</button>
+      <button nz-button nzType="primary" style="visibility: hidden">否</button>
     </ng-template>
   </nz-modal>
 

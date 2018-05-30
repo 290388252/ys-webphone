@@ -142,7 +142,7 @@ export class AddMainComponent implements OnInit {
       '', this.token).subscribe(
       data => {
         console.log(data);
-        alert(data.msg);
+        alert('成功');
         this.getInitData();
       },
       error => {
