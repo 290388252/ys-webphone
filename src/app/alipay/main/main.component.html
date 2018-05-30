@@ -5,7 +5,7 @@
     <div class="logo">
       <img (click)="vmLogin()" src="../../../assets/main/d.png" alt="..." class="rounded-circle">
       <br/>
-      <span>点击下面窗口开门买水</span>
+      <span style="font-weight: 900;font-size: 16px">点击下面窗口开门买水</span>
     </div>
     <div class="context">
         <div (click)="openDoor(item)" *ngFor="let item of indexList" class="box card text-white mb-3">
@@ -29,12 +29,12 @@
   </div>
   <nz-modal [nzVisible]="isVisibleOpenDoor" [nzContent]="modalContents" [nzFooter]="modalFooters" [nzClosable]="false">
     <ng-template #modalContents>
-      <p style="font-size: medium;">是否要开门</p>
+      <p style="font-size: medium;">是否要开门？</p>
     </ng-template>
     <ng-template #modalFooters>
       <button nz-button nzType="primary" style="visibility: hidden">否</button>
-      <button nz-button nzType="primary" (click)="yesOpenDoor()">是</button>
       <button nz-button nzType="primary" (click)="noOpenDoor()">否</button>
+      <button nz-button nzType="primary" (click)="yesOpenDoor()">是</button>
       <button nz-button nzType="primary" style="visibility: hidden">否</button>
       <button nz-button nzType="primary" style="visibility: hidden">否</button>
     </ng-template>

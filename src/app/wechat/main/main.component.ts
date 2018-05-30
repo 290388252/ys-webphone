@@ -157,7 +157,7 @@ export class MainComponent implements OnInit {
         } else if (data2.data === true) {
           this.isVisibleOpen = false;
           // this.router.navigate(['detail']);
-          alert('谢谢惠顾,祝您生活愉快');
+          alert('广州优水到家工程感谢你的惠顾。');
         }
       },
       error2 => {
