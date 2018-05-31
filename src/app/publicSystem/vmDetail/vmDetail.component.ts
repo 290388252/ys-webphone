@@ -87,8 +87,32 @@ export class VmDetailComponent implements OnInit, AfterViewChecked {
   sails(vmCode) {
     const yesterday = new Date(new Date().getTime() - 1000 * 60 * 60 * 24 * 2);
     const tomorrow = new Date(new Date().getTime() + 1000 * 60 * 60 * 24);
-    const startDate = `${yesterday.getFullYear()}-${yesterday.getMonth() + 1}-${yesterday.getDate()}`;
-    const endDate = `${tomorrow.getFullYear()}-${tomorrow.getMonth() + 1}-${tomorrow.getDate()}`;
+    let yesterdayMonth;
+    let yesterdayDate;
+    let tomorrowMonth;
+    let tomorrowDate;
+    if ((yesterday.getMonth() + 1).toString().length === 1) {
+      yesterdayMonth = '0' + (yesterday.getMonth() + 1).toString();
+    } else {
+      yesterdayMonth = (yesterday.getMonth() + 1).toString();
+    }
+    if ((yesterday.getDate()).toString().length === 1) {
+      yesterdayDate = '0' + (yesterday.getDate()).toString();
+    } else {
+      yesterdayDate = (yesterday.getDate()).toString();
+    }
+    if ((tomorrow.getMonth() + 1).toString().length === 1) {
+      tomorrowMonth = '0' + (tomorrow.getMonth() + 1).toString();
+    } else {
+      tomorrowMonth = (tomorrow.getMonth() + 1).toString();
+    }
+    if ((tomorrow.getDate()).toString().length === 1) {
+      tomorrowDate = '0' + (tomorrow.getDate()).toString();
+    } else {
+      tomorrowDate = (tomorrow.getDate()).toString();
+    }
+    const startDate = `${yesterday.getFullYear()}-${yesterdayMonth}-${yesterdayDate}`;
+    const endDate = `${tomorrow.getFullYear()}-${tomorrowMonth}-${tomorrowDate}`;
     this.isVisibleSails = true;
       this.appService.postAliData(this.appProperties.aliMachineQueryTradeDetailUrl,
         {

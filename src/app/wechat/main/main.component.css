@@ -34,6 +34,35 @@
   -o-filter: blur(2px);
   filter: blur(2px);
 }
+.boxss{
+  float: left;
+  width: 155px;
+  height: 112px;
+  margin-right: 10px;
+  -webkit-box-shadow:2px 2px 2px 2px gray;
+  -moz-box-shadow:2px 2px 2px 2px gray;
+  box-shadow:2px 2px 2px 2px gray;
+  background-color: rgba(0,0,0,0.34);
+  overflow: hidden;
+}
+.boxs{
+  float: left;
+  width: 220px;
+  height: 112px;
+  margin-left: 50px;
+  -webkit-box-shadow:2px 2px 2px 2px gray;
+  -moz-box-shadow:2px 2px 2px 2px gray;
+  box-shadow:2px 2px 2px 2px gray;
+  background-color: rgba(0,0,0,0.34);
+  overflow: hidden;
+}
+.boxs:after{
+  -webkit-filter: blur(2px);
+  -moz-filter: blur(2px);
+  -ms-filter: blur(2px);
+  -o-filter: blur(2px);
+  filter: blur(2px);
+}
 .box-body{
   text-align: center;
 }
@@ -91,6 +120,28 @@
     background-color: rgba(0,0,0,0.34);
     overflow: hidden;
   }
+  .boxss{
+    float: left;
+    width: 155px;
+    height: 112px;
+    margin-right: 10px;
+    -webkit-box-shadow:2px 2px 2px 2px gray;
+    -moz-box-shadow:2px 2px 2px 2px gray;
+    box-shadow:2px 2px 2px 2px gray;
+    background-color: rgba(0,0,0,0.34);
+    overflow: hidden;
+  }
+  .boxs{
+    float: left;
+    width: 220px;
+    height: 112px;
+    margin-left: 50px;
+    -webkit-box-shadow:2px 2px 2px 2px gray;
+    -moz-box-shadow:2px 2px 2px 2px gray;
+    box-shadow:2px 2px 2px 2px gray;
+    background-color: rgba(0,0,0,0.34);
+    overflow: hidden;
+  }
 }
 @media screen and (min-height: 571px) and (max-height: 640px){
   .min-padding {
@@ -114,6 +165,28 @@
     width: 155px;
     height: 155px;
     margin-right: 10px;
+    -webkit-box-shadow:2px 2px 2px 2px gray;
+    -moz-box-shadow:2px 2px 2px 2px gray;
+    box-shadow:2px 2px 2px 2px gray;
+    background-color: rgba(0,0,0,0.34);
+    overflow: hidden;
+  }
+  .boxss{
+    float: left;
+    width: 155px;
+    height: 112px;
+    margin-right: 10px;
+    -webkit-box-shadow:2px 2px 2px 2px gray;
+    -moz-box-shadow:2px 2px 2px 2px gray;
+    box-shadow:2px 2px 2px 2px gray;
+    background-color: rgba(0,0,0,0.34);
+    overflow: hidden;
+  }
+  .boxs{
+    float: left;
+    width: 220px;
+    height: 112px;
+    margin-left: 50px;
     -webkit-box-shadow:2px 2px 2px 2px gray;
     -moz-box-shadow:2px 2px 2px 2px gray;
     box-shadow:2px 2px 2px 2px gray;
