@@ -23,6 +23,8 @@ export class MainComponent implements OnInit {
   public img = 'http://47.106.92.82:6663/files/';
   public item;
   currentModal;
+  public isFourDoor = false;
+  public isFiveDoor = false;
   constructor(private router: Router,
               private modalService: NzModalService,
               private activatedRoute: ActivatedRoute,
@@ -113,6 +115,13 @@ export class MainComponent implements OnInit {
       data => {
         console.log(data);
         if (data.code === 0) {
+          if (data.data.length <= 4) {
+            this.isFourDoor = true;
+            this.isFiveDoor = false;
+          } else if (data.data.length === 5) {
+            this.isFourDoor = false;
+            this.isFiveDoor = true;
+          }
           this.indexList = data.data;
           for (let i = 0; i < 2; i++) {
             this.indexList.unshift(this.indexList.pop());

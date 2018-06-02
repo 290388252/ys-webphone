@@ -20,8 +20,11 @@
 }
 .rounded-circle{
   margin: 30px 0 0 0;
-  width: 42%;
+  width: 33%;
   height: 100px;
+}
+.rounded-circle {
+   border-radius: 0!important;
 }
 .login-form-forgot {
   float: right;

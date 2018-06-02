@@ -17,6 +17,8 @@ export class MainComponent implements OnInit {
   public isVisibleOpenDoor = false;
   public clickMore = false;
   public item;
+  public isFourDoor = false;
+  public isFiveDoor = false;
   constructor(private router: Router,
               private activatedRoute: ActivatedRoute,
               private appProperties: AppProperties,
@@ -44,6 +46,13 @@ export class MainComponent implements OnInit {
         console.log(data);
         if (data.status === 1) {
           if (!data.willGo) {
+            if (data.returnObject.length <= 4) {
+              this.isFourDoor = true;
+              this.isFiveDoor = false;
+            } else if (data.returnObject.length === 5) {
+              this.isFourDoor = false;
+              this.isFiveDoor = true;
+            }
             this.indexList = data.returnObject;
             for (let i = 0; i < 2; i++) {
               this.indexList.unshift(this.indexList.pop());

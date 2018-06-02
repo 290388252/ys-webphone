@@ -3,11 +3,11 @@
   </div>
   <div class="bgimg">
     <div class="logo">
-      <img src="../../../assets/main/d.png" alt="..." class="rounded-circle">
+      <img src="../../../assets/main/logos.png" alt="..." class="rounded-circle">
       <br>
       <span class="title">补货人员补水系统</span>
     </div>
-    <div class="context" *ngIf="indexList.length === 5">
+    <div class="context" *ngIf="isFiveDoor">
       <div (click)="openDoor(indexList[3])" class="boxss card text-white mb-3">
         <div style="text-align: center">
           <img style="width: 75px;height: 75px" src="{{img}}{{indexList[1]['pic']}}" alt="">
@@ -54,7 +54,7 @@
         </div>
       </div>
     </div>
-    <div class="context" *ngIf="indexList.length <= 4">
+    <div class="context" *ngIf="isFourDoor">
         <div (click)="openDoor(item)" *ngFor="let item of indexList" class="box card text-white mb-3">
           <div class="box-body">
             <img style="width: 55px;height: 55px" src="{{img}}{{item['pic']}}" alt="">
