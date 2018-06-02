@@ -4,7 +4,7 @@
 }
 .rounded-circle{
   margin: 30px 0 40px 0;
-  width: 34%;
+  width: 30%;
   height: 100px;
 }
 .rounded-circle {
@@ -109,8 +109,8 @@
   }
   .rounded-circle{
     margin: 25px 0 25px 0;
-    width: 33%;
-    height: 70px;
+    width: 30%;
+    height: 100px;
   }
   .box{
     float: left;
@@ -160,8 +160,8 @@
   }
   .rounded-circle{
     margin: 30px 0 20px 0;
-    width: 33%;
-    height: 80px;
+    width: 30%;
+    height: 100px;
   }
   .box{
     float: left;
