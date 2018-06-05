@@ -10,23 +10,14 @@
     <div class="context" *ngIf="isFiveDoor">
       <div (click)="openDoor(indexList[3])" class="boxss card text-white mb-3">
         <div style="text-align: center">
-          <img style="width: 75px;height: 75px" src="{{img}}{{indexList[1]['pic']}}" alt="">
+          <img style="width: 75px;height: 75px" src="{{img}}{{indexList[3]['pic']}}" alt="">
           <br/>
-          <span class="card-title" style="color: white;font-weight: 900">{{indexList[1]['itemName']}}</span>
+          <span class="card-title" style="color: white;font-weight: 900">{{indexList[3]['itemName']}}</span>
           <br/>
-          <span class="card-title" style="color: white;font-weight: 900">{{indexList[1]['price']}}元</span>
+          <span class="card-title" style="color: white;font-weight: 900">{{indexList[3]['price']}}元</span>
         </div>
       </div>
       <div (click)="openDoor(indexList[3])" class="boxss card text-white mb-3">
-        <div style="text-align: center">
-          <img style="width: 75px;height: 75px" src="{{img}}{{indexList[1]['pic']}}" alt="">
-          <br/>
-          <span class="card-title" style="color: white;font-weight: 900">{{indexList[1]['itemName']}}</span>
-          <br/>
-          <span class="card-title" style="color: white;font-weight: 900">{{indexList[1]['price']}}元</span>
-        </div>
-      </div>
-      <div (click)="openDoor(indexList[2])" class="boxs card text-white mb-3">
         <div style="text-align: center">
           <img style="width: 75px;height: 75px" src="{{img}}{{indexList[3]['pic']}}" alt="">
           <br/>
@@ -35,7 +26,7 @@
           <span class="card-title" style="color: white;font-weight: 900">{{indexList[3]['price']}}元</span>
         </div>
       </div>
-      <div (click)="openDoor(indexList[0])" class="boxss card text-white mb-3">
+      <div (click)="openDoor(indexList[2])" class="boxs card text-white mb-3">
         <div style="text-align: center">
           <img style="width: 75px;height: 75px" src="{{img}}{{indexList[2]['pic']}}" alt="">
           <br/>
@@ -44,13 +35,22 @@
           <span class="card-title" style="color: white;font-weight: 900">{{indexList[2]['price']}}元</span>
         </div>
       </div>
+      <div (click)="openDoor(indexList[0])" class="boxss card text-white mb-3">
+        <div style="text-align: center">
+          <img style="width: 75px;height: 75px" src="{{img}}{{indexList[0]['pic']}}" alt="">
+          <br/>
+          <span class="card-title" style="color: white;font-weight: 900">{{indexList[0]['itemName']}}</span>
+          <br/>
+          <span class="card-title" style="color: white;font-weight: 900">{{indexList[0]['price']}}元</span>
+        </div>
+      </div>
       <div (click)="openDoor(indexList[1])" class="boxss card text-white mb-3">
         <div style="text-align: center">
-          <img style="width: 75px;height: 75px" src="{{img}}{{indexList[3]['pic']}}" alt="">
+          <img style="width: 75px;height: 75px" src="{{img}}{{indexList[1]['pic']}}" alt="">
           <br/>
-          <span class="card-title" style="color: white;font-weight: 900">{{indexList[3]['itemName']}}</span>
+          <span class="card-title" style="color: white;font-weight: 900">{{indexList[1]['itemName']}}</span>
           <br/>
-          <span class="card-title" style="color: white;font-weight: 900">{{indexList[3]['price']}}元</span>
+          <span class="card-title" style="color: white;font-weight: 900">{{indexList[1]['price']}}元</span>
         </div>
       </div>
     </div>

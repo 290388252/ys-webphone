@@ -18,6 +18,7 @@ export class VmLoginComponent implements OnInit {
   public buttonNoTouch = false;
   public truePhone = true;
   public times = 60;
+  public payType: number;
   private vmCode: string;
   constructor(private fb: FormBuilder,
               private router: Router,
@@ -30,7 +31,8 @@ export class VmLoginComponent implements OnInit {
       password: [ null, [ Validators.required ] ]
     });
     this.vmCode = this.getVmCode();
-    // wx.closeWindow();
+    this.IsWeixinOrAlipay();
+    console.log(this.payType);
   }
   _submitForm() {
     for (const i in this.validateForm.controls) {
@@ -43,7 +45,8 @@ export class VmLoginComponent implements OnInit {
         {
           phone: this.validateForm.controls.phoneForm.value,
           smsCode: this.validateForm.controls.password.value,
-          payType: urlParse(window.location.search)['payType'],
+          payType: this.payType,
+          // payType: urlParse(window.location.search)['payType'],
           openId: urlParse(window.location.search)['openId']
         }).subscribe(
         data => {
@@ -60,7 +63,7 @@ export class VmLoginComponent implements OnInit {
             this.router.navigate(['addMain'], {
               queryParams: {
                 vmCode: this.vmCode,
-                payType: Number.parseInt(urlParse(window.location.search)['payType'])
+                payType: this.payType
               }});
           }
         },
@@ -117,6 +120,16 @@ export class VmLoginComponent implements OnInit {
       );
     } else {
       this.truePhone = false;
+    }
+  }
+  IsWeixinOrAlipay() {
+    const ua = window.navigator.userAgent.toLowerCase();
+    if (ua.match(/MicroMessenger/i)) {
+      if (ua.match(/MicroMessenger/i)[0] === 'micromessenger') {
+         this.payType = 1;
+      }
+    } else {
+      this.payType = 2;
     }
   }
 }
