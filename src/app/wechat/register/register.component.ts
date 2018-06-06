@@ -84,7 +84,7 @@ export class RegisterComponent implements OnInit {
   sendCode(e: TouchEvent) {
     e.preventDefault();
     if (checkPhone(this.phone)) {
-      this.appService.getData(this.appProperties.smsSendUrl, {phone: this.phone}).subscribe(
+      this.appService.postData(this.appProperties.smsSendUrl, {phone: this.phone}).subscribe(
         data => {
           if (data.code !== 0) {
               alert('发送失败');

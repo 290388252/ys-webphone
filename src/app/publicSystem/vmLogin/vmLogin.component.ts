@@ -93,7 +93,7 @@ export class VmLoginComponent implements OnInit {
   sendCode(e: TouchEvent) {
     e.preventDefault();
     if (/^1[34578]\d{9}$/.test(this.phone.toString())) {
-      this.appService.getData(this.appProperties.smsSendUrl, {phone: this.phone}).subscribe(
+      this.appService.postData(this.appProperties.smsSendUrl, {phone: this.phone}).subscribe(
         data => {
           console.log(data);
           if (data.code !== 0) {

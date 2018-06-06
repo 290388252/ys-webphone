@@ -74,7 +74,7 @@ export class RegisterComponent implements OnInit {
   sendCode(e: TouchEvent) {
     e.preventDefault();
     if (checkPhone(this.phone)) {
-      this.appService.getAliData(this.appProperties.aliSmsSendUrl, {phone: this.phone}, this.token).subscribe(
+      this.appService.postAliData(this.appProperties.aliSmsSendUrl, {phone: this.phone}, this.token).subscribe(
         data => {
           if (data.status !== 1) {
               alert('发送失败');
