@@ -28,7 +28,7 @@
       <div nz-form-explain *ngIf="validateForm.controls['password'].dirty&&validateForm.controls['password'].hasError('required')">请输入验证码!</div>
       <!--<div nz-form-explain *ngIf="!validateValue">请输入验证码!</div>-->
       <button (click)="sendCode($event)" nz-button [nzType]="'primary'" [disabled]='buttonNoTouch' [ngClass]="{'btn-no-touch':buttonNoTouch}">
-        <span [hidden]="buttonNoTouch">发送验证码</span>
+        <span [hidden]="buttonNoTouch">点击获取验证码</span>
         <span [hidden]="!buttonNoTouch">{{times}}秒后可重新发送</span>
       </button>
     </div>
