@@ -58,7 +58,7 @@ export class MainComponent implements OnInit {
           } else if (data.code === -88) {
             alert('您有未支付订单请点击我的订单支付完毕再进行购水！');
           } else if (data.code === -89) {
-            alert('门已开，请误点击多次');
+            alert('他人在买水，请稍后扫码,文明购买，请勿争抢');
           } else if (data.code === -90) {
             this.appService.getDataOpen(this.appProperties.nonePassWordPayUrl).subscribe(
               data1 => {
@@ -91,7 +91,7 @@ export class MainComponent implements OnInit {
           } else if (data.code === -88) {
             alert('您有未支付订单请点击我的订单支付完毕再进行购水！');
           } else if (data.code === -89) {
-            alert('门已开，请误点击多次');
+            alert('他人在买水，请稍后扫码,文明购买，请勿争抢');
           } else if (data.code === -90) {
             this.appService.getDataOpen(this.appProperties.nonePassWordPayUrl).subscribe(
               data1 => {
@@ -241,7 +241,7 @@ export class MainComponent implements OnInit {
               } else if (data.code === -88) {
                 alert('您有未支付订单请点击我的订单支付完毕再进行购水！');
               } else if (data.code === -89) {
-                alert('门已开，请误点击多次！');
+                alert('他人在买水，请稍后扫码,文明购买，请勿争抢');
               } else if (data.code === -90) {
                 this.appService.getDataOpen(this.appProperties.nonePassWordPayUrl).subscribe(
                   data1 => {
