@@ -79,12 +79,12 @@
   </div>
   <nz-modal [nzVisible]="isVisibleOpenDoor" [nzContent]="modalContents" [nzFooter]="modalFooters" [nzClosable]="false">
     <ng-template #modalContents #modalFooters style="text-align: center">
-      <p style="font-size: medium;">是否要开门？</p>
+      <p style="font-size: medium;">次数:{{times}}次</p>
       <br>
-      <nz-input-number style="width: 100%;" [(ngModel)]="weight" [nzPlaceHolder]="'请输入桶数'" [nzMin]="1" [nzMax]="99999999" [nzStep]="1"></nz-input-number>
+      <nz-input-number style="width: 100%;" [(ngModel)]="num" [nzPlaceHolder]="'请输入桶数'" [nzMin]="1" [nzMax]="99999999" [nzStep]="1"></nz-input-number>
       <br>
       <br>
-      <nz-input-number style="width: 100%;" [(ngModel)]="wayNo" [nzPlaceHolder]="'请输入货道'" [nzMin]="1" [nzMax]="4" [nzStep]="1"></nz-input-number>
+      <nz-input-number style="width: 100%;" [(ngModel)]="wayNo" [nzPlaceHolder]="'请输入货道'" [nzMin]="1" [nzMax]="4" [nzStep]="1" [nzDisabled]="count === 2"></nz-input-number>
     </ng-template>
     <ng-template #modalFooters style="text-align: center">
       <button nz-button nzType="primary" style="visibility: hidden;">否</button>

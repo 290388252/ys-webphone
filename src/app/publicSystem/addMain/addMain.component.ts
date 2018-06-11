@@ -17,7 +17,9 @@ export class AddMainComponent implements OnInit {
   public isVisibleOpen = false;
   public isVisibleOpenDoor = false;
   public token: string;
-  public weight: number;
+  public count = 1;
+  public times = 1;
+  public num: number;
   public wayNo: number;
   // public img = 'http://lenvar-resource-products.oss-cn-shenzhen.aliyuncs.com/';
   public img = 'http://47.106.92.82:6663/files/';
@@ -166,7 +168,31 @@ export class AddMainComponent implements OnInit {
     this.isVisibleOpenDoor = true;
   }
   yes() {
-    this.isVisibleOpenDoor = false;
+    this.count++;
+    console.log(this.wayNo);
+    console.log(this.times);
+    console.log(this.num);
+    this.appService.postAliData(this.appProperties.reviseUrl,
+      {
+        vmCode: urlParse(window.location.search)['vmCode'],
+        wayNum: this.wayNo,
+        times: this.times,
+        num: this.num}, this.token).subscribe(
+      data => {
+        if (data.code === 0) {
+          this.times = 2;
+        } else {
+          alert(data.msg);
+        }
+      },
+      error => {
+        console.log(error);
+      }
+    );
+    if (this.count >= 3) {
+      this.isVisibleOpenDoor = false;
+      this.count = 1;
+    }
   }
   openOk() {
     this.isClosed(urlParse(window.location.search)['vmCode']);
