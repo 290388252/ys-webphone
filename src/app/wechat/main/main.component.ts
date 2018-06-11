@@ -51,6 +51,8 @@ export class MainComponent implements OnInit {
           this.isVisibleOpenDoor = false;
           if (data.code === 0) {
             this.isVisibleOpen = true;
+          } else if (data.code === 3) {
+            alert('开门失败！');
           } else if (data.code === -1) {
             this.login();
           } else if (data.code === -87) {
@@ -84,6 +86,8 @@ export class MainComponent implements OnInit {
           this.isVisibleOpenDoor = false;
           if (data.code === 0) {
             this.isVisibleOpen = true;
+          } else if (data.code === 3) {
+            alert('开门失败！');
           } else if (data.code === -1) {
             this.login();
           } else if (data.code === -87) {
@@ -234,6 +238,8 @@ export class MainComponent implements OnInit {
               if (data.code === 0) {
                 // alert('优水到家提醒您,为了您账号资金安全,提水后请随手关门');
                 this.isVisibleOpen = true;
+              } else if (data.code === 3) {
+                alert('开门失败！');
               } else if (data.code === -1) {
                 this.login();
               } else if (data.code === -87) {

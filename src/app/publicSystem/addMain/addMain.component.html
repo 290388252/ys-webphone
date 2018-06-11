@@ -73,7 +73,27 @@
     <div class="my-product">
       <button (click)="resetNum()" type="button" class="btn btn-primary" style="background: #117cbb">校准所有数量</button>
     </div>
+    <div class="my-reset">
+      <button (click)="resetWeight()" type="button" class="btn btn-primary" style="background: #117cbb">校准</button>
+    </div>
   </div>
+  <nz-modal [nzVisible]="isVisibleOpenDoor" [nzContent]="modalContents" [nzFooter]="modalFooters" [nzClosable]="false">
+    <ng-template #modalContents #modalFooters style="text-align: center">
+      <p style="font-size: medium;">是否要开门？</p>
+      <br>
+      <nz-input-number style="width: 100%;" [(ngModel)]="weight" [nzPlaceHolder]="'请输入桶数'" [nzMin]="1" [nzMax]="99999999" [nzStep]="1"></nz-input-number>
+      <br>
+      <br>
+      <nz-input-number style="width: 100%;" [(ngModel)]="wayNo" [nzPlaceHolder]="'请输入货道'" [nzMin]="1" [nzMax]="4" [nzStep]="1"></nz-input-number>
+    </ng-template>
+    <ng-template #modalFooters style="text-align: center">
+      <button nz-button nzType="primary" style="visibility: hidden;">否</button>
+      <button nz-button nzType="primary" style="margin-right: -15px" (click)="yes()">确定</button>
+      <button nz-button nzType="primary" style="visibility: hidden">否</button>
+      <button nz-button nzType="primary" style="visibility: hidden">否</button>
+      <button nz-button nzType="primary" style="visibility: hidden">否</button>
+    </ng-template>
+  </nz-modal>
 
   <nz-modal [nzVisible]="isVisibleOpen" [nzContent]="modalContent" [nzFooter]="modalFooter" [nzClosable]="false">
     <ng-template #modalContent>

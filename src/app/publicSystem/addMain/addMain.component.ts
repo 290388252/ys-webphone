@@ -15,7 +15,10 @@ export class AddMainComponent implements OnInit {
   public indexList: Array<object>;
   private wayNumber: number;
   public isVisibleOpen = false;
+  public isVisibleOpenDoor = false;
   public token: string;
+  public weight: number;
+  public wayNo: number;
   // public img = 'http://lenvar-resource-products.oss-cn-shenzhen.aliyuncs.com/';
   public img = 'http://47.106.92.82:6663/files/';
   public clickMore = false;
@@ -158,6 +161,12 @@ export class AddMainComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+  resetWeight() {
+    this.isVisibleOpenDoor = true;
+  }
+  yes() {
+    this.isVisibleOpenDoor = false;
   }
   openOk() {
     this.isClosed(urlParse(window.location.search)['vmCode']);
