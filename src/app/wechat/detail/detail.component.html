@@ -49,6 +49,9 @@
           <label class="weui-form-preview__label">状态：</label>
           <span class="weui-form-preview__value">{{item.stateLabel}}</span>
         </div>
+        <div class="weui-form-preview__item">
+          <a (click)="detail(item.ptCode)" href="javascript:;" class="weui-btn weui-btn_primary">详情</a>
+        </div>
       </div>
       <div class="weui-form-preview__ft" [hidden]="item.state !== '10002'">
         <div></div>
@@ -58,4 +61,27 @@
       <div style="margin-top: 10px;width: 100%"></div>
     </div>
 </div>
+</div>
+<div class="js_dialog" id="androidDialog2" [class]="detailVisible ? 'mask-visible' : 'mask-invisible'">
+  <div class="weui-mask"></div>
+  <div class="weui-dialog weui-skin_android">
+    <div class="weui-dialog__bd">
+      <span>货道数:{{detailList.doorNO}}</span>
+      <br>
+      <br>
+      <span>开门前的数量:{{detailList.preWeight}}</span>
+      <br>
+      <br>
+      <span>开门后的数量:{{detailList.posWeight}}</span>
+      <br>
+      <br>
+      <span>创建时间:{{detailList.createTime}}</span>
+      <br>
+      <br>
+      <span>开门时间:{{detailList.openedTime}}</span>
+    </div>
+    <div class="weui-dialog__ft">
+      <a (click)="closeDetail()" href="javascript:;" class="weui-dialog__btn weui-dialog__btn_primary">关闭</a>
+    </div>
+  </div>
 </div>

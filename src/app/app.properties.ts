@@ -24,6 +24,7 @@ export class AppProperties {
     public findAllUserOrderUrl: string;
     public orderUnifiedOrderUrl: string;
     public nonePassWordPayUrl: string;
+    public findMachineHistoryUrl: string;
     // AliPay
     public aliIndexListUrl: string;
     public aliGetUserIdUrl: string;
@@ -63,6 +64,7 @@ export class AppProperties {
       this.findAllUserOrderUrl = this.appUrl + '/order/myOrderList';
       this.orderUnifiedOrderUrl = this.appUrl + '/order/unifiedOrder';
       this.nonePassWordPayUrl = this.appUrl + '/wechat/entrustweb';
+      this.findMachineHistoryUrl = this.appUrl + '/payRecord/findMachineHistory';
 
       // AliPay
       this.aliIndexListUrl = this.appUrl + '/aliUser/queryItem';

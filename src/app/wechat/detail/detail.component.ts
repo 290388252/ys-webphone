@@ -16,6 +16,8 @@ export class DetailComponent implements OnInit , AfterViewChecked {
   public totalPrice = 0;
   public list;
   public token;
+  public detailVisible = false;
+  public detailList;
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private appProperties: AppProperties,
   private appService: AppService) {
     this.list = [];
@@ -151,6 +153,26 @@ export class DetailComponent implements OnInit , AfterViewChecked {
         }
       });
     });
+  }
+  detail(ptCode) {
+    this.detailVisible = true;
+    this.appService.getDataOpen(this.appProperties.findMachineHistoryUrl,
+      {
+        ptCode: ptCode
+      }, this.token).subscribe(
+      data => {
+        console.log(data);
+        if (data.status === 1) {
+          this.detailList = data.returnObject;
+        }
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+  closeDetail() {
+    this.detailVisible = false;
   }
   getCookies () {
     if (this.token === null || this.token === undefined || this.token === 'undefined') {
