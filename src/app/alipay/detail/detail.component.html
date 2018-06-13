@@ -50,6 +50,9 @@
         <label class="weui-form-preview__label">状态：</label>
         <span class="weui-form-preview__value">{{item.state}}</span>
       </div>
+      <div class="weui-form-preview__item">
+        <a (click)="detail(item.ptCode)" href="javascript:;" class="weui-btn weui-btn_primary">详情</a>
+      </div>
     </div>
     <div class="weui-form-preview__ft" [hidden]="item.state !== '支付失败'">
       <a class="weui-form-preview__btn weui-form-preview__btn_primary" href="javascript:" (click)="pay(item)">支付</a>
@@ -58,4 +61,27 @@
   </div>
 </div>
   <!--<div class="footer"><span>总价:{{totalPrice}}</span></div>-->
+</div>
+<div class="js_dialog" id="androidDialog2" [class]="detailVisible ? 'mask-visible' : 'mask-invisible'">
+  <div class="weui-mask"></div>
+  <div class="weui-dialog weui-skin_android">
+    <div class="weui-dialog__bd">
+      <span>货道数:{{detailList.doorNO}}</span>
+      <br>
+      <br>
+      <span>开门前的数量:{{detailList.preWeight}}</span>
+      <br>
+      <br>
+      <span>开门后的数量:{{detailList.posWeight}}</span>
+      <br>
+      <br>
+      <span>创建时间:{{detailList.num}}</span>
+      <br>
+      <br>
+      <span>开门时间:{{detailList.openedTime}}</span>
+    </div>
+    <div class="weui-dialog__ft">
+      <a (click)="closeDetail()" href="javascript:;" class="weui-dialog__btn weui-dialog__btn_primary">关闭</a>
+    </div>
+  </div>
 </div>

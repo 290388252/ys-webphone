@@ -167,6 +167,7 @@ export class AddMainComponent implements OnInit {
   resetWeight() {
     this.isVisibleOpenDoor = true;
   }
+  reStart() {}
   yes() {
     this.count++;
     console.log(this.wayNo);
@@ -179,6 +180,7 @@ export class AddMainComponent implements OnInit {
         times: this.times,
         num: this.num}, this.token).subscribe(
       data => {
+        console.log(data);
         if (data.code === 0) {
           this.times = 2;
         } else {
@@ -190,9 +192,12 @@ export class AddMainComponent implements OnInit {
       }
     );
     if (this.count >= 3) {
-      this.isVisibleOpenDoor = false;
       this.count = 1;
+      this.isVisibleOpenDoor = false;
     }
+  }
+  no() {
+    this.isVisibleOpenDoor = false;
   }
   openOk() {
     this.isClosed(urlParse(window.location.search)['vmCode']);

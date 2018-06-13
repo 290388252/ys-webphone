@@ -16,6 +16,8 @@ export class DetailComponent implements OnInit, AfterViewChecked {
   public token: string;
   public list;
   public totalPrice = 0;
+  public detailVisible = false;
+  public detailList;
   constructor(private router: Router, private activatedRoute: ActivatedRoute,
               private appProperties: AppProperties,
               private appService: AppService) {
@@ -79,6 +81,27 @@ export class DetailComponent implements OnInit, AfterViewChecked {
     } else if (document.documentElement.offsetHeight < document.getElementById('content').clientHeight) {
       document.getElementById('containers').style.height = document.getElementById('content').clientHeight + 70 + 'px';
     }
+  }
+  detail(ptCode) {
+    this.detailVisible = true;
+    this.appService.postDetailData(this.appProperties.findMachineHistoryUrl,
+      {
+        ptCode: ptCode
+      }).subscribe(
+      data => {
+        console.log(data);
+        if (data.status === 1) {
+          console.log(data.returnObject);
+          this.detailList = data.returnObject;
+        }
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+  closeDetail() {
+    this.detailVisible = false;
   }
   getCookies () {
     if (this.token === null || this.token === undefined || this.token === 'undefined') {

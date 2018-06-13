@@ -57,23 +57,20 @@ export class AppService {
     return this.http.post(url, options, myHttpHead);
   }
 
-  // getAliData(url: string, options?: any): Observable<any> {
-  //   // 配置请求头
-  //   const myHeaders: HttpHeaders = new HttpHeaders({
-  //     'Content-Type': 'application/json',
-  //     // 'token': sessionStorage.getItem('token')
-  //   });
-  //   // tslint:disable-next-line:forin
-  //   url += (url.indexOf('?') < 0 ? '?' : '&') + this.param(options);
-  //   return this.http.get(url, { headers: myHeaders , withCredentials: true});
-  // }
-
-  // postAliData(url: string, options: any): Observable<any> {
-  //   const myHttpHead = new HttpHeaders({
-  //       'Content-Type': 'application/json',
-  //     });
-  //   return this.http.post(url, options, {headers: myHttpHead, withCredentials: true });
-  // }
+  postDetailData(url: string, options: any, tokens?: any | null): Observable<any> {
+    const myHttpHead = { headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'token': 'webapp'
+      })};
+    /* const myHeaders: HttpHeaders = new HttpHeaders();
+     myHeaders.append('Content-Type', 'application/json');
+     myHeaders.append('token', myheaders);
+     // tslint:disable-next-line:forin
+     for (const key in myheaders) {
+         myHeaders.append(key, myheaders[key]);
+     }*/
+    return this.http.post(url, options, myHttpHead);
+  }
 
   getAliData(url: string, options?: any, tokens?: any | null): Observable<any> {
     // 配置请求头

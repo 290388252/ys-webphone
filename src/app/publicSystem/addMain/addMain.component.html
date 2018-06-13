@@ -76,6 +76,9 @@
     <div class="my-reset">
       <button (click)="resetWeight()" type="button" class="btn btn-primary" style="background: #117cbb">校准</button>
     </div>
+    <div class="my-restart">
+      <button (click)="reStart()" type="button" class="btn btn-primary" style="background: #117cbb">重启</button>
+    </div>
   </div>
   <nz-modal [nzVisible]="isVisibleOpenDoor" [nzContent]="modalContents" [nzFooter]="modalFooters" [nzClosable]="false">
     <ng-template #modalContents #modalFooters style="text-align: center">

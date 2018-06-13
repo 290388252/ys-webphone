@@ -156,13 +156,14 @@ export class DetailComponent implements OnInit , AfterViewChecked {
   }
   detail(ptCode) {
     this.detailVisible = true;
-    this.appService.postAliData(this.appProperties.findMachineHistoryUrl,
+    this.appService.postDetailData(this.appProperties.findMachineHistoryUrl,
       {
         ptCode: ptCode
-      }, this.token).subscribe(
+      }).subscribe(
       data => {
         console.log(data);
         if (data.status === 1) {
+          console.log(data.returnObject);
           this.detailList = data.returnObject;
         }
       },
