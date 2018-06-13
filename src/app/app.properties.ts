@@ -64,7 +64,7 @@ export class AppProperties {
       this.findAllUserOrderUrl = this.appUrl + '/order/myOrderList';
       this.orderUnifiedOrderUrl = this.appUrl + '/order/unifiedOrder';
       this.nonePassWordPayUrl = this.appUrl + '/wechat/entrustweb';
-      this.findMachineHistoryUrl = this.appUrl + '/payRecord/findMachineHistory';
+      this.findMachineHistoryUrl = 'http://47.106.92.82:6662/ys_admin/payRecord/findMachineHistory';
 
       // AliPay
       this.aliIndexListUrl = this.appUrl + '/aliUser/queryItem';

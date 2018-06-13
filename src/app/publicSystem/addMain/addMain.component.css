@@ -5,7 +5,7 @@
 .rounded-circle{
   margin: 30px 0 40px 0;
   width: 30%;
-  height: 100px;
+  height: 80px;
 }
 .rounded-circle {
    border-radius: 0!important;
@@ -43,7 +43,7 @@
   -webkit-box-shadow:2px 2px 2px 2px gray;
   -moz-box-shadow:2px 2px 2px 2px gray;
   box-shadow:2px 2px 2px 2px gray;
-  background-color: rgba(0,0,0,0.34);
+  background-color: rgba(0,0,0,0.1);
   overflow: hidden;
 }
 .box:after{
@@ -61,7 +61,7 @@
   -webkit-box-shadow:2px 2px 2px 2px gray;
   -moz-box-shadow:2px 2px 2px 2px gray;
   box-shadow:2px 2px 2px 2px gray;
-  background-color: rgba(0,0,0,0.34);
+  background-color: rgba(0,0,0,0.1);
   overflow: hidden;
 }
 .boxs{
@@ -72,7 +72,7 @@
   -webkit-box-shadow:2px 2px 2px 2px gray;
   -moz-box-shadow:2px 2px 2px 2px gray;
   box-shadow:2px 2px 2px 2px gray;
-  background-color: rgba(0,0,0,0.34);
+  background-color: rgba(0,0,0,0.1);
   overflow: hidden;
 }
 .boxs:after{
@@ -124,7 +124,7 @@
   .rounded-circle{
     margin: 25px 0 25px 0;
     width: 30%;
-    height: 100px;
+    height: 80px;
   }
   .box{
     float: left;
@@ -134,7 +134,7 @@
     -webkit-box-shadow:2px 2px 2px 2px gray;
     -moz-box-shadow:2px 2px 2px 2px gray;
     box-shadow:2px 2px 2px 2px gray;
-    background-color: rgba(0,0,0,0.34);
+    background-color: rgba(0,0,0,0.1);
     overflow: hidden;
   }
   .boxss{
@@ -145,7 +145,7 @@
     -webkit-box-shadow:2px 2px 2px 2px gray;
     -moz-box-shadow:2px 2px 2px 2px gray;
     box-shadow:2px 2px 2px 2px gray;
-    background-color: rgba(0,0,0,0.34);
+    background-color: rgba(0,0,0,0.1);
     overflow: hidden;
   }
   .boxs{
@@ -156,7 +156,7 @@
     -webkit-box-shadow:2px 2px 2px 2px gray;
     -moz-box-shadow:2px 2px 2px 2px gray;
     box-shadow:2px 2px 2px 2px gray;
-    background-color: rgba(0,0,0,0.34);
+    background-color: rgba(0,0,0,0.1);
     overflow: hidden;
   }
 }
@@ -176,7 +176,7 @@
   .rounded-circle{
     margin: 30px 0 20px 0;
     width: 30%;
-    height: 100px;
+    height: 80px;
   }
   .box{
     float: left;
@@ -186,7 +186,7 @@
     -webkit-box-shadow:2px 2px 2px 2px gray;
     -moz-box-shadow:2px 2px 2px 2px gray;
     box-shadow:2px 2px 2px 2px gray;
-    background-color: rgba(0,0,0,0.34);
+    background-color: rgba(0,0,0,0.1);
     overflow: hidden;
   }
   .boxss{
@@ -197,7 +197,7 @@
     -webkit-box-shadow:2px 2px 2px 2px gray;
     -moz-box-shadow:2px 2px 2px 2px gray;
     box-shadow:2px 2px 2px 2px gray;
-    background-color: rgba(0,0,0,0.34);
+    background-color: rgba(0,0,0,0.1);
     overflow: hidden;
   }
   .boxs{
@@ -208,7 +208,7 @@
     -webkit-box-shadow:2px 2px 2px 2px gray;
     -moz-box-shadow:2px 2px 2px 2px gray;
     box-shadow:2px 2px 2px 2px gray;
-    background-color: rgba(0,0,0,0.34);
+    background-color: rgba(0,0,0,0.1);
     overflow: hidden;
   }
 }
