@@ -17,6 +17,7 @@ export class AddMainComponent implements OnInit {
   public isVisibleOpen = false;
   public isVisibleOpenDoor = false;
   public token: string;
+  public radioValue: string;
   public count = 1;
   public times = 1;
   public num: number;
@@ -165,6 +166,10 @@ export class AddMainComponent implements OnInit {
     );
   }
   resetWeight() {
+    this.wayNo = undefined;
+    this.num = undefined;
+    this.times = 1;
+    this.count = 1;
     this.isVisibleOpenDoor = true;
   }
   reStart() {}
@@ -183,8 +188,10 @@ export class AddMainComponent implements OnInit {
         console.log(data);
         if (data.code === 0) {
           this.times = 2;
-        } else {
+        } else if (data.code === -89) {
           alert(data.msg);
+          this.times = 2;
+          this.isVisibleOpenDoor = true;
         }
       },
       error => {
@@ -197,7 +204,8 @@ export class AddMainComponent implements OnInit {
     }
   }
   no() {
-    this.isVisibleOpenDoor = false;
+    // this.isVisibleOpenDoor = false;
+    // console.log(this.radioValue);
   }
   openOk() {
     this.isClosed(urlParse(window.location.search)['vmCode']);

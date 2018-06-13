@@ -40,6 +40,9 @@
   bottom: 0;
   left: 0;
 }
+.radio-size{
+  width: 150px;
+}
 .box{
   float: left;
   width: 165px;
