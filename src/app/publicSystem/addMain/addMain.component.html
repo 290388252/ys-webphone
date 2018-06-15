@@ -76,9 +76,9 @@
     <div class="my-reset">
       <button (click)="resetWeight()" type="button" class="btn btn-primary" style="background: #117cbb">校准</button>
     </div>
-    <!--<div class="my-restart">-->
-      <!--<button (click)="reStart()" type="button" class="btn btn-primary" style="background: #117cbb">重启</button>-->
-    <!--</div>-->
+    <div class="my-restart">
+      <button (click)="reStart()" type="button" class="btn btn-primary" style="background: #117cbb">重启</button>
+    </div>
   </div>
   <nz-modal [nzVisible]="isVisibleOpenDoor" [nzContent]="modalContents" [nzFooter]="modalFooters" [nzClosable]="false">
     <ng-template #modalContents #modalFooters style="text-align: center">
@@ -124,4 +124,13 @@
       <button nz-button nzType="primary" (click)="openOk()">关闭</button>
     </ng-template>
   </nz-modal>
+
+  <div class="js_dialog" id="androidDialog2" [class]="loadingVisible ? 'mask-visible' : 'mask-invisible'">
+    <div class="weui-mask"></div>
+    <div class="weui-dialog weui-skin_android">
+      <div class="weui-dialog__bd">
+        <span>正在重启，请等待{{restartTimes}}秒</span>
+      </div>
+    </div>
+  </div>
 </div>

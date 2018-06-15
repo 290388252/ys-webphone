@@ -14,6 +14,7 @@ export class AppProperties {
     public aliMachineQueryDetailUrl: string;
     public aliMachineQueryTradeDetailUrl: string;
     public reviseUrl: string;
+    public restartUrl: string;
     // WeChat
     public indexListUrl: string;
     public indexOpenDoor: string;
@@ -53,6 +54,7 @@ export class AppProperties {
       this.aliMachineQueryTradeDetailUrl = this.appUrl + '/aliMachine/queryTradeDetail';
       this.adminOauth2Url = this.appUrl + '/admin/oauth2';
       this.reviseUrl = this.appUrl + '/index/revise';
+      this.restartUrl = this.appUrl + '/machineControl/restart?vmCode=';
 
       // WeChat
       this.indexListUrl = this.appUrl + '/index/listWay';

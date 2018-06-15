@@ -2,7 +2,7 @@ import { Component , OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AppService} from '../../app-service';
 import {AppProperties} from '../../app.properties';
-import {NzModalService} from 'ng-zorro-antd';
+import {NzMessageService, NzModalService} from 'ng-zorro-antd';
 import {urlParse} from '../../utils/util';
 import {AddMainModule} from './addMain.module';
 
@@ -15,10 +15,12 @@ export class AddMainComponent implements OnInit {
   public indexList: Array<object>;
   private wayNumber: number;
   public isVisibleOpen = false;
+  public loadingVisible = false;
   public isVisibleOpenDoor = false;
   public token: string;
   public radioValue: string;
   public count = 1;
+  public restartTimes = 15;
   public times = 1;
   public num: number;
   public wayNo: number;
@@ -172,7 +174,29 @@ export class AddMainComponent implements OnInit {
     this.count = 1;
     this.isVisibleOpenDoor = true;
   }
-  reStart() {}
+  reStart() {
+    this.appService.postAliData(this.appProperties.restartUrl + urlParse(window.location.search)['vmCode'],
+      '', this.token).subscribe(
+      data => {
+        console.log(data);
+        if (data.code === 0) {
+          this.loadingVisible = true;
+          const timer = setInterval(() => {
+            this.restartTimes --;
+            if (this.restartTimes <= 0) {
+              this.loadingVisible = false;
+              clearInterval(timer);
+            }
+          }, 1000);
+        } else {
+          alert(data.msg);
+        }
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
   yes() {
     this.count++;
     console.log(this.wayNo);
