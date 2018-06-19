@@ -112,7 +112,6 @@ export class MainComponent implements OnInit {
         }
       );
     }
-    // wx.closeWindow();
   }
   getInitData() {
     this.appService.getData(this.appProperties.indexListUrl, {vmCode: urlParse(window.location.search)['vmCode'], type: 1}).subscribe(
