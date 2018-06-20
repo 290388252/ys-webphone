@@ -18,29 +18,32 @@ export class AddMainComponent implements OnInit {
   public loadingVisible = false;
   public isVisibleOpenDoor = false;
   public token: string;
-  public radioValue: string;
+  // public radioValue: string;
   public count = 1;
-  public restartTimes = 15;
+  public restartTimes = 15; // 重启时间（秒）
   public times = 1;
   public num: number;
   public wayNo: number;
   // public img = 'http://lenvar-resource-products.oss-cn-shenzhen.aliyuncs.com/';
   public img = 'http://47.106.92.82:6663/files/';
   public clickMore = false;
-  public isFourDoor = false;
-  public isFiveDoor = false;
+  public isFourDoor = false; // 四门
+  public isFiveDoor = false; // 五门
   constructor(private router: Router,
               private modalService: NzModalService,
               private activatedRoute: ActivatedRoute,
               private appProperties: AppProperties,
               private appService: AppService) {}
   ngOnInit() {
+    // 数据初始化
     this.getCookies();
+    // 数据初始化
     this.getInitData();
     if (this.token === null
       || this.token === undefined
       || this.token === 'undefined') {
       if (urlParse(window.location.search)['payType'] === '1') {
+        // 微信授权登陆验证
         this.appService.getData(this.appProperties.adminOauth2Url, '').subscribe(
           data => {
             console.log(data);
@@ -58,6 +61,7 @@ export class AddMainComponent implements OnInit {
           }
         );
       } else if (urlParse(window.location.search)['payType'] === '2') {
+        // 支付宝授权登陆验证
         const newWlhUrl = '?state=/vmLogin?vmCode=' + urlParse(window.location.search)['vmCode'] + '&payType=2';
         window.location.href = this.appProperties.aliVmGetUserIdUrl + newWlhUrl;
         // this.router.navigate(['vmLogin'], {
@@ -68,6 +72,7 @@ export class AddMainComponent implements OnInit {
       }
     }
   }
+  // 初始化选水界面
   getInitData() {
     this.appService.getData(this.appProperties.indexListUrl, {vmCode: urlParse(window.location.search)['vmCode'], type: 2}).subscribe(
       data => {
@@ -91,6 +96,7 @@ export class AddMainComponent implements OnInit {
       }
     );
   }
+  // 开门接口
   openDoor(item) {
     if (this.token === null
       || this.token === undefined
@@ -126,6 +132,7 @@ export class AddMainComponent implements OnInit {
       }
     }
   }
+  // 检测是否已关门
   isClosed(vmCode) {
     this.appService.getDataOpen(this.appProperties.isClosedUrl, {vmCode: vmCode}).subscribe(
       data2 => {
@@ -153,6 +160,7 @@ export class AddMainComponent implements OnInit {
       }
     );
   }
+  // 校准数量
   resetNum() {
     console.log(urlParse(window.location.search)['vmCode']);
     this.appService.postAliData(this.appProperties.orderResetWaysNumUrl + urlParse(window.location.search)['vmCode'],
@@ -167,6 +175,7 @@ export class AddMainComponent implements OnInit {
       }
     );
   }
+  // 校准重量
   resetWeight() {
     this.wayNo = undefined;
     this.num = undefined;
@@ -174,6 +183,7 @@ export class AddMainComponent implements OnInit {
     this.count = 1;
     this.isVisibleOpenDoor = true;
   }
+  // 机器重启
   reStart() {
     this.appService.postAliData(this.appProperties.restartUrl + urlParse(window.location.search)['vmCode'],
       '', this.token).subscribe(
@@ -197,6 +207,7 @@ export class AddMainComponent implements OnInit {
       }
     );
   }
+  // 是否开门（是）
   yes() {
     this.count++;
     console.log(this.wayNo);
@@ -227,10 +238,12 @@ export class AddMainComponent implements OnInit {
       this.isVisibleOpenDoor = false;
     }
   }
+  // 是否开门（否）
   no() {
     // this.isVisibleOpenDoor = false;
     // console.log(this.radioValue);
   }
+  // 是否关门按钮事件（是）
   openOk() {
     this.isClosed(urlParse(window.location.search)['vmCode']);
   }

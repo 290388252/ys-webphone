@@ -30,6 +30,7 @@ export class VmDetailComponent implements OnInit, AfterViewChecked {
   }
 
   ngOnInit() {
+    // 获取机器列表
     this.appService.postAliData(this.appProperties.aliMachineQueryVMListUrl, '' , urlParse(window.location.search)['token']).subscribe(
       data => {
         console.log(data);
@@ -46,6 +47,7 @@ export class VmDetailComponent implements OnInit, AfterViewChecked {
   }
   ngAfterViewChecked(): void {
   }
+  // 搜索机器号
   onSearch(event: string): void {
     console.log(event);
       this.appService.postAliData(this.appProperties.aliMachineQueryVMListUrl + '?form=' + event,
@@ -63,6 +65,7 @@ export class VmDetailComponent implements OnInit, AfterViewChecked {
       }
     );
   }
+  // 机器详情查看
   detail(vmCode) {
     this.isVisible = true;
     this.vmCode = vmCode;
@@ -84,6 +87,7 @@ export class VmDetailComponent implements OnInit, AfterViewChecked {
       }
     );
   }
+  // 销售情况详情
   sails(vmCode) {
     const yesterday = new Date(new Date().getTime() - 1000 * 60 * 60 * 24 * 2);
     const tomorrow = new Date(new Date().getTime() + 1000 * 60 * 60 * 24);
@@ -136,25 +140,27 @@ export class VmDetailComponent implements OnInit, AfterViewChecked {
       }
     );
   }
+  // 销售情况详情
   handleOk(): void {
     this.isVisible = false;
     this.isConfirmLoading = false;
     this.detailListLoading = true;
     this.detailList = [];
   }
-
+  // 销售情况详情
   handleCancel(): void {
     this.isVisible = false;
     this.detailListLoading = true;
     this.detailList = [];
   }
+  // 销售情况详情打开
   handleOkSails(): void {
     this.isVisibleSails = false;
     this.isConfirmLoadingSails = false;
     this.tradeDetailListLoading = true;
     this.tradeDetailList = [];
   }
-
+  // 销售情况详情关闭
   handleCancelSails(): void {
     this.isVisibleSails = false;
     this.tradeDetailListLoading = true;

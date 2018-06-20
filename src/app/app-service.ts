@@ -25,6 +25,17 @@ export class AppService {
     return this.http.get(url, { headers: myHeaders });
   }
 
+  getDataGzh(url: string, options?: any): Observable<any> {
+    // 配置请求头
+    const myHeaders: HttpHeaders = new HttpHeaders({
+      'Content-Type': 'application/json',
+       'token': 'webapp'
+    });
+    // tslint:disable-next-line:forin
+    url += (url.indexOf('?') < 0 ? '?' : '&') + this.param(options);
+    return this.http.get(url, { headers: myHeaders });
+  }
+
   getDataOpen(url: string, options?: any, tokens?: string): Observable<any> {
     // 配置请求头
     const myHeaders: HttpHeaders = new HttpHeaders({

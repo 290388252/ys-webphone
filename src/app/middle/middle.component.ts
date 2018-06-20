@@ -15,6 +15,7 @@ export class MiddleComponent implements OnInit {
   ngOnInit() {
     this.IsWeixinOrAlipay();
   }
+  // 判断是微信登陆还是支付宝登陆
   IsWeixinOrAlipay() {
     const ua = window.navigator.userAgent.toLowerCase();
     if (ua.match(/MicroMessenger/i)) {
@@ -54,6 +55,7 @@ export class MiddleComponent implements OnInit {
       // );
     }
   }
+  // 获取页面地址参数
   urlParse(url): object {
     const obj = {};
     const reg = /[?&][^?&]+=[^?&]+/g;

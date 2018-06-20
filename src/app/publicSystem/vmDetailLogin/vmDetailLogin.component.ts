@@ -28,6 +28,7 @@ export class VmDetailLoginComponent implements OnInit {
       password: [ null, [ Validators.required ] ]
     });
   }
+  // 表单提交
   _submitForm() {
     for (const i in this.validateForm.controls) {
       if (true) {
@@ -67,9 +68,11 @@ export class VmDetailLoginComponent implements OnInit {
       alert('请输入账号密码');
     }
   }
+  // 手机端打开小键盘获取焦点是改变背景高度px
   focusCode() {
     document.getElementById('containers').style.height = (document.documentElement.offsetWidth + 80) + 'px';
   }
+  // 发送验证码
   sendCode(e: TouchEvent) {
     e.preventDefault();
     if (/^1[34578]\d{9}$/.test(this.phone.toString())) {

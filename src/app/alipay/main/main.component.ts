@@ -12,13 +12,13 @@ export class MainComponent implements OnInit {
   public indexList: Array<object>;
   private token: string;
   // public img = 'http://lenvar-resource-products.oss-cn-shenzhen.aliyuncs.com/';
-  public img = 'http://47.106.92.82:6663/files/';
+  public img = 'http://47.106.92.82:6663/files/'; // 图片地址
   public isVisibleOpen = false;
   public isVisibleOpenDoor = false;
   public clickMore = false;
   public item;
-  public isFourDoor = false;
-  public isFiveDoor = false;
+  public isFourDoor = false; // 四门
+  public isFiveDoor = false; // 五门
   constructor(private router: Router,
               private activatedRoute: ActivatedRoute,
               private appProperties: AppProperties,
@@ -27,7 +27,9 @@ export class MainComponent implements OnInit {
     // this.activatedRoute.queryParams.subscribe(queryParams => {
     //   this.token = queryParams.token;
     // });
+    // 初始化数据
     this.getInitData();
+    // 获取token值
     this.getCookies();
     console.log(this.token);
     if (urlParse(window.location.search)['token']) {
@@ -39,7 +41,9 @@ export class MainComponent implements OnInit {
     console.log(urlParse(window.location.search)['vmCode']);
     sessionStorage.setItem('vmCode', urlParse(window.location.search)['vmCode']);
   }
+  // 初始化数据
   getInitData() {
+    // 选水界面接口
     this.appService.getAliData(this.appProperties.aliIndexListUrl,
       {vmCode: urlParse(window.location.search)['vmCode']}, this.token).subscribe(
       data => {
@@ -67,6 +71,7 @@ export class MainComponent implements OnInit {
       }
     );
   }
+  // 开门接口
   openDoor(item) {
     this.item = item;
     if (item.num <= 0) {
@@ -78,6 +83,7 @@ export class MainComponent implements OnInit {
   openOk() {
     this.isClosed(urlParse(window.location.search)['vmCode']);
   }
+  // 是否开门（是）
   yesOpenDoor() {
     this.isVisibleOpenDoor = false;
       if (this.clickMore) {
@@ -105,9 +111,11 @@ export class MainComponent implements OnInit {
         );
       }
   }
+  // 是否开门（否）
   noOpenDoor() {
     this.isVisibleOpenDoor = false;
   }
+  // 检测是否关门
   isClosed(vmCode) {
     this.appService.getDataOpen(this.appProperties.isClosedUrl, {vmCode: vmCode}, this.token).subscribe(
       data2 => {
@@ -125,6 +133,7 @@ export class MainComponent implements OnInit {
       }
     );
   }
+  // 关注支付宝生活号接口
   isAttention() {
     this.appService.getAliData(this.appProperties.aliBusinessIsAttentionUrl, '' , this.token).subscribe(
       data2 => {
@@ -142,6 +151,7 @@ export class MainComponent implements OnInit {
       }
     );
   }
+  // 补货人员登陆界面入口
   vmLogin() {
     this.router.navigate(['addMain'], {
       queryParams: {
@@ -150,6 +160,7 @@ export class MainComponent implements OnInit {
       }});
     // TODO;
   }
+  // 查看用户订单
   detail() {
     this.router.navigate(['aliDetail'], {
       queryParams: {

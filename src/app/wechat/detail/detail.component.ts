@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import {AppService} from '../../app-service';
 import {AppProperties} from '../../app.properties';
+import {urlParse} from '../../utils/util';
 declare var wx: any;
 declare var WeixinJSBridge: any;
 
@@ -28,6 +29,7 @@ export class DetailComponent implements OnInit , AfterViewChecked {
     console.log(this.token);
     this.getData(this.appProperties.findAllUserOrderUrl);
   }
+  // 获取订单列表
   getData(url) {
     this.appService.getDataOpen(url, {}, this.token).subscribe(
       data => {
@@ -47,6 +49,7 @@ export class DetailComponent implements OnInit , AfterViewChecked {
       }
     );
   }
+  // 适配背景px
   ngAfterViewChecked(): void {
     if (document.documentElement.offsetHeight > document.getElementById('content').clientHeight) {
       document.getElementById('containers').style.height = document.documentElement.offsetHeight + 'px';
@@ -57,6 +60,7 @@ export class DetailComponent implements OnInit , AfterViewChecked {
   nzSpan(flag) {
     return flag !== '10002' ? 24 : 20;
   }
+  // 支付
   pay(item) {
     this.appService.getDataOpen(this.appProperties.orderUnifiedOrderUrl,
       {
@@ -75,6 +79,7 @@ export class DetailComponent implements OnInit , AfterViewChecked {
       }
     );
   }
+  // 调用微信支付接口
   onBridgeUndefindeReady(data, item) {
     if (document.addEventListener) {
       document.addEventListener('WeixinJSBridgeReady', () => {
@@ -89,6 +94,7 @@ export class DetailComponent implements OnInit , AfterViewChecked {
       });
     }
   }
+  // 调用微信支付接口
   onBridgeReady(data, item) {
    this.test(data, item);
   }
@@ -116,6 +122,7 @@ export class DetailComponent implements OnInit , AfterViewChecked {
       }
     );
   }
+  // 调用微信支付接口测试
   test(data, item) {
     wx.config({
       debug: false,
@@ -154,6 +161,7 @@ export class DetailComponent implements OnInit , AfterViewChecked {
       });
     });
   }
+  // 订单详情
   detail(ptCode) {
     this.detailVisible = true;
     this.appService.postDetailData(this.appProperties.findMachineHistoryUrl,
@@ -172,9 +180,11 @@ export class DetailComponent implements OnInit , AfterViewChecked {
       }
     );
   }
+  // 关闭详情
   closeDetail() {
     this.detailVisible = false;
   }
+  // 获取token
   getCookies () {
     if (this.token === null || this.token === undefined || this.token === 'undefined') {
       const strCookie = document.cookie;

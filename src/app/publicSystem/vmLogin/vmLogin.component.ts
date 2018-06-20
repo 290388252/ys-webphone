@@ -34,6 +34,7 @@ export class VmLoginComponent implements OnInit {
     this.IsWeixinOrAlipay();
     console.log(this.payType);
   }
+  // 表单提交
   _submitForm() {
     for (const i in this.validateForm.controls) {
       if (true) {
@@ -75,6 +76,7 @@ export class VmLoginComponent implements OnInit {
       alert('请输入账号密码');
     }
   }
+  // 获取机器码
   getVmCode() {
     const url = window.location.href.toString();
     const arrUrl = url.split('?');
@@ -87,9 +89,11 @@ export class VmLoginComponent implements OnInit {
     }
     return vmCode;
   }
+  // 手机端打开小键盘获取焦点是改变背景高度px
   focusCode() {
     document.getElementById('containers').style.height = (document.documentElement.offsetWidth + 80) + 'px';
   }
+  // 发送验证码
   sendCode(e: TouchEvent) {
     e.preventDefault();
     if (/^1[34578]\d{9}$/.test(this.phone.toString())) {
@@ -122,6 +126,7 @@ export class VmLoginComponent implements OnInit {
       this.truePhone = false;
     }
   }
+  // 检测是微信还是支付宝登陆
   IsWeixinOrAlipay() {
     const ua = window.navigator.userAgent.toLowerCase();
     if (ua.match(/MicroMessenger/i)) {

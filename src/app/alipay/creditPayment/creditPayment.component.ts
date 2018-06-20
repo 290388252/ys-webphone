@@ -16,6 +16,7 @@ export class CreditPaymentComponent implements OnInit {
   }
 
   ngOnInit() {
+    // 获取支付宝授权
     this.appService.getAliData(this.appProperties.aliGetCreditWithheldUrl + urlParse(window.location.href)['vmCode']).subscribe(
       data => {
         document.write(data.returnObject);

@@ -35,9 +35,11 @@ export class RegisterComponent implements OnInit {
       password: [ null, [ Validators.required ] ]
     });
   }
+  // 手机点击小键盘时获取焦点更改屏幕高度
   focusCode() {
     document.getElementById('containers').style.height = (document.documentElement.offsetWidth + 50) + 'px';
   }
+  // 提交表单数据
   _submitForm() {
     for (const i in this.validateForm.controls) {
       if (true) {
@@ -71,6 +73,7 @@ export class RegisterComponent implements OnInit {
       alert('请输入手机号码');
     }
   }
+  // 发送验证码
   sendCode(e: TouchEvent) {
     e.preventDefault();
     if (checkPhone(this.phone)) {

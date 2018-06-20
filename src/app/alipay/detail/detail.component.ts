@@ -15,8 +15,8 @@ export class DetailComponent implements OnInit, AfterViewChecked {
   public title: string;
   public token: string;
   public list;
-  public totalPrice = 0;
-  public detailVisible = false;
+  public totalPrice = 0; // 总金额
+  public detailVisible = false; // 订单详情是否开启
   public detailList;
   constructor(private router: Router, private activatedRoute: ActivatedRoute,
               private appProperties: AppProperties,
@@ -34,6 +34,7 @@ export class DetailComponent implements OnInit, AfterViewChecked {
   }
 
   ngOnInit() {
+    // 获取cookies的token值
     this.getCookies();
     if (this.token === null || this.token === undefined || this.token === 'undefined') {
       this.token = urlParse(window.location.search)['token'];
@@ -50,6 +51,7 @@ export class DetailComponent implements OnInit, AfterViewChecked {
   nzSpan(flag) {
     return flag !== '支付失败' ? 24 : 20;
   }
+  // 查询订单条目
   postData(url) {
     this.appService.postAliData(url, {}, this.token).subscribe(
       data => {
@@ -69,12 +71,14 @@ export class DetailComponent implements OnInit, AfterViewChecked {
       }
     );
   }
+  // 支付宝支付接口调用
   pay(item) {
     window.location.href = this.appProperties.alipayWapPayUrl
       + item.orderId
       + '&vmCode=' + sessionStorage.getItem('vmCode')
       + '&token=' + this.token;
   }
+  // DOM元素检测时修改高度px
   ngAfterViewChecked(): void {
     if (document.documentElement.offsetHeight > document.getElementById('content').clientHeight) {
       document.getElementById('containers').style.height = document.documentElement.offsetHeight + 'px';
@@ -82,6 +86,7 @@ export class DetailComponent implements OnInit, AfterViewChecked {
       document.getElementById('containers').style.height = document.getElementById('content').clientHeight + 70 + 'px';
     }
   }
+  // 查询订单详情数据
   detail(ptCode) {
     this.detailVisible = true;
     this.appService.postDetailData(this.appProperties.findMachineHistoryUrl,
@@ -100,9 +105,11 @@ export class DetailComponent implements OnInit, AfterViewChecked {
       }
     );
   }
+  // 关闭订单详情窗口
   closeDetail() {
     this.detailVisible = false;
   }
+  // 获取token值
   getCookies () {
     if (this.token === null || this.token === undefined || this.token === 'undefined') {
       const strCookie = document.cookie;

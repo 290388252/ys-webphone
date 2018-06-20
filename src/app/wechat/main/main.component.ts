@@ -43,6 +43,7 @@ export class MainComponent implements OnInit {
     }
     console.log(urlParse(window.location.search)['vmCode']);
     console.log(urlParse(window.location.search)['newUser']);
+    // 新用户进入界面
     if (urlParse(window.location.search)['newUser'] === '1') {
       this.appService.getDataOpen(this.appProperties.indexOpenDoor,
         {vmCode: urlParse(window.location.search)['vmCode'], way: sessionStorage.getItem('wayNumber')}, this.token).subscribe(
@@ -78,6 +79,7 @@ export class MainComponent implements OnInit {
         }
       );
     }
+    // 是否自动开门
     if (sessionStorage.getItem('open') === '1') {
       this.appService.getDataOpen(this.appProperties.indexOpenDoor,
         {vmCode: urlParse(window.location.search)['vmCode'], way: sessionStorage.getItem('wayNumber')}, this.token).subscribe(
@@ -113,6 +115,7 @@ export class MainComponent implements OnInit {
       );
     }
   }
+  // 数据初始化
   getInitData() {
     this.appService.getData(this.appProperties.indexListUrl, {vmCode: urlParse(window.location.search)['vmCode'], type: 1}).subscribe(
       data => {
@@ -136,6 +139,7 @@ export class MainComponent implements OnInit {
       }
     );
   }
+  // 开门
   openDoor(item) {
     this.item = item;
     if (item.num <= 0) {
@@ -144,6 +148,7 @@ export class MainComponent implements OnInit {
       this.isVisibleOpenDoor = true;
     }
   }
+  // 运维登陆
   vmLogin() {
     this.router.navigate(['addMain'], {
       queryParams: {
@@ -151,6 +156,7 @@ export class MainComponent implements OnInit {
         payType: 1
       }});
   }
+  // 订单详情
   product() {
     // this.router.navigate(['product'], {
     //   queryParams: {
@@ -159,6 +165,7 @@ export class MainComponent implements OnInit {
     this.router.navigate(['detail']);
     // TODO;
   }
+  // 是否已关门
   isClosed(vmCode) {
     this.appService.getDataOpen(this.appProperties.isClosedUrl, {vmCode: vmCode}).subscribe(
       data2 => {
@@ -177,6 +184,7 @@ export class MainComponent implements OnInit {
       }
     );
   }
+  // 新用户登陆
   login() {
     // this.currentModal = this.modalService.open({
     //   title       : titleTpl,
@@ -213,10 +221,12 @@ export class MainComponent implements OnInit {
     window.location.href = this.appProperties.followWechatSubscription;
     this.currentModal.destroy('onOk');
   }
+  // 检测关门
   openOk() {
     this.isVisibleOpen = true;
     this.isClosed(urlParse(window.location.search)['vmCode']);
   }
+  // 确定开门
   yesOpenDoor() {
     this.isVisibleOpenDoor = false;
       if (this.clickMore) {
@@ -267,9 +277,11 @@ export class MainComponent implements OnInit {
         }
       }
   }
+  // 确定关门
   noOpenDoor() {
     this.isVisibleOpenDoor = false;
   }
+  // 测试支付
   test(data) {
     wx.config({
       debug: false,
@@ -306,6 +318,7 @@ export class MainComponent implements OnInit {
       });
     });
   }
+  // 获取token
   getCookies () {
     if (this.token === null || this.token === undefined || this.token === 'undefined') {
       const strCookie = document.cookie;
