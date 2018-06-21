@@ -66,10 +66,10 @@ export class AppProperties {
       this.followWechatSubscription = 'https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzU0NzQ4MTY0Mg==&scene=124#wechat_redirect';
       this.findAllUserOrderUrl = this.appUrl + '/order/myOrderList';
       // this.findAllOpenIdOrderUrl = 'http://192.168.0.120:8769/ys_admin/order/findOrderByOpenId?openId=';
-      this.findAllOpenIdOrderUrl = 'http://47.106.92.82:6662/ys_admin/order/findOrderByOpenId?openId=';
+      this.findAllOpenIdOrderUrl = 'http://119.23.233.123:6662/ys_admin/order/findOrderByOpenId?openId=';
       this.orderUnifiedOrderUrl = this.appUrl + '/order/unifiedOrder';
       this.nonePassWordPayUrl = this.appUrl + '/wechat/entrustweb';
-      this.findMachineHistoryUrl = 'http://47.106.92.82:6662/ys_admin/payRecord/findMachineHistory';
+      this.findMachineHistoryUrl = 'http://119.23.233.123:6662/ys_admin/payRecord/findMachineHistory';
 
       // AliPay
       this.aliIndexListUrl = this.appUrl + '/aliUser/queryItem';

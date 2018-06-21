@@ -20,7 +20,7 @@ export class MainComponent implements OnInit {
   public isVisibleOpenDoor = false;
   public clickMore = false;
   // public img = 'http://lenvar-resource-products.oss-cn-shenzhen.aliyuncs.com/';
-  public img = 'http://47.106.92.82:6663/files/';
+  public img = 'http://119.23.233.123:6662/ys_admin/files/';
   public item;
   currentModal;
   public isFourDoor = false;

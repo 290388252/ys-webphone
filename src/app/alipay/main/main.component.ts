@@ -12,7 +12,7 @@ export class MainComponent implements OnInit {
   public indexList: Array<object>;
   private token: string;
   // public img = 'http://lenvar-resource-products.oss-cn-shenzhen.aliyuncs.com/';
-  public img = 'http://47.106.92.82:6663/files/'; // 图片地址
+  public img = 'http://119.23.233.123:6662/ys_admin/files/'; // 图片地址
   public isVisibleOpen = false;
   public isVisibleOpenDoor = false;
   public clickMore = false;

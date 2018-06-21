@@ -25,7 +25,7 @@ export class AddMainComponent implements OnInit {
   public num: number;
   public wayNo: number;
   // public img = 'http://lenvar-resource-products.oss-cn-shenzhen.aliyuncs.com/';
-  public img = 'http://47.106.92.82:6663/files/';
+  public img = 'http://119.23.233.123:6662/ys_admin/files/';
   public clickMore = false;
   public isFourDoor = false; // 四门
   public isFiveDoor = false; // 五门
