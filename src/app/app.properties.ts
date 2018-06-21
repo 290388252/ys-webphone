@@ -5,6 +5,8 @@ import 'rxjs/Rx';
 export class AppProperties {
     // public
     public appUrl: string;
+    public adminUrl: string;
+    public imgUrl: string;
     public isClosedUrl: string;
     public adminLoginUrl: string;
     public adminOauth2Url: string;
@@ -44,8 +46,10 @@ export class AppProperties {
 
     constructor() {
       // Public
-      this.appUrl = 'http://47.106.92.82:6662/ys_sms'; // localtest
+      this.appUrl = 'http://47.106.92.82:6662/ys_sms';
+      this.adminUrl = 'http://119.23.233.123:6662/ys_admin';
       // this.appUrl = 'http://youshuismallhe.natapp1.cc'; // localtest
+      this.imgUrl = this.adminUrl + '/files/';
       this.isClosedUrl = this.appUrl + '/wechat/isClosed';
       this.adminLoginUrl = this.appUrl + '/admin/login';
       this.addOpendoorUrl = this.appUrl + '/index/yunWeiOpenDoor';
@@ -66,10 +70,10 @@ export class AppProperties {
       this.followWechatSubscription = 'https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzU0NzQ4MTY0Mg==&scene=124#wechat_redirect';
       this.findAllUserOrderUrl = this.appUrl + '/order/myOrderList';
       // this.findAllOpenIdOrderUrl = 'http://192.168.0.120:8769/ys_admin/order/findOrderByOpenId?openId=';
-      this.findAllOpenIdOrderUrl = 'http://119.23.233.123:6662/ys_admin/order/findOrderByOpenId?openId=';
+      this.findAllOpenIdOrderUrl = this.adminUrl + '/order/findOrderByOpenId?openId=';
       this.orderUnifiedOrderUrl = this.appUrl + '/order/unifiedOrder';
       this.nonePassWordPayUrl = this.appUrl + '/wechat/entrustweb';
-      this.findMachineHistoryUrl = 'http://119.23.233.123:6662/ys_admin/payRecord/findMachineHistory';
+      this.findMachineHistoryUrl = this.adminUrl + '/payRecord/findMachineHistory';
 
       // AliPay
       this.aliIndexListUrl = this.appUrl + '/aliUser/queryItem';
