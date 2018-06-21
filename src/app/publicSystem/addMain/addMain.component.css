@@ -66,7 +66,7 @@
 }
 .boxss{
   float: left;
-  width: 155px;
+  width: 150px;
   height: 112px;
   margin-right: 10px;
   /*-webkit-box-shadow:2px 2px 2px 2px gray;*/
@@ -220,7 +220,7 @@
   }
   .boxss{
     float: left;
-    width: 155px;
+    width: 150px;
     height: 112px;
     margin-right: 10px;
     /*-webkit-box-shadow:2px 2px 2px 2px gray;*/

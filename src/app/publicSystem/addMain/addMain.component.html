@@ -85,6 +85,11 @@
       <p style="font-size: medium;">次数:{{times}}次</p>
       <br>
       <div>
+        <nz-radio-group [(ngModel)]="wayNo" [nzSize]="'large'" *ngIf="isFiveDoor">
+          <label class="radio-size" nz-radio-button [nzValue]="'5'" [nzDisabled]="times === 2">
+            <span>5号门</span>
+          </label>
+        </nz-radio-group>
         <nz-radio-group [(ngModel)]="wayNo" [nzSize]="'large'">
           <label class="radio-size" nz-radio-button [nzValue]="'3'" [nzDisabled]="times === 2">
             <span>3号门</span>
@@ -104,7 +109,7 @@
         </nz-radio-group>
       </div>
       <br>
-      <nz-input-number style="width: 100%;" [(ngModel)]="num" [nzPlaceHolder]="'请输入桶数'" [nzMin]="1" [nzMax]="99999999" [nzStep]="1"></nz-input-number>
+      <nz-input-number style="width: 100%;" [(ngModel)]="num" [nzPlaceHolder]="'请输入桶数'" [nzMin]="0" [nzMax]="99999999" [nzStep]="1"></nz-input-number>
       <!--<nz-input-number style="width: 100%;" [(ngModel)]="wayNo" [nzPlaceHolder]="'请输入货道'" [nzMin]="1" [nzMax]="4" [nzStep]="1" [nzDisabled]="count === 2"></nz-input-number>-->
     </ng-template>
     <ng-template #modalFooters style="text-align: center">

@@ -29,22 +29,22 @@ export class DetailComponent implements OnInit , AfterViewChecked {
     this.getCookies();
     this.openId = urlParse(window.location.search)['openId'];
     console.log(this.openId);
-    this.getData(this.appProperties.findAllOpenIdOrderUrl);
+    this.getData(this.appProperties.findAllOpenIdOrderUrl  + this.openId);
   }
   // 获取订单列表
   getData(url) {
-    this.appService.getDataGzh(url, {openId: this.openId}).subscribe(
+    this.appService.getDataGzh(url, '').subscribe(
       data => {
         console.log(data);
-        if (data.status === 1) {
-            data.returnObject.forEach((item => {
+        // if (data.status === 1) {
+            data.forEach((item => {
                   this.totalPrice += item.price;
                   this.totalPrice = Math.floor(this.totalPrice * 100) / 100;
                   this.list.push(item);
               }));
-        } else if (data.status !== 1) {
-          alert(data.message);
-        }
+        // } else if (data.status !== 1) {
+        //   alert(data.message);
+        // }
       },
       error => {
         console.log(error);
