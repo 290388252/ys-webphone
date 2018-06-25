@@ -8,45 +8,12 @@
       <span class="title">补货人员补水系统</span>
     </div>
     <div class="context" *ngIf="isFiveDoor">
-      <div (click)="openDoor(indexList[3])" class="boxss card text-white addMain-bottom">
-        <div style="text-align: center">
-          <!--<img style="width: 25px;height: 25px" src="{{img}}{{indexList[3]['pic']}}" alt="">-->
-          <img class="addMain-img" src="{{img}}{{indexList[4]['pic']}}" alt="">
-          <!--<br/>-->
-          <p class="text-custom">{{indexList[3]['itemName']}}</p>
-          <p class="text-custom">容量:当前{{indexList[3]['num']}}/最大{{indexList[3]['fullNum']}}桶</p>
-          <p class="text-custom">重量{{indexList[3]['weight']}}</p>
-          <p class="text-custom">{{indexList[3]['price']}}元</p>
-        </div>
-      </div>
-      <div (click)="openDoor(indexList[4])" class="boxss card text-white addMain-bottom">
-        <div style="text-align: center">
-          <!--<img style="width: 25px;height: 25px" src="{{img}}{{indexList[4]['pic']}}" alt="">-->
-          <!--<br/>-->
-          <img class="addMain-img" src="{{img}}{{indexList[4]['pic']}}" alt="">
-          <p class="text-custom">{{indexList[4]['itemName']}}</p>
-          <p class="text-custom">容量:当前{{indexList[4]['num']}}/最大{{indexList[4]['fullNum']}}桶</p>
-          <p class="text-custom">重量{{indexList[4]['weight']}}</p>
-          <p class="text-custom">{{indexList[4]['price']}}元</p>
-        </div>
-      </div>
-      <div (click)="openDoor(indexList[2])" class="boxs card text-white addMain-bottom">
-        <div style="text-align: center">
-          <!--<img style="width: 25px;height: 25px" src="{{img}}{{indexList[2]['pic']}}" alt="">-->
-          <!--<br/>-->
-          <img class="addMain-img" src="{{img}}{{indexList[4]['pic']}}" alt="">
-          <p class="text-custom">{{indexList[2]['itemName']}}</p>
-          <p class="text-custom">容量:当前{{indexList[2]['num']}}/最大{{indexList[2]['fullNum']}}桶</p>
-          <p class="text-custom">重量{{indexList[2]['weight']}}</p>
-          <p class="text-custom">{{indexList[2]['price']}}元</p>
-        </div>
-      </div>
       <div (click)="openDoor(indexList[0])" class="boxss card text-white addMain-bottom">
         <div style="text-align: center">
-          <!--<img style="width: 25px;height: 25px" src="{{img}}{{indexList[0]['pic']}}" alt="">-->
+          <!--<img style="width: 25px;height: 25px" src="{{img}}{{indexList[3]['pic']}}" alt="">-->
+          <img class="addMain-img" src="{{img}}{{indexList[0]['pic']}}" alt="">
           <!--<br/>-->
-          <img class="addMain-img" src="{{img}}{{indexList[4]['pic']}}" alt="">
-          <p class="text-custom">{{indexList[0]['itemName']}}</p>
+          <p style="margin-top: 2px" class="text-custom">{{indexList[0]['itemName']}}</p>
           <p class="text-custom">容量:当前{{indexList[0]['num']}}/最大{{indexList[0]['fullNum']}}桶</p>
           <p class="text-custom">重量{{indexList[0]['weight']}}</p>
           <p class="text-custom">{{indexList[0]['price']}}元</p>
@@ -54,13 +21,46 @@
       </div>
       <div (click)="openDoor(indexList[1])" class="boxss card text-white addMain-bottom">
         <div style="text-align: center">
-          <!--<img style="width: 25px;height: 25px" src="{{img}}{{indexList[1]['pic']}}" alt="">-->
+          <!--<img style="width: 25px;height: 25px" src="{{img}}{{indexList[4]['pic']}}" alt="">-->
           <!--<br/>-->
-          <img class="addMain-img" src="{{img}}{{indexList[4]['pic']}}" alt="">
-          <p class="text-custom">{{indexList[1]['itemName']}}</p>
+          <img class="addMain-img" src="{{img}}{{indexList[1]['pic']}}" alt="">
+          <p style="margin-top: 2px" class="text-custom">{{indexList[1]['itemName']}}</p>
           <p class="text-custom">容量:当前{{indexList[1]['num']}}/最大{{indexList[1]['fullNum']}}桶</p>
           <p class="text-custom">重量{{indexList[1]['weight']}}</p>
           <p class="text-custom">{{indexList[1]['price']}}元</p>
+        </div>
+      </div>
+      <div (click)="openDoor(indexList[2])" class="boxs card text-white addMain-bottom">
+        <div style="text-align: center">
+          <!--<img style="width: 25px;height: 25px" src="{{img}}{{indexList[2]['pic']}}" alt="">-->
+          <!--<br/>-->
+          <img class="addMain-img" src="{{img}}{{indexList[2]['pic']}}" alt="">
+          <p style="margin-top: 2px" class="text-custom">{{indexList[2]['itemName']}}</p>
+          <p class="text-custom">容量:当前{{indexList[2]['num']}}/最大{{indexList[2]['fullNum']}}桶</p>
+          <p class="text-custom">重量{{indexList[2]['weight']}}</p>
+          <p class="text-custom">{{indexList[2]['price']}}元</p>
+        </div>
+      </div>
+      <div (click)="openDoor(indexList[3])" class="boxss card text-white addMain-bottom">
+        <div style="text-align: center">
+          <!--<img style="width: 25px;height: 25px" src="{{img}}{{indexList[0]['pic']}}" alt="">-->
+          <!--<br/>-->
+          <img class="addMain-img" src="{{img}}{{indexList[3]['pic']}}" alt="">
+          <p style="margin-top: 2px" class="text-custom">{{indexList[3]['itemName']}}</p>
+          <p class="text-custom">容量:当前{{indexList[3]['num']}}/最大{{indexList[3]['fullNum']}}桶</p>
+          <p class="text-custom">重量{{indexList[3]['weight']}}</p>
+          <p class="text-custom">{{indexList[3]['price']}}元</p>
+        </div>
+      </div>
+      <div (click)="openDoor(indexList[4])" class="boxss card text-white addMain-bottom">
+        <div style="text-align: center">
+          <!--<img style="width: 25px;height: 25px" src="{{img}}{{indexList[1]['pic']}}" alt="">-->
+          <!--<br/>-->
+          <img class="addMain-img" src="{{img}}{{indexList[4]['pic']}}" alt="">
+          <p style="margin-top: 2px" class="text-custom">{{indexList[4]['itemName']}}</p>
+          <p class="text-custom">容量:当前{{indexList[4]['num']}}/最大{{indexList[4]['fullNum']}}桶</p>
+          <p class="text-custom">重量{{indexList[4]['weight']}}</p>
+          <p class="text-custom">{{indexList[4]['price']}}元</p>
         </div>
       </div>
     </div>
@@ -69,11 +69,11 @@
           <div class="box-body">
             <img style="width: 55px;height: 55px" src="{{img}}{{item['pic']}}" alt="">
             <br/>
-            <p class="text-custom">{{item['itemName']}}</p>
-            <p class="text-custom">当前{{item['num']}}桶</p>
-            <p class="text-custom">重量{{item['weight']}}</p>
-            <p class="text-custom">最大容量{{item['fullNum']}}桶</p>
-            <p class="text-custom">{{item['price']}}元</p>
+            <p class="text-customs">{{item['itemName']}}</p>
+            <p class="text-customs">当前{{item['num']}}桶</p>
+            <p class="text-customs">重量{{item['weight']}}</p>
+            <p class="text-customs">最大容量{{item['fullNum']}}桶</p>
+            <p class="text-customs">{{item['price']}}元</p>
           </div>
         </div>
     </div>

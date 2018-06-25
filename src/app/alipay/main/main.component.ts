@@ -54,15 +54,17 @@ export class MainComponent implements OnInit {
             if (data.returnObject.length <= 4) {
               this.isFourDoor = true;
               this.isFiveDoor = false;
+              this.indexList = data.returnObject;
+              for (let i = 0; i < 2; i++) {
+                this.indexList.unshift(this.indexList.pop());
+              }
             } else if (data.returnObject.length === 5) {
               this.isFourDoor = false;
               this.isFiveDoor = true;
-            }
-            this.indexList = data.returnObject;
-            for (let i = 0; i < 2; i++) {
-              this.indexList.unshift(this.indexList.pop());
+              this.indexList = data.returnObject;
             }
           }
+          console.log(this.indexList);
         } else {
           alert(data.message);
         }

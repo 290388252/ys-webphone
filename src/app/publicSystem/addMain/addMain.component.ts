@@ -82,14 +82,16 @@ export class AddMainComponent implements OnInit {
           if (data.data.length <= 4) {
             this.isFourDoor = true;
             this.isFiveDoor = false;
+            this.indexList = data.data;
+            for (let i = 0; i < 2; i++) {
+              this.indexList.unshift(this.indexList.pop());
+            }
           } else if (data.data.length === 5) {
             this.isFourDoor = false;
             this.isFiveDoor = true;
+            this.indexList = data.data;
           }
-          this.indexList = data.data;
-          for (let i = 0; i < 2; i++) {
-            this.indexList.unshift(this.indexList.pop());
-          }
+          console.log(this.indexList);
         }
       },
       error => {
