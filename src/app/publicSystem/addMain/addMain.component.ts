@@ -137,7 +137,7 @@ export class AddMainComponent implements OnInit {
   }
   // 检测是否已关门
   isClosed(vmCode) {
-    this.appService.getDataOpen(this.appProperties.isClosedUrl, {vmCode: vmCode}).subscribe(
+    this.appService.getDataOpen(this.appProperties.isClosedUrl, {vmCode: vmCode}, this.token).subscribe(
       data2 => {
         if (data2.data === false) {
           this.isVisibleOpen = true;

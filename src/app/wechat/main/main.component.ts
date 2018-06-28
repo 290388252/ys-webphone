@@ -170,7 +170,7 @@ export class MainComponent implements OnInit {
   }
   // 是否已关门
   isClosed(vmCode) {
-    this.appService.getDataOpen(this.appProperties.isClosedUrl, {vmCode: vmCode}).subscribe(
+    this.appService.getDataOpen(this.appProperties.isClosedUrl, {vmCode: vmCode}, this.token).subscribe(
       data2 => {
         console.log(data2);
         if (data2.data === false) {
