@@ -56,7 +56,7 @@ export class VmLoginComponent implements OnInit {
           } else if (data.code === 0) {
             console.log(data);
             const exp = new Date();
-            exp.setTime(exp.getTime() + 1000 * 60 * 60 * 24 * 3);
+            exp.setTime(exp.getTime() + 1000 * 60 * 60 * 24 * 365);
             document.cookie = 'adminToken=' + data.data + ';expired=' + exp.toUTCString();
             if (data.msg !== 'success') {
               alert(data.msg);
