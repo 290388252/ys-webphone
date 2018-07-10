@@ -24,6 +24,7 @@ export class AddMainComponent implements OnInit {
   public times = 1;
   public num: number;
   public wayNo: number;
+  public temperature: number;
   // public img = 'http://lenvar-resource-products.oss-cn-shenzhen.aliyuncs.com/';
   // public img = 'http://119.23.233.123:6662/ys_admin/files/';
   public img = this.appProperties.imgUrl;
@@ -79,19 +80,20 @@ export class AddMainComponent implements OnInit {
       data => {
         console.log(data);
         if (data.code === 0) {
-          if (data.data.length <= 4) {
+          if (data.data.wayItem.length <= 4) {
             this.isFourDoor = true;
             this.isFiveDoor = false;
-            this.indexList = data.data;
+            this.indexList = data.data.wayItem;
             for (let i = 0; i < 2; i++) {
               this.indexList.unshift(this.indexList.pop());
             }
-          } else if (data.data.length === 5) {
+          } else if (data.data.wayItem.length === 5) {
             this.isFourDoor = false;
             this.isFiveDoor = true;
-            this.indexList = data.data;
+            this.indexList = data.data.wayItem;
           }
           console.log(this.indexList);
+          this.temperature = data.data.temperature;
         }
       },
       error => {
@@ -202,6 +204,29 @@ export class AddMainComponent implements OnInit {
             }
           }, 1000);
         } else {
+          alert(data.msg);
+        }
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+  openAll() {
+    let way;
+    if (this.isFourDoor) {
+        way = '1,2,3,4';
+    } else {
+        way = '1,2,3,4,5';
+    }
+    this.appService.postAliData(this.appProperties.operateOpendoorUrl,
+      {
+        vmCode: urlParse(window.location.search)['vmCode'],
+        way: way
+      }, this.token).subscribe(
+      data => {
+        console.log(data);
+        if (data.code !== 0) {
           alert(data.msg);
         }
       },

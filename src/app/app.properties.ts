@@ -11,6 +11,7 @@ export class AppProperties {
     public adminLoginUrl: string;
     public adminOauth2Url: string;
     public addOpendoorUrl: string;
+    public operateOpendoorUrl: string;
     public orderResetWaysNumUrl: string;
     public aliMachineQueryVMListUrl: string;
     public aliMachineQueryDetailUrl: string;
@@ -53,6 +54,7 @@ export class AppProperties {
       this.isClosedUrl = this.appUrl + '/wechat/isClosed';
       this.adminLoginUrl = this.appUrl + '/admin/login';
       this.addOpendoorUrl = this.appUrl + '/index/yunWeiOpenDoor';
+      this.operateOpendoorUrl = this.appUrl + '/index/operateOpenDoor';
       this.orderResetWaysNumUrl = this.appUrl + '/order/resetWaysNum/';
       this.aliMachineQueryVMListUrl = this.appUrl + '/aliMachine/queryVMList';
       this.aliMachineQueryDetailUrl = this.appUrl + '/aliMachine/queryDetail';
