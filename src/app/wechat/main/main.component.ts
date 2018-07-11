@@ -64,7 +64,7 @@ export class MainComponent implements OnInit {
           } else if (data.code === -89) {
             alert('他人在买水，请稍后扫码,文明购买，请勿争抢');
           } else if (data.code === -90) {
-            this.appService.getDataOpen(this.appProperties.nonePassWordPayUrl).subscribe(
+            this.appService.getDataOpen(this.appProperties.nonePassWordPayUrl, {vmCode: urlParse(window.location.href)['vmCode']}).subscribe(
               data1 => {
                 window.location.href =  data1;
                 sessionStorage.setItem('open', '1');
@@ -100,7 +100,7 @@ export class MainComponent implements OnInit {
           } else if (data.code === -89) {
             alert('他人在买水，请稍后扫码,文明购买，请勿争抢');
           } else if (data.code === -90) {
-            this.appService.getDataOpen(this.appProperties.nonePassWordPayUrl).subscribe(
+            this.appService.getDataOpen(this.appProperties.nonePassWordPayUrl, {vmCode: urlParse(window.location.href)['vmCode']}).subscribe(
               data1 => {
                 window.location.href =  data1;
               },
@@ -198,7 +198,7 @@ export class MainComponent implements OnInit {
     //     console.log('Click ok');
     //   }
     // });
-    this.appService.getData(this.appProperties.wechatOauth2Url, '').subscribe(
+    this.appService.getData(this.appProperties.wechatOauth2Url, {vmCode: urlParse(window.location.href)['vmCode']}).subscribe(
       data => {
         console.log(data);
         let newData;
@@ -261,7 +261,7 @@ export class MainComponent implements OnInit {
               } else if (data.code === -89) {
                 alert('他人在买水，请稍后扫码,文明购买，请勿争抢');
               } else if (data.code === -90) {
-                this.appService.getDataOpen(this.appProperties.nonePassWordPayUrl).subscribe(
+                this.appService.getDataOpen(this.appProperties.nonePassWordPayUrl, {vmCode: urlParse(window.location.href)['vmCode']}).subscribe(
                   data1 => {
                     window.location.href =  data1;
                     sessionStorage.setItem('open', '1');

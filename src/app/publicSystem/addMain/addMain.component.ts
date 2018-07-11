@@ -51,9 +51,10 @@ export class AddMainComponent implements OnInit {
             console.log(data);
             let newData;
             const newWlhUrl = '/vmLogin?vmCode=' + urlParse(window.location.search)['vmCode'] + '&payType=1';
+            const state = urlParse(data.data)['state'];
             if (typeof(data.data) === 'string' && data.data.length > 0) {
               newData = data.data.replace(data.data.substring(data.data.indexOf('state=') + 6, data.data.length),
-                newWlhUrl);
+                newWlhUrl + '-' + state);
               console.log(newData);
               window.location.href = newData;
             }
