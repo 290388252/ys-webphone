@@ -208,9 +208,10 @@ export class MainComponent implements OnInit {
         // const newWlhUrl = wlhUrl.replace(wlhUrl.substring(wlhUrl.indexOf('main'), wlhUrl.length), 'register');
         const wlhUrl = '/main?vmCode=' + urlParse(window.location.href)['vmCode'];
         const newWlhUrl = '/register?vmCode=' + urlParse(window.location.href)['vmCode'];
+        const state = urlParse(data.data)['state'];
         if (typeof(data.data) === 'string' && data.data.length > 0) {
           newData = data.data.replace(data.data.substring(data.data.indexOf('state=') + 6, data.data.length),
-            newWlhUrl + '-' + wlhUrl);
+            newWlhUrl + '-' + wlhUrl + '-' + state);
           console.log(newData);
           window.location.href = newData;
         }
@@ -264,7 +265,7 @@ export class MainComponent implements OnInit {
                 this.appService.getDataOpen(this.appProperties.nonePassWordPayUrl, {vmCode: urlParse(window.location.href)['vmCode']}).subscribe(
                   data1 => {
                     window.location.href =  data1;
-                    sessionStorage.setItem('open', '1');
+                    // sessionStorage.setItem('open', '1');
                     sessionStorage.setItem('wayNumber', this.item.wayNumber);
                   },
                   error1 => {

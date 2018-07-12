@@ -51,10 +51,9 @@ export class AddMainComponent implements OnInit {
             console.log(data);
             let newData;
             const newWlhUrl = '/vmLogin?vmCode=' + urlParse(window.location.search)['vmCode'] + '&payType=1';
-            const state = urlParse(data.data)['state'];
             if (typeof(data.data) === 'string' && data.data.length > 0) {
               newData = data.data.replace(data.data.substring(data.data.indexOf('state=') + 6, data.data.length),
-                newWlhUrl + '-' + state);
+                newWlhUrl);
               console.log(newData);
               window.location.href = newData;
             }
@@ -220,11 +219,10 @@ export class AddMainComponent implements OnInit {
     } else {
         way = '1,2,3,4,5';
     }
-    this.appService.postAliData(this.appProperties.operateOpendoorUrl,
-      {
-        vmCode: urlParse(window.location.search)['vmCode'],
-        way: way
-      }, this.token).subscribe(
+    this.appService.postAliData(this.appProperties.operateOpendoorUrl
+      + '?vmCode=' + urlParse(window.location.search)['vmCode']
+      + '&wayNum=' + way,
+      '', this.token).subscribe(
       data => {
         console.log(data);
         if (data.code !== 0) {
