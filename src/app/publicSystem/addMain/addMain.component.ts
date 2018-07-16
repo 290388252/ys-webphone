@@ -226,7 +226,9 @@ export class AddMainComponent implements OnInit {
       data => {
         console.log(data);
         if (data.code !== 0) {
-          alert(data.msg);
+          alert(data.message);
+        } else {
+          this.isVisibleOpen = true;
         }
       },
       error => {

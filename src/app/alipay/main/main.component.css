@@ -30,7 +30,7 @@
 .box{
   float: left;
   width: 160px;
-  height: 165px;
+  height: 160px;
   margin-right: 10px;
   /*-webkit-box-shadow:2px 2px 2px 2px gray;*/
   /*-moz-box-shadow:2px 2px 2px 2px gray;*/
@@ -38,8 +38,7 @@
   /*background-color: rgba(0,0,0,0.1);*/
   background: url("../../../assets/main/kuan.png");
   border: 0;
-  background-size: 100% 100%;
-  overflow: hidden;
+  background-size: 108% 103%;
 }
 .box:after{
   -webkit-filter: blur(2px);
@@ -61,8 +60,7 @@
   /*background-color: rgba(0,0,0,0.1);*/
   background: url("../../../assets/main/kuan.png");
   border: 0;
-  background-size: 100% 100%;
-  overflow: hidden;
+  background-size: 108% 103%;
 }
 .boxs{
   /*float: left;*/
@@ -77,8 +75,7 @@
   /*background-color: rgba(0,0,0,0.1);*/
   background: url("../../../assets/main/kuan.png");
   border: 0;
-  background-size: 100% 100%;
-  overflow: hidden;
+  background-size: 108% 103%;
 }
 .boxs:after{
   -webkit-filter: blur(2px);
@@ -88,6 +85,7 @@
   filter: blur(2px);
 }
 .box-body{
+  padding-left: 20px;
   text-align: center;
 }
 .box:active{
@@ -97,8 +95,8 @@
   width: 100%;
   height: 100%;
   position: absolute;
-  background: url("../../../assets/main/football.jpg");
-  background-size: 100% 100%;
+  background: url("../../../assets/main/bgb.jpg");
+  background-size: 108% 103%;
 }
 .foot{
   text-align: center;
@@ -118,7 +116,7 @@
     padding: 5px;
   }
   .box-body{
-    padding: 5px;
+    padding-left: 10px;
     text-align: center;
   }
   .context{
@@ -142,8 +140,7 @@
     /*background-color: rgba(0,0,0,0.1);*/
     background: url("../../../assets/main/kuan.png");
     border: 0;
-    background-size: 100% 100%;
-    overflow: hidden;
+    background-size: 108% 103%;
   }
   .boxss{
     /*float: left;*/
@@ -158,8 +155,7 @@
     /*background-color: rgba(0,0,0,0.1);*/
     background: url("../../../assets/main/kuan.png");
     border: 0;
-    background-size: 100% 100%;
-    overflow: hidden;
+    background-size: 108% 103%;
   }
   .boxs{
     /*float: left;*/
@@ -174,8 +170,7 @@
     /*background-color: rgba(0,0,0,0.1);*/
     background: url("../../../assets/main/kuan.png");
     border: 0;
-    background-size: 100% 100%;
-    overflow: hidden;
+    background-size: 108% 103%;
   }
 }
 @media screen and (min-height: 571px) and (max-height: 640px){
@@ -183,7 +178,7 @@
     padding: 10px;
   }
   .box-body{
-    padding: 10px;
+    padding-left: 20px;
     text-align: center;
   }
   .context{
@@ -199,7 +194,7 @@
   .box{
     float: left;
     width: 150px;
-    height: 155px;
+    height: 150px;
     margin-right: 10px;
     /*-webkit-box-shadow:2px 2px 2px 2px gray;*/
     /*-moz-box-shadow:2px 2px 2px 2px gray;*/
@@ -207,8 +202,7 @@
     /*background-color: rgba(0,0,0,0.1);*/
     background: url("../../../assets/main/kuan.png");
     border: 0;
-    background-size: 100% 100%;
-    overflow: hidden;
+    background-size: 108% 103%;
   }
   .boxss{
     /*float: left;*/
@@ -223,8 +217,7 @@
     /*background-color: rgba(0,0,0,0.1);*/
     background: url("../../../assets/main/kuan.png");
     border: 0;
-    background-size: 100% 100%;
-    overflow: hidden;
+    background-size: 108% 103%;
   }
   .boxs{
     /*float: left;*/
@@ -238,8 +231,7 @@
     /*background-color: rgba(0,0,0,0.1);*/
     background: url("../../../assets/main/kuan.png");
     border: 0;
-    background-size: 100% 100%;
-    overflow: hidden;
+    background-size: 108% 103%;
   }
 }
 .addMain-img{

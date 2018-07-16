@@ -179,7 +179,7 @@ export class MainComponent implements OnInit {
         } else if (data2.data === true) {
           this.isVisibleOpen = false;
           // this.router.navigate(['detail']);
-          alert('广州优水到家工程感谢你的惠顾。');
+          alert('广州优水到家工程感谢你的惠顾,系统将从零钱或者银行卡中自动扣取本次购买费用。');
         }
       },
       error2 => {
