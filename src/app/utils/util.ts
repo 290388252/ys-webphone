@@ -39,5 +39,5 @@ export let getVmCode = () => {
   return vmCode;
 };
 export let checkPhone = (phone) => {
-  return /^1[34578]\d{9}$/.test(phone);
+  return /^1[345678]\d{9}$/.test(phone);
 };
