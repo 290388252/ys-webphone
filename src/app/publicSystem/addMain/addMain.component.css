@@ -13,7 +13,7 @@
 .col-img{
   width: 55px;
   margin-top:35px;
-  margin-bottom:21px;
+  margin-bottom:35px;
   height: 55px;
 }
 .title {
@@ -267,6 +267,9 @@
   }
 }
 @media screen and (max-width: 291px){
+  .big-col{
+    display: none;
+  }
   .col-img{
     margin-top: 25px;
     margin-bottom:21px;

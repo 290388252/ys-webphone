@@ -261,19 +261,19 @@
     text-align: center;
   }
   .context{
-    width: 300px;
+    width: 280px;
     margin: 0 auto;
     /*margin-left: 20px;*/
   }
   .rounded-circle{
     margin: 15px 0 10px 0;
     width: 20%;
-    height: 70px;
+    height: 50px;
   }
   .box{
     float: left;
-    width: 140px;
-    height: 140px;
+    width: 130px;
+    height: 130px;
     margin-right: 10px;
     /*-webkit-box-shadow:2px 2px 2px 2px gray;*/
     /*-moz-box-shadow:2px 2px 2px 2px gray;*/

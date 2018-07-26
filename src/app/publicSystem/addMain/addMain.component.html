@@ -69,10 +69,13 @@
           <div class="box-body">
             <img class="col-img" src="{{img}}{{item['pic']}}" alt="">
             <br/>
-            <p class="text-customs">{{item['itemName']}}/{{item['price']}}元</p>
-            <p class="text-customs">当前{{item['num']}}桶</p>
-            <p class="text-customs">重量{{item['weight']}}</p>
-            <p class="text-customs">最大容量{{item['fullNum']}}桶</p>
+            <!--<div class="big-col">-->
+              <p class="text-customs">{{item['itemName']}}/{{item['price']}}元</p>
+              <p class="text-customs">容量{{item['num']}}/{{item['fullNum']}}桶</p>
+              <p class="text-customs">重量{{item['weight']}}</p>
+              <!--<p class="text-customs">最大容量{{item['fullNum']}}桶</p>-->
+            <!--</div>-->
+            <!--<p (click)="detail()" >xq</p>-->
             <!--<p class="text-customs">{{item['price']}}元</p>-->
           </div>
         </div>
