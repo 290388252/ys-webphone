@@ -67,7 +67,7 @@
     <div class="context" *ngIf="isFourDoor">
         <div (click)="openDoor(item)" *ngFor="let item of indexList" class="box card text-white mb-3">
           <div class="box-body">
-            <img style="width: 55px;margin-top:35px;margin-bottom:21px;height: 55px" src="{{img}}{{item['pic']}}" alt="">
+            <img class="col-img" src="{{img}}{{item['pic']}}" alt="">
             <br/>
             <p class="text-customs">{{item['itemName']}}/{{item['price']}}元</p>
             <p class="text-customs">当前{{item['num']}}桶</p>

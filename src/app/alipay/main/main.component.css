@@ -10,6 +10,13 @@
 .rounded-circle {
    border-radius: 0!important;
 }
+.col-img{
+  margin-top: 35px;
+  margin-left:8px;
+  margin-bottom:21px;
+  width: 75px;
+  height: 75px;
+}
 .context{
   width: 350px;
   margin: 0 auto;
@@ -232,6 +239,75 @@
     background: url("../../../assets/main/kuan.png");
     border: 0;
     background-size: 108% 103%;
+  }
+}
+@media screen and (max-width: 291px){
+  .col-img{
+    margin-top: 25px;
+    margin-bottom:21px;
+    margin-right: 10px;
+    width: 75px;
+    height: 75px
+  }
+  .min-padding {
+    padding: 10px;
+  }
+  .box-body{
+    padding-left: 20px;
+    text-align: center;
+  }
+  .context{
+    width: 300px;
+    margin: 0 auto;
+    /*margin-left: 20px;*/
+  }
+  .rounded-circle{
+    margin: 15px 0 10px 0;
+    width: 20%;
+    height: 70px;
+  }
+  .box{
+    float: left;
+    width: 140px;
+    height: 140px;
+    margin-right: 10px;
+    /*-webkit-box-shadow:2px 2px 2px 2px gray;*/
+    /*-moz-box-shadow:2px 2px 2px 2px gray;*/
+    /*box-shadow:2px 2px 2px 2px gray;*/
+    /*background-color: rgba(0,0,0,0.1);*/
+    background: url("../../../assets/main/kuan.png");
+    border: 0;
+    background-size: 100% 90%;
+  }
+  .boxss{
+    /*float: left;*/
+    width: 220px;
+    height: 60px;
+    margin: 0 auto;
+    /*height: 112px;*/
+    /*margin-right: 10px;*/
+    /*-webkit-box-shadow:2px 2px 2px 2px gray;*/
+    /*-moz-box-shadow:2px 2px 2px 2px gray;*/
+    /*box-shadow:2px 2px 2px 2px gray;*/
+    /*background-color: rgba(0,0,0,0.1);*/
+    background: url("../../../assets/main/kuan.png");
+    border: 0;
+    background-size: 100% 90%;
+  }
+  .boxs{
+    /*float: left;*/
+    width: 220px;
+    height: 60px;
+    margin: 0 auto;
+    /*height: 112px;*/
+    /*margin-left: 50px;*/
+    /*-webkit-box-shadow:2px 2px 2px 2px gray;*/
+    /*-moz-box-shadow:2px 2px 2px 2px gray;*/
+    /*box-shadow:2px 2px 2px 2px gray;*/
+    /*background-color: rgba(0,0,0,0.1);*/
+    background: url("../../../assets/main/kuan.png");
+    border: 0;
+    background-size: 100% 90%;
   }
 }
 .addMain-img{
