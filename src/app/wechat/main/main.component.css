@@ -247,11 +247,11 @@
 }
 @media screen and (max-width: 291px){
   .col-img{
-    margin-top: 25px;
-    margin-bottom:21px;
-    margin-right: 10px;
+    margin-top: 17px;
+    margin-bottom: 5px;
+    margin-right: 17px;
     width: 75px;
-    height: 75px
+    height: 75px;
   }
   .min-padding {
     padding: 10px;
@@ -261,19 +261,19 @@
     text-align: center;
   }
   .context{
-    width: 280px;
+    width: 270px;
     margin: 0 auto;
     /*margin-left: 20px;*/
   }
   .rounded-circle{
-    margin: 15px 0 10px 0;
-    width: 20%;
-    height: 50px;
+    margin: 1px 0 10px 0;
+    width: 15%;
+    height: 40px;
   }
   .box{
     float: left;
-    width: 130px;
-    height: 130px;
+    width: 120px;
+    height: 120px;
     margin-right: 10px;
     /*-webkit-box-shadow:2px 2px 2px 2px gray;*/
     /*-moz-box-shadow:2px 2px 2px 2px gray;*/

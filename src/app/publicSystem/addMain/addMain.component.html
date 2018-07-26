@@ -84,17 +84,17 @@
       <!--<img class="foot-img" src="../../../assets/main/logo1.png" alt="">-->
     <!--</div>-->
     <div class="my-product">
-      <button (click)="resetNum()" type="button" class="btn btn-primary" style="background: #117cbb">校准所有数量</button>
+      <button (click)="resetNum()" type="button" class="btn btn-primary small" style="background: #117cbb">校准所有数量</button>
     </div>
     <div class="my-reset">
-      <button (click)="resetWeight()" type="button" class="btn btn-primary" style="background: #117cbb">校准</button>
+      <button (click)="resetWeight()" type="button" class="btn btn-primary small" style="background: #117cbb">校准</button>
       <p style="color: white;font-size: 17px">{{temperature}}</p>
     </div>
     <div class="my-restart">
-      <button (click)="reStart()" type="button" class="btn btn-primary" style="background: #117cbb">重启</button>
+      <button (click)="reStart()" type="button" class="btn btn-primary small" style="background: #117cbb">重启</button>
     </div>
     <div class="my-open">
-      <button (click)="openAll()" type="button" class="btn btn-primary" style="background: #117cbb">一键开门</button>
+      <button (click)="openAll()" type="button" class="btn btn-primary small" style="background: #117cbb">一键开门</button>
     </div>
   </div>
   <nz-modal [nzVisible]="isVisibleOpenDoor" [nzContent]="modalContents" [nzFooter]="modalFooters" [nzClosable]="false">
