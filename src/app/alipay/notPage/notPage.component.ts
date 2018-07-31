@@ -2,6 +2,7 @@ import { Component , OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {AppService} from '../../app-service';
 import {AppProperties} from '../../app.properties';
+declare var WeixinJSBridge: any;
 
 @Component({
   selector: 'app-NotPage',
@@ -30,6 +31,6 @@ export class NotPageComponent implements OnInit {
     return obj;
   }
   close() {
-    window['AlipayJSBridge'].call('closeWebview');
+    WeixinJSBridge.call('closeWindow');
   }
 }
