@@ -45,11 +45,9 @@ export class MainComponent implements OnInit {
   }
   IsWeixinOrAlipay() {
     const ua = window.navigator.userAgent.toLowerCase();
-    if (ua.match(/MicroMessenger/i)) {
       if (ua.match(/MicroMessenger/i)[0] === 'micromessenger') {
         this.router.navigate(['notPage']);
       }
-    }
   }
   // 初始化数据
   getInitData() {
