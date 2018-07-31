@@ -25,6 +25,7 @@ export class MainComponent implements OnInit {
               private appProperties: AppProperties,
               private appService: AppService) {}
   ngOnInit() {
+    this.IsWeixinOrAlipay();
     // this.activatedRoute.queryParams.subscribe(queryParams => {
     //   this.token = queryParams.token;
     // });
@@ -41,6 +42,14 @@ export class MainComponent implements OnInit {
     }
     console.log(urlParse(window.location.search)['vmCode']);
     sessionStorage.setItem('vmCode', urlParse(window.location.search)['vmCode']);
+  }
+  IsWeixinOrAlipay() {
+    const ua = window.navigator.userAgent.toLowerCase();
+    if (ua.match(/MicroMessenger/i)) {
+      if (ua.match(/MicroMessenger/i)[0] === 'micromessenger') {
+        this.router.navigate(['notPage']);
+      }
+    }
   }
   // 初始化数据
   getInitData() {
