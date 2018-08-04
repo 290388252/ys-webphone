@@ -1,0 +1,26 @@
+.wrapper {
+  padding: 20px 40px;
+}
+
+.fork-github {
+  position: fixed;
+  right: -100px;
+  top: 45px;
+  z-index: 9999;
+  padding: 2px 100px;
+  font-size: 12px;
+  background-color: #444;
+  border: 1px solid #000;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+  text-align: center;
+}
+
+.fork-github a {
+  color: #fff;
+}
+
+.gb-turntable a.gb-turntable-btn {
+  border: none;
+}

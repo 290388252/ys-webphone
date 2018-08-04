@@ -3,6 +3,7 @@ import {Router} from '@angular/router';
 import {AppService} from '../../app-service';
 import {AppProperties} from '../../app.properties';
 declare var WeixinJSBridge: any;
+declare var gbTurntable: any;
 
 @Component({
   selector: 'app-NotPage',
