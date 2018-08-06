@@ -3,7 +3,9 @@
   </div>
   <div class="bgimg">
     <div class="logo">
-      <img src="../../../assets/main/logos.png" alt="..." class="rounded-circle">
+      <img *ngIf="isFiveDoor" src="../../../assets/main/lianye.png" alt="..." class="lianye-logo">
+      <p *ngIf="isFiveDoor" style="font-weight: 600">联业智能</p>
+      <img *ngIf="!isFiveDoor" src="../../../assets/main/logos.png" alt="..." class="rounded-circle">
       <br>
       <span class="title">补货人员补水系统</span>
     </div>

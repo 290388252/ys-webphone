@@ -9,9 +9,15 @@
   width: 75px;
   height: 75px;
 }
+.lianye-logo{
+  margin: 40px 0 1px 0;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+}
 .rounded-circle{
   margin: 30px 0 40px 0;
-  width: 30%;
+  width: 25%;
   height: 80px;
 }
 .rounded-circle {
@@ -198,7 +204,7 @@
   }
   .rounded-circle{
     margin: 30px 0 20px 0;
-    width: 30%;
+    width: 25%;
     height: 80px;
   }
   .box{
@@ -269,6 +275,12 @@
     margin: 1px 0 10px 0;
     width: 15%;
     height: 40px;
+  }
+  .lianye-logo{
+    margin: 20px 0 1px 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
   }
   .box{
     float: left;

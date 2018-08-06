@@ -10,6 +10,12 @@
 .rounded-circle {
    border-radius: 0!important;
 }
+.lianye-logo{
+  margin: 40px 0 1px 0;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+}
 .col-img{
   width: 55px;
   margin-top:35px;
@@ -301,6 +307,12 @@
     margin: 15px 0 10px 0;
     width: 20%;
     height: 0;
+  }
+  .lianye-logo{
+    margin: 20px 0 1px 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
   }
   .box{
     float: left;
