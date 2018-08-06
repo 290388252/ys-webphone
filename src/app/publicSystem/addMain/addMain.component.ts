@@ -203,6 +203,8 @@ export class AddMainComponent implements OnInit {
               clearInterval(timer);
             }
           }, 1000);
+        } else if (data.code === -1) {
+          this.router.navigate(['vmLogin']);
         } else {
           alert(data.msg);
         }
@@ -225,10 +227,12 @@ export class AddMainComponent implements OnInit {
       '', this.token).subscribe(
       data => {
         console.log(data);
-        if (data.code !== 0) {
-          alert(data.message);
-        } else {
+        if (data.code === -1) {
+          this.router.navigate(['vmLogin']);
+        } else if (data.code === 0) {
           this.isVisibleOpen = true;
+        } else {
+          alert(data.msg);
         }
       },
       error => {
@@ -256,6 +260,8 @@ export class AddMainComponent implements OnInit {
           alert(data.msg);
           this.times = 2;
           this.isVisibleOpenDoor = true;
+        } else if (data.code === -1) {
+          this.router.navigate(['vmLogin']);
         }
       },
       error => {
