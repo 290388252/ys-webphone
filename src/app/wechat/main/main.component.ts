@@ -37,7 +37,7 @@ export class MainComponent implements OnInit {
     this.getInitData();
     this.getCookies();
     console.log(this.token);
-    if (urlParse(window.location.search)['registerCoupon'] === '1' || urlParse(window.location.search)['registerCoupon'] === 1) {
+    if (this.getCoupon() === '0') {
       this.isVisibleCoupon = true;
     }
     if (urlParse(window.location.search)['token']) {
@@ -157,6 +157,7 @@ export class MainComponent implements OnInit {
   }
   closeCoupon() {
     this.isVisibleCoupon = false;
+    document.cookie = 'coupon=' + 1;
   }
   // 运维登陆
   vmLogin() {
@@ -342,4 +343,16 @@ export class MainComponent implements OnInit {
       }
     }
   }
+  getCoupon () {
+    let coupon;
+      const strCookie = document.cookie;
+      const arrCookie = strCookie.split(';');
+      for (let i = 0; i < arrCookie.length; i++) {
+        const arr = arrCookie[i].split('=');
+        if (arr[0].trim() === 'coupon') {
+          coupon = arr[1];
+        }
+      }
+      return coupon;
+    }
 }

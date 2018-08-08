@@ -65,11 +65,13 @@ export class RegisterComponent implements OnInit {
               // exp.setTime(exp.getTime() + 1000 * 60 * 60);
               exp.setTime(exp.getTime() + 1000 * 60 * 60 * 24 * 365 * 10);
               document.cookie = 'token=' + data.data.token + ';expires=' + exp.toUTCString();
+              if (data.data.registerCoupon === 1 || data.data.registerCoupon === '1') {
+                document.cookie = 'coupon=' + 0;
+              }
                 this.router.navigate(['main'], {
                   queryParams: {
                     vmCode: getVmCode(),
-                    newUser: 1,
-                    registerCoupon: data.data.registerCoupon
+                    newUser: 1
                   }});
               // this.router.navigate(['main'], {queryParams: {'token': data.data.token}});
             }
