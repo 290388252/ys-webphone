@@ -97,4 +97,11 @@
       <button nz-button nzType="primary" (click)="openOk()">关闭</button>
     </ng-template>
   </nz-modal>
+
+  <nz-modal [nzVisible]="isVisibleCoupon" [nzContent]="modalContents" [nzFooter]="false" [nzClosable]="false">
+    <ng-template #modalContents>
+      <img src="../../../assets/main/coupon.png" alt="" style="width: 100%;position: absolute;right: 0;top: 0;">
+      <img (click)="closeCoupon()" src="../../../assets/main/cancel.png" alt="" style="width: 10%; position: absolute;right: 10px;top: 10px;">
+    </ng-template>
+  </nz-modal>
 </div>

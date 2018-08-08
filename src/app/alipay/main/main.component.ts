@@ -95,6 +95,8 @@ export class MainComponent implements OnInit {
   openOk() {
     this.isClosed(urlParse(window.location.search)['vmCode']);
   }
+  closeCoupon() {
+  }
   // 是否开门（是）
   yesOpenDoor() {
     this.isVisibleOpenDoor = false;

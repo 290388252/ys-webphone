@@ -18,6 +18,7 @@ export class MainComponent implements OnInit {
   private wayNumber: number;
   public isVisibleOpen = false;
   public isVisibleOpenDoor = false;
+  public isVisibleCoupon = false;
   public clickMore = false;
   // public img = 'http://lenvar-resource-products.oss-cn-shenzhen.aliyuncs.com/';
   // public img = 'http://119.23.233.123:6662/ys_admin/files/';
@@ -36,6 +37,9 @@ export class MainComponent implements OnInit {
     this.getInitData();
     this.getCookies();
     console.log(this.token);
+    if (urlParse(window.location.search)['registerCoupon'] === '1' || urlParse(window.location.search)['registerCoupon'] === 1) {
+      this.isVisibleCoupon = true;
+    }
     if (urlParse(window.location.search)['token']) {
       this.token = urlParse(window.location.search)['token'];
       const exp = new Date();
@@ -150,6 +154,9 @@ export class MainComponent implements OnInit {
     } else {
       this.isVisibleOpenDoor = true;
     }
+  }
+  closeCoupon() {
+    this.isVisibleCoupon = false;
   }
   // 运维登陆
   vmLogin() {
