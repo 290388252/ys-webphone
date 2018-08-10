@@ -107,18 +107,21 @@ export class MainComponent implements OnInit {
         this.appService.postAliData(this.appProperties.aliOpenDoorUrl,
           {vmCode: urlParse(window.location.search)['vmCode'], openType: 1, doorNO: this.item.doorNO}, this.token).subscribe(
           data => {
+            console.log(data);
             this.clickMore = false;
             if (data.status === 1) {
               this.isVisibleOpen = true;
-              console.log(data);
             } else if (data.status === -1) {
               window.location.href = this.appProperties.aliGetUserIdUrl + urlParse(window.location.search)['vmCode'];
             } else {
-              console.log(data);
-              alert(data.message);
-              if (data.willGo) {
-                window.location.href = data.returnObject;
-              }
+             if (data.code === -1) {
+                window.location.href = this.appProperties.aliGetUserIdUrl + urlParse(window.location.search)['vmCode'];
+              } else {
+                 alert(data.message);
+                 if (data.willGo) {
+                   window.location.href = data.returnObject;
+                 }
+             }
             }
           },
           error => {
