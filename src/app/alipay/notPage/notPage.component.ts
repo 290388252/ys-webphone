@@ -1,10 +1,12 @@
-import { Component , OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {AppService} from '../../app-service';
 import {AppProperties} from '../../app.properties';
-declare var WeixinJSBridge: any;
-declare var gbTurntable: any;
 
+declare const WeixinJSBridge: any;
+declare const gbTurntable: any;
+
+import * as $ from 'jquery';
 @Component({
   selector: 'app-NotPage',
   templateUrl: './notPage.component.html',
@@ -13,9 +15,10 @@ declare var gbTurntable: any;
 export class NotPageComponent implements OnInit {
   constructor(private router: Router,
               private appProperties: AppProperties,
-              private appService: AppService) {}
-  ngOnInit() {
+              private appService: AppService) {
   }
+  ngOnInit() {}
+
   // 判断是微信登陆还是支付宝登陆
   urlParse(url): object {
     const obj = {};
@@ -31,6 +34,7 @@ export class NotPageComponent implements OnInit {
     }
     return obj;
   }
+
   close() {
     WeixinJSBridge.call('closeWindow');
   }
