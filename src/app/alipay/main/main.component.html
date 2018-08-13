@@ -16,7 +16,7 @@
           <br/>
           <span class="text-custom">{{indexList[0]['itemName']}}</span>
           <br/>
-          <span class="text-custom">{{indexList[0]['price']}}元</span>
+          <span class="text-custom" style="color: red;">{{indexList[0]['price']}}元</span>
         </div>
       </div>
       <div (click)="openDoor(indexList[1])" class="boxss card text-white addMain-bottom">
@@ -25,7 +25,7 @@
           <br/>
           <span class="text-custom">{{indexList[1]['itemName']}}</span>
           <br/>
-          <span class="text-custom">{{indexList[1]['price']}}元</span>
+          <span class="text-custom" style="color: red;">{{indexList[1]['price']}}元</span>
         </div>
       </div>
       <div (click)="openDoor(indexList[2])" class="boxs card text-white addMain-bottom">
@@ -34,7 +34,7 @@
           <br/>
           <span class="text-custom">{{indexList[2]['itemName']}}</span>
           <br/>
-          <span class="text-custom">{{indexList[2]['price']}}元</span>
+          <span class="text-custom" style="color: red;">{{indexList[2]['price']}}元</span>
         </div>
       </div>
       <div (click)="openDoor(indexList[3])" class="boxss card text-white addMain-bottom">
@@ -43,7 +43,7 @@
           <br/>
           <span class="text-custom">{{indexList[3]['itemName']}}</span>
           <br/>
-          <span class="text-custom">{{indexList[3]['price']}}元</span>
+          <span class="text-custom" style="color: red;">{{indexList[3]['price']}}元</span>
         </div>
       </div>
       <div (click)="openDoor(indexList[4])" class="boxss card text-white addMain-bottom">
@@ -52,7 +52,7 @@
           <br/>
           <span class="text-custom">{{indexList[4]['itemName']}}</span>
           <br/>
-          <span class="text-custom">{{indexList[4]['price']}}元</span>
+          <span class="text-custom" style="color: red;">{{indexList[4]['price']}}元</span>
         </div>
       </div>
     </div>
@@ -62,11 +62,11 @@
             <img class="col-img" src="{{img}}{{item['imageUrl']}}" alt="">
             <br/>
             <!--<br/>-->
-            <span class="card-title" style="color: white;font-weight: 900;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">{{item['itemName']}}</span>
+            <span class="card-title" style="color: white;font-weight: 900;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;font-family:'宋体';">{{item['itemName']}}</span>
             <!--<br/>-->
             <!--<span class="card-title" style="color: white">{{item['num']}}桶</span>-->
             <br/>
-            <span class="card-title" style="color: white;font-weight: 900">{{item['price']}}元</span>
+            <span class="card-title" style="color: red;font-weight: 900;font-family:'宋体';">{{item['price']}}元</span>
           </div>
         </div>
     </div>

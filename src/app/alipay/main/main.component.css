@@ -39,6 +39,7 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   margin-left: 30px;
+  font-family: "宋体";
 }
 .box{
   float: left;
@@ -51,7 +52,7 @@
   /*background-color: rgba(0,0,0,0.1);*/
   background: url("../../../assets/main/kuan.png");
   border: 0;
-  background-size: 108% 103%;
+  background-size: 108% 93%;
 }
 .box:after{
   -webkit-filter: blur(2px);
@@ -73,7 +74,7 @@
   /*background-color: rgba(0,0,0,0.1);*/
   background: url("../../../assets/main/kuan.png");
   border: 0;
-  background-size: 108% 103%;
+  background-size: 108% 93%;
 }
 .boxs{
   /*float: left;*/
@@ -88,7 +89,7 @@
   /*background-color: rgba(0,0,0,0.1);*/
   background: url("../../../assets/main/kuan.png");
   border: 0;
-  background-size: 108% 103%;
+  background-size: 108% 93%;
 }
 .boxs:after{
   -webkit-filter: blur(2px);
@@ -153,7 +154,7 @@
     /*background-color: rgba(0,0,0,0.1);*/
     background: url("../../../assets/main/kuan.png");
     border: 0;
-    background-size: 108% 103%;
+    background-size: 108% 93%;
   }
   .boxss{
     /*float: left;*/
@@ -168,7 +169,7 @@
     /*background-color: rgba(0,0,0,0.1);*/
     background: url("../../../assets/main/kuan.png");
     border: 0;
-    background-size: 108% 103%;
+    background-size: 108% 93%;
   }
   .boxs{
     /*float: left;*/
@@ -183,7 +184,7 @@
     /*background-color: rgba(0,0,0,0.1);*/
     background: url("../../../assets/main/kuan.png");
     border: 0;
-    background-size: 108% 103%;
+    background-size: 108% 93%;
   }
 }
 @media screen and (min-height: 571px) and (max-height: 640px){
@@ -215,7 +216,7 @@
     /*background-color: rgba(0,0,0,0.1);*/
     background: url("../../../assets/main/kuan.png");
     border: 0;
-    background-size: 108% 103%;
+    background-size: 108% 93%;
   }
   .boxss{
     /*float: left;*/
@@ -230,7 +231,7 @@
     /*background-color: rgba(0,0,0,0.1);*/
     background: url("../../../assets/main/kuan.png");
     border: 0;
-    background-size: 108% 103%;
+    background-size: 108% 93%;
   }
   .boxs{
     /*float: left;*/
@@ -244,7 +245,7 @@
     /*background-color: rgba(0,0,0,0.1);*/
     background: url("../../../assets/main/kuan.png");
     border: 0;
-    background-size: 108% 103%;
+    background-size: 108% 93%;
   }
 }
 @media screen and (max-width: 291px){
