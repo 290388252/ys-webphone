@@ -15,7 +15,9 @@ declare var WeixinJSBridge: any;
 export class DetailComponent implements OnInit , AfterViewChecked {
   public title: string;
   public totalPrice = 0;
+  public id: any;
   public list;
+  public couponEffectiveList;
   public token;
   public openId;
   public detailVisible = false;
@@ -26,6 +28,7 @@ export class DetailComponent implements OnInit , AfterViewChecked {
   }
 
   ngOnInit() {
+    this.id = '1';
     this.getCookies();
     this.openId = urlParse(window.location.search)['openId'];
     console.log(this.openId);
@@ -45,6 +48,19 @@ export class DetailComponent implements OnInit , AfterViewChecked {
         // } else if (data.status !== 1) {
         //   alert(data.message);
         // }
+      },
+      error => {
+        console.log(error);
+      }
+    );
+    this.appService.postAliData(this.appProperties.couponAvailable + '?vmCode=' + urlParse(window.location.search)['vmCode'],
+      '', this.token).subscribe(
+      data => {
+        console.log(data);
+        if (data.status === 1) {
+          this.couponEffectiveList = data.returnObject;
+        } else if (data.status !== 1) {
+        }
       },
       error => {
         console.log(error);
@@ -199,5 +215,8 @@ export class DetailComponent implements OnInit , AfterViewChecked {
         }
       }
     }
+  }
+  toDate(date) {
+    return new Date(date).getFullYear() + '-' + (new Date(date).getMonth() + 1) + '-' + new Date(date).getDate();
   }
 }

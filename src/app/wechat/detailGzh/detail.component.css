@@ -249,3 +249,41 @@ a {
   opacity: 0;
   display: none;
 }
+.card{
+  color: white;
+  width: 90%;
+  height: 107px;
+  margin-left: 5%;
+  margin-bottom: 5px;
+  line-height: 20px;
+  border-radius: 10px;
+  background-color: rgba(29, 130, 200, 1);
+  border: 1px solid rgba(187, 187, 187, 1);
+  display: inline-block;
+}
+.footer{
+  width: 90%;
+  height: 85px;
+  margin-left: 5%;
+  background-color: rgba(238, 238, 238, 0.1);
+  text-align: center;
+  color: grey;
+}
+.line{
+  float: left;
+  width: 95%;
+  margin-left: 2%;
+  margin-top: 5px;
+  height: 1px;
+  border-top: white 1px dashed;
+}
+.layout{
+  position: absolute;
+  top: 90px;
+  width: 100%;
+}
+.use{
+  float: left;
+  margin-left: 40%;
+  font-size: 12px;
+}
