@@ -5,7 +5,8 @@
     <div class="logo">
       <img *ngIf="isFiveDoor" (click)="vmLogin()" src="../../../assets/main/lianye.png" alt="..." class="lianye-logo">
       <p *ngIf="isFiveDoor" style="font-weight: 600">联业智能</p>
-      <img (click)="vmLogin()" *ngIf="!isFiveDoor" src="../../../assets/main/logos.png" alt="..." class="rounded-circle">
+      <img (click)="vmLogin()" *ngIf="!isFiveDoor" src="../../../assets/main/logos.png" alt="..."
+           class="rounded-circle">
       <br/>
       <span style="font-weight: 900;font-size: 13px">点击下面窗口开门买水</span>
     </div>
@@ -14,14 +15,14 @@
         <div style="text-align: center">
           <img class="addMain-img" src="{{img}}{{indexList[0]['pic']}}" alt="">
           <br/>
-          <span class="text-custom" >{{indexList[0]['itemName']}}</span>
+          <span class="text-custom">{{indexList[0]['itemName']}}</span>
           <br/>
           <span class="text-custom" style="color: red;">{{indexList[0]['price']}}元</span>
         </div>
       </div>
       <div (click)="openDoor(indexList[1])" class="boxss card text-white addMain-bottom">
         <div style="text-align: center">
-          <img  class="addMain-img" src="{{img}}{{indexList[1]['pic']}}" alt="">
+          <img class="addMain-img" src="{{img}}{{indexList[1]['pic']}}" alt="">
           <br/>
           <span class="text-custom">{{indexList[1]['itemName']}}</span>
           <br/>
@@ -58,23 +59,27 @@
     </div>
     <div class="context" *ngIf="isFourDoor">
       <div (click)="openDoor(item)" *ngFor="let item of indexList" class="box card text-white mb-3">
-      <div class="box-body">
-      <img class="col-img" src="{{img}}{{item['pic']}}" alt="">
-      <br/>
-      <span class="card-title" style="color: white;font-weight: 900;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;font-family:'宋体';">{{item['itemName']}}</span>
-      <!--<br/>-->
-      <!--<span class="card-title" style="color: white">{{item['num']}}桶</span>-->
-      <br/>
-      <span class="card-title" style="color: red;font-weight: 900;font-family:'宋体';">{{item['price']}}元</span>
-      </div>
+        <div class="box-body">
+          <img class="col-img" src="{{img}}{{item['pic']}}" alt="">
+          <br/>
+          <span class="card-title"
+                style="color: white;font-weight: 900;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;font-family:'宋体';">{{item['itemName']}}</span>
+          <!--<br/>-->
+          <!--<span class="card-title" style="color: white">{{item['num']}}桶</span>-->
+          <br/>
+          <span class="card-title" style="color: red;font-weight: 900;font-family:'宋体';">{{item['price']}}元</span>
+        </div>
       </div>
     </div>
     <!--<div class="foot">-->
-      <!--<img class="foot-img" src="../../../assets/main/logo1.png" alt="">-->
+    <!--<img class="foot-img" src="../../../assets/main/logo1.png" alt="">-->
     <!--</div>-->
     <div class="my-product">
       <button (click)="product()" type="button" class="btn btn-primary" style="background: #117cbb">我的订单</button>
     </div>
+    <!--<div class="my-share">-->
+      <!--<button (click)="share()" type="button" class="btn btn-primary small" style="background: #117cbb">分享</button>-->
+    <!--</div>-->
   </div>
   <nz-modal [nzVisible]="isVisibleOpenDoor" [nzContent]="modalContents" [nzFooter]="modalFooters" [nzClosable]="false">
     <ng-template #modalContents #modalFooters style="text-align: center">
@@ -91,7 +96,7 @@
 
   <nz-modal [nzVisible]="isVisibleOpen" [nzContent]="modalContent" [nzFooter]="modalFooter" [nzClosable]="false">
     <ng-template #modalContent>
-      <p style="font-size: medium;">优水到家提醒您,为了您账号资金安全,提水后请随手关门</p>
+      <p style="font-size: medium;">门已开，优水到家提醒您,为了您账号资金安全,提水后请随手关门，请勿让陌生人拿水！</p>
     </ng-template>
     <ng-template #modalFooter>
       <button nz-button nzType="primary" (click)="openOk()">关闭</button>
@@ -101,7 +106,8 @@
   <nz-modal [nzVisible]="isVisibleCoupon" [nzContent]="modalContentCoupon" [nzFooter]="false" [nzClosable]="false">
     <ng-template #modalContentCoupon>
       <img src="../../../assets/main/coupon.png" alt="" style="width: 100%;position: absolute;right: 0;top: 0;">
-      <img (click)="closeCoupon()" src="../../../assets/main/cancel.png" alt="" style="width: 10%; position: absolute;right: 10px;top: 10px;">
+      <img (click)="closeCoupon()" src="../../../assets/main/cancel.png" alt=""
+           style="width: 10%; position: absolute;right: 10px;top: 10px;">
     </ng-template>
   </nz-modal>
 </div>

@@ -14,7 +14,9 @@ export class DetailComponent implements OnInit, AfterViewChecked {
   public queryParamsTitle: string;
   public title: string;
   public token: string;
+  public id: any;
   public list;
+  public couponEffectiveList;
   public totalPrice = 0; // 总金额
   public detailVisible = false; // 订单详情是否开启
   public detailList;
@@ -34,6 +36,7 @@ export class DetailComponent implements OnInit, AfterViewChecked {
   }
 
   ngOnInit() {
+    this.id = '1';
     // 获取cookies的token值
     this.getCookies();
     if (this.token === null || this.token === undefined || this.token === 'undefined') {
@@ -47,6 +50,19 @@ export class DetailComponent implements OnInit, AfterViewChecked {
     } else if (this.title === '未付款订单') {
       this.postData(this.appProperties.aliFindNotPayOrderUrl);
     }
+    this.appService.postAliData(this.appProperties.couponAvailable + '?vmCode=' + urlParse(window.location.search)['vmCode'],
+      '', this.token).subscribe(
+      data => {
+        console.log(data);
+        if (data.status === 1) {
+          this.couponEffectiveList = data.returnObject;
+        } else if (data.status !== 1) {
+        }
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
   nzSpan(flag) {
     return flag !== '支付失败' ? 24 : 20;
@@ -121,5 +137,8 @@ export class DetailComponent implements OnInit, AfterViewChecked {
         }
       }
     }
+  }
+  toDate(date) {
+    return new Date(date).getFullYear() + '-' + (new Date(date).getMonth() + 1) + '-' + new Date(date).getDate();
   }
 }

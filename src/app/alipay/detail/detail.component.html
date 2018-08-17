@@ -1,9 +1,13 @@
 <div id="containers" class="containers">
   <div class="page__hd" style="padding: 20px;background: white">
-    <h1 class="page__title">我的订单</h1>
+    <!--<h1 class="page__title">我的订单</h1>-->
+    <select class="page__title" name="" id="" [(ngModel)]="id">
+      <option value="1">我的订单</option>
+      <option value="2">我的优惠卷</option>
+    </select>
     <p class="page__desc">预览</p>
   </div>
-<div id="content" class="content">
+<div id="content" class="content" [hidden]="id === '2'">
   <!--<div style="background: white;padding: 5px;margin: 5px;border-radius: 3px;" *ngFor="let item of list">-->
     <!--<span>订单号:{{item.orderId}}</span>-->
     <!--<div nz-row [nzType]="'flex'" [nzJustify]="'space-around'" [nzAlign]="'middle'">-->
@@ -61,6 +65,56 @@
   </div>
 </div>
   <!--<div class="footer"><span>总价:{{totalPrice}}</span></div>-->
+
+<div id="contents" class="content" [hidden]="id === '1'">
+    <div class="layout">
+      <!--<div class="card">-->
+        <!--<div style="float: left;margin-top: 20px">-->
+          <!--<h2 style="color: white"><span style="font-size: 14px;">￥</span>12</h2>-->
+          <!--<span style="font-size: 12px;margin-left: 10px">满10减5</span>-->
+        <!--</div>-->
+        <!--<div style="float: left;margin-left:5px;margin-top: 5px">-->
+          <!--<span style="float: left">也一样</span>-->
+          <!--<br>-->
+          <!--<span style="float: left;font-size: 12px">限1212-1212使用</span>-->
+          <!--<br>-->
+          <!--<span style="float: left;margin-top: 15px;font-size: 12px">仅限购买特殊商品使用</span>-->
+        <!--</div>-->
+        <!--<br>-->
+        <!--<div class="line"></div>-->
+        <!--<span class="use">111</span>-->
+      <!--</div>-->
+      <div class="card" *ngFor="let item of couponEffectiveList">
+        <div style="float: left;margin-top: 20px" *ngIf="(item.type === 1)">
+          <h2 style="color: white"><span style="font-size: 14px;">￥</span>{{item.deductionMoney}}</h2>
+          <span style="font-size: 12px;margin-left: 10px">满{{item.money}}减{{item.deductionMoney}}</span>
+        </div>
+        <!--固定-->
+        <div style="float: left;margin-top: 20px" *ngIf="(item.type === 2)">
+          <h2 style="color: white"><span style="font-size: 14px;">￥</span>{{item.deductionMoney}}</h2>
+          <span style="font-size: 12px;margin-left: 10px">立减券</span>
+        </div>
+        <!--折扣-->
+        <div style="float: left;margin-top: 20px" *ngIf="(item.type === 3)">
+          <h2 style="color: white">{{item.deductionMoney}}<span style="font-size: 12px;margin-left: 2px;">折</span></h2>
+          <span style="font-size: 12px;margin-left: 10px">折扣券</span>
+        </div>
+        <div style="float: left;margin-left:5px;margin-top: 5px">
+          <span style="float: left">{{item.name}}</span>
+          <br>
+          <span style="float: left;font-size: 12px">限{{toDate(item.startTime)}}-{{toDate(item.endTime)}}使用</span>
+          <br>
+          <span style="float: left;margin-top: 15px;font-size: 12px">仅限购买特殊商品使用</span>
+        </div>
+        <br>
+        <div class="line"></div>
+        <span class="use">未使用</span>
+      </div>
+      <div class="footer">
+        已经到底~
+      </div>
+    </div>
+  </div>
 </div>
 <div class="js_dialog" id="androidDialog2" [class]="detailVisible ? 'mask-visible' : 'mask-invisible'">
   <div class="weui-mask"></div>

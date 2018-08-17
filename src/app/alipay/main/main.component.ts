@@ -183,7 +183,8 @@ export class MainComponent implements OnInit {
   detail() {
     this.router.navigate(['aliDetail'], {
       queryParams: {
-        title: 1
+        title: 1,
+        vmCode: urlParse(window.location.search)['vmCode']
       }});
     // TODO;
   }

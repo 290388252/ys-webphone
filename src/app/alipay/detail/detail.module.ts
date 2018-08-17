@@ -6,12 +6,14 @@ import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { PopoverModule } from 'ngx-bootstrap';
 import {AppService} from '../../app-service';
 import {AppProperties} from '../../app.properties';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
     imports: [
         CommonModule,
         DetailRoutingModule,
         NgZorroAntdModule,
+        FormsModule,
         PopoverModule.forRoot()
     ],
     declarations: [DetailComponent],

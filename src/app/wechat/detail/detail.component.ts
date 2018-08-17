@@ -14,17 +14,21 @@ declare var WeixinJSBridge: any;
 })
 export class DetailComponent implements OnInit , AfterViewChecked {
   public title: string;
+  public id: any;
   public totalPrice = 0;
   public list;
+  public vmCode;
   public token;
   public detailVisible = false;
   public detailList;
+  public couponEffectiveList;
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private appProperties: AppProperties,
   private appService: AppService) {
     this.list = [];
   }
 
   ngOnInit() {
+    this.id = '1';
     this.getCookies();
     console.log(this.token);
     this.getData(this.appProperties.findAllUserOrderUrl);
@@ -48,6 +52,19 @@ export class DetailComponent implements OnInit , AfterViewChecked {
         console.log(error);
       }
     );
+    this.appService.postAliData(this.appProperties.couponAvailable + '?vmCode=' + urlParse(window.location.search)['vmCode'],
+      '', this.token).subscribe(
+      data => {
+        console.log(data);
+        if (data.status === 1) {
+          this.couponEffectiveList = data.returnObject;
+        } else if (data.status !== 1) {
+        }
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
   // 适配背景px
   ngAfterViewChecked(): void {
@@ -65,7 +82,7 @@ export class DetailComponent implements OnInit , AfterViewChecked {
     this.appService.getDataOpen(this.appProperties.orderUnifiedOrderUrl,
       {
         orderId: item.id,
-        url: 'http://webapp.youshuidaojia.com/cMain/detail'
+        url: 'http://sms.youshuidaojia.com/detail'
       }, this.token).subscribe(
       data => {
         console.log(data);
@@ -197,5 +214,8 @@ export class DetailComponent implements OnInit , AfterViewChecked {
         }
       }
     }
+  }
+  toDate(date) {
+    return new Date(date).getFullYear() + '-' + (new Date(date).getMonth() + 1) + '-' + new Date(date).getDate();
   }
 }

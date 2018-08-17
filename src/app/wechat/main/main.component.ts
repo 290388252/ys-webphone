@@ -173,8 +173,55 @@ export class MainComponent implements OnInit {
     //   queryParams: {
     //     token: this.token
     //   }});
-    this.router.navigate(['detail']);
+    this.router.navigate(['detail'], {
+      queryParams: {
+        vmCode: urlParse(window.location.search)['vmCode'],
+      }});
     // TODO;
+  }
+  share() {
+    this.appService.postAliData(this.appProperties.wechatShareInfoUrl + '?url=http://sms.youshuidaojia.com/main',
+      '', this.token).subscribe(
+      data => {
+        console.log(data);
+        wx.config({
+          debug: false,
+          appId: data.data.appId,
+          timestamp: data.data.timestamp,
+          nonceStr: data.data.nonceStr,
+          signature: data.data.signature,
+          jsApiList: ['checkJsApi',
+            'onMenuShareAppMessage',
+            'onMenuShareTimeline',
+            'onMenuShareQQ',
+            'onMenuShareWeibo',
+          ]
+        });
+        wx.ready(function () {
+          const shareData = {
+            title: '标题',
+            desc: '简介', // 这里请特别注意是要去除html
+            link: '链接',
+            imgUrl: '题图',
+            success: function () {
+              // 用户确认分享后执行的回调函数
+              console.log('success');
+            },
+            cancel: function () {
+              // 用户取消分享后执行的回调函数
+              console.log('cancel');
+            }
+          };
+          wx.onMenuShareAppMessage(shareData);
+          wx.onMenuShareTimeline(shareData);
+          wx.onMenuShareQQ(shareData);
+          wx.onMenuShareWeibo(shareData);
+        });
+      },
+      error2 => {
+        console.log(error2);
+      }
+    );
   }
   // 是否已关门
   isClosed(vmCode) {
