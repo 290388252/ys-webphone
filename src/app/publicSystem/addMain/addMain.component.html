@@ -88,6 +88,10 @@
     <div class="my-product">
       <button (click)="resetNum()" type="button" class="btn btn-primary small" style="background: #117cbb">校准所有数量</button>
     </div>
+    <div class="my-vol">
+      <button (click)="adjustVol()" type="button" class="btn btn-primary small" style="background: #117cbb">调节音量</button>
+    </div>
+
     <div class="my-reset">
       <button (click)="resetWeight()" type="button" class="btn btn-primary small" style="background: #117cbb">校准</button>
       <p style="color: white;font-size: 17px">{{temperature}}</p>
@@ -146,6 +150,31 @@
     </ng-template>
     <ng-template #modalFooter>
       <button nz-button nzType="primary" (click)="openOk()">关闭</button>
+    </ng-template>
+  </nz-modal>
+
+  <nz-modal [(nzVisible)]="isVisible" [nzTitle]="modalvolTitle" [nzContent]="modalVol" [nzFooter]="modalvolFooter" (nzOnCancel)="myVolCancel()">
+    <ng-template #modalvolTitle>
+      请选择音量
+    </ng-template>
+
+    <ng-template #modalVol>
+      <nz-row >
+        <nz-col nzSpan="12">
+          <nz-slider [nzMin]="0" [nzMax]="7" [(ngModel)]="volValue"></nz-slider>
+        </nz-col>
+        <nz-col nzSpan="4" [ngStyle]="{ 'marginLeft': '16px' , 'marginTop': '4px'}">
+          <span>音量值</span>
+        </nz-col>
+        <div nz-col nzSpan="4" [ngStyle]="{ 'marginLeft': '0px' }">
+          <nz-input-number [nzMin]="0" [nzMax]="7" [(ngModel)]="volValue"></nz-input-number>
+        </div>
+      </nz-row>
+    </ng-template>
+
+    <ng-template #modalvolFooter>
+      <button nz-button nzType="default" (click)="myVolCancel()">取消</button>
+      <button nz-button nzType="primary" (click)="myVolOk()" [nzLoading]="isConfirmLoading">提交</button>
     </ng-template>
   </nz-modal>
 

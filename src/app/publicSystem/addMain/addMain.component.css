@@ -50,6 +50,11 @@
   top: 0;
   right: 0;
 }
+.my-vol {
+  position: absolute;
+  top: 40px;
+  right: 0;
+}
 .my-reset{
   position: absolute;
   top: 0;
@@ -462,3 +467,4 @@
   opacity: 0;
   display: none;
 }
+* { touch-action: pan-y; }

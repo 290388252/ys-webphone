@@ -1,4 +1,4 @@
-import { Component , OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AppService} from '../../app-service';
 import {AppProperties} from '../../app.properties';
@@ -31,16 +31,26 @@ export class AddMainComponent implements OnInit {
   public clickMore = false;
   public isFourDoor = false; // 四门
   public isFiveDoor = false; // 五门
+  // public myVol = false;
+  // public isConfirmLoading = false;
+  public isVisible = false;
+  public isOkLoading = false;
+  public beginvolValue;
+  public volValue;
+
   constructor(private router: Router,
               private modalService: NzModalService,
               private activatedRoute: ActivatedRoute,
               private appProperties: AppProperties,
-              private appService: AppService) {}
+              private appService: AppService) {
+  }
+
   ngOnInit() {
     // 数据初始化
     this.getCookies();
     // 数据初始化
     this.getInitData();
+    console.log('123');
     if (this.token === null
       || this.token === undefined
       || this.token === 'undefined') {
@@ -73,10 +83,15 @@ export class AddMainComponent implements OnInit {
         //   }});
       }
     }
+    this.volValue = 0;
   }
+
   // 初始化选水界面
   getInitData() {
-    this.appService.getData(this.appProperties.indexListUrl, {vmCode: urlParse(window.location.search)['vmCode'], type: 2}).subscribe(
+    this.appService.getData(this.appProperties.indexListUrl, {
+      vmCode: urlParse(window.location.search)['vmCode'],
+      type: 2
+    }).subscribe(
       data => {
         console.log(data);
         if (data.code === 0) {
@@ -94,6 +109,12 @@ export class AddMainComponent implements OnInit {
           }
           console.log(this.indexList);
           this.temperature = data.data.temperature;
+          this.beginvolValue = data.data.volume;
+          console.log('ok');
+          console.log(this.beginvolValue);
+          if(this.beginvolValue === undefined) {
+            this.beginvolValue = 0;
+          }
         }
       },
       error => {
@@ -101,6 +122,7 @@ export class AddMainComponent implements OnInit {
       }
     );
   }
+
   // 开门接口
   openDoor(item) {
     if (this.token === null
@@ -110,7 +132,8 @@ export class AddMainComponent implements OnInit {
       this.router.navigate(['vmLogin'], {
         queryParams: {
           vmCode: urlParse(window.location.search)['vmCode']
-        }});
+        }
+      });
     } else {
       if (this.clickMore) {
         alert('亲,服务器还没反应过来,请勿再点击');
@@ -137,6 +160,7 @@ export class AddMainComponent implements OnInit {
       }
     }
   }
+
   // 检测是否已关门
   isClosed(vmCode) {
     this.appService.getDataOpen(this.appProperties.isClosedUrl, {vmCode: vmCode}, this.token).subscribe(
@@ -165,6 +189,7 @@ export class AddMainComponent implements OnInit {
       }
     );
   }
+
   // 校准数量
   resetNum() {
     console.log(urlParse(window.location.search)['vmCode']);
@@ -180,6 +205,52 @@ export class AddMainComponent implements OnInit {
       }
     );
   }
+
+  // 调节音量
+  adjustVol(): void {
+    this.isVisible = true;
+    this.volValue = this.beginvolValue;
+    console.log('vmcode');
+    console.log(urlParse(window.location.search)['vmCode']);
+    console.log(this.volValue);
+  }
+
+  // 音量提交
+  myVolOk(): void {
+    console.log('123');
+    this.appService.getAliData(this.appProperties.volumeUrl,
+      {'volume': this.volValue, 'vmCode': urlParse(window.location.search)['vmCode']}, this.token ).subscribe(
+      data => {
+        console.log(data);
+        if (data.code === 0) {
+          alert(data.msg);
+          this.getInitData();
+          this.isOkLoading = true;
+          this.isVisible = false;
+          // this.isConfirmLoading = true;
+          // setTimeout(() => {
+          //   this.myVol = false;
+          //   this.isConfirmLoading = false;
+          // }, 3000);
+        } else if (data.code === -87) {
+          alert(data.msg);
+        } else if (data.code === -1) {
+          alert(data.message);
+        }
+
+      },
+      error => {
+        console.log(error);
+      }
+    );
+
+  }
+
+// 音量模态框关闭
+  myVolCancel(): void {
+    this.isVisible = false;
+  }
+
   // 校准重量
   resetWeight() {
     this.wayNo = undefined;
@@ -188,6 +259,7 @@ export class AddMainComponent implements OnInit {
     this.count = 1;
     this.isVisibleOpenDoor = true;
   }
+
   // 机器重启
   reStart() {
     this.appService.postAliData(this.appProperties.restartUrl + urlParse(window.location.search)['vmCode'],
@@ -197,7 +269,7 @@ export class AddMainComponent implements OnInit {
         if (data.code === 0) {
           this.loadingVisible = true;
           const timer = setInterval(() => {
-            this.restartTimes --;
+            this.restartTimes--;
             if (this.restartTimes <= 0) {
               this.loadingVisible = false;
               clearInterval(timer);
@@ -214,12 +286,13 @@ export class AddMainComponent implements OnInit {
       }
     );
   }
+
   openAll() {
     let way;
     if (this.isFourDoor) {
-        way = '1,2,3,4';
+      way = '1,2,3,4';
     } else {
-        way = '1,2,3,4,5';
+      way = '1,2,3,4,5';
     }
     this.appService.postAliData(this.appProperties.operateOpendoorUrl
       + '?vmCode=' + urlParse(window.location.search)['vmCode']
@@ -240,6 +313,7 @@ export class AddMainComponent implements OnInit {
       }
     );
   }
+
   // 是否开门（是）
   yes() {
     this.count++;
@@ -251,7 +325,8 @@ export class AddMainComponent implements OnInit {
         vmCode: urlParse(window.location.search)['vmCode'],
         wayNum: this.wayNo,
         times: this.times,
-        num: this.num}, this.token).subscribe(
+        num: this.num
+      }, this.token).subscribe(
       data => {
         console.log(data);
         if (data.code === 0) {
@@ -273,16 +348,19 @@ export class AddMainComponent implements OnInit {
       this.isVisibleOpenDoor = false;
     }
   }
+
   // 是否开门（否）
   no() {
     // this.isVisibleOpenDoor = false;
     // console.log(this.radioValue);
   }
+
   // 是否关门按钮事件（是）
   openOk() {
     this.isClosed(urlParse(window.location.search)['vmCode']);
   }
-  getCookies () {
+
+  getCookies() {
     if (this.token === null || this.token === undefined || this.token === 'undefined') {
       const strCookie = document.cookie;
       const arrCookie = strCookie.split(';');
