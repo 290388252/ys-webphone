@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import {CommentComponent} from './publicSystem/comment/comment.component';
 
 const routes: Routes = [/*
     { path: '', loadChildren: './layout/layout.module#LayoutModule', canActivate: [AuthGuard] },
@@ -24,7 +25,8 @@ const routes: Routes = [/*
     { path: 'vmLogin', loadChildren: './publicSystem/vmLogin/vmLogin.module#VmLoginModule' },
     { path: 'vmDetailLogin', loadChildren: './publicSystem/vmDetailLogin/vmDetailLogin.module#VmDetailLoginModule' },
     { path: 'addMain', loadChildren: './publicSystem/addMain/addMain.module#AddMainModule' },
-    { path: 'vmDetail', loadChildren: './publicSystem/vmDetail/vmDetail.module#VmDetailModule' }
+    { path: 'vmDetail', loadChildren: './publicSystem/vmDetail/vmDetail.module#VmDetailModule' },
+    { path: 'comment', loadChildren: './publicSystem/comment/comment.module#CommentModule' }
 ];
 
 @NgModule({

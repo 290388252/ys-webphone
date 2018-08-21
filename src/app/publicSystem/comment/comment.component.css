@@ -1,0 +1,44 @@
+.blueButton
+{
+  position: absolute;
+  display: block;
+  width: 70px;
+  height: 30px;
+  background-color: #dadada;
+  color: #fff;
+  text-decoration: none;
+  text-align: center;
+  font:normal normal normal 16px/30px 'Microsoft YaHei';
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 14px;
+  margin-left: 5px;
+  right: 11px;
+  top: 23px;
+}
+.blueButton:active {
+  position: absolute;
+  display: block;
+  width: 70px;
+  height: 30px;
+  background-color: #c7c7c7;
+  color: #fff;
+  text-decoration: none;
+  text-align: center;
+  font:normal normal normal 16px/30px 'Microsoft YaHei';
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 14px;
+  margin-left: 5px;
+  right: 11px;
+  top: 23px;
+}
+/*自定义上传,位置大小都和a完全一样,而且完全透明*/
+.myFileUpload
+{
+  position: absolute;
+  display: block;
+  width: 70px;
+  height: 30px;
+  opacity: 0;
+}

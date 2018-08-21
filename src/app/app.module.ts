@@ -8,6 +8,7 @@ import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {WeUiModule} from 'ngx-weui';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     CommonModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    WeUiModule.forRoot(),
     NgZorroAntdModule.forRoot()
   ],
   providers: [],

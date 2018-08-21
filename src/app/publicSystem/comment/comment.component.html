@@ -1,0 +1,11 @@
+<!--<a href="javascript:;" class="file">-->
+  <!--<input type="file" name="mPic" id="mPic" ng2FileSelect [uploader]="uploaderAdd"-->
+         <!--(change)="uploadAdd($event)" multiple>点击上传图片-->
+<!--</a>-->
+<div style="height: 70px;border: solid 1px #dadada;border-radius: 3%;margin: 5px;padding: 5px">
+  <img *ngFor="let item of addPicList" style="width: 60px;height: 60px;margin-right: 5px;" [src]=imgPath+item>
+  <div></div>
+</div>
+<a href='javascript:void(0);' class="blueButton"><input type="file" class="myFileUpload" name="mPic" id="mPic" ng2FileSelect [uploader]="uploaderAdd"
+                                                        (change)="uploadAdd($event)" multiple="3">上传图片</a>
+<p style="color: red;position: absolute;right: 6px;">注意最多上传3张图片</p>
