@@ -8,6 +8,7 @@ import {AppService} from '../../app-service';
 import {AppProperties} from '../../app.properties';
 import {WeUiModule} from 'ngx-weui';
 import {FileUploadModule} from 'ng2-file-upload';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
     imports: [
@@ -16,6 +17,7 @@ import {FileUploadModule} from 'ng2-file-upload';
         NgZorroAntdModule,
       WeUiModule.forRoot(),
       FileUploadModule,
+      FormsModule,
         PopoverModule.forRoot()
     ],
     declarations: [CommentComponent],

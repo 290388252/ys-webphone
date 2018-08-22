@@ -15,7 +15,7 @@ export class CommentComponent implements OnInit {
   public addPicList = [];
   public mPic: any;
   public imgPath: any;
-  _dataSet = [];
+  radioValue = '1';
   public emoji = true;
   constructor(private router: Router,
               private appProperties: AppProperties,
@@ -61,5 +61,8 @@ export class CommentComponent implements OnInit {
     console.log(flag);
     const src = `<img style="width: 20px" src="../../../assets/emoji/${flag}.png">`;
     document.getElementById('emoji').innerHTML += src;
+  }
+  commit() {
+    console.log(this.radioValue);
   }
 }
