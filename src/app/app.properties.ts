@@ -19,6 +19,10 @@ export class AppProperties {
   public reviseUrl: string;
   public restartUrl: string;
   public volumeUrl: string;
+  public gameGetGamePrize: string;
+  public gameLottery: string;
+  public gameGetCusPrize: string;
+  public gameReceive: string;
   // WeChat
   public indexListUrl: string;
   public indexOpenDoor: string;
@@ -66,6 +70,11 @@ export class AppProperties {
     this.reviseUrl = this.appUrl + '/index/revise';
     this.restartUrl = this.appUrl + '/machineControl/restart?vmCode=';
     this.volumeUrl = this.appUrl + '/index/updateVolume';
+    this.gameGetGamePrize = 'http://192.168.0.132:6662/ys_sms' + '/game/getGamePrize';
+    this.gameLottery = this.appUrl + '/game/lottery';
+    this.gameGetCusPrize = this.appUrl + '/game/getCusPrize';
+    this.gameReceive = this.appUrl + '/game/receive';
+    // 获取游戏奖品内容
 
     // WeChat
     this.indexListUrl = this.appUrl + '/index/listWay';

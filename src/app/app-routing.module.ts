@@ -20,7 +20,7 @@ const routes: Routes = [/*
     { path: 'aliProduct', loadChildren: './alipay/product/product.module#ProductModule' },
     { path: 'aliCreditPayment', loadChildren: './alipay/creditPayment/creditPayment.module#CreditPaymentModule' },
     { path: 'notPage', loadChildren: './alipay/notPage/notPage.module#NotPageModule' },
-    // { path: 'rotate', loadChildren: './alipay/rotate/rotate.module#RotateModule' },
+    { path: 'rotate', loadChildren: './alipay/rotate/rotate.module#RotateModule' },
 // public
     { path: 'vmLogin', loadChildren: './publicSystem/vmLogin/vmLogin.module#VmLoginModule' },
     { path: 'vmDetailLogin', loadChildren: './publicSystem/vmDetailLogin/vmDetailLogin.module#VmDetailLoginModule' },
