@@ -71,9 +71,9 @@ export class AppProperties {
     this.restartUrl = this.appUrl + '/machineControl/restart?vmCode=';
     this.volumeUrl = this.appUrl + '/index/updateVolume';
     this.gameGetGamePrize = 'http://192.168.0.132:6662/ys_sms' + '/game/getGamePrize';
-    this.gameLottery = this.appUrl + '/game/lottery';
-    this.gameGetCusPrize = this.appUrl + '/game/getCusPrize';
-    this.gameReceive = this.appUrl + '/game/receive';
+    this.gameLottery = 'http://192.168.0.132:6662/ys_sms' + '/game/lottery';
+    this.gameGetCusPrize = 'http://192.168.0.132:6662/ys_sms' + '/game/getCusPrize';
+    this.gameReceive = 'http://192.168.0.132:6662/ys_sms' + '/game/receive';
     // 获取游戏奖品内容
 
     // WeChat

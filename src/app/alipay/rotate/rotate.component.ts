@@ -27,7 +27,7 @@ export class RotateComponent implements OnInit {
           data.returnObject.forEach((item) => {
             this.info.push(item.name);
           });
-          this.getRotate(this.info);
+          this.getRotate(this.info, this.appProperties, this.appService, this.token);
         },
       error2 => {
         console.log(error2);
@@ -36,11 +36,11 @@ export class RotateComponent implements OnInit {
 
   }
 
-  getRotate(info) {
+  getRotate(info, appProperties, appService, token) {
     // 旋转角度
     let angles;
     // 可抽奖次数
-    this.clickNum = 1;
+    this.clickNum = 3;
     // 旋转次数
     let rotNum = 0;
     // 中奖公告
@@ -54,55 +54,77 @@ export class RotateComponent implements OnInit {
     const _this = this;
     $('#tupBtn').bind('click', function () {
       console.log(_this.clickNum);
-      if (_this.clickNum >= 1) {
-        // 可抽奖次数减一
-        _this.clickNum -= 1;
-        // 转盘旋转
-        runCup();
-        // 转盘旋转过程“开始抽奖”按钮无法点击
-        $('#tupBtn').attr('disabled');
-        // 旋转次数加一
-        rotNum = rotNum + 1;
-        // “开始抽奖”按钮无法点击恢复点击
-        setTimeout(function () {
-          alert(notice);
-          $('#tupBtn').removeAttr('disabled');
-        }, 6000);
-      } else {
-        alert('亲，抽奖次数已用光！');
-      }
+      appService.postAliData(appProperties.gameLottery + '?gameId=1', '', token).subscribe(
+        data => {
+          console.log(data);
+          if (data.status === 81) {
+            alert(data.message);
+          } else {
+            runCup(data.returnObject);
+            // 转盘旋转过程“开始抽奖”按钮无法点击
+            $('#tupBtn').attr('disabled');
+            // 旋转次数加一
+            rotNum = rotNum + 1;
+            // “开始抽奖”按钮无法点击恢复点击
+            setTimeout(function () {
+              alert(notice);
+              $('#tupBtn').removeAttr('disabled');
+            }, 6000);
+          }
+        },
+        error2 => {
+          console.log(error2);
+        }
+      );
+      // if (_this.clickNum >= 1) {
+      //   // 可抽奖次数减一
+      //   _this.clickNum -= 1;
+      //   // 转盘旋转
+      //   runCup(appProperties, appService, token);
+      //   // 转盘旋转过程“开始抽奖”按钮无法点击
+      //   $('#tupBtn').attr('disabled');
+      //   // 旋转次数加一
+      //   rotNum = rotNum + 1;
+      //   // “开始抽奖”按钮无法点击恢复点击
+      //   setTimeout(function () {
+      //     alert(notice);
+      //     $('#tupBtn').removeAttr('disabled');
+      //   }, 6000);
+      // } else {
+      //   alert('亲，抽奖次数已用光！');
+      // }
     });
 
     // 转盘旋转
-    function runCup() {
+    function runCup(num) {
       // probability();
-      const num = Math.floor(Math.random() * (7));
+      // const num = Math.floor(Math.random() * (7));
       console.log(num);
       // 概率
       if (num === 0) {
         angles = 2160 * rotNum + 1800;
         notice = info[0] + info1[0];
       } else if (num === 1) {
-        angles = 2160 * rotNum + 1845;
-        notice = info[7] + info1[7];
+        angles = 2160 * rotNum + 2115;
+        notice = info[1] + info1[1];
       } else if (num === 2) {
-        angles = 2160 * rotNum + 1890;
-        notice = info[6] + info1[6];
+        angles = 2160 * rotNum + 2070;
+        notice = info[2] + info1[2];
       } else if (num === 3) {
-        angles = 2160 * rotNum + 1935;
-        notice = info[5] + info1[5];
+        angles = 2160 * rotNum + 2025;
+        notice = info[3] + info1[3];
       } else if (num === 4) {
         angles = 2160 * rotNum + 1980;
         notice = info[4] + info1[4];
       } else if (num === 5) {
-        angles = 2160 * rotNum + 2025;
-        notice = info[3] + info1[3];
+        angles = 2160 * rotNum + 1935;
+        notice = info[5] + info1[5];
       } else if (num === 6) {
-        angles = 2160 * rotNum + 2070;
-        notice = info[2] + info1[2];
+        angles = 2160 * rotNum + 1890;
+        notice = info[6] + info1[6];
       } else if (num === 7) {
-        angles = 2160 * rotNum + 2115;
-        notice = info[1] + info1[1];
+        angles = 2160 * rotNum + 1845;
+        notice = info[7] + info1[7];
       }
       const degValue = 'rotate(' + angles + 'deg' + ')';
       console.log(degValue);

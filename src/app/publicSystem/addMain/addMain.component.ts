@@ -35,8 +35,9 @@ export class AddMainComponent implements OnInit {
   // public isConfirmLoading = false;
   public isVisible = false;
   public isOkLoading = false;
-  public beginvolValue;
+  // public beginvolValue;
   public volValue;
+  // public endVole;
 
   constructor(private router: Router,
               private modalService: NzModalService,
@@ -109,12 +110,15 @@ export class AddMainComponent implements OnInit {
           }
           console.log(this.indexList);
           this.temperature = data.data.temperature;
-          this.beginvolValue = data.data.volume;
-          console.log('ok');
-          console.log(this.beginvolValue);
-          if(this.beginvolValue === undefined) {
-            this.beginvolValue = 0;
-          }
+        //   let volvalue = data.data.volume;
+        //   // this.beginvolValue = data.data.volume;
+        //   console.log('ok1');
+        //   console.log(volvalue);
+        //   console.log(volvalue === '99');
+        //   if(volvalue === undefined) {
+        //     volvalue = 0;
+        //   }
+        //   this.beginvolValue = volvalue;
         }
       },
       error => {
@@ -209,7 +213,12 @@ export class AddMainComponent implements OnInit {
   // 调节音量
   adjustVol(): void {
     this.isVisible = true;
-    this.volValue = this.beginvolValue;
+    // this.endVole = this.beginvolValue;
+    // if(this.endVole === undefined || this.endVole === '无' || this.endVole === '99') {
+    //   this.endVole = 0;
+    // }
+    // this.volValue = this.endVole;
+    this.volValue = 0;
     console.log('vmcode');
     console.log(urlParse(window.location.search)['vmCode']);
     console.log(this.volValue);
@@ -248,6 +257,9 @@ export class AddMainComponent implements OnInit {
 
 // 音量模态框关闭
   myVolCancel(): void {
+    // if (this.endVole === '99' || this.endVole === '无') {
+    //   this.beginvolValue = this.endVole;
+    // }
     this.isVisible = false;
   }
 
