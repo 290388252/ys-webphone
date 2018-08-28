@@ -90,7 +90,7 @@ export class AppProperties {
     this.nonePassWordPayUrl = this.appUrl + '/wechat/entrustweb';
     this.findMachineHistoryUrl = this.adminUrl + '/payRecord/findMachineHistory';
     this.wechatShareInfoUrl = this.appUrl + '/wechat/shareInfo';
-    this.couponAvailable = 'http://192.168.0.132:6662/ys_sms/' + '/coupon/available';
+    this.couponAvailable = this.appUrl + '/coupon/available';
     // this.couponAvailable = this.appUrl + '/coupon/available';
 
     // AliPay
