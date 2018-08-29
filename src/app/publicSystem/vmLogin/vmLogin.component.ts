@@ -96,7 +96,7 @@ export class VmLoginComponent implements OnInit {
   // 发送验证码
   sendCode(e: TouchEvent) {
     e.preventDefault();
-    if (/^1[345678]\d{9}$/.test(this.phone.toString())) {
+    if (/^1[0123456789]\d{9}$/.test(this.phone.toString())) {
       this.appService.postData(this.appProperties.smsSendUrl, {phone: this.phone}).subscribe(
         data => {
           console.log(data);
