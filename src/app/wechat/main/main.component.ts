@@ -171,24 +171,11 @@ export class MainComponent implements OnInit {
   }
   // 运维登陆
   vmLogin() {
-    this.appService.getData(this.appProperties.canReplenishUrl,
-      {vmCode: urlParse(window.location.search)['vmCode']}).subscribe(
-        data => {
-          console.log(data);
-          if (data.code === 0) {
-            this.router.navigate(['addMain'], {
-              queryParams: {
-                vmCode: urlParse(window.location.search)['vmCode'],
-                payType: 1
-              }});
-          } else {
-            alert(data.msg);
-          }
-        },
-        error2 => {
-            console.log(error2);
-        }
-    );
+    this.router.navigate(['addMain'], {
+      queryParams: {
+        vmCode: urlParse(window.location.search)['vmCode'],
+        payType: 1
+      }});
   }
   // 订单详情
   product() {

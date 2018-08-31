@@ -84,10 +84,34 @@ export class AddMainComponent implements OnInit {
         //     payType: 2
         //   }});
       }
+    } else {
+      if (urlParse(window.location.search)['payType'] === '1') {
+        this.canReplenish('main');
+      } else if (urlParse(window.location.search)['payType'] === '2') {
+        this.canReplenish('aliMain');
+      }
     }
     this.volValue = 0;
   }
-
+  canReplenish(url) {
+    this.appService.getData(this.appProperties.canReplenishUrl,
+      {vmCode: urlParse(window.location.search)['vmCode']}).subscribe(
+      data => {
+        console.log(data);
+        if (data.code === 0) {
+        } else {
+          alert(data.msg);
+          this.router.navigate([url], {
+            queryParams: {
+              vmCode: urlParse(window.location.search)['vmCode']
+            }});
+        }
+      },
+      error2 => {
+        console.log(error2);
+      }
+    );
+  }
   // 初始化选水界面
   getInitData() {
     this.appService.getData(this.appProperties.indexListUrl, {
