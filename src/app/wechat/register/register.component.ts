@@ -67,6 +67,8 @@ export class RegisterComponent implements OnInit {
               document.cookie = 'token=' + data.data.token + ';expires=' + exp.toUTCString();
               if (data.data.registerCoupon === 1 || data.data.registerCoupon === '1') {
                 document.cookie = 'coupon=' + 0;
+              } else if (data.data.registerCoupon === 2 || data.data.registerCoupon === '2') {
+                document.cookie = 'coupon=' + 2;
               }
                 this.router.navigate(['main'], {
                   queryParams: {

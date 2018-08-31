@@ -19,6 +19,7 @@ export class MainComponent implements OnInit {
   public isVisibleOpen = false;
   public isVisibleOpenDoor = false;
   public isVisibleCoupon = false;
+  public isVisibleCouponTwo = false;
   public clickMore = false;
   // public img = 'http://lenvar-resource-products.oss-cn-shenzhen.aliyuncs.com/';
   // public img = 'http://119.23.233.123:6662/ys_admin/files/';
@@ -39,6 +40,8 @@ export class MainComponent implements OnInit {
     console.log(this.token);
     if (this.getCoupon() === '0') {
       this.isVisibleCoupon = true;
+    } else if (this.getCoupon() === '2') {
+      this.isVisibleCouponTwo = true;
     }
     if (urlParse(window.location.search)['token']) {
       this.token = urlParse(window.location.search)['token'];
@@ -157,15 +160,29 @@ export class MainComponent implements OnInit {
   }
   closeCoupon() {
     this.isVisibleCoupon = false;
+    this.isVisibleCouponTwo = false;
     document.cookie = 'coupon=' + 1;
   }
   // 运维登陆
   vmLogin() {
-    this.router.navigate(['addMain'], {
-      queryParams: {
-        vmCode: urlParse(window.location.search)['vmCode'],
-        payType: 1
-      }});
+    this.appService.getData(this.appProperties.canReplenishUrl,
+      {vmCode: urlParse(window.location.search)['vmCode']}).subscribe(
+        data => {
+          console.log(data);
+          if (data.code === 0) {
+            this.router.navigate(['addMain'], {
+              queryParams: {
+                vmCode: urlParse(window.location.search)['vmCode'],
+                payType: 1
+              }});
+          } else {
+            alert(data.msg);
+          }
+        },
+        error2 => {
+            console.log(error2);
+        }
+    );
   }
   // 订单详情
   product() {

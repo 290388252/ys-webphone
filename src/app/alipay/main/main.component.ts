@@ -172,11 +172,24 @@ export class MainComponent implements OnInit {
   }
   // 补货人员登陆界面入口
   vmLogin() {
-    this.router.navigate(['addMain'], {
-      queryParams: {
-        vmCode: urlParse(window.location.search)['vmCode'],
-        payType: 2
-      }});
+    this.appService.getData(this.appProperties.canReplenishUrl,
+      {vmCode: urlParse(window.location.search)['vmCode']}).subscribe(
+      data => {
+        console.log(data);
+        if (data.code === 0) {
+          this.router.navigate(['addMain'], {
+            queryParams: {
+              vmCode: urlParse(window.location.search)['vmCode'],
+              payType: 2
+            }});
+        } else {
+          alert(data.msg);
+        }
+      },
+      error2 => {
+        console.log(error2);
+      }
+    );
     // TODO;
   }
   // 查看用户订单

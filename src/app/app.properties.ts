@@ -19,6 +19,7 @@ export class AppProperties {
   public reviseUrl: string;
   public restartUrl: string;
   public volumeUrl: string;
+  public canReplenishUrl: string;
   public gameGetGamePrize: string;
   public gameLottery: string;
   public gameGetCusPrize: string;
@@ -70,6 +71,7 @@ export class AppProperties {
     this.reviseUrl = this.appUrl + '/index/revise';
     this.restartUrl = this.appUrl + '/machineControl/restart?vmCode=';
     this.volumeUrl = this.appUrl + '/index/updateVolume';
+    this.canReplenishUrl = this.appUrl + '/index/canReplenish';
     this.gameGetGamePrize = 'http://192.168.0.132:6662/ys_sms' + '/game/getGamePrize';
     this.gameLottery = 'http://192.168.0.132:6662/ys_sms' + '/game/lottery';
     this.gameGetCusPrize = 'http://192.168.0.132:6662/ys_sms' + '/game/getCusPrize';

@@ -110,4 +110,11 @@
            style="width: 10%; position: absolute;right: 10px;top: 10px;">
     </ng-template>
   </nz-modal>
+  <nz-modal [nzVisible]="isVisibleCouponTwo" [nzContent]="modalContentCouponTwo" [nzFooter]="false" [nzClosable]="false">
+    <ng-template #modalContentCouponTwo>
+      <img src="../../../assets/main/coupon2.png" alt="" style="width: 100%;position: absolute;right: 0;top: 0;">
+      <img (click)="closeCoupon()" src="../../../assets/main/cancel.png" alt=""
+           style="width: 10%; position: absolute;right: 10px;top: 10px;">
+    </ng-template>
+  </nz-modal>
 </div>
