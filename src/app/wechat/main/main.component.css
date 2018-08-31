@@ -27,6 +27,29 @@
   width: 350px;
   margin: 0 auto;
 }
+.context-six{
+  width: 245px;
+  margin: 0 auto;
+}
+.col-img-six{
+  margin-top: 26px;
+  margin-bottom: 16px;
+  width: 42px;
+  height: 48px;
+}
+.box-six{
+  float: left;
+  width: 111px;
+  height: 111px;
+  margin-right: 10px;
+  /*-webkit-box-shadow:2px 2px 2px 2px gray;*/
+  /*-moz-box-shadow:2px 2px 2px 2px gray;*/
+  /*box-shadow:2px 2px 2px 2px gray;*/
+  /*background-color: rgba(0,0,0,0.1);*/
+  background: url("../../../assets/main/kuan.png");
+  border: 0;
+  background-size: 100% 90%;
+}
 .text-custom {
   color: white;
   font-weight: 900;

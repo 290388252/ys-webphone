@@ -155,6 +155,8 @@ export class AddMainComponent implements OnInit {
               this.router.navigate(['vmLogin']);
             } else if (data.code === -89) {
               alert('门已开，请误点击多次！');
+            } else {
+              alert(data.msg);
             }
           },
           error => {
@@ -201,8 +203,12 @@ export class AddMainComponent implements OnInit {
       '', this.token).subscribe(
       data => {
         console.log(data);
-        alert('成功');
-        this.getInitData();
+        if (data.code === 0) {
+          alert('成功');
+          this.getInitData();
+        } else {
+          alert(data.msg);
+        }
       },
       error => {
         console.log(error);

@@ -82,6 +82,20 @@
           </div>
         </div>
     </div>
+    <div class="context-six" *ngIf="!isFourDoor && !isFiveDoor">
+      <div (click)="openDoor(item)" *ngFor="let item of indexList" class="box-six card text-white mb-3">
+        <div class="box-body">
+          <img class="col-img-six" src="{{img}}{{item['pic']}}" alt="">
+          <br/>
+          <span class="card-title"
+                style="color: white;font-weight: 900;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;font-family:'宋体';">{{item['itemName']}}</span>
+          <!--<br/>-->
+          <!--<span class="card-title" style="color: white">{{item['num']}}桶</span>-->
+          <br/>
+          <span class="card-title" style="color: red;font-weight: 900;font-family:'宋体';">{{item['price']}}元</span>
+        </div>
+      </div>
+    </div>
     <!--<div class="foot">-->
       <!--<img class="foot-img" src="../../../assets/main/logo1.png" alt="">-->
     <!--</div>-->

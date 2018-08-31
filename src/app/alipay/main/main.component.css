@@ -27,6 +27,25 @@
   width: 350px;
   margin: 0 auto;
 }
+.context-six{
+  width: 245px;
+  margin: 0 auto;
+}
+.col-img-six{
+  margin-top: 26px;
+  margin-bottom: 16px;
+  width: 42px;
+  height: 48px;
+}
+.box-six{
+  float: left;
+  width: 111px;
+  height: 111px;
+  margin-right: 10px;
+  background: url("../../../assets/main/kuan.png");
+  border: 0;
+  background-size: 100% 90%;
+}
 .my-detail{
   position: absolute;
   top: 0;
