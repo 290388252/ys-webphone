@@ -20,6 +20,7 @@ export class MainComponent implements OnInit {
   public item;
   public isFourDoor = false; // 四门
   public isFiveDoor = false; // 五门
+  public isSixDoor = false; // liu门
   constructor(private router: Router,
               private activatedRoute: ActivatedRoute,
               private appProperties: AppProperties,
@@ -70,6 +71,11 @@ export class MainComponent implements OnInit {
             } else if (data.returnObject.length === 5) {
               this.isFourDoor = false;
               this.isFiveDoor = true;
+              this.indexList = data.returnObject;
+            } else if (data.returnObject.length === 6) {
+              this.isFourDoor = false;
+              this.isFiveDoor = false;
+              this.isSixDoor = true;
               this.indexList = data.returnObject;
             }
           }

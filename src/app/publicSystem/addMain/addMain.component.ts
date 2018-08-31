@@ -31,6 +31,7 @@ export class AddMainComponent implements OnInit {
   public clickMore = false;
   public isFourDoor = false; // 四门
   public isFiveDoor = false; // 五门
+  public isSixDoor = false; // liu门
   // public myVol = false;
   // public isConfirmLoading = false;
   public isVisible = false;
@@ -99,6 +100,7 @@ export class AddMainComponent implements OnInit {
           if (data.data.wayItem.length <= 4) {
             this.isFourDoor = true;
             this.isFiveDoor = false;
+            this.isSixDoor = false;
             this.indexList = data.data.wayItem;
             for (let i = 0; i < 2; i++) {
               this.indexList.unshift(this.indexList.pop());
@@ -106,6 +108,12 @@ export class AddMainComponent implements OnInit {
           } else if (data.data.wayItem.length === 5) {
             this.isFourDoor = false;
             this.isFiveDoor = true;
+            this.isSixDoor = false;
+            this.indexList = data.data.wayItem;
+          } else if (data.data.wayItem.length === 6) {
+            this.isFourDoor = false;
+            this.isFiveDoor = false;
+            this.isSixDoor = true;
             this.indexList = data.data.wayItem;
           }
           console.log(this.indexList);

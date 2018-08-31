@@ -28,6 +28,7 @@ export class MainComponent implements OnInit {
   currentModal;
   public isFourDoor = false;
   public isFiveDoor = false;
+  public isSixDoor = false;
   constructor(private router: Router,
               private modalService: NzModalService,
               private activatedRoute: ActivatedRoute,
@@ -139,6 +140,11 @@ export class MainComponent implements OnInit {
           } else if (data.data.length === 5) {
             this.isFourDoor = false;
             this.isFiveDoor = true;
+            this.indexList = data.data;
+          } else if (data.data.length === 6) {
+            this.isFourDoor = false;
+            this.isFiveDoor = false;
+            this.isSixDoor = true;
             this.indexList = data.data;
           }
           console.log(this.indexList);

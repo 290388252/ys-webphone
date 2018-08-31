@@ -71,7 +71,7 @@
         </div>
       </div>
     </div>
-    <div class="context-six" *ngIf="!isFourDoor && !isFiveDoor">
+    <div class="context-six" *ngIf="isSixDoor">
       <div (click)="openDoor(item)" *ngFor="let item of indexList" class="box-six card text-white mb-3">
         <div class="box-body">
           <img class="col-img-six" src="{{img}}{{item['pic']}}" alt="">
