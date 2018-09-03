@@ -76,7 +76,7 @@ export class AddMainComponent implements OnInit {
         );
       } else if (urlParse(window.location.search)['payType'] === '2') {
         // 支付宝授权登陆验证
-        this.appService.getData(this.appProperties.aliVmGetUserIdUrl, {vmCode: urlParse(window.location.search)['vmCode']}).subscribe(
+        this.appService.getData(this.appProperties.aliVmGetUserIdUrl + '?vmCode=' + urlParse(window.location.search)['vmCode'], '').subscribe(
           data2 => {
             console.log(data2);
             window.location.href = data2.returnObject;

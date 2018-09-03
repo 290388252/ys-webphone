@@ -137,7 +137,7 @@ export class MainComponent implements OnInit {
       }
   }
   noTokenOath() {
-    this.appService.getData(this.appProperties.aliGetUserIdUrl, {vmCode: urlParse(window.location.search)['vmCode']}).subscribe(
+    this.appService.getData(this.appProperties.aliGetUserIdUrl + '?vmCode=' + urlParse(window.location.search)['vmCode'], '').subscribe(
       data2 => {
         console.log(data2);
         window.location.href = data2.returnObject;

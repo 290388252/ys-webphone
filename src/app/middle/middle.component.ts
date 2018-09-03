@@ -2,6 +2,7 @@ import { Component , OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {AppService} from '../app-service';
 import {AppProperties} from '../app.properties';
+import {urlParse} from '../utils/util';
 
 @Component({
   selector: 'app-middle',
@@ -28,7 +29,16 @@ export class MiddleComponent implements OnInit {
       }
     } else if (ua.match(/AlipayClient/i)) {
       if (ua.match(/AlipayClient/i)[0] === 'alipayclient') {
-        window.location.href = this.appProperties.aliGetUserIdUrl + this.urlParse(window.location.search)['vmCode'];
+        this.appService.getData(this.appProperties.aliGetUserIdUrl + '?vmCode=' + urlParse(window.location.search)['vmCode'], '').subscribe(
+          data2 => {
+            console.log(data2);
+            window.location.href = data2.returnObject;
+          },
+          error2 => {
+            console.log(error2);
+          }
+        );
+        // window.location.href = this.appProperties.aliGetUserIdUrl + this.urlParse(window.location.search)['vmCode'];
         // this.text = 'apiTest';
         // // {vmCode: this.urlParse(window.location.href)['vmCode']
         // this.appService.getData(this.appProperties.aliGetUserIdUrl).subscribe(
