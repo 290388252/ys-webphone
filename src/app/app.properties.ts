@@ -97,10 +97,8 @@ export class AppProperties {
 
     // AliPay
     this.aliIndexListUrl = this.appUrl + '/aliUser/queryItem';
-    this.aliGetUserIdUrl = 'https://openauth.alipay.com/oauth2/publicAppAuthorize.htm' +
-      '?app_id=2017120900470709&scope=auth_user&redirect_uri=http://yms.youshuidaojia.com/aliUser/';
-    this.aliVmGetUserIdUrl = 'https://openauth.alipay.com/oauth2/publicAppAuthorize.htm' +
-      '?app_id=2017120900470709&scope=auth_user&redirect_uri=http://yms.youshuidaojia.com/aliUser/getAliInfo';
+    this.aliGetUserIdUrl = this.appUrl + '/aliUser/getAuthorizationUrl';
+    this.aliVmGetUserIdUrl = this.appUrl + '/aliUser/getAiInfoUrl';
     this.aliOpenDoorUrl = this.appUrl + '/aliBusiness/weightOpenDoor';
     this.aliRegisterUrl = this.appUrl + '/aliBusiness/register';
     this.aliSmsSendUrl = this.appUrl + '/alisms/send';

@@ -76,8 +76,17 @@ export class AddMainComponent implements OnInit {
         );
       } else if (urlParse(window.location.search)['payType'] === '2') {
         // 支付宝授权登陆验证
-        const newWlhUrl = '?state=/vmLogin?vmCode=' + urlParse(window.location.search)['vmCode'] + '&payType=2';
-        window.location.href = this.appProperties.aliVmGetUserIdUrl + newWlhUrl;
+        this.appService.getData(this.appProperties.aliVmGetUserIdUrl, {vmCode: urlParse(window.location.search)['vmCode']}).subscribe(
+          data2 => {
+            console.log(data2);
+            window.location.href = data2.returnObject;
+          },
+          error2 => {
+            console.log(error2);
+          }
+        );
+        // const newWlhUrl = '?state=/vmLogin?vmCode=' + urlParse(window.location.search)['vmCode'] + '&payType=2';
+        // window.location.href = this.appProperties.aliVmGetUserIdUrl + newWlhUrl;
         // this.router.navigate(['vmLogin'], {
         //   queryParams: {
         //     vmCode: urlParse(window.location.search)['vmCode'],
@@ -94,8 +103,8 @@ export class AddMainComponent implements OnInit {
     this.volValue = 0;
   }
   canReplenish(url) {
-    this.appService.getData(this.appProperties.canReplenishUrl,
-      {vmCode: urlParse(window.location.search)['vmCode']}).subscribe(
+    this.appService.getDataOpen(this.appProperties.canReplenishUrl,
+      {vmCode: urlParse(window.location.search)['vmCode']}, this.token).subscribe(
       data => {
         console.log(data);
         if (data.code === 0) {
@@ -282,7 +291,7 @@ export class AddMainComponent implements OnInit {
         } else if (data.code === -87) {
           alert(data.msg);
         } else if (data.code === -1) {
-          alert(data.message);
+          alert(data.msg);
         }
 
       },

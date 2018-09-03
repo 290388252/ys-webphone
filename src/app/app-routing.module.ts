@@ -23,9 +23,7 @@ const routes: Routes = [/*
     { path: 'rotate', loadChildren: './alipay/rotate/rotate.module#RotateModule' },
 // public
     { path: 'vmLogin', loadChildren: './publicSystem/vmLogin/vmLogin.module#VmLoginModule' },
-    { path: 'vmDetailLogin', loadChildren: './publicSystem/vmDetailLogin/vmDetailLogin.module#VmDetailLoginModule' },
     { path: 'addMain', loadChildren: './publicSystem/addMain/addMain.module#AddMainModule' },
-    { path: 'vmDetail', loadChildren: './publicSystem/vmDetail/vmDetail.module#VmDetailModule' },
     { path: 'comment', loadChildren: './publicSystem/comment/comment.module#CommentModule' }
 ];
 

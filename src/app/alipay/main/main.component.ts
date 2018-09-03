@@ -118,10 +118,10 @@ export class MainComponent implements OnInit {
             if (data.status === 1) {
               this.isVisibleOpen = true;
             } else if (data.status === -1) {
-              window.location.href = this.appProperties.aliGetUserIdUrl + urlParse(window.location.search)['vmCode'];
+             this.noTokenOath();
             } else {
              if (data.code === -1) {
-                window.location.href = this.appProperties.aliGetUserIdUrl + urlParse(window.location.search)['vmCode'];
+               this.noTokenOath();
               } else {
                  alert(data.message);
                  if (data.willGo) {
@@ -135,6 +135,17 @@ export class MainComponent implements OnInit {
           }
         );
       }
+  }
+  noTokenOath() {
+    this.appService.getData(this.appProperties.aliGetUserIdUrl, {vmCode: urlParse(window.location.search)['vmCode']}).subscribe(
+      data2 => {
+        console.log(data2);
+        window.location.href = data2.returnObject;
+      },
+      error2 => {
+        console.log(error2);
+      }
+    );
   }
   // 是否开门（否）
   noOpenDoor() {
