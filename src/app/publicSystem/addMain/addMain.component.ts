@@ -76,16 +76,16 @@ export class AddMainComponent implements OnInit {
         );
       } else if (urlParse(window.location.search)['payType'] === '2') {
         // 支付宝授权登陆验证
+        const newWlhUrl = '?state=/vmLogin?vmCode=' + urlParse(window.location.search)['vmCode'] + '&payType=2';
         this.appService.getData(this.appProperties.aliVmGetUserIdUrl + '?vmCode=' + urlParse(window.location.search)['vmCode'], '').subscribe(
           data2 => {
             console.log(data2);
-            window.location.href = data2.returnObject;
+            window.location.href = data2.returnObject + newWlhUrl;
           },
           error2 => {
             console.log(error2);
           }
         );
-        // const newWlhUrl = '?state=/vmLogin?vmCode=' + urlParse(window.location.search)['vmCode'] + '&payType=2';
         // window.location.href = this.appProperties.aliVmGetUserIdUrl + newWlhUrl;
         // this.router.navigate(['vmLogin'], {
         //   queryParams: {

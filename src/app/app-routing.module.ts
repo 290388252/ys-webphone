@@ -24,7 +24,8 @@ const routes: Routes = [/*
 // public
     { path: 'vmLogin', loadChildren: './publicSystem/vmLogin/vmLogin.module#VmLoginModule' },
     { path: 'addMain', loadChildren: './publicSystem/addMain/addMain.module#AddMainModule' },
-    { path: 'comment', loadChildren: './publicSystem/comment/comment.module#CommentModule' }
+    { path: 'comment', loadChildren: './publicSystem/comment/comment.module#CommentModule' },
+    { path: 'goodsShow', loadChildren: './publicSystem/goodsShow/goodsShow.module#GoodsShowModule' },
 ];
 
 @NgModule({

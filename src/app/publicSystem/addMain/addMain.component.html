@@ -86,13 +86,11 @@
       <div (click)="openDoor(item)" *ngFor="let item of indexList" class="box-six card text-white mb-3">
         <div class="box-body">
           <img class="col-img-six" src="{{img}}{{item['pic']}}" alt="">
-          <br/>
           <span class="card-title"
-                style="color: white;font-weight: 900;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;font-family:'宋体';">{{item['itemName']}}</span>
+                style="color: white;font-weight: 900;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;font-family:'宋体';">{{item['itemName']}}/<span style="color: red;">{{item['price']}}元</span></span>
           <!--<br/>-->
-          <!--<span class="card-title" style="color: white">{{item['num']}}桶</span>-->
-          <br/>
-          <span class="card-title" style="color: red;font-weight: 900;font-family:'宋体';">{{item['price']}}元</span>
+          <span >容量:当前{{indexList[3]['num']}}/最大{{indexList[3]['fullNum']}}桶</span>
+          <span >重量{{indexList[3]['weight']}}</span>
         </div>
       </div>
     </div>

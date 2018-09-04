@@ -58,7 +58,7 @@
 .box-six{
   float: left;
   width: 111px;
-  height: 111px;
+  height: 115px;
   margin-right: 10px;
   background: url("../../../assets/main/kuan.png");
   border: 0;
@@ -190,7 +190,7 @@
     /*margin-left: 25px;*/
   }
   .rounded-circle{
-    margin: 25px 0 25px 0;
+    margin: 25px 0 0 0;
     width: 30%;
     height: 80px;
   }
