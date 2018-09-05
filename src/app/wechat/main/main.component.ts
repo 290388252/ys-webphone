@@ -52,77 +52,77 @@ export class MainComponent implements OnInit {
     }
     console.log(urlParse(window.location.search)['vmCode']);
     console.log(urlParse(window.location.search)['newUser']);
-    // 新用户进入界面
-    if (urlParse(window.location.search)['newUser'] === '1') {
-      this.appService.getDataOpen(this.appProperties.indexOpenDoor,
-        {vmCode: urlParse(window.location.search)['vmCode'], way: sessionStorage.getItem('wayNumber')}, this.token).subscribe(
-        data => {
-          console.log(data);
-          this.isVisibleOpenDoor = false;
-          if (data.code === 0) {
-            this.isVisibleOpen = true;
-          } else if (data.code === 3) {
-            alert('开门失败！');
-          } else if (data.code === -1) {
-            this.login();
-          } else if (data.code === -87) {
-            window.location.href = this.appProperties.followWechatSubscription;
-          } else if (data.code === -88) {
-            alert('您有未支付订单请点击我的订单支付完毕再进行购水！');
-          } else if (data.code === -89) {
-            alert('他人在买水，请稍后扫码,文明购买，请勿争抢');
-          } else if (data.code === -90) {
-            this.appService.getDataOpen(this.appProperties.nonePassWordPayUrl, {vmCode: urlParse(window.location.href)['vmCode']}).subscribe(
-              data1 => {
-                window.location.href =  data1;
-                sessionStorage.setItem('open', '1');
-              },
-              error1 => {
-                console.log(error1);
-              }
-            );
-          }
-        },
-        error => {
-          console.log(error);
-        }
-      );
-    }
-    // 是否自动开门
-    if (sessionStorage.getItem('open') === '1') {
-      this.appService.getDataOpen(this.appProperties.indexOpenDoor,
-        {vmCode: urlParse(window.location.search)['vmCode'], way: sessionStorage.getItem('wayNumber')}, this.token).subscribe(
-        data => {
-          console.log(data);
-          this.isVisibleOpenDoor = false;
-          if (data.code === 0) {
-            this.isVisibleOpen = true;
-          } else if (data.code === 3) {
-            alert('开门失败！');
-          } else if (data.code === -1) {
-            this.login();
-          } else if (data.code === -87) {
-            window.location.href = this.appProperties.followWechatSubscription;
-          } else if (data.code === -88) {
-            alert('您有未支付订单请点击我的订单支付完毕再进行购水！');
-          } else if (data.code === -89) {
-            alert('他人在买水，请稍后扫码,文明购买，请勿争抢');
-          } else if (data.code === -90) {
-            this.appService.getDataOpen(this.appProperties.nonePassWordPayUrl, {vmCode: urlParse(window.location.href)['vmCode']}).subscribe(
-              data1 => {
-                window.location.href =  data1;
-              },
-              error1 => {
-                console.log(error1);
-              }
-            );
-          }
-        },
-        error => {
-          console.log(error);
-        }
-      );
-    }
+    // // 新用户进入界面
+    // if (urlParse(window.location.search)['newUser'] === '1') {
+    //   this.appService.getDataOpen(this.appProperties.indexOpenDoor,
+    //     {vmCode: urlParse(window.location.search)['vmCode'], way: sessionStorage.getItem('wayNumber')}, this.token).subscribe(
+    //     data => {
+    //       console.log(data);
+    //       this.isVisibleOpenDoor = false;
+    //       if (data.code === 0) {
+    //         this.isVisibleOpen = true;
+    //       } else if (data.code === 3) {
+    //         alert('开门失败！');
+    //       } else if (data.code === -1) {
+    //         this.login();
+    //       } else if (data.code === -87) {
+    //         window.location.href = this.appProperties.followWechatSubscription;
+    //       } else if (data.code === -88) {
+    //         alert('您有未支付订单请点击我的订单支付完毕再进行购水！');
+    //       } else if (data.code === -89) {
+    //         alert('他人在买水，请稍后扫码,文明购买，请勿争抢');
+    //       } else if (data.code === -90) {
+    //         this.appService.getDataOpen(this.appProperties.nonePassWordPayUrl, {vmCode: urlParse(window.location.href)['vmCode']}).subscribe(
+    //           data1 => {
+    //             window.location.href =  data1;
+    //             sessionStorage.setItem('open', '1');
+    //           },
+    //           error1 => {
+    //             console.log(error1);
+    //           }
+    //         );
+    //       }
+    //     },
+    //     error => {
+    //       console.log(error);
+    //     }
+    //   );
+    // }
+    // // 是否自动开门
+    // if (sessionStorage.getItem('open') === '1') {
+    //   this.appService.getDataOpen(this.appProperties.indexOpenDoor,
+    //     {vmCode: urlParse(window.location.search)['vmCode'], way: sessionStorage.getItem('wayNumber')}, this.token).subscribe(
+    //     data => {
+    //       console.log(data);
+    //       this.isVisibleOpenDoor = false;
+    //       if (data.code === 0) {
+    //         this.isVisibleOpen = true;
+    //       } else if (data.code === 3) {
+    //         alert('开门失败！');
+    //       } else if (data.code === -1) {
+    //         this.login();
+    //       } else if (data.code === -87) {
+    //         window.location.href = this.appProperties.followWechatSubscription;
+    //       } else if (data.code === -88) {
+    //         alert('您有未支付订单请点击我的订单支付完毕再进行购水！');
+    //       } else if (data.code === -89) {
+    //         alert('他人在买水，请稍后扫码,文明购买，请勿争抢');
+    //       } else if (data.code === -90) {
+    //         this.appService.getDataOpen(this.appProperties.nonePassWordPayUrl, {vmCode: urlParse(window.location.href)['vmCode']}).subscribe(
+    //           data1 => {
+    //             window.location.href =  data1;
+    //           },
+    //           error1 => {
+    //             console.log(error1);
+    //           }
+    //         );
+    //       }
+    //     },
+    //     error => {
+    //       console.log(error);
+    //     }
+    //   );
+    // }
   }
   // 数据初始化
   getInitData() {
@@ -315,7 +315,16 @@ export class MainComponent implements OnInit {
               this.clickMore = false;
               if (data.code === 0) {
                 // alert('优水到家提醒您,为了您账号资金安全,提水后请随手关门');
-                this.isVisibleOpen = true;
+                // this.isVisibleOpen = true;
+                this.router.navigate(['goodsShow'], {
+                  queryParams: {
+                    flag: 1,
+                  }});
+              } else if (data.code === 4) {
+                this.router.navigate(['goodsShow'], {
+                  queryParams: {
+                    flag: 2,
+                  }});
               } else if (data.code === 3) {
                 alert('开门失败！');
               } else if (data.code === -1) {

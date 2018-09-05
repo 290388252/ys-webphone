@@ -1,4 +1,4 @@
-<div class="weui-panel weui-panel_access">
+<div [hidden]="more" class="weui-panel weui-panel_access">
   <div class="weui-panel__hd">您所拿取的商品列表</div>
   <div class="weui-panel__bd">
     <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
@@ -85,4 +85,8 @@
     </div>
   </div>
 </div>
-
+<div class="am-message result" style="background-size: 100% 0;margin-top: 25%" [hidden]="single">
+    <i class="am-icon result warn"></i>
+    <div class="am-message-main">温馨提示</div>
+    <div class="am-message-sub">门已开，优水到家提醒您,为了您账号资金安全,提水后请随手关门，请勿让陌生人拿水！</div>
+</div>

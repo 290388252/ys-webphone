@@ -116,7 +116,16 @@ export class MainComponent implements OnInit {
             console.log(data);
             this.clickMore = false;
             if (data.status === 1) {
-              this.isVisibleOpen = true;
+              // this.isVisibleOpen = true;
+              this.router.navigate(['goodsShow'], {
+                queryParams: {
+                  flag: 1,
+                }});
+            } else if (data.status === 4000) {
+              this.router.navigate(['goodsShow'], {
+                queryParams: {
+                  flag: 2,
+                }});
             } else if (data.status === -1) {
              this.noTokenOath();
             } else {
