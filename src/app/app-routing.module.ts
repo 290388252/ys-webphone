@@ -20,12 +20,12 @@ const routes: Routes = [/*
     { path: 'aliProduct', loadChildren: './alipay/product/product.module#ProductModule' },
     { path: 'aliCreditPayment', loadChildren: './alipay/creditPayment/creditPayment.module#CreditPaymentModule' },
     { path: 'notPage', loadChildren: './alipay/notPage/notPage.module#NotPageModule' },
-    { path: 'rotate', loadChildren: './alipay/rotate/rotate.module#RotateModule' },
 // public
     { path: 'vmLogin', loadChildren: './publicSystem/vmLogin/vmLogin.module#VmLoginModule' },
     { path: 'addMain', loadChildren: './publicSystem/addMain/addMain.module#AddMainModule' },
     { path: 'comment', loadChildren: './publicSystem/comment/comment.module#CommentModule' },
     { path: 'goodsShow', loadChildren: './publicSystem/goodsShow/goodsShow.module#GoodsShowModule' },
+    { path: 'rotate', loadChildren: './publicSystem/rotate/rotate.module#RotateModule' },
 ];
 
 @NgModule({
