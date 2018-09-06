@@ -24,6 +24,7 @@ export class AppProperties {
   public gameLottery: string;
   public gameGetCusPrize: string;
   public gameReceive: string;
+  public machineControlUrl: string;
   // WeChat
   public indexListUrl: string;
   public indexOpenDoor: string;
@@ -76,6 +77,7 @@ export class AppProperties {
     this.gameLottery = 'http://192.168.0.132:6662/ys_sms' + '/game/lottery';
     this.gameGetCusPrize = 'http://192.168.0.132:6662/ys_sms' + '/game/getCusPrize';
     this.gameReceive = 'http://192.168.0.132:6662/ys_sms' + '/game/receive';
+    this.machineControlUrl = 'http://192.168.0.132:6662/ys_sms' + '/machineControl/getChangeInfo';
     // 获取游戏奖品内容
 
     // WeChat

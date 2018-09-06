@@ -318,11 +318,13 @@ export class MainComponent implements OnInit {
                 // this.isVisibleOpen = true;
                 this.router.navigate(['goodsShow'], {
                   queryParams: {
+                    vmCode: urlParse(window.location.search)['vmCode'],
                     flag: 1,
                   }});
               } else if (data.code === 4) {
                 this.router.navigate(['goodsShow'], {
                   queryParams: {
+                    vmCode: urlParse(window.location.search)['vmCode'],
                     flag: 2,
                   }});
               } else if (data.code === 3) {

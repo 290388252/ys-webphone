@@ -91,6 +91,7 @@ export class AppService {
     });
     // tslint:disable-next-line:forin
     url += (url.indexOf('?') < 0 ? '?' : '&') + this.param(options);
+    console.log(url);
     return this.http.get(url, { headers: myHeaders });
   }
 
