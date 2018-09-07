@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import {AppService} from '../../app-service';
 import {AppProperties} from '../../app.properties';
 import {urlParse} from '../../utils/util';
+declare var WeixinJSBridge: any;
+declare var AlipayJSBridge: any;
 
 @Component({
   selector: 'app-detail',
@@ -56,6 +58,16 @@ export class GoodsShowComponent implements OnInit {
   }
   exit() {
     window.close();
+      const ua = window.navigator.userAgent.toLowerCase();
+      if (ua.match(/MicroMessenger/i)) {
+        if (ua.match(/MicroMessenger/i)[0] === 'micromessenger') {
+          WeixinJSBridge.call('closeWindow');
+        }
+      } else if (ua.match(/AlipayClient/i)) {
+        if (ua.match(/AlipayClient/i)[0] === 'alipayclient') {
+          AlipayJSBridge.call('closeWebview');
+        }
+      }
   }
   getData() {
     this.appService.getAliData(this.appProperties.machineControlUrl,
