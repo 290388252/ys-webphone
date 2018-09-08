@@ -14,9 +14,11 @@ export class GoodsShowComponent implements OnInit {
   public more: boolean;
   public single: boolean;
   public close: boolean;
+  public isVisibleOpen: boolean;
   public token: string;
   public goodsList = [];
   public totolPrice = 0;
+  public count = 0;
   private timeInterval;
   public img = this.appProperties.imgUrl;
   constructor(private router: Router,
@@ -25,28 +27,12 @@ export class GoodsShowComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.isVisibleOpen = false;
     this.getCookies();
     console.log(urlParse(window.location.search)['vmCode']);
     console.log(urlParse(window.location.search)['flag']);
     console.log(this.token);
-    const _this = this;
-    if (urlParse(window.location.search)['flag'] === 1 || urlParse(window.location.search)['flag'] === '1') {
-      this.timeInterval = setInterval(() => {
-        // _this.totolPrice = null;
-        _this.isClosed();
-      }, 1000);
-      this.more = true;
-      this.close = true;
-      this.single = false;
-    } else {
-      this.timeInterval = setInterval(() => {
-        // _this.totolPrice = null;
-        _this.getData();
-      }, 1000);
-      this.more = false;
-      this.close = true;
-      this.single = true;
-    }
+    this.oneGoodsOrMore();
   }
   turnText(num) {
     let text;
@@ -91,6 +77,11 @@ export class GoodsShowComponent implements OnInit {
     this.appService.getDataOpen(this.appProperties.isClosedUrl,
       {vmCode: urlParse(window.location.search)['vmCode']}, this.token).subscribe(
       data2 => {
+        this.count++;
+        if (this.count === 8) {
+          this.isVisibleOpen = true;
+          clearInterval(this.timeInterval);
+        }
         console.log(data2);
         if (data2.data === false) {
           // alert('您的门还未关闭！优水到家提醒您,为了您账号资金安全,提水后请随手关门');
@@ -108,7 +99,6 @@ export class GoodsShowComponent implements OnInit {
           this.more = true;
           this.single = true;
           clearInterval(this.timeInterval);
-          // this.router.navigate(['detail']);
           // alert('广州优水到家工程感谢你的惠顾,系统将从零钱或者银行卡中自动扣取本次购买费用。');
         }
       },
@@ -116,6 +106,30 @@ export class GoodsShowComponent implements OnInit {
         console.log(error2);
       }
     );
+  }
+  openOk() {
+    this.isVisibleOpen = false;
+    this.count = 0;
+    this.oneGoodsOrMore();
+  }
+  oneGoodsOrMore() {
+    const _this = this;
+    if (urlParse(window.location.search)['flag'] === 1 || urlParse(window.location.search)['flag'] === '1') {
+      this.timeInterval = setInterval(() => {
+        _this.isClosed();
+      }, 1000);
+      this.more = true;
+      this.close = true;
+      this.single = false;
+    } else {
+      this.timeInterval = setInterval(() => {
+        // _this.totolPrice = null;
+        _this.getData();
+      }, 1000);
+      this.more = false;
+      this.close = true;
+      this.single = true;
+    }
   }
   getCookies () {
     if (this.token === null || this.token === undefined || this.token === 'undefined') {

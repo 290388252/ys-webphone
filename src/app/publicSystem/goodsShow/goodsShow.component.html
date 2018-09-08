@@ -32,3 +32,11 @@
     <button (click)="exit()" class="am-button blue">退出</button>
   </div>
 </div>
+<nz-modal [nzVisible]="isVisibleOpen" [nzContent]="modalContent" [nzFooter]="modalFooter" [nzClosable]="false">
+  <ng-template #modalContent>
+    <p style="font-size: medium;">您的门还未关闭！优水到家提醒您,为了您账号资金安全,提水后请随手关门！</p>
+  </ng-template>
+  <ng-template #modalFooter>
+    <button nz-button nzType="primary" (click)="openOk()">好的</button>
+  </ng-template>
+</nz-modal>
