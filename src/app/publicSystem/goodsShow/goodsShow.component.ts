@@ -79,7 +79,7 @@ export class GoodsShowComponent implements OnInit {
       {vmCode: urlParse(window.location.search)['vmCode']}, this.token).subscribe(
       data2 => {
         this.count++;
-        if (this.count === 8) {
+        if (this.count === 20) {
           this.isVisibleOpen = true;
           clearInterval(this.timeInterval);
         }
@@ -118,14 +118,14 @@ export class GoodsShowComponent implements OnInit {
     if (urlParse(window.location.search)['flag'] === 1 || urlParse(window.location.search)['flag'] === '1') {
       this.timeInterval = setInterval(() => {
         _this.isClosed();
-      }, 1000);
+      }, 800);
       this.more = true;
       this.close = true;
       this.single = false;
     } else {
       this.timeInterval = setInterval(() => {
         _this.getData();
-      }, 1000);
+      }, 800);
       this.more = false;
       this.close = true;
       this.single = true;
