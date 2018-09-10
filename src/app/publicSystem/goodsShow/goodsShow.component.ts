@@ -17,7 +17,7 @@ export class GoodsShowComponent implements OnInit {
   public isVisibleOpen: boolean;
   public token: string;
   public goodsList = [];
-  public totolPrice = 0;
+  public totalPrice = 0;
   public count = 0;
   private timeInterval;
   public img = this.appProperties.imgUrl;
@@ -58,7 +58,8 @@ export class GoodsShowComponent implements OnInit {
       {vmCode:  urlParse(window.location.search)['vmCode']}, this.token).subscribe(
       data => {
         console.log(data);
-        this.goodsList = data.data;
+        this.goodsList = data.data.itemList;
+        this.totalPrice = data.data.totalPrice;
         this.isClosed();
         // this.goodsList.forEach(item => {
         //   if (item.changeNum < 0) {
@@ -123,7 +124,6 @@ export class GoodsShowComponent implements OnInit {
       this.single = false;
     } else {
       this.timeInterval = setInterval(() => {
-        // _this.totolPrice = null;
         _this.getData();
       }, 1000);
       this.more = false;

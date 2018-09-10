@@ -335,6 +335,10 @@ export class MainComponent implements OnInit {
                 window.location.href = this.appProperties.followWechatSubscription;
               } else if (data.code === -88) {
                 alert('您有未支付订单请点击我的订单支付完毕再进行购水！');
+                this.router.navigate(['detail'], {
+                  queryParams: {
+                    vmCode: urlParse(window.location.search)['vmCode'],
+                  }});
               } else if (data.code === -89) {
                 alert('他人在买水，请稍后扫码,文明购买，请勿争抢');
               } else if (data.code === -90) {
