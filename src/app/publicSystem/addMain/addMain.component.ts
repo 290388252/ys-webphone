@@ -17,6 +17,7 @@ export class AddMainComponent implements OnInit {
   public isVisibleOpen = false;
   public loadingVisible = false;
   public isVisibleOpenDoor = false;
+  public isVisibleOpenG = false;
   public token: string;
   // public radioValue: string;
   public count = 1;
@@ -25,6 +26,7 @@ export class AddMainComponent implements OnInit {
   public num: number;
   public wayNo: number;
   public temperature: number;
+  public selectGoods;
   // public img = 'http://lenvar-resource-products.oss-cn-shenzhen.aliyuncs.com/';
   // public img = 'http://119.23.233.123:6662/ys_admin/files/';
   public img = this.appProperties.imgUrl;
@@ -101,6 +103,13 @@ export class AddMainComponent implements OnInit {
       }
     }
     this.volValue = 0;
+  }
+  selectDoor(num) {
+    console.log(num === 3);
+    this.isVisibleOpenG = true;
+  }
+  selectGood(num) {
+    console.log(num);
   }
   canReplenish(url) {
     this.appService.getDataOpen(this.appProperties.canReplenishUrl,
@@ -418,7 +427,9 @@ export class AddMainComponent implements OnInit {
   openOk() {
     this.isClosed(urlParse(window.location.search)['vmCode']);
   }
-
+  openOkG() {
+    this.isVisibleOpenG = false;
+  }
   getCookies() {
     if (this.token === null || this.token === undefined || this.token === 'undefined') {
       const strCookie = document.cookie;
