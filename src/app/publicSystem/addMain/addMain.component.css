@@ -101,6 +101,20 @@ button{
 .radio-size{
   width: 150px;
 }
+.box-one{
+  float: left;
+  width: 165px;
+  height: 160px;
+  margin-right: 10px;
+  /*-webkit-box-shadow:2px 2px 2px 2px gray;*/
+  /*-moz-box-shadow:2px 2px 2px 2px gray;*/
+  /*box-shadow:2px 2px 2px 2px gray;*/
+  /*background-color: rgba(0,0,0,0.1);*/
+  background: url("../../../assets/main/kuan1.png");
+  border: 0;
+  background-size: 100% 100%;
+  display: -webkit-box;
+}
 .box{
   float: left;
   width: 165px;
@@ -113,6 +127,7 @@ button{
   background: url("../../../assets/main/kuan.png");
   border: 0;
   background-size: 100% 100%;
+  display: -webkit-box;
 }
 .box:after{
   -webkit-filter: blur(2px);
@@ -121,11 +136,49 @@ button{
   -o-filter: blur(2px);
   filter: blur(2px);
 }
+.boxss-one{
+  /*float: left;*/
+  width: 220px;
+  /*height: 112px;*/
+  height: 60px;
+  margin: 0 auto;
+  background: url("../../../assets/main/kuan1.png");
+  border: 0;
+  background-size: 100% 100%;
+}
+.boxs-one{
+  /*float: left;*/
+  width: 220px;
+  height: 60px;
+  margin: 0 auto;
+  background: url("../../../assets/main/kuan1.png");
+  border: 0;
+  background-size: 100% 100%;
+}
+.boxss-one{
+  /*float: left;*/
+  width: 220px;
+  /*height: 112px;*/
+  height: 60px;
+  margin: 0 auto;
+  background: url("../../../assets/main/kuan1.png");
+  border: 0;
+  background-size: 100% 100%;
+}
+.boxs-one{
+  /*float: left;*/
+  width: 220px;
+  height: 60px;
+  margin: 0 auto;
+  background: url("../../../assets/main/kuan1.png");
+  border: 0;
+  background-size: 100% 100%;
+}
 .boxss{
   /*float: left;*/
   width: 220px;
   /*height: 112px;*/
-  height: 70px;
+  height: 60px;
   margin: 0 auto;
   /*margin-right: 10px;*/
   /*-webkit-box-shadow:2px 2px 2px 2px gray;*/
@@ -139,7 +192,7 @@ button{
 .boxs{
   /*float: left;*/
   width: 220px;
-  height: 70px;
+  height: 60px;
   margin: 0 auto;
   /*height: 112px;*/
   /*margin-left: 50px;*/
@@ -157,6 +210,26 @@ button{
   -ms-filter: blur(2px);
   -o-filter: blur(2px);
   filter: blur(2px);
+}
+.box-body-one{
+  padding-left: 20px;
+  text-align: center;
+  width: 97%;
+}
+.box-body-one{
+  padding-left: 20px;
+  text-align: center;
+  width: 97%;
+}
+.box-body-one{
+  padding-left: 20px;
+  text-align: center;
+  width: 97%;
+}
+.box-body-one{
+  padding-left: 20px;
+  text-align: center;
+  width: 97%;
 }
 .box-body{
   padding-left: 20px;
@@ -205,6 +278,20 @@ button{
     margin-bottom: 38%;
     height: 60px;
   }
+  .box-one{
+    float: left;
+    width: 150px;
+    height: 150px;
+    margin-right: 10px;
+    /*-webkit-box-shadow:2px 2px 2px 2px gray;*/
+    /*-moz-box-shadow:2px 2px 2px 2px gray;*/
+    /*box-shadow:2px 2px 2px 2px gray;*/
+    /*background-color: rgba(0,0,0,0.1);*/
+    background: url("../../../assets/main/kuan1.png");
+    border: 0;
+    background-size: 100% 100%;
+    display: -webkit-box;
+  }
   .box{
     float: left;
     width: 150px;
@@ -218,10 +305,29 @@ button{
     border: 0;
     background-size: 100% 100%;
   }
+  .boxss-one{
+    /*float: left;*/
+    width: 220px;
+    /*height: 112px;*/
+    height: 60px;
+    margin: 0 auto;
+    background: url("../../../assets/main/kuan1.png");
+    border: 0;
+    background-size: 100% 100%;
+  }
+  .boxs-one{
+    /*float: left;*/
+    width: 220px;
+    height: 60px;
+    margin: 0 auto;
+    background: url("../../../assets/main/kuan1.png");
+    border: 0;
+    background-size: 100% 100%;
+  }
   .boxss{
     /*float: left;*/
     width: 220px;
-    height: 70px;
+    height: 60px;
     margin: 0 auto;
     /*height: 112px;*/
     /*margin-right: 10px;*/
@@ -236,7 +342,7 @@ button{
   .boxs{
     /*float: left;*/
     width: 220px;
-    height: 70px;
+    height: 60px;
     margin: 0 auto;
     /*height: 112px;*/
     /*margin-left: 50px;*/
@@ -268,6 +374,20 @@ button{
     margin-bottom: 38%;
     height: 60px;
   }
+  .box-one{
+    float: left;
+    width: 155px;
+    height: 160px;
+    margin-right: 10px;
+    /*-webkit-box-shadow:2px 2px 2px 2px gray;*/
+    /*-moz-box-shadow:2px 2px 2px 2px gray;*/
+    /*box-shadow:2px 2px 2px 2px gray;*/
+    /*background-color: rgba(0,0,0,0.1);*/
+    background: url("../../../assets/main/kuan1.png");
+    border: 0;
+    background-size: 100% 100%;
+    display: -webkit-box;
+  }
   .box{
     float: left;
     width: 155px;
@@ -284,7 +404,7 @@ button{
   .boxss{
     /*float: left;*/
     width: 220px;
-    height: 70px;
+    height: 60px;
     margin: 0 auto;
     /*height: 112px;*/
     /*margin-right: 10px;*/
@@ -296,7 +416,7 @@ button{
   .boxs{
     /*float: left;*/
     width: 220px;
-    height: 70px;
+    height: 60px;
     margin: 0 auto;
     /*height: 112px;*/
     /*margin-left: 50px;*/
@@ -352,6 +472,20 @@ button{
     height: 40px;
     border-radius: 50%;
   }
+  .box-one{
+    float: left;
+    width: 120px;
+    height: 120px;
+    margin-right: 10px;
+    /*-webkit-box-shadow:2px 2px 2px 2px gray;*/
+    /*-moz-box-shadow:2px 2px 2px 2px gray;*/
+    /*box-shadow:2px 2px 2px 2px gray;*/
+    /*background-color: rgba(0,0,0,0.1);*/
+    background: url("../../../assets/main/kuan1.png");
+    border: 0;
+    background-size: 100% 100%;
+    display: -webkit-box;
+  }
   .box{
     float: left;
     width: 120px;
@@ -362,6 +496,25 @@ button{
     /*box-shadow:2px 2px 2px 2px gray;*/
     /*background-color: rgba(0,0,0,0.1);*/
     background: url("../../../assets/main/kuan.png");
+    border: 0;
+    background-size: 100% 100%;
+  }
+  .boxss-one{
+    /*float: left;*/
+    width: 220px;
+    /*height: 112px;*/
+    height: 60px;
+    margin: 0 auto;
+    background: url("../../../assets/main/kuan1.png");
+    border: 0;
+    background-size: 100% 100%;
+  }
+  .boxs-one{
+    /*float: left;*/
+    width: 220px;
+    height: 60px;
+    margin: 0 auto;
+    background: url("../../../assets/main/kuan1.png");
     border: 0;
     background-size: 100% 100%;
   }
@@ -396,12 +549,17 @@ button{
     background-size: 100% 100%;
   }
 }
+.addMain-img-one{
+  width: 35px;
+  height: 35px;
+  margin-top: 5px;
+}
 .addMain-img{
-  width: 55px;
-  height: 55px;
+  width: 35px;
+  height: 35px;
   position: absolute;
-  top: 10px;
-  left: 0;
+  top: 5px;
+  left: 36px;
 }
 .addMain-bottom{
   margin-bottom: 4px!important;

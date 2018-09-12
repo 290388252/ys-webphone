@@ -18,6 +18,7 @@ export class AddMainComponent implements OnInit {
   public loadingVisible = false;
   public isVisibleOpenDoor = false;
   public isVisibleOpenG = false;
+  public isVisibleOpenDetail = false;
   public token: string;
   // public radioValue: string;
   public count = 1;
@@ -41,6 +42,12 @@ export class AddMainComponent implements OnInit {
   // public beginvolValue;
   public volValue;
   // public endVole;
+  public fullNum;
+  public numDetail;
+  public costPrice;
+  public price;
+  public weight;
+  public itemName;
 
   constructor(private router: Router,
               private modalService: NzModalService,
@@ -176,7 +183,30 @@ export class AddMainComponent implements OnInit {
       }
     );
   }
-
+  detail(item, event) {
+    event.stopPropagation();
+    console.log(item);
+    // costPrice: 6.88
+    // endTime: "2018-05-05 00:00:00"
+    // fullNum: 24
+    // hot: 1
+    // itemId: "4572"
+    // itemName: "怡宝纯净水4.5L"
+    // num: 0
+    // pic: "20180601_084447.png"
+    // price: 8.2
+    // state: 30001
+    // wayId: "44332"
+    // wayNumber: 3
+    // weight: 0
+    this.itemName = item.itemName;
+    this.costPrice = item.costPrice;
+    this.price = item.price;
+    this.weight = item.weight;
+    this.fullNum = item.fullNum;
+    this.numDetail = item.num;
+    this.isVisibleOpenDetail = true;
+  }
   // 开门接口
   openDoor(item) {
     if (this.token === null
@@ -428,6 +458,7 @@ export class AddMainComponent implements OnInit {
     this.isClosed(urlParse(window.location.search)['vmCode']);
   }
   openOkG() {
+    this.isVisibleOpenDetail = false;
     this.isVisibleOpenG = false;
   }
   getCookies() {

@@ -53,6 +53,18 @@
   border: 0;
   background-size: 100% 90%;
 }
+.text-custom-one {
+  color: white;
+  font-weight: 900;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-left: 80px;
+  font-family: "宋体";
+  width: 64px;
+  top: 47px;
+  position: absolute;
+}
 .text-custom {
   color: white;
   font-weight: 900;
@@ -81,6 +93,16 @@
   bottom: 0;
   right: 0;
 }
+.box-one{
+  float: left;
+  width: 150px;
+  height: 150px;
+  margin-left: 6px;
+  border: 0;
+  background: url("../../../assets/main/kuan1.png");
+  background-size: 100% 100%;
+  display: -webkit-box;
+}
 .box{
   float: left;
   width: 165px;
@@ -89,6 +111,7 @@
   border: 0;
   background: url("../../../assets/main/kuan.png");
   background-size: 100% 100%;
+  display: -webkit-box;
 }
 .box:active{
   transform: scale(1.2);
@@ -103,6 +126,30 @@
   -ms-filter: blur(2px);
   -o-filter: blur(2px);
   filter: blur(2px);
+}
+.boxss-one{
+  /*float: left;*/
+  width: 220px;
+  height: 70px;
+  margin: 0 auto;
+  /*height: 112px;*/
+  /*margin-right: 10px;*/
+  /*-webkit-box-shadow:2px 2px 2px 2px gray;*/
+  /*-moz-box-shadow:2px 2px 2px 2px gray;*/
+  /*box-shadow:2px 2px 2px 2px gray;*/
+  /*background-color: rgba(0,0,0,0.1);*/
+  background: url("../../../assets/main/kuan1.png");
+  border: 0;
+  background-size: 100% 100%;
+}
+.boxs-one{
+  /*float: left;*/
+  width: 220px;
+  height: 70px;
+  margin: 0 auto;
+  background: url("../../../assets/main/kuan1.png");
+  border: 0;
+  background-size: 100% 90%;
 }
 .boxss{
   /*float: left;*/
@@ -124,12 +171,6 @@
   width: 220px;
   height: 70px;
   margin: 0 auto;
-  /*height: 112px;*/
-  /*margin-left: 50px;*/
-  /*-webkit-box-shadow:2px 2px 2px 2px gray;*/
-  /*-moz-box-shadow:2px 2px 2px 2px gray;*/
-  /*box-shadow:2px 2px 2px 2px gray;*/
-  /*background-color: rgba(0,0,0,0.1);*/
   background: url("../../../assets/main/kuan.png");
   border: 0;
   background-size: 100% 90%;
@@ -140,6 +181,11 @@
   -ms-filter: blur(2px);
   -o-filter: blur(2px);
   filter: blur(2px);
+}
+.box-body-one{
+  padding-left: 10px;
+  text-align: center;
+  width: 95%;
 }
 .box-body{
   padding-left: 20px;
@@ -176,6 +222,11 @@
   .min-padding {
     padding: 5px;
   }
+  .box-body-one{
+    padding-left: 10px;
+    text-align: center;
+    width: 95%;
+  }
   .box-body{
     padding-left: 10px;
     text-align: center;
@@ -193,6 +244,16 @@
     margin-bottom: 38%;
     height: 60px;
   }
+  .box-one{
+    float: left;
+    width: 144px;
+    height: 150px;
+    margin-left: 6px;
+    border: 0;
+    background: url("../../../assets/main/kuan1.png");
+    background-size: 100% 100%;
+    display: -webkit-box;
+  }
   .box{
     float: left;
     width: 144px;
@@ -205,6 +266,30 @@
     background: url("../../../assets/main/kuan.png");
     border: 0;
     background-size: 100% 100%;
+  }
+  .boxss-one{
+    /*float: left;*/
+    width: 220px;
+    height: 70px;
+    margin: 0 auto;
+    /*height: 112px;*/
+    /*margin-right: 10px;*/
+    /*-webkit-box-shadow:2px 2px 2px 2px gray;*/
+    /*-moz-box-shadow:2px 2px 2px 2px gray;*/
+    /*box-shadow:2px 2px 2px 2px gray;*/
+    /*background-color: rgba(0,0,0,0.1);*/
+    background: url("../../../assets/main/kuan1.png");
+    border: 0;
+    background-size: 100% 100%;
+  }
+  .boxs-one{
+    /*float: left;*/
+    width: 220px;
+    height: 70px;
+    margin: 0 auto;
+    background: url("../../../assets/main/kuan1.png");
+    border: 0;
+    background-size: 100% 90%;
   }
   .boxss{
     /*float: left;*/
@@ -241,6 +326,11 @@
   .min-padding {
     padding: 10px;
   }
+  .box-body-one{
+    padding-left: 20px;
+    text-align: center;
+    width: 95%;
+  }
   .box-body{
     padding-left: 20px;
     text-align: center;
@@ -257,6 +347,16 @@
     margin-top: -8px;
     margin-bottom: 38%;
     height: 60px;
+  }
+  .box-one{
+    float: left;
+    width: 144px;
+    height: 150px;
+    margin-left: 6px;
+    border: 0;
+    background: url("../../../assets/main/kuan1.png");
+    background-size: 100% 100%;
+    display: -webkit-box;
   }
   .box{
     float: left;
@@ -304,14 +404,19 @@
 }
 @media screen and (max-width: 291px){
   .col-img{
-    margin-top: 17px;
+    margin-top: 12px;
     margin-bottom: 5px;
-    margin-right: 17px;
-    width: 75px;
-    height: 75px;
+    margin-left: -25px;
+    width: 59px;
+    height: 59px;
   }
   .min-padding {
     padding: 10px;
+  }
+  .box-body-one{
+    padding-left: 20px;
+    text-align: center;
+    width: 95%;
   }
   .box-body{
     padding-left: 20px;
@@ -319,7 +424,7 @@
     width: 50%;
   }
   .context{
-    width: 270px;
+    width: 220px;
     margin: 0 auto;
     /*margin-left: 20px;*/
   }
@@ -336,23 +441,50 @@
     height: 40px;
     border-radius: 50%;
   }
+  .box-one{
+    float: left;
+    width: 100px;
+    height: 100px;
+    border: 0;
+    background: url("../../../assets/main/kuan1.png");
+    background-size: 100% 100%;
+    display: -webkit-box;
+  }
   .box{
     float: left;
-    width: 120px;
-    height: 120px;
-    margin-right: 10px;
+    width: 100px;
+    height: 100px;
+    /*margin-right: 10px;*/
     /*-webkit-box-shadow:2px 2px 2px 2px gray;*/
     /*-moz-box-shadow:2px 2px 2px 2px gray;*/
     /*box-shadow:2px 2px 2px 2px gray;*/
     /*background-color: rgba(0,0,0,0.1);*/
     background: url("../../../assets/main/kuan.png");
     border: 0;
+    background-size: 100% 100%;
+  }
+  .boxss-one{
+    /*float: left;*/
+    width: 200px;
+    height: 70px;
+    margin: 0 auto;
+    background: url("../../../assets/main/kuan1.png");
+    border: 0;
+    background-size: 100% 100%;
+  }
+  .boxs-one{
+    /*float: left;*/
+    width: 200px;
+    height: 70px;
+    margin: 0 auto;
+    background: url("../../../assets/main/kuan1.png");
+    border: 0;
     background-size: 100% 90%;
   }
   .boxss{
     /*float: left;*/
-    width: 220px;
-    height: 60px;
+    width: 200px;
+    height: 55px;
     margin: 0 auto;
     /*height: 112px;*/
     /*margin-right: 10px;*/
@@ -366,8 +498,8 @@
   }
   .boxs{
     /*float: left;*/
-    width: 220px;
-    height: 60px;
+    width: 200px;
+    height: 55px;
     margin: 0 auto;
     /*height: 112px;*/
     /*margin-left: 50px;*/
@@ -379,6 +511,11 @@
     border: 0;
     background-size: 100% 100%;
   }
+}
+.addMain-img-one {
+  width: 35px;
+  height: 35px;
+  margin-top: 4px;
 }
 .addMain-img{
   width: 35px;
