@@ -14,46 +14,36 @@
       <div (click)="openDoor(indexList[0])" class="boxss card text-white addMain-bottom">
         <div style="text-align: center">
           <img class="addMain-img" src="{{img}}{{indexList[0]['pic']}}" alt="">
-          <br/>
-          <span class="text-custom">{{indexList[0]['itemName']}}</span>
-          <br/>
-          <span class="text-custom" style="color: red;">{{indexList[0]['price']}}元</span>
+          <p class="text-custom">{{indexList[0]['itemName']}}</p>
+          <p class="text-custom" style="color: red;margin-top: 10px">{{indexList[0]['price']}}元</p>
         </div>
       </div>
       <div (click)="openDoor(indexList[1])" class="boxss card text-white addMain-bottom">
         <div style="text-align: center">
           <img class="addMain-img" src="{{img}}{{indexList[1]['pic']}}" alt="">
-          <br/>
-          <span class="text-custom">{{indexList[1]['itemName']}}</span>
-          <br/>
-          <span class="text-custom" style="color: red;">{{indexList[1]['price']}}元</span>
+          <p class="text-custom">{{indexList[1]['itemName']}}</p>
+          <p class="text-custom" style="color: red;margin-top: 10px">{{indexList[1]['price']}}元</p>
         </div>
       </div>
       <div (click)="openDoor(indexList[2])" class="boxs card text-white addMain-bottom">
         <div style="text-align: center">
           <img class="addMain-img" src="{{img}}{{indexList[2]['pic']}}" alt="">
-          <br/>
-          <span class="text-custom">{{indexList[2]['itemName']}}</span>
-          <br/>
-          <span class="text-custom" style="color: red;">{{indexList[2]['price']}}元</span>
+          <p class="text-custom">{{indexList[2]['itemName']}}</p>
+          <p class="text-custom" style="color: red;margin-top: 10px">{{indexList[2]['price']}}元</p>
         </div>
       </div>
       <div (click)="openDoor(indexList[3])" class="boxss card text-white addMain-bottom">
         <div style="text-align: center">
           <img class="addMain-img" src="{{img}}{{indexList[3]['pic']}}" alt="">
-          <br/>
-          <span class="text-custom">{{indexList[3]['itemName']}}</span>
-          <br/>
-          <span class="text-custom" style="color: red;">{{indexList[3]['price']}}元</span>
+          <p class="text-custom">{{indexList[3]['itemName']}}</p>
+          <p class="text-custom" style="color: red;margin-top: 10px">{{indexList[3]['price']}}元</p>
         </div>
       </div>
       <div (click)="openDoor(indexList[4])" class="boxss card text-white addMain-bottom">
         <div style="text-align: center">
           <img class="addMain-img" src="{{img}}{{indexList[4]['pic']}}" alt="">
-          <br/>
-          <span class="text-custom" style="color: red;">{{indexList[4]['itemName']}}</span>
-          <br/>
-          <span class="text-custom" style="color: red;font-family:'宋体';">{{indexList[4]['price']}}元</span>
+          <p class="text-custom" style="color: red;">{{indexList[4]['itemName']}}</p>
+          <p class="text-custom" style="color: red;font-family:'宋体';margin-top: 10px">{{indexList[4]['price']}}元</p>
         </div>
       </div>
     </div>
@@ -62,34 +52,33 @@
         <div class="box-body">
           <img class="col-img" src="{{img}}{{item['pic']}}" alt="">
           <br/>
-          <span class="card-title"
-                style="color: white;font-weight: 900;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;font-family:'宋体';">{{item['itemName']}}</span>
+          <p class="card-title"
+                style="width: 100%;margin-bottom: 0;color: white;font-weight: 900;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;font-family:'宋体';">{{item['itemName']}}</p>
           <!--<br/>-->
           <!--<span class="card-title" style="color: white">{{item['num']}}桶</span>-->
-          <br/>
           <span class="card-title" style="color: red;font-weight: 900;font-family:'宋体';">{{item['price']}}元</span>
         </div>
       </div>
     </div>
-    <div class="context-six" *ngIf="isSixDoor">
-      <div (click)="openDoor(item)" *ngFor="let item of indexList" class="box-six card text-white mb-3">
-        <div class="box-body">
-          <img class="col-img-six" src="{{img}}{{item['pic']}}" alt="">
-          <br/>
-          <span class="card-title"
-                style="color: white;font-weight: 900;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;font-family:'宋体';">{{item['itemName']}}</span>
+    <!--<div class="context-six" *ngIf="isSixDoor">-->
+      <!--<div (click)="openDoor(item)" *ngFor="let item of indexList" class="box-six card text-white mb-3">-->
+        <!--<div class="box-body">-->
+          <!--<img class="col-img-six" src="{{img}}{{item['pic']}}" alt="">-->
           <!--<br/>-->
-          <!--<span class="card-title" style="color: white">{{item['num']}}桶</span>-->
-          <br/>
-          <span class="card-title" style="color: red;font-weight: 900;font-family:'宋体';">{{item['price']}}元</span>
-        </div>
-      </div>
-    </div>
+          <!--<span class="card-title"-->
+                <!--style="color: white;font-weight: 900;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;font-family:'宋体';">{{item['itemName']}}</span>-->
+          <!--&lt;!&ndash;<br/>&ndash;&gt;-->
+          <!--&lt;!&ndash;<span class="card-title" style="color: white">{{item['num']}}桶</span>&ndash;&gt;-->
+          <!--<br/>-->
+          <!--<span class="card-title" style="color: red;font-weight: 900;font-family:'宋体';">{{item['price']}}元</span>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
     <!--<div class="foot">-->
     <!--<img class="foot-img" src="../../../assets/main/logo1.png" alt="">-->
     <!--</div>-->
     <div class="my-product">
-      <button (click)="product()" type="button" class="btn btn-primary" style="background: #117cbb">我的订单</button>
+      <button (click)="product()" type="button" style="color: white">我的订单</button>
     </div>
     <!--<div class="my-share">-->
       <!--<button (click)="share()" type="button" class="btn btn-primary small" style="background: #117cbb">分享</button>-->

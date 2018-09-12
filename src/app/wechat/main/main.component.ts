@@ -28,7 +28,7 @@ export class MainComponent implements OnInit {
   currentModal;
   public isFourDoor = false;
   public isFiveDoor = false;
-  public isSixDoor = false;
+  // public isSixDoor = false;
   constructor(private router: Router,
               private modalService: NzModalService,
               private activatedRoute: ActivatedRoute,
@@ -141,12 +141,13 @@ export class MainComponent implements OnInit {
             this.isFourDoor = false;
             this.isFiveDoor = true;
             this.indexList = data.data;
-          } else if (data.data.length === 6) {
-            this.isFourDoor = false;
-            this.isFiveDoor = false;
-            this.isSixDoor = true;
-            this.indexList = data.data;
           }
+          // else if (data.data.length === 6) {
+          //   this.isFourDoor = false;
+          //   this.isFiveDoor = false;
+          //   // this.isSixDoor = true;
+          //   this.indexList = data.data;
+          // }
           console.log(this.indexList);
         }
       },
@@ -342,7 +343,8 @@ export class MainComponent implements OnInit {
               } else if (data.code === -89) {
                 alert('他人在买水，请稍后扫码,文明购买，请勿争抢');
               } else if (data.code === -90) {
-                this.appService.getDataOpen(this.appProperties.nonePassWordPayUrl, {vmCode: urlParse(window.location.href)['vmCode']}).subscribe(
+                this.appService.getDataOpen(this.appProperties.nonePassWordPayUrl,
+                  {vmCode: urlParse(window.location.href)['vmCode']}).subscribe(
                   data1 => {
                     window.location.href =  data1;
                     // sessionStorage.setItem('open', '1');
