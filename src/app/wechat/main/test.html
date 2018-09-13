@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div (click)="openDoor(item)" *ngFor="let item of indexList" [ngClass]="item['wayItemList'].length === 1 ? 'box-one' : 'box'" class=" card text-white mb-3">
+  <div [ngClass]="item['wayItemList'].length === 1 ? 'box-body-one' : 'box-body'">
+    <img class="col-img" src="{{img}}{{item['wayItemList'][0]['pic']}}" alt="">
+    <br/>
+    <p class="card-title"
+       style="width: 100%;
+             margin-bottom: 0;
+             color: white;
+             font-weight: 100;
+             overflow: hidden;
+             text-overflow: ellipsis;
+             white-space: nowrap;
+             font-family:'宋体';">
+      {{item['wayItemList'][0]['itemName']}}
+    </p>
+    <span class="card-title" style="color: red;font-weight: 900;font-family:'宋体';">{{item['wayItemList'][0]['price']}}元</span>
+  </div>
+  <div [hidden]="item['wayItemList'].length === 1" class="box-body" >
+    <img class="col-img" [src]="turnImg(item['wayItemList'])" alt="">
+    <br/>
+    <p class="card-title"
+       style="width: 100%;margin-bottom: 0;color: white;font-weight: 100;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;font-family:'宋体';">
+      {{turnItemName(item['wayItemList'])}}</p>
+    <span class="card-title" style="color: red;font-weight: 900;font-family:'宋体';">{{turnPrice(item['wayItemList'])}}元</span>
+  </div>
+</div>
+
+</body>
+</html>
