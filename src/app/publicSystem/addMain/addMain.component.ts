@@ -13,6 +13,7 @@ import {AddMainModule} from './addMain.module';
 })
 export class AddMainComponent implements OnInit {
   public indexList: Array<object>;
+  public indexListTest: Array<object>;
   private wayNumber: number;
   public isVisibleOpen = false;
   public loadingVisible = false;
@@ -151,6 +152,7 @@ export class AddMainComponent implements OnInit {
             this.isFiveDoor = false;
             this.isSixDoor = false;
             this.indexList = data.data.wayInfo;
+            this.indexListTest = data.data.wayInfo;
             for (let i = 0; i < 2; i++) {
               this.indexList.unshift(this.indexList.pop());
             }
@@ -423,7 +425,8 @@ export class AddMainComponent implements OnInit {
         vmCode: urlParse(window.location.search)['vmCode'],
         wayNum: this.wayNo,
         times: this.times,
-        num: this.num
+        num: this.num,
+        orderNumber: this.indexListTest[this.wayNo]['wayItemList'][this.selectGoods].orderNumber
       }, this.token).subscribe(
       data => {
         console.log(data);
