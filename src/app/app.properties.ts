@@ -81,7 +81,8 @@ export class AppProperties {
     // 获取游戏奖品内容
 
     // WeChat
-    this.indexListUrl = this.appUrl + '/index/listWay';
+    this.indexListUrl = 'http://192.168.0.116:6662/ys_sms/index/listWay';
+    // this.indexListUrl = this.appUrl + '/index/listWay';
     this.indexOpenDoor = this.appUrl + '/index/openDoor';
     this.wechatOauth2Url = this.appUrl + '/wechat/oauth2';
     this.smsSendUrl = this.appUrl + '/sms/send';
@@ -98,7 +99,8 @@ export class AppProperties {
     // this.couponAvailable = this.appUrl + '/coupon/available';
 
     // AliPay
-    this.aliIndexListUrl = this.appUrl + '/aliUser/queryItem';
+    this.aliIndexListUrl = 'http://192.168.0.116:6662/ys_sms/aliUser/queryItem';
+    // this.aliIndexListUrl = this.appUrl + '/aliUser/queryItem';
     this.aliGetUserIdUrl = this.appUrl + '/aliUser/getAuthorizationUrl';
     this.aliVmGetUserIdUrl = this.appUrl + '/aliUser/getAiInfoUrl';
     this.aliOpenDoorUrl = this.appUrl + '/aliBusiness/weightOpenDoor';

@@ -9,108 +9,158 @@
       <br>
       <span class="title">补货人员补水系统</span>
     </div>
+    <!--<div class="context" *ngIf="isFiveDoor">-->
+      <!--<div (click)="openDoor(indexList[0])" class="boxss-one card text-white addMain-bottom">-->
+        <!--<div style="text-align: center">-->
+          <!--&lt;!&ndash;<img style="width: 25px;height: 25px" src="{{img}}{{indexList[3]['pic']}}" alt="">&ndash;&gt;-->
+          <!--<img class="addMain-img-one" src="{{img}}{{indexList[0]['pic']}}" alt="">-->
+          <!--<button (click)="detail(indexList[0], $event)"-->
+                  <!--style="border: grey;width: 89%;background: bisque;height: 16px;margin-top: 2px;">点击查看详情</button>-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--<div (click)="openDoor(indexList[1])" class="boxss-one card text-white addMain-bottom">-->
+        <!--<div style="text-align: center">-->
+          <!--&lt;!&ndash;<img style="width: 25px;height: 25px" src="{{img}}{{indexList[4]['pic']}}" alt="">&ndash;&gt;-->
+          <!--&lt;!&ndash;<br/>&ndash;&gt;-->
+          <!--<img class="addMain-img-one" src="{{img}}{{indexList[1]['pic']}}" alt="">-->
+          <!--<button (click)="detail(indexList[1], $event)"-->
+                  <!--style="border: grey;width: 89%;background: bisque;height: 16px;margin-top: 2px;">点击查看详情</button>-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--<div (click)="openDoor(indexList[2])" class="boxs-one card text-white addMain-bottom">-->
+        <!--<div style="text-align: center">-->
+          <!--&lt;!&ndash;<img style="width: 25px;height: 25px" src="{{img}}{{indexList[2]['pic']}}" alt="">&ndash;&gt;-->
+          <!--&lt;!&ndash;<br/>&ndash;&gt;-->
+          <!--<img class="addMain-img-one" src="{{img}}{{indexList[2]['pic']}}" alt="">-->
+          <!--<button (click)="detail(indexList[2], $event)"-->
+                  <!--style="border: grey;width: 89%;background: bisque;height: 16px;margin-top: 2px;">点击查看详情</button>-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--<div (click)="openDoor(indexList[3])" class="boxss-one card text-white addMain-bottom">-->
+        <!--<div style="text-align: center">-->
+          <!--&lt;!&ndash;<img style="width: 25px;height: 25px" src="{{img}}{{indexList[0]['pic']}}" alt="">&ndash;&gt;-->
+          <!--&lt;!&ndash;<br/>&ndash;&gt;-->
+          <!--<img class="addMain-img-one" src="{{img}}{{indexList[3]['pic']}}" alt="">-->
+          <!--<button (click)="detail(indexList[3], $event)"-->
+                  <!--style="border: grey;width: 89%;background: bisque;height: 16px;margin-top: 2px;">点击查看详情</button>-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--<div (click)="openDoor(indexList[4])" class="boxss-one card text-white addMain-bottom">-->
+        <!--<div style="text-align: center">-->
+          <!--&lt;!&ndash;<img style="width: 25px;height: 25px" src="{{img}}{{indexList[1]['pic']}}" alt="">&ndash;&gt;-->
+          <!--&lt;!&ndash;<br/>&ndash;&gt;-->
+          <!--<img class="addMain-img-one" src="{{img}}{{indexList[4]['pic']}}" alt="">-->
+          <!--<button (click)="detail(indexList[4], $event)"-->
+                  <!--style="border: grey;width: 89%;background: bisque;height: 16px;margin-top: 2px;">点击查看详情</button>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
+
     <div class="context" *ngIf="isFiveDoor">
-      <div (click)="openDoor(indexList[0])" class="boxss-one card text-white addMain-bottom">
+      <div (click)="openDoor(indexList[0])" [ngClass]="indexList[0]['wayItemList'].length === 1 ? 'boxss-one' : 'boxss'" class=" card text-white addMain-bottom">
         <div style="text-align: center">
-          <!--<img style="width: 25px;height: 25px" src="{{img}}{{indexList[3]['pic']}}" alt="">-->
-          <img class="addMain-img-one" src="{{img}}{{indexList[0]['pic']}}" alt="">
-          <button (click)="detail(indexList[0], $event)"
-                  style="border: grey;width: 89%;background: bisque;height: 16px;margin-top: 2px;">点击查看详情</button>
+          <img [ngClass]="indexList[0]['wayItemList'].length === 1 ? 'addMain-img-one' : 'addMain-img'" src="{{img}}{{indexList[0]['wayItemList'][0]['pic']}}" alt="">
+        </div>
+        <div style="text-align: center" [hidden]="indexList[0]['wayItemList'].length === 1">
+          <img class="addMain-img" style="left: 137px" [src]="turnImg(indexList[0]['wayItemList'])" alt="">
         </div>
       </div>
-      <div (click)="openDoor(indexList[1])" class="boxss-one card text-white addMain-bottom">
+
+      <div (click)="openDoor(indexList[1])" [ngClass]="indexList[1]['wayItemList'].length === 1 ? 'boxss-one' : 'boxss'" class=" card text-white addMain-bottom">
         <div style="text-align: center">
-          <!--<img style="width: 25px;height: 25px" src="{{img}}{{indexList[4]['pic']}}" alt="">-->
-          <!--<br/>-->
-          <img class="addMain-img-one" src="{{img}}{{indexList[1]['pic']}}" alt="">
-          <button (click)="detail(indexList[1], $event)"
-                  style="border: grey;width: 89%;background: bisque;height: 16px;margin-top: 2px;">点击查看详情</button>
+          <img [ngClass]="indexList[1]['wayItemList'].length === 1 ? 'addMain-img-one' : 'addMain-img'" src="{{img}}{{indexList[1]['wayItemList'][0]['pic']}}" alt="">
+        </div>
+        <div style="text-align: center" [hidden]="indexList[1]['wayItemList'].length === 1">
+          <img class="addMain-img" style="left: 137px" [src]="turnImg(indexList[1]['wayItemList'])" alt="">
         </div>
       </div>
-      <div (click)="openDoor(indexList[2])" class="boxs-one card text-white addMain-bottom">
+
+      <div (click)="openDoor(indexList[2])" [ngClass]="indexList[2]['wayItemList'].length === 1 ? 'boxss-one' : 'boxss'" class=" card text-white addMain-bottom">
         <div style="text-align: center">
-          <!--<img style="width: 25px;height: 25px" src="{{img}}{{indexList[2]['pic']}}" alt="">-->
-          <!--<br/>-->
-          <img class="addMain-img-one" src="{{img}}{{indexList[2]['pic']}}" alt="">
-          <button (click)="detail(indexList[2], $event)"
-                  style="border: grey;width: 89%;background: bisque;height: 16px;margin-top: 2px;">点击查看详情</button>
+          <img [ngClass]="indexList[2]['wayItemList'].length === 1 ? 'addMain-img-one' : 'addMain-img'" src="{{img}}{{indexList[2]['wayItemList'][0]['pic']}}" alt="">
+        </div>
+        <div style="text-align: center" [hidden]="indexList[2]['wayItemList'].length === 1">
+          <img class="addMain-img" style="left: 137px" [src]="turnImg(indexList[2]['wayItemList'])" alt="">
         </div>
       </div>
-      <div (click)="openDoor(indexList[3])" class="boxss-one card text-white addMain-bottom">
+
+      <div (click)="openDoor(indexList[3])" [ngClass]="indexList[3]['wayItemList'].length === 1 ? 'boxss-one' : 'boxss'" class=" card text-white addMain-bottom">
         <div style="text-align: center">
-          <!--<img style="width: 25px;height: 25px" src="{{img}}{{indexList[0]['pic']}}" alt="">-->
-          <!--<br/>-->
-          <img class="addMain-img-one" src="{{img}}{{indexList[3]['pic']}}" alt="">
-          <button (click)="detail(indexList[3], $event)"
-                  style="border: grey;width: 89%;background: bisque;height: 16px;margin-top: 2px;">点击查看详情</button>
+          <img [ngClass]="indexList[3]['wayItemList'].length === 1 ? 'addMain-img-one' : 'addMain-img'" src="{{img}}{{indexList[3]['wayItemList'][0]['pic']}}" alt="">
+        </div>
+        <div style="text-align: center" [hidden]="indexList[3]['wayItemList'].length === 1">
+          <img class="addMain-img" style="left: 137px" [src]="turnImg(indexList[3]['wayItemList'])" alt="">
         </div>
       </div>
-      <div (click)="openDoor(indexList[4])" class="boxss-one card text-white addMain-bottom">
+
+      <div (click)="openDoor(indexList[4])" [ngClass]="indexList[4]['wayItemList'].length === 1 ? 'boxss-one' : 'boxss'" class=" card text-white addMain-bottom">
         <div style="text-align: center">
-          <!--<img style="width: 25px;height: 25px" src="{{img}}{{indexList[1]['pic']}}" alt="">-->
-          <!--<br/>-->
-          <img class="addMain-img-one" src="{{img}}{{indexList[4]['pic']}}" alt="">
-          <button (click)="detail(indexList[4], $event)"
-                  style="border: grey;width: 89%;background: bisque;height: 16px;margin-top: 2px;">点击查看详情</button>
+          <img [ngClass]="indexList[4]['wayItemList'].length === 1 ? 'addMain-img-one' : 'addMain-img'" src="{{img}}{{indexList[4]['wayItemList'][0]['pic']}}" alt="">
+          <button (click)="detail(indexList[4]['wayItemList'][1], $event)" style="font-size: 9px;border: grey;width: 89%;background: bisque;margin-right: 10px;">点击查看详情</button>
+        </div>
+        <div style="text-align: center" [hidden]="indexList[4]['wayItemList'].length === 1">
+          <img class="addMain-img" style="left: 137px" [src]="turnImg(indexList[4]['wayItemList'])" alt="">
+          <button (click)="detail(indexList[4]['wayItemList'][1], $event)" style="font-size: 9px;border: grey;width: 89%;background: bisque;margin-right: 10px;">点击查看详情</button>
         </div>
       </div>
     </div>
 
-    <!--<div class="context" *ngIf="isFiveDoor">-->
-      <!--<div (click)="openDoor(indexList[0])" class="boxss card text-white addMain-bottom">-->
-        <!--<div style="text-align: center; ">-->
-          <!--<img class="addMain-img" src="{{img}}{{indexList[0]['pic']}}" alt="">-->
-          <!--<button (click)="detail(indexList[0], $event)"-->
-                  <!--style="border: grey;width: 39%;background: bisque;margin-right: 10px;position: absolute;top: 45px;height: 12px;left: 11px;font-size: 9px;">点击查看详情</button>-->
-        <!--</div>-->
-        <!--<div style="text-align: center; ">-->
-          <!--<img style="left: 143px" class="addMain-img" src="{{img}}{{indexList[0]['pic']}}" alt="">-->
-          <!--<button (click)="detail(indexList[0], $event)"-->
-                  <!--style="border: grey;width: 39%;background: bisque;margin-right: 10px;position: absolute;top: 45px;height: 12px;left: 121px;font-size: 9px;">点击查看详情</button>-->
-        <!--</div>-->
-      <!--</div>-->
-      <!--<div (click)="openDoor(indexList[1])" class="boxss card text-white addMain-bottom">-->
-        <!--<div style="text-align: center;position: absolute;">-->
-          <!--<img class="addMain-img" src="{{img}}{{indexList[1]['pic']}}" alt="">-->
-        <!--</div>-->
-      <!--</div>-->
-      <!--<div (click)="openDoor(indexList[2])" class="boxs card text-white addMain-bottom">-->
-        <!--<div style="text-align: center;position: absolute;">-->
-          <!--<img class="addMain-img" src="{{img}}{{indexList[2]['pic']}}" alt="">-->
-        <!--</div>-->
-      <!--</div>-->
-      <!--<div (click)="openDoor(indexList[3])" class="boxss card text-white addMain-bottom">-->
-        <!--<div style="text-align: center;position: absolute;">-->
-          <!--<img class="addMain-img" src="{{img}}{{indexList[3]['pic']}}" alt="">-->
-        <!--</div>-->
-      <!--</div>-->
-      <!--<div (click)="openDoor(indexList[4])" class="boxss card text-white addMain-bottom">-->
-        <!--<div style="text-align: center;position: absolute;">-->
-          <!--<img class="addMain-img" src="{{img}}{{indexList[4]['pic']}}" alt="">-->
-        <!--</div>-->
-      <!--</div>-->
-    <!--</div>-->
     <div class="context" *ngIf="isFourDoor">
-      <div (click)="openDoor(item)" *ngFor="let item of indexList" class="box-one card text-white mb-3">
-        <div class="box-body-one">
-          <img class="col-img" src="{{img}}{{item['pic']}}" alt="">
+      <!--4men-->
+      <div (click)="openDoor(indexList[0])" [ngClass]="indexList[0]['wayItemList'].length === 1 ? 'box-one' : 'box'" class=" card text-white mb-3">
+        <div [ngClass]="indexList[0]['wayItemList'].length === 1 ? 'box-body-one' : 'box-body'">
+          <img class="col-img" src="{{img}}{{indexList[0]['wayItemList'][0]['pic']}}" alt="">
           <br/>
-          <button (click)="detail(item, $event)" style="border: grey;width: 89%;background: bisque;margin-right: 10px;">点击查看详情</button>
+          <button (click)="detail(indexList[0]['wayItemList'][0], $event)" style="font-size: 9px;border: grey;width: 89%;background: bisque;margin-right: 10px;">点击查看详情</button>
+        </div>
+        <div [hidden]="indexList[0]['wayItemList'].length === 1" class="box-body" >
+          <img class="col-img" [src]="turnImg(indexList[0]['wayItemList'])" alt="">
+          <br/>
+          <button (click)="detail(indexList[0]['wayItemList'][1], $event)" style="font-size: 9px;border: grey;width: 89%;background: bisque;margin-right: 10px;">点击查看详情</button>
         </div>
       </div>
-        <!--<div (click)="openDoor(item)" *ngFor="let item of indexList" class="box card text-white mb-3">-->
-          <!--<div class="box-body">-->
-            <!--<img class="col-img" src="{{img}}{{item['pic']}}" alt="">-->
-            <!--<br/>-->
-            <!--<button (click)="detail(item, $event)" style="font-size: 9px;border: grey;width: 89%;background: bisque;margin-right: 10px;">点击查看详情</button>-->
-          <!--</div>-->
-          <!--<div class="box-body">-->
-            <!--<img class="col-img" src="{{img}}{{item['pic']}}" alt="">-->
-            <!--<br/>-->
-            <!--<button (click)="detail(item, $event)" style="font-size: 9px;border: grey;width: 89%;background: bisque;margin-right: 10px;">点击查看详情</button>-->
-          <!--</div>-->
-        <!--</div>-->
+
+      <div (click)="openDoor(indexList[1])" [ngClass]="indexList[1]['wayItemList'].length === 1 ? 'box-one' : 'box'" class=" card text-white mb-3">
+        <!--<div class="box-body-one">-->
+        <div [ngClass]="indexList[1]['wayItemList'].length === 1 ? 'box-body-one' : 'box-body'">
+          <img class="col-img" src="{{img}}{{indexList[1]['wayItemList'][0]['pic']}}" alt="">
+          <br/>
+          <button (click)="detail(indexList[1]['wayItemList'][0], $event)" style="font-size: 9px;border: grey;width: 89%;background: bisque;margin-right: 10px;">点击查看详情</button>
+        </div>
+        <div [hidden]="indexList[1]['wayItemList'].length === 1" class="box-body" >
+          <img class="col-img" [src]="turnImg(indexList[1]['wayItemList'])" alt="">
+          <br/>
+          <button (click)="detail(indexList[1]['wayItemList'][1], $event)" style="font-size: 9px;border: grey;width: 89%;background: bisque;margin-right: 10px;">点击查看详情</button>
+        </div>
+      </div>
+
+      <div (click)="openDoor(indexList[2])" [ngClass]="indexList[2]['wayItemList'].length === 1 ? 'box-one' : 'box'" class=" card text-white mb-3">
+        <div [ngClass]="indexList[2]['wayItemList'].length === 1 ? 'box-body-one' : 'box-body'">
+          <img class="col-img" src="{{img}}{{indexList[2]['wayItemList'][0]['pic']}}" alt="">
+          <br/>
+          <button (click)="detail(indexList[2]['wayItemList'][0], $event)" style="font-size: 9px;border: grey;width: 89%;background: bisque;margin-right: 10px;">点击查看详情</button>
+        </div>
+        <div [hidden]="indexList[2]['wayItemList'].length === 1" class="box-body" >
+          <img class="col-img" [src]="turnImg(indexList[2]['wayItemList'])" alt="">
+          <br/>
+          <button (click)="detail(indexList[2]['wayItemList'][1], $event)" style="font-size: 9px;border: grey;width: 89%;background: bisque;margin-right: 10px;">点击查看详情</button>
+        </div>
+      </div>
+
+      <div (click)="openDoor(indexList[3])" [ngClass]="indexList[3]['wayItemList'].length === 1 ? 'box-one' : 'box'" class=" card text-white mb-3">
+        <div [ngClass]="indexList[3]['wayItemList'].length === 1 ? 'box-body-one' : 'box-body'">
+          <img class="col-img" src="{{img}}{{indexList[3]['wayItemList'][0]['pic']}}" alt="">
+          <br/>
+          <button (click)="detail(indexList[3]['wayItemList'][0], $event)" style="font-size: 9px;border: grey;width: 89%;background: bisque;margin-right: 10px;">点击查看详情</button>
+        </div>
+        <div [hidden]="indexList[3]['wayItemList'].length === 1" class="box-body" >
+          <img class="col-img" [src]="turnImg(indexList[3]['wayItemList'])" alt="">
+          <br/>
+          <button (click)="detail(indexList[3]['wayItemList'][1], $event)" style="font-size: 9px;border: grey;width: 89%;background: bisque;margin-right: 10px;">点击查看详情</button>
+        </div>
+      </div>
     </div>
+
     <!--<div class="context-six" *ngIf="isSixDoor">-->
       <!--<div (click)="openDoor(item)" *ngFor="let item of indexList" class="box-six card text-white mb-3">-->
         <!--<div class="box-body">-->
@@ -123,6 +173,7 @@
         <!--</div>-->
       <!--</div>-->
     <!--</div>-->
+
     <!--<div class="foot">-->
       <!--<img class="foot-img" src="../../../assets/main/logo1.png" alt="">-->
     <!--</div>-->

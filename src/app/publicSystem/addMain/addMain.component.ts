@@ -146,24 +146,24 @@ export class AddMainComponent implements OnInit {
       data => {
         console.log(data);
         if (data.code === 0) {
-          if (data.data.wayItem.length <= 4) {
+          if (data.data.wayInfo.length <= 4) {
             this.isFourDoor = true;
             this.isFiveDoor = false;
             this.isSixDoor = false;
-            this.indexList = data.data.wayItem;
+            this.indexList = data.data.wayInfo;
             for (let i = 0; i < 2; i++) {
               this.indexList.unshift(this.indexList.pop());
             }
-          } else if (data.data.wayItem.length === 5) {
+          } else if (data.data.wayInfo.length === 5) {
             this.isFourDoor = false;
             this.isFiveDoor = true;
             this.isSixDoor = false;
-            this.indexList = data.data.wayItem;
-          } else if (data.data.wayItem.length === 6) {
+            this.indexList = data.data.wayInfo;
+          } else if (data.data.wayInfo.length === 6) {
             this.isFourDoor = false;
             this.isFiveDoor = false;
             this.isSixDoor = true;
-            this.indexList = data.data.wayItem;
+            this.indexList = data.data.wayInfo;
           }
           console.log(this.indexList);
           this.temperature = data.data.temperature;
@@ -199,13 +199,13 @@ export class AddMainComponent implements OnInit {
     // wayId: "44332"
     // wayNumber: 3
     // weight: 0
-    this.itemName = item.itemName;
-    this.costPrice = item.costPrice;
-    this.price = item.price;
-    this.weight = item.weight;
-    this.fullNum = item.fullNum;
-    this.numDetail = item.num;
-    this.isVisibleOpenDetail = true;
+      this.itemName = item.itemName;
+      this.costPrice = item.costPrice;
+      this.price = item.price;
+      this.weight = item.weight;
+      this.fullNum = item.fullNum;
+      this.numDetail = item.num;
+      this.isVisibleOpenDetail = true;
   }
   // 开门接口
   openDoor(item) {
@@ -472,5 +472,32 @@ export class AddMainComponent implements OnInit {
         }
       }
     }
+  }
+  turnImg(item) {
+    let img;
+    if  (item.length > 1) {
+      img = this.img + item[1].pic;
+    } else {
+      img = '';
+    }
+    return img;
+  }
+  turnItemName(item) {
+    let itemName;
+    if  (item.length > 1) {
+      itemName = item[1].itemName;
+    } else {
+      itemName = '';
+    }
+    return itemName;
+  }
+  turnPrice(item) {
+    let price;
+    if  (item.length > 1) {
+      price = item[1].price;
+    } else {
+      price = '';
+    }
+    return price;
   }
 }

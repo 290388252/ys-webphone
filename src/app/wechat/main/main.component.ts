@@ -429,4 +429,31 @@ export class MainComponent implements OnInit {
       }
       return coupon;
     }
+  turnImg(item) {
+    let img;
+    if  (item.length > 1) {
+      img = this.img + item[1].pic;
+    } else {
+      img = '';
+    }
+    return img;
+  }
+  turnItemName(item) {
+    let itemName;
+    if  (item.length > 1) {
+      itemName = item[1].itemName;
+    } else {
+      itemName = '';
+    }
+    return itemName;
+  }
+  turnPrice(item) {
+    let price;
+    if  (item.length > 1) {
+      price = item[1].price;
+    } else {
+      price = '';
+    }
+    return price;
+  }
 }
