@@ -251,7 +251,7 @@ export class AddMainComponent implements OnInit {
           data => {
             console.log(data);
             this.clickMore = false;
-            if (data.code === 0) {
+            if (data.code === 0 || data.code === 4) {
               this.isVisibleOpen = true;
             } else if (data.code === -1) {
               this.router.navigate(['vmLogin']);
