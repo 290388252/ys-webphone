@@ -260,10 +260,10 @@ button{
   vertical-align: middle;
 }
 .detail-button{
-  font-size: 9px;border: grey;width: 28%;background: bisque;height: 15px;position: absolute;top: 42px;left: 23px;
+  font-size: 9px;border: grey;width: 28%;background: url("../../../assets/main/button-bg.png");height: 15px;position: absolute;top: 42px;left: 23px;color: black;
 }
 .detail-button-four{
-  font-size: 9px;border: grey;width: 42%;background: bisque;height: 15px;position: absolute;top: 117px;left: 8px;
+  font-size: 9px;border: grey;width: 42%;background: url("../../../assets/main/button-bg.png");height: 25px;position: absolute;top: 111px;left: 8px;color: black;
 }
 @media screen and (max-height: 570px){
   .min-padding {

@@ -125,8 +125,8 @@
       <!--<nz-input-number style="width: 100%;" [(ngModel)]="wayNo" [nzPlaceHolder]="'请输入货道'" [nzMin]="1" [nzMax]="4" [nzStep]="1" [nzDisabled]="count === 2"></nz-input-number>-->
     </ng-template>
     <ng-template #modalFooters style="text-align: center">
-      <button nz-button nzType="primary" style="visibility: hidden;">否</button>
-      <button nz-button nzType="primary" style="margin-right: -15px" (click)="yes()">确定</button>
+      <button nz-button nzType="primary" (click)="no()">关闭</button>
+      <button nz-button nzType="primary" style="margin-right: -15px" (click)="yes()">校准</button>
       <button nz-button nzType="primary" style="visibility: hidden">否</button>
       <button nz-button nzType="primary" style="visibility: hidden">否</button>
       <button nz-button nzType="primary" style="visibility: hidden">否</button>

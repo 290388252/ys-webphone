@@ -452,7 +452,7 @@ export class AddMainComponent implements OnInit {
 
   // 是否开门（否）
   no() {
-    // this.isVisibleOpenDoor = false;
+    this.isVisibleOpenDoor = false;
     // console.log(this.radioValue);
   }
 
