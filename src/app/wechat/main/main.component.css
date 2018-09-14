@@ -337,7 +337,7 @@
     width: 50%;
   }
   .context{
-    width: 330px;
+    width: 340px;
     margin: 0 auto;
     /*margin-left: 20px;*/
   }
@@ -362,7 +362,7 @@
     float: left;
     width: 155px;
     height: 155px;
-    margin-right: 10px;
+    margin-left: 5px;
     /*-webkit-box-shadow:2px 2px 2px 2px gray;*/
     /*-moz-box-shadow:2px 2px 2px 2px gray;*/
     /*box-shadow:2px 2px 2px 2px gray;*/

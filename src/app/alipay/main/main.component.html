@@ -12,77 +12,25 @@
     </div>
 
     <div class="context" *ngIf="isFiveDoor">
-      <div (click)="openDoor(indexList[0])" [ngClass]="indexList[0]['wayItemList'].length === 1 ? 'boxss-one' : 'boxss'" class=" card text-white addMain-bottom">
+      <div (click)="openDoor(item)" *ngFor="let item of indexList" [ngClass]="item['wayItemList'].length === 1 ? 'boxss-one' : 'boxss'" class=" card text-white addMain-bottom">
         <div style="text-align: center">
-          <img [ngClass]="indexList[0]['wayItemList'].length === 1 ? 'addMain-img-one' : 'addMain-img'" src="{{img}}{{indexList[0]['wayItemList'][0]['pic']}}" alt="">
-          <p [ngClass]="indexList[0]['wayItemList'].length === 1 ? 'text-custom-one' : 'text-custom'">{{indexList[0]['wayItemList'][0]['itemName']}}</p>
-          <p [ngClass]="indexList[0]['wayItemList'].length === 1 ? 'text-custom-one' : 'text-custom'" style="color: red;margin-top: 10px">{{indexList[0]['wayItemList'][0]['price']}}元</p>
+          <img [ngClass]="item['wayItemList'].length === 1 ? 'addMain-img-one' : 'addMain-img'" src="{{img}}{{item['wayItemList'][0]['pic']}}" alt="">
+          <p [ngClass]="item['wayItemList'].length === 1 ? 'text-custom-one' : 'text-custom'">{{item['wayItemList'][0]['itemName']}}</p>
+          <p [ngClass]="item['wayItemList'].length === 1 ? 'text-custom-one' : 'text-custom'" style="color: red;margin-top: 10px">{{item['wayItemList'][0]['price']}}元</p>
         </div>
-        <div style="text-align: center" [hidden]="indexList[0]['wayItemList'].length === 1">
-          <img class="addMain-img" style="left: 137px" [src]="turnImg(indexList[0]['wayItemList'])" alt="">
-          <p class="text-custom" style="left: 100px">{{turnItemName(indexList[0]['wayItemList'])}}</p>
-          <p class="text-custom" style="color: red;margin-top: 10px;left: 100px">{{turnPrice(indexList[0]['wayItemList'])}}元</p>
-        </div>
-      </div>
-
-      <div (click)="openDoor(indexList[1])" [ngClass]="indexList[1]['wayItemList'].length === 1 ? 'boxss-one' : 'boxss'" class=" card text-white addMain-bottom">
-        <div style="text-align: center">
-          <img [ngClass]="indexList[1]['wayItemList'].length === 1 ? 'addMain-img-one' : 'addMain-img'" src="{{img}}{{indexList[1]['wayItemList'][0]['pic']}}" alt="">
-          <p [ngClass]="indexList[1]['wayItemList'].length === 1 ? 'text-custom-one' : 'text-custom'">{{indexList[1]['wayItemList'][0]['itemName']}}</p>
-          <p [ngClass]="indexList[1]['wayItemList'].length === 1 ? 'text-custom-one' : 'text-custom'" style="color: red;margin-top: 10px">{{indexList[1]['wayItemList'][0]['price']}}元</p>
-        </div>
-        <div style="text-align: center" [hidden]="indexList[1]['wayItemList'].length === 1">
-          <img class="addMain-img" style="left: 137px" [src]="turnImg(indexList[1]['wayItemList'])" alt="">
-          <p class="text-custom" style="left: 100px">{{turnItemName(indexList[1]['wayItemList'])}}</p>
-          <p class="text-custom" style="color: red;margin-top: 10px;left: 100px">{{turnPrice(indexList[1]['wayItemList'])}}元</p>
-        </div>
-      </div>
-
-      <div (click)="openDoor(indexList[2])" [ngClass]="indexList[2]['wayItemList'].length === 1 ? 'boxss-one' : 'boxss'" class=" card text-white addMain-bottom">
-        <div style="text-align: center">
-          <img [ngClass]="indexList[2]['wayItemList'].length === 1 ? 'addMain-img-one' : 'addMain-img'" src="{{img}}{{indexList[2]['wayItemList'][0]['pic']}}" alt="">
-          <p [ngClass]="indexList[2]['wayItemList'].length === 1 ? 'text-custom-one' : 'text-custom'">{{indexList[2]['wayItemList'][0]['itemName']}}</p>
-          <p [ngClass]="indexList[2]['wayItemList'].length === 1 ? 'text-custom-one' : 'text-custom'" style="color: red;margin-top: 10px">{{indexList[2]['wayItemList'][0]['price']}}元</p>
-        </div>
-        <div style="text-align: center" [hidden]="indexList[2]['wayItemList'].length === 1">
-          <img class="addMain-img" style="left: 137px" [src]="turnImg(indexList[2]['wayItemList'])" alt="">
-          <p class="text-custom" style="left: 100px">{{turnItemName(indexList[2]['wayItemList'])}}</p>
-          <p class="text-custom" style="color: red;margin-top: 10px;left: 100px">{{turnPrice(indexList[2]['wayItemList'])}}元</p>
-        </div>
-      </div>
-
-      <div (click)="openDoor(indexList[3])" [ngClass]="indexList[3]['wayItemList'].length === 1 ? 'boxss-one' : 'boxss'" class=" card text-white addMain-bottom">
-        <div style="text-align: center">
-          <img [ngClass]="indexList[3]['wayItemList'].length === 1 ? 'addMain-img-one' : 'addMain-img'" src="{{img}}{{indexList[3]['wayItemList'][0]['pic']}}" alt="">
-          <p [ngClass]="indexList[3]['wayItemList'].length === 1 ? 'text-custom-one' : 'text-custom'">{{indexList[3]['wayItemList'][0]['itemName']}}</p>
-          <p [ngClass]="indexList[3]['wayItemList'].length === 1 ? 'text-custom-one' : 'text-custom'" style="color: red;margin-top: 10px">{{indexList[3]['wayItemList'][0]['price']}}元</p>
-        </div>
-        <div style="text-align: center" [hidden]="indexList[3]['wayItemList'].length === 1">
-          <img class="addMain-img" style="left: 137px" [src]="turnImg(indexList[3]['wayItemList'])" alt="">
-          <p class="text-custom" style="left: 100px">{{turnItemName(indexList[3]['wayItemList'])}}</p>
-          <p class="text-custom" style="color: red;margin-top: 10px;left: 100px">{{turnPrice(indexList[3]['wayItemList'])}}元</p>
-        </div>
-      </div>
-
-      <div (click)="openDoor(indexList[4])" [ngClass]="indexList[4]['wayItemList'].length === 1 ? 'boxss-one' : 'boxss'" class=" card text-white addMain-bottom">
-        <div style="text-align: center">
-          <img [ngClass]="indexList[4]['wayItemList'].length === 1 ? 'addMain-img-one' : 'addMain-img'" src="{{img}}{{indexList[4]['wayItemList'][0]['pic']}}" alt="">
-          <p [ngClass]="indexList[4]['wayItemList'].length === 1 ? 'text-custom-one' : 'text-custom'">{{indexList[4]['wayItemList'][0]['itemName']}}</p>
-          <p [ngClass]="indexList[4]['wayItemList'].length === 1 ? 'text-custom-one' : 'text-custom'" style="color: red;margin-top: 10px">{{indexList[4]['wayItemList'][0]['price']}}元</p>
-        </div>
-        <div style="text-align: center" [hidden]="indexList[4]['wayItemList'].length === 1">
-          <img class="addMain-img" style="left: 137px" [src]="turnImg(indexList[4]['wayItemList'])" alt="">
-          <p class="text-custom" style="left: 100px">{{turnItemName(indexList[4]['wayItemList'])}}</p>
-          <p class="text-custom" style="color: red;margin-top: 10px;left: 100px">{{turnPrice(indexList[4]['wayItemList'])}}元</p>
+        <div style="text-align: center" [hidden]="item['wayItemList'].length === 1">
+          <img class="addMain-img" style="left: 137px" [src]="turnImg(item['wayItemList'])" alt="">
+          <p class="text-custom" style="left: 100px">{{turnItemName(item['wayItemList'])}}</p>
+          <p class="text-custom" style="color: red;margin-top: 10px;left: 100px">{{turnPrice(item['wayItemList'])}}元</p>
         </div>
       </div>
     </div>
 
     <div class="context" *ngIf="isFourDoor">
       <!--aaaaaaaaaaaaaaaaaaaaaaaaa-->
-      <div (click)="openDoor(indexList[0])" [ngClass]="indexList[0]['wayItemList'].length === 1 ? 'box-one' : 'box'" class=" card text-white mb-3">
-        <div [ngClass]="indexList[0]['wayItemList'].length === 1 ? 'box-body-one' : 'box-body'">
-          <img class="col-img" src="{{img}}{{indexList[0]['wayItemList'][0]['pic']}}" alt="">
+      <div (click)="openDoor(item)" *ngFor="let item of indexList" [ngClass]="item['wayItemList'].length === 1 ? 'box-one' : 'box'" class=" card text-white mb-3">
+        <div [ngClass]="item['wayItemList'].length === 1 ? 'box-body-one' : 'box-body'">
+          <img class="col-img" src="{{img}}{{item['wayItemList'][0]['pic']}}" alt="">
           <br/>
           <p class="card-title"
              style="width: 100%;
@@ -93,101 +41,18 @@
              text-overflow: ellipsis;
              white-space: nowrap;
              font-family:'宋体';">
-            {{indexList[0]['wayItemList'][0]['itemName']}}
+            {{item['wayItemList'][0]['itemName']}}
           </p>
-          <span class="card-title" style="color: red;font-weight: 900;font-family:'宋体';">{{indexList[0]['wayItemList'][0]['price']}}元</span>
+          <span class="card-title" style="color: red;font-weight: 900;font-family:'宋体';">{{item['wayItemList'][0]['price']}}元</span>
         </div>
-        <div [hidden]="indexList[0]['wayItemList'].length === 1" class="box-body" >
-          <img class="col-img" [src]="turnImg(indexList[0]['wayItemList'])" alt="">
+        <div [hidden]="item['wayItemList'].length === 1" class="box-body" >
+          <img class="col-img" [src]="turnImg(item['wayItemList'])" alt="">
           <br/>
           <p class="card-title"
              style="width: 100%;margin-bottom: 0;color: white;font-weight: 100;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;font-family:'宋体';">
-            {{turnItemName(indexList[0]['wayItemList'])}}</p>
-          <span class="card-title" style="color: red;font-weight: 900;font-family:'宋体';">{{turnPrice(indexList[0]['wayItemList'])}}元</span>
+            {{turnItemName(item['wayItemList'])}}</p>
+          <span class="card-title" style="color: red;font-weight: 900;font-family:'宋体';">{{turnPrice(item['wayItemList'])}}元</span>
         </div>
-      </div>
-
-      <div (click)="openDoor(indexList[1])" [ngClass]="indexList[1]['wayItemList'].length === 1 ? 'box-one' : 'box'" class=" card text-white mb-3">
-        <!--<div class="box-body-one">-->
-        <div [ngClass]="indexList[1]['wayItemList'].length === 1 ? 'box-body-one' : 'box-body'">
-          <img class="col-img" src="{{img}}{{indexList[1]['wayItemList'][0]['pic']}}" alt="">
-          <br/>
-          <p class="card-title"
-             style="width: 100%;
-             margin-bottom: 0;
-             color: white;
-             font-weight: 100;
-             overflow: hidden;
-             text-overflow: ellipsis;
-             white-space: nowrap;
-             font-family:'宋体';">
-            {{indexList[1]['wayItemList'][0]['itemName']}}
-          </p>
-          <span class="card-title" style="color: red;font-weight: 900;font-family:'宋体';">{{indexList[1]['wayItemList'][0]['price']}}元</span>
-        </div>
-        <div [hidden]="indexList[1]['wayItemList'].length === 1" class="box-body" >
-          <img class="col-img" [src]="turnImg(indexList[1]['wayItemList'])" alt="">
-          <br/>
-          <p class="card-title"
-             style="width: 100%;margin-bottom: 0;color: white;font-weight: 100;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;font-family:'宋体';">
-            {{turnItemName(indexList[1]['wayItemList'])}}</p>
-          <span class="card-title" style="color: red;font-weight: 900;font-family:'宋体';">{{turnPrice(indexList[1]['wayItemList'])}}元</span>
-        </div>
-      </div>
-
-      <div (click)="openDoor(indexList[2])" [ngClass]="indexList[2]['wayItemList'].length === 1 ? 'box-one' : 'box'" class=" card text-white mb-3">
-        <div [ngClass]="indexList[2]['wayItemList'].length === 1 ? 'box-body-one' : 'box-body'">
-          <img class="col-img" src="{{img}}{{indexList[2]['wayItemList'][0]['pic']}}" alt="">
-          <br/>
-          <p class="card-title"
-             style="width: 100%;
-             margin-bottom: 0;
-             color: white;
-             font-weight: 100;
-             overflow: hidden;
-             text-overflow: ellipsis;
-             white-space: nowrap;
-             font-family:'宋体';">
-            {{indexList[2]['wayItemList'][0]['itemName']}}
-          </p>
-          <span class="card-title" style="color: red;font-weight: 900;font-family:'宋体';">{{indexList[2]['wayItemList'][0]['price']}}元</span>
-        </div>
-        <div [hidden]="indexList[2]['wayItemList'].length === 1" class="box-body" >
-          <img class="col-img" [src]="turnImg(indexList[2]['wayItemList'])" alt="">
-          <br/>
-          <p class="card-title"
-             style="width: 100%;margin-bottom: 0;color: white;font-weight: 100;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;font-family:'宋体';">
-            {{turnItemName(indexList[2]['wayItemList'])}}</p>
-          <span class="card-title" style="color: red;font-weight: 900;font-family:'宋体';">{{turnPrice(indexList[2]['wayItemList'])}}元</span>
-        </div>
-      </div>
-
-      <div (click)="openDoor(indexList[3])" [ngClass]="indexList[3]['wayItemList'].length === 1 ? 'box-one' : 'box'" class=" card text-white mb-3">
-        <div [ngClass]="indexList[3]['wayItemList'].length === 1 ? 'box-body-one' : 'box-body'">
-          <img class="col-img" src="{{img}}{{indexList[3]['wayItemList'][0]['pic']}}" alt="">
-          <br/>
-          <p class="card-title"
-             style="width: 100%;
-             margin-bottom: 0;
-             color: white;
-             font-weight: 100;
-             overflow: hidden;
-             text-overflow: ellipsis;
-             white-space: nowrap;
-             font-family:'宋体';">
-            {{indexList[3]['wayItemList'][0]['itemName']}}
-          </p>
-          <span class="card-title" style="color: red;font-weight: 900;font-family:'宋体';">{{indexList[3]['wayItemList'][0]['price']}}元</span>
-        </div>
-        <div [hidden]="indexList[3]['wayItemList'].length === 1" class="box-body" >
-          <img class="col-img" [src]="turnImg(indexList[3]['wayItemList'])" alt="">
-          <br/>
-          <p class="card-title"
-             style="width: 100%;margin-bottom: 0;color: white;font-weight: 100;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;font-family:'宋体';">
-            {{turnItemName(indexList[3]['wayItemList'])}}</p>
-          <span class="card-title" style="color: red;font-weight: 900;font-family:'宋体';">{{turnPrice(indexList[3]['wayItemList'])}}元</span>
-        </div>
-      </div>
     </div>
     <!--<div class="context-six" *ngIf="isSixDoor">-->
     <!--<div (click)="openDoor(item)" *ngFor="let item of indexList" class="box-six card text-white mb-3">-->
@@ -206,13 +71,14 @@
     <!--<div class="foot">-->
     <!--<img class="foot-img" src="../../../assets/main/logo1.png" alt="">-->
     <!--</div>-->
-    <div class="my-product">
-      <button (click)="detail()" type="button" style="color: white">我的订单</button>
-    </div>
+
     <!--<div class="my-share">-->
     <!--<button (click)="share()" type="button" class="btn btn-primary small" style="background: #117cbb">分享</button>-->
     <!--</div>-->
   </div>
+    <div class="my-product">
+      <button (click)="detail()" type="button" style="color: white">我的订单</button>
+    </div>
   <nz-modal [nzVisible]="isVisibleOpenDoor" [nzContent]="modalContents" [nzFooter]="modalFooters" [nzClosable]="false">
     <ng-template #modalContents #modalFooters style="text-align: center">
       <p style="font-size: medium;">是否要开门？</p>

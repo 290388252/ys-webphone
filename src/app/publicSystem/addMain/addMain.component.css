@@ -259,6 +259,9 @@ button{
   border: 0;
   vertical-align: middle;
 }
+.detail-button{
+  font-size: 9px;border: grey;width: 28%;background: bisque;height: 15px;position: absolute;top: 42px;left: 23px;
+}
 @media screen and (max-height: 570px){
   .min-padding {
     padding: 5px;
@@ -269,7 +272,7 @@ button{
     width: 50%;
   }
   .context{
-    width: 320px;
+    width: 340px;
     margin: 0 auto;
     /*margin-left: 25px;*/
   }
@@ -280,9 +283,9 @@ button{
   }
   .box-one{
     float: left;
-    width: 150px;
+    width: 145px;
     height: 150px;
-    margin-right: 10px;
+    margin-left: 5px;
     /*-webkit-box-shadow:2px 2px 2px 2px gray;*/
     /*-moz-box-shadow:2px 2px 2px 2px gray;*/
     /*box-shadow:2px 2px 2px 2px gray;*/
@@ -296,7 +299,7 @@ button{
     float: left;
     width: 150px;
     height: 150px;
-    margin-right: 10px;
+    margin-left: 5px;
     /*-webkit-box-shadow:2px 2px 2px 2px gray;*/
     /*-moz-box-shadow:2px 2px 2px 2px gray;*/
     /*box-shadow:2px 2px 2px 2px gray;*/
@@ -365,7 +368,7 @@ button{
     width: 50%;
   }
   .context{
-    width: 330px;
+    width: 340px;
     margin: 0 auto;
     /*margin-left: 33px;*/
   }
@@ -392,7 +395,7 @@ button{
     float: left;
     width: 155px;
     height: 160px;
-    margin-right: 10px;
+    margin-left: 5px;
     /*-webkit-box-shadow:2px 2px 2px 2px gray;*/
     /*-moz-box-shadow:2px 2px 2px 2px gray;*/
     /*box-shadow:2px 2px 2px 2px gray;*/
