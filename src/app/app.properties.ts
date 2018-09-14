@@ -56,9 +56,9 @@ export class AppProperties {
 
   constructor() {
     // Public
-    this.appUrl = 'http://47.106.92.82:6662/ys_sms';
+    // this.appUrl = 'http://47.106.92.82:6662/ys_sms';
+    this.appUrl = 'http://192.168.0.116:6662/ys_sms';
     this.adminUrl = 'http://119.23.233.123:6662/ys_admin';
-    // this.appUrl = 'http://youshuismallhe.natapp1.cc'; // localtest
     this.imgUrl = this.adminUrl + '/files/';
     this.isClosedUrl = this.appUrl + '/wechat/isClosed';
     this.adminLoginUrl = this.appUrl + '/admin/login';
@@ -81,26 +81,22 @@ export class AppProperties {
     // 获取游戏奖品内容
 
     // WeChat
-    this.indexListUrl = 'http://192.168.0.116:6662/ys_sms/index/listWay';
-    // this.indexListUrl = this.appUrl + '/index/listWay';
+    this.indexListUrl = this.appUrl + '/index/listWay';
     this.indexOpenDoor = this.appUrl + '/index/openDoor';
     this.wechatOauth2Url = this.appUrl + '/wechat/oauth2';
     this.smsSendUrl = this.appUrl + '/sms/send';
     this.wechatRegisterUrl = this.appUrl + '/wechat/register';
     this.followWechatSubscription = 'https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzU0NzQ4MTY0Mg==&scene=124#wechat_redirect';
     this.findAllUserOrderUrl = this.appUrl + '/order/myOrderList';
-    // this.findAllOpenIdOrderUrl = 'http://192.168.0.120:8769/ys_admin/order/findOrderByOpenId?openId=';
     this.findAllOpenIdOrderUrl = this.adminUrl + '/order/findOrderByOpenId?openId=';
     this.orderUnifiedOrderUrl = this.appUrl + '/order/unifiedOrder';
     this.nonePassWordPayUrl = this.appUrl + '/wechat/entrustweb';
     this.findMachineHistoryUrl = this.adminUrl + '/payRecord/findMachineHistory';
     this.wechatShareInfoUrl = this.appUrl + '/wechat/shareInfo';
     this.couponAvailable = this.appUrl + '/coupon/available';
-    // this.couponAvailable = this.appUrl + '/coupon/available';
 
     // AliPay
-    this.aliIndexListUrl = 'http://192.168.0.116:6662/ys_sms/aliUser/queryItem';
-    // this.aliIndexListUrl = this.appUrl + '/aliUser/queryItem';
+    this.aliIndexListUrl = this.appUrl + '/aliUser/queryItem';
     this.aliGetUserIdUrl = this.appUrl + '/aliUser/getAuthorizationUrl';
     this.aliVmGetUserIdUrl = this.appUrl + '/aliUser/getAiInfoUrl';
     this.aliOpenDoorUrl = this.appUrl + '/aliBusiness/weightOpenDoor';
