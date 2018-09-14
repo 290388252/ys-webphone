@@ -41,6 +41,7 @@ export class AddMainComponent implements OnInit {
   // public isConfirmLoading = false;
   public isVisible = false;
   public isOkLoading = false;
+  public visible = false;
   // public beginvolValue;
   public volValue;
   // public endVole;
@@ -126,6 +127,11 @@ export class AddMainComponent implements OnInit {
       this.wayIndex = 3;
     } else if (num === 5) {
       this.wayIndex = 4;
+    }
+    if (this.indexList[this.wayIndex]['wayItemList'].length > 1) {
+      this.visible = true;
+    } else {
+      this.visible = false;
     }
     console.log(this.wayIndex);
     this.isVisibleOpenG = true;

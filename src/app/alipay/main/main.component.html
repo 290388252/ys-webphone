@@ -12,11 +12,15 @@
     </div>
 
     <div class="context" *ngIf="isFiveDoor">
-      <div (click)="openDoor(item)" *ngFor="let item of indexList" [ngClass]="item['wayItemList'].length === 1 ? 'boxss-one' : 'boxss'" class=" card text-white addMain-bottom">
+      <div (click)="openDoor(item)" *ngFor="let item of indexList"
+           [ngClass]="item['wayItemList'].length === 1 ? 'boxss-one' : 'boxss'" class=" card text-white addMain-bottom">
         <div style="text-align: center">
-          <img [ngClass]="item['wayItemList'].length === 1 ? 'addMain-img-one' : 'addMain-img'" src="{{img}}{{item['wayItemList'][0]['pic']}}" alt="">
-          <p [ngClass]="item['wayItemList'].length === 1 ? 'text-custom-one' : 'text-custom'">{{item['wayItemList'][0]['itemName']}}</p>
-          <p [ngClass]="item['wayItemList'].length === 1 ? 'text-custom-one' : 'text-custom'" style="color: red;margin-top: 10px">{{item['wayItemList'][0]['price']}}元</p>
+          <img [ngClass]="item['wayItemList'].length === 1 ? 'addMain-img-one' : 'addMain-img'"
+               src="{{img}}{{item['wayItemList'][0]['pic']}}" alt="">
+          <p [ngClass]="item['wayItemList'].length === 1 ? 'text-custom-one' : 'text-custom'">
+            {{item['wayItemList'][0]['itemName']}}</p>
+          <p [ngClass]="item['wayItemList'].length === 1 ? 'text-custom-one' : 'text-custom'"
+             style="color: red;margin-top: 10px">{{item['wayItemList'][0]['price']}}元</p>
         </div>
         <div style="text-align: center" [hidden]="item['wayItemList'].length === 1">
           <img class="addMain-img" style="left: 137px" [src]="turnImg(item['wayItemList'])" alt="">
@@ -28,7 +32,8 @@
 
     <div class="context" *ngIf="isFourDoor">
       <!--aaaaaaaaaaaaaaaaaaaaaaaaa-->
-      <div (click)="openDoor(item)" *ngFor="let item of indexList" [ngClass]="item['wayItemList'].length === 1 ? 'box-one' : 'box'" class=" card text-white mb-3">
+      <div (click)="openDoor(item)" *ngFor="let item of indexList"
+           [ngClass]="item['wayItemList'].length === 1 ? 'box-one' : 'box'" class=" card text-white mb-3">
         <div [ngClass]="item['wayItemList'].length === 1 ? 'box-body-one' : 'box-body'">
           <img class="col-img" src="{{img}}{{item['wayItemList'][0]['pic']}}" alt="">
           <br/>
@@ -45,7 +50,7 @@
           </p>
           <span class="card-title" style="color: red;font-weight: 900;font-family:'宋体';">{{item['wayItemList'][0]['price']}}元</span>
         </div>
-        <div [hidden]="item['wayItemList'].length === 1" class="box-body" >
+        <div [hidden]="item['wayItemList'].length === 1" class="box-body">
           <img class="col-img" [src]="turnImg(item['wayItemList'])" alt="">
           <br/>
           <p class="card-title"
@@ -53,52 +58,54 @@
             {{turnItemName(item['wayItemList'])}}</p>
           <span class="card-title" style="color: red;font-weight: 900;font-family:'宋体';">{{turnPrice(item['wayItemList'])}}元</span>
         </div>
-    </div>
-    <!--<div class="context-six" *ngIf="isSixDoor">-->
-    <!--<div (click)="openDoor(item)" *ngFor="let item of indexList" class="box-six card text-white mb-3">-->
-    <!--<div class="box-body">-->
-    <!--<img class="col-img-six" src="{{img}}{{item['pic']}}" alt="">-->
-    <!--<br/>-->
-    <!--<span class="card-title"-->
-    <!--style="color: white;font-weight: 900;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;font-family:'宋体';">{{item['itemName']}}</span>-->
-    <!--&lt;!&ndash;<br/>&ndash;&gt;-->
-    <!--&lt;!&ndash;<span class="card-title" style="color: white">{{item['num']}}桶</span>&ndash;&gt;-->
-    <!--<br/>-->
-    <!--<span class="card-title" style="color: red;font-weight: 900;font-family:'宋体';">{{item['price']}}元</span>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--<div class="foot">-->
-    <!--<img class="foot-img" src="../../../assets/main/logo1.png" alt="">-->
-    <!--</div>-->
+      </div>
+      <!--<div class="context-six" *ngIf="isSixDoor">-->
+      <!--<div (click)="openDoor(item)" *ngFor="let item of indexList" class="box-six card text-white mb-3">-->
+      <!--<div class="box-body">-->
+      <!--<img class="col-img-six" src="{{img}}{{item['pic']}}" alt="">-->
+      <!--<br/>-->
+      <!--<span class="card-title"-->
+      <!--style="color: white;font-weight: 900;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;font-family:'宋体';">{{item['itemName']}}</span>-->
+      <!--&lt;!&ndash;<br/>&ndash;&gt;-->
+      <!--&lt;!&ndash;<span class="card-title" style="color: white">{{item['num']}}桶</span>&ndash;&gt;-->
+      <!--<br/>-->
+      <!--<span class="card-title" style="color: red;font-weight: 900;font-family:'宋体';">{{item['price']}}元</span>-->
+      <!--</div>-->
+      <!--</div>-->
+      <!--</div>-->
+      <!--<div class="foot">-->
+      <!--<img class="foot-img" src="../../../assets/main/logo1.png" alt="">-->
+      <!--</div>-->
 
-    <!--<div class="my-share">-->
-    <!--<button (click)="share()" type="button" class="btn btn-primary small" style="background: #117cbb">分享</button>-->
-    <!--</div>-->
-  </div>
+      <!--<div class="my-share">-->
+      <!--<button (click)="share()" type="button" class="btn btn-primary small" style="background: #117cbb">分享</button>-->
+      <!--</div>-->
+    </div>
     <div class="my-product">
       <button (click)="detail()" type="button" style="color: white">我的订单</button>
     </div>
-  <nz-modal [nzVisible]="isVisibleOpenDoor" [nzContent]="modalContents" [nzFooter]="modalFooters" [nzClosable]="false">
-    <ng-template #modalContents #modalFooters style="text-align: center">
-      <p style="font-size: medium;">是否要开门？</p>
-    </ng-template>
-    <ng-template #modalFooters style="text-align: center">
-      <button nz-button nzType="primary" style="visibility: hidden">否</button>
-      <button nz-button nzType="primary" (click)="noOpenDoor()">否</button>
-      <button nz-button nzType="primary" (click)="yesOpenDoor()">是</button>
-      <button nz-button nzType="primary" style="visibility: hidden">否</button>
-      <button nz-button nzType="primary" style="visibility: hidden">否</button>
-    </ng-template>
-  </nz-modal>
+    <nz-modal [nzVisible]="isVisibleOpenDoor" [nzContent]="modalContents" [nzFooter]="modalFooters"
+              [nzClosable]="false">
+      <ng-template #modalContents #modalFooters style="text-align: center">
+        <p style="font-size: medium;">是否要开门？</p>
+      </ng-template>
+      <ng-template #modalFooters style="text-align: center">
+        <button nz-button nzType="primary" style="visibility: hidden">否</button>
+        <button nz-button nzType="primary" (click)="noOpenDoor()">否</button>
+        <button nz-button nzType="primary" (click)="yesOpenDoor()">是</button>
+        <button nz-button nzType="primary" style="visibility: hidden">否</button>
+        <button nz-button nzType="primary" style="visibility: hidden">否</button>
+      </ng-template>
+    </nz-modal>
 
-  <nz-modal [nzVisible]="isVisibleOpen" [nzContent]="modalContent" [nzFooter]="modalFooter" [nzClosable]="false">
-    <ng-template #modalContent>
-      <p style="font-size: medium;">门已开，优水到家提醒您,为了您账号资金安全,提水后请随手关门，请勿让陌生人拿水！</p>
-    </ng-template>
-    <ng-template #modalFooter>
-      <button nz-button nzType="primary" (click)="openOk()">关闭</button>
-    </ng-template>
-  </nz-modal>
+    <nz-modal [nzVisible]="isVisibleOpen" [nzContent]="modalContent" [nzFooter]="modalFooter" [nzClosable]="false">
+      <ng-template #modalContent>
+        <p style="font-size: medium;">门已开，优水到家提醒您,为了您账号资金安全,提水后请随手关门，请勿让陌生人拿水！</p>
+      </ng-template>
+      <ng-template #modalFooter>
+        <button nz-button nzType="primary" (click)="openOk()">关闭</button>
+      </ng-template>
+    </nz-modal>
 
+  </div>
 </div>

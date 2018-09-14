@@ -43,7 +43,7 @@
   white-space: nowrap;
 }
 .context{
-  width: 350px;
+  width: 322px;
   margin: 0 auto;
 }
 .context-six{
@@ -103,9 +103,9 @@ button{
 }
 .box-one{
   float: left;
-  width: 165px;
-  height: 160px;
-  margin-right: 10px;
+  width: 150px;
+  height: 150px;
+  margin-left: 5px;
   /*-webkit-box-shadow:2px 2px 2px 2px gray;*/
   /*-moz-box-shadow:2px 2px 2px 2px gray;*/
   /*box-shadow:2px 2px 2px 2px gray;*/
@@ -119,7 +119,7 @@ button{
   float: left;
   width: 150px;
   height: 150px;
-  margin-right: 10px;
+  margin-left: 5px;
   /*-webkit-box-shadow:2px 2px 2px 2px gray;*/
   /*-moz-box-shadow:2px 2px 2px 2px gray;*/
   /*box-shadow:2px 2px 2px 2px gray;*/
@@ -263,7 +263,7 @@ button{
   font-size: 9px;border: grey;width: 28%;background: url("../../../assets/main/button-bg.png");height: 15px;position: absolute;top: 42px;left: 23px;color: black;
 }
 .detail-button-four{
-  font-size: 9px;border: grey;width: 42%;background: url("../../../assets/main/button-bg.png");height: 25px;position: absolute;top: 111px;left: 8px;color: black;
+  font-size: 9px;border: grey;width: 42%;background: url("../../../assets/main/button-bg.png");height: 25px;position: absolute;top: 75%;left: 8px;color: black;
 }
 @media screen and (max-height: 570px){
   .min-padding {
@@ -275,7 +275,7 @@ button{
     width: 50%;
   }
   .context{
-    width: 340px;
+    width: 310px;
     margin: 0 auto;
     /*margin-left: 25px;*/
   }
@@ -383,8 +383,8 @@ button{
   .box-one{
     float: left;
     width: 155px;
-    height: 160px;
-    margin-right: 10px;
+    height: 155px;
+    margin-left: 5px;
     /*-webkit-box-shadow:2px 2px 2px 2px gray;*/
     /*-moz-box-shadow:2px 2px 2px 2px gray;*/
     /*box-shadow:2px 2px 2px 2px gray;*/
@@ -397,7 +397,7 @@ button{
   .box{
     float: left;
     width: 155px;
-    height: 160px;
+    height: 155px;
     margin-left: 5px;
     /*-webkit-box-shadow:2px 2px 2px 2px gray;*/
     /*-moz-box-shadow:2px 2px 2px 2px gray;*/

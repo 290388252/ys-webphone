@@ -188,7 +188,7 @@
         <label (click)="selectGood(0)" style="width: 49%" class="radio-size" nz-radio-button [nzValue]="'0'" >
           <span>1号商品</span>
         </label>
-        <label (click)="selectGood(1)" style="width: 49%" class="radio-size" nz-radio-button [nzValue]="'1'" >
+        <label *ngIf="visible" (click)="selectGood(1)" style="width: 49%" class="radio-size" nz-radio-button [nzValue]="'1'" >
           <span>2号商品</span>
         </label>
       </nz-radio-group>

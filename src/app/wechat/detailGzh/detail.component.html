@@ -1,6 +1,5 @@
 <div id="containers" class="containers">
   <div class="page__hd" style="padding: 20px;background: white">
-    <!--<h1 class="page__title">我的订单</h1>-->
     <select class="page__title" name="" id="" [(ngModel)]="id">
       <option value="1">我的订单</option>
       <option value="2">我的优惠卷</option>
@@ -8,23 +7,6 @@
     <p class="page__desc">预览</p>
   </div>
 <div id="content" class="content" [hidden]="id === '2'">
-  <!--<div style="background: white;padding: 5px;margin: 5px;border-radius: 3px;" *ngFor="let item of list">-->
-    <!--<span>订单号:{{item.payCode}}</span>-->
-    <!--<div nz-row [nzType]="'flex'" [nzJustify]="'space-around'" [nzAlign]="'middle'">-->
-      <!--<div nz-col [nzSpan]="nzSpan(item.state)">-->
-        <!--<p>下单时间:{{item.createTime}}</p>-->
-        <!--<p>商品名称:{{item.itemName}}</p>-->
-        <!--<p>单价：{{(item.price)/(item.num)}}元</p>-->
-        <!--<p>数量：{{item.num}}</p>-->
-        <!--<p>状态：{{item.stateLabel}}</p>-->
-        <!--<p>总价：{{item.price}}元</p>-->
-      <!--</div>-->
-      <!--<div (click)="pay(item)" [hidden]="item.state !== '10002'" nz-col [nzSpan]="4">-->
-        <!--<button nz-button [nzType]="'primary'">-->
-          <!--<span>支付</span>-->
-        <!--</button>-->
-      <!--</div>-->
-    <!--</div>-->
     <div class="weui-form-preview" *ngFor="let item of list">
       <div class="weui-form-preview__hd">
         <div class="weui-form-preview__item">
@@ -67,22 +49,6 @@
 </div>
   <div id="contents" class="content" [hidden]="id === '1'">
     <div class="layout">
-      <!--<div class="card">-->
-      <!--<div style="float: left;margin-top: 20px">-->
-      <!--<h2 style="color: white"><span style="font-size: 14px;">￥</span>12</h2>-->
-      <!--<span style="font-size: 12px;margin-left: 10px">满10减5</span>-->
-      <!--</div>-->
-      <!--<div style="float: left;margin-left:5px;margin-top: 5px">-->
-      <!--<span style="float: left">也一样</span>-->
-      <!--<br>-->
-      <!--<span style="float: left;font-size: 12px">限1212-1212使用</span>-->
-      <!--<br>-->
-      <!--<span style="float: left;margin-top: 15px;font-size: 12px">仅限购买特殊商品使用</span>-->
-      <!--</div>-->
-      <!--<br>-->
-      <!--<div class="line"></div>-->
-      <!--<span class="use">111</span>-->
-      <!--</div>-->
       <div class="card" *ngFor="let item of couponEffectiveList">
         <div style="float: left;margin-top: 20px" *ngIf="(item.type === 1)">
           <h2 style="color: white"><span style="font-size: 14px;">￥</span>{{item.deductionMoney}}</h2>
@@ -122,12 +88,6 @@
       <span>门号:{{detailList.doorNO}}</span>
       <br>
       <br>
-      <!--<span>开门前的数量:{{detailList.preNum}}</span>-->
-      <!--<br>-->
-      <!--<br>-->
-      <!--<span>关门后的数量:{{detailList.posNum}}</span>-->
-      <!--<br>-->
-      <!--<br>-->
       <span>购买数量:{{detailList.num}}</span>
       <br>
       <br>
