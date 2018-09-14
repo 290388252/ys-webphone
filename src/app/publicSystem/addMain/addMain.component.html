@@ -82,15 +82,15 @@
       <br>
       <div>
         <nz-radio-group [(ngModel)]="wayNo" [nzSize]="'large'" *ngIf="isFiveDoor">
-          <label class="radio-size" nz-radio-button [nzValue]="'4'" [nzDisabled]="times === 2">
+          <label class="radio-size" nz-radio-button [nzValue]="'5'" [nzDisabled]="times === 2">
             <span>5号门</span>
           </label>
         </nz-radio-group>
         <nz-radio-group style="width: 100%" [(ngModel)]="wayNo" [nzSize]="'large'">
-          <label (click)="selectDoor(3)" style="width: 49%" class="radio-size" nz-radio-button [nzValue]="'2'" [nzDisabled]="times === 2">
+          <label (click)="selectDoor(3)" style="width: 49%" class="radio-size" nz-radio-button [nzValue]="'3'" [nzDisabled]="times === 2">
             <span>3号门</span>
           </label>
-          <label (click)="selectDoor(4)" style="width: 49%" class="radio-size" nz-radio-button [nzValue]="'3'" [nzDisabled]="times === 2">
+          <label (click)="selectDoor(4)" style="width: 49%" class="radio-size" nz-radio-button [nzValue]="'4'" [nzDisabled]="times === 2">
             <span>4号门</span>
           </label>
         </nz-radio-group>
@@ -112,10 +112,10 @@
         <!--</nz-radio-group>-->
         <br>
         <nz-radio-group style="width: 100%" [(ngModel)]="wayNo" [nzSize]="'large'">
-          <label (click)="selectDoor(1)" style="width: 49%" class="radio-size" nz-radio-button [nzValue]="'0'" [nzDisabled]="times === 2">
+          <label (click)="selectDoor(1)" style="width: 49%" class="radio-size" nz-radio-button [nzValue]="'1'" [nzDisabled]="times === 2">
             <span>1号门</span>
           </label>
-          <label (click)="selectDoor(2)" style="width: 49%" class="radio-size" nz-radio-button [nzValue]="'1'" [nzDisabled]="times === 2">
+          <label (click)="selectDoor(2)" style="width: 49%" class="radio-size" nz-radio-button [nzValue]="'2'" [nzDisabled]="times === 2">
             <span>2号门</span>
           </label>
         </nz-radio-group>

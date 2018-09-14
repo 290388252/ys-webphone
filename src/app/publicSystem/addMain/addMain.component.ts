@@ -27,6 +27,7 @@ export class AddMainComponent implements OnInit {
   public times = 1;
   public num: number;
   public wayNo: number;
+  public wayIndex: number;
   public temperature: number;
   public selectGoods;
   // public img = 'http://lenvar-resource-products.oss-cn-shenzhen.aliyuncs.com/';
@@ -114,6 +115,18 @@ export class AddMainComponent implements OnInit {
   }
   selectDoor(num) {
     console.log(num === 3);
+    if (num === 3) {
+      this.wayIndex = 0;
+    } else if (num === 4) {
+      this.wayIndex = 1;
+    } else if (num === 1) {
+      this.wayIndex = 2;
+    } else if (num === 2) {
+      this.wayIndex = 3;
+    } else if (num === 5) {
+      this.wayIndex = 4;
+    }
+    console.log(this.wayIndex);
     this.isVisibleOpenG = true;
   }
   selectGood(num) {
@@ -420,13 +433,15 @@ export class AddMainComponent implements OnInit {
     console.log(this.wayNo);
     console.log(this.times);
     console.log(this.num);
+    console.log(this.wayIndex);
+    console.log(this.selectGoods);
     this.appService.postAliData(this.appProperties.reviseUrl,
       {
         vmCode: urlParse(window.location.search)['vmCode'],
         wayNum: this.wayNo,
         times: this.times,
         num: this.num,
-        orderNumber: this.indexListTest[this.wayNo]['wayItemList'][this.selectGoods].orderNumber
+        orderNumber: this.indexListTest[this.wayIndex]['wayItemList'][this.selectGoods].orderNumber
       }, this.token).subscribe(
       data => {
         console.log(data);
