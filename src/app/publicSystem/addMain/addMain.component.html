@@ -14,12 +14,12 @@
       <div (click)="openDoor(item)" *ngFor="let item of indexList" [ngClass]="item['wayItemList'].length === 1 ? 'boxss-one' : 'boxss'" class=" card text-white addMain-bottom">
         <div style="text-align: center">
           <img [ngClass]="item['wayItemList'].length === 1 ? 'addMain-img-one' : 'addMain-img'" src="{{img}}{{item['wayItemList'][0]['pic']}}" alt="">
-          <button [hidden]="item['wayItemList'].length === 1" (click)="detail(item['wayItemList'][0], $event)" class="detail-button">点击查看详情</button>
-          <button [hidden]="item['wayItemList'].length !== 1" (click)="detail(item['wayItemList'][0], $event)" class="detail-button" style="left: 35%">点击查看详情</button>
+          <button [hidden]="item['wayItemList'].length === 1" (click)="detail(item['wayItemList'][0], $event, item['wayWeight'])" class="detail-button">点击查看详情</button>
+          <button [hidden]="item['wayItemList'].length !== 1" (click)="detail(item['wayItemList'][0], $event, item['wayWeight'])" class="detail-button" style="left: 35%">点击查看详情</button>
         </div>
         <div style="text-align: center" [hidden]="item['wayItemList'].length === 1">
           <img class="addMain-img" style="left: 137px" [src]="turnImg(item['wayItemList'])" alt="">
-          <button (click)="detail(item['wayItemList'][1], $event)" class="detail-button" style="left: 126px">点击查看详情</button>
+          <button (click)="detail(item['wayItemList'][1], $event, item['wayWeight'])" class="detail-button" style="left: 126px">点击查看详情</button>
         </div>
       </div>
     </div>
@@ -30,13 +30,13 @@
       <div (click)="openDoor(item)" *ngFor="let item of indexList" [ngClass]="item['wayItemList'].length === 1 ? 'box-one' : 'box'" class=" card text-white mb-3">
         <div [ngClass]="item['wayItemList'].length === 1 ? 'box-body-one' : 'box-body'">
           <img class="col-img" src="{{img}}{{item['wayItemList'][0]['pic']}}" alt="">
-          <button [hidden]="item['wayItemList'].length === 1" (click)="detail(item['wayItemList'][0], $event)" class="detail-button-four">点击查看详情</button>
-          <button [hidden]="item['wayItemList'].length !== 1" (click)="detail(item['wayItemList'][0], $event)" class="detail-button-four" style="left: 30%">点击查看详情</button>
+          <button [hidden]="item['wayItemList'].length === 1" (click)="detail(item['wayItemList'][0], $event, item['wayWeight'])" class="detail-button-four">点击查看详情</button>
+          <button [hidden]="item['wayItemList'].length !== 1" (click)="detail(item['wayItemList'][0], $event, item['wayWeight'])" class="detail-button-four" style="left: 30%">点击查看详情</button>
           <br/>
         </div>
         <div [hidden]="item['wayItemList'].length === 1" class="box-body" >
           <img class="col-img" [src]="turnImg(item['wayItemList'])" alt="">
-          <button (click)="detail(item['wayItemList'][1], $event)" class="detail-button-four" style="left: 81px">点击查看详情</button>
+          <button (click)="detail(item['wayItemList'][1], $event, item['wayWeight'])" class="detail-button-four" style="left: 81px">点击查看详情</button>
           <br/>
         </div>
       </div>
@@ -136,12 +136,11 @@
   <nz-modal [nzVisible]="isVisibleOpenDetail" [nzContent]="modalContentD" [nzFooter]="modalFooterD" [nzClosable]="false">
     <ng-template #modalContentD>
       <p style="font-size: medium;">详情</p>
-      <p style="font-size: medium;">{{itemName}}</p>
-      <p style="font-size: medium;">售价{{price}}元</p>
-      <p style="font-size: medium;">进价{{costPrice}}元</p>
-      <p style="font-size: medium;">容量{{numDetail}}桶</p>
-      <p style="font-size: medium;">重量{{weight}}</p>
-      <p style="font-size: medium;">最大容量{{fullNum}}桶</p>
+      <p style="font-size: medium;">商品名称:{{itemName}}</p>
+      <p style="font-size: medium;">容量:{{numDetail}}桶</p>
+      <p style="font-size: medium;">规格:{{oneWeight}}</p>
+      <p style="font-size: medium;">重量:{{weight}}</p>
+      <p style="font-size: medium;">最大容量:{{fullNum}}桶</p>
     </ng-template>
     <ng-template #modalFooterD>
       <button nz-button nzType="primary" (click)="openOkG()">关闭</button>

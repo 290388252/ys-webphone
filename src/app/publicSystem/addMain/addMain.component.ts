@@ -49,6 +49,7 @@ export class AddMainComponent implements OnInit {
   public costPrice;
   public price;
   public weight;
+  public oneWeight;
   public itemName;
 
   constructor(private router: Router,
@@ -198,7 +199,7 @@ export class AddMainComponent implements OnInit {
       }
     );
   }
-  detail(item, event) {
+  detail(item, event, weight) {
     event.stopPropagation();
     console.log(item);
     // costPrice: 6.88
@@ -216,8 +217,8 @@ export class AddMainComponent implements OnInit {
     // weight: 0
       this.itemName = item.itemName;
       this.costPrice = item.costPrice;
-      this.price = item.price;
-      this.weight = item.weight;
+      this.weight = weight;
+      this.oneWeight = item.weight;
       this.fullNum = item.fullNum;
       this.numDetail = item.num;
       this.isVisibleOpenDetail = true;
