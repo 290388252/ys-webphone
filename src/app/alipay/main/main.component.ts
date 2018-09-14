@@ -111,7 +111,7 @@ export class MainComponent implements OnInit {
       } else {
         this.clickMore = true;
         this.appService.postAliData(this.appProperties.aliOpenDoorUrl,
-          {vmCode: urlParse(window.location.search)['vmCode'], openType: 1, doorNO: this.item.doorNO}, this.token).subscribe(
+          {vmCode: urlParse(window.location.search)['vmCode'], openType: 1, doorNO: this.item.wayNumber}, this.token).subscribe(
           data => {
             console.log(data);
             this.clickMore = false;

@@ -4,7 +4,7 @@
 }
 .rounded-circle{
   margin-top: -8px;
-  margin-bottom: 38%;
+  margin-bottom: 25%;
   height: 60px;
 }
 .rounded-circle {
@@ -262,6 +262,9 @@ button{
 .detail-button{
   font-size: 9px;border: grey;width: 28%;background: bisque;height: 15px;position: absolute;top: 42px;left: 23px;
 }
+.detail-button-four{
+  font-size: 9px;border: grey;width: 42%;background: bisque;height: 15px;position: absolute;top: 117px;left: 8px;
+}
 @media screen and (max-height: 570px){
   .min-padding {
     padding: 5px;
@@ -278,7 +281,7 @@ button{
   }
   .rounded-circle{
     margin-top: -8px;
-    margin-bottom: 38%;
+    margin-bottom: 25%;
     height: 60px;
   }
   .box-one{
@@ -374,7 +377,7 @@ button{
   }
   .rounded-circle{
     margin-top: -8px;
-    margin-bottom: 38%;
+    margin-bottom: 25%;
     height: 60px;
   }
   .box-one{

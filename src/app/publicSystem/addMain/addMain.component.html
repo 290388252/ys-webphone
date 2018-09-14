@@ -30,12 +30,13 @@
       <div (click)="openDoor(item)" *ngFor="let item of indexList" [ngClass]="item['wayItemList'].length === 1 ? 'box-one' : 'box'" class=" card text-white mb-3">
         <div [ngClass]="item['wayItemList'].length === 1 ? 'box-body-one' : 'box-body'">
           <img class="col-img" src="{{img}}{{item['wayItemList'][0]['pic']}}" alt="">
-          <button (click)="detail(item['wayItemList'][1], $event)" style="font-size: 9px;border: grey;width: 28%;background: bisque;height: 15px;position: absolute;top: 42px;left: 126px;">点击查看详情</button>
+          <button [hidden]="item['wayItemList'].length === 1" (click)="detail(item['wayItemList'][0], $event)" class="detail-button-four">点击查看详情</button>
+          <button [hidden]="item['wayItemList'].length !== 1" (click)="detail(item['wayItemList'][0], $event)" class="detail-button-four" style="left: 30%">点击查看详情</button>
           <br/>
         </div>
         <div [hidden]="item['wayItemList'].length === 1" class="box-body" >
           <img class="col-img" [src]="turnImg(item['wayItemList'])" alt="">
-          <button (click)="detail(item['wayItemList'][1], $event)" style="font-size: 9px;border: grey;width: 28%;background: bisque;height: 15px;position: absolute;top: 42px;left: 126px;">点击查看详情</button>
+          <button (click)="detail(item['wayItemList'][1], $event)" class="detail-button-four" style="left: 81px">点击查看详情</button>
           <br/>
         </div>
       </div>
