@@ -409,6 +409,41 @@
     background-size: 100% 90%;
   }
 }
+@media screen and (max-height: 500px){
+  .context{
+    width: 273px;
+    margin: 0 auto;
+  }
+  .rounded-circle  {
+    margin-bottom: 10%;
+  }
+  .box-one{
+    float: left;
+    width: 120px;
+    height: 115px;
+    margin-right: 10px;
+    background: url("../../../assets/main/kuan1.png");
+    border: 0;
+    background-size: 100% 100%;
+    display: -webkit-box;
+  }
+  .box{
+    float: left;
+    width: 120px;
+    height: 115px;
+    margin-right: 10px;
+    background: url("../../../assets/main/kuan.png");
+    border: 0;
+    background-size: 100% 100%;
+  }
+  .col-img[_ngcontent-c2] {
+    margin-top: 6px;
+    margin-left: -7px;
+    margin-bottom: 21px;
+    width: 65px;
+    height: 65px;
+  }
+}
 @media screen and (max-width: 291px){
   .col-img{
     margin-top: 12px;
