@@ -13,7 +13,6 @@ import {AddMainModule} from './addMain.module';
 })
 export class AddMainComponent implements OnInit {
   public indexList: Array<object>;
-  public indexListTest: Array<object>;
   private wayNumber: number;
   public isVisibleOpen = false;
   public loadingVisible = false;
@@ -26,10 +25,11 @@ export class AddMainComponent implements OnInit {
   public restartTimes = 15; // 重启时间（秒）
   public times = 1;
   public num: number;
+  public num2: number;
   public wayNo: number;
   public wayIndex: number;
   public temperature: number;
-  public selectGoods;
+  public selectGoods = '0';
   // public img = 'http://lenvar-resource-products.oss-cn-shenzhen.aliyuncs.com/';
   // public img = 'http://119.23.233.123:6662/ys_admin/files/';
   public img = this.appProperties.imgUrl;
@@ -42,6 +42,8 @@ export class AddMainComponent implements OnInit {
   public isVisible = false;
   public isOkLoading = false;
   public visible = false;
+  public isDisabledOne = false;
+  public isDisabledTwo = true;
   // public beginvolValue;
   public volValue;
   // public endVole;
@@ -138,6 +140,18 @@ export class AddMainComponent implements OnInit {
   }
   selectGood(num) {
     console.log(num);
+    switch (num) {
+      case 0:
+        this.isDisabledOne = false;
+        this.isDisabledTwo = true;
+        this.num2 = null;
+        break;
+      case 1:
+        this.isDisabledOne = true;
+        this.isDisabledTwo = false;
+        this.num = null;
+        break;
+    }
   }
   canReplenish(url) {
     this.appService.getDataOpen(this.appProperties.canReplenishUrl,
@@ -172,7 +186,6 @@ export class AddMainComponent implements OnInit {
             this.isFiveDoor = false;
             this.isSixDoor = false;
             this.indexList = data.data.wayInfo;
-            this.indexListTest = data.data.wayInfo;
             for (let i = 0; i < 2; i++) {
               this.indexList.unshift(this.indexList.pop());
             }
@@ -442,13 +455,19 @@ export class AddMainComponent implements OnInit {
     console.log(this.num);
     console.log(this.wayIndex);
     console.log(this.selectGoods);
+    let num;
+    if (this.isDisabledOne) {
+      num = this.num2;
+    } else if (this.isDisabledTwo) {
+      num = this.num;
+    }
     this.appService.postAliData(this.appProperties.reviseUrl,
       {
         vmCode: urlParse(window.location.search)['vmCode'],
         wayNum: this.wayNo,
         times: this.times,
-        num: this.num,
-        orderNumber: this.indexListTest[this.wayIndex]['wayItemList'][this.selectGoods].orderNumber
+        num: num,
+        orderNumber: this.indexList[this.wayIndex]['wayItemList'][this.selectGoods].orderNumber
       }, this.token).subscribe(
       data => {
         console.log(data);
