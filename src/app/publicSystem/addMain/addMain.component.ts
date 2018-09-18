@@ -507,22 +507,20 @@ export class AddMainComponent implements OnInit {
     }
     return img;
   }
-  turnItemName(item) {
-    let itemName;
-    if  (item.length > 1) {
-      itemName = item[1].itemName;
-    } else {
-      itemName = '';
+  turn(item, flag) {
+    let text;
+    if (item.length > 1) {
+      switch (flag) {
+        case 'img':
+          text = this.img + item[1].pic;
+          break;
+        case 'num':
+          text = item[1].num;
+          break;
+        default:
+          text = '';
+      }
     }
-    return itemName;
-  }
-  turnPrice(item) {
-    let price;
-    if  (item.length > 1) {
-      price = item[1].price;
-    } else {
-      price = '';
-    }
-    return price;
+    return text;
   }
 }
