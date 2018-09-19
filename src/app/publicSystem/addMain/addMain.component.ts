@@ -450,6 +450,7 @@ export class AddMainComponent implements OnInit {
   // 是否开门（是）
   yes() {
     this.count++;
+    console.log(this.count);
     console.log(this.wayNo);
     console.log(this.times);
     console.log(this.num);
@@ -461,31 +462,35 @@ export class AddMainComponent implements OnInit {
     } else if (this.isDisabledTwo) {
       num = this.num;
     }
-    this.appService.postAliData(this.appProperties.reviseUrl,
-      {
-        vmCode: urlParse(window.location.search)['vmCode'],
-        wayNum: this.wayNo,
-        times: this.times,
-        num: num,
-        orderNumber: this.indexList[this.wayIndex]['wayItemList'][this.selectGoods].orderNumber
-      }, this.token).subscribe(
-      data => {
-        console.log(data);
-        if (data.code === 0) {
-          this.times = 2;
-        } else if (data.code === -89) {
-          alert(data.msg);
-          this.times = 2;
-          this.isVisibleOpenDoor = true;
-        } else if (data.code === -1) {
-          this.router.navigate(['vmLogin']);
+    this.num = undefined;
+    this.num2 = undefined;
+    if (this.count < 3) {
+      this.appService.postAliData(this.appProperties.reviseUrl,
+        {
+          vmCode: urlParse(window.location.search)['vmCode'],
+          wayNum: this.wayNo,
+          times: this.times,
+          num: num,
+          orderNumber: this.indexList[this.wayIndex]['wayItemList'][this.selectGoods].orderNumber
+        }, this.token).subscribe(
+        data => {
+          console.log(data);
+          if (data.code === 0) {
+            this.times = 2;
+          } else if (data.code === -89) {
+            alert(data.msg);
+            this.times = 2;
+            this.isVisibleOpenDoor = true;
+          } else if (data.code === -1) {
+            this.router.navigate(['vmLogin']);
+          }
+        },
+        error => {
+          console.log(error);
         }
-      },
-      error => {
-        console.log(error);
-      }
-    );
-    if (this.count >= 3) {
+      );
+    }
+    if (this.count > 3) {
       this.count = 1;
       this.isVisibleOpenDoor = false;
     }
@@ -496,14 +501,33 @@ export class AddMainComponent implements OnInit {
     this.isVisibleOpenDoor = false;
     // console.log(this.radioValue);
   }
-
+  closeDetail() {
+    this.isVisibleOpenDetail = false;
+  }
   // 是否关门按钮事件（是）
   openOk() {
     this.isClosed(urlParse(window.location.search)['vmCode']);
   }
   openOkG() {
-    this.isVisibleOpenDetail = false;
-    this.isVisibleOpenG = false;
+    if (this.isDisabledOne) {
+      if (this.num2 === undefined) {
+        alert('请输入桶数');
+      } else {
+        this.yes();
+        if (this.times === 2) {
+          this.isVisibleOpenG = false;
+        }
+      }
+    } else if (this.isDisabledTwo) {
+      if (this.num === undefined) {
+        alert('请输入桶数');
+      } else {
+        this.yes();
+        if (this.times === 2) {
+          this.isVisibleOpenG = false;
+        }
+      }
+    }
   }
   getCookies() {
     if (this.token === null || this.token === undefined || this.token === 'undefined') {

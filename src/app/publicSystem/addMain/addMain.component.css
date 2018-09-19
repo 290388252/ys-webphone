@@ -104,6 +104,9 @@ button{
   position: absolute;
   top: 0;
   left: 0;
+  width: 36px;
+  height: 25px;
+  background: white;
 }
 .my-restart{
   position: absolute;
