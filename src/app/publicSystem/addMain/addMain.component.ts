@@ -117,6 +117,7 @@ export class AddMainComponent implements OnInit {
     }
     this.volValue = 0;
   }
+
   selectDoor(num) {
     console.log(num === 3);
     if (num === 3) {
@@ -138,6 +139,7 @@ export class AddMainComponent implements OnInit {
     console.log(this.wayIndex);
     this.isVisibleOpenG = true;
   }
+
   selectGood(num) {
     console.log(num);
     switch (num) {
@@ -153,6 +155,7 @@ export class AddMainComponent implements OnInit {
         break;
     }
   }
+
   canReplenish(url) {
     this.appService.getDataOpen(this.appProperties.canReplenishUrl,
       {vmCode: urlParse(window.location.search)['vmCode']}, this.token).subscribe(
@@ -164,7 +167,8 @@ export class AddMainComponent implements OnInit {
           this.router.navigate([url], {
             queryParams: {
               vmCode: urlParse(window.location.search)['vmCode']
-            }});
+            }
+          });
         }
       },
       error2 => {
@@ -172,6 +176,7 @@ export class AddMainComponent implements OnInit {
       }
     );
   }
+
   // 初始化选水界面
   getInitData() {
     this.appService.getData(this.appProperties.indexListUrl, {
@@ -202,15 +207,15 @@ export class AddMainComponent implements OnInit {
           }
           console.log(this.indexList);
           this.temperature = data.data.temperature;
-        //   let volvalue = data.data.volume;
-        //   // this.beginvolValue = data.data.volume;
-        //   console.log('ok1');
-        //   console.log(volvalue);
-        //   console.log(volvalue === '99');
-        //   if(volvalue === undefined) {
-        //     volvalue = 0;
-        //   }
-        //   this.beginvolValue = volvalue;
+          //   let volvalue = data.data.volume;
+          //   // this.beginvolValue = data.data.volume;
+          //   console.log('ok1');
+          //   console.log(volvalue);
+          //   console.log(volvalue === '99');
+          //   if(volvalue === undefined) {
+          //     volvalue = 0;
+          //   }
+          //   this.beginvolValue = volvalue;
         }
       },
       error => {
@@ -218,6 +223,7 @@ export class AddMainComponent implements OnInit {
       }
     );
   }
+
   detail(item, event, weight) {
     event.stopPropagation();
     console.log(item);
@@ -234,14 +240,15 @@ export class AddMainComponent implements OnInit {
     // wayId: "44332"
     // wayNumber: 3
     // weight: 0
-      this.itemName = item.itemName;
-      this.costPrice = item.costPrice;
-      this.weight = weight;
-      this.oneWeight = item.weight;
-      this.fullNum = item.fullNum;
-      this.numDetail = item.num;
-      this.isVisibleOpenDetail = true;
+    this.itemName = item.itemName;
+    this.costPrice = item.costPrice;
+    this.weight = weight;
+    this.oneWeight = item.weight;
+    this.fullNum = item.fullNum;
+    this.numDetail = item.num;
+    this.isVisibleOpenDetail = true;
   }
+
   // 开门接口
   openDoor(item) {
     if (this.token === null
@@ -264,8 +271,19 @@ export class AddMainComponent implements OnInit {
           data => {
             console.log(data);
             this.clickMore = false;
-            if (data.code === 0 || data.code === 4) {
-              this.isVisibleOpen = true;
+            if (data.code === 0) {
+              // this.isVisibleOpen = true;
+              this.router.navigate(['goodsShow'], {
+                queryParams: {
+                  vmCode: urlParse(window.location.search)['vmCode'],
+                  flag: 1,
+                }});
+            } else if (data.code === 4) {
+              this.router.navigate(['goodsShow'], {
+                queryParams: {
+                  vmCode: urlParse(window.location.search)['vmCode'],
+                  flag: 3,
+                }});
             } else if (data.code === -1) {
               this.router.navigate(['vmLogin']);
             } else if (data.code === -89) {
@@ -349,7 +367,7 @@ export class AddMainComponent implements OnInit {
   myVolOk(): void {
     console.log('123');
     this.appService.getAliData(this.appProperties.volumeUrl,
-      {'volume': this.volValue, 'vmCode': urlParse(window.location.search)['vmCode']}, this.token ).subscribe(
+      {'volume': this.volValue, 'vmCode': urlParse(window.location.search)['vmCode']}, this.token).subscribe(
       data => {
         console.log(data);
         if (data.code === 0) {
@@ -436,7 +454,18 @@ export class AddMainComponent implements OnInit {
         if (data.code === -1) {
           this.router.navigate(['vmLogin']);
         } else if (data.code === 0) {
-          this.isVisibleOpen = true;
+          // this.isVisibleOpen = true;
+          this.router.navigate(['goodsShow'], {
+            queryParams: {
+              vmCode: urlParse(window.location.search)['vmCode'],
+              flag: 1,
+            }});
+        }  else if (data.code === 4) {
+          this.router.navigate(['goodsShow'], {
+            queryParams: {
+              vmCode: urlParse(window.location.search)['vmCode'],
+              flag: 3,
+            }});
         } else {
           alert(data.msg);
         }
@@ -447,7 +476,7 @@ export class AddMainComponent implements OnInit {
     );
   }
 
-  // 是否开门（是）
+  // 是否校准开门（是）
   yes() {
     this.count++;
     console.log(this.count);
@@ -464,33 +493,32 @@ export class AddMainComponent implements OnInit {
     }
     this.num = undefined;
     this.num2 = undefined;
-    if (this.count < 3) {
-      this.appService.postAliData(this.appProperties.reviseUrl,
-        {
-          vmCode: urlParse(window.location.search)['vmCode'],
-          wayNum: this.wayNo,
-          times: this.times,
-          num: num,
-          orderNumber: this.indexList[this.wayIndex]['wayItemList'][this.selectGoods].orderNumber
-        }, this.token).subscribe(
-        data => {
-          console.log(data);
-          if (data.code === 0) {
-            this.times = 2;
-          } else if (data.code === -89) {
-            alert(data.msg);
-            this.times = 2;
-            this.isVisibleOpenDoor = true;
-          } else if (data.code === -1) {
-            this.router.navigate(['vmLogin']);
-          }
-        },
-        error => {
-          console.log(error);
+    this.appService.postAliData(this.appProperties.reviseUrl,
+      {
+        vmCode: urlParse(window.location.search)['vmCode'],
+        wayNum: this.wayNo,
+        times: this.times,
+        num: num,
+        orderNumber: this.indexList[this.wayIndex]['wayItemList'][this.selectGoods].orderNumber
+      }, this.token).subscribe(
+      data => {
+        console.log(data);
+        if (data.code === 0) {
+          this.times = 2;
+        } else if (data.code === -89) {
+          alert(data.msg);
+          this.times = 2;
+          this.isVisibleOpenDoor = true;
+        } else if (data.code === -1) {
+          this.router.navigate(['vmLogin']);
         }
-      );
-    }
-    if (this.count > 3) {
+      },
+      error => {
+        console.log(error);
+      }
+    );
+    if (this.count >= 3) {
+      this.getInitData();
       this.count = 1;
       this.isVisibleOpenDoor = false;
     }
@@ -501,13 +529,16 @@ export class AddMainComponent implements OnInit {
     this.isVisibleOpenDoor = false;
     // console.log(this.radioValue);
   }
+
   closeDetail() {
     this.isVisibleOpenDetail = false;
   }
+
   // 是否关门按钮事件（是）
   openOk() {
     this.isClosed(urlParse(window.location.search)['vmCode']);
   }
+
   openOkG() {
     if (this.isDisabledOne) {
       if (this.num2 === undefined) {
@@ -529,6 +560,7 @@ export class AddMainComponent implements OnInit {
       }
     }
   }
+
   getCookies() {
     if (this.token === null || this.token === undefined || this.token === 'undefined') {
       const strCookie = document.cookie;
@@ -541,15 +573,17 @@ export class AddMainComponent implements OnInit {
       }
     }
   }
+
   turnImg(item) {
     let img;
-    if  (item.length > 1) {
+    if (item.length > 1) {
       img = this.img + item[1].pic;
     } else {
       img = '';
     }
     return img;
   }
+
   turn(item, flag) {
     let text;
     if (item.length > 1) {

@@ -20,6 +20,7 @@ export class GoodsShowComponent implements OnInit {
   public totalPrice = 0;
   public count = 0;
   private timeInterval;
+  public flag;
   public img = this.appProperties.imgUrl;
   constructor(private router: Router,
               private appProperties: AppProperties,
@@ -30,14 +31,17 @@ export class GoodsShowComponent implements OnInit {
     this.isVisibleOpen = false;
     this.getCookies();
     console.log(urlParse(window.location.search)['vmCode']);
-    console.log(urlParse(window.location.search)['flag']);
+    this.flag = urlParse(window.location.search)['flag'];
     console.log(this.token);
+    console.log(this.flag);
     this.oneGoodsOrMore();
   }
   turnText(num) {
     let text;
     if (num < 0) {
       text = `拿取数量${-num}`;
+    } else if (num > 0) {
+      text = `补货数量${num}`;
     }
     return text;
   }
@@ -45,11 +49,27 @@ export class GoodsShowComponent implements OnInit {
       const ua = window.navigator.userAgent.toLowerCase();
       if (ua.match(/MicroMessenger/i)) {
         if (ua.match(/MicroMessenger/i)[0] === 'micromessenger') {
-          WeixinJSBridge.call('closeWindow');
+          if (this.flag === 3 || this.flag === '3') {
+            this.router.navigate(['addMain'], {
+              queryParams: {
+                vmCode: urlParse(window.location.search)['vmCode'],
+                payType: 1
+              }});
+          } else {
+            WeixinJSBridge.call('closeWindow');
+          }
         }
       } else if (ua.match(/AlipayClient/i)) {
         if (ua.match(/AlipayClient/i)[0] === 'alipayclient') {
-          window['AlipayJSBridge'].call('closeWebview');
+          if (this.flag === 3 || this.flag === '3') {
+            this.router.navigate(['addMain'], {
+              queryParams: {
+                vmCode: urlParse(window.location.search)['vmCode'],
+                payType: 2
+              }});
+          } else {
+            window['AlipayJSBridge'].call('closeWebview');
+          }
         }
       }
   }
