@@ -49,7 +49,8 @@ export class GoodsShowComponent implements OnInit {
       const ua = window.navigator.userAgent.toLowerCase();
       if (ua.match(/MicroMessenger/i)) {
         if (ua.match(/MicroMessenger/i)[0] === 'micromessenger') {
-          if (this.flag === 3 || this.flag === '3') {
+          if (this.flag === 3 || this.flag === '3'
+            || this.flag === 4 || this.flag === '4') {
             this.router.navigate(['addMain'], {
               queryParams: {
                 vmCode: urlParse(window.location.search)['vmCode'],
@@ -61,7 +62,8 @@ export class GoodsShowComponent implements OnInit {
         }
       } else if (ua.match(/AlipayClient/i)) {
         if (ua.match(/AlipayClient/i)[0] === 'alipayclient') {
-          if (this.flag === 3 || this.flag === '3') {
+          if (this.flag === 3 || this.flag === '3'
+            || this.flag === 4 || this.flag === '4') {
             this.router.navigate(['addMain'], {
               queryParams: {
                 vmCode: urlParse(window.location.search)['vmCode'],
@@ -106,7 +108,8 @@ export class GoodsShowComponent implements OnInit {
         console.log(data2);
         if (data2.data === false) {
           // alert('您的门还未关闭！优水到家提醒您,为了您账号资金安全,提水后请随手关门');
-          if (urlParse(window.location.search)['flag'] === 1 || urlParse(window.location.search)['flag'] === '1') {
+          if (urlParse(window.location.search)['flag'] === 1 || urlParse(window.location.search)['flag'] === '1'
+            || urlParse(window.location.search)['flag'] === 4 || urlParse(window.location.search)['flag'] === '4') {
             this.more = true;
             this.close = true;
             this.single = false;
@@ -135,7 +138,8 @@ export class GoodsShowComponent implements OnInit {
   }
   oneGoodsOrMore() {
     const _this = this;
-    if (urlParse(window.location.search)['flag'] === 1 || urlParse(window.location.search)['flag'] === '1') {
+    if (urlParse(window.location.search)['flag'] === 1 || urlParse(window.location.search)['flag'] === '1'
+    || urlParse(window.location.search)['flag'] === 4 || urlParse(window.location.search)['flag'] === '4') {
       this.timeInterval = setInterval(() => {
         _this.isClosed();
       }, 800);

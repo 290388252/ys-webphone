@@ -23,22 +23,22 @@
     <i class="am-icon result warn"></i>
     <div class="am-message-main">温馨提示</div>
     <div [hidden]="flag === '1' || flag === '2'" class="am-message-sub">门已开，优水到家提醒您,提水后请随手关门！</div>
-    <div [hidden]="flag === '3'" class="am-message-sub">门已开，优水到家提醒您,为了您账号资金安全,提水后请随手关门！</div>
+    <div [hidden]="flag === '4'" class="am-message-sub">门已开，优水到家提醒您,为了您账号资金安全,提水后请随手关门！</div>
     <br>
-    <div [hidden]="flag === '3'" class="am-message-sub">本设备同时只能一个用户购买，请确保在您关门之前没有其他人在取水，以免多扣款！</div>
+    <div [hidden]="flag === '4'" class="am-message-sub">本设备同时只能一个用户购买，请确保在您关门之前没有其他人在取水，以免多扣款！</div>
 </div>
 <div class="am-message result" style="background-size: 100% 0;margin-top: 25%" [hidden]="close">
   <i class="am-icon result success"></i>
   <div class="am-message-main">温馨提示</div>
   <div [hidden]="flag === '1' || flag === '2'" class="am-message-sub">关门成功</div>
-  <div [hidden]="flag === '3'" class="am-message-sub">广州优水到家工程感谢你的惠顾,系统将从零钱或者银行卡中自动扣取本次购买费用。</div>
+  <div [hidden]="flag === '3' || flag === '4'" class="am-message-sub">广州优水到家工程感谢你的惠顾,系统将从零钱或者银行卡中自动扣取本次购买费用。</div>
   <div class="am-button-wrap">
     <button (click)="exit()" class="am-button blue">退出</button>
   </div>
 </div>
 <nz-modal [nzVisible]="isVisibleOpen" [nzContent]="modalContent" [nzFooter]="modalFooter" [nzClosable]="false">
   <ng-template #modalContent>
-    <p [hidden]="flag === '3'" style="font-size: medium;">您的门还未关闭！优水到家提醒您,为了您账号资金安全,提水后请随手关门！</p>
+    <p [hidden]="flag === '3' || flag === '4'" style="font-size: medium;">您的门还未关闭！优水到家提醒您,为了您账号资金安全,提水后请随手关门！</p>
     <p [hidden]="flag === '1' || flag === '2'" style="font-size: medium;">您的门还未关闭！优水到家提醒您,提水后请随手关门！</p>
   </ng-template>
   <ng-template #modalFooter>

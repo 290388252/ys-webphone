@@ -276,7 +276,7 @@ export class AddMainComponent implements OnInit {
               this.router.navigate(['goodsShow'], {
                 queryParams: {
                   vmCode: urlParse(window.location.search)['vmCode'],
-                  flag: 1,
+                  flag: 4,
                 }});
             } else if (data.code === 4) {
               this.router.navigate(['goodsShow'], {
@@ -458,7 +458,7 @@ export class AddMainComponent implements OnInit {
           this.router.navigate(['goodsShow'], {
             queryParams: {
               vmCode: urlParse(window.location.search)['vmCode'],
-              flag: 1,
+              flag: 4,
             }});
         }  else if (data.code === 4) {
           this.router.navigate(['goodsShow'], {
