@@ -43,7 +43,7 @@
 }
 .title {
   font-size: 12px;
-  color: white;
+  color: #B8996A;
   background: url("../../../assets/main/textbg.png");
   background-size: 100% 132%;
 }
@@ -393,7 +393,7 @@ button{
     background-size: 100% 100%;
   }
 }
-@media screen and (min-height: 571px) and (max-height: 640px){
+@media screen and (min-height: 571px) {
   .min-padding {
     padding: 10px;
   }
@@ -409,7 +409,7 @@ button{
   }
   .rounded-circle{
     margin-top: -8px;
-    margin-bottom: 20%;
+    margin-bottom: 36%;
     height: 60px;
   }
   .box-one{
