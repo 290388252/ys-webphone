@@ -6,9 +6,18 @@
 .col-img{
   margin-top: 15px;
   margin-left:-7px;
-  margin-bottom:21px;
+  /*margin-bottom:21px;*/
   width: 75px;
   height: 75px;
+}
+.text{
+  width: 100%;margin-bottom: 0;color: white;font-weight: 100;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;font-family:'宋体';
+}
+.title {
+  font-size: 12px;
+  color: white;
+  background: url("../../../assets/main/textbg.png");
+  background-size: 100% 132%;
 }
 .lianye-logo{
   margin: 40px 0 1px 0;
@@ -19,8 +28,9 @@
 .rounded-circle{
   /*margin: 30px 0 40px 0;*/
   /*width: 25%;*/
-  margin-top: -8px;
+  margin-top: -5px;
   margin-bottom: 25%;
+  margin-left: -238px;
   height: 60px;
 }
 .rounded-circle {
@@ -62,7 +72,7 @@
   margin-left: 80px;
   font-family: "宋体";
   width: 64px;
-  top: 47px;
+  top: 30px;
   position: absolute;
 }
 .text-custom {
@@ -84,6 +94,19 @@
 }
 .my-product button{
   background: url("../../../assets/main/button.png");
+  background-size: 100% 100%;
+  width: 70px;
+  height: 25px;
+  border: none;
+}
+.my-coupon{
+  position: absolute;
+  bottom: 1px;
+  left: 1px;
+}
+.my-coupon button{
+  background: url("../../../assets/main/button.png");
+  background-size: 100% 100%;
   width: 70px;
   height: 25px;
   border: none;
@@ -240,8 +263,9 @@
   .rounded-circle{
     /*margin: 25px 0 25px 0;*/
     /*width: 30%;*/
-    margin-top: -8px;
+    margin-top: -5px;
     margin-bottom: 25%;
+    margin-left: -238px;
     height: 60px;
   }
   .box-one{
@@ -344,8 +368,9 @@
   .rounded-circle{
     /*margin: 30px 0 20px 0;*/
     /*width: 25%;*/
-    margin-top: -8px;
+    margin-top: -5px;
     margin-bottom: 25%;
+    margin-left: -238px;
     height: 60px;
   }
   .box-one{
@@ -361,7 +386,7 @@
   .col-img {
     margin-top: 15px;
     margin-left: -16px;
-    margin-bottom: 21px;
+    /*margin-bottom: 21px;*/
     width: 75px;
     height: 75px;
   }
@@ -417,6 +442,9 @@
   .rounded-circle  {
     margin-bottom: 10%;
   }
+  .text{
+    width: 100%;margin-bottom: -7px;color: white;font-weight: 100;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;font-family:'宋体';
+  }
   .box-one{
     float: left;
     width: 120px;
@@ -436,10 +464,10 @@
     border: 0;
     background-size: 100% 100%;
   }
-  .col-img[_ngcontent-c2] {
+  .col-img {
     margin-top: 6px;
     margin-left: -7px;
-    margin-bottom: 21px;
+    /*margin-bottom: 21px;*/
     width: 65px;
     height: 65px;
   }
@@ -447,7 +475,7 @@
 @media screen and (max-width: 291px){
   .col-img{
     margin-top: 12px;
-    margin-bottom: 5px;
+    /*margin-bottom: 5px;*/
     margin-left: -25px;
     width: 59px;
     height: 59px;
@@ -473,8 +501,9 @@
   .rounded-circle{
     /*margin: 1px 0 10px 0;*/
     /*width: 15%;*/
-    margin-top: -8px;
+    margin-top: -5px;
     margin-bottom: 15%;
+    margin-left: -238px;
     height: 30px;
   }
   .lianye-logo{
@@ -555,8 +584,8 @@
   }
 }
 .addMain-img-one {
-  width: 35px;
-  height: 35px;
+  width: 25px;
+  height: 25px;
   margin-top: 4px;
 }
 .addMain-img{

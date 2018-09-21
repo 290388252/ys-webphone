@@ -179,7 +179,7 @@ export class MainComponent implements OnInit {
       }});
   }
   // 订单详情
-  product() {
+  product(flag) {
     // this.router.navigate(['product'], {
     //   queryParams: {
     //     token: this.token
@@ -187,6 +187,7 @@ export class MainComponent implements OnInit {
     this.router.navigate(['detail'], {
       queryParams: {
         vmCode: urlParse(window.location.search)['vmCode'],
+        flag: flag
       }});
     // TODO;
   }

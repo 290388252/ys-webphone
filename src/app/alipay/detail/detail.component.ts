@@ -36,7 +36,7 @@ export class DetailComponent implements OnInit, AfterViewChecked {
   }
 
   ngOnInit() {
-    this.id = '1';
+    this.id = urlParse(window.location.search)['flag'];
     // 获取cookies的token值
     this.getCookies();
     if (this.token === null || this.token === undefined || this.token === 'undefined') {

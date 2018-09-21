@@ -31,6 +31,15 @@
   <i class="am-icon result success"></i>
   <div class="am-message-main">温馨提示</div>
   <div [hidden]="flag === '1' || flag === '2'" class="am-message-sub">关门成功</div>
+  <a [hidden]="flag === '1' || flag === '2'" href="javascript:void(0);" *ngFor="let item of replenishList" class="weui-media-box weui-media-box_appmsg">
+    <div class="weui-media-box__hd">
+      <img class="weui-media-box__thumb" [src]="img+item.pic" alt="">
+    </div>
+    <div class="weui-media-box__bd">
+      <h4 class="weui-media-box__title">{{item.itemName}}</h4>
+      <h5 style="margin-top: 1px" class="weui-media-box__desc">{{turnText(item.changeNum)}}</h5>
+    </div>
+  </a>
   <div [hidden]="flag === '3' || flag === '4'" class="am-message-sub">广州优水到家工程感谢你的惠顾,系统将从零钱或者银行卡中自动扣取本次购买费用。</div>
   <div class="am-button-wrap">
     <button (click)="exit()" class="am-button blue">退出</button>

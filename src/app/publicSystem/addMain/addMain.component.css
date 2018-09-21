@@ -17,7 +17,7 @@
   border-radius: 50%;
 }
 .col-img{
-  margin-top: 15px;
+  margin-top: 5px;
   margin-left: -10px;
   margin-bottom: 21px;
   width: 58px;
@@ -33,7 +33,7 @@
 }
 .w-and-n-one{
   position: absolute;
-  top: 47%;
+  top: 44%;
   margin-left: 22px;
 }
 .w-and-n-five-door{
@@ -42,7 +42,10 @@
   margin-left: 72px;
 }
 .title {
-  font-size: 14px;
+  font-size: 12px;
+  color: white;
+  background: url("../../../assets/main/textbg.png");
+  background-size: 100% 132%;
 }
 .text-custom {
   color: white;
@@ -90,10 +93,11 @@
 }
 button{
   background: url("../../../assets/main/button.png");
+  background-size: 100% 100%;
   width: 24%;
   height: 25px;
   border: none;
-  color: white;
+  color: #203491;
 }
 .my-vol {
   position: absolute;
@@ -281,10 +285,10 @@ button{
   vertical-align: middle;
 }
 .detail-button{
-  font-size: 9px;border: grey;width: 28%;background: url("../../../assets/main/button-bg.png");height: 15px;position: absolute;top: 42px;left: 23px;color: black;
+  font-size: 9px;border: grey;width: 28%;background: url("../../../assets/main/button-bg.png");height: 15px;position: absolute;top: 42px;left: 23px;color: black;background-size: 100% 100%;
 }
 .detail-button-four{
-  font-size: 9px;border: grey;width: 45%;background: url("../../../assets/main/button-bg.png");height: 25px;position: absolute;top: 75%;left: 8px;color: black;
+  font-size: 9px;border: grey;width: 45%;background: url("../../../assets/main/button-bg.png");height: 21px;position: absolute;top: 69%;left: 8px;color: black;background-size: 100% 100%;
 }
 @media screen and (min-height: 570px){
   .w-and-n {

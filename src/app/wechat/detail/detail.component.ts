@@ -28,7 +28,7 @@ export class DetailComponent implements OnInit , AfterViewChecked {
   }
 
   ngOnInit() {
-    this.id = '1';
+    this.id = urlParse(window.location.search)['flag'];
     this.getCookies();
     console.log(this.token);
     this.getData(this.appProperties.findAllUserOrderUrl);

@@ -8,7 +8,7 @@
       <img (click)="vmLogin()" src="../../../assets/main/logos.png" alt="..."
            class="rounded-circle">
       <br/>
-      <span style="font-weight: 900;font-size: 13px">点击下面窗口开门买水</span>
+      <p class="title">点击下面窗口开门买水</p>
     </div>
 
     <div class="context" *ngIf="isFiveDoor">
@@ -37,15 +37,7 @@
         <div [ngClass]="item['wayItemList'].length === 1 ? 'box-body-one' : 'box-body'">
           <img class="col-img" src="{{img}}{{item['wayItemList'][0]['pic']}}" alt="">
           <br/>
-          <p class="card-title"
-             style="width: 100%;
-             margin-bottom: 0;
-             color: white;
-             font-weight: 100;
-             overflow: hidden;
-             text-overflow: ellipsis;
-             white-space: nowrap;
-             font-family:'宋体';">
+          <p class="card-title text">
             {{item['wayItemList'][0]['itemName']}}
           </p>
           <span class="card-title" style="color: red;font-weight: 900;font-family:'宋体';">{{item['wayItemList'][0]['price']}}元</span>
@@ -53,8 +45,7 @@
         <div [hidden]="item['wayItemList'].length === 1" class="box-body">
           <img class="col-img" [src]="turnImg(item['wayItemList'])" alt="">
           <br/>
-          <p class="card-title"
-             style="width: 100%;margin-bottom: 0;color: white;font-weight: 100;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;font-family:'宋体';">
+          <p class="card-title text">
             {{turnItemName(item['wayItemList'])}}</p>
           <span class="card-title" style="color: red;font-weight: 900;font-family:'宋体';">{{turnPrice(item['wayItemList'])}}元</span>
         </div>
@@ -82,7 +73,10 @@
       <!--</div>-->
     </div>
     <div class="my-product">
-      <button (click)="detail()" type="button" style="color: white">我的订单</button>
+      <button (click)="detail(1)" type="button" style="color: #203491">我的订单</button>
+    </div>
+    <div class="my-coupon">
+      <button (click)="detail(2)" type="button" style="color: #203491">我的优惠券</button>
     </div>
     <nz-modal [nzVisible]="isVisibleOpenDoor" [nzContent]="modalContents" [nzFooter]="modalFooters"
               [nzClosable]="false">

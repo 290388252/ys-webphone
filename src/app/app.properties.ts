@@ -25,6 +25,7 @@ export class AppProperties {
   public gameGetCusPrize: string;
   public gameReceive: string;
   public machineControlUrl: string;
+  public machineControlGetReplenishInfoUrl: string;
   // WeChat
   public indexListUrl: string;
   public indexOpenDoor: string;
@@ -78,6 +79,7 @@ export class AppProperties {
     this.gameGetCusPrize = this.appUrl + '/game/getCusPrize';
     this.gameReceive = this.appUrl + '/game/receive';
     this.machineControlUrl = this.appUrl + '/machineControl/getChangeInfo';
+    this.machineControlGetReplenishInfoUrl = this.appUrl + '/machineControl/getReplenishInfo?vmCode=';
     // 获取游戏奖品内容
 
     // WeChat

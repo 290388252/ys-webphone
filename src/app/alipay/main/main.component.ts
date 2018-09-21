@@ -207,11 +207,12 @@ export class MainComponent implements OnInit {
       }});
   }
   // 查看用户订单
-  detail() {
+  detail(flag) {
     this.router.navigate(['aliDetail'], {
       queryParams: {
         title: 1,
-        vmCode: urlParse(window.location.search)['vmCode']
+        vmCode: urlParse(window.location.search)['vmCode'],
+        flag: flag
       }});
     // TODO;
   }

@@ -22,6 +22,7 @@ export class GoodsShowComponent implements OnInit {
   private timeInterval;
   public flag;
   public img = this.appProperties.imgUrl;
+  public replenishList;
   constructor(private router: Router,
               private appProperties: AppProperties,
               private appService: AppService) {
@@ -123,6 +124,16 @@ export class GoodsShowComponent implements OnInit {
           this.more = true;
           this.single = true;
           clearInterval(this.timeInterval);
+          this.appService.getAliData(this.appProperties.machineControlGetReplenishInfoUrl + urlParse(window.location.search)['vmCode'], '',
+            ' eyJhbGciOiJIUzUxMiJ9.eyJyYW5kb21LZXkiOiIyNm9vd2ciLCJzdWIiOiJ7XCJpZFwiOlwiNDE4XCIsXCJvcGVuSWRcIjpcIm9La1p5MDctelQtUzVEQzdYQTAxZEx6S2RpU0lcIixcInBheVR5cGVcIjpcIjFcIixcInR5cGVcIjoyfSIsImV4cCI6MTUzNzc1NjkyOSwiaWF0IjoxNTM3MTUyMTI5fQ.QM2OSTJbXAWCbLka9PAP0Q-wx2IRq97LI-TyIroulkBi4TQHhMtEzYLcPYIJOHN0ZkRCrDb_N72_khiPoJisEg').subscribe(
+            data3 => {
+              console.log(data3);
+              this.replenishList = data3.data;
+            },
+            error3 => {
+              console.log(error3);
+            }
+          );
           // alert('广州优水到家工程感谢你的惠顾,系统将从零钱或者银行卡中自动扣取本次购买费用。');
         }
       },
@@ -148,7 +159,8 @@ export class GoodsShowComponent implements OnInit {
       this.single = false;
     } else {
       this.timeInterval = setInterval(() => {
-        _this.getData();
+        // _this.getData();
+        _this.isClosed();
       }, 800);
       this.more = false;
       this.close = true;
