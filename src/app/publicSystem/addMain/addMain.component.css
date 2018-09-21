@@ -285,7 +285,7 @@ button{
   vertical-align: middle;
 }
 .detail-button{
-  font-size: 9px;border: grey;width: 28%;background: url("../../../assets/main/button-bg.png");height: 15px;position: absolute;top: 42px;left: 23px;color: black;background-size: 100% 100%;
+  font-size: 9px;border: grey;width: 50%;background: url("../../../assets/main/button-bg.png");height: 17px;position: absolute;top: 42px;left: 23px;color: black;background-size: 100% 100%;
 }
 .detail-button-four{
   font-size: 9px;border: grey;width: 45%;background: url("../../../assets/main/button-bg.png");height: 21px;position: absolute;top: 69%;left: 8px;color: black;background-size: 100% 100%;

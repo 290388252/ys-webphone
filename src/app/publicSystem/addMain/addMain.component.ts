@@ -42,8 +42,8 @@ export class AddMainComponent implements OnInit {
   public isVisible = false;
   public isOkLoading = false;
   public visible = false;
-  public isDisabledOne = false;
-  public isDisabledTwo = true;
+  // public isDisabledOne = false;
+  // public isDisabledTwo = true;
   // public beginvolValue;
   public volValue;
   // public endVole;
@@ -142,18 +142,18 @@ export class AddMainComponent implements OnInit {
 
   selectGood(num) {
     console.log(num);
-    switch (num) {
-      case 0:
-        this.isDisabledOne = false;
-        this.isDisabledTwo = true;
-        this.num2 = null;
-        break;
-      case 1:
-        this.isDisabledOne = true;
-        this.isDisabledTwo = false;
-        this.num = null;
-        break;
-    }
+    // switch (num) {
+    //   case 0:
+    //     this.isDisabledOne = false;
+    //     this.isDisabledTwo = true;
+    //     this.num2 = null;
+    //     break;
+    //   case 1:
+    //     this.isDisabledOne = true;
+    //     this.isDisabledTwo = false;
+    //     this.num = null;
+    //     break;
+    // }
   }
 
   canReplenish(url) {
@@ -485,12 +485,16 @@ export class AddMainComponent implements OnInit {
     console.log(this.num);
     console.log(this.wayIndex);
     console.log(this.selectGoods);
-    let num;
-    if (this.isDisabledOne) {
-      num = this.num2;
-    } else if (this.isDisabledTwo) {
-      num = this.num;
+    const num = [this.num, this.num2];
+    const orderNumber = [];
+    for (let i = 0; i < this.indexList[this.wayIndex]['wayItemList'].length; i++) {
+      orderNumber.push(this.indexList[this.wayIndex]['wayItemList'][i].orderNumber);
     }
+    // if (this.isDisabledOne) {
+    //   num = this.num2;
+    // } else if (this.isDisabledTwo) {
+    //   num = this.num;
+    // }
     this.num = undefined;
     this.num2 = undefined;
     this.appService.postAliData(this.appProperties.reviseUrl,
@@ -498,8 +502,8 @@ export class AddMainComponent implements OnInit {
         vmCode: urlParse(window.location.search)['vmCode'],
         wayNum: this.wayNo,
         times: this.times,
-        num: num,
-        orderNumber: this.indexList[this.wayIndex]['wayItemList'][this.selectGoods].orderNumber
+        num: num.join(','),
+        orderNumber: orderNumber.join(',')
       }, this.token).subscribe(
       data => {
         console.log(data);
@@ -540,25 +544,26 @@ export class AddMainComponent implements OnInit {
   }
 
   openOkG() {
-    if (this.isDisabledOne) {
-      if (this.num2 === undefined) {
-        alert('请输入桶数');
-      } else {
-        this.yes();
-        if (this.times === 2) {
-          this.isVisibleOpenG = false;
-        }
-      }
-    } else if (this.isDisabledTwo) {
-      if (this.num === undefined) {
-        alert('请输入桶数');
-      } else {
-        this.yes();
-        if (this.times === 2) {
-          this.isVisibleOpenG = false;
-        }
-      }
-    }
+    this.isVisibleOpenG = false;
+    // if (this.isDisabledOne) {
+    //   if (this.num2 === undefined) {
+    //     alert('请输入桶数');
+    //   } else {
+    //     this.yes();
+    //     if (this.times === 2) {
+    //       this.isVisibleOpenG = false;
+    //     }
+    //   }
+    // } else if (this.isDisabledTwo) {
+    //   if (this.num === undefined) {
+    //     alert('请输入桶数');
+    //   } else {
+    //     this.yes();
+    //     if (this.times === 2) {
+    //       this.isVisibleOpenG = false;
+    //     }
+    //   }
+    // }
   }
 
   getCookies() {

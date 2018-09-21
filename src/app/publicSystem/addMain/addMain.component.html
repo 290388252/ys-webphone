@@ -20,7 +20,7 @@
             <span class="w-n-size">数量：{{item['wayItemList'][0]['num']}}</span>
           </div>
           <button [hidden]="item['wayItemList'].length === 1" (click)="detail(item['wayItemList'][0], $event, item['wayWeight'])" class="detail-button">点击查看详情</button>
-          <button [hidden]="item['wayItemList'].length !== 1" (click)="detail(item['wayItemList'][0], $event, item['wayWeight'])" class="detail-button" style="left: 35%">点击查看详情</button>
+          <button [hidden]="item['wayItemList'].length !== 1" (click)="detail(item['wayItemList'][0], $event, item['wayWeight'])" class="detail-button" style="left: 24%">点击查看详情</button>
         </div>
         <div style="text-align: center" [hidden]="item['wayItemList'].length === 1">
           <img class="addMain-img" style="left: 137px" [src]="turn(item['wayItemList'], 'img')" alt="">
@@ -205,8 +205,9 @@
           <span>2号商品</span>
         </label>
         <br>
-        <nz-input-number [nzDisabled]="isDisabledOne" style="width: 49%;" [(ngModel)]="num" [nzPlaceHolder]="'请输入桶数'" [nzMin]="0" [nzMax]="99999999" [nzStep]="1"></nz-input-number>
-        <nz-input-number *ngIf="visible" [nzDisabled]="isDisabledTwo" style="width: 49%;" [(ngModel)]="num2" [nzPlaceHolder]="'请输入桶数'" [nzMin]="0" [nzMax]="99999999" [nzStep]="1"></nz-input-number>
+        <!--[nzDisabled]="isDisabledOne"-->
+        <nz-input-number  style="width: 49%;" [(ngModel)]="num" [nzPlaceHolder]="'请输入桶数'" [nzMin]="0" [nzMax]="99999999" [nzStep]="1"></nz-input-number>
+        <nz-input-number *ngIf="visible"  style="width: 49%;" [(ngModel)]="num2" [nzPlaceHolder]="'请输入桶数'" [nzMin]="0" [nzMax]="99999999" [nzStep]="1"></nz-input-number>
       </nz-radio-group>
     </ng-template>
     <ng-template #modalFooterG>
