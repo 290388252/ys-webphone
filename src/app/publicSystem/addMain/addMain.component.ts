@@ -485,7 +485,13 @@ export class AddMainComponent implements OnInit {
     console.log(this.num);
     console.log(this.wayIndex);
     console.log(this.selectGoods);
-    const num = [this.num, this.num2];
+    let num;
+    console.log(this.indexList[this.wayIndex]['wayItemList']);
+    if (this.indexList[this.wayIndex]['wayItemList'].length === 1) {
+      num = this.num;
+    } else {
+      num = [this.num, this.num2].join(',');
+    }
     const orderNumber = [];
     for (let i = 0; i < this.indexList[this.wayIndex]['wayItemList'].length; i++) {
       orderNumber.push(this.indexList[this.wayIndex]['wayItemList'][i].orderNumber);
@@ -502,11 +508,18 @@ export class AddMainComponent implements OnInit {
         vmCode: urlParse(window.location.search)['vmCode'],
         wayNum: this.wayNo,
         times: this.times,
-        num: num.join(','),
+        num: num,
         orderNumber: orderNumber.join(',')
       }, this.token).subscribe(
       data => {
         console.log(data);
+        console.log({
+          vmCode: urlParse(window.location.search)['vmCode'],
+          wayNum: this.wayNo,
+          times: this.times,
+          num: num,
+          orderNumber: orderNumber.join(',')
+        });
         if (data.code === 0) {
           this.times = 2;
         } else if (data.code === -89) {
@@ -544,7 +557,11 @@ export class AddMainComponent implements OnInit {
   }
 
   openOkG() {
-    this.isVisibleOpenG = false;
+    this.yes();
+    if (this.times >= 2) {
+        this.getInitData();
+        this.isVisibleOpenG = false;
+      }
     // if (this.isDisabledOne) {
     //   if (this.num2 === undefined) {
     //     alert('请输入桶数');

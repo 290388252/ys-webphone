@@ -29,6 +29,7 @@ export class GoodsShowComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.goodsList = [];
     this.isVisibleOpen = false;
     this.getCookies();
     console.log(urlParse(window.location.search)['vmCode']);
@@ -159,8 +160,8 @@ export class GoodsShowComponent implements OnInit {
       this.single = false;
     } else {
       this.timeInterval = setInterval(() => {
-        // _this.getData();
-        _this.isClosed();
+        _this.getData();
+        // _this.isClosed();
       }, 800);
       this.more = false;
       this.close = true;
