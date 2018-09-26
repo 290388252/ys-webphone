@@ -47,6 +47,9 @@ export class GoodsShowComponent implements OnInit {
     }
     return text;
   }
+  follow() {
+    window.location.href = 'https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzU0NzQ4MTY0Mg==&scene=124#wechat_redirect';
+  }
   exit() {
       const ua = window.navigator.userAgent.toLowerCase();
       if (ua.match(/MicroMessenger/i)) {

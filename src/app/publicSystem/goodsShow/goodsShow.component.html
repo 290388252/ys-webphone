@@ -40,7 +40,10 @@
       <h5 style="margin-top: 1px" class="weui-media-box__desc">{{turnText(item.changeNum)}}</h5>
     </div>
   </a>
-  <div [hidden]="flag === '3' || flag === '4'" class="am-message-sub">广州优水到家工程感谢你的惠顾,系统将从零钱或者银行卡中自动扣取本次购买费用。</div>
+  <div [hidden]="flag === '3' || flag === '4'" class="am-message-sub">关注公众号领取100元购水券！广州优水到家工程感谢你的惠顾,系统将从零钱或者银行卡中自动扣取本次购买费用。</div>
+  <div class="am-button-wrap">
+    <button (click)="follow()" class="am-button blue">点击关注微信公众号</button>
+  </div>
   <div class="am-button-wrap">
     <button (click)="exit()" class="am-button blue">退出</button>
   </div>
