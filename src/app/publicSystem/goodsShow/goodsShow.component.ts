@@ -85,6 +85,7 @@ export class GoodsShowComponent implements OnInit {
       {vmCode:  urlParse(window.location.search)['vmCode']}, this.token).subscribe(
       data => {
         console.log(data);
+        console.log(this.token);
         this.goodsList = data.data.itemList;
         this.totalPrice = data.data.totalPrice;
         this.isClosed();
@@ -129,7 +130,7 @@ export class GoodsShowComponent implements OnInit {
           this.single = true;
           clearInterval(this.timeInterval);
           this.appService.getAliData(this.appProperties.machineControlGetReplenishInfoUrl + urlParse(window.location.search)['vmCode'], '',
-            ' eyJhbGciOiJIUzUxMiJ9.eyJyYW5kb21LZXkiOiIyNm9vd2ciLCJzdWIiOiJ7XCJpZFwiOlwiNDE4XCIsXCJvcGVuSWRcIjpcIm9La1p5MDctelQtUzVEQzdYQTAxZEx6S2RpU0lcIixcInBheVR5cGVcIjpcIjFcIixcInR5cGVcIjoyfSIsImV4cCI6MTUzNzc1NjkyOSwiaWF0IjoxNTM3MTUyMTI5fQ.QM2OSTJbXAWCbLka9PAP0Q-wx2IRq97LI-TyIroulkBi4TQHhMtEzYLcPYIJOHN0ZkRCrDb_N72_khiPoJisEg').subscribe(
+            this.token).subscribe(
             data3 => {
               console.log(data3);
               this.replenishList = data3.data;
@@ -177,7 +178,7 @@ export class GoodsShowComponent implements OnInit {
       const arrCookie = strCookie.split(';');
       for (let i = 0; i < arrCookie.length; i++) {
         const arr = arrCookie[i].split('=');
-        if (arr[0].trim() === 'token') {
+        if (arr[0].trim() === 'adminToken') {
           this.token = arr[1];
         }
       }
