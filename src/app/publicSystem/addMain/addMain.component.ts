@@ -513,18 +513,11 @@ export class AddMainComponent implements OnInit {
       }, this.token).subscribe(
       data => {
         console.log(data);
-        console.log({
-          vmCode: urlParse(window.location.search)['vmCode'],
-          wayNum: this.wayNo,
-          times: this.times,
-          num: num,
-          orderNumber: orderNumber.join(',')
-        });
         if (data.code === 0) {
           this.times = 2;
         } else if (data.code === -89) {
           alert(data.msg);
-          this.times = 2;
+          this.isVisibleOpenG = true;
           this.isVisibleOpenDoor = true;
         } else if (data.code === -1) {
           this.router.navigate(['vmLogin']);
@@ -558,9 +551,11 @@ export class AddMainComponent implements OnInit {
 
   openOkG() {
     this.yes();
-    if (this.times >= 2) {
+    console.log(this.count);
+    if (this.times === 2) {
         this.getInitData();
         this.isVisibleOpenG = false;
+      this.isVisibleOpenDoor = false;
       }
     // if (this.isDisabledOne) {
     //   if (this.num2 === undefined) {
