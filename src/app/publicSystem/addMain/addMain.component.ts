@@ -555,7 +555,7 @@ export class AddMainComponent implements OnInit {
     if (this.times === 2) {
         this.getInitData();
         this.isVisibleOpenG = false;
-      this.isVisibleOpenDoor = false;
+        this.isVisibleOpenDoor = false;
       }
     // if (this.isDisabledOne) {
     //   if (this.num2 === undefined) {
