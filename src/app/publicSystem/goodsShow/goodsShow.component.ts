@@ -40,7 +40,7 @@ export class GoodsShowComponent implements OnInit {
       this.aliPay = false;
     }
     this.isVisibleOpen = false;
-    this.getCookies();
+    this.getToken();
     console.log(urlParse(window.location.search)['vmCode']);
     this.flag = urlParse(window.location.search)['flag'];
     console.log(this.token);
@@ -181,13 +181,20 @@ export class GoodsShowComponent implements OnInit {
       this.single = true;
     }
   }
-  getCookies () {
+  getToken () {
+    let token;
+    if (urlParse(window.location.search)['flag'] === 1 || urlParse(window.location.search)['flag'] === '1'
+      || urlParse(window.location.search)['flag'] === 2 || urlParse(window.location.search)['flag'] === '2') {
+      token = 'token';
+    } else {
+      token = 'adminToken';
+    }
     if (this.token === null || this.token === undefined || this.token === 'undefined') {
       const strCookie = document.cookie;
       const arrCookie = strCookie.split(';');
       for (let i = 0; i < arrCookie.length; i++) {
         const arr = arrCookie[i].split('=');
-        if (arr[0].trim() === 'adminToken') {
+        if (arr[0].trim() === token) {
           this.token = arr[1];
         }
       }
