@@ -1,10 +1,11 @@
 <div id="containers" class="containers">
   <div class="page__hd" style="padding: 20px;background: white">
-    <!--<h1 class="page__title">我的订单</h1>-->
-    <select class="page__title" name="" id="" [(ngModel)]="id">
-      <option value="1">我的订单</option>
-      <option value="2">我的优惠卷</option>
-    </select>
+    <h1 [hidden]="id === '2'" class="page__title">我的订单</h1>
+    <h1 [hidden]="id === '1'" class="page__title">我的优惠卷</h1>
+    <!--<select class="page__title" name="" id="" [(ngModel)]="id">-->
+      <!--<option value="1">我的订单</option>-->
+      <!--<option value="2">我的优惠卷</option>-->
+    <!--</select>-->
     <p class="page__desc">预览</p>
   </div>
   <div id="content" class="content" [hidden]="id === '2'">
