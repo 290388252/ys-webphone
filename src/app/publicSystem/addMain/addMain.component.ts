@@ -71,43 +71,7 @@ export class AddMainComponent implements OnInit {
     if (this.token === null
       || this.token === undefined
       || this.token === 'undefined') {
-      if (urlParse(window.location.search)['payType'] === '1') {
-        // 微信授权登陆验证
-        this.appService.getData(this.appProperties.adminOauth2Url, '').subscribe(
-          data => {
-            console.log(data);
-            let newData;
-            const newWlhUrl = '/vmLogin?vmCode=' + urlParse(window.location.search)['vmCode'] + '&payType=1';
-            if (typeof(data.data) === 'string' && data.data.length > 0) {
-              newData = data.data.replace(data.data.substring(data.data.indexOf('state=') + 6, data.data.length),
-                newWlhUrl);
-              console.log(newData);
-              window.location.href = newData;
-            }
-          },
-          error => {
-            console.log(error);
-          }
-        );
-      } else if (urlParse(window.location.search)['payType'] === '2') {
-        // 支付宝授权登陆验证
-        const newWlhUrl = '?state=/vmLogin?vmCode=' + urlParse(window.location.search)['vmCode'] + '&payType=2';
-        this.appService.getData(this.appProperties.aliVmGetUserIdUrl + '?vmCode=' + urlParse(window.location.search)['vmCode'], '').subscribe(
-          data2 => {
-            console.log(data2);
-            window.location.href = data2.returnObject + newWlhUrl;
-          },
-          error2 => {
-            console.log(error2);
-          }
-        );
-        // window.location.href = this.appProperties.aliVmGetUserIdUrl + newWlhUrl;
-        // this.router.navigate(['vmLogin'], {
-        //   queryParams: {
-        //     vmCode: urlParse(window.location.search)['vmCode'],
-        //     payType: 2
-        //   }});
-      }
+      this.getAuth();
     } else {
       if (urlParse(window.location.search)['payType'] === '1') {
         this.canReplenish('main');
@@ -117,7 +81,6 @@ export class AddMainComponent implements OnInit {
     }
     this.volValue = 0;
   }
-
   selectDoor(num) {
     console.log(num === 3);
     if (num === 3) {
@@ -162,6 +125,8 @@ export class AddMainComponent implements OnInit {
       data => {
         console.log(data);
         if (data.code === 0) {
+        } else if (data.code === -1) {
+          this.getAuth();
         } else {
           alert(data.msg);
           this.router.navigate([url], {
@@ -176,7 +141,45 @@ export class AddMainComponent implements OnInit {
       }
     );
   }
-
+  getAuth() {
+    if (urlParse(window.location.search)['payType'] === '1') {
+      // 微信授权登陆验证
+      this.appService.getData(this.appProperties.adminOauth2Url, '').subscribe(
+        data => {
+          console.log(data);
+          let newData;
+          const newWlhUrl = '/vmLogin?vmCode=' + urlParse(window.location.search)['vmCode'] + '&payType=1';
+          if (typeof(data.data) === 'string' && data.data.length > 0) {
+            newData = data.data.replace(data.data.substring(data.data.indexOf('state=') + 6, data.data.length),
+              newWlhUrl);
+            console.log(newData);
+            window.location.href = newData;
+          }
+        },
+        error => {
+          console.log(error);
+        }
+      );
+    } else if (urlParse(window.location.search)['payType'] === '2') {
+      // 支付宝授权登陆验证
+      const newWlhUrl = '?state=/vmLogin?vmCode=' + urlParse(window.location.search)['vmCode'] + '&payType=2';
+      this.appService.getData(this.appProperties.aliVmGetUserIdUrl + '?vmCode=' + urlParse(window.location.search)['vmCode'], '').subscribe(
+        data2 => {
+          console.log(data2);
+          window.location.href = data2.returnObject + newWlhUrl;
+        },
+        error2 => {
+          console.log(error2);
+        }
+      );
+      // window.location.href = this.appProperties.aliVmGetUserIdUrl + newWlhUrl;
+      // this.router.navigate(['vmLogin'], {
+      //   queryParams: {
+      //     vmCode: urlParse(window.location.search)['vmCode'],
+      //     payType: 2
+      //   }});
+    }
+  }
   // 初始化选水界面
   getInitData() {
     this.appService.getData(this.appProperties.indexListUrl, {
