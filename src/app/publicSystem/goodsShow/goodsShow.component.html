@@ -20,16 +20,13 @@
   </div>
 </div>
 <div class="am-message result" style="background-size: 100% 0;margin-top: 25%" [hidden]="single">
-    <i class="am-icon result warn"></i>
-    <div class="am-message-main">温馨提示</div>
-    <div [hidden]="flag === '1' || flag === '2'" class="am-message-sub">门已开，优水到家提醒您,提水后请随手关门！</div>
-    <div [hidden]="flag === '4'" class="am-message-sub">门已开，优水到家提醒您,为了您账号资金安全,提水后请随手关门！</div>
-    <br>
-    <div [hidden]="flag === '4'" class="am-message-sub">本设备同时只能一个用户购买，请确保在您关门之前没有其他人在取水，以免多扣款！</div>
+    <div class="am-message-sub">
+      <img style="width: 100%;" src="../../../assets/main/tips.png" alt="">
+    </div>
 </div>
 <div class="am-message result" style="background-size: 100% 0;margin-top: 25%" [hidden]="close">
   <i class="am-icon result success"></i>
-  <div class="am-message-main">温馨提示</div>
+  <div class="am-message-main">购买完成</div>
   <div [hidden]="flag === '1' || flag === '2'" class="am-message-sub">关门成功</div>
   <a [hidden]="flag === '1' || flag === '2'" href="javascript:void(0);" *ngFor="let item of replenishList" class="weui-media-box weui-media-box_appmsg">
     <div class="weui-media-box__hd">
@@ -41,11 +38,12 @@
     </div>
   </a>
   <div [hidden]="flag === '3' || flag === '4'" class="am-message-sub">广州优水到家工程感谢你的惠顾,系统将从零钱或者银行卡中自动扣取本次购买费用。</div>
+  <div [hidden]="flag === '3' || flag === '4'" class="am-message-sub">关注“优水到家”微信公众号，领取100元购水大礼包</div>
   <div class="am-button-wrap">
-    <button [hidden]="aliPay" (click)="follow()" class="am-button blue">点击关注微信公众号</button>
+    <button [hidden]="aliPay" (click)="follow()" class="am-button" style="background: #2CA825">点击关注</button>
   </div>
   <div class="am-button-wrap">
-    <button (click)="exit()" class="am-button blue">退出</button>
+    <button (click)="exit()" class="am-button blue" >直接退出</button>
   </div>
 </div>
 <nz-modal [nzVisible]="isVisibleOpen" [nzContent]="modalContent" [nzFooter]="modalFooter" [nzClosable]="false">
