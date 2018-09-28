@@ -7,8 +7,10 @@
       <!--<p *ngIf="isFiveDoor" style="font-weight: 600">联业智能</p>-->
       <img (click)="vmLogin(1)" src="../../../assets/main/logos.png" alt="..."
            class="rounded-circle">
-      <img (click)="vmLogin(2)" src="../../../assets/main/guoqing.png" alt="..."
-           class="rounded-circle-center">
+      <!--<img (click)="vmLogin(2)" src="../../../assets/main/guoqing.png" alt="..."-->
+           <!--class="rounded-circle-center">-->
+      <img (click)="vmLogin(2)" src="../../../assets/main/69.png" alt="..."
+           class="rounded-circle-sixnight">
       <br/>
       <p class="title">点击下面窗口开门买水</p>
     </div>
@@ -116,6 +118,7 @@
   <nz-modal [nzVisible]="isVisibleCouponThree" [nzContent]="modalContentCouponThree" [nzFooter]="false" [nzClosable]="false">
     <ng-template #modalContentCouponThree>
       <img src="../../../assets/main/getCoupon.png" alt="" style="width: 100%;position: absolute;right: 0;top: -40px;">
+      <img src="../../../assets/main/follow.png" (click)="follow()" alt="" style="width: 20%;position: absolute;left: 40%;top: 225px;">
       <img (click)="closeCoupon()" src="../../../assets/main/close.png" alt=""
            style="width: 10%; position: absolute;right: 10px;top: 10px;">
     </ng-template>

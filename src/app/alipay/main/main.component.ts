@@ -198,6 +198,9 @@ export class MainComponent implements OnInit {
       }
     );
   }
+  follow() {
+    window.location.href = 'https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzU0NzQ4MTY0Mg==&scene=124#wechat_redirect';
+  }
   closeCoupon() {
     this.isVisibleCouponThree = false;
   }
