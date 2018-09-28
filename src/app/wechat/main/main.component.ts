@@ -31,6 +31,8 @@ export class MainComponent implements OnInit {
   currentModal;
   public isFourDoor = false;
   public isFiveDoor = false;
+  public youshuiCompany = true;
+  public otherCompany = true;
 
   // public isSixDoor = false;
   constructor(private router: Router,
@@ -132,6 +134,20 @@ export class MainComponent implements OnInit {
 
   // 数据初始化
   getInitData() {
+    this.appService.postData(this.appProperties.machineInfoGetCompanyIdUrl + urlParse(window.location.search)['vmCode'], '').subscribe(
+      data2 => {
+        console.log(data2);
+        if (data2.returnObject === 76 || data2.returnObject === '76') {
+          this.youshuiCompany = false;
+          this.otherCompany = true;
+        } else {
+          this.youshuiCompany = true;
+          this.otherCompany = false;
+        }
+      },
+      error2 => {
+        console.log(error2);
+      });
     this.appService.getData(this.appProperties.indexListUrl, {vmCode: urlParse(window.location.search)['vmCode'], type: 1}).subscribe(
       data => {
         console.log(data);
@@ -213,9 +229,11 @@ export class MainComponent implements OnInit {
     });
     // TODO;
   }
+
   show() {
     this.couponButtonHidden = !this.couponButtonHidden;
   }
+
   share() {
     this.appService.postAliData(this.appProperties.wechatShareInfoUrl + '?url=http://sms.youshuidaojia.com/main',
       '', this.token).subscribe(

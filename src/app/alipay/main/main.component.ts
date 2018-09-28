@@ -23,6 +23,8 @@ export class MainComponent implements OnInit {
   public isSixDoor = false; // liu门
   public isVisibleCouponThree = false;
   public couponButtonHidden = true;
+  public youshuiCompany = true;
+  public otherCompany = true;
   constructor(private router: Router,
               private activatedRoute: ActivatedRoute,
               private appProperties: AppProperties,
@@ -57,6 +59,20 @@ export class MainComponent implements OnInit {
   // 初始化数据
   getInitData() {
     // 选水界面接口
+    this.appService.postData(this.appProperties.machineInfoGetCompanyIdUrl + urlParse(window.location.search)['vmCode'], '').subscribe(
+      data2 => {
+        console.log(data2);
+        if (data2.returnObject === 76 || data2.returnObject === '76') {
+          this.youshuiCompany = false;
+          this.otherCompany = true;
+        } else {
+          this.youshuiCompany = true;
+          this.otherCompany = false;
+        }
+      },
+      error2 => {
+        console.log(error2);
+      });
     this.appService.getAliData(this.appProperties.aliIndexListUrl,
       {vmCode: urlParse(window.location.search)['vmCode']}, this.token).subscribe(
       data => {
