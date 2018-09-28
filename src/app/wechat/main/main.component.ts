@@ -209,7 +209,7 @@ export class MainComponent implements OnInit {
           payType: 1
         }
       });
-    } else {
+    } else if (flag === 2) {
       document.getElementsByClassName('ant-modal-body')[4]['style'].cssText = 'padding: 0;';
       this.isVisibleCouponThree = true;
     }
@@ -390,6 +390,7 @@ export class MainComponent implements OnInit {
               this.router.navigate(['detail'], {
                 queryParams: {
                   vmCode: urlParse(window.location.search)['vmCode'],
+                  flag: 1
                 }
               });
             } else if (data.code === -89) {

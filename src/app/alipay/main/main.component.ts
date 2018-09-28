@@ -229,7 +229,7 @@ export class MainComponent implements OnInit {
           payType: 2
         }
       });
-    } else {
+    } else if (flag === 2) {
       document.getElementsByClassName('ant-modal-body')[2]['style'].cssText = 'padding: 0;';
       this.isVisibleCouponThree = true;
     }
