@@ -21,6 +21,8 @@ export class MainComponent implements OnInit {
   public isFourDoor = false; // 四门
   public isFiveDoor = false; // 五门
   public isSixDoor = false; // liu门
+  public isVisibleCouponThree = false;
+  public couponButtonHidden = true;
   constructor(private router: Router,
               private activatedRoute: ActivatedRoute,
               private appProperties: AppProperties,
@@ -100,8 +102,6 @@ export class MainComponent implements OnInit {
   }
   openOk() {
     this.isClosed(urlParse(window.location.search)['vmCode']);
-  }
-  closeCoupon() {
   }
   // 是否开门（是）
   yesOpenDoor() {
@@ -198,23 +198,39 @@ export class MainComponent implements OnInit {
       }
     );
   }
-  // 补货人员登陆界面入口
-  vmLogin() {
-    this.router.navigate(['addMain'], {
-      queryParams: {
-        vmCode: urlParse(window.location.search)['vmCode'],
-        payType: 2
-      }});
+  closeCoupon() {
+    this.isVisibleCouponThree = false;
   }
-  // 查看用户订单
-  detail(flag) {
-    this.router.navigate(['aliDetail'], {
+  // 补货人员登陆界面入口
+  vmLogin(flag) {
+    if (flag === 1) {
+      this.router.navigate(['addMain'], {
+        queryParams: {
+          vmCode: urlParse(window.location.search)['vmCode'],
+          payType: 2
+        }
+      });
+    } else {
+      document.getElementsByClassName('ant-modal-body')[2]['style'].cssText = 'padding: 0;';
+      this.isVisibleCouponThree = true;
+    }
+  }
+  // 订单详情
+  product(flag) {
+    // this.router.navigate(['product'], {
+    //   queryParams: {
+    //     token: this.token
+    //   }});
+    this.router.navigate(['detail'], {
       queryParams: {
-        title: 1,
         vmCode: urlParse(window.location.search)['vmCode'],
         flag: flag
-      }});
+      }
+    });
     // TODO;
+  }
+  show() {
+    this.couponButtonHidden = !this.couponButtonHidden;
   }
   getCookies () {
     if (this.token === null || this.token === undefined || this.token === 'undefined') {

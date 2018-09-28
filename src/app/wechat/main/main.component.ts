@@ -1,9 +1,10 @@
-import { Component , OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AppService} from '../../app-service';
 import {AppProperties} from '../../app.properties';
 import {NzModalService} from 'ng-zorro-antd';
 import {urlParse} from '../../utils/util';
+
 declare var wx: any;
 
 @Component({
@@ -20,6 +21,8 @@ export class MainComponent implements OnInit {
   public isVisibleOpenDoor = false;
   public isVisibleCoupon = false;
   public isVisibleCouponTwo = false;
+  public isVisibleCouponThree = false;
+  public couponButtonHidden = true;
   public clickMore = false;
   // public img = 'http://lenvar-resource-products.oss-cn-shenzhen.aliyuncs.com/';
   // public img = 'http://119.23.233.123:6662/ys_admin/files/';
@@ -28,14 +31,16 @@ export class MainComponent implements OnInit {
   currentModal;
   public isFourDoor = false;
   public isFiveDoor = false;
+
   // public isSixDoor = false;
   constructor(private router: Router,
               private modalService: NzModalService,
               private activatedRoute: ActivatedRoute,
               private appProperties: AppProperties,
-              private appService: AppService) {}
+              private appService: AppService) {
+  }
+
   ngOnInit() {
-    // console.log(document.getElementsByClassName('ant-modal-footer')[0].id = 'ant-modal-footer');
     this.getInitData();
     this.getCookies();
     console.log(this.token);
@@ -124,6 +129,7 @@ export class MainComponent implements OnInit {
     //   );
     // }
   }
+
   // 数据初始化
   getInitData() {
     this.appService.getData(this.appProperties.indexListUrl, {vmCode: urlParse(window.location.search)['vmCode'], type: 1}).subscribe(
@@ -156,6 +162,7 @@ export class MainComponent implements OnInit {
       }
     );
   }
+
   // 开门
   openDoor(item) {
     this.item = item;
@@ -165,19 +172,29 @@ export class MainComponent implements OnInit {
       this.isVisibleOpenDoor = true;
     }
   }
+
   closeCoupon() {
     this.isVisibleCoupon = false;
     this.isVisibleCouponTwo = false;
+    this.isVisibleCouponThree = false;
     document.cookie = 'coupon=' + 1;
   }
+
   // 运维登陆
-  vmLogin() {
-    this.router.navigate(['addMain'], {
-      queryParams: {
-        vmCode: urlParse(window.location.search)['vmCode'],
-        payType: 1
-      }});
+  vmLogin(flag) {
+    if (flag === 1) {
+      this.router.navigate(['addMain'], {
+        queryParams: {
+          vmCode: urlParse(window.location.search)['vmCode'],
+          payType: 1
+        }
+      });
+    } else {
+      document.getElementsByClassName('ant-modal-body')[4]['style'].cssText = 'padding: 0;';
+      this.isVisibleCouponThree = true;
+    }
   }
+
   // 订单详情
   product(flag) {
     // this.router.navigate(['product'], {
@@ -188,8 +205,12 @@ export class MainComponent implements OnInit {
       queryParams: {
         vmCode: urlParse(window.location.search)['vmCode'],
         flag: flag
-      }});
+      }
+    });
     // TODO;
+  }
+  show() {
+    this.couponButtonHidden = !this.couponButtonHidden;
   }
   share() {
     this.appService.postAliData(this.appProperties.wechatShareInfoUrl + '?url=http://sms.youshuidaojia.com/main',
@@ -235,6 +256,7 @@ export class MainComponent implements OnInit {
       }
     );
   }
+
   // 是否已关门
   isClosed(vmCode) {
     this.appService.getDataOpen(this.appProperties.isClosedUrl, {vmCode: vmCode}, this.token).subscribe(
@@ -254,6 +276,7 @@ export class MainComponent implements OnInit {
       }
     );
   }
+
   // 新用户登陆
   login() {
     // this.currentModal = this.modalService.open({
@@ -288,86 +311,94 @@ export class MainComponent implements OnInit {
       }
     );
   }
+
   handleOk($event) {
     window.location.href = this.appProperties.followWechatSubscription;
     this.currentModal.destroy('onOk');
   }
+
   // 检测关门
   openOk() {
     this.isVisibleOpen = true;
     this.isClosed(urlParse(window.location.search)['vmCode']);
   }
+
   // 确定开门
   yesOpenDoor() {
     this.isVisibleOpenDoor = false;
-      if (this.clickMore) {
-        alert('亲,服务器还没反应过来,请勿再点击');
+    if (this.clickMore) {
+      alert('亲,服务器还没反应过来,请勿再点击');
+    } else {
+      this.clickMore = true;
+      if (this.token === null || this.token === undefined || this.token === 'undefined') {
+        this.clickMore = false;
+        sessionStorage.setItem('wayNumber', this.item.wayNumber);
+        alert('请点击确认，注册登陆');
+        this.login();
       } else {
-        this.clickMore = true;
-        if (this.token === null || this.token === undefined || this.token === 'undefined') {
-          this.clickMore = false;
-          sessionStorage.setItem('wayNumber', this.item.wayNumber);
-          alert('请点击确认，注册登陆');
-          this.login();
-        } else {
-          this.appService.getDataOpen(this.appProperties.indexOpenDoor,
-            {vmCode: urlParse(window.location.search)['vmCode'], way: this.item.wayNumber}, this.token).subscribe(
-            data => {
-              console.log(data);
-              this.clickMore = false;
-              if (data.code === 0) {
-                // alert('优水到家提醒您,为了您账号资金安全,提水后请随手关门');
-                // this.isVisibleOpen = true;
-                this.router.navigate(['goodsShow'], {
-                  queryParams: {
-                    vmCode: urlParse(window.location.search)['vmCode'],
-                    flag: 1,
-                  }});
-              } else if (data.code === 4) {
-                this.router.navigate(['goodsShow'], {
-                  queryParams: {
-                    vmCode: urlParse(window.location.search)['vmCode'],
-                    flag: 2,
-                  }});
-              } else if (data.code === 3) {
-                alert('开门失败！');
-              } else if (data.code === -1) {
-                this.login();
-              } else if (data.code === -87) {
-                window.location.href = this.appProperties.followWechatSubscription;
-              } else if (data.code === -88) {
-                alert('您有未支付订单请点击我的订单支付完毕再进行购水！');
-                this.router.navigate(['detail'], {
-                  queryParams: {
-                    vmCode: urlParse(window.location.search)['vmCode'],
-                  }});
-              } else if (data.code === -89) {
-                alert('他人在买水，请稍后扫码,文明购买，请勿争抢');
-              } else if (data.code === -90) {
-                this.appService.getDataOpen(this.appProperties.nonePassWordPayUrl,
-                  {vmCode: urlParse(window.location.href)['vmCode']}).subscribe(
-                  data1 => {
-                    window.location.href =  data1;
-                    // sessionStorage.setItem('open', '1');
-                    sessionStorage.setItem('wayNumber', this.item.wayNumber);
-                  },
-                  error1 => {
-                    console.log(error1);
-                  }
-                );
-              }
-            },
-            error => {
-              console.log(error);
+        this.appService.getDataOpen(this.appProperties.indexOpenDoor,
+          {vmCode: urlParse(window.location.search)['vmCode'], way: this.item.wayNumber}, this.token).subscribe(
+          data => {
+            console.log(data);
+            this.clickMore = false;
+            if (data.code === 0) {
+              // alert('优水到家提醒您,为了您账号资金安全,提水后请随手关门');
+              // this.isVisibleOpen = true;
+              this.router.navigate(['goodsShow'], {
+                queryParams: {
+                  vmCode: urlParse(window.location.search)['vmCode'],
+                  flag: 1,
+                }
+              });
+            } else if (data.code === 4) {
+              this.router.navigate(['goodsShow'], {
+                queryParams: {
+                  vmCode: urlParse(window.location.search)['vmCode'],
+                  flag: 2,
+                }
+              });
+            } else if (data.code === 3) {
+              alert('开门失败！');
+            } else if (data.code === -1) {
+              this.login();
+            } else if (data.code === -87) {
+              window.location.href = this.appProperties.followWechatSubscription;
+            } else if (data.code === -88) {
+              alert('您有未支付订单请点击我的订单支付完毕再进行购水！');
+              this.router.navigate(['detail'], {
+                queryParams: {
+                  vmCode: urlParse(window.location.search)['vmCode'],
+                }
+              });
+            } else if (data.code === -89) {
+              alert('他人在买水，请稍后扫码,文明购买，请勿争抢');
+            } else if (data.code === -90) {
+              this.appService.getDataOpen(this.appProperties.nonePassWordPayUrl,
+                {vmCode: urlParse(window.location.href)['vmCode']}).subscribe(
+                data1 => {
+                  window.location.href = data1;
+                  // sessionStorage.setItem('open', '1');
+                  sessionStorage.setItem('wayNumber', this.item.wayNumber);
+                },
+                error1 => {
+                  console.log(error1);
+                }
+              );
             }
-          );
-        }
+          },
+          error => {
+            console.log(error);
+          }
+        );
       }
+    }
   }
+
   // 确定关门
   noOpenDoor() {
     this.isVisibleOpenDoor = false;
   }
+
   // 测试支付
   test(data) {
     wx.config({
@@ -405,8 +436,9 @@ export class MainComponent implements OnInit {
       });
     });
   }
+
   // 获取token
-  getCookies () {
+  getCookies() {
     if (this.token === null || this.token === undefined || this.token === 'undefined') {
       const strCookie = document.cookie;
       const arrCookie = strCookie.split(';');
@@ -418,39 +450,43 @@ export class MainComponent implements OnInit {
       }
     }
   }
-  getCoupon () {
+
+  getCoupon() {
     let coupon;
-      const strCookie = document.cookie;
-      const arrCookie = strCookie.split(';');
-      for (let i = 0; i < arrCookie.length; i++) {
-        const arr = arrCookie[i].split('=');
-        if (arr[0].trim() === 'coupon') {
-          coupon = arr[1];
-        }
+    const strCookie = document.cookie;
+    const arrCookie = strCookie.split(';');
+    for (let i = 0; i < arrCookie.length; i++) {
+      const arr = arrCookie[i].split('=');
+      if (arr[0].trim() === 'coupon') {
+        coupon = arr[1];
       }
-      return coupon;
     }
+    return coupon;
+  }
+
   turnImg(item) {
     let img;
-    if  (item.length > 1) {
+    if (item.length > 1) {
       img = this.img + item[1].pic;
     } else {
       img = '';
     }
     return img;
   }
+
   turnItemName(item) {
     let itemName;
-    if  (item.length > 1) {
+    if (item.length > 1) {
       itemName = item[1].itemName;
     } else {
       itemName = '';
     }
     return itemName;
   }
+
   turnPrice(item) {
     let price;
-    if  (item.length > 1) {
+    if (item.length > 1) {
       price = item[1].price;
     } else {
       price = '';
