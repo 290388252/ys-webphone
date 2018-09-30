@@ -20,7 +20,10 @@ export class DetailComponent implements OnInit , AfterViewChecked {
   public vmCode;
   public token;
   public detailVisible = false;
-  public detailList;
+  public doorNO = '无';
+  public num = '无';
+  public openedTime = '无';
+  public closedTime = '无';
   public couponEffectiveList;
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private appProperties: AppProperties,
   private appService: AppService) {
@@ -56,10 +59,10 @@ export class DetailComponent implements OnInit , AfterViewChecked {
       '', this.token).subscribe(
       data => {
         console.log(data);
-        if (data.status === 1) {
+        // if (data.status === 1) {
           this.couponEffectiveList = data.returnObject;
-        } else if (data.status !== 1) {
-        }
+        // } else if (data.status !== 1) {
+        // }
       },
       error => {
         console.log(error);
@@ -190,7 +193,10 @@ export class DetailComponent implements OnInit , AfterViewChecked {
         console.log(data);
         if (data.status === 1) {
           console.log(data.returnObject);
-          this.detailList = data.returnObject;
+          this.doorNO = data.returnObject.doorNO;
+          this.num = data.returnObject.num;
+          this.openedTime = data.returnObject.openedTime;
+          this.closedTime = data.returnObject.closedTime;
         }
       },
       error => {
