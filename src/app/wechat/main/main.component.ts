@@ -253,24 +253,36 @@ export class MainComponent implements OnInit {
           ]
         });
         wx.ready(function () {
-          const shareData = {
-            title: '标题',
-            desc: '简介', // 这里请特别注意是要去除html
-            link: '链接',
-            imgUrl: '题图',
-            success: function () {
-              // 用户确认分享后执行的回调函数
-              console.log('success');
-            },
-            cancel: function () {
-              // 用户取消分享后执行的回调函数
-              console.log('cancel');
-            }
-          };
-          wx.onMenuShareAppMessage(shareData);
-          wx.onMenuShareTimeline(shareData);
-          wx.onMenuShareQQ(shareData);
-          wx.onMenuShareWeibo(shareData);
+          console.log(123);
+          wx.ready(function () {   // 需在用户可能点击分享按钮前就先调用
+            wx.updateAppMessageShareData({
+              title: '', // 分享标题
+              desc: '', // 分享描述
+              link: '', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+              imgUrl: '', // 分享图标
+            }, function (res) {
+              // 这里是回调函数
+              console.log(res);
+            });
+          });
+        //   const shareData = {
+        //     title: '标题',
+        //     desc: '简介', // 这里请特别注意是要去除html
+        //     link: '链接',
+        //     imgUrl: '题图',
+        //     success: function () {
+        //       // 用户确认分享后执行的回调函数
+        //       console.log('success');
+        //     },
+        //     cancel: function () {
+        //       // 用户取消分享后执行的回调函数
+        //       console.log('cancel');
+        //     }
+        //   };
+        //   wx.onMenuShareAppMessage(shareData);
+        //   // wx.onMenuShareTimeline(shareData);
+        //   // wx.onMenuShareQQ(shareData);
+        //   // wx.onMenuShareWeibo(shareData);
         });
       },
       error2 => {

@@ -24,7 +24,7 @@
       <img style="width: 100%;" src="../../../assets/main/tips.png" alt="">
     </div>
 </div>
-<div class="am-message result" style="background-size: 100% 0;margin-top: 25%" [hidden]="close">
+<div class="am-message result" style="background-size: 100% 0;margin-top: 1%" [hidden]="close">
   <i class="am-icon result success"></i>
   <div [hidden]="flag === '1' || flag === '2'" class="am-message-main">补货完成</div>
   <div [hidden]="flag === '3' || flag === '4'" class="am-message-main">购买完成</div>
@@ -42,7 +42,7 @@
   <div [hidden]="flag === '3' || flag === '4'" class="am-message-sub" style="color: #118ee8;font-weight: 600">关注“优水到家”微信公众号，领取100元购水大礼包</div>
   <div class="am-button-wrap" [hidden]="flag === '3' || flag === '4'">
     <!--<button [hidden]="aliPay" (click)="follow()" class="am-button" style="background: #2CA825">点击关注</button>-->
-    <img style="width: 200px" src="../../../assets/main/follow.png" alt="">
+    <img style="width: 200px;padding-bottom: 64px" src="../../../assets/main/follow.png" alt="">
   </div>
   <div class="am-button-wrap">
     <button (click)="exit()" class="am-button blue" >直接退出</button>

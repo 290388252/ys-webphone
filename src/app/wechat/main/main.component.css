@@ -42,7 +42,7 @@
   /*width: 25%;*/
   margin-top: 4px;
   margin-bottom: 24%;
-  margin-left: -238px;
+  margin-left: -80%;
   height: 50px;
 }
 .rounded-circle {
@@ -107,8 +107,8 @@
 .my-product button{
   background: url("../../../assets/main/button.png");
   background-size: 100% 100%;
-  width: 80px;
-  height: 25px;
+  width: 90px;
+  height: 30px;
   border: none;
 }
 .my-coupon{
@@ -119,8 +119,8 @@
 .my-coupon button{
   background: url("../../../assets/main/button.png");
   background-size: 100% 100%;
-  width: 80px;
-  height: 25px;
+  width: 90px;
+  height: 30px;
   border: none;
 }
 .my-coupons{
@@ -132,8 +132,8 @@
 .my-coupons button{
   background: url("../../../assets/main/button.png");
   background-size: 100% 100%;
-  width: 80px;
-  height: 25px;
+  width: 90px;
+  height: 30px;
   border: none;
 }
 .my-share{
@@ -290,7 +290,7 @@
     /*width: 30%;*/
     margin-top: 4px;
     margin-bottom: 30%;
-    margin-left: -270px;
+    margin-left: -79%;
     height: 36px;
   }
   .box-one{
@@ -395,7 +395,7 @@
     /*width: 25%;*/
     margin-top: 4px;
     margin-bottom: 34%;
-    margin-left: -238px;
+    margin-left: -80%;
     height: 55px;
   }
   .box-one{
@@ -462,7 +462,7 @@
 }
 @media screen and (max-height: 500px){
   .context{
-    width: 273px;
+    width: 275px;
     margin: 0 auto;
   }
   .rounded-circle  {
@@ -530,7 +530,7 @@
     /*width: 15%;*/
     margin-top: 4px;
     margin-bottom: 13%;
-    margin-left: -238px;
+    margin-left: -80%;
     height: 30px;
   }
   .lianye-logo{
