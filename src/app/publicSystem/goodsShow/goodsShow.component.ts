@@ -24,6 +24,7 @@ export class GoodsShowComponent implements OnInit {
   public img = this.appProperties.imgUrl;
   public replenishList;
   public aliPay = false;
+  public youshuiCompany = false;
   constructor(private router: Router,
               private appProperties: AppProperties,
               private appService: AppService) {
@@ -31,6 +32,22 @@ export class GoodsShowComponent implements OnInit {
 
   ngOnInit() {
     this.goodsList = [];
+    this.appService.postData(this.appProperties.machineInfoGetCompanyIdUrl + urlParse(window.location.search)['vmCode'], '').subscribe(
+      data2 => {
+        console.log(data2);
+        if (data2.returnObject === 76 || data2.returnObject === '76'
+          || data2.returnObject === 114 || data2.returnObject === '114'
+          || data2.returnObject === 115 || data2.returnObject === '115'
+          || data2.returnObject === 116 || data2.returnObject === '116'
+          || data2.returnObject === 117 || data2.returnObject === '117') {
+          this.youshuiCompany = true;
+        } else {
+          this.youshuiCompany = false;
+        }
+      },
+      error2 => {
+        console.log(error2);
+      });
     const ua = window.navigator.userAgent.toLowerCase();
     if (ua.match(/AlipayClient/i)) {
       if (ua.match(/AlipayClient/i)[0] === 'alipayclient') {
