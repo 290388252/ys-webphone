@@ -137,7 +137,11 @@ export class MainComponent implements OnInit {
     this.appService.postData(this.appProperties.machineInfoGetCompanyIdUrl + urlParse(window.location.search)['vmCode'], '').subscribe(
       data2 => {
         console.log(data2);
-        if (data2.returnObject === 76 || data2.returnObject === '76') {
+        if (data2.returnObject === 76 || data2.returnObject === '76'
+          || data2.returnObject === 114 || data2.returnObject === '114'
+          || data2.returnObject === 115 || data2.returnObject === '115'
+          || data2.returnObject === 116 || data2.returnObject === '116'
+          || data2.returnObject === 117 || data2.returnObject === '117') {
           this.youshuiCompany = false;
           this.otherCompany = true;
         } else {

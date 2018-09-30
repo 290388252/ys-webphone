@@ -40,9 +40,9 @@
   </a>
   <div [hidden]="flag === '3' || flag === '4'" class="am-message-sub">广州优水到家工程感谢你的惠顾,系统将从零钱或者银行卡中自动扣取本次购买费用。</div>
   <div [hidden]="flag === '3' || flag === '4'" class="am-message-sub" style="color: #118ee8;font-weight: 600">关注“优水到家”微信公众号，领取100元购水大礼包</div>
-  <div class="am-button-wrap" [hidden]="flag === '3' || flag === '4'">
+  <div [hidden]="flag === '3' || flag === '4'">
     <!--<button [hidden]="aliPay" (click)="follow()" class="am-button" style="background: #2CA825">点击关注</button>-->
-    <img style="width: 200px;padding-bottom: 64px;opacity: 1" src="../../../assets/main/follow.png" alt="">
+    <img style="width: 300px;padding-bottom: 84px;opacity: 1" src="../../../assets/main/follow.png" alt="">
   </div>
   <div class="am-button-wrap">
     <button (click)="exit()" class="am-button blue" >直接退出</button>

@@ -72,7 +72,7 @@
       <button (click)="show()" type="button" style="color: white">查看优惠券</button>
     </div>
     <div class="my-coupons" [hidden]="couponButtonHidden">
-      <button (click)="vmLogin(2)" type="button" style="color: white">领取优惠券</button>
+      <button [hidden]="youshuiCompany" (click)="vmLogin(2)" type="button" style="color: white">领取优惠券</button>
       <button (click)="product(2)" type="button" style="color: white">我的优惠券</button>
     </div>
     <!--<div class="my-share">-->
