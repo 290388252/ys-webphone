@@ -46,7 +46,9 @@
   font-size: 12px;
   color: #B8996A;
   background: url("../../../assets/main/textbg.png");
-  background-size: 100% 132%;
+  background-size: 100% 94%;
+  width: 70%;
+  margin-left: 15%;
 }
 .text-custom {
   color: white;
@@ -289,7 +291,7 @@ button{
   font-size: 9px;border: grey;width: 50%;background: url("../../../assets/main/button-bg.png");height: 17px;position: absolute;top: 42px;left: 23px;color: black;background-size: 100% 100%;
 }
 .detail-button-four{
-  font-size: 9px;border: grey;width: 45%;background: url("../../../assets/main/button-bg.png");height: 21px;position: absolute;top: 69%;left: 8px;color: black;background-size: 100% 100%;
+  font-size: 9px;border: grey;width: 45%;background: url("../../../assets/main/button-bg.png");height: 17px;position: absolute;top: 69%;left: 8px;color: black;background-size: 100% 100%;
 }
 @media screen and (min-height: 570px){
   .w-and-n {

@@ -85,7 +85,7 @@ export class DetailComponent implements OnInit , AfterViewChecked {
     this.appService.getDataOpen(this.appProperties.orderUnifiedOrderUrl,
       {
         orderId: item.id,
-        url: encodeURIComponent('http://sms.youshuidaojia.com/detail?vmCode=' + urlParse(window.location.search)['vmCode'] + '&flag=1')
+        url: location.href.split('#')[0]
       }, this.token).subscribe(
       data => {
         console.log(data);
