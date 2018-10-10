@@ -18,6 +18,9 @@
     <!--<button [hidden]="aliPay" (click)="follow()" class="am-button" style="background: #2CA825">点击关注</button>-->
     <img style="width: 300px;padding-bottom: 84px;opacity: 1" src="../../../assets/main/follow.png" alt="">
   </div>
+  <div class="am-button-wrap" [hidden]="flag === '3' || flag === '4'">
+    <button (click)="share()" class="am-button blue" >分享</button>
+  </div>
   <div class="am-button-wrap">
     <button (click)="exit()" class="am-button blue" >直接退出</button>
   </div>
