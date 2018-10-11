@@ -29,7 +29,7 @@
   border-radius: 50%;
 }
 .rounded-circle-center{
-  margin-top: 14px;
+  top: 10%;
   position: absolute;
   left: 28%;
   width: 150px;
@@ -37,6 +37,7 @@
 .rounded-circle-sixnight{
   position: absolute;
   left: 28%;
+  top: 10%;
   width: 150px;
 }
 .rounded-circle{

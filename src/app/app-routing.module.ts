@@ -26,6 +26,7 @@ const routes: Routes = [/*
     { path: 'addMain', loadChildren: './publicSystem/addMain/addMain.module#AddMainModule' },
     { path: 'comment', loadChildren: './publicSystem/comment/comment.module#CommentModule' },
     { path: 'goodsShow', loadChildren: './publicSystem/goodsShow/goodsShow.module#GoodsShowModule' },
+    { path: 'share', loadChildren: './publicSystem/share/share.module#ShareModule' },
     { path: 'rotate', loadChildren: './publicSystem/rotate/rotate.module#RotateModule' },
 ];
 

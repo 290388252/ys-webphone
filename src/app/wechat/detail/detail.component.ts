@@ -146,7 +146,7 @@ export class DetailComponent implements OnInit , AfterViewChecked {
   // 调用微信支付接口测试
   test(data, item) {
     wx.config({
-      debug: true,
+      debug: false,
       appId: data.config.appId,
       timestamp: data.config.timestamp,
       nonceStr: data.config.nonceStr,
@@ -157,7 +157,7 @@ export class DetailComponent implements OnInit , AfterViewChecked {
     });
     wx.ready(() => {
       wx.chooseWXPay({
-        debug: true,
+        debug: false,
         timestamp: data.payInfo.timeStamp, // 支付签名时间戳，注意微信jssdk中的所有使用timestamp字段均为小写。但最新版的支付后台生成签名使用的timeStamp字段名需大写其中的S字符
         nonceStr: data.payInfo.nonceStr, // 支付签名随机串，不长于 32 位
         package: data.payInfo.package,

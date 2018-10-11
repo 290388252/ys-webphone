@@ -8,11 +8,11 @@ declare const wx: any;
 
 import * as $ from 'jquery';
 @Component({
-  selector: 'app-Test',
-  templateUrl: './test.component.html',
-  styleUrls: ['./test.component.css']
+  selector: 'app-Share',
+  templateUrl: './share.component.html',
+  styleUrls: ['./share.component.css']
 })
-export class TestComponent implements OnInit {
+export class ShareComponent implements OnInit {
   private token: string;
   constructor(private router: Router,
               private appProperties: AppProperties,
@@ -57,7 +57,7 @@ export class TestComponent implements OnInit {
           const shareData = {
             title: '优水到家',
             desc: '分享领取优惠', // 这里请特别注意是要去除html
-            link: 'http://sms.youshuidaojia.com/share',
+            link: window.location.href,
             imgUrl: 'http://119.23.233.123:6662/ys_admin/companyLogo/20181008_142714.png',
             success: function () {
               // 用户确认分享后执行的回调函数
