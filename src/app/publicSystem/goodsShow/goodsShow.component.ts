@@ -32,6 +32,9 @@ export class GoodsShowComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.flag = sessionStorage.getItem('flag');
+    // this.flag = urlParse(window.location.search)['flag'];
+    this.getToken();
     this.share();
     this.goodsList = [];
     this.appService.postData(this.appProperties.machineInfoGetCompanyIdUrl + urlParse(window.location.search)['vmCode'], '').subscribe(
@@ -59,10 +62,7 @@ export class GoodsShowComponent implements OnInit {
       this.aliPay = false;
     }
     this.isVisibleOpen = false;
-    this.getToken();
     console.log(urlParse(window.location.search)['vmCode']);
-    this.flag = sessionStorage.getItem('flag');
-    // this.flag = urlParse(window.location.search)['flag'];
     console.log(this.token);
     console.log(this.flag);
     this.oneGoodsOrMore();
@@ -97,6 +97,8 @@ export class GoodsShowComponent implements OnInit {
             'onMenuShareWeibo',
           ]
         });
+        const link = 'http://sms.youshuidaojia.com/share?token=' + this.token;
+        console.log(link);
         wx.ready(function () {
           console.log(123);
           // wx.ready(function () {   // 需在用户可能点击分享按钮前就先调用
@@ -113,7 +115,7 @@ export class GoodsShowComponent implements OnInit {
           const shareData = {
             title: '优水到家',
             desc: '分享领取优惠', // 这里请特别注意是要去除html
-            link: 'http://sms.youshuidaojia.com/share?token=' + this.token,
+            link: link,
             imgUrl: 'http://119.23.233.123:6662/ys_admin/companyLogo/20181008_142714.png',
             success: function () {
               // 用户确认分享后执行的回调函数
