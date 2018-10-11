@@ -328,16 +328,18 @@ export class MainComponent implements OnInit {
               this.router.navigate(['goodsShow'], {
                 queryParams: {
                   vmCode: urlParse(window.location.search)['vmCode'],
-                  flag: 1,
+                  // flag: 1,
                 }
               });
+              sessionStorage.setItem('flag', '1');
             } else if (data.code === 4) {
               this.router.navigate(['goodsShow'], {
                 queryParams: {
                   vmCode: urlParse(window.location.search)['vmCode'],
-                  flag: 2,
+                  // flag: 2,
                 }
               });
+              sessionStorage.setItem('flag', '2');
             } else if (data.code === 3) {
               alert('开门失败！');
             } else if (data.code === -1) {

@@ -3,7 +3,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {AppProperties} from '../../app.properties';
 import {AppService} from '../../app-service';
-import {getOpenId, getVmCode, checkPhone} from '../../utils/util';
+import {getOpenId, getVmCode, checkPhone, urlParse} from '../../utils/util';
 import * as $ from 'jquery';
 @Component({
   selector: 'app-register',
@@ -49,13 +49,53 @@ export class RegisterComponent implements OnInit {
         this.validateForm.controls[i].markAsDirty();
       }
     }
-    if (this.validateForm.controls.phoneForm.value !== null && this.validateForm.controls.password.value !== null) {
-      this.appService.getData(this.appProperties.wechatRegisterUrl,
-        {openId: this.openId,
-          phone: this.validateForm.controls.phoneForm.value,
-          smsCode: this.validateForm.controls.password.value,
-          vmCode: getVmCode()
-        }).subscribe(
+    if (urlParse(window.location.href)['flag'] === 'share') {
+      if (this.validateForm.controls.phoneForm.value !== null && this.validateForm.controls.password.value !== null) {
+        this.appService.getShareData(this.appProperties.wechatRegisterUrl,
+          {openId: this.openId,
+            phone: this.validateForm.controls.phoneForm.value,
+            smsCode: this.validateForm.controls.password.value,
+            vmCode: getVmCode(),
+          }, urlParse(window.location.href)['token']).subscribe(
+          data => {
+            if (data['code'] !== 0) {
+              alert('登陆失败');
+            } else if (data['code'] === 0) {
+              console.log(data);
+              const exp = new Date();
+              // exp.setTime(exp.getTime() + 1000 * 60 * 60);
+              exp.setTime(exp.getTime() + 1000 * 60 * 60 * 24 * 365 * 10);
+              document.cookie = 'token=' + data['data'].token + ';expires=' + exp.toUTCString();
+              if (data['data'].registerCoupon === 1 || data['data'].registerCoupon === '1') {
+                document.cookie = 'coupon=' + 0;
+              } else if (data['data'].registerCoupon === 2 || data['data'].registerCoupon === '2') {
+                document.cookie = 'coupon=' + 2;
+              }
+              this.router.navigate(['main'], {
+                queryParams: {
+                  vmCode: getVmCode(),
+                  newUser: 1
+                }});
+              // this.router.navigate(['main'], {queryParams: {'token': data.data.token}});
+            }
+          },
+          error => {
+            console.log(error);
+          }
+        );
+        console.log(this.validateForm.controls.phoneForm.value);
+        console.log(this.validateForm.controls.password.value);
+      } else {
+        alert('请输入手机号码');
+      }
+    } else {
+      if (this.validateForm.controls.phoneForm.value !== null && this.validateForm.controls.password.value !== null) {
+        this.appService.getData(this.appProperties.wechatRegisterUrl,
+          {openId: this.openId,
+            phone: this.validateForm.controls.phoneForm.value,
+            smsCode: this.validateForm.controls.password.value,
+            vmCode: getVmCode()
+          }).subscribe(
           data => {
             if (data.code !== 0) {
               alert('登陆失败');
@@ -70,22 +110,23 @@ export class RegisterComponent implements OnInit {
               } else if (data.data.registerCoupon === 2 || data.data.registerCoupon === '2') {
                 document.cookie = 'coupon=' + 2;
               }
-                this.router.navigate(['main'], {
-                  queryParams: {
-                    vmCode: getVmCode(),
-                    newUser: 1
-                  }});
+              this.router.navigate(['main'], {
+                queryParams: {
+                  vmCode: getVmCode(),
+                  newUser: 1
+                }});
               // this.router.navigate(['main'], {queryParams: {'token': data.data.token}});
             }
           },
           error => {
             console.log(error);
           }
-      );
-      console.log(this.validateForm.controls.phoneForm.value);
-      console.log(this.validateForm.controls.password.value);
-    } else {
-      alert('请输入手机号码');
+        );
+        console.log(this.validateForm.controls.phoneForm.value);
+        console.log(this.validateForm.controls.password.value);
+      } else {
+        alert('请输入手机号码');
+      }
     }
   }
   // 发送验证码

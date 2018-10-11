@@ -279,14 +279,16 @@ export class AddMainComponent implements OnInit {
               this.router.navigate(['goodsShow'], {
                 queryParams: {
                   vmCode: urlParse(window.location.search)['vmCode'],
-                  flag: 4,
+                  // flag: 4,
                 }});
+              sessionStorage.setItem('flag', '4');
             } else if (data.code === 4) {
               this.router.navigate(['goodsShow'], {
                 queryParams: {
                   vmCode: urlParse(window.location.search)['vmCode'],
-                  flag: 3,
+                  // flag: 3,
                 }});
+              sessionStorage.setItem('flag', '3');
             } else if (data.code === -1) {
               this.router.navigate(['vmLogin']);
             } else if (data.code === -89) {
@@ -461,14 +463,16 @@ export class AddMainComponent implements OnInit {
           this.router.navigate(['goodsShow'], {
             queryParams: {
               vmCode: urlParse(window.location.search)['vmCode'],
-              flag: 4,
+              // flag: 4,
             }});
+          sessionStorage.setItem('flag', '4');
         }  else if (data.code === 4) {
           this.router.navigate(['goodsShow'], {
             queryParams: {
               vmCode: urlParse(window.location.search)['vmCode'],
-              flag: 3,
+              // flag: 3,
             }});
+          sessionStorage.setItem('flag', '3');
         } else {
           alert(data.msg);
         }

@@ -61,7 +61,8 @@ export class GoodsShowComponent implements OnInit {
     this.isVisibleOpen = false;
     this.getToken();
     console.log(urlParse(window.location.search)['vmCode']);
-    this.flag = urlParse(window.location.search)['flag'];
+    this.flag = sessionStorage.getItem('flag');
+    // this.flag = urlParse(window.location.search)['flag'];
     console.log(this.token);
     console.log(this.flag);
     this.oneGoodsOrMore();
@@ -79,7 +80,7 @@ export class GoodsShowComponent implements OnInit {
     window.location.href = 'https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzU0NzQ4MTY0Mg==&scene=124#wechat_redirect';
   }
   share() {
-    this.appService.postAliData(this.appProperties.wechatShareInfoUrl + '?url=' + window.location.href,
+    this.appService.postAliData(this.appProperties.wechatShareInfoUrl + '?url=http://sms.youshuidaojia.com/goodsShow?vmCode=' + urlParse(window.location.href)['vmCode'],
       '', this.token).subscribe(
       data => {
         console.log(data);
@@ -112,7 +113,7 @@ export class GoodsShowComponent implements OnInit {
           const shareData = {
             title: '优水到家',
             desc: '分享领取优惠', // 这里请特别注意是要去除html
-            link: 'http://sms.youshuidaojia.com/share',
+            link: 'http://sms.youshuidaojia.com/share?token=' + this.token,
             imgUrl: 'http://119.23.233.123:6662/ys_admin/companyLogo/20181008_142714.png',
             success: function () {
               // 用户确认分享后执行的回调函数
@@ -201,8 +202,8 @@ export class GoodsShowComponent implements OnInit {
         console.log(data2);
         if (data2.data === false) {
           // alert('您的门还未关闭！优水到家提醒您,为了您账号资金安全,提水后请随手关门');
-          if (urlParse(window.location.search)['flag'] === 1 || urlParse(window.location.search)['flag'] === '1'
-            || urlParse(window.location.search)['flag'] === 4 || urlParse(window.location.search)['flag'] === '4') {
+          if (this.flag === 1 || this.flag === '1'
+            || this.flag === 4 || this.flag === '4') {
             this.more = true;
             this.close = true;
             this.single = false;
@@ -241,8 +242,8 @@ export class GoodsShowComponent implements OnInit {
   }
   oneGoodsOrMore() {
     const _this = this;
-    if (urlParse(window.location.search)['flag'] === 1 || urlParse(window.location.search)['flag'] === '1'
-    || urlParse(window.location.search)['flag'] === 4 || urlParse(window.location.search)['flag'] === '4') {
+    if (this.flag === 1 || this.flag === '1'
+    || this.flag === 4 || this.flag === '4') {
       this.timeInterval = setInterval(() => {
         _this.isClosed();
       }, 800);
@@ -261,8 +262,8 @@ export class GoodsShowComponent implements OnInit {
   }
   getToken () {
     let token;
-    if (urlParse(window.location.search)['flag'] === 1 || urlParse(window.location.search)['flag'] === '1'
-      || urlParse(window.location.search)['flag'] === 2 || urlParse(window.location.search)['flag'] === '2') {
+    if (this.flag === 1 || this.flag === '1'
+      || this.flag === 2 || this.flag === '2') {
       token = 'token';
     } else {
       token = 'adminToken';
