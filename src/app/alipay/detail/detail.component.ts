@@ -145,6 +145,6 @@ export class DetailComponent implements OnInit, AfterViewChecked {
     }
   }
   toDate(date) {
-    return new Date(date).getFullYear() + '-' + (new Date(date).getMonth() + 1) + '-' + new Date(date).getDate();
+    return new Date(date.substring(0, 10)).getFullYear() + '-' + (new Date(date.substring(0, 10)).getMonth() + 1) + '-' + new Date(date.substring(0, 10)).getDate();
   }
 }

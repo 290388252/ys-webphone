@@ -292,7 +292,7 @@ export class AddMainComponent implements OnInit {
             } else if (data.code === -1) {
               this.router.navigate(['vmLogin']);
             } else if (data.code === -89) {
-              alert('门已开，请误点击多次！');
+              alert('请稍后，当前有用户正在使用！');
             } else {
               alert(data.msg);
             }

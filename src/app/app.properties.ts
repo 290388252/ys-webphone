@@ -27,6 +27,7 @@ export class AppProperties {
   public machineControlUrl: string;
   public machineControlGetReplenishInfoUrl: string;
   public machineInfoGetCompanyIdUrl: string;
+  public adminCreateForeverStrQrUrl: string;
   // WeChat
   public indexListUrl: string;
   public indexOpenDoor: string;
@@ -58,8 +59,8 @@ export class AppProperties {
 
   constructor() {
     // Public
-    this.appUrl = 'http://47.106.92.82:6662/ys_sms';
-    // this.appUrl = 'http://192.168.0.116:6662/ys_sms';
+    // this.appUrl = 'http://47.106.92.82:6662/ys_sms';
+    this.appUrl = 'http://192.168.0.117:8769/ys_sms';
     this.adminUrl = 'http://119.23.233.123:6662/ys_admin';
     this.imgUrl = this.adminUrl + '/files/';
     this.isClosedUrl = this.appUrl + '/wechat/isClosed';
@@ -82,6 +83,7 @@ export class AppProperties {
     this.machineControlUrl = this.appUrl + '/machineControl/getChangeInfo';
     this.machineControlGetReplenishInfoUrl = this.appUrl + '/machineControl/getReplenishInfo?vmCode=';
     this.machineInfoGetCompanyIdUrl = this.appUrl + '/machineInfo/getCompanyId?vmCode=';
+    this.adminCreateForeverStrQrUrl = this.appUrl + '/admin/createForeverStrQr';
 
     // WeChat
     this.indexListUrl = this.appUrl + '/index/listWay';
