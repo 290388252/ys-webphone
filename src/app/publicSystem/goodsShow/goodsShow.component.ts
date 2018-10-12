@@ -71,7 +71,7 @@ export class GoodsShowComponent implements OnInit {
     let text;
     if (num < 0) {
       text = `拿取数量${-num}`;
-    } else if (num > 0 && this.flag === '3' && this.flag === '4') {
+    } else if (num > 0 && (this.flag === '3' || this.flag === '4')) {
       text = `补货数量${num}`;
     }
     return text;

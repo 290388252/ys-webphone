@@ -4,13 +4,16 @@ import {AppService} from '../../app-service';
 import {AppProperties} from '../../app.properties';
 import {NzModalService} from 'ng-zorro-antd';
 import {urlParse} from '../../utils/util';
-
+import { CarouselConfig } from 'ngx-bootstrap/carousel';
 declare var wx: any;
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
-  styleUrls: ['./main.component.css']
+  styleUrls: ['./main.component.css'],
+  providers: [
+    { provide: CarouselConfig, useValue: { interval: 1500, noPause: true, showIndicators: true } }
+  ]
 })
 export class MainComponent implements OnInit {
   public indexList: Array<object>;

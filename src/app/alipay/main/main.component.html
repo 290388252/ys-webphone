@@ -1,19 +1,44 @@
-<div>
-  <div class="containers" #bg>
-  </div>
-  <div class="bgimg">
+<div class="contain_all">
+
     <div class="logo">
+      <carousel>
+        <slide>
+          <img src="../../../assets/main/banner1.png" alt="first slide" style="display: block; width: 100%;height: 166px;">
+          <div class="carousel-caption d-none d-md-block">
+            <h3>First slide label</h3>
+            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+          </div>
+        </slide>
+        <!--<slide>-->
+        <!--<img src="../../../assets/main/bg.png" alt="second slide" style="display: block; width: 100%;height: 166px;">-->
+        <!--<div class="carousel-caption d-none d-md-block">-->
+        <!--<h3>Second slide label</h3>-->
+        <!--<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>-->
+        <!--</div>-->
+        <!--</slide>-->
+        <!--<slide>-->
+        <!--<img src="../../../assets/main/banner1.png" alt="third slide" style="display: block; width: 100%;height: 166px;">-->
+        <!--<div class="carousel-caption d-none d-md-block">-->
+        <!--<h3>Third slide label</h3>-->
+        <!--<p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>-->
+        <!--</div>-->
+        <!--</slide>-->
+      </carousel>
       <!--<img *ngIf="isFiveDoor" (click)="vmLogin()" src="../../../assets/main/lianye.png" alt="..." class="lianye-logo">-->
       <!--<p *ngIf="isFiveDoor" style="font-weight: 600">联业智能</p>-->
       <img (click)="vmLogin(1)" src="../../../assets/main/logos.png" alt="..."
-           class="rounded-circle">
+           class="rounded-circle" style="display: inline-block">
       <img [hidden]="otherCompany" (click)="vmLogin(0)" src="../../../assets/main/guoqing.png" alt="..."
-           class="rounded-circle-center">
+           class="rounded-circle-center" style="display: inline-block">
       <img [hidden]="youshuiCompany" (click)="vmLogin(2)" src="../../../assets/main/69.png" alt="..."
-           class="rounded-circle-sixnight">
+           class="rounded-circle-sixnight" style="display: inline-block">
       <br/>
-      <p class="title">点击下面窗口开门买水</p>
+      <div class="logo_title">
+        <div class="logo_title_inner">点击下面窗口开门买水</div>
+      </div>
+      <!--<p class="title">点击下面窗口开门买水</p>-->
     </div>
+  <div class="contain_btm">
     <div class="context" *ngIf="isFiveDoor">
       <div (click)="openDoor(item)" *ngFor="let item of indexList" [ngClass]="item['wayItemList'].length === 1 ? 'boxss-one' : 'boxss'" class=" card text-white addMain-bottom">
         <div style="text-align: center">
@@ -75,10 +100,11 @@
       <button (click)="vmLogin(2)" type="button" style="color: white">领取优惠券</button>
       <button (click)="product(2)" type="button" style="color: white">我的优惠券</button>
     </div>
+  </div>
+
     <!--<div class="my-share">-->
     <!--<button (click)="share()" type="button" class="btn btn-primary small" style="background: #117cbb">分享</button>-->
     <!--</div>-->
-  </div>
   <nz-modal [nzVisible]="isVisibleOpenDoor" [nzContent]="modalContents" [nzFooter]="modalFooters" [nzClosable]="false">
     <ng-template #modalContents #modalFooters style="text-align: center">
       <p style="font-size: medium;">是否要开门？</p>
