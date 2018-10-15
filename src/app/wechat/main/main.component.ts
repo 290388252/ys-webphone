@@ -328,21 +328,35 @@ export class MainComponent implements OnInit {
             if (data.code === 0) {
               // alert('优水到家提醒您,为了您账号资金安全,提水后请随手关门');
               // this.isVisibleOpen = true;
-              this.router.navigate(['goodsShow'], {
-                queryParams: {
-                  vmCode: urlParse(window.location.search)['vmCode'],
-                  // flag: 1,
-                }
-              });
-              sessionStorage.setItem('flag', '1');
+              const u = navigator.userAgent;
+              const isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); // ios终端
+              if (isiOS) {
+                sessionStorage.setItem('flag', '1');
+                window.location.href = 'http://sms.youshuidaojia.com/goodsShow?vmCode=' + urlParse(window.location.search)['vmCode'];
+              } else {
+                sessionStorage.setItem('flag', '1');
+                this.router.navigate(['goodsShow'], {
+                  queryParams: {
+                    vmCode: urlParse(window.location.search)['vmCode'],
+                    // flag: 1,
+                  }
+                });
+              }
             } else if (data.code === 4) {
-              this.router.navigate(['goodsShow'], {
-                queryParams: {
-                  vmCode: urlParse(window.location.search)['vmCode'],
-                  // flag: 2,
-                }
-              });
-              sessionStorage.setItem('flag', '2');
+              const u = navigator.userAgent;
+              const isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); // ios终端
+              if (isiOS) {
+                sessionStorage.setItem('flag', '2');
+                window.location.href = 'http://sms.youshuidaojia.com/goodsShow?vmCode=' + urlParse(window.location.search)['vmCode'];
+              } else {
+                sessionStorage.setItem('flag', '2');
+                this.router.navigate(['goodsShow'], {
+                  queryParams: {
+                    vmCode: urlParse(window.location.search)['vmCode'],
+                    // flag: 2,
+                  }
+                });
+              }
             } else if (data.code === 3) {
               alert('开门失败！');
             } else if (data.code === -1) {

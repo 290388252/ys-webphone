@@ -346,6 +346,7 @@ export class AddMainComponent implements OnInit {
           this.getInitData();
         } else {
           alert(data.msg);
+          this.getInitData();
         }
       },
       error => {

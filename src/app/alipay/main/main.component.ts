@@ -137,19 +137,35 @@ export class MainComponent implements OnInit {
             this.clickMore = false;
             if (data.status === 1) {
               // this.isVisibleOpen = true;
-              this.router.navigate(['goodsShow'], {
-                queryParams: {
-                  vmCode: urlParse(window.location.search)['vmCode'],
-                  // flag: 1,
-                }});
-              sessionStorage.setItem('flag', '1');
+              const u = navigator.userAgent;
+              const isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); // ios终端
+              if (isiOS) {
+                sessionStorage.setItem('flag', '1');
+                window.location.href = 'http://sms.youshuidaojia.com/goodsShow?vmCode=' + urlParse(window.location.search)['vmCode'];
+              } else {
+                sessionStorage.setItem('flag', '1');
+                this.router.navigate(['goodsShow'], {
+                  queryParams: {
+                    vmCode: urlParse(window.location.search)['vmCode'],
+                    // flag: 1,
+                  }
+                });
+              }
             } else if (data.status === 4000) {
-              this.router.navigate(['goodsShow'], {
-                queryParams: {
-                  vmCode: urlParse(window.location.search)['vmCode'],
-                  // flag: 2,
-                }});
-              sessionStorage.setItem('flag', '2');
+              const u = navigator.userAgent;
+              const isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); // ios终端
+              if (isiOS) {
+                sessionStorage.setItem('flag', '2');
+                window.location.href = 'http://sms.youshuidaojia.com/goodsShow?vmCode=' + urlParse(window.location.search)['vmCode'];
+              } else {
+                sessionStorage.setItem('flag', '2');
+                this.router.navigate(['goodsShow'], {
+                  queryParams: {
+                    vmCode: urlParse(window.location.search)['vmCode'],
+                    // flag: 2,
+                  }
+                });
+              }
             } else if (data.status === -1) {
              this.noTokenOath();
             } else {

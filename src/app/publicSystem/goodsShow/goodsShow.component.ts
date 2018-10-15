@@ -97,7 +97,7 @@ export class GoodsShowComponent implements OnInit {
             'onMenuShareWeibo',
           ]
         });
-        const link = encodeURIComponent('http://sms.youshuidaojia.com/share?token=' + this.token);
+        const link = 'http://sms.youshuidaojia.com/share?token=' + this.token;
         console.log(link);
         wx.ready(function () {
           console.log(123);
@@ -116,7 +116,7 @@ export class GoodsShowComponent implements OnInit {
             title: '优水到家',
             desc: '分享领取优惠', // 这里请特别注意是要去除html
             link: link,
-            imgUrl: 'http://119.23.233.123:6662/ys_admin/companyLogo/20181008_142714.png',
+            imgUrl: '../../../assets/main/logo.png',
             success: function () {
               // 用户确认分享后执行的回调函数
               console.log('success');
