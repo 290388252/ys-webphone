@@ -104,10 +104,14 @@
 .rounded-circle {
   /*margin: 30px 0 40px 0;*/
   /*width: 25%;*/
-  margin-top: 4px;
-  margin-bottom: 24%;
-  margin-left: -80%;
-  height: 50px;
+  /*margin-top: 4px;*/
+  /*margin-bottom: 24%;*/
+  /*margin-left: -80%;*/
+  /*height: 50px;*/
+  position: absolute;
+  left: 2px;
+  top: 1%;
+  width: 60px;
 }
 
 .rounded-circle {
@@ -385,12 +389,9 @@
   }
 
   .rounded-circle {
-    /*margin: 25px 0 25px 0;*/
-    /*width: 30%;*/
-    margin-top: 4px;
-    margin-bottom: 30%;
-    margin-left: -79%;
-    height: 36px;
+    height: 43px;
+    position: absolute;
+    left: 2px;
   }
 
   .box-one {
@@ -501,12 +502,9 @@
   }
 
   .rounded-circle {
-    /*margin: 30px 0 20px 0;*/
-    /*width: 25%;*/
-    margin-top: 4px;
-    margin-bottom: 34%;
-    margin-left: -80%;
-    height: 55px;
+    height: 43px;
+    position: absolute;
+    left: 2px;
   }
 
   .box-one {
@@ -660,12 +658,9 @@
   }
 
   .rounded-circle {
-    /*margin: 1px 0 10px 0;*/
-    /*width: 15%;*/
-    margin-top: 4px;
-    margin-bottom: 13%;
-    margin-left: -80%;
-    height: 30px;
+    height: 43px;
+    position: absolute;
+    left: 2px;
   }
 
   .lianye-logo {

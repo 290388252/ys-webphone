@@ -97,7 +97,7 @@ export class GoodsShowComponent implements OnInit {
             'onMenuShareWeibo',
           ]
         });
-        const link = 'http://sms.youshuidaojia.com/share?token=' + this.token;
+        const link = encodeURIComponent('http://sms.youshuidaojia.com/share?token=' + this.token);
         console.log(link);
         wx.ready(function () {
           console.log(123);
