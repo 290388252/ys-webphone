@@ -123,8 +123,8 @@
   margin: 0 auto;
 }
 
-.context-six {
-  width: 245px;
+.context-five {
+  width: 305px;
   margin: 0 auto;
 }
 
@@ -135,16 +135,21 @@
   height: 48px;
 }
 
-.box-six {
-  float: left;
-  width: 111px;
-  height: 111px;
-  margin-right: 10px;
-  /*-webkit-box-shadow:2px 2px 2px 2px gray;*/
-  /*-moz-box-shadow:2px 2px 2px 2px gray;*/
-  /*box-shadow:2px 2px 2px 2px gray;*/
-  /*background-color: rgba(0,0,0,0.1);*/
-  background: url("../../../assets/main/kuan3.png");
+.boxssf-one {
+  /*float: left;*/
+  width: 150px;
+  height: 140px;
+  margin: 0 auto;
+  background: url("../../../assets/main/kuan4.png");
+  border: 0;
+  background-size: 100% 100%;
+}
+.boxssf {
+  /*float: left;*/
+  width: 150px;
+  height: 140px;
+  margin: 0 auto;
+  background: url("../../../assets/main/kuan4.png");
   border: 0;
   background-size: 100% 100%;
 }
@@ -155,10 +160,10 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  margin-left: 80px;
+  margin-left: 40px;
   font-family: "宋体";
   width: 64px;
-  top: 30px;
+  top: 50px;
   position: absolute;
 }
 
@@ -263,16 +268,9 @@
 }
 
 .boxss-one {
-  /*float: left;*/
-  width: 220px;
-  height: 65px;
+  width: 150px;
+  height: 90px;
   margin: 0 auto;
-  /*height: 112px;*/
-  /*margin-right: 10px;*/
-  /*-webkit-box-shadow:2px 2px 2px 2px gray;*/
-  /*-moz-box-shadow:2px 2px 2px 2px gray;*/
-  /*box-shadow:2px 2px 2px 2px gray;*/
-  /*background-color: rgba(0,0,0,0.1);*/
   background: url("../../../assets/main/kuan4.png");
   border: 0;
   background-size: 100% 100%;
@@ -280,8 +278,8 @@
 
 .boxs-one {
   /*float: left;*/
-  width: 220px;
-  height: 65px;
+  width: 150px;
+  height: 90px;
   margin: 0 auto;
   background: url("../../../assets/main/kuan4.png");
   border: 0;
@@ -290,8 +288,8 @@
 
 .boxss {
   /*float: left;*/
-  width: 220px;
-  height: 65px;
+  width: 150px;
+  height: 90px;
   margin: 0 auto;
   /*height: 112px;*/
   /*margin-right: 10px;*/
@@ -306,8 +304,8 @@
 
 .boxs {
   /*float: left;*/
-  width: 220px;
-  height: 65px;
+  width: 150px;
+  height: 90px;
   margin: 0 auto;
   background: url("../../../assets/main/kuan3.png");
   border: 0;
@@ -363,6 +361,36 @@
 
 .ant-modal-footer {
   text-align: center !important;
+}
+.addMain-img-onef {
+  width: 60px;
+  height: 60px;
+  margin-top: 10px;
+}
+
+.addMain-imgf {
+  width: 60px;
+  height: 60px;
+  position: absolute;
+  top: 5px;
+  left: 39px;
+}
+.addMain-img-one {
+  width: 40px;
+  height: 40px;
+  margin-top: 10px;
+}
+
+.addMain-img {
+  width: 35px;
+  height: 35px;
+  position: absolute;
+  top: 5px;
+  left: 39px;
+}
+
+.addMain-bottom {
+  margin-bottom: 4px !important;
 }
 
 @media screen and (max-height: 570px) {
@@ -421,15 +449,9 @@
 
   .boxss-one {
     /*float: left;*/
-    width: 220px;
-    height: 65px;
+    width: 150px;
+    height: 90px;
     margin: 0 auto;
-    /*height: 112px;*/
-    /*margin-right: 10px;*/
-    /*-webkit-box-shadow:2px 2px 2px 2px gray;*/
-    /*-moz-box-shadow:2px 2px 2px 2px gray;*/
-    /*box-shadow:2px 2px 2px 2px gray;*/
-    /*background-color: rgba(0,0,0,0.1);*/
     background: url("../../../assets/main/kuan4.png");
     border: 0;
     background-size: 100% 100%;
@@ -437,8 +459,8 @@
 
   .boxs-one {
     /*float: left;*/
-    width: 220px;
-    height: 65px;
+    width: 150px;
+    height: 90px;
     margin: 0 auto;
     background: url("../../../assets/main/kuan4.png");
     border: 0;
@@ -447,8 +469,8 @@
 
   .boxss {
     /*float: left;*/
-    width: 220px;
-    height: 65px;
+    width: 150px;
+    height: 90px;
     margin: 0 auto;
     /*height: 112px;*/
     /*margin-right: 10px;*/
@@ -463,8 +485,8 @@
 
   .boxs {
     /*float: left;*/
-    width: 220px;
-    height: 65px;
+    width: 150px;
+    height: 90px;
     margin: 0 auto;
     /*height: 112px;*/
     /*margin-left: 50px;*/
@@ -543,8 +565,8 @@
 
   .boxss {
     /*float: left;*/
-    width: 220px;
-    height: 65px;
+    width: 150px;
+    height: 90px;
     margin: 0 auto;
     /*height: 112px;*/
     /*margin-right: 10px;*/
@@ -559,8 +581,8 @@
 
   .boxs {
     /*float: left;*/
-    width: 220px;
-    height: 65px;
+    width: 150px;
+    height: 90px;
     margin: 0 auto;
     /*height: 112px;*/
     /*margin-left: 50px;*/
@@ -623,6 +645,68 @@
     /*margin-bottom: 21px;*/
     width: 75px;
     height: 65px;
+  }
+
+  .boxss-one {
+    /*float: left;*/
+    width: 150px;
+    height: 80px;
+    margin: 0 auto;
+    background: url("../../../assets/main/kuan4.png");
+    border: 0;
+    background-size: 100% 100%;
+  }
+
+  .boxssf-one {
+    /*float: left;*/
+    width: 150px;
+    height: 124px;
+    margin: 0 auto;
+    background: url("../../../assets/main/kuan4.png");
+    border: 0;
+    background-size: 100% 100%;
+  }
+  .boxs-one {
+    /*float: left;*/
+    width: 150px;
+    height: 80px;
+    margin: 0 auto;
+    background: url("../../../assets/main/kuan4.png");
+    border: 0;
+    background-size: 100% 100%;
+  }
+  .boxssf {
+    /*float: left;*/
+    width: 150px;
+    height: 124px;
+    margin: 0 auto;
+    background: url("../../../assets/main/kuan4.png");
+    border: 0;
+    background-size: 100% 100%;
+  }
+
+  .boxss {
+    /*float: left;*/
+    width: 150px;
+    height: 80px;
+    margin: 0 auto;
+    background: url("../../../assets/main/kuan3.png");
+    border: 0;
+    background-size: 100% 100%;
+  }
+
+  .addMain-img-one {
+    width: 30px;
+    height: 30px;
+    margin-top: 10px;
+  }
+
+  .addMain-img {
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    top: 5px;
+    left: 39px;
   }
 }
 
@@ -730,37 +814,4 @@
     background-size: 100% 100%;
   }
 
-  .boxs {
-    /*float: left;*/
-    width: 200px;
-    height: 55px;
-    margin: 0 auto;
-    /*height: 112px;*/
-    /*margin-left: 50px;*/
-    /*-webkit-box-shadow:2px 2px 2px 2px gray;*/
-    /*-moz-box-shadow:2px 2px 2px 2px gray;*/
-    /*box-shadow:2px 2px 2px 2px gray;*/
-    /*background-color: rgba(0,0,0,0.1);*/
-    background: url("../../../assets/main/kuan3.png");
-    border: 0;
-    background-size: 100% 100%;
-  }
-}
-
-.addMain-img-one {
-  width: 25px;
-  height: 25px;
-  margin-top: 4px;
-}
-
-.addMain-img {
-  width: 35px;
-  height: 35px;
-  position: absolute;
-  top: 5px;
-  left: 39px;
-}
-
-.addMain-bottom {
-  margin-bottom: 4px !important;
 }

@@ -16,7 +16,8 @@ declare var wx: any;
   ]
 })
 export class MainComponent implements OnInit {
-  public indexList: Array<object>;
+  public indexList = [];
+  public fiveIndexList = [];
   private token: string;
   private newUser: boolean;
   private wayNumber: number;
@@ -169,7 +170,13 @@ export class MainComponent implements OnInit {
           } else if (data.data.length === 5) {
             this.isFourDoor = false;
             this.isFiveDoor = true;
-            this.indexList = data.data;
+            data.data.forEach((item, index) => {
+              if (index > 1) {
+                this.indexList.push(item);
+              } else {
+                this.fiveIndexList.push(item);
+              }
+            });
           }
           // else if (data.data.length === 6) {
           //   this.isFourDoor = false;

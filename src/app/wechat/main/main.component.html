@@ -44,19 +44,37 @@
     </div>
   <div class="contain_btm">
 
-    <div class="context" *ngIf="isFiveDoor">
-      <div (click)="openDoor(item)" *ngFor="let item of indexList" [ngClass]="item['wayItemList'].length === 1 ? 'boxss-one' : 'boxss'" class=" card text-white addMain-bottom">
-        <div style="text-align: center">
-          <img [ngClass]="item['wayItemList'].length === 1 ? 'addMain-img-one' : 'addMain-img'" src="{{img}}{{item['wayItemList'][0]['pic']}}" alt="">
-          <p [ngClass]="item['wayItemList'].length === 1 ? 'text-custom-one' : 'text-custom'"  style="color:#CF2813;">{{item['wayItemList'][0]['itemName']}}</p>
-          <p [ngClass]="item['wayItemList'].length === 1 ? 'text-custom-one' : 'text-custom'" style="color: red;margin-top: 10px">{{item['wayItemList'][0]['price']}}元</p>
-        </div>
-        <div style="text-align: center" [hidden]="item['wayItemList'].length === 1">
-          <img class="addMain-img" style="left: 137px" [src]="turnImg(item['wayItemList'])" alt="">
-          <p class="text-custom" style="left: 100px">{{turnItemName(item['wayItemList'])}}</p>
-          <p class="text-custom" style="color: red;margin-top: 10px;left: 100px">{{turnPrice(item['wayItemList'])}}元</p>
+    <div class="context-five" *ngIf="isFiveDoor">
+      <div style="float: left">
+        <div (click)="openDoor(item)" *ngFor="let item of fiveIndexList" [ngClass]="item['wayItemList'].length === 1 ? 'boxssf-one' : 'boxssf'" class=" card text-white addMain-bottom">
+          <div style="text-align: center">
+            <img [ngClass]="item['wayItemList'].length === 1 ? 'addMain-img-onef' : 'addMain-imgf'" src="{{img}}{{item['wayItemList'][0]['pic']}}" alt="">
+            <p [ngClass]="item['wayItemList'].length === 1 ? 'text-custom-one' : 'text-custom'"  style="color:#CF2813;top: 70px;">{{item['wayItemList'][0]['itemName']}}</p>
+            <p [ngClass]="item['wayItemList'].length === 1 ? 'text-custom-one' : 'text-custom'" style="color: red;margin-top: 10px;top: 80px">{{item['wayItemList'][0]['price']}}元</p>
+          </div>
+          <div style="text-align: center" [hidden]="item['wayItemList'].length === 1">
+            <img class="addMain-img" style="left: 137px" [src]="turnImg(item['wayItemList'])" alt="">
+            <p class="text-custom" style="left: 100px">{{turnItemName(item['wayItemList'])}}</p>
+            <p class="text-custom" style="color: red;margin-top: 10px;left: 100px">{{turnPrice(item['wayItemList'])}}元</p>
+          </div>
         </div>
       </div>
+
+      <div style="float: left">
+        <div (click)="openDoor(item)" *ngFor="let item of indexList" [ngClass]="item['wayItemList'].length === 1 ? 'boxss-one' : 'boxss'" class=" card text-white addMain-bottom">
+          <div style="text-align: center">
+            <img [ngClass]="item['wayItemList'].length === 1 ? 'addMain-img-one' : 'addMain-img'" src="{{img}}{{item['wayItemList'][0]['pic']}}" alt="">
+            <p [ngClass]="item['wayItemList'].length === 1 ? 'text-custom-one' : 'text-custom'"  style="color:#CF2813;">{{item['wayItemList'][0]['itemName']}}</p>
+            <p [ngClass]="item['wayItemList'].length === 1 ? 'text-custom-one' : 'text-custom'" style="color: red;margin-top: 10px">{{item['wayItemList'][0]['price']}}元</p>
+          </div>
+          <div style="text-align: center" [hidden]="item['wayItemList'].length === 1">
+            <img class="addMain-img" style="left: 137px" [src]="turnImg(item['wayItemList'])" alt="">
+            <p class="text-custom" style="left: 100px">{{turnItemName(item['wayItemList'])}}</p>
+            <p class="text-custom" style="color: red;margin-top: 10px;left: 100px">{{turnPrice(item['wayItemList'])}}元</p>
+          </div>
+        </div>
+      </div>
+
     </div>
 
     <div class="context" *ngIf="isFourDoor">

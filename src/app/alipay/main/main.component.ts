@@ -13,7 +13,8 @@ import { CarouselConfig } from 'ngx-bootstrap/carousel';
   ]
 })
 export class MainComponent implements OnInit {
-  public indexList: Array<object>;
+  public indexList = [];
+  public fiveIndexList = [];
   private token: string;
   // public img = 'http://lenvar-resource-products.oss-cn-shenzhen.aliyuncs.com/';
   public img = this.appProperties.imgUrl; // 图片地址
@@ -93,7 +94,13 @@ export class MainComponent implements OnInit {
             } else if (data.returnObject.length === 5) {
               this.isFourDoor = false;
               this.isFiveDoor = true;
-              this.indexList = data.returnObject;
+              data.returnObject.forEach((item, index) => {
+                if (index > 1) {
+                  this.indexList.push(item);
+                } else {
+                  this.fiveIndexList.push(item);
+                }
+              });
             } else if (data.returnObject.length === 6) {
               this.isFourDoor = false;
               this.isFiveDoor = false;

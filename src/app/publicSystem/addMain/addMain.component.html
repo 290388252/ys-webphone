@@ -10,21 +10,41 @@
       <p class="title">补货人员补水系统</p>
     </div>
     <!--five-->
-    <div class="context" *ngIf="isFiveDoor">
-      <div (click)="openDoor(item)" *ngFor="let item of indexList" [ngClass]="item['wayItemList'].length === 1 ? 'boxss-one' : 'boxss'" class=" card text-white addMain-bottom">
-        <div>
-          <img [ngClass]="item['wayItemList'].length === 1 ? 'addMain-img-one' : 'addMain-img'" src="{{img}}{{item['wayItemList'][0]['pic']}}" alt="">
-          <div class="w-and-n-five-door" [hidden]="item['wayItemList'].length !== 1">
-            <span class="w-n-size">重量：{{item['wayWeight']}}</span>
-            <br>
-            <span class="w-n-size">数量：{{item['wayItemList'][0]['num']}}</span>
+    <div class="context-five" *ngIf="isFiveDoor">
+      <div style="float: left;margin-top: 40px">
+        <div (click)="openDoor(item)" *ngFor="let item of fiveIndexList" [ngClass]="item['wayItemList'].length === 1 ? 'boxssf-one' : 'boxssf'" class=" card text-white addMain-bottom">
+          <div>
+            <img [ngClass]="item['wayItemList'].length === 1 ? 'addMain-img-onef' : 'addMain-img'" src="{{img}}{{item['wayItemList'][0]['pic']}}" alt="">
+            <div class="w-and-n-five-door" [hidden]="item['wayItemList'].length !== 1">
+              <span class="w-n-size">重量：{{item['wayWeight']}}</span>
+              <br>
+              <span class="w-n-size">数量：{{item['wayItemList'][0]['num']}}</span>
+            </div>
+            <button [hidden]="item['wayItemList'].length === 1" (click)="detail(item['wayItemList'][0], $event, item['wayWeight'])" class="detailf-button">点击查看详情</button>
+            <button [hidden]="item['wayItemList'].length !== 1" (click)="detail(item['wayItemList'][0], $event, item['wayWeight'])" class="detailf-button" style="left: 24%">点击查看详情</button>
           </div>
-          <button [hidden]="item['wayItemList'].length === 1" (click)="detail(item['wayItemList'][0], $event, item['wayWeight'])" class="detail-button">点击查看详情</button>
-          <button [hidden]="item['wayItemList'].length !== 1" (click)="detail(item['wayItemList'][0], $event, item['wayWeight'])" class="detail-button" style="left: 24%">点击查看详情</button>
+          <div style="text-align: center" [hidden]="item['wayItemList'].length === 1">
+            <img class="addMain-img" style="left: 137px" [src]="turn(item['wayItemList'], 'img')" alt="">
+            <button (click)="detail(item['wayItemList'][1], $event, item['wayWeight'])" class="detailf-button" style="left: 126px">点击查看详情</button>
+          </div>
         </div>
-        <div style="text-align: center" [hidden]="item['wayItemList'].length === 1">
-          <img class="addMain-img" style="left: 137px" [src]="turn(item['wayItemList'], 'img')" alt="">
-          <button (click)="detail(item['wayItemList'][1], $event, item['wayWeight'])" class="detail-button" style="left: 126px">点击查看详情</button>
+      </div>
+      <div style="float: left;margin-top: 40px">
+        <div (click)="openDoor(item)" *ngFor="let item of indexList" [ngClass]="item['wayItemList'].length === 1 ? 'boxss-one' : 'boxss'" class=" card text-white addMain-bottom">
+          <div>
+            <img [ngClass]="item['wayItemList'].length === 1 ? 'addMain-img-one' : 'addMain-img'" src="{{img}}{{item['wayItemList'][0]['pic']}}" alt="">
+            <div class="w-and-n-five-door" [hidden]="item['wayItemList'].length !== 1">
+              <span class="w-n-size">重量：{{item['wayWeight']}}</span>
+              <br>
+              <span class="w-n-size">数量：{{item['wayItemList'][0]['num']}}</span>
+            </div>
+            <button [hidden]="item['wayItemList'].length === 1" (click)="detail(item['wayItemList'][0], $event, item['wayWeight'])" class="detail-button">点击查看详情</button>
+            <button [hidden]="item['wayItemList'].length !== 1" (click)="detail(item['wayItemList'][0], $event, item['wayWeight'])" class="detail-button" style="left: 24%">点击查看详情</button>
+          </div>
+          <div style="text-align: center" [hidden]="item['wayItemList'].length === 1">
+            <img class="addMain-img" style="left: 137px" [src]="turn(item['wayItemList'], 'img')" alt="">
+            <button (click)="detail(item['wayItemList'][1], $event, item['wayWeight'])" class="detail-button" style="left: 126px">点击查看详情</button>
+          </div>
         </div>
       </div>
     </div>

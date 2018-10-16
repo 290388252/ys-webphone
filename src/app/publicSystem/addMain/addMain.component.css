@@ -40,7 +40,7 @@
 .w-and-n-five-door{
   position: absolute;
   top: 10%;
-  margin-left: 72px;
+  margin-left: 84px;
 }
 .title {
   font-size: 12px;
@@ -70,8 +70,8 @@
   width: 322px;
   margin: 0 auto;
 }
-.context-six{
-  width: 245px;
+.context-five {
+  width: 305px;
   margin: 0 auto;
 }
 .col-img-six{
@@ -129,6 +129,24 @@ button{
 .radio-size{
   width: 150px;
 }
+.boxssf-one {
+  /*float: left;*/
+  width: 150px;
+  height: 140px;
+  margin: 0 auto;
+  background: url("../../../assets/main/kuan4.png");
+  border: 0;
+  background-size: 100% 100%;
+}
+.boxssf {
+  /*float: left;*/
+  width: 150px;
+  height: 140px;
+  margin: 0 auto;
+  background: url("../../../assets/main/kuan4.png");
+  border: 0;
+  background-size: 100% 100%;
+}
 .box-one{
   float: left;
   width: 150px;
@@ -166,9 +184,9 @@ button{
 }
 .boxss-one{
   /*float: left;*/
-  width: 220px;
+  width: 150px;
   /*height: 112px;*/
-  height: 60px;
+  height: 90px;
   margin: 0 auto;
   background: url("../../../assets/main/kuan1.png");
   border: 0;
@@ -176,37 +194,19 @@ button{
 }
 .boxs-one{
   /*float: left;*/
-  width: 220px;
-  height: 60px;
+  width: 150px;
+  height: 90px;
   margin: 0 auto;
   background: url("../../../assets/main/kuan1.png");
   border: 0;
   background-size: 100% 100%;
 }
-.boxss-one{
-  /*float: left;*/
-  width: 220px;
-  /*height: 112px;*/
-  height: 60px;
-  margin: 0 auto;
-  background: url("../../../assets/main/kuan1.png");
-  border: 0;
-  background-size: 100% 100%;
-}
-.boxs-one{
-  /*float: left;*/
-  width: 220px;
-  height: 60px;
-  margin: 0 auto;
-  background: url("../../../assets/main/kuan1.png");
-  border: 0;
-  background-size: 100% 100%;
-}
+
 .boxss{
   /*float: left;*/
-  width: 220px;
+  width: 150px;
   /*height: 112px;*/
-  height: 60px;
+  height: 90px;
   margin: 0 auto;
   /*margin-right: 10px;*/
   /*-webkit-box-shadow:2px 2px 2px 2px gray;*/
@@ -219,8 +219,8 @@ button{
 }
 .boxs{
   /*float: left;*/
-  width: 220px;
-  height: 60px;
+  width: 150px;
+  height: 90px;
   margin: 0 auto;
   /*height: 112px;*/
   /*margin-left: 50px;*/
@@ -288,11 +288,40 @@ button{
   vertical-align: middle;
 }
 .detail-button{
-  font-size: 9px;border: grey;width: 50%;background: url("../../../assets/main/button-bg.png");height: 17px;position: absolute;top: 42px;left: 23px;color: black;background-size: 100% 100%;
+  font-size: 9px;border: grey;width: 50%;background: url("../../../assets/main/button-bg.png");height: 17px;position: absolute;top: 55px;left: 23px;color: black;background-size: 100% 100%;
 }
 .detail-button-four{
   font-size: 9px;border: grey;width: 45%;background: url("../../../assets/main/button-bg.png");height: 17px;position: absolute;top: 69%;left: 8px;color: black;background-size: 100% 100%;
 }
+.detailf-button{
+  font-size: 9px;border: grey;width: 50%;background: url("../../../assets/main/button-bg.png");height: 17px;position: absolute;top: 91px;left: 23px;color: black;background-size: 100% 100%;
+}
+.detailf-button-four{
+  font-size: 9px;border: grey;width: 45%;background: url("../../../assets/main/button-bg.png");height: 17px;position: absolute;top: 69%;left: 8px;color: black;background-size: 100% 100%;
+}
+.addMain-img-one{
+  width: 35px;
+  height: 35px;
+  margin-top: 5px;
+  margin-left: 20px;
+}
+.addMain-img{
+  width: 35px;
+  height: 35px;
+  position: absolute;
+  top: 5px;
+  left: 36px;
+}
+.addMain-bottom{
+  margin-bottom: 4px!important;
+}
+.addMain-img-onef{
+  width: 60px;
+  height: 60px;
+  margin-top: 15px;
+  margin-left: 20px;
+}
+
 @media screen and (min-height: 570px){
   .w-and-n {
     position: absolute;
@@ -348,9 +377,9 @@ button{
   }
   .boxss-one{
     /*float: left;*/
-    width: 220px;
+    width: 150px;
     /*height: 112px;*/
-    height: 60px;
+    height: 90px;
     margin: 0 auto;
     background: url("../../../assets/main/kuan1.png");
     border: 0;
@@ -358,8 +387,8 @@ button{
   }
   .boxs-one{
     /*float: left;*/
-    width: 220px;
-    height: 60px;
+    width: 150px;
+    height: 90px;
     margin: 0 auto;
     background: url("../../../assets/main/kuan1.png");
     border: 0;
@@ -367,8 +396,8 @@ button{
   }
   .boxss{
     /*float: left;*/
-    width: 220px;
-    height: 60px;
+    width: 150px;
+    height: 90px;
     margin: 0 auto;
     /*height: 112px;*/
     /*margin-right: 10px;*/
@@ -382,8 +411,8 @@ button{
   }
   .boxs{
     /*float: left;*/
-    width: 220px;
-    height: 60px;
+    width: 150px;
+    height: 90px;
     margin: 0 auto;
     /*height: 112px;*/
     /*margin-left: 50px;*/
@@ -444,8 +473,8 @@ button{
   }
   .boxss{
     /*float: left;*/
-    width: 220px;
-    height: 60px;
+    width: 150px;
+    height: 90px;
     margin: 0 auto;
     /*height: 112px;*/
     /*margin-right: 10px;*/
@@ -456,8 +485,8 @@ button{
   }
   .boxs{
     /*float: left;*/
-    width: 220px;
-    height: 60px;
+    width: 150px;
+    height: 90px;
     margin: 0 auto;
     /*height: 112px;*/
     /*margin-left: 50px;*/
@@ -590,9 +619,9 @@ button{
   }
   .boxss-one{
     /*float: left;*/
-    width: 220px;
+    width: 150px;
     /*height: 112px;*/
-    height: 60px;
+    height: 90px;
     margin: 0 auto;
     background: url("../../../assets/main/kuan1.png");
     border: 0;
@@ -600,8 +629,8 @@ button{
   }
   .boxs-one{
     /*float: left;*/
-    width: 220px;
-    height: 60px;
+    width: 150px;
+    height: 90px;
     margin: 0 auto;
     background: url("../../../assets/main/kuan1.png");
     border: 0;
@@ -609,8 +638,8 @@ button{
   }
   .boxss{
     /*float: left;*/
-    width: 220px;
-    height: 60px;
+    width: 150px;
+    height: 90px;
     margin: 0 auto;
     /*height: 112px;*/
     /*margin-right: 10px;*/
@@ -624,8 +653,8 @@ button{
   }
   .boxs{
     /*float: left;*/
-    width: 220px;
-    height: 60px;
+    width: 150px;
+    height: 90px;
     margin: 0 auto;
     /*height: 112px;*/
     /*margin-left: 50px;*/
@@ -637,22 +666,6 @@ button{
     border: 0;
     background-size: 100% 100%;
   }
-}
-.addMain-img-one{
-  width: 35px;
-  height: 35px;
-  margin-top: 5px;
-  margin-left: 20px;
-}
-.addMain-img{
-  width: 35px;
-  height: 35px;
-  position: absolute;
-  top: 5px;
-  left: 36px;
-}
-.addMain-bottom{
-  margin-bottom: 4px!important;
 }
 .weui-mask {
   position: fixed;

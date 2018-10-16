@@ -12,7 +12,8 @@ import {AddMainModule} from './addMain.module';
   styleUrls: ['./addMain.component.css']
 })
 export class AddMainComponent implements OnInit {
-  public indexList: Array<object>;
+  public indexList = [];
+  public fiveIndexList = [];
   private wayNumber: number;
   public isVisibleOpen = false;
   public loadingVisible = false;
@@ -201,7 +202,13 @@ export class AddMainComponent implements OnInit {
             this.isFourDoor = false;
             this.isFiveDoor = true;
             this.isSixDoor = false;
-            this.indexList = data.data.wayInfo;
+            data.data.wayInfo.forEach((item, index) => {
+              if (index > 1) {
+                this.indexList.push(item);
+              } else {
+                this.fiveIndexList.push(item);
+              }
+            });
           } else if (data.data.wayInfo.length === 6) {
             this.isFourDoor = false;
             this.isFiveDoor = false;
