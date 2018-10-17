@@ -149,7 +149,7 @@
   width: 150px;
   height: 140px;
   margin: 0 auto;
-  background: url("../../../assets/main/kuan4.png");
+  background: url("../../../assets/main/kuan3.png");
   border: 0;
   background-size: 100% 100%;
 }
@@ -173,7 +173,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  margin-left: 30px;
+  margin-left: 10px;
   font-family: "宋体";
   width: 64px;
   top: 47px;
@@ -372,8 +372,8 @@
   width: 60px;
   height: 60px;
   position: absolute;
-  top: 5px;
-  left: 39px;
+  top: 7px;
+  left: 12px;
 }
 .addMain-img-one {
   width: 40px;
@@ -386,7 +386,7 @@
   height: 35px;
   position: absolute;
   top: 5px;
-  left: 39px;
+  left: 22px;
 }
 
 .addMain-bottom {
@@ -680,7 +680,7 @@
     width: 150px;
     height: 124px;
     margin: 0 auto;
-    background: url("../../../assets/main/kuan4.png");
+    background: url("../../../assets/main/kuan3.png");
     border: 0;
     background-size: 100% 100%;
   }
@@ -706,7 +706,19 @@
     height: 25px;
     position: absolute;
     top: 5px;
-    left: 39px;
+    left: 22px;
+  }
+  .text-custom-one {
+    color: white;
+    font-weight: 900;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-left: 40px;
+    font-family: "宋体";
+    width: 64px;
+    top: 40px;
+    position: absolute;
   }
 }
 

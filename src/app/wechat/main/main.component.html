@@ -53,9 +53,11 @@
             <p [ngClass]="item['wayItemList'].length === 1 ? 'text-custom-one' : 'text-custom'" style="color: red;margin-top: 10px;top: 80px">{{item['wayItemList'][0]['price']}}元</p>
           </div>
           <div style="text-align: center" [hidden]="item['wayItemList'].length === 1">
-            <img class="addMain-img" style="left: 137px" [src]="turnImg(item['wayItemList'])" alt="">
-            <p class="text-custom" style="left: 100px">{{turnItemName(item['wayItemList'])}}</p>
-            <p class="text-custom" style="color: red;margin-top: 10px;left: 100px">{{turnPrice(item['wayItemList'])}}元</p>
+            <img style="left: 86px;width: 60px;height: 60px;position: absolute;top: 7px;" [src]="turnImg(item['wayItemList'])" alt="">
+            <p style="color: red;left: 75px;font-weight: 900;overflow: hidden;width: 64px;top: 70px;
+            text-overflow: ellipsis;white-space: nowrap;font-family: '宋体';position: absolute;">{{turnItemName(item['wayItemList'])}}</p>
+            <p style="color: red;left: 75px;font-weight: 900;overflow: hidden;width: 64px;top: 90px;
+            text-overflow: ellipsis;white-space: nowrap;font-family: '宋体';position: absolute;">{{turnPrice(item['wayItemList'])}}元</p>
           </div>
         </div>
       </div>
@@ -68,9 +70,9 @@
             <p [ngClass]="item['wayItemList'].length === 1 ? 'text-custom-one' : 'text-custom'" style="color: red;margin-top: 10px">{{item['wayItemList'][0]['price']}}元</p>
           </div>
           <div style="text-align: center" [hidden]="item['wayItemList'].length === 1">
-            <img class="addMain-img" style="left: 137px" [src]="turnImg(item['wayItemList'])" alt="">
-            <p class="text-custom" style="left: 100px">{{turnItemName(item['wayItemList'])}}</p>
-            <p class="text-custom" style="color: red;margin-top: 10px;left: 100px">{{turnPrice(item['wayItemList'])}}元</p>
+            <img class="addMain-img" style="left: 90px" [src]="turnImg(item['wayItemList'])" alt="">
+            <p class="text-custom" style="color: red;left: 72px">{{turnItemName(item['wayItemList'])}}</p>
+            <p class="text-custom" style="color: red;margin-top: 10px;left: 72px">{{turnPrice(item['wayItemList'])}}元</p>
           </div>
         </div>
       </div>

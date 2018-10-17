@@ -13,7 +13,8 @@ import {AddMainModule} from './addMain.module';
 })
 export class AddMainComponent implements OnInit {
   public indexList = [];
-  public fiveIndexList = [];
+  public fiveIndexListLeft = [];
+  public fiveIndexListRigth = [];
   private wayNumber: number;
   public isVisibleOpen = false;
   public loadingVisible = false;
@@ -199,14 +200,17 @@ export class AddMainComponent implements OnInit {
               this.indexList.unshift(this.indexList.pop());
             }
           } else if (data.data.wayInfo.length === 5) {
+            this.indexList = data.data.wayInfo;
+            this.fiveIndexListLeft = [];
+            this.fiveIndexListRigth = [];
             this.isFourDoor = false;
             this.isFiveDoor = true;
             this.isSixDoor = false;
             data.data.wayInfo.forEach((item, index) => {
               if (index > 1) {
-                this.indexList.push(item);
+                this.fiveIndexListRigth.push(item);
               } else {
-                this.fiveIndexList.push(item);
+                this.fiveIndexListLeft.push(item);
               }
             });
           } else if (data.data.wayInfo.length === 6) {
