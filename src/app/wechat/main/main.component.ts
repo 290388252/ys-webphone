@@ -64,7 +64,8 @@ export class MainComponent implements OnInit {
     console.log(urlParse(window.location.search)['vmCode']);
     console.log(urlParse(window.location.search)['newUser']);
     // // 新用户进入界面
-    // if (urlParse(window.location.search)['newUser'] === '1') {
+    if (urlParse(window.location.search)['newUser'] === '1') {
+      window.location.href = this.appProperties.followWechatSubscription;
     //   this.appService.getDataOpen(this.appProperties.indexOpenDoor,
     //     {vmCode: urlParse(window.location.search)['vmCode'], way: sessionStorage.getItem('wayNumber')}, this.token).subscribe(
     //     data => {
@@ -98,7 +99,7 @@ export class MainComponent implements OnInit {
     //       console.log(error);
     //     }
     //   );
-    // }
+    }
     // // 是否自动开门
     // if (sessionStorage.getItem('open') === '1') {
     //   this.appService.getDataOpen(this.appProperties.indexOpenDoor,
