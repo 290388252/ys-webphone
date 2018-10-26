@@ -269,7 +269,7 @@ export class MainComponent implements OnInit {
     //   queryParams: {
     //     token: this.token
     //   }});
-    this.router.navigate(['detail'], {
+    this.router.navigate(['aliDetail'], {
       queryParams: {
         vmCode: urlParse(window.location.search)['vmCode'],
         flag: flag
