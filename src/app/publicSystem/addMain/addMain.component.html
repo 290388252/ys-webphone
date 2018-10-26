@@ -20,12 +20,12 @@
               <br>
               <span class="w-n-size">数量：{{item['wayItemList'][0]['num']}}</span>
             </div>
-            <button [hidden]="item['wayItemList'].length === 1" (click)="detail(item['wayItemList'][0], $event, item['wayWeight'])" class="detailf-button">点击查看详情</button>
-            <button [hidden]="item['wayItemList'].length !== 1" (click)="detail(item['wayItemList'][0], $event, item['wayWeight'])" class="detailf-button" style="left: 24%">点击查看详情</button>
+            <button [hidden]="item['wayItemList'].length === 1" (click)="detail(item['wayItemList'][0], $event, item['wayWeight'])" class="detailf-button"></button>
+            <button [hidden]="item['wayItemList'].length !== 1" (click)="detail(item['wayItemList'][0], $event, item['wayWeight'])" class="detailf-button" style="left: 14%;width: 68%"></button>
           </div>
           <div style="text-align: center" [hidden]="item['wayItemList'].length === 1">
             <img style="left: 86px;width: 60px;height: 60px;position: absolute;top: 7px;" [src]="turn(item['wayItemList'], 'img')" alt="">
-            <button (click)="detail(item['wayItemList'][1], $event, item['wayWeight'])" class="detailf-button" style="left: 82px">点击查看详情</button>
+            <button (click)="detail(item['wayItemList'][1], $event, item['wayWeight'])" class="detailf-button" style="left: 75px"></button>
           </div>
         </div>
       </div>
@@ -38,12 +38,12 @@
               <br>
               <span class="w-n-size">数量：{{item['wayItemList'][0]['num']}}</span>
             </div>
-            <button [hidden]="item['wayItemList'].length === 1" (click)="detail(item['wayItemList'][0], $event, item['wayWeight'])" class="detail-button">点击查看详情</button>
-            <button [hidden]="item['wayItemList'].length !== 1" (click)="detail(item['wayItemList'][0], $event, item['wayWeight'])" class="detail-button" style="left: 24%">点击查看详情</button>
+            <button [hidden]="item['wayItemList'].length === 1" (click)="detail(item['wayItemList'][0], $event, item['wayWeight'])" class="detail-button"></button>
+            <button [hidden]="item['wayItemList'].length !== 1" (click)="detail(item['wayItemList'][0], $event, item['wayWeight'])" class="detail-button" style="left: 24%"></button>
           </div>
           <div style="text-align: center" [hidden]="item['wayItemList'].length === 1">
             <img class="addMain-img" style="left: 91px" [src]="turn(item['wayItemList'], 'img')" alt="">
-            <button (click)="detail(item['wayItemList'][1], $event, item['wayWeight'])" class="detail-button" style="left: 82px">点击查看详情</button>
+            <button (click)="detail(item['wayItemList'][1], $event, item['wayWeight'])" class="detail-button" style="left: 75px"></button>
           </div>
         </div>
       </div>
@@ -60,8 +60,8 @@
             <br>
             <span class="w-n-size">数量：{{item['wayItemList'][0]['num']}}</span>
           </div>
-          <button [hidden]="item['wayItemList'].length === 1" (click)="detail(item['wayItemList'][0], $event, item['wayWeight'])" class="detail-button-four">点击查看详情</button>
-          <button [hidden]="item['wayItemList'].length !== 1" (click)="detail(item['wayItemList'][0], $event, item['wayWeight'])" class="detail-button-four" style="left: 30%">点击查看详情</button>
+          <button [hidden]="item['wayItemList'].length === 1" (click)="detail(item['wayItemList'][0], $event, item['wayWeight'])" class="detail-button-four"></button>
+          <button [hidden]="item['wayItemList'].length !== 1" (click)="detail(item['wayItemList'][0], $event, item['wayWeight'])" class="detail-button-four" style="left: 30%"></button>
           <br/>
         </div>
         <div [hidden]="item['wayItemList'].length === 1" class="box-body" >
@@ -71,7 +71,7 @@
             <br>
             <span class="w-n-size">数量：{{turn(item['wayItemList'], 'num')}}</span>
           </div>
-          <button (click)="detail(item['wayItemList'][1], $event, item['wayWeight'])" class="detail-button-four" style="left: 77px">点击查看详情</button>
+          <button (click)="detail(item['wayItemList'][1], $event, item['wayWeight'])" class="detail-button-four" style="left: 77px"></button>
           <br/>
         </div>
       </div>

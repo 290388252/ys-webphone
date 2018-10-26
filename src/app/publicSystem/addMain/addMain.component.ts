@@ -84,17 +84,20 @@ export class AddMainComponent implements OnInit {
     this.volValue = 0;
   }
   selectDoor(num) {
-    console.log(num === 3);
-    if (num === 3) {
-      this.wayIndex = 0;
-    } else if (num === 4) {
-      this.wayIndex = 1;
-    } else if (num === 1) {
-      this.wayIndex = 2;
-    } else if (num === 2) {
-      this.wayIndex = 3;
-    } else if (num === 5) {
-      this.wayIndex = 4;
+    if (this.isFiveDoor) {
+        this.wayIndex = num - 1;
+    } else {
+      if (num === 3) {
+        this.wayIndex = 0;
+      } else if (num === 4) {
+        this.wayIndex = 1;
+      } else if (num === 1) {
+        this.wayIndex = 2;
+      } else if (num === 2) {
+        this.wayIndex = 3;
+      } else if (num === 5) {
+        this.wayIndex = 4;
+      }
     }
     if (this.indexList[this.wayIndex]['wayItemList'].length > 1) {
       this.visible = true;

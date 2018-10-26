@@ -134,7 +134,7 @@ button{
   width: 150px;
   height: 140px;
   margin: 0 auto;
-  background: url("../../../assets/main/kuan4.png");
+  background: url("../../../assets/main/kuan.png");
   border: 0;
   background-size: 100% 100%;
 }
@@ -143,7 +143,7 @@ button{
   width: 150px;
   height: 140px;
   margin: 0 auto;
-  background: url("../../../assets/main/kuan3.png");
+  background: url("../../../assets/main/kuan1.png");
   border: 0;
   background-size: 100% 100%;
 }
@@ -292,21 +292,20 @@ button{
   border: grey;
   width: 41%;
   background: url("../../../assets/main/button-bg.png");
-  height: 17px;
   position: absolute;
-  top: 55px;
+  top: 58px;
   left: 9px;
   color: black;
   background-size: 100% 100%;
 }
 .detail-button-four{
-  font-size: 9px;border: grey;width: 45%;background: url("../../../assets/main/button-bg.png");height: 17px;position: absolute;top: 69%;left: 8px;color: black;background-size: 100% 100%;
+  font-size: 9px;border: grey;width: 45%;background: url("../../../assets/main/button-bg.png");position: absolute;top: 78%;left: 8px;color: black;background-size: 100% 100%;
 }
 .detailf-button{
-  font-size: 9px;border: grey;width: 40%;background: url("../../../assets/main/button-bg.png");height: 17px;position: absolute;top: 91px;left: 7px;color: black;background-size: 100% 100%;
+  font-size: 9px;border: grey;width: 44%;background: url("../../../assets/main/button-bg.png");position: absolute;top: 100px;left: 7px;color: black;background-size: 100% 100%;
 }
 .detailf-button-four{
-  font-size: 9px;border: grey;width: 45%;background: url("../../../assets/main/button-bg.png");height: 17px;position: absolute;top: 69%;left: 8px;color: black;background-size: 100% 100%;
+  font-size: 9px;border: grey;width: 45%;background: url("../../../assets/main/button-bg.png");position: absolute;top: 78%;left: 8px;color: black;background-size: 100% 100%;
 }
 .addMain-img-one{
   width: 35px;
