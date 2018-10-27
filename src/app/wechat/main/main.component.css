@@ -176,7 +176,7 @@
   margin-left: 10px;
   font-family: "宋体";
   width: 64px;
-  top: 47px;
+  top: 38px;
   position: absolute;
 }
 
@@ -596,7 +596,7 @@
   }
 }
 
-@media screen and (max-height: 500px) {
+@media screen and (max-height: 539px) {
   .context {
     width: 275px;
     margin: 0 auto;

@@ -65,7 +65,15 @@ export class MainComponent implements OnInit {
     console.log(urlParse(window.location.search)['newUser']);
     // // 新用户进入界面
     if (urlParse(window.location.search)['newUser'] === '1') {
-      window.location.href = this.appProperties.followWechatSubscription;
+      this.appService.getDataOpen(this.appProperties.nonePassWordPayUrl,
+        {vmCode: urlParse(window.location.href)['vmCode']}).subscribe(
+        data1 => {
+          window.location.href = data1;
+        },
+        error1 => {
+          console.log(error1);
+        }
+      );
     //   this.appService.getDataOpen(this.appProperties.indexOpenDoor,
     //     {vmCode: urlParse(window.location.search)['vmCode'], way: sessionStorage.getItem('wayNumber')}, this.token).subscribe(
     //     data => {

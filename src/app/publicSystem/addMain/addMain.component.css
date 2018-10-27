@@ -301,6 +301,9 @@ button{
 .detail-button-four{
   font-size: 9px;border: grey;width: 45%;background: url("../../../assets/main/button-bg.png");position: absolute;top: 78%;left: 8px;color: black;background-size: 100% 100%;
 }
+.detail-button-four-second{
+  font-size: 9px;border: grey;width: 45%;background: url("../../../assets/main/button-bg.png");position: absolute;top: 78%;left: 77px;color: black;background-size: 100% 100%;
+}
 .detailf-button{
   font-size: 9px;border: grey;width: 44%;background: url("../../../assets/main/button-bg.png");position: absolute;top: 100px;left: 7px;color: black;background-size: 100% 100%;
 }
@@ -560,6 +563,13 @@ button{
     position: absolute;
     top: 38%;
     margin-left: 14px;
+  }
+  .detail-button-four{
+    top: 72%;
+  }
+  .detail-button-four-second{
+    top: 72%;
+    left: 64px;
   }
 }
 @media screen and (max-width: 291px){

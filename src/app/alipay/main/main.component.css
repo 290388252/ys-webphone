@@ -596,7 +596,7 @@
   }
 }
 
-@media screen and (max-height: 500px) {
+@media screen and (max-height: 539px) {
   .context {
     width: 275px;
     margin: 0 auto;
