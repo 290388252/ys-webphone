@@ -301,22 +301,13 @@ export class MainComponent implements OnInit {
     }
     return img;
   }
-  turnItemName(item) {
-    let itemName;
-    if  (item.length > 1) {
-      itemName = item[1].itemName;
+  turn(item, name) {
+    let variable;
+    if (item.length > 1) {
+      variable = item[1][name];
     } else {
-      itemName = '';
+      variable = '';
     }
-    return itemName;
-  }
-  turnPrice(item) {
-    let price;
-    if  (item.length > 1) {
-      price = item[1].price;
-    } else {
-      price = '';
-    }
-    return price;
+    return variable;
   }
 }

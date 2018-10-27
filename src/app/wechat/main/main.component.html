@@ -55,9 +55,9 @@
           <div style="text-align: center" [hidden]="item['wayItemList'].length === 1">
             <img style="left: 86px;width: 60px;height: 60px;position: absolute;top: 7px;" [src]="turnImg(item['wayItemList'])" alt="">
             <p style="color: #333333;left: 75px;font-weight: 900;overflow: hidden;width: 64px;top: 70px;
-            text-overflow: ellipsis;white-space: nowrap;position: absolute;">{{turnItemName(item['wayItemList'])}}</p>
+            text-overflow: ellipsis;white-space: nowrap;position: absolute;">{{turn(item['wayItemList'], 'itemName')}}</p>
             <p style="color: #f4725c;left: 75px;font-weight: 900;overflow: hidden;width: 64px;top: 83px;
-            text-overflow: ellipsis;white-space: nowrap;position: absolute;">{{turnPrice(item['wayItemList'])}}元</p>
+            text-overflow: ellipsis;white-space: nowrap;position: absolute;">{{turn(item['wayItemList'], 'price')}}元</p>
           </div>
         </div>
       </div>
@@ -71,8 +71,8 @@
           </div>
           <div style="text-align: center" [hidden]="item['wayItemList'].length === 1">
             <img class="addMain-img" style="left: 90px" [src]="turnImg(item['wayItemList'])" alt="">
-            <p class="text-custom" style="color: #333333;left: 72px">{{turnItemName(item['wayItemList'])}}</p>
-            <p class="text-custom" style="color: #f4725c;margin-top: 10px;left: 72px">{{turnPrice(item['wayItemList'])}}元</p>
+            <p class="text-custom" style="color: #333333;left: 72px">{{turn(item['wayItemList'], 'itemName')}}</p>
+            <p class="text-custom" style="color: #f4725c;margin-top: 10px;left: 72px">{{turn(item['wayItemList'], 'price')}}元</p>
           </div>
         </div>
       </div>
@@ -93,8 +93,8 @@
           <img class="col-img" [src]="turnImg(item['wayItemList'])" alt="">
           <br/>
           <p class="card-title text" style="color:#333333;font-weight: 900;">
-            {{turnItemName(item['wayItemList'])}}</p>
-          <span class="card-title" style="color: #f4725c;font-weight: 900;">{{turnPrice(item['wayItemList'])}}元</span>
+            {{turn(item['wayItemList'], 'itemName')}}</p>
+          <span class="card-title" style="color: #f4725c;font-weight: 900;">{{turn(item['wayItemList'], 'price')}}元</span>
         </div>
       </div>
     </div>

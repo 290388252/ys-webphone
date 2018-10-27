@@ -3,7 +3,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {AppService} from '../../app-service';
 import {AppProperties} from '../../app.properties';
 import {NzModalService} from 'ng-zorro-antd';
-import {urlParse} from '../../utils/util';
+import {getCoupon, getNewUser, urlParse} from '../../utils/util';
 import { CarouselConfig } from 'ngx-bootstrap/carousel';
 declare var wx: any;
 
@@ -19,7 +19,6 @@ export class MainComponent implements OnInit {
   public indexList = [];
   public fiveIndexList = [];
   private token: string;
-  private newUser: boolean;
   private wayNumber: number;
   public isVisibleOpen = false;
   public isVisibleOpenDoor = false;
@@ -50,9 +49,9 @@ export class MainComponent implements OnInit {
     this.getInitData();
     this.getCookies();
     console.log(this.token);
-    if (this.getCoupon() === '0') {
+    if (getCoupon() === '0') {
       this.isVisibleCoupon = true;
-    } else if (this.getCoupon() === '2') {
+    } else if (getCoupon() === '2') {
       this.isVisibleCouponTwo = true;
     }
     if (urlParse(window.location.search)['token']) {
@@ -62,9 +61,9 @@ export class MainComponent implements OnInit {
       document.cookie = 'token=' + this.token + ';expires=' + exp.toUTCString();
     }
     console.log(urlParse(window.location.search)['vmCode']);
-    console.log(urlParse(window.location.search)['newUser']);
     // // 新用户进入界面
-    if (urlParse(window.location.search)['newUser'] === '1') {
+    if (getNewUser() === '1') {
+      document.cookie = 'newUser=' + 0;
       this.appService.getDataOpen(this.appProperties.nonePassWordPayUrl,
         {vmCode: urlParse(window.location.href)['vmCode']}).subscribe(
         data1 => {
@@ -74,75 +73,7 @@ export class MainComponent implements OnInit {
           console.log(error1);
         }
       );
-    //   this.appService.getDataOpen(this.appProperties.indexOpenDoor,
-    //     {vmCode: urlParse(window.location.search)['vmCode'], way: sessionStorage.getItem('wayNumber')}, this.token).subscribe(
-    //     data => {
-    //       console.log(data);
-    //       this.isVisibleOpenDoor = false;
-    //       if (data.code === 0) {
-    //         this.isVisibleOpen = true;
-    //       } else if (data.code === 3) {
-    //         alert('开门失败！');
-    //       } else if (data.code === -1) {
-    //         this.login();
-    //       } else if (data.code === -87) {
-    //         window.location.href = this.appProperties.followWechatSubscription;
-    //       } else if (data.code === -88) {
-    //         alert('您有未支付订单请点击我的订单支付完毕再进行购水！');
-    //       } else if (data.code === -89) {
-    //         alert('他人在买水，请稍后扫码,文明购买，请勿争抢');
-    //       } else if (data.code === -90) {
-    //         this.appService.getDataOpen(this.appProperties.nonePassWordPayUrl, {vmCode: urlParse(window.location.href)['vmCode']}).subscribe(
-    //           data1 => {
-    //             window.location.href =  data1;
-    //             sessionStorage.setItem('open', '1');
-    //           },
-    //           error1 => {
-    //             console.log(error1);
-    //           }
-    //         );
-    //       }
-    //     },
-    //     error => {
-    //       console.log(error);
-    //     }
-    //   );
     }
-    // // 是否自动开门
-    // if (sessionStorage.getItem('open') === '1') {
-    //   this.appService.getDataOpen(this.appProperties.indexOpenDoor,
-    //     {vmCode: urlParse(window.location.search)['vmCode'], way: sessionStorage.getItem('wayNumber')}, this.token).subscribe(
-    //     data => {
-    //       console.log(data);
-    //       this.isVisibleOpenDoor = false;
-    //       if (data.code === 0) {
-    //         this.isVisibleOpen = true;
-    //       } else if (data.code === 3) {
-    //         alert('开门失败！');
-    //       } else if (data.code === -1) {
-    //         this.login();
-    //       } else if (data.code === -87) {
-    //         window.location.href = this.appProperties.followWechatSubscription;
-    //       } else if (data.code === -88) {
-    //         alert('您有未支付订单请点击我的订单支付完毕再进行购水！');
-    //       } else if (data.code === -89) {
-    //         alert('他人在买水，请稍后扫码,文明购买，请勿争抢');
-    //       } else if (data.code === -90) {
-    //         this.appService.getDataOpen(this.appProperties.nonePassWordPayUrl, {vmCode: urlParse(window.location.href)['vmCode']}).subscribe(
-    //           data1 => {
-    //             window.location.href =  data1;
-    //           },
-    //           error1 => {
-    //             console.log(error1);
-    //           }
-    //         );
-    //       }
-    //     },
-    //     error => {
-    //       console.log(error);
-    //     }
-    //   );
-    // }
   }
 
   // 数据初始化
@@ -279,15 +210,6 @@ export class MainComponent implements OnInit {
 
   // 新用户登陆
   login() {
-    // this.currentModal = this.modalService.open({
-    //   title       : titleTpl,
-    //   content     : contentTpl,
-    //   footer      : footerTpl,
-    //   maskClosable: false,
-    //   onOk() {
-    //     console.log('Click ok');
-    //   }
-    // });
     this.appService.getData(this.appProperties.wechatOauth2Url, {vmCode: urlParse(window.location.href)['vmCode']}).subscribe(
       data => {
         console.log(data);
@@ -467,20 +389,6 @@ export class MainComponent implements OnInit {
       }
     }
   }
-
-  getCoupon() {
-    let coupon;
-    const strCookie = document.cookie;
-    const arrCookie = strCookie.split(';');
-    for (let i = 0; i < arrCookie.length; i++) {
-      const arr = arrCookie[i].split('=');
-      if (arr[0].trim() === 'coupon') {
-        coupon = arr[1];
-      }
-    }
-    return coupon;
-  }
-
   turnImg(item) {
     let img;
     if (item.length > 1) {
@@ -490,24 +398,13 @@ export class MainComponent implements OnInit {
     }
     return img;
   }
-
-  turnItemName(item) {
-    let itemName;
+  turn(item, name) {
+    let variable;
     if (item.length > 1) {
-      itemName = item[1].itemName;
+      variable = item[1][name];
     } else {
-      itemName = '';
+      variable = '';
     }
-    return itemName;
-  }
-
-  turnPrice(item) {
-    let price;
-    if (item.length > 1) {
-      price = item[1].price;
-    } else {
-      price = '';
-    }
-    return price;
+    return variable;
   }
 }
