@@ -1,6 +1,8 @@
 .logo{
   text-align: center;
   position: relative;
+  margin-bottom: 5px;
+  height: 156px;
 }
 .rounded-circle{
   margin-top: 8px;
@@ -9,6 +11,20 @@
 }
 .rounded-circle {
    border-radius: 0!important;
+}
+.contain_all {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.contain_btm {
+  position: absolute;
+  top: 156px;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background: url("../../../assets/main/bg.png") no-repeat;
+  background-size: 100% auto;
 }
 .lianye-logo{
   margin: 40px 0 1px 0;
@@ -47,8 +63,10 @@
   color: #B8996A;
   background: url("../../../assets/main/textbg.png");
   background-size: 100% 94%;
-  width: 70%;
-  margin-left: 15%;
+  width: 45%;
+  margin-left: 27%;
+  position: absolute;
+  top: 140px;
 }
 .text-custom {
   color: white;

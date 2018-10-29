@@ -1,56 +1,65 @@
 <div class="contain_all">
 
-    <div class="logo">
-      <carousel>
-        <slide>
-          <img src="../../../assets/main/banner1.png" alt="first slide" style="display: block; width: 100%;height: 166px;">
-          <div class="carousel-caption d-none d-md-block">
-            <h3>First slide label</h3>
-            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-          </div>
-        </slide>
-        <!--<slide>-->
-        <!--<img src="../../../assets/main/bg.png" alt="second slide" style="display: block; width: 100%;height: 166px;">-->
-        <!--<div class="carousel-caption d-none d-md-block">-->
-        <!--<h3>Second slide label</h3>-->
-        <!--<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>-->
-        <!--</div>-->
-        <!--</slide>-->
-        <!--<slide>-->
-        <!--<img src="../../../assets/main/banner1.png" alt="third slide" style="display: block; width: 100%;height: 166px;">-->
-        <!--<div class="carousel-caption d-none d-md-block">-->
-        <!--<h3>Third slide label</h3>-->
-        <!--<p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>-->
-        <!--</div>-->
-        <!--</slide>-->
-      </carousel>
-      <!--<img *ngIf="isFiveDoor" (click)="vmLogin()" src="../../../assets/main/lianye.png" alt="..." class="lianye-logo">-->
-      <!--<p *ngIf="isFiveDoor" style="font-weight: 600">联业智能</p>-->
-      <img (click)="vmLogin(1)" src="../../../assets/main/logos.png" alt="..."
-           class="rounded-circle">
-      <img [hidden]="otherCompany" (click)="vmLogin(0)" src="../../../assets/main/guoqing.png" alt="..."
-           class="rounded-circle-center" style="display: inline-block">
-      <img [hidden]="youshuiCompany" (click)="vmLogin(2)" src="../../../assets/main/69.png" alt="..."
-           class="rounded-circle-sixnight" style="display: inline-block">
-      <br/>
-      <div class="logo_title">
-        <div class="logo_title_inner">点击下面窗口开门买水</div>
-      </div>
-      <!--<p class="title">点击下面窗口开门买水</p>-->
-    </div>
+  <div class="logo">
+    <carousel>
+      <slide>
+        <img src="../../../assets/main/banner1.png" alt="first slide"
+             style="display: block; width: 100%;height: 166px;">
+        <div class="carousel-caption d-none d-md-block">
+          <h3>First slide label</h3>
+          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+        </div>
+      </slide>
+      <!--<slide>-->
+      <!--<img src="../../../assets/main/bg.png" alt="second slide" style="display: block; width: 100%;height: 166px;">-->
+      <!--<div class="carousel-caption d-none d-md-block">-->
+      <!--<h3>Second slide label</h3>-->
+      <!--<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>-->
+      <!--</div>-->
+      <!--</slide>-->
+      <!--<slide>-->
+      <!--<img src="../../../assets/main/banner1.png" alt="third slide" style="display: block; width: 100%;height: 166px;">-->
+      <!--<div class="carousel-caption d-none d-md-block">-->
+      <!--<h3>Third slide label</h3>-->
+      <!--<p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>-->
+      <!--</div>-->
+      <!--</slide>-->
+    </carousel>
+    <!--<img *ngIf="isFiveDoor" (click)="vmLogin()" src="../../../assets/main/lianye.png" alt="..." class="lianye-logo">-->
+    <!--<p *ngIf="isFiveDoor" style="font-weight: 600">联业智能</p>-->
+    <img (click)="vmLogin(1)" src="../../../assets/main/logos.png" alt="..."
+         class="rounded-circle">
+    <!--<img [hidden]="otherCompany" (click)="vmLogin(0)" src="../../../assets/main/guoqing.png" alt="..."-->
+         <!--class="rounded-circle-center" style="display: inline-block">-->
+    <!--<img [hidden]="youshuiCompany" (click)="vmLogin(2)" src="../../../assets/main/69.png" alt="..."-->
+         <!--class="rounded-circle-sixnight" style="display: inline-block">-->
+    <br/>
+    <!--<div class="logo_title">-->
+    <!--<div class="logo_title_inner"></div>-->
+    <!--</div>-->
+    <p class="title">.</p>
+  </div>
   <div class="contain_btm">
     <div class="context-five" *ngIf="isFiveDoor">
       <div style="float: left">
-        <div (click)="openDoor(item)" *ngFor="let item of fiveIndexList" [ngClass]="item['wayItemList'].length === 1 ? 'boxssf-one' : 'boxssf'" class=" card text-white addMain-bottom">
+        <div (click)="openDoor(item)" *ngFor="let item of fiveIndexList"
+             [ngClass]="item['wayItemList'].length === 1 ? 'boxssf-one' : 'boxssf'"
+             class=" card text-white addMain-bottom">
           <div style="text-align: center">
-            <img [ngClass]="item['wayItemList'].length === 1 ? 'addMain-img-onef' : 'addMain-imgf'" src="{{img}}{{item['wayItemList'][0]['pic']}}" alt="">
-            <p [ngClass]="item['wayItemList'].length === 1 ? 'text-custom-one' : 'text-custom'"  style="color:#333333;top: 70px;font-weight: 900;">{{item['wayItemList'][0]['itemName']}}</p>
-            <p [ngClass]="item['wayItemList'].length === 1 ? 'text-custom-one' : 'text-custom'" style="color: #f4725c;margin-top: 3px;top: 80px;font-weight: 900;">{{item['wayItemList'][0]['price']}}元</p>
+            <img [ngClass]="item['wayItemList'].length === 1 ? 'addMain-img-onef' : 'addMain-imgf'"
+                 src="{{img}}{{item['wayItemList'][0]['pic']}}" alt="">
+            <p [ngClass]="item['wayItemList'].length === 1 ? 'text-custom-one' : 'text-custom'"
+               style="color:#333333;top: 70px;font-weight: 900;">{{item['wayItemList'][0]['itemName']}}</p>
+            <p [ngClass]="item['wayItemList'].length === 1 ? 'text-custom-one' : 'text-custom'"
+               style="color: #f4725c;margin-top: 3px;top: 80px;font-weight: 900;">
+              {{item['wayItemList'][0]['price']}}元</p>
           </div>
           <div style="text-align: center" [hidden]="item['wayItemList'].length === 1">
-            <img style="left: 86px;width: 60px;height: 60px;position: absolute;top: 7px;" [src]="turnImg(item['wayItemList'])" alt="">
+            <img style="left: 86px;width: 60px;height: 60px;position: absolute;top: 7px;"
+                 [src]="turnImg(item['wayItemList'])" alt="">
             <p style="color: #333333;left: 75px;font-weight: 900;overflow: hidden;width: 64px;top: 70px;
-            text-overflow: ellipsis;white-space: nowrap;position: absolute;">{{turn(item['wayItemList'], 'itemName')}}</p>
+            text-overflow: ellipsis;white-space: nowrap;position: absolute;">{{turn(item['wayItemList'],
+              'itemName')}}</p>
             <p style="color: #f4725c;left: 75px;font-weight: 900;overflow: hidden;width: 64px;top: 83px;
             text-overflow: ellipsis;white-space: nowrap;position: absolute;">{{turn(item['wayItemList'], 'price')}}元</p>
           </div>
@@ -58,16 +67,22 @@
       </div>
 
       <div style="float: left">
-        <div (click)="openDoor(item)" *ngFor="let item of indexList" [ngClass]="item['wayItemList'].length === 1 ? 'boxss-one' : 'boxss'" class=" card text-white addMain-bottom">
+        <div (click)="openDoor(item)" *ngFor="let item of indexList"
+             [ngClass]="item['wayItemList'].length === 1 ? 'boxss-one' : 'boxss'"
+             class=" card text-white addMain-bottom">
           <div style="text-align: center">
-            <img [ngClass]="item['wayItemList'].length === 1 ? 'addMain-img-one' : 'addMain-img'" src="{{img}}{{item['wayItemList'][0]['pic']}}" alt="">
-            <p [ngClass]="item['wayItemList'].length === 1 ? 'text-custom-one' : 'text-custom'"  style="color:#333333;font-weight: 900;">{{item['wayItemList'][0]['itemName']}}</p>
-            <p [ngClass]="item['wayItemList'].length === 1 ? 'text-custom-one' : 'text-custom'" style="color: #f4725c;font-weight: 900;margin-top: 10px">{{item['wayItemList'][0]['price']}}元</p>
+            <img [ngClass]="item['wayItemList'].length === 1 ? 'addMain-img-one' : 'addMain-img'"
+                 src="{{img}}{{item['wayItemList'][0]['pic']}}" alt="">
+            <p [ngClass]="item['wayItemList'].length === 1 ? 'text-custom-one' : 'text-custom'"
+               style="color:#333333;font-weight: 900;">{{item['wayItemList'][0]['itemName']}}</p>
+            <p [ngClass]="item['wayItemList'].length === 1 ? 'text-custom-one' : 'text-custom'"
+               style="color: #f4725c;font-weight: 900;margin-top: 10px">{{item['wayItemList'][0]['price']}}元</p>
           </div>
           <div style="text-align: center" [hidden]="item['wayItemList'].length === 1">
             <img class="addMain-img" style="left: 90px" [src]="turnImg(item['wayItemList'])" alt="">
             <p class="text-custom" style="color: #333333;left: 72px">{{turn(item['wayItemList'], 'itemName')}}</p>
-            <p class="text-custom" style="color: #f4725c;margin-top: 10px;left: 72px">{{turn(item['wayItemList'], 'price')}}元</p>
+            <p class="text-custom" style="color: #f4725c;margin-top: 10px;left: 72px">{{turn(item['wayItemList'],
+              'price')}}元</p>
           </div>
         </div>
       </div>
@@ -75,7 +90,8 @@
     </div>
 
     <div class="context" *ngIf="isFourDoor">
-      <div (click)="openDoor(item)" *ngFor="let item of indexList" [ngClass]="item['wayItemList'].length === 1 ? 'box-one' : 'box'" class=" card text-white mb-3">
+      <div (click)="openDoor(item)" *ngFor="let item of indexList"
+           [ngClass]="item['wayItemList'].length === 1 ? 'box-one' : 'box'" class=" card text-white mb-3">
         <div [ngClass]="item['wayItemList'].length === 1 ? 'box-body-one' : 'box-body'">
           <img class="col-img" src="{{img}}{{item['wayItemList'][0]['pic']}}" alt="">
           <br/>
@@ -84,12 +100,13 @@
           </p>
           <span class="card-title" style="color: #f4725c;font-weight: 900;">{{item['wayItemList'][0]['price']}}元</span>
         </div>
-        <div [hidden]="item['wayItemList'].length === 1" class="box-body" >
+        <div [hidden]="item['wayItemList'].length === 1" class="box-body">
           <img class="col-img" [src]="turnImg(item['wayItemList'])" alt="">
           <br/>
           <p class="card-title text" style="color:#333333;font-weight: 900;">
             {{turn(item['wayItemList'], 'itemName')}}</p>
-          <span class="card-title" style="color: #f4725c;font-weight: 900;">{{turn(item['wayItemList'], 'price')}}元</span>
+          <span class="card-title"
+                style="color: #f4725c;font-weight: 900;">{{turn(item['wayItemList'], 'price')}}元</span>
         </div>
       </div>
     </div>
@@ -122,9 +139,9 @@
     </div>
   </div>
 
-    <!--<div class="my-share">-->
-    <!--<button (click)="share()" type="button" class="btn btn-primary small" style="background: #117cbb">分享</button>-->
-    <!--</div>-->
+  <!--<div class="my-share">-->
+  <!--<button (click)="share()" type="button" class="btn btn-primary small" style="background: #117cbb">分享</button>-->
+  <!--</div>-->
   <nz-modal [nzVisible]="isVisibleOpenDoor" [nzContent]="modalContents" [nzFooter]="modalFooters" [nzClosable]="false">
     <ng-template #modalContents #modalFooters style="text-align: center">
       <p style="font-size: medium;">是否要开门？</p>
@@ -147,7 +164,8 @@
     </ng-template>
   </nz-modal>
 
-  <nz-modal [nzVisible]="isVisibleCouponThree" [nzContent]="modalContentCouponThree" [nzFooter]="false" [nzClosable]="false">
+  <nz-modal [nzVisible]="isVisibleCouponThree" [nzContent]="modalContentCouponThree" [nzFooter]="false"
+            [nzClosable]="false">
     <ng-template #modalContentCouponThree>
       <img src="../../../assets/main/getCoupon.png" alt="" style="width: 100%;position: absolute;right: 0;top: -40px;">
       <!--<img src="../../../assets/main/follow.png" (click)="follow()" alt="" style="width: 20%;position: absolute;left: 40%;top: 260px;">-->
