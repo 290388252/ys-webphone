@@ -16,14 +16,18 @@ export class GoodsShowComponent implements OnInit {
   public single: boolean;
   public close: boolean;
   public isVisibleOpen: boolean;
+  public isVisibleFixed: boolean;
   public token: string;
+  public wayNum: string;
+  public basicItemId: string;
+  public num: number;
   public goodsList = [];
   public totalPrice = 0;
   public count = 0;
   private timeInterval;
   public flag;
   public img = this.appProperties.imgUrl;
-  public replenishList;
+  public replenishList = [];
   public aliPay = false;
   public youshuiCompany = false;
   constructor(private router: Router,
@@ -62,6 +66,7 @@ export class GoodsShowComponent implements OnInit {
       this.aliPay = false;
     }
     this.isVisibleOpen = false;
+    this.isVisibleFixed = false;
     console.log(urlParse(window.location.search)['vmCode']);
     console.log(this.token);
     console.log(this.flag);
@@ -135,6 +140,31 @@ export class GoodsShowComponent implements OnInit {
         wx.error(function (res) {
           console.log(res);
         });
+      },
+      error2 => {
+        console.log(error2);
+      }
+    );
+  }
+  fixedNum(item) {
+    this.isVisibleFixed = true;
+    this.wayNum = item.wayNum;
+    this.basicItemId = item.basicItemId;
+  }
+  // String  vmCode,机器编号
+  // Integer  wayNum,货道号
+  // Long  basicItemId,商品id
+  // Integer  adjustNum，修正值
+  fixedYes() {
+    this.appService.postAliData(this.appProperties.machineControlAdjustReplenish +
+      `vmCode=${urlParse(window.location.search)['vmCode']}&wayNum=${this.wayNum}&basicItemId=${this.basicItemId}&adjustNum=${this.num}`,
+      '', this.token).subscribe(
+      data => {
+        console.log(data);
+        console.log(this.appProperties.machineControlAdjustReplenish +
+          `vmCode=${urlParse(window.location.search)['vmCode']}&wayNum=${this.wayNum}&basicItemId=${this.basicItemId}&adjustNum=${this.num}`);
+        alert(data.msg);
+        this.isVisibleFixed = false;
       },
       error2 => {
         console.log(error2);
