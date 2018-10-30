@@ -8,12 +8,12 @@
   text-align: center;
   position: relative;
   margin-bottom: 5px;
-  height: 166px;
+  height: 156px;
 }
 
 .contain_btm {
   position: absolute;
-  top: 166px;
+  top: 156px;
   left: 0;
   bottom: 0;
   padding-top: 20px;
@@ -48,7 +48,7 @@
   width: 45%;
   margin-left: 27%;
   position: absolute;
-  top: 149px;
+  top: 130px;
 }
 
 .logo_title {
@@ -498,7 +498,7 @@
   .col-img {
     margin-top: 8px;
     margin-bottom: 5px;
-    margin-left: -16px;
+    margin-left: -24px;
     /*margin-bottom: 21px;*/
     width: 85px;
     height: 75px;
