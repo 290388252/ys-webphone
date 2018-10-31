@@ -161,9 +161,11 @@ export class GoodsShowComponent implements OnInit {
       '', this.token).subscribe(
       data => {
         console.log(data);
-        console.log(this.appProperties.machineControlAdjustReplenish +
-          `vmCode=${urlParse(window.location.search)['vmCode']}&wayNum=${this.wayNum}&basicItemId=${this.basicItemId}&adjustNum=${this.num}`);
-        alert(data.msg);
+        if (data.code === 0) {
+          alert('修改成功');
+        } else {
+          alert(data.msg);
+        }
         this.isVisibleFixed = false;
       },
       error2 => {
