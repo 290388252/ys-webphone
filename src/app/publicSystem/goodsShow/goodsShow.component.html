@@ -1,6 +1,6 @@
 <div class="am-message result" style="background-size: 100% 0;margin-top: 1%" [hidden]="close">
   <i class="am-icon result success"></i>
-  <div [hidden]="flag === '1' || flag === '2'" class="am-message-main">补货完成</div>
+  <div [hidden]="flag === '1' || flag === '2'" class="am-message-main">补货完成<span style="font-size: 12px;color: red">(如数量不对请点击修正)</span></div>
   <div [hidden]="flag === '3' || flag === '4'" class="am-message-main">购买完成</div>
   <div class="am-message-sub">关门成功</div>
   <a [hidden]="item.changeNum > 0 && flag === '1'" href="javascript:void(0);" *ngFor="let item of replenishList" class="weui-media-box weui-media-box_appmsg">
@@ -10,7 +10,7 @@
     <div class="weui-media-box__bd">
       <h4 class="weui-media-box__title">{{item.itemName}}</h4>
       <h5 style="margin-top: 1px" class="weui-media-box__desc">{{turnText(item.changeNum)}}
-        <button [hidden]="flag === '1' || flag === '2'" (click)="fixedNum(item)">点击修正数量</button>
+        <button class="fixed-button" [hidden]="flag === '1' || flag === '2'" (click)="fixedNum(item)">点击修正数量</button>
       </h5>
     </div>
   </a>
