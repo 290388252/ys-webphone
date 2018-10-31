@@ -157,7 +157,6 @@ button{
   background-size: 100% 100%;
 }
 .boxssf {
-  /*float: left;*/
   width: 150px;
   height: 140px;
   margin: 0 auto;
@@ -170,10 +169,6 @@ button{
   width: 150px;
   height: 150px;
   margin-left: 5px;
-  /*-webkit-box-shadow:2px 2px 2px 2px gray;*/
-  /*-moz-box-shadow:2px 2px 2px 2px gray;*/
-  /*box-shadow:2px 2px 2px 2px gray;*/
-  /*background-color: rgba(0,0,0,0.1);*/
   background: url("../../../assets/main/kuan1.png");
   border: 0;
   background-size: 100% 100%;
@@ -184,10 +179,6 @@ button{
   width: 150px;
   height: 150px;
   margin-left: 5px;
-  /*-webkit-box-shadow:2px 2px 2px 2px gray;*/
-  /*-moz-box-shadow:2px 2px 2px 2px gray;*/
-  /*box-shadow:2px 2px 2px 2px gray;*/
-  /*background-color: rgba(0,0,0,0.1);*/
   background: url("../../../assets/main/kuan.png");
   border: 0;
   background-size: 100% 100%;
@@ -201,9 +192,7 @@ button{
   filter: blur(2px);
 }
 .boxss-one{
-  /*float: left;*/
   width: 150px;
-  /*height: 112px;*/
   height: 90px;
   margin: 0 auto;
   background: url("../../../assets/main/kuan1.png");
@@ -221,31 +210,17 @@ button{
 }
 
 .boxss{
-  /*float: left;*/
   width: 150px;
-  /*height: 112px;*/
   height: 90px;
   margin: 0 auto;
-  /*margin-right: 10px;*/
-  /*-webkit-box-shadow:2px 2px 2px 2px gray;*/
-  /*-moz-box-shadow:2px 2px 2px 2px gray;*/
-  /*box-shadow:2px 2px 2px 2px gray;*/
-  /*background-color: rgba(0,0,0,0.1);*/
   background: url("../../../assets/main/kuan.png");
   border: 0;
   background-size: 100% 100%;
 }
 .boxs{
-  /*float: left;*/
   width: 150px;
   height: 90px;
   margin: 0 auto;
-  /*height: 112px;*/
-  /*margin-left: 50px;*/
-  /*-webkit-box-shadow:2px 2px 2px 2px gray;*/
-  /*-moz-box-shadow:2px 2px 2px 2px gray;*/
-  /*box-shadow:2px 2px 2px 2px gray;*/
-  /*background-color: rgba(0,0,0,0.1);*/
   background: url("../../../assets/main/kuan.png");
   border: 0;
   background-size: 100% 100%;
@@ -389,10 +364,6 @@ button{
     width: 145px;
     height: 150px;
     margin-left: 5px;
-    /*-webkit-box-shadow:2px 2px 2px 2px gray;*/
-    /*-moz-box-shadow:2px 2px 2px 2px gray;*/
-    /*box-shadow:2px 2px 2px 2px gray;*/
-    /*background-color: rgba(0,0,0,0.1);*/
     background: url("../../../assets/main/kuan1.png");
     border: 0;
     background-size: 100% 100%;
@@ -403,18 +374,12 @@ button{
     width: 150px;
     height: 150px;
     margin-left: 5px;
-    /*-webkit-box-shadow:2px 2px 2px 2px gray;*/
-    /*-moz-box-shadow:2px 2px 2px 2px gray;*/
-    /*box-shadow:2px 2px 2px 2px gray;*/
-    /*background-color: rgba(0,0,0,0.1);*/
     background: url("../../../assets/main/kuan.png");
     border: 0;
     background-size: 100% 100%;
   }
   .boxss-one{
-    /*float: left;*/
     width: 150px;
-    /*height: 112px;*/
     height: 90px;
     margin: 0 auto;
     background: url("../../../assets/main/kuan1.png");
@@ -435,27 +400,14 @@ button{
     width: 150px;
     height: 90px;
     margin: 0 auto;
-    /*height: 112px;*/
-    /*margin-right: 10px;*/
-    /*-webkit-box-shadow:2px 2px 2px 2px gray;*/
-    /*-moz-box-shadow:2px 2px 2px 2px gray;*/
-    /*box-shadow:2px 2px 2px 2px gray;*/
-    /*background-color: rgba(0,0,0,0.1);*/
     background: url("../../../assets/main/kuan.png");
     border: 0;
     background-size: 100% 100%;
   }
   .boxs{
-    /*float: left;*/
     width: 150px;
     height: 90px;
     margin: 0 auto;
-    /*height: 112px;*/
-    /*margin-left: 50px;*/
-    /*-webkit-box-shadow:2px 2px 2px 2px gray;*/
-    /*-moz-box-shadow:2px 2px 2px 2px gray;*/
-    /*box-shadow:2px 2px 2px 2px gray;*/
-    /*background-color: rgba(0,0,0,0.1);*/
     background: url("../../../assets/main/kuan.png");
     border: 0;
     background-size: 100% 100%;
@@ -485,10 +437,6 @@ button{
     width: 155px;
     height: 155px;
     margin-left: 5px;
-    /*-webkit-box-shadow:2px 2px 2px 2px gray;*/
-    /*-moz-box-shadow:2px 2px 2px 2px gray;*/
-    /*box-shadow:2px 2px 2px 2px gray;*/
-    /*background-color: rgba(0,0,0,0.1);*/
     background: url("../../../assets/main/kuan1.png");
     border: 0;
     background-size: 100% 100%;
@@ -499,10 +447,6 @@ button{
     width: 155px;
     height: 155px;
     margin-left: 5px;
-    /*-webkit-box-shadow:2px 2px 2px 2px gray;*/
-    /*-moz-box-shadow:2px 2px 2px 2px gray;*/
-    /*box-shadow:2px 2px 2px 2px gray;*/
-    /*background-color: rgba(0,0,0,0.1);*/
     background: url("../../../assets/main/kuan.png");
     border: 0;
     background-size: 100% 100%;
@@ -512,11 +456,6 @@ button{
     width: 150px;
     height: 90px;
     margin: 0 auto;
-    /*height: 112px;*/
-    /*margin-right: 10px;*/
-    /*-webkit-box-shadow:2px 2px 2px 2px gray;*/
-    /*-moz-box-shadow:2px 2px 2px 2px gray;*/
-    /*box-shadow:2px 2px 2px 2px gray;*/
     background-color: rgba(0,0,0,0.1);
   }
   .boxs{
@@ -524,12 +463,6 @@ button{
     width: 150px;
     height: 90px;
     margin: 0 auto;
-    /*height: 112px;*/
-    /*margin-left: 50px;*/
-    /*-webkit-box-shadow:2px 2px 2px 2px gray;*/
-    /*-moz-box-shadow:2px 2px 2px 2px gray;*/
-    /*box-shadow:2px 2px 2px 2px gray;*/
-    /*background-color: rgba(0,0,0,0.1);*/
     background: url("../../../assets/main/kuan.png");
     border: 0;
     background-size: 100% 100%;
@@ -620,7 +553,6 @@ button{
   .context{
     width: 270px;
     margin: 0 auto;
-    /*margin-left: 20px;*/
   }
   .rounded-circle{
     margin: 15px 0 10px 0;
@@ -638,10 +570,6 @@ button{
     width: 120px;
     height: 120px;
     margin-right: 10px;
-    /*-webkit-box-shadow:2px 2px 2px 2px gray;*/
-    /*-moz-box-shadow:2px 2px 2px 2px gray;*/
-    /*box-shadow:2px 2px 2px 2px gray;*/
-    /*background-color: rgba(0,0,0,0.1);*/
     background: url("../../../assets/main/kuan1.png");
     border: 0;
     background-size: 100% 100%;
@@ -652,18 +580,12 @@ button{
     width: 120px;
     height: 120px;
     margin-right: 10px;
-    /*-webkit-box-shadow:2px 2px 2px 2px gray;*/
-    /*-moz-box-shadow:2px 2px 2px 2px gray;*/
-    /*box-shadow:2px 2px 2px 2px gray;*/
-    /*background-color: rgba(0,0,0,0.1);*/
     background: url("../../../assets/main/kuan.png");
     border: 0;
     background-size: 100% 100%;
   }
   .boxss-one{
-    /*float: left;*/
     width: 150px;
-    /*height: 112px;*/
     height: 90px;
     margin: 0 auto;
     background: url("../../../assets/main/kuan1.png");
@@ -671,7 +593,6 @@ button{
     background-size: 100% 100%;
   }
   .boxs-one{
-    /*float: left;*/
     width: 150px;
     height: 90px;
     margin: 0 auto;
@@ -680,31 +601,17 @@ button{
     background-size: 100% 100%;
   }
   .boxss{
-    /*float: left;*/
     width: 150px;
     height: 90px;
     margin: 0 auto;
-    /*height: 112px;*/
-    /*margin-right: 10px;*/
-    /*-webkit-box-shadow:2px 2px 2px 2px gray;*/
-    /*-moz-box-shadow:2px 2px 2px 2px gray;*/
-    /*box-shadow:2px 2px 2px 2px gray;*/
-    /*background-color: rgba(0,0,0,0.1);*/
     background: url("../../../assets/main/kuan.png");
     border: 0;
     background-size: 100% 100%;
   }
   .boxs{
-    /*float: left;*/
     width: 150px;
     height: 90px;
     margin: 0 auto;
-    /*height: 112px;*/
-    /*margin-left: 50px;*/
-    /*-webkit-box-shadow:2px 2px 2px 2px gray;*/
-    /*-moz-box-shadow:2px 2px 2px 2px gray;*/
-    /*box-shadow:2px 2px 2px 2px gray;*/
-    /*background-color: rgba(0,0,0,0.1);*/
     background: url("../../../assets/main/kuan.png");
     border: 0;
     background-size: 100% 100%;

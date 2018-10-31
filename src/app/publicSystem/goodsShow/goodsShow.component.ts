@@ -17,6 +17,7 @@ export class GoodsShowComponent implements OnInit {
   public close: boolean;
   public isVisibleOpen: boolean;
   public isVisibleFixed: boolean;
+  public isVisibleWarn: boolean;
   public token: string;
   public wayNum: string;
   public basicItemId: string;
@@ -155,6 +156,9 @@ export class GoodsShowComponent implements OnInit {
   // Integer  wayNum,货道号
   // Long  basicItemId,商品id
   // Integer  adjustNum，修正值
+  yes() {
+    this.isVisibleWarn = false;
+  }
   fixedYes() {
     this.appService.postAliData(this.appProperties.machineControlAdjustReplenish +
       `vmCode=${urlParse(window.location.search)['vmCode']}&wayNum=${this.wayNum}&basicItemId=${this.basicItemId}&adjustNum=${this.num}`,
@@ -257,6 +261,7 @@ export class GoodsShowComponent implements OnInit {
             data3 => {
               console.log(data3);
               this.replenishList = data3.data;
+              this.isVisibleWarn = true;
             },
             error3 => {
               console.log(error3);
