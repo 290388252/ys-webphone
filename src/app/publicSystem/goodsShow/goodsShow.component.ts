@@ -21,6 +21,7 @@ export class GoodsShowComponent implements OnInit {
   public token: string;
   public wayNum: string;
   public basicItemId: string;
+  public index: string;
   public num: number;
   public goodsList = [];
   public totalPrice = 0;
@@ -68,25 +69,25 @@ export class GoodsShowComponent implements OnInit {
     }
     this.isVisibleOpen = false;
     this.isVisibleFixed = false;
-    console.log(urlParse(window.location.search)['vmCode']);
     console.log(this.token);
     console.log(this.flag);
     this.oneGoodsOrMore();
   }
-  turnText(num) {
+  turnText(item) {
     let text;
-    if (num < 0) {
-      text = `拿取数量${-num}`;
-    } else if (num > 0 && (this.flag === '3' || this.flag === '4')) {
-      text = `补货数量${num}`;
-    }
+      if (item.changeNum < 0) {
+        text = item.changeNewNum === undefined ? `拿取数量${-item.changeNum}` : `拿取数量${-item.changeNum},修正后数量${item.changeNewNum}`;
+      } else if (item.changeNum > 0 && (this.flag === '3' || this.flag === '4')) {
+        text = item.changeNewNum === undefined ? `补货数量${item.changeNum}` : `补货数量${item.changeNum},修正后数量${item.changeNewNum}`;
+      }
     return text;
   }
   follow() {
     window.location.href = 'https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzU0NzQ4MTY0Mg==&scene=124#wechat_redirect';
   }
   share() {
-    this.appService.postAliData(this.appProperties.wechatShareInfoUrl + '?url=http://sms.youshuidaojia.com/goodsShow?vmCode=' + urlParse(window.location.href)['vmCode'],
+    this.appService.postAliData(this.appProperties.wechatShareInfoUrl
+      + '?url=http://sms.youshuidaojia.com/goodsShow?vmCode=' + urlParse(window.location.href)['vmCode'],
       '', this.token).subscribe(
       data => {
         console.log(data);
@@ -147,15 +148,12 @@ export class GoodsShowComponent implements OnInit {
       }
     );
   }
-  fixedNum(item) {
+  fixedNum(item, index) {
     this.isVisibleFixed = true;
     this.wayNum = item.wayNum;
     this.basicItemId = item.basicItemId;
+    this.index = index;
   }
-  // String  vmCode,机器编号
-  // Integer  wayNum,货道号
-  // Long  basicItemId,商品id
-  // Integer  adjustNum，修正值
   yes() {
     this.isVisibleWarn = false;
   }
@@ -166,6 +164,7 @@ export class GoodsShowComponent implements OnInit {
       data => {
         console.log(data);
         if (data.code === 0) {
+          this.replenishList[this.index].changeNewNum = this.num;
           alert('修改成功');
         } else {
           alert(data.msg);
@@ -216,12 +215,6 @@ export class GoodsShowComponent implements OnInit {
         this.goodsList = data.data.itemList;
         this.totalPrice = data.data.totalPrice;
         this.isClosed();
-        // this.goodsList.forEach(item => {
-        //   if (item.changeNum < 0) {
-        //     this.totolPrice += item.price;
-        //   }
-        // });
-        // console.log(this.totolPrice);
       },
       error2 => {
         console.log(error2);
@@ -234,7 +227,7 @@ export class GoodsShowComponent implements OnInit {
       {vmCode: urlParse(window.location.search)['vmCode']}, this.token).subscribe(
       data2 => {
         this.count++;
-        if (this.count === 20) {
+        if (this.count === 25) {
           this.isVisibleOpen = true;
           clearInterval(this.timeInterval);
         }
@@ -261,7 +254,9 @@ export class GoodsShowComponent implements OnInit {
             data3 => {
               console.log(data3);
               this.replenishList = data3.data;
-              this.isVisibleWarn = true;
+              if (this.flag === 3 || this.flag === '3' || this.flag === 4 || this.flag === '4') {
+                this.isVisibleWarn = true;
+              }
             },
             error3 => {
               console.log(error3);

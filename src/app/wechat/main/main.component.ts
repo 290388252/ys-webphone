@@ -255,7 +255,7 @@ export class MainComponent implements OnInit {
       if (this.token === null || this.token === undefined || this.token === 'undefined') {
         this.clickMore = false;
         sessionStorage.setItem('wayNumber', this.item.wayNumber);
-        alert('请点击确认，注册登陆');
+        // alert('请点击确认，注册登陆');
         this.login();
       } else {
         this.appService.getDataOpen(this.appProperties.indexOpenDoor,
