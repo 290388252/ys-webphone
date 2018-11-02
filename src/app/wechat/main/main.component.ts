@@ -54,7 +54,7 @@ export class MainComponent implements OnInit {
     } else if (getCoupon() === '2') {
       this.isVisibleCouponTwo = true;
     }
-    if (urlParse(window.location.search)['token']) {
+    if (this.token === undefined || this.token === null || this.token === '') {
       this.token = urlParse(window.location.search)['token'];
       const exp = new Date();
       exp.setTime(exp.getTime() + 1000 * 60 * 60 * 24 * 365 * 10);
