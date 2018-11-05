@@ -48,17 +48,19 @@ export class MainComponent implements OnInit {
   ngOnInit() {
     this.getInitData();
     this.getCookies();
-    console.log(this.token);
-    if (getCoupon() === '0') {
-      this.isVisibleCoupon = true;
-    } else if (getCoupon() === '2') {
-      this.isVisibleCouponTwo = true;
-    }
-    if (this.token === undefined || this.token === null || this.token === '') {
+    console.log(urlParse(window.location.search)['token']);
+    if (urlParse(window.location.search)['token'] === undefined) {
+      this.getCookies();
+    } else {
       this.token = urlParse(window.location.search)['token'];
       const exp = new Date();
       exp.setTime(exp.getTime() + 1000 * 60 * 60 * 24 * 365 * 10);
       document.cookie = 'token=' + this.token + ';expires=' + exp.toUTCString();
+    }
+    if (getCoupon() === '0') {
+      this.isVisibleCoupon = true;
+    } else if (getCoupon() === '2') {
+      this.isVisibleCouponTwo = true;
     }
     console.log(urlParse(window.location.search)['vmCode']);
     // // 新用户进入界面

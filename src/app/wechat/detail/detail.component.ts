@@ -32,7 +32,11 @@ export class DetailComponent implements OnInit , AfterViewChecked {
 
   ngOnInit() {
     this.id = urlParse(window.location.search)['flag'];
-    this.getCookies();
+    if (urlParse(window.location.search)['token'] === undefined) {
+      this.getCookies();
+    } else {
+      this.token = urlParse(window.location.search)['token'];
+    }
     console.log(this.token);
     this.getData(this.appProperties.findAllUserOrderUrl);
   }

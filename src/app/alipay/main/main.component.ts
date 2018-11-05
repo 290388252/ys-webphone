@@ -42,14 +42,15 @@ export class MainComponent implements OnInit {
     // 初始化数据
     this.getInitData();
     // 获取token值
-    this.getCookies();
-    console.log(this.token);
-    if (this.token === undefined || this.token === null || this.token === '') {
+    if (urlParse(window.location.search)['token'] === undefined) {
+      this.getCookies();
+    } else {
       this.token = urlParse(window.location.search)['token'];
       const exp = new Date();
       exp.setTime(exp.getTime() + 1000 * 60 * 60 * 24 * 365 * 10);
       document.cookie = 'token=' + this.token + ';expires=' + exp.toUTCString();
     }
+    console.log(this.token);
     console.log(urlParse(window.location.search)['vmCode']);
     sessionStorage.setItem('vmCode', urlParse(window.location.search)['vmCode']);
   }
