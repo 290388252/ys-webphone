@@ -14,6 +14,7 @@ import { CarouselConfig } from 'ngx-bootstrap/carousel';
 })
 export class MainComponent implements OnInit {
   public indexList = [];
+  public eightIndexList = [];
   public fiveIndexList = [];
   private token: string;
   // public img = 'http://lenvar-resource-products.oss-cn-shenzhen.aliyuncs.com/';
@@ -25,7 +26,7 @@ export class MainComponent implements OnInit {
   public item;
   public isFourDoor = false; // 四门
   public isFiveDoor = false; // 五门
-  public isSixDoor = false; // liu门
+  public isEightDoor = false; // 八门
   public isVisibleCouponThree = false;
   public couponButtonHidden = true;
   public youshuiCompany = true;
@@ -88,6 +89,7 @@ export class MainComponent implements OnInit {
             if (data.returnObject.length <= 4) {
               this.isFourDoor = true;
               this.isFiveDoor = false;
+              this.isEightDoor = false;
               this.indexList = data.returnObject;
               for (let i = 0; i < 2; i++) {
                 this.indexList.unshift(this.indexList.pop());
@@ -95,6 +97,7 @@ export class MainComponent implements OnInit {
             } else if (data.returnObject.length === 5) {
               this.isFourDoor = false;
               this.isFiveDoor = true;
+              this.isEightDoor = false;
               data.returnObject.forEach((item, index) => {
                 if (index > 1) {
                   this.indexList.push(item);
@@ -102,11 +105,12 @@ export class MainComponent implements OnInit {
                   this.fiveIndexList.push(item);
                 }
               });
-            } else if (data.returnObject.length === 6) {
+            } else if (data.returnObject.length === 8) {
               this.isFourDoor = false;
               this.isFiveDoor = false;
-              this.isSixDoor = true;
+              this.isEightDoor = true;
               this.indexList = data.returnObject;
+              this.eightIndexList = data.returnObject.slice(0, 4);
             }
           }
           console.log(this.indexList);
@@ -126,6 +130,13 @@ export class MainComponent implements OnInit {
       alert('水已经卖完无法开门');
     } else {
       this.isVisibleOpenDoor = true;
+    }
+  }
+  eigthDoorChoose(flag) {
+    if (flag === 0) {
+      this.eightIndexList = this.indexList.slice(0, 4);
+    } else if (flag === 1) {
+      this.eightIndexList = this.indexList.slice(4, 8);
     }
   }
   openOk() {

@@ -13,6 +13,7 @@ import {AddMainModule} from './addMain.module';
 })
 export class AddMainComponent implements OnInit {
   public indexList = [];
+  public eightIndexList = [];
   public fiveIndexListLeft = [];
   public fiveIndexListRigth = [];
   private wayNumber: number;
@@ -38,7 +39,7 @@ export class AddMainComponent implements OnInit {
   public clickMore = false;
   public isFourDoor = false; // 四门
   public isFiveDoor = false; // 五门
-  public isSixDoor = false; // liu门
+  public isEightDoor = false; // 8门
   // public myVol = false;
   // public isConfirmLoading = false;
   public isVisible = false;
@@ -197,7 +198,7 @@ export class AddMainComponent implements OnInit {
           if (data.data.wayInfo.length <= 4) {
             this.isFourDoor = true;
             this.isFiveDoor = false;
-            this.isSixDoor = false;
+            this.isEightDoor = false;
             this.indexList = data.data.wayInfo;
             for (let i = 0; i < 2; i++) {
               this.indexList.unshift(this.indexList.pop());
@@ -208,7 +209,7 @@ export class AddMainComponent implements OnInit {
             this.fiveIndexListRigth = [];
             this.isFourDoor = false;
             this.isFiveDoor = true;
-            this.isSixDoor = false;
+            this.isEightDoor = false;
             data.data.wayInfo.forEach((item, index) => {
               if (index > 1) {
                 this.fiveIndexListRigth.push(item);
@@ -216,11 +217,12 @@ export class AddMainComponent implements OnInit {
                 this.fiveIndexListLeft.push(item);
               }
             });
-          } else if (data.data.wayInfo.length === 6) {
+          } else if (data.data.wayInfo.length === 8) {
             this.isFourDoor = false;
             this.isFiveDoor = false;
-            this.isSixDoor = true;
+            this.isEightDoor = true;
             this.indexList = data.data.wayInfo;
+            this.eightIndexList = data.data.wayInfo.slice(0, 4);
           }
           console.log(this.indexList);
           this.temperature = data.data.temperature;
@@ -266,6 +268,13 @@ export class AddMainComponent implements OnInit {
     this.isVisibleOpenDetail = true;
   }
 
+  eigthDoorChoose(flag) {
+    if (flag === 0) {
+      this.eightIndexList = this.indexList.slice(0, 4);
+    } else if (flag === 1) {
+      this.eightIndexList = this.indexList.slice(4, 8);
+    }
+  }
   // 开门接口
   openDoor(item) {
     if (this.token === null

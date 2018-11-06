@@ -20,10 +20,10 @@
     </div>
     <!--five-->
     <div class="contain_btm">
-      <!--<div style="display: flex;width: 100%;height: 20px;">-->
-        <!--<img src="../../../assets/main/cold.png" alt="" style="width: 50%;"><span style="position: absolute;left: 20%;color: white">点击常温商品</span>-->
-        <!--<img src="../../../assets/main/normal.png" alt="" style="width: 50%;"><span style="position: absolute;right: 20%;color: white">点击冷藏商品</span>-->
-      <!--</div>-->
+      <div style="display: flex;width: 100%;height: 20px;" *ngIf="isEightDoor">
+        <img (click)="eigthDoorChoose(0)" src="../../../assets/main/cold.png" alt="" style="width: 50%;"><span style="position: absolute;left: 20%;color: white">点击常温商品</span>
+        <img (click)="eigthDoorChoose(1)" src="../../../assets/main/normal.png" alt="" style="width: 50%;"><span style="position: absolute;right: 20%;color: white">点击冷藏商品</span>
+      </div>
       <div class="context-five" *ngIf="isFiveDoor">
         <div style="float: left;margin-top: 5px">
           <div (click)="openDoor(item)" *ngFor="let item of fiveIndexListLeft"
@@ -113,23 +113,23 @@
           </div>
         </div>
       </div>
-
-      <!--<div class="context" *ngIf="isFourDoor">-->
-        <!--<div (click)="openDoor(item)" *ngFor="let item of indexList" [ngClass]="item['wayItemList'].length === 1 ? 'boxs-eight-one' : 'boxs-eight'" class=" card text-white addMain-bottom">-->
-          <!--<div style="text-align: center">-->
-            <!--<img class="eight-img-one" src="{{img}}{{item['wayItemList'][0]['pic']}}" alt="">-->
-            <!--<p class="text-eight-one"  style="color:#333333;font-wayWeight: 900;">重量:495387</p>-->
-            <!--<p class="text-eight-one"  style="color:#333333;font-wayWeight: 900;top: 22px;">数量:{{item['wayItemList'][0]['num']}}</p>-->
-            <!--<img (click)="detail(item['wayItemList'][0], $event, item['wayWeight'])" src="../../../assets/main/button-bg.png" alt="" class="eight-bt-left">-->
-          <!--</div>-->
-          <!--<div style="text-align: center" [hidden]="item['wayItemList'].length === 1">-->
-            <!--<img class="eight-img" [src]="turnImg(item['wayItemList'])" alt="">-->
-            <!--&lt;!&ndash;<p class="text-eight" style="color: #333333;">重量:495387{{item['wayWeight']}}</p>&ndash;&gt;-->
-            <!--<p class="text-eight" style="color: #333333;top: 22px;">数量:{{turn(item['wayItemList'], 'num')}}</p>-->
-            <!--<img (click)="detail(item['wayItemList'][1], $event, item['wayWeight'])" src="../../../assets/main/button-bg.png" alt="" class="eight-bt">-->
-          <!--</div>-->
-        <!--</div>-->
-      <!--</div>-->
+      <!--8门-->
+      <div class="context" *ngIf="isEightDoor">
+        <div (click)="openDoor(item)" *ngFor="let item of eightIndexList" [ngClass]="item['wayItemList'].length === 1 ? 'boxs-eight-one' : 'boxs-eight'" class=" card text-white addMain-bottom">
+          <div style="text-align: center">
+            <img class="eight-img-one" src="{{img}}{{item['wayItemList'][0]['pic']}}" alt="">
+            <p class="text-eight-one"  style="color:#333333;font-wayWeight: 900;">重量:495387</p>
+            <p class="text-eight-one"  style="color:#333333;font-wayWeight: 900;top: 22px;">数量:{{item['wayItemList'][0]['num']}}</p>
+            <img (click)="detail(item['wayItemList'][0], $event, item['wayWeight'])" src="../../../assets/main/button-bg.png" alt="" class="eight-bt-left">
+          </div>
+          <div style="text-align: center" [hidden]="item['wayItemList'].length === 1">
+            <img class="eight-img" [src]="turnImg(item['wayItemList'])" alt="">
+            <!--<p class="text-eight" style="color: #333333;">重量:495387{{item['wayWeight']}}</p>-->
+            <p class="text-eight" style="color: #333333;top: 22px;">数量:{{turn(item['wayItemList'], 'num')}}</p>
+            <img (click)="detail(item['wayItemList'][1], $event, item['wayWeight'])" src="../../../assets/main/button-bg.png" alt="" class="eight-bt">
+          </div>
+        </div>
+      </div>
     </div>
     <!--<div class="foot">-->
     <!--<img class="foot-img" src="../../../assets/main/logo1.png" alt="">-->
