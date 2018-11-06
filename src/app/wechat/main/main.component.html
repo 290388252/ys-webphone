@@ -7,7 +7,7 @@
     <div class="logo">
       <carousel>
         <slide>
-          <img src="../../../assets/main/banner1.png" alt="first slide" style="display: block; width: 100%;height: 116px;">
+          <img src="../../../assets/main/banner1.png" alt="first slide" style="display: block; width: 100%;height: 100px;">
           <div class="carousel-caption d-none d-md-block">
             <h3>First slide label</h3>
             <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
@@ -26,13 +26,14 @@
       <!--<div class="logo_title">-->
         <!--<div class="logo_title_inner"></div>-->
       <!--</div>-->
-      <p class="title">.</p>
+      <!--立即参与-->
+      <!--<p class="title">.</p>-->
     </div>
   <div class="contain_btm">
-    <img src="../../../assets/main/advertisement.png" alt="" class="advertisement">
-    <div style="display: flex;width: 100%;height: 20px;" *ngIf="isEightDoor">
-      <img (click)="eigthDoorChoose(0)" src="../../../assets/main/cold.png" alt="" style="width: 50%;"><span style="position: absolute;left: 20%;color: white">点击常温商品</span>
-      <img (click)="eigthDoorChoose(1)" src="../../../assets/main/normal.png" alt="" style="width: 50%;"><span style="position: absolute;right: 20%;color: white">点击冷藏商品</span>
+    <!--<img src="../../../assets/main/advertisement.png" alt="" class="advertisement">-->
+    <div style="display: flex;width: 100%;height: 20px;margin-bottom: 30px" *ngIf="isEightDoor">
+      <img (click)="eigthDoorChoose(0)" [src]="(eightDoorFlag === 0) ?'../../../assets/main/normal.png':'../../../assets/main/cold.png'"  alt="" style="width: 50%;height: 30px"><span (click)="eigthDoorChoose(0)" style="position: absolute;left: 15%;color: white;top: 4px;">点击冷藏商品</span>
+      <img (click)="eigthDoorChoose(1)" [src]="(eightDoorFlag === 1) ?'../../../assets/main/normal.png':'../../../assets/main/cold.png'"   alt="" style="width: 50%;height: 30px"><span (click)="eigthDoorChoose(1)" style="position: absolute;right: 15%;color: white;top: 4px;">点击常温商品</span>
     </div>
     <div class="context-five" *ngIf="isFiveDoor">
       <div style="float: left">

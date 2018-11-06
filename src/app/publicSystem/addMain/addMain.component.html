@@ -20,9 +20,9 @@
     </div>
     <!--five-->
     <div class="contain_btm">
-      <div style="display: flex;width: 100%;height: 20px;" *ngIf="isEightDoor">
-        <img (click)="eigthDoorChoose(0)" src="../../../assets/main/cold.png" alt="" style="width: 50%;"><span style="position: absolute;left: 20%;color: white">点击常温商品</span>
-        <img (click)="eigthDoorChoose(1)" src="../../../assets/main/normal.png" alt="" style="width: 50%;"><span style="position: absolute;right: 20%;color: white">点击冷藏商品</span>
+      <div style="display: flex;width: 100%;height: 20px;margin-bottom: 30px" *ngIf="isEightDoor">
+        <img (click)="eigthDoorChoose(0)" [src]="(eightDoorFlag === 0) ?'../../../assets/main/normal.png':'../../../assets/main/cold.png'"  alt="" style="width: 50%;height: 30px"><span (click)="eigthDoorChoose(0)" style="position: absolute;left: 15%;color: white;top: 4px;">点击冷藏商品</span>
+        <img (click)="eigthDoorChoose(1)" [src]="(eightDoorFlag === 1) ?'../../../assets/main/normal.png':'../../../assets/main/cold.png'"   alt="" style="width: 50%;height: 30px"><span (click)="eigthDoorChoose(1)" style="position: absolute;right: 15%;color: white;top: 4px;">点击常温商品</span>
       </div>
       <div class="context-five" *ngIf="isFiveDoor">
         <div style="float: left;margin-top: 5px">
@@ -148,7 +148,7 @@
       <button (click)="reStart()" type="button">重启</button>
       <button (click)="resetNum()" type="button">校准所有</button>
       <button (click)="adjustVol()" type="button">调节音量</button>
-      <button (click)="resetwayWeight()" type="button">校准</button>
+      <button (click)="resetWeight()" type="button">校准</button>
     </div>
     <!--<div class="my-open">-->
     <!--</div>-->
@@ -215,8 +215,8 @@
       <p style="font-size: medium;">详情</p>
       <p style="font-size: medium;">商品名称:{{itemName}}</p>
       <p style="font-size: medium;">容量:{{numDetail}}桶</p>
-      <p style="font-size: medium;">规格:{{onewayWeight}}</p>
-      <p style="font-size: medium;">重量:{{wayWeight}}</p>
+      <p style="font-size: medium;">规格:{{oneWeight}}</p>
+      <p style="font-size: medium;">重量:{{weight}}</p>
       <p style="font-size: medium;">最大容量:{{fullNum}}桶</p>
     </ng-template>
     <ng-template #modalFooterD>

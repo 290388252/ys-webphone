@@ -8,12 +8,12 @@
   text-align: center;
   position: relative;
   margin-bottom: 5px;
-  height: 116px;
+  height: 100px;
 }
 
 .contain_btm {
   position: absolute;
-  top: 116px;
+  top: 100px;
   left: 0;
   bottom: 0;
   width: 100%;
@@ -21,7 +21,9 @@
   background-size: 100% auto;
 }
 .advertisement{
-  width: 100%;
+  width: 80%;
+  height: 50px;
+  margin-left: 25px;
 }
 .col-img {
   margin-top: 8px;
@@ -596,15 +598,10 @@
     background-size: 100% 100%;
   }
 }
-@media screen and (max-width: 509px) {
-  .advertisement{
-    width: 90%;
-    height: 50px;
-    margin-left: 16px;
-  }
+@media screen and (max-height: 510px) {
   .boxs-eight-one {
     width: 80%;
-    height: 60px;
+    height: 65px;
     margin: 0 auto;
     background: url("../../../assets/main/oged.png");
     border: 0;
@@ -612,7 +609,7 @@
   }
   .boxs-eight {
     width: 80%;
-    height: 60px;
+    height: 65px;
     margin: 0 auto;
     background: url("../../../assets/main/mged.png");
     border: 0;

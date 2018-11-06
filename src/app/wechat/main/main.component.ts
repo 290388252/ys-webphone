@@ -19,6 +19,7 @@ export class MainComponent implements OnInit {
   public indexList = [];
   public eightIndexList = [];
   public fiveIndexList = [];
+  public eightDoorFlag = 0;
   private token: string;
   private wayNumber: number;
   public isVisibleOpen = false;
@@ -148,6 +149,7 @@ export class MainComponent implements OnInit {
     }
   }
   eigthDoorChoose(flag) {
+    this.eightDoorFlag = flag;
     if (flag === 0) {
       this.eightIndexList = this.indexList.slice(0, 4);
     } else if (flag === 1) {

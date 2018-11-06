@@ -15,6 +15,7 @@ import { CarouselConfig } from 'ngx-bootstrap/carousel';
 export class MainComponent implements OnInit {
   public indexList = [];
   public eightIndexList = [];
+  public eightDoorFlag = 0;
   public fiveIndexList = [];
   private token: string;
   // public img = 'http://lenvar-resource-products.oss-cn-shenzhen.aliyuncs.com/';
@@ -133,6 +134,7 @@ export class MainComponent implements OnInit {
     }
   }
   eigthDoorChoose(flag) {
+    this.eightDoorFlag = flag;
     if (flag === 0) {
       this.eightIndexList = this.indexList.slice(0, 4);
     } else if (flag === 1) {

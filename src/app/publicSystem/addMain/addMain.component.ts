@@ -14,6 +14,7 @@ import {AddMainModule} from './addMain.module';
 export class AddMainComponent implements OnInit {
   public indexList = [];
   public eightIndexList = [];
+  public eightDoorFlag = 0;
   public fiveIndexListLeft = [];
   public fiveIndexListRigth = [];
   private wayNumber: number;
@@ -269,6 +270,7 @@ export class AddMainComponent implements OnInit {
   }
 
   eigthDoorChoose(flag) {
+    this.eightDoorFlag = flag;
     if (flag === 0) {
       this.eightIndexList = this.indexList.slice(0, 4);
     } else if (flag === 1) {
