@@ -20,10 +20,10 @@
     </div>
     <!--five-->
     <div class="contain_btm">
-      <div style="display: flex;width: 100%;height: 20px;">
-        <img src="../../../assets/main/cold.png" alt="" style="width: 50%;"><span style="position: absolute;left: 20%;color: white">点击常温商品</span>
-        <img src="../../../assets/main/normal.png" alt="" style="width: 50%;"><span style="position: absolute;right: 20%;color: white">点击冷藏商品</span>
-      </div>
+      <!--<div style="display: flex;width: 100%;height: 20px;">-->
+        <!--<img src="../../../assets/main/cold.png" alt="" style="width: 50%;"><span style="position: absolute;left: 20%;color: white">点击常温商品</span>-->
+        <!--<img src="../../../assets/main/normal.png" alt="" style="width: 50%;"><span style="position: absolute;right: 20%;color: white">点击冷藏商品</span>-->
+      <!--</div>-->
       <div class="context-five" *ngIf="isFiveDoor">
         <div style="float: left;margin-top: 5px">
           <div (click)="openDoor(item)" *ngFor="let item of fiveIndexListLeft"
@@ -82,54 +82,54 @@
       <!--five-->
 
 
-      <!--<div class="context" *ngIf="isFourDoor">-->
-        <!--<div (click)="openDoor(item)" *ngFor="let item of indexList"-->
-             <!--[ngClass]="item['wayItemList'].length === 1 ? 'box-one' : 'box'" class=" card text-white mb-3">-->
-          <!--<div [ngClass]="item['wayItemList'].length === 1 ? 'box-body-one' : 'box-body'">-->
-            <!--<img class="col-img" src="{{img}}{{item['wayItemList'][0]['pic']}}" alt="">-->
-            <!--<div [ngClass]="item['wayItemList'].length === 1 ? 'w-and-n-one' : 'w-and-n'">-->
-              <!--<span class="w-n-size">重量：{{item['wayWeight']}}</span>-->
-              <!--<br>-->
-              <!--<span class="w-n-size">数量：{{item['wayItemList'][0]['num']}}</span>-->
-            <!--</div>-->
-            <!--<button [hidden]="item['wayItemList'].length === 1"-->
-                    <!--(click)="detail(item['wayItemList'][0], $event, item['wayWeight'])"-->
-                    <!--class="detail-button-four"></button>-->
-            <!--<button [hidden]="item['wayItemList'].length !== 1"-->
-                    <!--(click)="detail(item['wayItemList'][0], $event, item['wayWeight'])" class="detail-button-four"-->
-                    <!--style="left: 30%"></button>-->
-            <!--<br/>-->
-          <!--</div>-->
-          <!--<div [hidden]="item['wayItemList'].length === 1" class="box-body">-->
-            <!--<img class="col-img" [src]="turnImg(item['wayItemList'])" alt="">-->
-            <!--<div class="w-and-n">-->
-              <!--<span class="w-n-size">重量：{{item['wayWeight']}}</span>-->
-              <!--<br>-->
-              <!--<span class="w-n-size">数量：{{turn(item['wayItemList'], 'num')}}</span>-->
-            <!--</div>-->
-            <!--<button (click)="detail(item['wayItemList'][1], $event, item['wayWeight'])"-->
-                    <!--class="detail-button-four-second"></button>-->
-            <!--<br/>-->
-          <!--</div>-->
-        <!--</div>-->
-      <!--</div>-->
-
       <div class="context" *ngIf="isFourDoor">
-        <div (click)="openDoor(item)" *ngFor="let item of indexList" [ngClass]="item['wayItemList'].length === 1 ? 'boxs-eight-one' : 'boxs-eight'" class=" card text-white addMain-bottom">
-          <div style="text-align: center">
-            <img class="eight-img-one" src="{{img}}{{item['wayItemList'][0]['pic']}}" alt="">
-            <p class="text-eight-one"  style="color:#333333;font-wayWeight: 900;">重量:495387</p>
-            <p class="text-eight-one"  style="color:#333333;font-wayWeight: 900;top: 22px;">数量:{{item['wayItemList'][0]['num']}}</p>
-            <img (click)="detail(item['wayItemList'][0], $event, item['wayWeight'])" src="../../../assets/main/button-bg.png" alt="" class="eight-bt-left">
+        <div (click)="openDoor(item)" *ngFor="let item of indexList"
+             [ngClass]="item['wayItemList'].length === 1 ? 'box-one' : 'box'" class=" card text-white mb-3">
+          <div [ngClass]="item['wayItemList'].length === 1 ? 'box-body-one' : 'box-body'">
+            <img class="col-img" src="{{img}}{{item['wayItemList'][0]['pic']}}" alt="">
+            <div [ngClass]="item['wayItemList'].length === 1 ? 'w-and-n-one' : 'w-and-n'">
+              <span class="w-n-size">重量：{{item['wayWeight']}}</span>
+              <br>
+              <span class="w-n-size">数量：{{item['wayItemList'][0]['num']}}</span>
+            </div>
+            <button [hidden]="item['wayItemList'].length === 1"
+                    (click)="detail(item['wayItemList'][0], $event, item['wayWeight'])"
+                    class="detail-button-four"></button>
+            <button [hidden]="item['wayItemList'].length !== 1"
+                    (click)="detail(item['wayItemList'][0], $event, item['wayWeight'])" class="detail-button-four"
+                    style="left: 30%"></button>
+            <br/>
           </div>
-          <div style="text-align: center" [hidden]="item['wayItemList'].length === 1">
-            <img class="eight-img" [src]="turnImg(item['wayItemList'])" alt="">
-            <!--<p class="text-eight" style="color: #333333;">重量:495387{{item['wayWeight']}}</p>-->
-            <p class="text-eight" style="color: #333333;top: 22px;">数量:{{turn(item['wayItemList'], 'num')}}</p>
-            <img (click)="detail(item['wayItemList'][1], $event, item['wayWeight'])" src="../../../assets/main/button-bg.png" alt="" class="eight-bt">
+          <div [hidden]="item['wayItemList'].length === 1" class="box-body">
+            <img class="col-img" [src]="turnImg(item['wayItemList'])" alt="">
+            <div class="w-and-n">
+              <span class="w-n-size">重量：{{item['wayWeight']}}</span>
+              <br>
+              <span class="w-n-size">数量：{{turn(item['wayItemList'], 'num')}}</span>
+            </div>
+            <button (click)="detail(item['wayItemList'][1], $event, item['wayWeight'])"
+                    class="detail-button-four-second"></button>
+            <br/>
           </div>
         </div>
       </div>
+
+      <!--<div class="context" *ngIf="isFourDoor">-->
+        <!--<div (click)="openDoor(item)" *ngFor="let item of indexList" [ngClass]="item['wayItemList'].length === 1 ? 'boxs-eight-one' : 'boxs-eight'" class=" card text-white addMain-bottom">-->
+          <!--<div style="text-align: center">-->
+            <!--<img class="eight-img-one" src="{{img}}{{item['wayItemList'][0]['pic']}}" alt="">-->
+            <!--<p class="text-eight-one"  style="color:#333333;font-wayWeight: 900;">重量:495387</p>-->
+            <!--<p class="text-eight-one"  style="color:#333333;font-wayWeight: 900;top: 22px;">数量:{{item['wayItemList'][0]['num']}}</p>-->
+            <!--<img (click)="detail(item['wayItemList'][0], $event, item['wayWeight'])" src="../../../assets/main/button-bg.png" alt="" class="eight-bt-left">-->
+          <!--</div>-->
+          <!--<div style="text-align: center" [hidden]="item['wayItemList'].length === 1">-->
+            <!--<img class="eight-img" [src]="turnImg(item['wayItemList'])" alt="">-->
+            <!--&lt;!&ndash;<p class="text-eight" style="color: #333333;">重量:495387{{item['wayWeight']}}</p>&ndash;&gt;-->
+            <!--<p class="text-eight" style="color: #333333;top: 22px;">数量:{{turn(item['wayItemList'], 'num')}}</p>-->
+            <!--<img (click)="detail(item['wayItemList'][1], $event, item['wayWeight'])" src="../../../assets/main/button-bg.png" alt="" class="eight-bt">-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
     </div>
     <!--<div class="foot">-->
     <!--<img class="foot-img" src="../../../assets/main/logo1.png" alt="">-->
