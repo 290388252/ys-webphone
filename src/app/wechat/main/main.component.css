@@ -8,20 +8,21 @@
   text-align: center;
   position: relative;
   margin-bottom: 5px;
-  height: 156px;
+  height: 116px;
 }
 
 .contain_btm {
   position: absolute;
-  top: 156px;
+  top: 116px;
   left: 0;
   bottom: 0;
-  padding-top: 20px;
   width: 100%;
   background: url("../../../assets/main/bg.png") no-repeat;
   background-size: 100% auto;
 }
-
+.advertisement{
+  width: 100%;
+}
 .col-img {
   margin-top: 8px;
   margin-bottom: 5px;
@@ -45,10 +46,10 @@
   font-size: 12px;
   background: url("../../../assets/main/textbg.png");
   background-size: 100% 94%;
-  width: 40%;
-  margin-left: 30%;
+  width: 20%;
+  margin-left: 40%;
   position: absolute;
-  top: 130px;
+  top: 85px;
 }
 
 .logo_title {
@@ -162,17 +163,77 @@
   top: 38px;
   position: absolute;
 }
+.boxs-eight-one {
+  width: 80%;
+  height: 70px;
+  margin: 0 auto;
+  background: url("../../../assets/main/oged.png");
+  border: 0;
+  background-size: 100% 100%;
+}
+.boxs-eight {
+  width: 80%;
+  height: 70px;
+  margin: 0 auto;
+  background: url("../../../assets/main/mged.png");
+  border: 0;
+  background-size: 100% 100%;
+}
+.text-eight-one {
+  color: white;
+  font-weight: 900;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-left: 40px;
+  font-family: "宋体";
+  width: 55px;
+  left: 88px;
+  top: 10px;
+  position: absolute;
+}
 
+.text-eight {
+  color: white;
+  font-weight: 900;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-left: 10px;
+  font-family: "宋体";
+  width: 55px;
+  left: 170px;
+  top: 10px;
+  position: absolute;
+}
+.eight-img-one{
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: 11px;
+  left: 18px;
+}
+.eight-img{
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: 11px;
+  left: 80px;
+}
+.eight-bt{
+  width: 100px;position: absolute;top: 38px;right: 10px;
+}
 .my-product {
   position: absolute;
   bottom: 10px;
   right: 1px;
+  width: 50%;
 }
 
 .my-product button {
   background: url("../../../assets/main/button.png");
   background-size: 100% 100%;
-  width: 90px;
+  width: 100%;
   height: 30px;
   border: none;
 }
@@ -181,19 +242,21 @@
   position: absolute;
   bottom: 10px;
   left: 1px;
+  width: 50%;
 }
 
 .my-coupon button {
   background: url("../../../assets/main/button.png");
   background-size: 100% 100%;
-  width: 90px;
+  width: 100%;
   height: 30px;
   border: none;
 }
 
 .my-coupons {
   position: absolute;
-  bottom: 35px;
+  bottom: 39px;
+  width: 50%;
   left: 1px;
   display: grid;
 }
@@ -201,7 +264,7 @@
 .my-coupons button {
   background: url("../../../assets/main/button.png");
   background-size: 100% 100%;
-  width: 90px;
+  width: 100%;
   height: 30px;
   border: none;
 }
@@ -211,7 +274,6 @@
   bottom: 0;
   right: 0;
 }
-
 .box-one {
   float: left;
   width: 150px;
@@ -534,7 +596,76 @@
     background-size: 100% 100%;
   }
 }
+@media screen and (max-width: 509px) {
+  .advertisement{
+    width: 90%;
+    height: 50px;
+    margin-left: 16px;
+  }
+  .boxs-eight-one {
+    width: 80%;
+    height: 60px;
+    margin: 0 auto;
+    background: url("../../../assets/main/oged.png");
+    border: 0;
+    background-size: 100% 100%;
+  }
+  .boxs-eight {
+    width: 80%;
+    height: 60px;
+    margin: 0 auto;
+    background: url("../../../assets/main/mged.png");
+    border: 0;
+    background-size: 100% 100%;
+  }
+  .text-eight-one {
+    color: white;
+    font-weight: 900;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-left: 40px;
+    font-family: "宋体";
+    width: 40px;
+    left: 88px;
+    top: 10px;
+    position: absolute;
+  }
 
+  .text-eight {
+    color: white;
+    font-weight: 900;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-left: 10px;
+    font-family: "宋体";
+    width: 40px;
+    left: 170px;
+    top: 10px;
+    position: absolute;
+  }
+  .eight-img-one{
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: 11px;
+    left: 18px;
+  }
+  .eight-img{
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: 11px;
+    left: 80px;
+  }
+  .eight-bt{
+    width: 85px;
+    position: absolute;
+    top: 34px;
+    right: 8px;
+  }
+}
 @media screen and (max-height: 539px) {
   .context {
     width: 275px;

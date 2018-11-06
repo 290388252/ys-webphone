@@ -47,8 +47,7 @@ export class MainComponent implements OnInit {
 
   ngOnInit() {
     this.getInitData();
-    this.getCookies();
-    console.log(urlParse(window.location.search)['token']);
+    console.log(urlParse(window.location.search)['token'] === undefined);
     if (urlParse(window.location.search)['token'] === undefined) {
       this.getCookies();
     } else {

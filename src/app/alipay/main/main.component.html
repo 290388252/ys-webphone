@@ -4,7 +4,7 @@
     <carousel>
       <slide>
         <img src="../../../assets/main/banner1.png" alt="first slide"
-             style="display: block; width: 100%;height: 156px;">
+             style="display: block; width: 100%;height: 116px;">
         <div class="carousel-caption d-none d-md-block">
           <h3>First slide label</h3>
           <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
@@ -29,10 +29,10 @@
     <!--<p *ngIf="isFiveDoor" style="font-weight: 600">联业智能</p>-->
     <img (click)="vmLogin(1)" src="../../../assets/main/logos.png" alt="..."
          class="rounded-circle">
-    <img [hidden]="otherCompany" (click)="vmLogin(0)" src="../../../assets/main/guoqing.png" alt="..."
-    class="rounded-circle-center" style="display: inline-block">
-    <img [hidden]="youshuiCompany" (click)="vmLogin(2)" src="../../../assets/main/69.png" alt="..."
-    class="rounded-circle-sixnight" style="display: inline-block">
+    <!--<img [hidden]="otherCompany" (click)="vmLogin(0)" src="../../../assets/main/guoqing.png" alt="..."-->
+    <!--class="rounded-circle-center" style="display: inline-block">-->
+    <!--<img [hidden]="youshuiCompany" (click)="vmLogin(2)" src="../../../assets/main/69.png" alt="..."-->
+    <!--class="rounded-circle-sixnight" style="display: inline-block">-->
     <br/>
     <!--<div class="logo_title">-->
     <!--<div class="logo_title_inner"></div>-->
@@ -40,6 +40,11 @@
     <p class="title">.</p>
   </div>
   <div class="contain_btm">
+    <img src="../../../assets/main/advertisement.png" alt="" class="advertisement">
+    <div style="display: flex;width: 100%;height: 20px;">
+      <img src="../../../assets/main/cold.png" alt="" style="width: 50%;"><span style="position: absolute;left: 20%;color: white">点击常温商品</span>
+      <img src="../../../assets/main/normal.png" alt="" style="width: 50%;"><span style="position: absolute;right: 20%;color: white">点击冷藏商品</span>
+    </div>
     <div class="context-five" *ngIf="isFiveDoor">
       <div style="float: left">
         <div (click)="openDoor(item)" *ngFor="let item of fiveIndexList"
@@ -89,44 +94,43 @@
 
     </div>
 
+    <!--<div class="context" *ngIf="isFourDoor">-->
+      <!--<div (click)="openDoor(item)" *ngFor="let item of indexList"-->
+           <!--[ngClass]="item['wayItemList'].length === 1 ? 'box-one' : 'box'" class=" card text-white mb-3">-->
+        <!--<div [ngClass]="item['wayItemList'].length === 1 ? 'box-body-one' : 'box-body'">-->
+          <!--<img class="col-img" src="{{img}}{{item['wayItemList'][0]['pic']}}" alt="">-->
+          <!--<br/>-->
+          <!--<p class="card-title text" style="color:#333333;font-weight: 900;">-->
+            <!--{{item['wayItemList'][0]['itemName']}}-->
+          <!--</p>-->
+          <!--<span class="card-title" style="color: #f4725c;font-weight: 900;">{{item['wayItemList'][0]['price']}}元</span>-->
+        <!--</div>-->
+        <!--<div [hidden]="item['wayItemList'].length === 1" class="box-body">-->
+          <!--<img class="col-img" [src]="turnImg(item['wayItemList'])" alt="">-->
+          <!--<br/>-->
+          <!--<p class="card-title text" style="color:#333333;font-weight: 900;">-->
+            <!--{{turn(item['wayItemList'], 'itemName')}}</p>-->
+          <!--<span class="card-title"-->
+                <!--style="color: #f4725c;font-weight: 900;">{{turn(item['wayItemList'], 'price')}}元</span>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
+
     <div class="context" *ngIf="isFourDoor">
-      <div (click)="openDoor(item)" *ngFor="let item of indexList"
-           [ngClass]="item['wayItemList'].length === 1 ? 'box-one' : 'box'" class=" card text-white mb-3">
-        <div [ngClass]="item['wayItemList'].length === 1 ? 'box-body-one' : 'box-body'">
-          <img class="col-img" src="{{img}}{{item['wayItemList'][0]['pic']}}" alt="">
-          <br/>
-          <p class="card-title text" style="color:#333333;font-weight: 900;">
-            {{item['wayItemList'][0]['itemName']}}
-          </p>
-          <span class="card-title" style="color: #f4725c;font-weight: 900;">{{item['wayItemList'][0]['price']}}元</span>
+      <div (click)="openDoor(item)" *ngFor="let item of indexList" [ngClass]="item['wayItemList'].length === 1 ? 'boxs-eight-one' : 'boxs-eight'" class=" card text-white addMain-bottom">
+        <div style="text-align: center">
+          <img class="eight-img-one" src="{{img}}{{item['wayItemList'][0]['pic']}}" alt="">
+          <p class="text-eight-one"  style="color:#333333;font-weight: 900;">{{item['wayItemList'][0]['itemName']}}</p>
+          <p class="text-eight-one" style="color: #f4725c;font-weight: 900;margin-top: 10px">{{item['wayItemList'][0]['price']}}元</p>
+          <img src="../../../assets/main/eight-bt.png" alt="" class="eight-bt">
         </div>
-        <div [hidden]="item['wayItemList'].length === 1" class="box-body">
-          <img class="col-img" [src]="turnImg(item['wayItemList'])" alt="">
-          <br/>
-          <p class="card-title text" style="color:#333333;font-weight: 900;">
-            {{turn(item['wayItemList'], 'itemName')}}</p>
-          <span class="card-title"
-                style="color: #f4725c;font-weight: 900;">{{turn(item['wayItemList'], 'price')}}元</span>
+        <div style="text-align: center" [hidden]="item['wayItemList'].length === 1">
+          <img class="eight-img" [src]="turnImg(item['wayItemList'])" alt="">
+          <p class="text-eight" style="color: #333333;">{{turn(item['wayItemList'], 'itemName')}}</p>
+          <p class="text-eight" style="color: #f4725c;margin-top: 10px">{{turn(item['wayItemList'], 'price')}}元</p>
         </div>
       </div>
     </div>
-    <!--<div class="context-six" *ngIf="isSixDoor">-->
-    <!--<div (click)="openDoor(item)" *ngFor="let item of indexList" class="box-six card text-white mb-3">-->
-    <!--<div class="box-body">-->
-    <!--<img class="col-img-six" src="{{img}}{{item['pic']}}" alt="">-->
-    <!--<br/>-->
-    <!--<span class="card-title"-->
-    <!--style="color: white;font-weight: 900;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;font-family:'宋体';">{{item['itemName']}}</span>-->
-    <!--&lt;!&ndash;<br/>&ndash;&gt;-->
-    <!--&lt;!&ndash;<span class="card-title" style="color: white">{{item['num']}}桶</span>&ndash;&gt;-->
-    <!--<br/>-->
-    <!--<span class="card-title" style="color: red;font-weight: 900;font-family:'宋体';">{{item['price']}}元</span>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--<div class="foot">-->
-    <!--<img class="foot-img" src="../../../assets/main/logo1.png" alt="">-->
-    <!--</div>-->
     <div class="my-product">
       <button (click)="product(1)" type="button" style="color: white">我的订单</button>
     </div>

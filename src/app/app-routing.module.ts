@@ -12,7 +12,6 @@ const routes: Routes = [/*
     { path: 'main', loadChildren: './wechat/main/main.module#MainModule' },
     { path: 'detail', loadChildren: './wechat/detail/detail.module#DetailModule' },
     { path: 'detailGzh', loadChildren: './wechat/detailGzh/detail.module#DetailModule' },
-    { path: 'product', loadChildren: './wechat/product/product.module#ProductModule' },
 // alipay
     { path: 'aliRegister', loadChildren: './alipay/register/register.module#RegisterModule' },
     { path: 'aliMain', loadChildren: './alipay/main/main.module#MainModule' },

@@ -2,7 +2,7 @@
   text-align: center;
   position: relative;
   margin-bottom: 5px;
-  height: 156px;
+  height: 116px;
 }
 .rounded-circle{
   margin-top: 8px;
@@ -25,7 +25,7 @@
 }
 .contain_btm {
   position: absolute;
-  top: 156px;
+  top: 116px;
   left: 0;
   bottom: 0;
   width: 100%;
@@ -73,6 +73,63 @@
   margin-left: 30%;
   position: absolute;
   top: 140px;
+}
+.boxs-eight-one {
+  width: 90%;
+  height: 70px;
+  margin: 0 auto;
+  background: url("../../../assets/main/add-eight-door.png");
+  border: 0;
+  background-size: 100% 100%;
+}
+.boxs-eight {
+  width: 90%;
+  height: 70px;
+  margin: 0 auto;
+  background: url("../../../assets/main/add-eight-doors.png");
+  border: 0;
+  background-size: 100% 100%;
+}
+.text-eight-one {
+  color: white;
+  font-weight: 900;
+  overflow: hidden;
+  margin-left: 40px;
+  font-family: "宋体";
+  left: 32px;
+  top: 10px;
+  position: absolute;
+}
+
+.text-eight {
+  color: white;
+  font-weight: 900;
+  overflow: hidden;
+  margin-left: 10px;
+  font-family: "宋体";
+  left: 70%;
+  top: 10px;
+  position: absolute;
+}
+.eight-img-one{
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: 11px;
+  left: 18px;
+}
+.eight-img{
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: 11px;
+  left: 55%;
+}
+.eight-bt{
+  width: 53px;position: absolute;top: 38px;right: 10px;
+}
+.eight-bt-left{
+  width: 53px;position: absolute;top: 38px;left: 76px;
 }
 .text-custom {
   color: white;
