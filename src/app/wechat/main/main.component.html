@@ -7,7 +7,7 @@
     <div class="logo">
       <carousel>
         <slide>
-          <img src="../../../assets/main/banner1.png" alt="first slide" style="display: block; width: 100%;height: 100px;">
+          <img src="../../../assets/main/banner1.png" alt="first slide" style="display: block; width: 100%;height: 86px;">
           <div class="carousel-caption d-none d-md-block">
             <h3>First slide label</h3>
             <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
@@ -30,11 +30,12 @@
       <!--<p class="title">.</p>-->
     </div>
   <div class="contain_btm">
-    <!--<img src="../../../assets/main/advertisement.png" alt="" class="advertisement">-->
-    <div style="display: flex;width: 100%;height: 20px;margin-bottom: 30px" *ngIf="isEightDoor">
-      <img (click)="eigthDoorChoose(0)" [src]="(eightDoorFlag === 0) ?'../../../assets/main/normal.png':'../../../assets/main/cold.png'"  alt="" style="width: 50%;height: 30px"><span (click)="eigthDoorChoose(0)" style="position: absolute;left: 15%;color: white;top: 4px;">点击冷藏商品</span>
-      <img (click)="eigthDoorChoose(1)" [src]="(eightDoorFlag === 1) ?'../../../assets/main/normal.png':'../../../assets/main/cold.png'"   alt="" style="width: 50%;height: 30px"><span (click)="eigthDoorChoose(1)" style="position: absolute;right: 15%;color: white;top: 4px;">点击常温商品</span>
+    <img (click)="vmLogin(2)" src="../../../assets/main/advertisement.png" alt="" class="advertisement">
+    <div style="display: flex;width: 100%;height: 20px;margin-bottom: 12px" *ngIf="isEightDoor">
+      <img (click)="eigthDoorChoose(0)" [src]="(eightDoorFlag === 0) ?'../../../assets/main/normal.png':'../../../assets/main/cold.png'"  alt="" style="width: 50%;height: 30px"><span (click)="eigthDoorChoose(0)" style="position: absolute;left: 15%;color: white;top: 44px;">点击冷藏商品</span>
+      <img (click)="eigthDoorChoose(1)" [src]="(eightDoorFlag === 1) ?'../../../assets/main/normal.png':'../../../assets/main/cold.png'"   alt="" style="width: 50%;height: 30px"><span (click)="eigthDoorChoose(1)" style="position: absolute;right: 15%;color: white;top: 44px;">点击常温商品</span>
     </div>
+    <p class="title">.</p>
     <div class="context-five" *ngIf="isFiveDoor">
       <div style="float: left">
         <div (click)="openDoor(item)" *ngFor="let item of fiveIndexList" [ngClass]="item['wayItemList'].length === 1 ? 'boxssf-one' : 'boxssf'" class=" card text-white addMain-bottom">
@@ -115,9 +116,6 @@
       <button [hidden]="youshuiCompany" (click)="vmLogin(2)" type="button" style="color: white">领取优惠券</button>
       <button (click)="product(2)" type="button" style="color: white">我的优惠券</button>
     </div>
-    <!--<div class="my-share">-->
-      <!--<button (click)="share()" type="button" class="btn btn-primary small" style="background: #117cbb">分享</button>-->
-    <!--</div>-->
   <!--</div>-->
   </div>
   <nz-modal [nzVisible]="isVisibleOpenDoor" [nzContent]="modalContents" [nzFooter]="modalFooters" [nzClosable]="false">

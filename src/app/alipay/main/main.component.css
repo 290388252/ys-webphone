@@ -8,12 +8,12 @@
   text-align: center;
   position: relative;
   margin-bottom: 5px;
-  height: 100px;
+  height: 86px;
 }
 
 .contain_btm {
   position: absolute;
-  top: 100px;
+  top: 86px;
   left: 0;
   bottom: 0;
   width: 100%;
@@ -21,9 +21,9 @@
   background-size: 100% auto;
 }
 .advertisement{
-  width: 80%;
-  height: 50px;
-  margin-left: 25px;
+  width: 65%;
+  height: 40px;
+  margin-left: 19%;
 }
 .col-img {
   margin-top: 8px;
@@ -48,10 +48,8 @@
   font-size: 12px;
   background: url("../../../assets/main/textbg.png");
   background-size: 100% 94%;
-  width: 20%;
-  margin-left: 40%;
-  position: absolute;
-  top: 85px;
+  width: 35%;
+  margin-left: 31%;
 }
 
 .logo_title {
@@ -270,12 +268,6 @@
   height: 30px;
   border: none;
 }
-
-.my-share {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-}
 .box-one {
   float: left;
   width: 150px;
@@ -380,21 +372,6 @@
   position: absolute;
   background: url("../../../assets/main/bgc.jpg");
   background-size: 100% 100%;
-}
-
-.foot {
-  text-align: center;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-}
-
-.foot-img {
-  height: 30px;
-  width: 180px;
-  margin-bottom: 40px;
-  border: 0;
-  vertical-align: middle;
 }
 
 .ant-modal-footer {
@@ -908,10 +885,6 @@
     margin-left: -25px;
     width: 69px;
     height: 59px;
-  }
-
-  .min-padding {
-    padding: 10px;
   }
 
   .box-body-one {

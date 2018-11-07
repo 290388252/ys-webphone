@@ -21,6 +21,7 @@ export class AddMainComponent implements OnInit {
   public isVisibleOpen = false;
   public loadingVisible = false;
   public isVisibleOpenDoor = false;
+  public isVisibleOpenEightDoor = false;
   public isVisibleOpenG = false;
   public isVisibleOpenDetail = false;
   public token: string;
@@ -86,7 +87,7 @@ export class AddMainComponent implements OnInit {
     this.volValue = 0;
   }
   selectDoor(num) {
-    if (this.isFiveDoor) {
+    if (this.isFiveDoor || this.isEightDoor) {
         this.wayIndex = num - 1;
     } else {
       if (num === 3) {
@@ -439,7 +440,11 @@ export class AddMainComponent implements OnInit {
     this.num = undefined;
     this.times = 1;
     this.count = 1;
-    this.isVisibleOpenDoor = true;
+    if (this.isEightDoor) {
+      this.isVisibleOpenEightDoor = true;
+    } else {
+      this.isVisibleOpenDoor = true;
+    }
   }
 
   // 机器重启
@@ -513,7 +518,6 @@ export class AddMainComponent implements OnInit {
   yes() {
     this.count++;
     console.log(this.count);
-    console.log(this.wayNo);
     console.log(this.times);
     console.log(this.num);
     console.log(this.wayIndex);
@@ -570,6 +574,7 @@ export class AddMainComponent implements OnInit {
   // 是否开门（否）
   no() {
     this.isVisibleOpenDoor = false;
+    this.isVisibleOpenEightDoor = false;
     // console.log(this.radioValue);
   }
 
