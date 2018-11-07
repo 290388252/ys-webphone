@@ -32,12 +32,29 @@ export class GoodsShowComponent implements OnInit {
   public replenishList = [];
   public aliPay = false;
   public youshuiCompany = false;
+  public visible = false;
+  public placement = 'left';
+  public wechatVisible;
+
+  public couponName;
+  public carryWaterCouponName;
+  public orderId;
+  public price: string;
+  public couponId: string;
+  public type: string;
+  public isFollow: number;
+  public sumDeductionMoney: string;
+  public couponList;
+  public waterVoucherList = [];
+
   constructor(private router: Router,
               private appProperties: AppProperties,
               private appService: AppService) {
   }
-
   ngOnInit() {
+    this.wechatVisible = false;
+    this.couponList = [];
+    this.waterVoucherList = [];
     this.flag = sessionStorage.getItem('flag');
     // this.flag = urlParse(window.location.search)['flag'];
     this.getToken();
@@ -253,7 +270,11 @@ export class GoodsShowComponent implements OnInit {
             this.token).subscribe(
             data3 => {
               console.log(data3);
-              this.replenishList = data3.data;
+              if (data3.data === '') {
+                this.replenishList = [];
+              }  else {
+                this.replenishList = data3.data;
+              }
               if (this.flag === 3 || this.flag === '3' || this.flag === 4 || this.flag === '4') {
                 this.isVisibleWarn = true;
               }
@@ -263,6 +284,26 @@ export class GoodsShowComponent implements OnInit {
             }
           );
           // alert('广州优水到家工程感谢你的惠顾,系统将从零钱或者银行卡中自动扣取本次购买费用。');
+          // 支付完成后拿到要显示的数据
+          this.appService.getAliData(this.appProperties.storeOrderFininshPayUrl, {vmCode: urlParse(window.location.search)['vmCode']},
+            this.token).subscribe(
+              data4 => {
+                console.log(data4);
+                this.couponName = data4.couponName;
+                this.carryWaterCouponName = data4.carryWaterCouponName;
+                this.orderId = data4.orderId;
+                this.price = data4.price;
+                this.couponId = data4.couponId;
+                this.type = data4.type;
+                this.isFollow = data4.follow;
+                this.sumDeductionMoney = data4.sumDeductionMoney;
+                console.log(this.price);
+                console.log(this.sumDeductionMoney);
+              },
+            error4 => {
+                console.log(error4);
+            }
+          );
         }
       },
       error2 => {
@@ -313,5 +354,61 @@ export class GoodsShowComponent implements OnInit {
         }
       }
     }
+  }
+
+  // 查看优惠券
+  openDrawer () {
+
+    const model = document.getElementById('myModel');
+    const closed = document.getElementById('closed');
+    model.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+    window.addEventListener('click', function (event) {
+      if (event.target === closed || event.target === model) {
+        model.style.display = 'none';
+        document.body.style.overflow = 'auto';
+      }
+    });
+
+    // 判断是使用优惠券还是提水券type为1是优惠券，type=2为提水券
+    // 使用优惠券
+    if (this.type === '1') {
+      this.appService.postAliData(this.appProperties.useCouponUrl, this.couponId, this.token).subscribe(
+        data => {
+          if (data) {
+            this.couponList = data.returnObject;
+          }
+        },
+        error => {
+          console.log(error);
+        }
+      );
+    }
+    // 使用提水券
+    if (this.type === '2') {
+      this.appService.postAliData(this.appProperties.useWaterVouchersUrl, {orderId: this.orderId}, this.token).subscribe(
+        data => {
+          this.waterVoucherList = data.returnObject;
+        },
+        error => {
+          console.log(error);
+        }
+      );
+    }
+
+  }
+
+  sureModel() {
+    const model = document.getElementById('myModel');
+    model.style.display = 'none';
+  }
+  openShowModel() {
+    this.wechatVisible = true;
+  }
+  showCancel() {
+    this.wechatVisible = false;
+  }
+  seeOrder () {
+    window.location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxa41aef1ebf72a4b2&redirect_uri=http://yms.youshuidaojia.com/admin/getCustomerToken&response_type=code&scope=snsapi_userinfo&state=/detail?flag=1';
   }
 }

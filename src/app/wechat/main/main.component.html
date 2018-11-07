@@ -7,9 +7,9 @@
     <div class="logo">
       <carousel>
         <slide>
-          <img src="../../../assets/main/banner1.png" alt="first slide" style="display: block; width: 100%;height: 86px;">
+          <img src="../../../assets/main/banner1.png" alt="first slide" style="display: block; width: 100%;height: 86px;" onclick="javascript:{window.location.href = 'http://webapp.youshuidaojia.com/cMain/promotions?vmCode=' + document.getElementById('vmCode').innerHTML}">
           <div class="carousel-caption d-none d-md-block">
-            <h3>First slide label</h3>
+            <h3>First slide label</h3>。
             <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
           </div>
         </slide>
@@ -18,6 +18,7 @@
       <!--<p *ngIf="isFiveDoor" style="font-weight: 600">联业智能</p>-->
       <img (click)="vmLogin(1)" src="../../../assets/main/logos.png" alt="..."
            class="rounded-circle">
+      <span id="vmCode" style="display: none">{{vmCode}}</span>
       <!--<img [hidden]="otherCompany" (click)="vmLogin(0)" src="../../../assets/main/guoqing.png" alt="..."-->
            <!--class="rounded-circle-center" style="display: inline-block">-->
       <!--<img [hidden]="youshuiCompany" (click)="vmLogin(2)" src="../../../assets/main/69.png" alt="..."-->
@@ -120,12 +121,12 @@
   </div>
   <nz-modal [nzVisible]="isVisibleOpenDoor" [nzContent]="modalContents" [nzFooter]="modalFooters" [nzClosable]="false">
     <ng-template #modalContents #modalFooters style="text-align: center">
-      <p style="font-size: medium;">是否要开门？</p>
+      <p style="font-size: medium;">{{openDoorMsg}}</p>
     </ng-template>
-    <ng-template #modalFooters style="text-align: center">
+    <ng-template #modalFooters style="text-align: center" >
       <button nz-button nzType="primary" style="visibility: hidden">否</button>
-      <button nz-button nzType="primary" (click)="noOpenDoor()">否</button>
-      <button nz-button nzType="primary" (click)="yesOpenDoor()">是</button>
+      <button nz-button nzType="primary" (click)="noOpenDoor()" [hidden]="isConfirmLoading">否</button>
+      <button nz-button nzType="primary" (click)="yesOpenDoor()" [hidden]="isConfirmLoading">是</button>
       <button nz-button nzType="primary" style="visibility: hidden">否</button>
       <button nz-button nzType="primary" style="visibility: hidden">否</button>
     </ng-template>

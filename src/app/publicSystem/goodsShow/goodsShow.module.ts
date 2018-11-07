@@ -11,10 +11,10 @@ import {FormsModule} from '@angular/forms';
 @NgModule({
     imports: [
       FormsModule,
-        CommonModule,
-        GoodsShowRoutingModule,
-        NgZorroAntdModule,
-        PopoverModule.forRoot()
+      CommonModule,
+      GoodsShowRoutingModule,
+      NgZorroAntdModule,
+      PopoverModule.forRoot()
     ],
     declarations: [GoodsShowComponent],
     providers: [AppService, AppProperties],

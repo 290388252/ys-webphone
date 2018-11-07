@@ -39,8 +39,9 @@ export class MainComponent implements OnInit {
   public isEightDoor = false; // 八门
   public youshuiCompany = true;
   public otherCompany = true;
-
-  // public isSixDoor = false;
+  public vmCode;
+  public openDoorMsg = '是否要开门？';
+  public isConfirmLoading = false;
   constructor(private router: Router,
               private modalService: NzModalService,
               private activatedRoute: ActivatedRoute,
@@ -78,6 +79,7 @@ export class MainComponent implements OnInit {
         }
       );
     }
+    this.vmCode = urlParse(window.location.search)['vmCode'];
   }
 
   // 数据初始化
@@ -261,90 +263,97 @@ export class MainComponent implements OnInit {
 
   // 确定开门
   yesOpenDoor() {
-    this.isVisibleOpenDoor = false;
-    if (this.clickMore) {
-      alert('亲,服务器还没反应过来,请勿再点击');
-    } else {
-      this.clickMore = true;
-      if (this.token === null || this.token === undefined || this.token === 'undefined') {
-        this.clickMore = false;
-        sessionStorage.setItem('wayNumber', this.item.wayNumber);
-        // alert('请点击确认，注册登陆');
-        this.login();
+    this.isConfirmLoading = true;
+    this.openDoorMsg = '正在开门请稍等！';
+    setTimeout(() => {
+      this.isVisibleOpenDoor = false;
+      this.isConfirmLoading = false;
+      if (this.clickMore) {
+        alert('亲,服务器还没反应过来,请勿再点击');
       } else {
-        this.appService.getDataOpen(this.appProperties.indexOpenDoor,
-          {vmCode: urlParse(window.location.search)['vmCode'], way: this.item.wayNumber}, this.token).subscribe(
-          data => {
-            console.log(data);
-            this.clickMore = false;
-            if (data.code === 0) {
-              // alert('优水到家提醒您,为了您账号资金安全,提水后请随手关门');
-              // this.isVisibleOpen = true;
-              const u = navigator.userAgent;
-              const isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); // ios终端
-              if (isiOS) {
-                sessionStorage.setItem('flag', '1');
-                window.location.href = 'http://sms.youshuidaojia.com/goodsShow?vmCode=' + urlParse(window.location.search)['vmCode'];
-              } else {
-                sessionStorage.setItem('flag', '1');
-                this.router.navigate(['goodsShow'], {
+        this.clickMore = true;
+        if (this.token === null || this.token === undefined || this.token === 'undefined') {
+          this.clickMore = false;
+          sessionStorage.setItem('wayNumber', this.item.wayNumber);
+          // alert('请点击确认，注册登陆');
+          this.login();
+        } else {
+          this.appService.getDataOpen(this.appProperties.indexOpenDoor,
+            {vmCode: urlParse(window.location.search)['vmCode'], way: this.item.wayNumber}, this.token).subscribe(
+            data => {
+              console.log(data);
+              this.clickMore = false;
+              if (data.code === 0) {
+                // alert('优水到家提醒您,为了您账号资金安全,提水后请随手关门');
+                // this.isVisibleOpen = true;
+                const u = navigator.userAgent;
+                const isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); // ios终端
+                if (isiOS) {
+                  sessionStorage.setItem('flag', '1');
+                  window.location.href = 'http://sms.youshuidaojia.com/goodsShow?vmCode=' + urlParse(window.location.search)['vmCode'];
+                } else {
+                  sessionStorage.setItem('flag', '1');
+                  this.router.navigate(['goodsShow'], {
+                    queryParams: {
+                      vmCode: urlParse(window.location.search)['vmCode'],
+                      // flag: 1,
+                    }
+                  });
+                }
+              } else if (data.code === 4) {
+                const u = navigator.userAgent;
+                const isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); // ios终端
+                if (isiOS) {
+                  sessionStorage.setItem('flag', '2');
+                  window.location.href = 'http://sms.youshuidaojia.com/goodsShow?vmCode=' + urlParse(window.location.search)['vmCode'];
+                } else {
+                  sessionStorage.setItem('flag', '2');
+                  this.router.navigate(['goodsShow'], {
+                    queryParams: {
+                      vmCode: urlParse(window.location.search)['vmCode'],
+                      // flag: 2,
+                    }
+                  });
+                }
+              } else if (data.code === 3) {
+                alert('网络延时，请重试！');
+              } else if (data.code === -1) {
+                this.login();
+              } else if (data.code === -87) {
+                window.location.href = this.appProperties.followWechatSubscription;
+              } else if (data.code === -88) {
+                alert('您有未支付订单请点击我的订单支付完毕再进行购水！');
+                this.router.navigate(['detail'], {
                   queryParams: {
                     vmCode: urlParse(window.location.search)['vmCode'],
-                    // flag: 1,
+                    flag: 1
                   }
                 });
-              }
-            } else if (data.code === 4) {
-              const u = navigator.userAgent;
-              const isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); // ios终端
-              if (isiOS) {
-                sessionStorage.setItem('flag', '2');
-                window.location.href = 'http://sms.youshuidaojia.com/goodsShow?vmCode=' + urlParse(window.location.search)['vmCode'];
+              } else if (data.code === -89) {
+                alert('他人在买水，请稍后扫码,文明购买，请勿争抢');
+              } else if (data.code === -90) {
+                this.appService.getDataOpen(this.appProperties.nonePassWordPayUrl,
+                  {vmCode: urlParse(window.location.href)['vmCode']}).subscribe(
+                  data1 => {
+                    window.location.href = data1;
+                    // sessionStorage.setItem('open', '1');
+                    sessionStorage.setItem('wayNumber', this.item.wayNumber);
+                  },
+                  error1 => {
+                    console.log(error1);
+                  }
+                );
               } else {
-                sessionStorage.setItem('flag', '2');
-                this.router.navigate(['goodsShow'], {
-                  queryParams: {
-                    vmCode: urlParse(window.location.search)['vmCode'],
-                    // flag: 2,
-                  }
-                });
+                alert(data.msg);
               }
-            } else if (data.code === 3) {
-              alert('开门失败！');
-            } else if (data.code === -1) {
-              this.login();
-            } else if (data.code === -87) {
-              window.location.href = this.appProperties.followWechatSubscription;
-            } else if (data.code === -88) {
-              alert('您有未支付订单请点击我的订单支付完毕再进行购水！');
-              this.router.navigate(['detail'], {
-                queryParams: {
-                  vmCode: urlParse(window.location.search)['vmCode'],
-                  flag: 1
-                }
-              });
-            } else if (data.code === -89) {
-              alert('他人在买水，请稍后扫码,文明购买，请勿争抢');
-            } else if (data.code === -90) {
-              this.appService.getDataOpen(this.appProperties.nonePassWordPayUrl,
-                {vmCode: urlParse(window.location.href)['vmCode']}).subscribe(
-                data1 => {
-                  window.location.href = data1;
-                  // sessionStorage.setItem('open', '1');
-                  sessionStorage.setItem('wayNumber', this.item.wayNumber);
-                },
-                error1 => {
-                  console.log(error1);
-                }
-              );
+            },
+            error => {
+              console.log(error);
             }
-          },
-          error => {
-            console.log(error);
-          }
-        );
+          );
+        }
       }
-    }
+    }, 1500);
   }
 
   // 确定关门

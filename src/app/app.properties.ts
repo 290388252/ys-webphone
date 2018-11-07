@@ -58,10 +58,14 @@ export class AppProperties {
   public aliLoginVerifyOperateUrl: string;
   public aliBusinessIsAttentionUrl: string;
 
+  public storeOrderFininshPayUrl: string;
+  public useCouponUrl: string;
+  public useWaterVouchersUrl: string;
+
   constructor() {
     // Public
     this.appUrl = 'http://47.106.92.82:6662/ys_sms';
-    // this.appUrl = 'http://192.168.0.121:6662/ys_sms';
+    // this.appUrl = 'http://192.168.0.113:8769/ys_sms';
     this.adminUrl = 'http://119.23.233.123:6662/ys_admin';
     this.imgUrl = this.adminUrl + '/files/';
     this.isClosedUrl = this.appUrl + '/wechat/isClosed';
@@ -117,5 +121,8 @@ export class AppProperties {
     this.aliLoginVerifyOperateUrl = this.appUrl + '/aliLogin/verifyOperate';
     this.aliBusinessIsAttentionUrl = this.appUrl + '/aliBusiness/isAttention';
 
+    this.storeOrderFininshPayUrl = this.appUrl + '/order/storeOrderFininshPay';
+    this.useCouponUrl = this.appUrl + '/coupon/usedCouponId';
+    this.useWaterVouchersUrl = this.appUrl + '/carryWaterVouchers/listPage';
   }
 }
