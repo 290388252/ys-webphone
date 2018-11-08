@@ -24,6 +24,7 @@ export class AddMainComponent implements OnInit {
   public isVisibleOpenEightDoor = false;
   public isVisibleOpenG = false;
   public isVisibleOpenDetail = false;
+  public isAdjustLoading = false;
   public token: string;
   // public radioValue: string;
   public count = 1;
@@ -516,12 +517,29 @@ export class AddMainComponent implements OnInit {
 
   // 是否校准开门（是）
   yes() {
-    this.count++;
-    console.log(this.count);
-    console.log(this.times);
     console.log(this.num);
-    console.log(this.wayIndex);
-    console.log(this.selectGoods);
+    console.log(this.num2);
+    if (this.visible) {
+      if (this.num === undefined || this.num2 === undefined) {
+        alert('您还有数量未输入');
+        this.isVisibleOpenG = true;
+        this.isVisibleOpenDoor = true;
+      } else {
+        this.count++;
+        this.adjust();
+      }
+    } else {
+      if (this.num === undefined) {
+        alert('您还有数量未输入');
+        this.isVisibleOpenG = true;
+        this.isVisibleOpenDoor = true;
+      } else {
+        this.count++;
+        this.adjust();
+      }
+    }
+  }
+  adjust() {
     let num;
     console.log(this.indexList[this.wayIndex]['wayItemList']);
     if (this.indexList[this.wayIndex]['wayItemList'].length === 1) {
@@ -551,13 +569,26 @@ export class AddMainComponent implements OnInit {
       data => {
         console.log(data);
         if (data.code === 0) {
-          this.times = 2;
+          if (this.times === 2) {
+            this.isVisibleOpenG = false;
+            this.isVisibleOpenDoor = false;
+          } else {
+            this.isAdjustLoading = true;
+            setTimeout(() => {
+              this.isAdjustLoading = false;
+              this.times = 2;
+            }, 7000);
+          }
         } else if (data.code === -89) {
           alert(data.msg);
           this.isVisibleOpenG = true;
           this.isVisibleOpenDoor = true;
         } else if (data.code === -1) {
           this.router.navigate(['vmLogin']);
+        } else if (data.code === 3) {
+          alert('校准失败请重试！');
+          this.isVisibleOpenG = true;
+          this.isVisibleOpenDoor = true;
         }
       },
       error => {
@@ -567,10 +598,10 @@ export class AddMainComponent implements OnInit {
     if (this.count >= 3) {
       this.getInitData();
       this.count = 1;
+      this.isVisibleOpenG = false;
       this.isVisibleOpenDoor = false;
     }
   }
-
   // 是否开门（否）
   no() {
     this.isVisibleOpenDoor = false;
@@ -590,11 +621,6 @@ export class AddMainComponent implements OnInit {
   openOkG() {
     this.yes();
     console.log(this.count);
-    if (this.times === 2) {
-        this.getInitData();
-        this.isVisibleOpenG = false;
-        this.isVisibleOpenDoor = false;
-      }
     // if (this.isDisabledOne) {
     //   if (this.num2 === undefined) {
     //     alert('请输入桶数');

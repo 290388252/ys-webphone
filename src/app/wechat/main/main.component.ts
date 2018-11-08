@@ -59,6 +59,7 @@ export class MainComponent implements OnInit {
       const exp = new Date();
       exp.setTime(exp.getTime() + 1000 * 60 * 60 * 24 * 365 * 10);
       document.cookie = 'token=' + this.token + ';expires=' + exp.toUTCString();
+      // window.localStorage.setItem('token', urlParse(window.location.search)['token']);
     }
     if (getCoupon() === '0') {
       this.isVisibleCoupon = true;

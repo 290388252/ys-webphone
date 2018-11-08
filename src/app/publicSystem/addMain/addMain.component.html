@@ -318,7 +318,7 @@
       </nz-radio-group>
     </ng-template>
     <ng-template #modalFooterG>
-      <button nz-button nzType="primary" (click)="openOkG()">确定</button>
+      <button nz-button nzType="primary" (click)="openOkG()" [nzLoading]="isAdjustLoading">确定</button>
     </ng-template>
   </nz-modal>
 

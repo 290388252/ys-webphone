@@ -7,7 +7,8 @@
     <div class="logo">
       <carousel>
         <slide>
-          <img src="../../../assets/main/banner1.png" alt="first slide" style="display: block; width: 100%;height: 86px;" onclick="javascript:{window.location.href = 'http://webapp.youshuidaojia.com/cMain/promotions?vmCode=' + document.getElementById('vmCode').innerHTML}">
+          <img [hidden]="youshuiCompany" src="../../../assets/main/banner1.png" alt="first slide" style="display: block; width: 100%;height: 86px;" onclick="javascript:{window.location.href = 'http://webapp.youshuidaojia.com/cMain/promotions?vmCode=' + document.getElementById('vmCode').innerHTML}">
+          <img [hidden]="otherCompany" src="../../../assets/main/banner2.png" alt="first slide" style="display: block; width: 100%;height: 86px;">
           <div class="carousel-caption d-none d-md-block">
             <h3>First slide label</h3>。
             <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
