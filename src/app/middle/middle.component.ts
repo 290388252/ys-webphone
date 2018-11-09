@@ -89,7 +89,7 @@ export class MiddleComponent implements OnInit {
         let newData;
         const wlhUrl = '/main?vmCode=' + urlParse(window.location.href)['vmCode'];
         const newWlhUrl = '/main?vmCode=' + urlParse(window.location.href)['vmCode'];
-        // const newWlhUrl = '/register?vmCode=' + urlParse(window.location.href)['vmCode'];
+        // const newWlhUrl = '/register?vmCode=' + urlParse(window.location.href)['vmCode']; // old
         const state = urlParse(data.data)['state'];
         if (typeof(data.data) === 'string' && data.data.length > 0) {
           newData = data.data.replace(data.data.substring(data.data.indexOf('state=') + 6, data.data.length),

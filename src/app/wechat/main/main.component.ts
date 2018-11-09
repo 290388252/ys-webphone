@@ -89,10 +89,12 @@ export class MainComponent implements OnInit {
       data2 => {
         console.log(data2);
         if (data2.returnObject === 76 || data2.returnObject === '76'
+          || data2.returnObject === 113 || data2.returnObject === '113'
           || data2.returnObject === 114 || data2.returnObject === '114'
           || data2.returnObject === 115 || data2.returnObject === '115'
           || data2.returnObject === 116 || data2.returnObject === '116'
-          || data2.returnObject === 117 || data2.returnObject === '117') {
+          || data2.returnObject === 117 || data2.returnObject === '117'
+          || data2.returnObject === 119 || data2.returnObject === '119') {
           this.youshuiCompany = false;
           this.otherCompany = true;
         } else {
