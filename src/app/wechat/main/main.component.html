@@ -32,7 +32,7 @@
       <!--<p class="title">.</p>-->
     </div>
   <div class="contain_btm">
-    <img (click)="vmLogin(2)" src="../../../assets/main/advertisement.png" alt="" class="advertisement">
+    <img [hidden]="youshuiCompany" (click)="vmLogin(2)" src="../../../assets/main/advertisement.png" alt="" class="advertisement">
     <div style="display: flex;width: 100%;height: 20px;margin-bottom: 12px" *ngIf="isEightDoor">
       <img (click)="eigthDoorChoose(0)" [src]="(eightDoorFlag === 0) ?'../../../assets/main/normal.png':'../../../assets/main/cold.png'"  alt="" style="width: 50%;height: 30px"><span (click)="eigthDoorChoose(0)" style="position: absolute;left: 15%;color: white;top: 44px;">点击冷藏商品</span>
       <img (click)="eigthDoorChoose(1)" [src]="(eightDoorFlag === 1) ?'../../../assets/main/normal.png':'../../../assets/main/cold.png'"   alt="" style="width: 50%;height: 30px"><span (click)="eigthDoorChoose(1)" style="position: absolute;right: 15%;color: white;top: 44px;">点击常温商品</span>
