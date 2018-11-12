@@ -5,7 +5,7 @@
       <slide>
         <!--<img src="../../../assets/main/banner1.png" alt="first slide"-->
              <!--style="display: block; width: 100%;height: 86px;">-->
-        <img [hidden]="youshuiCompany" src="../../../assets/main/banner1.png" alt="first slide" style="display: block; width: 100%;height: 86px;" onclick="javascript:{window.location.href = 'http://webapp.youshuidaojia.com/cMain/promotions?vmCode=' + document.getElementById('vmCode').innerHTML}">
+        <img [hidden]="youshuiCompany" src="../../../assets/main/banner1.png" alt="first slide" style="display: block; width: 100%;height: 86px;" (click)="openPromotions()">
         <img [hidden]="otherCompany" src="../../../assets/main/banner2.png" alt="first slide" style="display: block; width: 100%;height: 86px;">
         <div class="carousel-caption d-none d-md-block">
           <h3>First slide label</h3>
@@ -164,6 +164,16 @@
       <img src="../../../assets/main/getCoupon.png" alt="" style="width: 100%;position: absolute;right: 0;top: -40px;">
       <!--<img src="../../../assets/main/follow.png" (click)="follow()" alt="" style="width: 20%;position: absolute;left: 40%;top: 260px;">-->
       <img (click)="closeCoupon()" src="../../../assets/main/close.png" alt=""
+           style="width: 10%; position: absolute;right: 10px;top: 10px;">
+    </ng-template>
+  </nz-modal>
+  <!--双十一-->
+  <nz-modal [nzVisible]="isVisiblePromotions" [nzContent]="modalContentPromotions" [nzFooter]="false"
+            [nzClosable]="false">
+    <ng-template #modalContentPromotions>
+      <img src="../../../assets/main/11promotions.png" alt="" style="width: 100%;position: absolute;right: 0;top: -40px;">
+      <!--<img src="../../../assets/main/follow.png" (click)="follow()" alt="" style="width: 20%;position: absolute;left: 40%;top: 260px;">-->
+      <img (click)="closemodalContentPromotions()" src="../../../assets/main/close.png" alt=""
            style="width: 10%; position: absolute;right: 10px;top: 10px;">
     </ng-template>
   </nz-modal>

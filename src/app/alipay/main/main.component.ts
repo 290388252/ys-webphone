@@ -29,6 +29,7 @@ export class MainComponent implements OnInit {
   public isFiveDoor = false; // 五门
   public isEightDoor = false; // 八门
   public isVisibleCouponThree = false;
+  public isVisiblePromotions = false;
   public couponButtonHidden = true;
   public youshuiCompany = true;
   public otherCompany = true;
@@ -282,6 +283,14 @@ export class MainComponent implements OnInit {
       document.getElementsByClassName('ant-modal-body')[2]['style'].cssText = 'padding: 0;';
       this.isVisibleCouponThree = true;
     }
+  }
+  // 双十一
+  openPromotions() {
+    document.getElementsByClassName('ant-modal-body')[3]['style'].cssText = 'padding: 0;';
+    this.isVisiblePromotions = true;
+  }
+  closemodalContentPromotions() {
+    this.isVisiblePromotions = false;
   }
   // 订单详情
   product(flag) {
