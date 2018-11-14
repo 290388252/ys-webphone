@@ -579,14 +579,14 @@ export class AddMainComponent implements OnInit {
               this.times = 2;
             }, 7000);
           }
-        } else if (data.code === -89) {
-          alert(data.msg);
-          this.isVisibleOpenG = true;
-          this.isVisibleOpenDoor = true;
         } else if (data.code === -1) {
           this.router.navigate(['vmLogin']);
         } else if (data.code === 3) {
           alert('校准失败请重试！');
+          this.isVisibleOpenG = true;
+          this.isVisibleOpenDoor = true;
+        } else {
+          alert(data.msg);
           this.isVisibleOpenG = true;
           this.isVisibleOpenDoor = true;
         }
