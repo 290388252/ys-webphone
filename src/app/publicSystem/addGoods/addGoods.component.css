@@ -1,0 +1,55 @@
+.head{
+  margin-left: 15%;margin-top: 15%;margin-bottom: 10%;
+}
+.inputs {
+  width: 90%;
+  height: 30px;
+  margin-left: 10px;
+  border: 1px solid #d3d3d3;
+  border-radius: 5px;
+}                                                                                                                                                                                                                                                                                   商业转载请联系作者获得授权,非商业转载请注明出处。
+.ad-bt-disable{
+  width: 100%;
+  border: none;
+  border-radius: 5px;
+  background: #a7a9a9;
+  color: #f3f3f3;
+  padding: 8px;
+  outline:none
+}
+.ad-bt-one{
+  width: 100%;
+  border: none;
+  border-radius: 5px;
+  background: #3e85ff;
+  color: #f3f3f3;
+  padding: 8px;
+  outline:none
+}
+.ad-bt-one:active{
+  background: #2196F3;
+  width: 100%;
+  border: none;
+  border-radius: 5px;
+  color: #f3f3f3;
+  padding: 8px;
+  outline:none
+}
+.ad-bt-cancel{
+  width: 100%;
+  border: 1px solid #9E9E9E;
+  border-radius: 5px;
+  background: white;
+  color: black;
+  padding: 7px;
+  outline:none
+}
+.ad-bt-cancel:active{
+  background: #f3f3f3;
+  width: 100%;
+  border: 1px solid #9E9E9E;
+  border-radius: 5px;
+  color: black;
+  padding: 7px;
+  outline:none
+}

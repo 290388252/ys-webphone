@@ -1,0 +1,17 @@
+<div class="head">
+  <img src="../../../assets/main/d.png" alt="" style="width: 200px;">
+  <h6 style="margin-left: 20%">补货校准系统</h6>
+</div>
+<div style="margin-left: 5px;margin-right: 5px">
+  <h6>温馨提示:请正确填写当前货道数量，两次数据不可相同</h6>
+  <p style="color: black">当前次数:{{times}}次</p>
+  <span style="color: black">一号商品:</span><input type="text" [(ngModel)]="num" class="inputs" placeholder="请输入整数">
+  <br>
+  <div [hidden]="goods === 'false'">
+    <span style="color: black">二号商品:</span><input type="text" [(ngModel)]="num2" class="inputs" placeholder="请输入整数">
+  </div>
+  <br>
+  <br>
+  <button *ngIf="count >= 3" (click)="back()" class="ad-bt-cancel">完成</button>
+  <button *ngIf="count < 3" (click)="yes()" [class]="disableButton ? 'ad-bt-disable' : 'ad-bt-one'" [disabled]="disableButton">{{sureButtonText}}</button>
+</div>

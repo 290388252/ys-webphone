@@ -108,24 +108,24 @@ export class AddMainComponent implements OnInit {
     } else {
       this.visible = false;
     }
-    console.log(this.wayIndex);
-    this.isVisibleOpenG = true;
+    const orderNumber = [];
+    for (let i = 0; i < this.indexList[this.wayIndex]['wayItemList'].length; i++) {
+      orderNumber.push(this.indexList[this.wayIndex]['wayItemList'][i].orderNumber);
+    }
+    // 跳转校准
+    this.router.navigate(['addGoods'], {
+      queryParams: {
+        vmCode: urlParse(window.location.search)['vmCode'],
+        goods: this.visible,
+        orderNumber: orderNumber.join(','),
+        wayNo: this.wayNo
+      }
+    });
+    // this.isVisibleOpenG = true; // 弹框校准
   }
 
   selectGood(num) {
     console.log(num);
-    // switch (num) {
-    //   case 0:
-    //     this.isDisabledOne = false;
-    //     this.isDisabledTwo = true;
-    //     this.num2 = null;
-    //     break;
-    //   case 1:
-    //     this.isDisabledOne = true;
-    //     this.isDisabledTwo = false;
-    //     this.num = null;
-    //     break;
-    // }
   }
 
   canReplenish(url) {
@@ -580,7 +580,11 @@ export class AddMainComponent implements OnInit {
             }, 7000);
           }
         } else if (data.code === -1) {
-          this.router.navigate(['vmLogin']);
+          this.router.navigate(['vmLogin'], {
+            queryParams: {
+              vmCode: urlParse(window.location.search)['vmCode']
+            }
+          });
         } else if (data.code === 3) {
           alert('校准失败请重试！');
           this.isVisibleOpenG = true;
