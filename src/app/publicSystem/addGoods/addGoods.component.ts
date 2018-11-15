@@ -64,8 +64,8 @@ export class AddGoodsComponent implements OnInit {
         num = [this.num, this.num2].join(',');
         this.count++;
       } else {
-        if (this.num === this.saveNum[0] || this.num2 === this.saveNum[1]) {
-          alert('两次数量不可相同');
+        if (Math.abs(this.num - this.saveNum[0]) !== 1 || Math.abs(this.num2 - this.saveNum[1]) !== 1) {
+          alert('两次数量差值必须为1');
         } else {
           num = [this.num, this.num2].join(',');
           this.count++;
@@ -77,8 +77,8 @@ export class AddGoodsComponent implements OnInit {
         num = this.num;
         this.count++;
       } else {
-        if (this.num === this.saveNum[0] || this.num2 === this.saveNum[1]) {
-          alert('两次数量不可相同');
+        if ((Math.abs(this.num - this.saveNum[0]) !== 1)) {
+          alert('两次数量差值必须为1');
         } else {
           num = this.num;
           this.count++;
