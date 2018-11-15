@@ -25,6 +25,7 @@ export class DetailComponent implements OnInit , AfterViewChecked {
   public openedTime = '无';
   public closedTime = '无';
   public couponEffectiveList;
+  public imgUrl;
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private appProperties: AppProperties,
   private appService: AppService) {
     this.list = [];
@@ -32,6 +33,7 @@ export class DetailComponent implements OnInit , AfterViewChecked {
 
   ngOnInit() {
     this.id = urlParse(window.location.search)['flag'];
+    this.imgUrl = this.appProperties.imgUrl;
     if (urlParse(window.location.search)['token'] === undefined) {
       this.getCookies();
     } else {
@@ -45,13 +47,13 @@ export class DetailComponent implements OnInit , AfterViewChecked {
     this.appService.getDataOpen(url, {}, this.token).subscribe(
       data => {
         console.log(data);
-        if (data.status === 1) {
-            data.returnObject.forEach((item => {
+        if (data) {
+            data.forEach((item => {
                   this.totalPrice += item.price;
                   this.totalPrice = Math.floor(this.totalPrice * 100) / 100;
                   this.list.push(item);
               }));
-        } else if (data.status !== 1) {
+        } else if (data) {
           alert(data.message);
         }
       },
@@ -73,6 +75,11 @@ export class DetailComponent implements OnInit , AfterViewChecked {
         console.log(error);
       }
     );
+  }
+  getItem(list, name) {
+    if (list.length > 1) {
+      return list[1][name];
+    }
   }
   // 适配背景px
   ngAfterViewChecked(): void {

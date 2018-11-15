@@ -64,8 +64,8 @@ export class AppProperties {
 
   constructor() {
     // Public
-    this.appUrl = 'http://47.106.92.82:6662/ys_sms';
-    // this.appUrl = 'http://192.168.0.113:8769/ys_sms';
+    // this.appUrl = 'http://47.106.92.82:6662/ys_sms';
+    this.appUrl = 'http://192.168.0.121:6662/ys_sms';
     this.adminUrl = 'http://119.23.233.123:6662/ys_admin';
     this.imgUrl = this.adminUrl + '/files/';
     this.isClosedUrl = this.appUrl + '/wechat/isClosed';
@@ -98,7 +98,8 @@ export class AppProperties {
     this.smsSendUrl = this.appUrl + '/sms/send';
     this.wechatRegisterUrl = this.appUrl + '/wechat/register';
     this.followWechatSubscription = 'https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzU0NzQ4MTY0Mg==&scene=124#wechat_redirect';
-    this.findAllUserOrderUrl = this.appUrl + '/order/myOrderList';
+    // this.findAllUserOrderUrl = this.appUrl + '/order/myOrderList';
+    this.findAllUserOrderUrl = this.appUrl + '/alipayRecord/getCustomerOrder';
     this.findAllOpenIdOrderUrl = this.adminUrl + '/order/findOrderByOpenId?openId=';
     this.orderUnifiedOrderUrl = this.appUrl + '/order/unifiedOrder';
     this.nonePassWordPayUrl = this.appUrl + '/wechat/entrustweb';
@@ -113,7 +114,8 @@ export class AppProperties {
     this.aliOpenDoorUrl = this.appUrl + '/aliBusiness/weightOpenDoor';
     this.aliRegisterUrl = this.appUrl + '/aliBusiness/register';
     this.aliSmsSendUrl = this.appUrl + '/alisms/send';
-    this.aliFindAllUserOrderUrl = this.appUrl + '/aliBusiness/findAllUserOrder';
+    // this.aliFindAllUserOrderUrl = this.appUrl + '/aliBusiness/findAllUserOrder';
+    this.aliFindAllUserOrderUrl = this.appUrl + '/alipayRecord/getCustomerOrder';
     this.aliFindPayOrderUrl = this.appUrl + '/aliBusiness/findPayOrder';
     this.aliFindNotPayOrderUrl = this.appUrl + '/aliBusiness/findNotPayOrder';
     this.alipayWapPayUrl = this.appUrl + '/alipay/wapPay?payRecordId=';

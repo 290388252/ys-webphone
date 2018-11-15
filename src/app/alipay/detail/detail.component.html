@@ -14,20 +14,33 @@
     <div class="weui-form-preview__hd">
       <div class="weui-form-preview__item">
         <label class="weui-form-preview__label">订单号:</label>
-        <em class="weui-form-preview__value">{{item.orderId}}</em>
+        <p style="font-size: 14px">{{item.payCode}}</p>
       </div>
     </div>
     <div class="weui-form-preview__bd">
       <article style="display: -webkit-box;margin-bottom: 5px">
-        <img style="width: 40px" src="../../../assets/main/yibao.png" alt="">
-        <div style="margin-left: 50%">
+        <img style="width: 40px" [src]="imgUrl+item.itemList[0].pic" alt="">
+        <div style="margin-left: 10%">
           <div class="weui-form-preview__item">
-            <label class="weui-form-preview__label">{{item.itemName}}:</label>
-            <span class="weui-form-preview__value">￥{{item.totalPrice}}</span>
+            <label class="weui-form-preview__label">{{item.itemList[0].itemName}}:</label>
+            <span class="weui-form-preview__value">￥{{item.itemList[0].price}}</span>
           </div>
           <div class="weui-form-preview__item">
             <label class="weui-form-preview__label">数量：</label>
-            <span class="weui-form-preview__value">{{item.num}}</span>
+            <span class="weui-form-preview__value">{{item.itemList[0].num}}</span>
+          </div>
+        </div>
+      </article>
+      <article [hidden]="item.itemList.length === 1" style="display: -webkit-box;margin-bottom: 5px">
+        <img style="width: 40px" [src]="imgUrl+getItem(item.itemList, 'pic')" alt="">
+        <div style="margin-left: 10%">
+          <div class="weui-form-preview__item">
+            <label class="weui-form-preview__label">{{getItem(item.itemList, 'itemName')}}:</label>
+            <span class="weui-form-preview__value">￥{{getItem(item.itemList, 'price')}}</span>
+          </div>
+          <div class="weui-form-preview__item">
+            <label class="weui-form-preview__label">数量：</label>
+            <span class="weui-form-preview__value">{{getItem(item.itemList, 'num')}}</span>
           </div>
         </div>
       </article>
@@ -46,11 +59,11 @@
       </div>
       <div style="border-bottom: 1px solid #f3f3f3;margin-bottom: 5px"></div>
       <div class="weui-form-preview__item">
-        <img style="width: 90px" (click)="detail(item.ptCode)" src="../../../assets/main/detail-bt.png" alt="">
+        <img style="width: 90px" (click)="detail(item.payCode)" src="../../../assets/main/detail-bt.png" alt="">
       </div>
     </div>
-    <div class="weui-form-preview__ft" [hidden]="item.state !== '未支付'">
-    <a class="weui-form-preview__btn weui-form-preview__btn_primary" href="javascript:" (click)="pay(item)">支付</a>
+    <div class="weui-form-preview__ft" [hidden]="item.state !== '10002'">
+      <a class="weui-form-preview__btn weui-form-preview__btn_primary" href="javascript:" (click)="pay(item)">支付</a>
     </div>
     <div style="margin-top: 10px;width: 100%"></div>
   </div>

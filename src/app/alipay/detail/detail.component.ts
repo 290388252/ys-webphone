@@ -11,8 +11,6 @@ import {urlParse} from '../../utils/util';
   styleUrls: ['./detail.component.css']
 })
 export class DetailComponent implements OnInit, AfterViewChecked {
-  public queryParamsTitle: string;
-  public title: string;
   public token: string;
   public id: any;
   public list;
@@ -23,36 +21,21 @@ export class DetailComponent implements OnInit, AfterViewChecked {
   public num = '无';
   public openedTime = '无';
   public closedTime = '无';
+  public imgUrl;
   constructor(private router: Router, private activatedRoute: ActivatedRoute,
               private appProperties: AppProperties,
               private appService: AppService) {
-    activatedRoute.queryParams.subscribe(queryParams => {
-      this.queryParamsTitle = queryParams.title;
-      if (this.queryParamsTitle === '1') {
-        this.title = '我的订单';
-      } else if (this.queryParamsTitle === '2') {
-        this.title = '已付款订单';
-      } else if (this.queryParamsTitle === '3') {
-        this.title = '未付款订单';
-      }
-    });
   }
 
   ngOnInit() {
+    this.imgUrl = this.appProperties.imgUrl;
     this.id = urlParse(window.location.search)['flag'];
     // 获取cookies的token值
     this.getCookies();
     if (this.token === null || this.token === undefined || this.token === 'undefined') {
       this.token = urlParse(window.location.search)['token'];
     }
-    this.title = '我的订单';
-    if (this.title === '我的订单') {
-      this.postData(this.appProperties.aliFindAllUserOrderUrl);
-    } else if (this.title === '已付款订单') {
-      this.postData(this.appProperties.aliFindPayOrderUrl);
-    } else if (this.title === '未付款订单') {
-      this.postData(this.appProperties.aliFindNotPayOrderUrl);
-    }
+    this.getData(this.appProperties.aliFindAllUserOrderUrl);
     this.appService.postAliData(this.appProperties.couponAvailable + '?vmCode=' + urlParse(window.location.search)['vmCode'],
       '', this.token).subscribe(
       data => {
@@ -71,17 +54,17 @@ export class DetailComponent implements OnInit, AfterViewChecked {
     return flag !== '支付失败' ? 24 : 20;
   }
   // 查询订单条目
-  postData(url) {
-    this.appService.postAliData(url, {}, this.token).subscribe(
+  getData(url) {
+    this.appService.getDataOpen(url, {}, this.token).subscribe(
       data => {
         console.log(data);
-        if (data.status === 1) {
-          this.list = data.returnObject;
+        if (data) {
+          this.list = data;
           this.list.forEach((item => {
             this.totalPrice += item.price;
             this.totalPrice = Math.floor(this.totalPrice * 100) / 100;
           }));
-        } else if (data.status !== 1) {
+        } else {
           alert(data.message);
         }
       },
@@ -89,6 +72,11 @@ export class DetailComponent implements OnInit, AfterViewChecked {
         console.log(error);
       }
     );
+  }
+  getItem(list, name) {
+    if (list.length > 1) {
+      return list[1][name];
+    }
   }
   // 支付宝支付接口调用
   pay(item) {
