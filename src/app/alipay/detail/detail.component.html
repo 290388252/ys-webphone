@@ -1,9 +1,9 @@
 <div id="containers" class="containers">
   <div class="page__hd" style="padding: 10px;background: white">
-    <h1 [hidden]="id === '2'" class="page__title">我的订单</h1>
-    <h1 [hidden]="id === '1'" class="page__title">我的优惠卷</h1>
+    <h1 [hidden]="id.toString() === '2'" class="page__title">我的订单</h1>
+    <h1 [hidden]="id.toString() === '1'" class="page__title">我的优惠卷</h1>
   </div>
-<div id="content" class="content" [hidden]="id === '2'">
+<div id="content" class="content" [hidden]="id.toString() === '2'">
 
   <!--<div class="weui-form-preview" *ngFor="let item of list">-->
     <!--<div class="weui-form-preview__hd">-->
@@ -101,7 +101,7 @@
   </div>
 </div>
 
-<div id="contents" class="content" [hidden]="id === '1'">
+<div id="contents" class="content" [hidden]="id.toString() === '1'">
     <div class="layout">
       <div class="card" *ngFor="let item of couponEffectiveList">
         <div style="float: left;margin-top: 20px" *ngIf="(item.type === 1)">
