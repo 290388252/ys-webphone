@@ -73,7 +73,6 @@ export class AddMainComponent implements OnInit {
     this.getCookies();
     // 数据初始化
     this.getInitData();
-    console.log('123');
     if (this.token === null
       || this.token === undefined
       || this.token === 'undefined') {
