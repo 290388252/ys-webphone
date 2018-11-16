@@ -371,15 +371,24 @@ export class GoodsShowComponent implements OnInit {
     });
 
     // 判断是使用优惠券还是提水券type为1是优惠券，type=2为提水券
-    if (this.type === '1') { // 使用优惠券
-      getType(this.appProperties.useCouponUrl, this.couponList);
-    } else if (this.type === '2') { // 使用提水券
-      getType(this.appProperties.useWaterVouchersUrl, this.waterVoucherList);
-    }
-    function getType(url, list) {
-      this.appService.postAliData(url, {orderId: this.orderId}, this.token).subscribe(
+    // 使用优惠券
+    if (this.type === '1') {
+      this.appService.postAliData(this.appProperties.useCouponUrl, this.couponId, this.token).subscribe(
         data => {
-          list = data.returnObject;
+          if (data) {
+            this.couponList = data.returnObject;
+          }
+        },
+        error => {
+          console.log(error);
+        }
+      );
+    }
+    // 使用提水券
+    if (this.type === '2') {
+      this.appService.postAliData(this.appProperties.useWaterVouchersUrl, {orderId: this.orderId}, this.token).subscribe(
+        data => {
+          this.waterVoucherList = data.returnObject;
         },
         error => {
           console.log(error);
