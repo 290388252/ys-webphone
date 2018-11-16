@@ -1,25 +1,33 @@
-import { Component , OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AppService} from '../../app-service';
 import {AppProperties} from '../../app.properties';
 import {NzModalService} from 'ng-zorro-antd';
-import {urlParse} from '../../utils/util';
+import {getCoupon, getNewUser, urlParse} from '../../utils/util';
+import { CarouselConfig } from 'ngx-bootstrap/carousel';
 declare var wx: any;
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
-  styleUrls: ['./main.component.css']
+  styleUrls: ['./main.component.css'],
+  providers: [
+    { provide: CarouselConfig, useValue: { interval: 1500, noPause: true, showIndicators: true } }
+  ]
 })
 export class MainComponent implements OnInit {
-  public indexList: Array<object>;
+  public indexList = [];
+  public eightIndexList = [];
+  public fiveIndexList = [];
+  public eightDoorFlag = 0;
   private token: string;
-  private newUser: boolean;
   private wayNumber: number;
   public isVisibleOpen = false;
   public isVisibleOpenDoor = false;
   public isVisibleCoupon = false;
   public isVisibleCouponTwo = false;
+  public isVisibleCouponThree = false;
+  public couponButtonHidden = true;
   public clickMore = false;
   // public img = 'http://lenvar-resource-products.oss-cn-shenzhen.aliyuncs.com/';
   // public img = 'http://119.23.233.123:6662/ys_admin/files/';
@@ -28,104 +36,75 @@ export class MainComponent implements OnInit {
   currentModal;
   public isFourDoor = false;
   public isFiveDoor = false;
-  // public isSixDoor = false;
+  public isEightDoor = false; // 八门
+  public youshuiCompany = true;
+  public otherCompany = true;
+  public vmCode;
+  public openDoorMsg = '是否要开门？';
+  public isConfirmLoading = false;
   constructor(private router: Router,
               private modalService: NzModalService,
               private activatedRoute: ActivatedRoute,
               private appProperties: AppProperties,
-              private appService: AppService) {}
+              private appService: AppService) {
+  }
+
   ngOnInit() {
-    // console.log(document.getElementsByClassName('ant-modal-footer')[0].id = 'ant-modal-footer');
     this.getInitData();
-    this.getCookies();
-    console.log(this.token);
-    if (this.getCoupon() === '0') {
-      this.isVisibleCoupon = true;
-    } else if (this.getCoupon() === '2') {
-      this.isVisibleCouponTwo = true;
-    }
-    if (urlParse(window.location.search)['token']) {
+    console.log(urlParse(window.location.search)['token'] === undefined);
+    if (urlParse(window.location.search)['token'] === undefined) {
+      this.getCookies();
+    } else {
       this.token = urlParse(window.location.search)['token'];
       const exp = new Date();
       exp.setTime(exp.getTime() + 1000 * 60 * 60 * 24 * 365 * 10);
       document.cookie = 'token=' + this.token + ';expires=' + exp.toUTCString();
+      // window.localStorage.setItem('token', urlParse(window.location.search)['token']);
+    }
+    if (getCoupon() === '0') {
+      this.isVisibleCoupon = true;
+    } else if (getCoupon() === '2') {
+      this.isVisibleCouponTwo = true;
     }
     console.log(urlParse(window.location.search)['vmCode']);
-    console.log(urlParse(window.location.search)['newUser']);
     // // 新用户进入界面
-    // if (urlParse(window.location.search)['newUser'] === '1') {
-    //   this.appService.getDataOpen(this.appProperties.indexOpenDoor,
-    //     {vmCode: urlParse(window.location.search)['vmCode'], way: sessionStorage.getItem('wayNumber')}, this.token).subscribe(
-    //     data => {
-    //       console.log(data);
-    //       this.isVisibleOpenDoor = false;
-    //       if (data.code === 0) {
-    //         this.isVisibleOpen = true;
-    //       } else if (data.code === 3) {
-    //         alert('开门失败！');
-    //       } else if (data.code === -1) {
-    //         this.login();
-    //       } else if (data.code === -87) {
-    //         window.location.href = this.appProperties.followWechatSubscription;
-    //       } else if (data.code === -88) {
-    //         alert('您有未支付订单请点击我的订单支付完毕再进行购水！');
-    //       } else if (data.code === -89) {
-    //         alert('他人在买水，请稍后扫码,文明购买，请勿争抢');
-    //       } else if (data.code === -90) {
-    //         this.appService.getDataOpen(this.appProperties.nonePassWordPayUrl, {vmCode: urlParse(window.location.href)['vmCode']}).subscribe(
-    //           data1 => {
-    //             window.location.href =  data1;
-    //             sessionStorage.setItem('open', '1');
-    //           },
-    //           error1 => {
-    //             console.log(error1);
-    //           }
-    //         );
-    //       }
-    //     },
-    //     error => {
-    //       console.log(error);
-    //     }
-    //   );
-    // }
-    // // 是否自动开门
-    // if (sessionStorage.getItem('open') === '1') {
-    //   this.appService.getDataOpen(this.appProperties.indexOpenDoor,
-    //     {vmCode: urlParse(window.location.search)['vmCode'], way: sessionStorage.getItem('wayNumber')}, this.token).subscribe(
-    //     data => {
-    //       console.log(data);
-    //       this.isVisibleOpenDoor = false;
-    //       if (data.code === 0) {
-    //         this.isVisibleOpen = true;
-    //       } else if (data.code === 3) {
-    //         alert('开门失败！');
-    //       } else if (data.code === -1) {
-    //         this.login();
-    //       } else if (data.code === -87) {
-    //         window.location.href = this.appProperties.followWechatSubscription;
-    //       } else if (data.code === -88) {
-    //         alert('您有未支付订单请点击我的订单支付完毕再进行购水！');
-    //       } else if (data.code === -89) {
-    //         alert('他人在买水，请稍后扫码,文明购买，请勿争抢');
-    //       } else if (data.code === -90) {
-    //         this.appService.getDataOpen(this.appProperties.nonePassWordPayUrl, {vmCode: urlParse(window.location.href)['vmCode']}).subscribe(
-    //           data1 => {
-    //             window.location.href =  data1;
-    //           },
-    //           error1 => {
-    //             console.log(error1);
-    //           }
-    //         );
-    //       }
-    //     },
-    //     error => {
-    //       console.log(error);
-    //     }
-    //   );
-    // }
+    if (getNewUser() === '1') {
+      document.cookie = 'newUser=' + 0;
+      this.appService.getDataOpen(this.appProperties.nonePassWordPayUrl,
+        {vmCode: urlParse(window.location.href)['vmCode']}).subscribe(
+        data1 => {
+          window.location.href = data1;
+        },
+        error1 => {
+          console.log(error1);
+        }
+      );
+    }
+    this.vmCode = urlParse(window.location.search)['vmCode'];
   }
+
   // 数据初始化
   getInitData() {
+    this.appService.postData(this.appProperties.machineInfoGetCompanyIdUrl + urlParse(window.location.search)['vmCode'], '').subscribe(
+      data2 => {
+        console.log(data2);
+        if (data2.returnObject === 76 || data2.returnObject === '76'
+          || data2.returnObject === 113 || data2.returnObject === '113'
+          || data2.returnObject === 114 || data2.returnObject === '114'
+          || data2.returnObject === 115 || data2.returnObject === '115'
+          || data2.returnObject === 116 || data2.returnObject === '116'
+          || data2.returnObject === 117 || data2.returnObject === '117'
+          || data2.returnObject === 119 || data2.returnObject === '119') {
+          this.youshuiCompany = false;
+          this.otherCompany = true;
+        } else {
+          this.youshuiCompany = true;
+          this.otherCompany = false;
+        }
+      },
+      error2 => {
+        console.log(error2);
+      });
     this.appService.getData(this.appProperties.indexListUrl, {vmCode: urlParse(window.location.search)['vmCode'], type: 1}).subscribe(
       data => {
         console.log(data);
@@ -133,6 +112,7 @@ export class MainComponent implements OnInit {
           if (data.data.length <= 4) {
             this.isFourDoor = true;
             this.isFiveDoor = false;
+            this.isEightDoor = false;
             this.indexList = data.data;
             for (let i = 0; i < 2; i++) {
               this.indexList.unshift(this.indexList.pop());
@@ -140,14 +120,21 @@ export class MainComponent implements OnInit {
           } else if (data.data.length === 5) {
             this.isFourDoor = false;
             this.isFiveDoor = true;
+            this.isEightDoor = false;
+            data.data.forEach((item, index) => {
+              if (index > 1) {
+                this.indexList.push(item);
+              } else {
+                this.fiveIndexList.push(item);
+              }
+            });
+          } else if (data.data.length === 8) {
+            this.isFourDoor = false;
+            this.isFiveDoor = false;
+            this.isEightDoor = true;
             this.indexList = data.data;
+            this.eightIndexList = data.data.slice(0, 4);
           }
-          // else if (data.data.length === 6) {
-          //   this.isFourDoor = false;
-          //   this.isFiveDoor = false;
-          //   // this.isSixDoor = true;
-          //   this.indexList = data.data;
-          // }
           console.log(this.indexList);
         }
       },
@@ -156,6 +143,7 @@ export class MainComponent implements OnInit {
       }
     );
   }
+
   // 开门
   openDoor(item) {
     this.item = item;
@@ -165,19 +153,41 @@ export class MainComponent implements OnInit {
       this.isVisibleOpenDoor = true;
     }
   }
+  eigthDoorChoose(flag) {
+    this.eightDoorFlag = flag;
+    if (flag === 0) {
+      this.eightIndexList = this.indexList.slice(0, 4);
+    } else if (flag === 1) {
+      this.eightIndexList = this.indexList.slice(4, 8);
+    }
+  }
+
+  follow() {
+    window.location.href = 'https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzU0NzQ4MTY0Mg==&scene=124#wechat_redirect';
+  }
+
   closeCoupon() {
     this.isVisibleCoupon = false;
     this.isVisibleCouponTwo = false;
+    this.isVisibleCouponThree = false;
     document.cookie = 'coupon=' + 1;
   }
+
   // 运维登陆
-  vmLogin() {
-    this.router.navigate(['addMain'], {
-      queryParams: {
-        vmCode: urlParse(window.location.search)['vmCode'],
-        payType: 1
-      }});
+  vmLogin(flag) {
+    if (flag === 1) {
+      this.router.navigate(['addMain'], {
+        queryParams: {
+          vmCode: urlParse(window.location.search)['vmCode'],
+          payType: 1
+        }
+      });
+    } else if (flag === 2) {
+      document.getElementsByClassName('ant-modal-body')[4]['style'].cssText = 'padding: 0;';
+      this.isVisibleCouponThree = true;
+    }
   }
+
   // 订单详情
   product(flag) {
     // this.router.navigate(['product'], {
@@ -188,53 +198,15 @@ export class MainComponent implements OnInit {
       queryParams: {
         vmCode: urlParse(window.location.search)['vmCode'],
         flag: flag
-      }});
+      }
+    });
     // TODO;
   }
-  share() {
-    this.appService.postAliData(this.appProperties.wechatShareInfoUrl + '?url=http://sms.youshuidaojia.com/main',
-      '', this.token).subscribe(
-      data => {
-        console.log(data);
-        wx.config({
-          debug: false,
-          appId: data.data.appId,
-          timestamp: data.data.timestamp,
-          nonceStr: data.data.nonceStr,
-          signature: data.data.signature,
-          jsApiList: ['checkJsApi',
-            'onMenuShareAppMessage',
-            'onMenuShareTimeline',
-            'onMenuShareQQ',
-            'onMenuShareWeibo',
-          ]
-        });
-        wx.ready(function () {
-          const shareData = {
-            title: '标题',
-            desc: '简介', // 这里请特别注意是要去除html
-            link: '链接',
-            imgUrl: '题图',
-            success: function () {
-              // 用户确认分享后执行的回调函数
-              console.log('success');
-            },
-            cancel: function () {
-              // 用户取消分享后执行的回调函数
-              console.log('cancel');
-            }
-          };
-          wx.onMenuShareAppMessage(shareData);
-          wx.onMenuShareTimeline(shareData);
-          wx.onMenuShareQQ(shareData);
-          wx.onMenuShareWeibo(shareData);
-        });
-      },
-      error2 => {
-        console.log(error2);
-      }
-    );
+
+  show() {
+    this.couponButtonHidden = !this.couponButtonHidden;
   }
+
   // 是否已关门
   isClosed(vmCode) {
     this.appService.getDataOpen(this.appProperties.isClosedUrl, {vmCode: vmCode}, this.token).subscribe(
@@ -254,17 +226,9 @@ export class MainComponent implements OnInit {
       }
     );
   }
+
   // 新用户登陆
   login() {
-    // this.currentModal = this.modalService.open({
-    //   title       : titleTpl,
-    //   content     : contentTpl,
-    //   footer      : footerTpl,
-    //   maskClosable: false,
-    //   onOk() {
-    //     console.log('Click ok');
-    //   }
-    // });
     this.appService.getData(this.appProperties.wechatOauth2Url, {vmCode: urlParse(window.location.href)['vmCode']}).subscribe(
       data => {
         console.log(data);
@@ -288,18 +252,25 @@ export class MainComponent implements OnInit {
       }
     );
   }
+
   handleOk($event) {
     window.location.href = this.appProperties.followWechatSubscription;
     this.currentModal.destroy('onOk');
   }
+
   // 检测关门
   openOk() {
     this.isVisibleOpen = true;
     this.isClosed(urlParse(window.location.search)['vmCode']);
   }
+
   // 确定开门
   yesOpenDoor() {
-    this.isVisibleOpenDoor = false;
+    this.isConfirmLoading = true;
+    this.openDoorMsg = '正在开门请稍等！';
+    setTimeout(() => {
+      this.isVisibleOpenDoor = false;
+      this.isConfirmLoading = false;
       if (this.clickMore) {
         alert('亲,服务器还没反应过来,请勿再点击');
       } else {
@@ -307,7 +278,7 @@ export class MainComponent implements OnInit {
         if (this.token === null || this.token === undefined || this.token === 'undefined') {
           this.clickMore = false;
           sessionStorage.setItem('wayNumber', this.item.wayNumber);
-          alert('请点击确认，注册登陆');
+          // alert('请点击确认，注册登陆');
           this.login();
         } else {
           this.appService.getDataOpen(this.appProperties.indexOpenDoor,
@@ -318,19 +289,37 @@ export class MainComponent implements OnInit {
               if (data.code === 0) {
                 // alert('优水到家提醒您,为了您账号资金安全,提水后请随手关门');
                 // this.isVisibleOpen = true;
-                this.router.navigate(['goodsShow'], {
-                  queryParams: {
-                    vmCode: urlParse(window.location.search)['vmCode'],
-                    flag: 1,
-                  }});
+                const u = navigator.userAgent;
+                const isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); // ios终端
+                if (isiOS) {
+                  sessionStorage.setItem('flag', '1');
+                  window.location.href = 'http://sms.youshuidaojia.com/goodsShow?vmCode=' + urlParse(window.location.search)['vmCode'];
+                } else {
+                  sessionStorage.setItem('flag', '1');
+                  this.router.navigate(['goodsShow'], {
+                    queryParams: {
+                      vmCode: urlParse(window.location.search)['vmCode'],
+                      // flag: 1,
+                    }
+                  });
+                }
               } else if (data.code === 4) {
-                this.router.navigate(['goodsShow'], {
-                  queryParams: {
-                    vmCode: urlParse(window.location.search)['vmCode'],
-                    flag: 2,
-                  }});
+                const u = navigator.userAgent;
+                const isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); // ios终端
+                if (isiOS) {
+                  sessionStorage.setItem('flag', '2');
+                  window.location.href = 'http://sms.youshuidaojia.com/goodsShow?vmCode=' + urlParse(window.location.search)['vmCode'];
+                } else {
+                  sessionStorage.setItem('flag', '2');
+                  this.router.navigate(['goodsShow'], {
+                    queryParams: {
+                      vmCode: urlParse(window.location.search)['vmCode'],
+                      // flag: 2,
+                    }
+                  });
+                }
               } else if (data.code === 3) {
-                alert('开门失败！');
+                alert('网络延时，请重试！');
               } else if (data.code === -1) {
                 this.login();
               } else if (data.code === -87) {
@@ -340,14 +329,16 @@ export class MainComponent implements OnInit {
                 this.router.navigate(['detail'], {
                   queryParams: {
                     vmCode: urlParse(window.location.search)['vmCode'],
-                  }});
+                    flag: 1
+                  }
+                });
               } else if (data.code === -89) {
                 alert('他人在买水，请稍后扫码,文明购买，请勿争抢');
               } else if (data.code === -90) {
                 this.appService.getDataOpen(this.appProperties.nonePassWordPayUrl,
                   {vmCode: urlParse(window.location.href)['vmCode']}).subscribe(
                   data1 => {
-                    window.location.href =  data1;
+                    window.location.href = data1;
                     // sessionStorage.setItem('open', '1');
                     sessionStorage.setItem('wayNumber', this.item.wayNumber);
                   },
@@ -355,6 +346,8 @@ export class MainComponent implements OnInit {
                     console.log(error1);
                   }
                 );
+              } else {
+                alert(data.msg);
               }
             },
             error => {
@@ -363,11 +356,14 @@ export class MainComponent implements OnInit {
           );
         }
       }
+    }, 1500);
   }
+
   // 确定关门
   noOpenDoor() {
     this.isVisibleOpenDoor = false;
   }
+
   // 测试支付
   test(data) {
     wx.config({
@@ -405,8 +401,9 @@ export class MainComponent implements OnInit {
       });
     });
   }
+
   // 获取token
-  getCookies () {
+  getCookies() {
     if (this.token === null || this.token === undefined || this.token === 'undefined') {
       const strCookie = document.cookie;
       const arrCookie = strCookie.split(';');
@@ -418,43 +415,22 @@ export class MainComponent implements OnInit {
       }
     }
   }
-  getCoupon () {
-    let coupon;
-      const strCookie = document.cookie;
-      const arrCookie = strCookie.split(';');
-      for (let i = 0; i < arrCookie.length; i++) {
-        const arr = arrCookie[i].split('=');
-        if (arr[0].trim() === 'coupon') {
-          coupon = arr[1];
-        }
-      }
-      return coupon;
-    }
   turnImg(item) {
     let img;
-    if  (item.length > 1) {
+    if (item.length > 1) {
       img = this.img + item[1].pic;
     } else {
       img = '';
     }
     return img;
   }
-  turnItemName(item) {
-    let itemName;
-    if  (item.length > 1) {
-      itemName = item[1].itemName;
+  turn(item, name) {
+    let variable;
+    if (item.length > 1) {
+      variable = item[1][name];
     } else {
-      itemName = '';
+      variable = '';
     }
-    return itemName;
-  }
-  turnPrice(item) {
-    let price;
-    if  (item.length > 1) {
-      price = item[1].price;
-    } else {
-      price = '';
-    }
-    return price;
+    return variable;
   }
 }

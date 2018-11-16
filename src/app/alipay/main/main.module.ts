@@ -7,7 +7,7 @@ import { MainRoutingModule } from './main-routing.module';
 import {AppService} from '../../app-service';
 import {AppProperties} from '../../app.properties';
 import {NgZorroAntdModule} from 'ng-zorro-antd';
-
+import { CarouselModule } from 'ngx-bootstrap/carousel';
 
 @NgModule({
   declarations: [
@@ -18,7 +18,8 @@ import {NgZorroAntdModule} from 'ng-zorro-antd';
     HttpClientModule,
     CommonModule,
     MainRoutingModule,
-    NgZorroAntdModule
+    NgZorroAntdModule,
+    CarouselModule.forRoot()
   ],
   providers: [AppService, AppProperties],
   bootstrap: [MainComponent]

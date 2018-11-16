@@ -12,13 +12,19 @@ import {AddMainModule} from './addMain.module';
   styleUrls: ['./addMain.component.css']
 })
 export class AddMainComponent implements OnInit {
-  public indexList: Array<object>;
+  public indexList = [];
+  public eightIndexList = [];
+  public eightDoorFlag = 0;
+  public fiveIndexListLeft = [];
+  public fiveIndexListRigth = [];
   private wayNumber: number;
   public isVisibleOpen = false;
   public loadingVisible = false;
   public isVisibleOpenDoor = false;
+  public isVisibleOpenEightDoor = false;
   public isVisibleOpenG = false;
   public isVisibleOpenDetail = false;
+  public isAdjustLoading = false;
   public token: string;
   // public radioValue: string;
   public count = 1;
@@ -36,7 +42,7 @@ export class AddMainComponent implements OnInit {
   public clickMore = false;
   public isFourDoor = false; // 四门
   public isFiveDoor = false; // 五门
-  public isSixDoor = false; // liu门
+  public isEightDoor = false; // 8门
   // public myVol = false;
   // public isConfirmLoading = false;
   public isVisible = false;
@@ -67,47 +73,10 @@ export class AddMainComponent implements OnInit {
     this.getCookies();
     // 数据初始化
     this.getInitData();
-    console.log('123');
     if (this.token === null
       || this.token === undefined
       || this.token === 'undefined') {
-      if (urlParse(window.location.search)['payType'] === '1') {
-        // 微信授权登陆验证
-        this.appService.getData(this.appProperties.adminOauth2Url, '').subscribe(
-          data => {
-            console.log(data);
-            let newData;
-            const newWlhUrl = '/vmLogin?vmCode=' + urlParse(window.location.search)['vmCode'] + '&payType=1';
-            if (typeof(data.data) === 'string' && data.data.length > 0) {
-              newData = data.data.replace(data.data.substring(data.data.indexOf('state=') + 6, data.data.length),
-                newWlhUrl);
-              console.log(newData);
-              window.location.href = newData;
-            }
-          },
-          error => {
-            console.log(error);
-          }
-        );
-      } else if (urlParse(window.location.search)['payType'] === '2') {
-        // 支付宝授权登陆验证
-        const newWlhUrl = '?state=/vmLogin?vmCode=' + urlParse(window.location.search)['vmCode'] + '&payType=2';
-        this.appService.getData(this.appProperties.aliVmGetUserIdUrl + '?vmCode=' + urlParse(window.location.search)['vmCode'], '').subscribe(
-          data2 => {
-            console.log(data2);
-            window.location.href = data2.returnObject + newWlhUrl;
-          },
-          error2 => {
-            console.log(error2);
-          }
-        );
-        // window.location.href = this.appProperties.aliVmGetUserIdUrl + newWlhUrl;
-        // this.router.navigate(['vmLogin'], {
-        //   queryParams: {
-        //     vmCode: urlParse(window.location.search)['vmCode'],
-        //     payType: 2
-        //   }});
-      }
+      this.getAuth();
     } else {
       if (urlParse(window.location.search)['payType'] === '1') {
         this.canReplenish('main');
@@ -117,43 +86,45 @@ export class AddMainComponent implements OnInit {
     }
     this.volValue = 0;
   }
-
   selectDoor(num) {
-    console.log(num === 3);
-    if (num === 3) {
-      this.wayIndex = 0;
-    } else if (num === 4) {
-      this.wayIndex = 1;
-    } else if (num === 1) {
-      this.wayIndex = 2;
-    } else if (num === 2) {
-      this.wayIndex = 3;
-    } else if (num === 5) {
-      this.wayIndex = 4;
+    if (this.isFiveDoor || this.isEightDoor) {
+        this.wayIndex = num - 1;
+    } else {
+      if (num === 3) {
+        this.wayIndex = 0;
+      } else if (num === 4) {
+        this.wayIndex = 1;
+      } else if (num === 1) {
+        this.wayIndex = 2;
+      } else if (num === 2) {
+        this.wayIndex = 3;
+      } else if (num === 5) {
+        this.wayIndex = 4;
+      }
     }
     if (this.indexList[this.wayIndex]['wayItemList'].length > 1) {
       this.visible = true;
     } else {
       this.visible = false;
     }
-    console.log(this.wayIndex);
-    this.isVisibleOpenG = true;
+    const orderNumber = [];
+    for (let i = 0; i < this.indexList[this.wayIndex]['wayItemList'].length; i++) {
+      orderNumber.push(this.indexList[this.wayIndex]['wayItemList'][i].orderNumber);
+    }
+    // 跳转校准
+    this.router.navigate(['addGoods'], {
+      queryParams: {
+        vmCode: urlParse(window.location.search)['vmCode'],
+        goods: this.visible,
+        orderNumber: orderNumber.join(','),
+        wayNo: this.wayNo
+      }
+    });
+    // this.isVisibleOpenG = true; // 弹框校准
   }
 
   selectGood(num) {
     console.log(num);
-    // switch (num) {
-    //   case 0:
-    //     this.isDisabledOne = false;
-    //     this.isDisabledTwo = true;
-    //     this.num2 = null;
-    //     break;
-    //   case 1:
-    //     this.isDisabledOne = true;
-    //     this.isDisabledTwo = false;
-    //     this.num = null;
-    //     break;
-    // }
   }
 
   canReplenish(url) {
@@ -162,6 +133,8 @@ export class AddMainComponent implements OnInit {
       data => {
         console.log(data);
         if (data.code === 0) {
+        } else if (data.code === -1) {
+          this.getAuth();
         } else {
           alert(data.msg);
           this.router.navigate([url], {
@@ -176,7 +149,45 @@ export class AddMainComponent implements OnInit {
       }
     );
   }
-
+  getAuth() {
+    if (urlParse(window.location.search)['payType'] === '1') {
+      // 微信授权登陆验证
+      this.appService.getData(this.appProperties.adminOauth2Url, '').subscribe(
+        data => {
+          console.log(data);
+          let newData;
+          const newWlhUrl = '/vmLogin?vmCode=' + urlParse(window.location.search)['vmCode'] + '&payType=1';
+          if (typeof(data.data) === 'string' && data.data.length > 0) {
+            newData = data.data.replace(data.data.substring(data.data.indexOf('state=') + 6, data.data.length),
+              newWlhUrl);
+            console.log(newData);
+            window.location.href = newData;
+          }
+        },
+        error => {
+          console.log(error);
+        }
+      );
+    } else if (urlParse(window.location.search)['payType'] === '2') {
+      // 支付宝授权登陆验证
+      const newWlhUrl = '?state=/vmLogin?vmCode=' + urlParse(window.location.search)['vmCode'] + '&payType=2';
+      this.appService.getData(this.appProperties.aliVmGetUserIdUrl + '?vmCode=' + urlParse(window.location.search)['vmCode'], '').subscribe(
+        data2 => {
+          console.log(data2);
+          window.location.href = data2.returnObject + newWlhUrl;
+        },
+        error2 => {
+          console.log(error2);
+        }
+      );
+      // window.location.href = this.appProperties.aliVmGetUserIdUrl + newWlhUrl;
+      // this.router.navigate(['vmLogin'], {
+      //   queryParams: {
+      //     vmCode: urlParse(window.location.search)['vmCode'],
+      //     payType: 2
+      //   }});
+    }
+  }
   // 初始化选水界面
   getInitData() {
     this.appService.getData(this.appProperties.indexListUrl, {
@@ -189,21 +200,31 @@ export class AddMainComponent implements OnInit {
           if (data.data.wayInfo.length <= 4) {
             this.isFourDoor = true;
             this.isFiveDoor = false;
-            this.isSixDoor = false;
+            this.isEightDoor = false;
             this.indexList = data.data.wayInfo;
             for (let i = 0; i < 2; i++) {
               this.indexList.unshift(this.indexList.pop());
             }
           } else if (data.data.wayInfo.length === 5) {
+            this.indexList = data.data.wayInfo;
+            this.fiveIndexListLeft = [];
+            this.fiveIndexListRigth = [];
             this.isFourDoor = false;
             this.isFiveDoor = true;
-            this.isSixDoor = false;
-            this.indexList = data.data.wayInfo;
-          } else if (data.data.wayInfo.length === 6) {
+            this.isEightDoor = false;
+            data.data.wayInfo.forEach((item, index) => {
+              if (index > 1) {
+                this.fiveIndexListRigth.push(item);
+              } else {
+                this.fiveIndexListLeft.push(item);
+              }
+            });
+          } else if (data.data.wayInfo.length === 8) {
             this.isFourDoor = false;
             this.isFiveDoor = false;
-            this.isSixDoor = true;
+            this.isEightDoor = true;
             this.indexList = data.data.wayInfo;
+            this.eightIndexList = data.data.wayInfo.slice(0, 4);
           }
           console.log(this.indexList);
           this.temperature = data.data.temperature;
@@ -249,6 +270,14 @@ export class AddMainComponent implements OnInit {
     this.isVisibleOpenDetail = true;
   }
 
+  eigthDoorChoose(flag) {
+    this.eightDoorFlag = flag;
+    if (flag === 0) {
+      this.eightIndexList = this.indexList.slice(0, 4);
+    } else if (flag === 1) {
+      this.eightIndexList = this.indexList.slice(4, 8);
+    }
+  }
   // 开门接口
   openDoor(item) {
     if (this.token === null
@@ -276,18 +305,20 @@ export class AddMainComponent implements OnInit {
               this.router.navigate(['goodsShow'], {
                 queryParams: {
                   vmCode: urlParse(window.location.search)['vmCode'],
-                  flag: 4,
+                  // flag: 4,
                 }});
+              sessionStorage.setItem('flag', '4');
             } else if (data.code === 4) {
               this.router.navigate(['goodsShow'], {
                 queryParams: {
                   vmCode: urlParse(window.location.search)['vmCode'],
-                  flag: 3,
+                  // flag: 3,
                 }});
+              sessionStorage.setItem('flag', '3');
             } else if (data.code === -1) {
               this.router.navigate(['vmLogin']);
             } else if (data.code === -89) {
-              alert('门已开，请误点击多次！');
+              alert('请稍后，当前有用户正在使用！');
             } else {
               alert(data.msg);
             }
@@ -341,6 +372,7 @@ export class AddMainComponent implements OnInit {
           this.getInitData();
         } else {
           alert(data.msg);
+          this.getInitData();
         }
       },
       error => {
@@ -408,7 +440,11 @@ export class AddMainComponent implements OnInit {
     this.num = undefined;
     this.times = 1;
     this.count = 1;
-    this.isVisibleOpenDoor = true;
+    if (this.isEightDoor) {
+      this.isVisibleOpenEightDoor = true;
+    } else {
+      this.isVisibleOpenDoor = true;
+    }
   }
 
   // 机器重启
@@ -458,14 +494,16 @@ export class AddMainComponent implements OnInit {
           this.router.navigate(['goodsShow'], {
             queryParams: {
               vmCode: urlParse(window.location.search)['vmCode'],
-              flag: 4,
+              // flag: 4,
             }});
+          sessionStorage.setItem('flag', '4');
         }  else if (data.code === 4) {
           this.router.navigate(['goodsShow'], {
             queryParams: {
               vmCode: urlParse(window.location.search)['vmCode'],
-              flag: 3,
+              // flag: 3,
             }});
+          sessionStorage.setItem('flag', '3');
         } else {
           alert(data.msg);
         }
@@ -478,13 +516,29 @@ export class AddMainComponent implements OnInit {
 
   // 是否校准开门（是）
   yes() {
-    this.count++;
-    console.log(this.count);
-    console.log(this.wayNo);
-    console.log(this.times);
     console.log(this.num);
-    console.log(this.wayIndex);
-    console.log(this.selectGoods);
+    console.log(this.num2);
+    if (this.visible) {
+      if (this.num === undefined || this.num2 === undefined) {
+        alert('您还有数量未输入');
+        this.isVisibleOpenG = true;
+        this.isVisibleOpenDoor = true;
+      } else {
+        this.count++;
+        this.adjust();
+      }
+    } else {
+      if (this.num === undefined) {
+        alert('您还有数量未输入');
+        this.isVisibleOpenG = true;
+        this.isVisibleOpenDoor = true;
+      } else {
+        this.count++;
+        this.adjust();
+      }
+    }
+  }
+  adjust() {
     let num;
     console.log(this.indexList[this.wayIndex]['wayItemList']);
     if (this.indexList[this.wayIndex]['wayItemList'].length === 1) {
@@ -514,13 +568,30 @@ export class AddMainComponent implements OnInit {
       data => {
         console.log(data);
         if (data.code === 0) {
-          this.times = 2;
-        } else if (data.code === -89) {
+          if (this.times === 2) {
+            this.isVisibleOpenG = false;
+            this.isVisibleOpenDoor = false;
+          } else {
+            this.isAdjustLoading = true;
+            setTimeout(() => {
+              this.isAdjustLoading = false;
+              this.times = 2;
+            }, 7000);
+          }
+        } else if (data.code === -1) {
+          this.router.navigate(['vmLogin'], {
+            queryParams: {
+              vmCode: urlParse(window.location.search)['vmCode']
+            }
+          });
+        } else if (data.code === 3) {
+          alert('校准失败请重试！');
+          this.isVisibleOpenG = true;
+          this.isVisibleOpenDoor = true;
+        } else {
           alert(data.msg);
           this.isVisibleOpenG = true;
           this.isVisibleOpenDoor = true;
-        } else if (data.code === -1) {
-          this.router.navigate(['vmLogin']);
         }
       },
       error => {
@@ -530,13 +601,14 @@ export class AddMainComponent implements OnInit {
     if (this.count >= 3) {
       this.getInitData();
       this.count = 1;
+      this.isVisibleOpenG = false;
       this.isVisibleOpenDoor = false;
     }
   }
-
   // 是否开门（否）
   no() {
     this.isVisibleOpenDoor = false;
+    this.isVisibleOpenEightDoor = false;
     // console.log(this.radioValue);
   }
 
@@ -552,11 +624,6 @@ export class AddMainComponent implements OnInit {
   openOkG() {
     this.yes();
     console.log(this.count);
-    if (this.times === 2) {
-        this.getInitData();
-        this.isVisibleOpenG = false;
-        this.isVisibleOpenDoor = false;
-      }
     // if (this.isDisabledOne) {
     //   if (this.num2 === undefined) {
     //     alert('请输入桶数');

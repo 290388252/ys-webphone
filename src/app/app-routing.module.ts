@@ -11,8 +11,6 @@ const routes: Routes = [/*
     { path: 'middle', loadChildren: './middle/middle.module#MiddleModule' },
     { path: 'main', loadChildren: './wechat/main/main.module#MainModule' },
     { path: 'detail', loadChildren: './wechat/detail/detail.module#DetailModule' },
-    { path: 'detailGzh', loadChildren: './wechat/detailGzh/detail.module#DetailModule' },
-    { path: 'product', loadChildren: './wechat/product/product.module#ProductModule' },
 // alipay
     { path: 'aliRegister', loadChildren: './alipay/register/register.module#RegisterModule' },
     { path: 'aliMain', loadChildren: './alipay/main/main.module#MainModule' },
@@ -23,8 +21,11 @@ const routes: Routes = [/*
 // public
     { path: 'vmLogin', loadChildren: './publicSystem/vmLogin/vmLogin.module#VmLoginModule' },
     { path: 'addMain', loadChildren: './publicSystem/addMain/addMain.module#AddMainModule' },
+    { path: 'addGoods', loadChildren: './publicSystem/addGoods/addGoods.module#AddGoodsModule' },
     { path: 'comment', loadChildren: './publicSystem/comment/comment.module#CommentModule' },
     { path: 'goodsShow', loadChildren: './publicSystem/goodsShow/goodsShow.module#GoodsShowModule' },
+    { path: 'share', loadChildren: './publicSystem/share/share.module#ShareModule' },
+    { path: 'shareGzh', loadChildren: './publicSystem/shareGzh/share.module#ShareModule' },
     { path: 'rotate', loadChildren: './publicSystem/rotate/rotate.module#RotateModule' },
 ];
 

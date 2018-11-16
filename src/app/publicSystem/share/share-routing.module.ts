@@ -1,13 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {ProductComponent} from './product.component';
+import {ShareComponent} from './share.component';
 
 const routes: Routes = [
-    {path: '', component: ProductComponent}
+    {path: '', component: ShareComponent}
+    // { path: 'main', loadChildren: './system/common/main/main.module#MainModule' },
 ];
 
 @NgModule({
     imports: [RouterModule.forChild(routes)],
     exports: [RouterModule]
 })
-export class ProductRoutingModule {}
+export class ShareRoutingModule {}

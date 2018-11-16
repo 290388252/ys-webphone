@@ -21,11 +21,12 @@ export class MiddleComponent implements OnInit {
     const ua = window.navigator.userAgent.toLowerCase();
     if (ua.match(/MicroMessenger/i)) {
       if (ua.match(/MicroMessenger/i)[0] === 'micromessenger') {
-        this.router.navigate(['main'], {
-          queryParams: {
-            vmCode: this.urlParse(window.location.search)['vmCode']
-          }
-        });
+        this.login();
+        // this.router.navigate(['main'], {
+        //   queryParams: {
+        //     vmCode: this.urlParse(window.location.search)['vmCode']
+        //   }
+        // });
       }
     } else if (ua.match(/AlipayClient/i)) {
       if (ua.match(/AlipayClient/i)[0] === 'alipayclient') {
@@ -79,5 +80,27 @@ export class MiddleComponent implements OnInit {
       });
     }
     return obj;
+  }
+  // 新用户登陆
+  login() {
+    this.appService.getData(this.appProperties.wechatOauth2Url, {vmCode: urlParse(window.location.href)['vmCode']}).subscribe(
+      data => {
+        console.log(data);
+        let newData;
+        const wlhUrl = '/main?vmCode=' + urlParse(window.location.href)['vmCode'];
+        const newWlhUrl = '/main?vmCode=' + urlParse(window.location.href)['vmCode'];
+        // const newWlhUrl = '/register?vmCode=' + urlParse(window.location.href)['vmCode']; // old
+        const state = urlParse(data.data)['state'];
+        if (typeof(data.data) === 'string' && data.data.length > 0) {
+          newData = data.data.replace(data.data.substring(data.data.indexOf('state=') + 6, data.data.length),
+            newWlhUrl + '-' + wlhUrl + '-' + state);
+          console.log(newData);
+          window.location.href = newData;
+        }
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
 }

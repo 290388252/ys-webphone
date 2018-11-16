@@ -3,13 +3,20 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {AppService} from '../../app-service';
 import {AppProperties} from '../../app.properties';
 import {urlParse} from '../../utils/util';
+import { CarouselConfig } from 'ngx-bootstrap/carousel';
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
-  styleUrls: ['./main.component.css']
+  styleUrls: ['./main.component.css'],
+  providers: [
+    { provide: CarouselConfig, useValue: { interval: 1500, noPause: true, showIndicators: true } }
+  ]
 })
 export class MainComponent implements OnInit {
-  public indexList: Array<object>;
+  public indexList = [];
+  public eightIndexList = [];
+  public eightDoorFlag = 0;
+  public fiveIndexList = [];
   private token: string;
   // public img = 'http://lenvar-resource-products.oss-cn-shenzhen.aliyuncs.com/';
   public img = this.appProperties.imgUrl; // 图片地址
@@ -20,7 +27,12 @@ export class MainComponent implements OnInit {
   public item;
   public isFourDoor = false; // 四门
   public isFiveDoor = false; // 五门
-  public isSixDoor = false; // liu门
+  public isEightDoor = false; // 八门
+  public isVisibleCouponThree = false;
+  public isVisiblePromotions = false;
+  public couponButtonHidden = true;
+  public youshuiCompany = true;
+  public otherCompany = true;
   constructor(private router: Router,
               private activatedRoute: ActivatedRoute,
               private appProperties: AppProperties,
@@ -33,14 +45,15 @@ export class MainComponent implements OnInit {
     // 初始化数据
     this.getInitData();
     // 获取token值
-    this.getCookies();
-    console.log(this.token);
-    if (urlParse(window.location.search)['token']) {
+    if (urlParse(window.location.search)['token'] === undefined) {
+      this.getCookies();
+    } else {
       this.token = urlParse(window.location.search)['token'];
       const exp = new Date();
       exp.setTime(exp.getTime() + 1000 * 60 * 60 * 24 * 365 * 10);
       document.cookie = 'token=' + this.token + ';expires=' + exp.toUTCString();
     }
+    console.log(this.token);
     console.log(urlParse(window.location.search)['vmCode']);
     sessionStorage.setItem('vmCode', urlParse(window.location.search)['vmCode']);
   }
@@ -55,6 +68,26 @@ export class MainComponent implements OnInit {
   // 初始化数据
   getInitData() {
     // 选水界面接口
+    this.appService.postData(this.appProperties.machineInfoGetCompanyIdUrl + urlParse(window.location.search)['vmCode'], '').subscribe(
+      data2 => {
+        console.log(data2);
+        if (data2.returnObject === 76 || data2.returnObject === '76'
+          || data2.returnObject === 113 || data2.returnObject === '113'
+          || data2.returnObject === 114 || data2.returnObject === '114'
+          || data2.returnObject === 115 || data2.returnObject === '115'
+          || data2.returnObject === 116 || data2.returnObject === '116'
+          || data2.returnObject === 117 || data2.returnObject === '117'
+          || data2.returnObject === 119 || data2.returnObject === '119') {
+          this.youshuiCompany = false;
+          this.otherCompany = true;
+        } else {
+          this.youshuiCompany = true;
+          this.otherCompany = false;
+        }
+      },
+      error2 => {
+        console.log(error2);
+      });
     this.appService.getAliData(this.appProperties.aliIndexListUrl,
       {vmCode: urlParse(window.location.search)['vmCode']}, this.token).subscribe(
       data => {
@@ -64,6 +97,7 @@ export class MainComponent implements OnInit {
             if (data.returnObject.length <= 4) {
               this.isFourDoor = true;
               this.isFiveDoor = false;
+              this.isEightDoor = false;
               this.indexList = data.returnObject;
               for (let i = 0; i < 2; i++) {
                 this.indexList.unshift(this.indexList.pop());
@@ -71,12 +105,20 @@ export class MainComponent implements OnInit {
             } else if (data.returnObject.length === 5) {
               this.isFourDoor = false;
               this.isFiveDoor = true;
-              this.indexList = data.returnObject;
-            } else if (data.returnObject.length === 6) {
+              this.isEightDoor = false;
+              data.returnObject.forEach((item, index) => {
+                if (index > 1) {
+                  this.indexList.push(item);
+                } else {
+                  this.fiveIndexList.push(item);
+                }
+              });
+            } else if (data.returnObject.length === 8) {
               this.isFourDoor = false;
               this.isFiveDoor = false;
-              this.isSixDoor = true;
+              this.isEightDoor = true;
               this.indexList = data.returnObject;
+              this.eightIndexList = data.returnObject.slice(0, 4);
             }
           }
           console.log(this.indexList);
@@ -98,10 +140,16 @@ export class MainComponent implements OnInit {
       this.isVisibleOpenDoor = true;
     }
   }
+  eigthDoorChoose(flag) {
+    this.eightDoorFlag = flag;
+    if (flag === 0) {
+      this.eightIndexList = this.indexList.slice(0, 4);
+    } else if (flag === 1) {
+      this.eightIndexList = this.indexList.slice(4, 8);
+    }
+  }
   openOk() {
     this.isClosed(urlParse(window.location.search)['vmCode']);
-  }
-  closeCoupon() {
   }
   // 是否开门（是）
   yesOpenDoor() {
@@ -117,17 +165,35 @@ export class MainComponent implements OnInit {
             this.clickMore = false;
             if (data.status === 1) {
               // this.isVisibleOpen = true;
-              this.router.navigate(['goodsShow'], {
-                queryParams: {
-                  vmCode: urlParse(window.location.search)['vmCode'],
-                  flag: 1,
-                }});
+              const u = navigator.userAgent;
+              const isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); // ios终端
+              if (isiOS) {
+                sessionStorage.setItem('flag', '1');
+                window.location.href = 'http://sms.youshuidaojia.com/goodsShow?vmCode=' + urlParse(window.location.search)['vmCode'];
+              } else {
+                sessionStorage.setItem('flag', '1');
+                this.router.navigate(['goodsShow'], {
+                  queryParams: {
+                    vmCode: urlParse(window.location.search)['vmCode'],
+                    // flag: 1,
+                  }
+                });
+              }
             } else if (data.status === 4000) {
-              this.router.navigate(['goodsShow'], {
-                queryParams: {
-                  vmCode: urlParse(window.location.search)['vmCode'],
-                  flag: 2,
-                }});
+              const u = navigator.userAgent;
+              const isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); // ios终端
+              if (isiOS) {
+                sessionStorage.setItem('flag', '2');
+                window.location.href = 'http://sms.youshuidaojia.com/goodsShow?vmCode=' + urlParse(window.location.search)['vmCode'];
+              } else {
+                sessionStorage.setItem('flag', '2');
+                this.router.navigate(['goodsShow'], {
+                  queryParams: {
+                    vmCode: urlParse(window.location.search)['vmCode'],
+                    // flag: 2,
+                  }
+                });
+              }
             } else if (data.status === -1) {
              this.noTokenOath();
             } else {
@@ -198,23 +264,50 @@ export class MainComponent implements OnInit {
       }
     );
   }
-  // 补货人员登陆界面入口
-  vmLogin() {
-    this.router.navigate(['addMain'], {
-      queryParams: {
-        vmCode: urlParse(window.location.search)['vmCode'],
-        payType: 2
-      }});
+  follow() {
+    window.location.href = 'https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzU0NzQ4MTY0Mg==&scene=124#wechat_redirect';
   }
-  // 查看用户订单
-  detail(flag) {
+  closeCoupon() {
+    this.isVisibleCouponThree = false;
+  }
+  // 补货人员登陆界面入口
+  vmLogin(flag) {
+    if (flag === 1) {
+      this.router.navigate(['addMain'], {
+        queryParams: {
+          vmCode: urlParse(window.location.search)['vmCode'],
+          payType: 2
+        }
+      });
+    } else if (flag === 2) {
+      document.getElementsByClassName('ant-modal-body')[2]['style'].cssText = 'padding: 0;';
+      this.isVisibleCouponThree = true;
+    }
+  }
+  // 双十一
+  openPromotions() {
+    document.getElementsByClassName('ant-modal-body')[3]['style'].cssText = 'padding: 0;';
+    this.isVisiblePromotions = true;
+  }
+  closemodalContentPromotions() {
+    this.isVisiblePromotions = false;
+  }
+  // 订单详情
+  product(flag) {
+    // this.router.navigate(['product'], {
+    //   queryParams: {
+    //     token: this.token
+    //   }});
     this.router.navigate(['aliDetail'], {
       queryParams: {
-        title: 1,
         vmCode: urlParse(window.location.search)['vmCode'],
         flag: flag
-      }});
+      }
+    });
     // TODO;
+  }
+  show() {
+    this.couponButtonHidden = !this.couponButtonHidden;
   }
   getCookies () {
     if (this.token === null || this.token === undefined || this.token === 'undefined') {
@@ -237,22 +330,13 @@ export class MainComponent implements OnInit {
     }
     return img;
   }
-  turnItemName(item) {
-    let itemName;
-    if  (item.length > 1) {
-      itemName = item[1].itemName;
+  turn(item, name) {
+    let variable;
+    if (item.length > 1) {
+      variable = item[1][name];
     } else {
-      itemName = '';
+      variable = '';
     }
-    return itemName;
-  }
-  turnPrice(item) {
-    let price;
-    if  (item.length > 1) {
-      price = item[1].price;
-    } else {
-      price = '';
-    }
-    return price;
+    return variable;
   }
 }
