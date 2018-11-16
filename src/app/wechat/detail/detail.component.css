@@ -1,5 +1,5 @@
 .containers{
-  background: #dddddd;
+  background: #f3f3f3;
   width: 100%;
   padding: 0;
 }
@@ -11,11 +11,9 @@
   font-size: 14px;
 }
 .content{
-  margin-top: 5px;
-  margin-bottom: 5px;
-  background: #adafb1;
+  background: #f3f3f3;
   width: 100%;
-  padding: 0;
+  padding: 10px 10px 60px 10px;
 }
 .footer{
   background: white;
@@ -29,8 +27,8 @@
 }
 .page__title {
   text-align: left;
-  font-size: 20px;
-  font-weight: 400;
+  font-size: 18px;
+  color: #666666;
 }
 .page__desc {
   margin-top: 5px;
@@ -286,4 +284,131 @@ a {
   float: left;
   margin-left: 40%;
   font-size: 12px;
+}
+/**/
+.order {
+  width: 100%;
+  border-bottom: 1px solid #c1c1c1;
+  border-top: 1px solid #c1c1c1;
+  background: #ffffff;
+  margin-bottom: 14px;
+  border-radius:8px ;
+}
+
+.orderNum {
+  width: 100%;
+  height: 37px;
+  border-bottom: 1px solid #e5e5e5;
+  line-height: 36px;
+}
+
+.orderGoods {
+  width: 100%;
+  height: 101px;
+  border-bottom: 1px solid #e5e5e5;
+  position: relative;
+  font-size: 12px;
+}
+
+.orderImg {
+  width: 80px;
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  height: 80px;
+}
+
+.orderCont {
+  margin-left: 100px;
+  height: 100%;
+  padding: 10px 0;
+  position: relative;
+}
+
+.order_GoodsName {
+  color: #333333;
+  width: 100%;
+  position: relative;
+  padding-right: 42px;
+}
+
+.order_GoodsPrice {
+  position: absolute;
+  top: 0;
+  right: 10px;
+}
+
+.order_GoodsNum {
+  color: #999999;
+  margin-top: 10px;
+  position: absolute;
+  bottom: 10px;
+}
+
+.orderDetails {
+  width: 100%;
+  height: 76px;
+  position: relative;
+  font-size: 12px;
+}
+
+.orderDetails_l {
+  width: 80px;
+  position: absolute;
+  left: 10px;
+  top: 0;
+  height: 100%;
+}
+
+.orderDetails_l_in {
+  height: 25px;
+  width: 100px;
+  line-height: 25px;
+}
+
+.orderDetails_r {
+  margin-left: 90px;
+  margin-right: 10px;
+  height: 100%;
+}
+
+.orderDetails_r_in {
+  height: 25px;
+  width: 100%;
+  line-height: 25px;
+  text-align: right;
+}
+
+.unPay {
+  width: 100%;
+  height: 40px;
+  border-top: 1px solid #e5e5e5;
+  position: relative;
+}
+
+.unPay_img {
+  width: 60px;
+  height: 26px;
+  position: absolute;
+  right: 100px;
+  top: 50%;
+  margin-top: -13px;
+  text-align: center;
+  line-height: 26px;
+  border: 1px solid #3399ff;
+  border-radius: 3px;
+  color: #3399ff;
+}
+.details {
+  width: 80px;
+  height: 26px;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  margin-top: -13px;
+  text-align: center;
+  line-height: 26px;
+  border: 1px dashed #3399ff;
+  border-radius: 3px;
+  color: #3399ff;
 }
