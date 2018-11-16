@@ -1,28 +1,22 @@
 .ag-bk{
-  background: url("../../../assets/main/2.jpg");
+  width: 100%;
   height: 100%;
+  min-height:100%;
+  position: absolute;
+  background: url("../../../assets/main/2.jpg");
 }
 .head{
   margin-left: 15%;margin-bottom: 10%;
 }
 .inputs {
   width: 90%;
-  height: 30px;
+  height: 55px;
   margin-left: 10px;
   border: 1px solid #d3d3d3;
   border-radius: 5px;
   padding: 5px;
-}                                                                                                                                                                                                                                                                                   商业转载请联系作者获得授权,非商业转载请注明出处。
-.ad-bt-disable{
-  width: 100%;
-  border: none;
-  border-radius: 5px;
-  background: #a7a9a9;
-  color: #f3f3f3;
-  padding: 8px;
-  outline:none
 }
-.ad-bt-one{
+.visible{
   width: 100%;
   border: none;
   border-radius: 5px;
@@ -31,11 +25,11 @@
   padding: 8px;
   outline:none
 }
-.ad-bt-one:active{
-  background: #2196F3;
+.disable{
   width: 100%;
   border: none;
   border-radius: 5px;
+  background: #a7a9a9;
   color: #f3f3f3;
   padding: 8px;
   outline:none

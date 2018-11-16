@@ -23,7 +23,8 @@ export class AddGoodsComponent implements OnInit {
   public token;
   public count = 1;
   public disableButton = false;
-  public sureButtonText = '确定';
+  public backButton = false;
+  public sureButtonText = '输入确定';
   private saveNum = [];
 
   constructor(private router: Router,
@@ -38,20 +39,41 @@ export class AddGoodsComponent implements OnInit {
     this.goods = urlParse(window.location.href)['goods'];
     console.log(urlParse(window.location.href)['orderNumber']);
   }
-
+  focusCode() {
+    document.getElementById('ag-bk').style.height = (document.documentElement.offsetWidth + 100) + 'px';
+  }
   yes() {
-    if (this.goods === 'true') {
-      if (this.num === undefined || this.num2 === undefined) {
-        alert('您还有数量未输入');
-      } else {
-        this.adjust();
-      }
+    if (this.backButton) {
+      this.count = 1;
+      this.times = 1;
+      this.backButton = false;
+      this.sureButtonText = '输入确定';
     } else {
-      if (this.num === undefined) {
-        alert('您还有数量未输入');
+      if (this.goods === 'true') {
+        if (this.num === undefined || this.num2 === undefined) {
+          alert('您还有商品数量未输入');
+        } else {
+          this.setTimer();
+        }
       } else {
-        this.adjust();
+        if (this.num === undefined) {
+          alert('您还有商品数量未输入');
+        } else {
+          this.setTimer();
+        }
       }
+    }
+  }
+
+  setTimer() {
+    if (this.times === 2) {
+      this.disableButton = true;
+      setTimeout( () => {
+        this.disableButton = false;
+        this.adjust();
+      }, 3000);
+    } else {
+      this.adjust();
     }
   }
 
@@ -64,11 +86,12 @@ export class AddGoodsComponent implements OnInit {
         num = [this.num, this.num2].join(',');
         this.count++;
       } else {
-        if (Math.abs(this.num - this.saveNum[0]) !== 1 || Math.abs(this.num2 - this.saveNum[1]) !== 1) {
-          alert('两次数量差值必须为1');
+        if (Math.abs(this.num - this.saveNum[0]) !== 1 && Math.abs(this.num2 - this.saveNum[1]) !== 1) {
+          alert('必须拿出一桶或者放入一桶，两次商品数量差值必须为1');
         } else {
           num = [this.num, this.num2].join(',');
           this.count++;
+          this.sureButtonText = '输入确定';
         }
       }
     } else {
@@ -78,20 +101,20 @@ export class AddGoodsComponent implements OnInit {
         this.count++;
       } else {
         if ((Math.abs(this.num - this.saveNum[0]) !== 1)) {
-          alert('两次数量差值必须为1');
+          alert('必须拿出一桶或者放入一桶，两次商品数量差值必须为1');
         } else {
           num = this.num;
           this.count++;
+          this.sureButtonText = '输入确定';
         }
       }
     }
     this.num = undefined;
     this.num2 = undefined;
-    this.times = 2;
     this.appService.postAliData(this.appProperties.reviseUrl,
       {
         vmCode: urlParse(window.location.search)['vmCode'],
-        wayNum: this.wayNo,
+        wayNum: urlParse(window.location.search)['wayNo'],
         times: this.times,
         num: num,
         orderNumber: urlParse(window.location.href)['orderNumber']
@@ -99,13 +122,17 @@ export class AddGoodsComponent implements OnInit {
       data => {
         console.log(data);
         if (data.code === 0) {
-          this.disableButton = true;
-          this.sureButtonText = '正在校准请稍等...';
-          setTimeout(() => {
+          if (this.times === 2) {
+            this.sureButtonText = '如果有误可重新输入后点此按钮重新校准';
+            this.backButton = true;
+            alert('校准成功');
+          } else {
             this.times = 2;
-            this.disableButton = false;
-            this.sureButtonText = '确定';
-          }, 6000);
+          }
+          if (this.count >= 3) {
+            this.sureButtonText = '如果有误可重新输入后点此按钮重新校准';
+            this.backButton = true;
+          }
         } else if (data.code === -1) {
           this.router.navigate(['vmLogin'], {
             queryParams: {
@@ -113,6 +140,7 @@ export class AddGoodsComponent implements OnInit {
             }
           });
         } else if (data.code === 3) {
+          this.count = 1;
           alert('校准失败请重试！');
         } else {
           alert(data.msg);
