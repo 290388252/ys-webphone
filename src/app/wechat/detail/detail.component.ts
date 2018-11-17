@@ -96,7 +96,7 @@ export class DetailComponent implements OnInit , AfterViewChecked {
   pay(item) {
     this.appService.getDataOpen(this.appProperties.orderUnifiedOrderUrl,
       {
-        orderId: item.id,
+        orderId: item.orderId,
         url: window.location.href.split('#')[0]
       }, this.token).subscribe(
       data => {
