@@ -47,6 +47,7 @@ export class AddGoodsComponent implements OnInit {
       this.count = 1;
       this.times = 1;
       this.backButton = false;
+      this.saveNum = [];
       this.sureButtonText = '输入确定';
     } else {
       if (this.goods === 'true') {
