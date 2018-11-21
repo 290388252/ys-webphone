@@ -75,6 +75,7 @@
 
     <div class="context" *ngIf="isFourDoor">
       <div (click)="openDoor(item)" *ngFor="let item of indexList" [ngClass]="item['wayItemList'].length === 1 ? 'box-one' : 'box'" class=" card text-white mb-3">
+        <img [hidden]="showActiveItem(item['wayItemList'], baoliCompany)" src="../../../assets/main/send.png" alt="" width="40" style="position: absolute">
         <div [ngClass]="item['wayItemList'].length === 1 ? 'box-body-one' : 'box-body'">
           <img class="col-img" src="{{img}}{{item['wayItemList'][0]['pic']}}" alt="">
           <br/>
