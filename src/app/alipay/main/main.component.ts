@@ -2,7 +2,7 @@ import { Component , OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AppService} from '../../app-service';
 import {AppProperties} from '../../app.properties';
-import {urlParse} from '../../utils/util';
+import {getActiveCompanyId, getActiveItemId, urlParse} from '../../utils/util';
 import { CarouselConfig } from 'ngx-bootstrap/carousel';
 @Component({
   selector: 'app-main',
@@ -33,6 +33,7 @@ export class MainComponent implements OnInit {
   public couponButtonHidden = true;
   public youshuiCompany = true;
   public otherCompany = true;
+  public baoliCompany = false;
   constructor(private router: Router,
               private activatedRoute: ActivatedRoute,
               private appProperties: AppProperties,
@@ -71,18 +72,18 @@ export class MainComponent implements OnInit {
     this.appService.postData(this.appProperties.machineInfoGetCompanyIdUrl + urlParse(window.location.search)['vmCode'], '').subscribe(
       data2 => {
         console.log(data2);
-        if (data2.returnObject === 76 || data2.returnObject === '76'
-          || data2.returnObject === 113 || data2.returnObject === '113'
-          || data2.returnObject === 114 || data2.returnObject === '114'
-          || data2.returnObject === 115 || data2.returnObject === '115'
-          || data2.returnObject === 116 || data2.returnObject === '116'
-          || data2.returnObject === 117 || data2.returnObject === '117'
-          || data2.returnObject === 119 || data2.returnObject === '119') {
+        if (getActiveCompanyId().includes(data2.returnObject.toString())) {
           this.youshuiCompany = false;
           this.otherCompany = true;
+          this.baoliCompany = false;
+        } else if (data2.returnObject === 104) {
+          this.youshuiCompany = true;
+          this.otherCompany = false;
+          this.baoliCompany = true;
         } else {
           this.youshuiCompany = true;
           this.otherCompany = false;
+          this.baoliCompany = false;
         }
       },
       error2 => {
@@ -130,6 +131,28 @@ export class MainComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+  showActiveItem(item, baoliCompany) {
+    let flag;
+    const list = getActiveItemId();
+    if (baoliCompany) {
+      flag = true;
+    } else {
+      if (item.length > 1) {
+        if (list.includes(item[0].basicItemId) || list.includes(item[1].basicItemId)) {
+          flag = false;
+        } else {
+          flag = true;
+        }
+      } else {
+        if (list.includes(item[0].basicItemId)) {
+          flag = false;
+        } else {
+          flag = true;
+        }
+      }
+    }
+    return flag;
   }
   // 开门接口
   openDoor(item) {

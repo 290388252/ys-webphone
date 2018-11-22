@@ -85,6 +85,7 @@
     </div>
 
     <div class="context" *ngIf="isFourDoor">
+      <img [hidden]="showActiveItem(item['wayItemList'], baoliCompany)" src="../../../assets/main/send.png" alt="" width="40" style="position: absolute">
       <div (click)="openDoor(item)" *ngFor="let item of indexList"
            [ngClass]="item['wayItemList'].length === 1 ? 'box-one' : 'box'" class=" card text-white mb-3">
         <div [ngClass]="item['wayItemList'].length === 1 ? 'box-body-one' : 'box-body'">

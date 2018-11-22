@@ -89,7 +89,7 @@ export class MainComponent implements OnInit {
     this.appService.postData(this.appProperties.machineInfoGetCompanyIdUrl + urlParse(window.location.search)['vmCode'], '').subscribe(
       data2 => {
         console.log(data2);
-        if (getActiveCompanyId().includes(data2.returnObject)) {
+        if (getActiveCompanyId().includes(data2.returnObject.toString())) {
           this.youshuiCompany = false;
           this.otherCompany = true;
           this.baoliCompany = false;
