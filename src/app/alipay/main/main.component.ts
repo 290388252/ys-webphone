@@ -34,6 +34,8 @@ export class MainComponent implements OnInit {
   public youshuiCompany = true;
   public otherCompany = true;
   public baoliCompany = false;
+  public openDoorMsg = '是否要开门？';
+  public isConfirmLoading = false;
   constructor(private router: Router,
               private activatedRoute: ActivatedRoute,
               private appProperties: AppProperties,
@@ -176,7 +178,11 @@ export class MainComponent implements OnInit {
   }
   // 是否开门（是）
   yesOpenDoor() {
-    this.isVisibleOpenDoor = false;
+    this.isConfirmLoading = true;
+    this.openDoorMsg = '正在开门请稍等！';
+    setTimeout(() => {
+      this.isVisibleOpenDoor = false;
+      this.isConfirmLoading = false;
       if (this.clickMore) {
         alert('亲,服务器还没反应过来,请勿再点击');
       } else {
@@ -235,6 +241,7 @@ export class MainComponent implements OnInit {
           }
         );
       }
+    }, 1000);
   }
   noTokenOath() {
     this.appService.getData(this.appProperties.aliGetUserIdUrl + '?vmCode=' + urlParse(window.location.search)['vmCode'], '').subscribe(

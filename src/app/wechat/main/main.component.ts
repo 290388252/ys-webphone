@@ -378,7 +378,7 @@ export class MainComponent implements OnInit {
           );
         }
       }
-    }, 1500);
+    }, 1000);
   }
 
   // 确定关门

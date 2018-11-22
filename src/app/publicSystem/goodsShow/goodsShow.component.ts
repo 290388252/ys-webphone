@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import {AppService} from '../../app-service';
 import {AppProperties} from '../../app.properties';
-import {urlParse} from '../../utils/util';
+import {getActiveCompanyId, urlParse} from '../../utils/util';
 declare var WeixinJSBridge: any;
 declare var wx: any;
 
@@ -63,11 +63,7 @@ export class GoodsShowComponent implements OnInit {
     this.appService.postData(this.appProperties.machineInfoGetCompanyIdUrl + urlParse(window.location.search)['vmCode'], '').subscribe(
       data2 => {
         console.log(data2);
-        if (data2.returnObject === 76 || data2.returnObject === '76'
-          || data2.returnObject === 114 || data2.returnObject === '114'
-          || data2.returnObject === 115 || data2.returnObject === '115'
-          || data2.returnObject === 116 || data2.returnObject === '116'
-          || data2.returnObject === 117 || data2.returnObject === '117') {
+        if (getActiveCompanyId().includes(data2.returnObject.toString())) {
           this.youshuiCompany = true;
         } else {
           this.youshuiCompany = false;
