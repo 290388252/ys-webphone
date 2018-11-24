@@ -41,3 +41,33 @@ export let getVmCode = () => {
 export let checkPhone = (phone) => {
   return /^1[0123456789]\d{9}$/.test(phone);
 };
+export let getCoupon = () => {
+  let coupon;
+  const strCookie = document.cookie;
+  const arrCookie = strCookie.split(';');
+  for (let i = 0; i < arrCookie.length; i++) {
+    const arr = arrCookie[i].split('=');
+    if (arr[0].trim() === 'coupon') {
+      coupon = arr[1];
+    }
+  }
+  return coupon;
+};
+export let getNewUser = () => {
+  let newUser;
+  const strCookie = document.cookie;
+  const arrCookie = strCookie.split(';');
+  for (let i = 0; i < arrCookie.length; i++) {
+    const arr = arrCookie[i].split('=');
+    if (arr[0].trim() === 'newUser') {
+      newUser = arr[1];
+    }
+  }
+  return newUser;
+};
+export let getActiveItemId = () => {
+  return ['2194'];
+};
+export let getActiveCompanyId = () => {
+  return ['76', '113', '114', '115', '116', '117', '119'];
+};

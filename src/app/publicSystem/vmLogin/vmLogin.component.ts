@@ -47,7 +47,7 @@ export class VmLoginComponent implements OnInit {
           phone: this.validateForm.controls.phoneForm.value,
           smsCode: this.validateForm.controls.password.value,
           payType: this.payType,
-          // payType: urlParse(window.location.search)['payType'],
+          vmCode: urlParse(window.location.search)['vmCode'],
           openId: urlParse(window.location.search)['openId']
         }).subscribe(
         data => {

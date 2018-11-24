@@ -26,6 +26,9 @@ export class AppProperties {
   public gameReceive: string;
   public machineControlUrl: string;
   public machineControlGetReplenishInfoUrl: string;
+  public machineInfoGetCompanyIdUrl: string;
+  public adminCreateForeverStrQrUrl: string;
+  public machineControlAdjustReplenish: string;
   // WeChat
   public indexListUrl: string;
   public indexOpenDoor: string;
@@ -55,10 +58,14 @@ export class AppProperties {
   public aliLoginVerifyOperateUrl: string;
   public aliBusinessIsAttentionUrl: string;
 
+  public storeOrderFininshPayUrl: string;
+  public useCouponUrl: string;
+  public useWaterVouchersUrl: string;
+
   constructor() {
     // Public
     this.appUrl = 'http://47.106.92.82:6662/ys_sms';
-    // this.appUrl = 'http://192.168.0.116:6662/ys_sms';
+    // this.appUrl = 'http://192.168.0.121:6662/ys_sms';
     this.adminUrl = 'http://119.23.233.123:6662/ys_admin';
     this.imgUrl = this.adminUrl + '/files/';
     this.isClosedUrl = this.appUrl + '/wechat/isClosed';
@@ -80,7 +87,9 @@ export class AppProperties {
     this.gameReceive = this.appUrl + '/game/receive';
     this.machineControlUrl = this.appUrl + '/machineControl/getChangeInfo';
     this.machineControlGetReplenishInfoUrl = this.appUrl + '/machineControl/getReplenishInfo?vmCode=';
-    // 获取游戏奖品内容
+    this.machineInfoGetCompanyIdUrl = this.appUrl + '/machineInfo/getCompanyId?vmCode=';
+    this.adminCreateForeverStrQrUrl = this.appUrl + '/admin/createStrQr';
+    this.machineControlAdjustReplenish = this.appUrl + '/machineControl/adjustReplenish?';
 
     // WeChat
     this.indexListUrl = this.appUrl + '/index/listWay';
@@ -89,7 +98,8 @@ export class AppProperties {
     this.smsSendUrl = this.appUrl + '/sms/send';
     this.wechatRegisterUrl = this.appUrl + '/wechat/register';
     this.followWechatSubscription = 'https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzU0NzQ4MTY0Mg==&scene=124#wechat_redirect';
-    this.findAllUserOrderUrl = this.appUrl + '/order/myOrderList';
+    // this.findAllUserOrderUrl = this.appUrl + '/order/myOrderList';
+    this.findAllUserOrderUrl = this.appUrl + '/alipayRecord/getCustomerOrder';
     this.findAllOpenIdOrderUrl = this.adminUrl + '/order/findOrderByOpenId?openId=';
     this.orderUnifiedOrderUrl = this.appUrl + '/order/unifiedOrder';
     this.nonePassWordPayUrl = this.appUrl + '/wechat/entrustweb';
@@ -104,7 +114,8 @@ export class AppProperties {
     this.aliOpenDoorUrl = this.appUrl + '/aliBusiness/weightOpenDoor';
     this.aliRegisterUrl = this.appUrl + '/aliBusiness/register';
     this.aliSmsSendUrl = this.appUrl + '/alisms/send';
-    this.aliFindAllUserOrderUrl = this.appUrl + '/aliBusiness/findAllUserOrder';
+    // this.aliFindAllUserOrderUrl = this.appUrl + '/aliBusiness/findAllUserOrder';
+    this.aliFindAllUserOrderUrl = this.appUrl + '/alipayRecord/getCustomerOrder';
     this.aliFindPayOrderUrl = this.appUrl + '/aliBusiness/findPayOrder';
     this.aliFindNotPayOrderUrl = this.appUrl + '/aliBusiness/findNotPayOrder';
     this.alipayWapPayUrl = this.appUrl + '/alipay/wapPay?payRecordId=';
@@ -112,5 +123,8 @@ export class AppProperties {
     this.aliLoginVerifyOperateUrl = this.appUrl + '/aliLogin/verifyOperate';
     this.aliBusinessIsAttentionUrl = this.appUrl + '/aliBusiness/isAttention';
 
+    this.storeOrderFininshPayUrl = this.appUrl + '/order/storeOrderFininshPay';
+    this.useCouponUrl = this.appUrl + '/coupon/usedCouponId';
+    this.useWaterVouchersUrl = this.appUrl + '/carryWaterVouchers/listPage';
   }
 }

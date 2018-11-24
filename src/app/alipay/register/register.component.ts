@@ -19,7 +19,7 @@ export class RegisterComponent implements OnInit {
   private phoneValidator = (control: FormControl): { [s: string]: boolean } => {
     if (!control.value) {
       return { required: true };
-    } else if (!/^1[34578]\d{9}$/.test(control.value)) {
+    } else if (!/^1[23456789]\d{9}$/.test(control.value)) {
       return { error: true, phoneForm: true };
     }
   }
