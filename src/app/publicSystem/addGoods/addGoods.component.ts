@@ -25,6 +25,8 @@ export class AddGoodsComponent implements OnInit {
   public disableButton = false;
   public backButton = false;
   public sureButtonText = '输入确定';
+  public nameOne = '';
+  public nameTwo = '';
   private saveNum = [];
 
   constructor(private router: Router,
@@ -37,7 +39,9 @@ export class AddGoodsComponent implements OnInit {
   ngOnInit() {
     this.getCookies();
     this.goods = urlParse(window.location.href)['goods'];
-    console.log(urlParse(window.location.href)['orderNumber']);
+    console.log(urlParse(window.location.href)['itemName'].split(','));
+    // this.nameOne = urlParse(window.location.href)['itemName'].split(',')[0];
+    // this.nameTwo = urlParse(window.location.href)['itemName'].split(',')[1];
   }
   focusCode() {
     document.getElementById('ag-bk').style.height = (document.documentElement.offsetWidth + 100) + 'px';

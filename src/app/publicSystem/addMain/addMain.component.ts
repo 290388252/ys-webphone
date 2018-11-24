@@ -108,8 +108,10 @@ export class AddMainComponent implements OnInit {
       this.visible = false;
     }
     const orderNumber = [];
+    const itemName = [];
     for (let i = 0; i < this.indexList[this.wayIndex]['wayItemList'].length; i++) {
       orderNumber.push(this.indexList[this.wayIndex]['wayItemList'][i].orderNumber);
+      itemName.push(this.indexList[this.wayIndex]['wayItemList'][i].itemName);
     }
     // 跳转校准
     this.router.navigate(['addGoods'], {
@@ -117,6 +119,7 @@ export class AddMainComponent implements OnInit {
         vmCode: urlParse(window.location.search)['vmCode'],
         goods: this.visible,
         orderNumber: orderNumber.join(','),
+        // itemName: itemName.join(','),
         wayNo: this.wayNo
       }
     });

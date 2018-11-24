@@ -258,6 +258,7 @@ export class GoodsShowComponent implements OnInit {
             this.single = true;
           }
         } else if (data2.data === true) {
+          this.isVisibleOpen = false;
           this.close = false;
           this.more = true;
           this.single = true;
