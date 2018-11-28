@@ -4,7 +4,8 @@ import {AppService} from '../../app-service';
 import {AppProperties} from '../../app.properties';
 import {NzModalService} from 'ng-zorro-antd';
 import {getActiveCompanyId, getActiveItemId, getCoupon, getNewUser, urlParse} from '../../utils/util';
-import { CarouselConfig } from 'ngx-bootstrap/carousel';
+import {CarouselConfig} from 'ngx-bootstrap/carousel';
+
 declare var wx: any;
 
 @Component({
@@ -12,7 +13,7 @@ declare var wx: any;
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.css'],
   providers: [
-    { provide: CarouselConfig, useValue: { interval: 1500, noPause: true, showIndicators: true } }
+    {provide: CarouselConfig, useValue: {interval: 1500, noPause: true, showIndicators: true}}
   ]
 })
 export class MainComponent implements OnInit {
@@ -27,8 +28,11 @@ export class MainComponent implements OnInit {
   public isVisibleCoupon = false;
   public isVisibleCouponTwo = false;
   public isVisibleCouponThree = false;
+  public isVisibleCouponFour = false;
   public couponButtonHidden = true;
   public clickMore = false;
+  public userSuggestion: string;
+  public showSuggestion;
   // public img = 'http://lenvar-resource-products.oss-cn-shenzhen.aliyuncs.com/';
   // public img = 'http://119.23.233.123:6662/ys_admin/files/';
   public img = this.appProperties.imgUrl;
@@ -43,6 +47,7 @@ export class MainComponent implements OnInit {
   public vmCode;
   public openDoorMsg = '是否要开门？';
   public isConfirmLoading = false;
+
   constructor(private router: Router,
               private modalService: NzModalService,
               private activatedRoute: ActivatedRoute,
@@ -144,6 +149,7 @@ export class MainComponent implements OnInit {
       }
     );
   }
+
   showActiveItem(item, baoliCompany) {
     let flag;
     const list = getActiveItemId();
@@ -166,6 +172,7 @@ export class MainComponent implements OnInit {
     }
     return flag;
   }
+
   // 开门
   openDoor(item) {
     this.item = item;
@@ -175,6 +182,7 @@ export class MainComponent implements OnInit {
       this.isVisibleOpenDoor = true;
     }
   }
+
   eigthDoorChoose(flag) {
     this.eightDoorFlag = flag;
     if (flag === 0) {
@@ -210,12 +218,49 @@ export class MainComponent implements OnInit {
     }
   }
 
+  openSuggestion() {
+    document.getElementsByClassName('ant-modal-body')[5]['style'].cssText = 'padding: 0;';
+    this.isVisibleCouponFour = true;
+    this.showSuggestion = false;
+  }
+
+  closeSuggestion() {
+    this.isVisibleCouponFour = false;
+  }
+
+  submitSuggestion() {
+    if (this.userSuggestion === undefined || this.userSuggestion === null || this.userSuggestion === '') {
+      this.showSuggestion = true;
+      return;
+    } else {
+      this.showSuggestion = false;
+    }
+    this.appService.postDataOpen(this.appProperties.machineSuggestionUrl, {
+      'vmCode': urlParse(window.location.search)['vmCode'],
+      'content': this.userSuggestion
+    }, this.token).subscribe(
+      data => {
+        console.log(data);
+        if (data.status === 1) {
+          alert('提交成功');
+          this.userSuggestion = undefined;
+          this.isVisibleCouponFour = false;
+        } else {
+          alert(data.message);
+        }
+      },
+      error2 => {
+        console.log(error2);
+      });
+  }
+
   // 订单详情
   product(flag) {
     // this.router.navigate(['product'], {
     //   queryParams: {
     //     token: this.token
     //   }});
+    console.log('12');
     this.router.navigate(['detail'], {
       queryParams: {
         vmCode: urlParse(window.location.search)['vmCode'],
@@ -437,6 +482,7 @@ export class MainComponent implements OnInit {
       }
     }
   }
+
   turnImg(item) {
     let img;
     if (item.length > 1) {
@@ -446,6 +492,7 @@ export class MainComponent implements OnInit {
     }
     return img;
   }
+
   turn(item, name) {
     let variable;
     if (item.length > 1) {

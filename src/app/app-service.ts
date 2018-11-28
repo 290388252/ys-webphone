@@ -24,7 +24,6 @@ export class AppService {
     url += (url.indexOf('?') < 0 ? '?' : '&') + this.param(options);
     return this.http.get(url, { headers: myHeaders });
   }
-
   getShareData(url: string, options?: any, tokens?: string) {
     // 配置请求头
     const myHeaders: HttpHeaders = new HttpHeaders({
@@ -40,7 +39,7 @@ export class AppService {
     // 配置请求头
     const myHeaders: HttpHeaders = new HttpHeaders({
       'Content-Type': 'application/json',
-       'token': 'webapp'
+      'token': 'webapp'
     });
     // tslint:disable-next-line:forin
     url += (url.indexOf('?') < 0 ? '?' : '&') + this.param(options);
@@ -57,7 +56,15 @@ export class AppService {
     url += (url.indexOf('?') < 0 ? '?' : '&') + this.param(options);
     return this.http.get(url, { headers: myHeaders });
   }
-
+  postDataOpen(url: string, options?: any, tokens?: string): Observable<any> {
+    // 配置请求头
+    const myHttpHead = { headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        // 'Authorization': tokens
+        'ysToken': 'Bearer ' + tokens
+      })};
+    return this.http.post(url, options, myHttpHead);
+  }
   /**
    * @param url地址
    * @param options提交的数据

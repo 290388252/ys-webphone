@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import 'rxjs/Rx';
 
 @Injectable()
@@ -29,6 +29,7 @@ export class AppProperties {
   public machineInfoGetCompanyIdUrl: string;
   public adminCreateForeverStrQrUrl: string;
   public machineControlAdjustReplenish: string;
+  public machineSuggestionUrl: string;
   // WeChat
   public indexListUrl: string;
   public indexOpenDoor: string;
@@ -65,7 +66,7 @@ export class AppProperties {
   constructor() {
     // Public
     this.appUrl = 'http://47.106.92.82:6662/ys_sms';
-    // this.appUrl = 'http://192.168.0.121:6662/ys_sms';
+    // this.appUrl = 'http://192.168.0.108:6662/ys_mms';
     this.adminUrl = 'http://119.23.233.123:6662/ys_admin';
     this.imgUrl = this.adminUrl + '/files/';
     this.isClosedUrl = this.appUrl + '/wechat/isClosed';
@@ -90,7 +91,7 @@ export class AppProperties {
     this.machineInfoGetCompanyIdUrl = this.appUrl + '/machineInfo/getCompanyId?vmCode=';
     this.adminCreateForeverStrQrUrl = this.appUrl + '/admin/createStrQr';
     this.machineControlAdjustReplenish = this.appUrl + '/machineControl/adjustReplenish?';
-
+    this.machineSuggestionUrl = this.appUrl + '/tblCustomerComplain/add';
     // WeChat
     this.indexListUrl = this.appUrl + '/index/listWay';
     this.indexOpenDoor = this.appUrl + '/index/openDoor';

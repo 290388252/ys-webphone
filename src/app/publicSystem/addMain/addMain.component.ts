@@ -72,6 +72,7 @@ export class AddMainComponent implements OnInit {
     // 数据初始化
     this.getCookies();
     this.token = urlParse(window.location.search)['token'];
+    sessionStorage.setItem('token', urlParse(window.location.search)['token']);
     // 数据初始化
     this.getInitData();
     if (this.token === null
@@ -79,6 +80,9 @@ export class AddMainComponent implements OnInit {
       || this.token === 'undefined') {
       this.getAuth();
     } else {
+      const exp = new Date();
+      exp.setTime(exp.getTime() + 1000 * 60 * 60 * 24 * 30);
+      document.cookie = 'adminToken=' + urlParse(window.location.search)['token'] + ';expired=' + exp.toUTCString();
       if (urlParse(window.location.search)['payType'] === '1') {
         this.canReplenish('main');
       } else if (urlParse(window.location.search)['payType'] === '2') {
@@ -120,7 +124,7 @@ export class AddMainComponent implements OnInit {
         vmCode: urlParse(window.location.search)['vmCode'],
         goods: this.visible,
         orderNumber: orderNumber.join(','),
-        // itemName: itemName.join(','),
+        itemName: itemName.join(','),
         wayNo: this.wayNo
       }
     });
@@ -160,7 +164,7 @@ export class AddMainComponent implements OnInit {
         data => {
           console.log(data);
           let newData;
-          const newWlhUrl = '/vmLogin?vmCode=' + urlParse(window.location.search)['vmCode'] + '&payType=1-/addMain?vmCode='
+          const newWlhUrl = '/vmLogin?vmCode=' + urlParse(window.location.search)['vmCode'] + '-/addMain?vmCode='
             + urlParse(window.location.search)['vmCode'];
           if (typeof(data.data) === 'string' && data.data.length > 0) {
             newData = data.data.replace(data.data.substring(data.data.indexOf('state=') + 6, data.data.length),
@@ -175,7 +179,7 @@ export class AddMainComponent implements OnInit {
       );
     } else if (urlParse(window.location.search)['payType'] === '2') {
       // 支付宝授权登陆验证
-      const newWlhUrl = '?state=/vmLogin?vmCode=' + urlParse(window.location.search)['vmCode'] + '&payType=2-/addMain?vmCode='
+      const newWlhUrl = '?state=/vmLogin?vmCode=' + urlParse(window.location.search)['vmCode'] + '-/addMain?vmCode='
         + urlParse(window.location.search)['vmCode'];
       this.appService.getData(this.appProperties.aliVmGetUserIdUrl + '?vmCode=' + urlParse(window.location.search)['vmCode'], '').subscribe(
         data2 => {

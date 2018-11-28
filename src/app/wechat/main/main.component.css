@@ -20,11 +20,13 @@
   background: url("../../../assets/main/bg.png") no-repeat;
   background-size: 100% auto;
 }
-.advertisement{
+
+.advertisement {
   width: 65%;
   height: 40px;
   margin-left: 19%;
 }
+
 .col-img {
   margin-top: 8px;
   margin-bottom: 5px;
@@ -130,6 +132,7 @@
   border: 0;
   background-size: 100% 100%;
 }
+
 .boxssf {
   width: 150px;
   height: 140px;
@@ -164,6 +167,7 @@
   top: 38px;
   position: absolute;
 }
+
 .boxs-eight-one {
   width: 80%;
   height: 70px;
@@ -172,6 +176,7 @@
   border: 0;
   background-size: 100% 100%;
 }
+
 .boxs-eight {
   width: 80%;
   height: 70px;
@@ -180,6 +185,7 @@
   border: 0;
   background-size: 100% 100%;
 }
+
 .text-eight-one {
   color: white;
   font-weight: 900;
@@ -207,23 +213,30 @@
   top: 10px;
   position: absolute;
 }
-.eight-img-one{
+
+.eight-img-one {
   width: 40px;
   height: 40px;
   position: absolute;
   top: 11px;
   left: 18px;
 }
-.eight-img{
+
+.eight-img {
   width: 40px;
   height: 40px;
   position: absolute;
   top: 11px;
   left: 80px;
 }
-.eight-bt{
-  width: 100px;position: absolute;top: 38px;right: 10px;
+
+.eight-bt {
+  width: 100px;
+  position: absolute;
+  top: 38px;
+  right: 10px;
 }
+
 .my-product {
   position: absolute;
   bottom: 10px;
@@ -244,6 +257,30 @@
   bottom: 10px;
   left: 1px;
   width: 50%;
+}
+
+.myProduct {
+  display: flex;
+  height: 30px;
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+}
+
+.myCoupon {
+  flex: 1;
+  height: 30px;
+  width: 100%;
+  background: antiquewhite;
+  margin: auto;
+}
+
+.myCoupon button {
+  background: url("../../../assets/main/button.png");
+  background-size: 100% 100%;
+  width: 100%;
+  height: 30px;
+  border: none;
 }
 
 .my-coupon button {
@@ -269,6 +306,50 @@
   height: 30px;
   border: none;
 }
+
+.suggestionCont {
+  width: 100%;
+  position: absolute;
+  opacity: 1;
+  top: 56px;
+  height: 203px;
+  background: #ffffff;
+  padding-top: 20px;
+  border-radius: 6px
+}
+
+.suggestionTitle {
+  width: 100%;
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.suggestionSubmit {
+  width: 100%;
+  height: 30px;
+  position: absolute;
+  bottom: 0;
+}
+
+.suggestionSubmit button {
+  background: url("../../../assets/main/submit.png");
+  background-size: 100% 100%;
+  width: 100%;
+  height: 30px;
+  border: none;
+}
+
+.suggestionClose {
+  display: inline-block;
+  position: absolute;
+  font-size: 16px;
+  font-weight: bold;
+  top: 8px;
+  right: 10px;
+
+}
+
 .box-one {
   float: left;
   width: 150px;
@@ -370,6 +451,7 @@
 .ant-modal-footer {
   text-align: center !important;
 }
+
 .addMain-img-onef {
   width: 60px;
   height: 60px;
@@ -383,6 +465,7 @@
   top: 7px;
   left: 12px;
 }
+
 .addMain-img-one {
   width: 40px;
   height: 40px;
@@ -568,6 +651,7 @@
     background-size: 100% 100%;
   }
 }
+
 @media screen and (max-height: 510px) {
   .boxs-eight-one {
     width: 80%;
@@ -577,6 +661,7 @@
     border: 0;
     background-size: 100% 100%;
   }
+
   .boxs-eight {
     width: 80%;
     height: 65px;
@@ -585,6 +670,7 @@
     border: 0;
     background-size: 100% 100%;
   }
+
   .text-eight-one {
     color: white;
     font-weight: 900;
@@ -612,27 +698,31 @@
     top: 10px;
     position: absolute;
   }
-  .eight-img-one{
+
+  .eight-img-one {
     width: 40px;
     height: 40px;
     position: absolute;
     top: 11px;
     left: 18px;
   }
-  .eight-img{
+
+  .eight-img {
     width: 40px;
     height: 40px;
     position: absolute;
     top: 11px;
     left: 80px;
   }
-  .eight-bt{
+
+  .eight-bt {
     width: 85px;
     position: absolute;
     top: 34px;
     right: 8px;
   }
 }
+
 @media screen and (max-height: 539px) {
   .context {
     width: 275px;
@@ -700,6 +790,7 @@
     border: 0;
     background-size: 100% 100%;
   }
+
   .boxs-one {
     width: 150px;
     height: 80px;
@@ -708,6 +799,7 @@
     border: 0;
     background-size: 100% 100%;
   }
+
   .boxssf {
     width: 150px;
     height: 124px;
@@ -739,6 +831,7 @@
     top: 5px;
     left: 22px;
   }
+
   .text-custom-one {
     color: white;
     font-weight: 900;
@@ -752,7 +845,8 @@
     position: absolute;
   }
 }
-@media screen and (max-height: 539px) and (min-height: 500px)  {
+
+@media screen and (max-height: 539px) and (min-height: 500px) {
   .context {
     width: 305px;
     margin: 0 auto;
@@ -819,6 +913,7 @@
     border: 0;
     background-size: 100% 100%;
   }
+
   .boxs-one {
     width: 150px;
     height: 80px;
@@ -827,6 +922,7 @@
     border: 0;
     background-size: 100% 100%;
   }
+
   .boxssf {
     width: 150px;
     height: 124px;
@@ -858,6 +954,7 @@
     top: 5px;
     left: 22px;
   }
+
   .text-custom-one {
     color: white;
     font-weight: 900;
@@ -871,6 +968,7 @@
     position: absolute;
   }
 }
+
 @media screen and (max-width: 291px) {
   .col-img {
     margin-top: 5px;

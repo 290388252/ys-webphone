@@ -4,33 +4,33 @@
   <!--<div class="containers" #bg>-->
   <!--</div>-->
   <!--<div class="bgimg">-->
-  <div class="logo">
-    <carousel>
-      <slide>
-        <img [hidden]="youshuiCompany" src="../../../assets/main/banner1.png" alt="first slide" style="display: block; width: 100%;height: 86px;" onclick="javascript:{window.location.href = 'http://webapp.youshuidaojia.com/cMain/promotions?vmCode=' + document.getElementById('vmCode').innerHTML}">
-        <img [hidden]="otherCompany" src="../../../assets/main/banner2.png" alt="first slide" style="display: block; width: 100%;height: 86px;">
-        <div class="carousel-caption d-none d-md-block">
-          <h3>First slide label</h3>。
-          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-        </div>
-      </slide>
-    </carousel>
-    <!--<img *ngIf="isFiveDoor" (click)="vmLogin()" src="../../../assets/main/lianye.png" alt="..." class="lianye-logo">-->
-    <!--<p *ngIf="isFiveDoor" style="font-weight: 600">联业智能</p>-->
-    <img (click)="vmLogin(1)" src="../../../assets/main/logos.png" alt="..."
-         class="rounded-circle">
-    <span id="vmCode" style="display: none">{{vmCode}}</span>
-    <!--<img [hidden]="otherCompany" (click)="vmLogin(0)" src="../../../assets/main/guoqing.png" alt="..."-->
-    <!--class="rounded-circle-center" style="display: inline-block">-->
-    <!--<img [hidden]="youshuiCompany" (click)="vmLogin(2)" src="../../../assets/main/69.png" alt="..."-->
-    <!--class="rounded-circle-sixnight" style="display: inline-block">-->
-    <br/>
-    <!--<div class="logo_title">-->
-    <!--<div class="logo_title_inner"></div>-->
-    <!--</div>-->
-    <!--立即参与-->
-    <!--<p class="title">.</p>-->
-  </div>
+    <div class="logo">
+      <carousel>
+        <slide>
+          <img [hidden]="youshuiCompany" src="../../../assets/main/banner1.png" alt="first slide" style="display: block; width: 100%;height: 86px;" onclick="javascript:{window.location.href = 'http://localhost:4202/cMain/promotions?vmCode=' + document.getElementById('vmCode').innerHTML}">
+          <img [hidden]="otherCompany" src="../../../assets/main/banner2.png" alt="first slide" style="display: block; width: 100%;height: 86px;">
+          <div class="carousel-caption d-none d-md-block">
+            <h3>First slide label</h3>。
+            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+          </div>
+        </slide>
+      </carousel>
+      <!--<img *ngIf="isFiveDoor" (click)="vmLogin()" src="../../../assets/main/lianye.png" alt="..." class="lianye-logo">-->
+      <!--<p *ngIf="isFiveDoor" style="font-weight: 600">联业智能</p>-->
+      <img (click)="vmLogin(1)" src="../../../assets/main/logos.png" alt="..."
+           class="rounded-circle">
+      <span id="vmCode" style="display: none">{{vmCode}}</span>
+      <!--<img [hidden]="otherCompany" (click)="vmLogin(0)" src="../../../assets/main/guoqing.png" alt="..."-->
+           <!--class="rounded-circle-center" style="display: inline-block">-->
+      <!--<img [hidden]="youshuiCompany" (click)="vmLogin(2)" src="../../../assets/main/69.png" alt="..."-->
+           <!--class="rounded-circle-sixnight" style="display: inline-block">-->
+      <br/>
+      <!--<div class="logo_title">-->
+        <!--<div class="logo_title_inner"></div>-->
+      <!--</div>-->
+      <!--立即参与-->
+      <!--<p class="title">.</p>-->
+    </div>
   <div class="contain_btm">
     <img [hidden]="youshuiCompany" (click)="vmLogin(2)" src="../../../assets/main/advertisement.png" alt="" class="advertisement">
     <div style="display: flex;width: 100%;height: 20px;margin-bottom: 12px" *ngIf="isEightDoor">
@@ -93,7 +93,7 @@
         </div>
       </div>
     </div>
-    <!--8门-->
+  <!--8门-->
     <div class="context" *ngIf="isEightDoor">
       <div (click)="openDoor(item)" *ngFor="let item of eightIndexList" [ngClass]="item['wayItemList'].length === 1 ? 'boxs-eight-one' : 'boxs-eight'" class=" card text-white addMain-bottom">
         <div style="text-align: center">
@@ -103,23 +103,34 @@
           <img src="../../../assets/main/eight-bt.png" alt="" class="eight-bt">
         </div>
         <div style="text-align: center" [hidden]="item['wayItemList'].length === 1">
-          <img class="eight-img" [src]="turnImg(item['wayItemList'])" alt="">
+          <img class="eight-img" [src]="turnImg(item['wayItemList'])" h40w100%alt="">
           <p class="text-eight" style="color: #333333;">{{turn(item['wayItemList'], 'itemName')}}</p>
           <p class="text-eight" style="color: #f4725c;margin-top: 10px">{{turn(item['wayItemList'], 'price')}}元</p>
         </div>
       </div>
     </div>
-    <div class="my-product">
-      <button (click)="product(1)" type="button" style="color: white">我的订单</button>
+    <div class="myProduct">
+      <div class="myCoupon">
+        <button (click)="show()" type="button" style="color: white">查看优惠券</button>
+      </div>
+      <div class="myCoupon">
+        <button (click)="openSuggestion()" type="button" style="color: white">投诉建议</button>
+      </div>
+      <div class="myCoupon">
+        <button (click)="product(1)" type="button" style="color: white">我的订单</button>
+      </div>
     </div>
-    <div class="my-coupon">
-      <button (click)="show()" type="button" style="color: white">查看优惠券</button>
-    </div>
+    <!--<div class="my-product">-->
+      <!--<button (click)="product(1)" type="button" style="color: white">我的订单</button>-->
+    <!--</div>-->
+    <!--<div class="my-coupon">-->
+      <!--<button (click)="show()" type="button" style="color: white">查看优惠券</button>-->
+    <!--</div>-->
     <div class="my-coupons" [hidden]="couponButtonHidden">
       <button [hidden]="youshuiCompany" (click)="vmLogin(2)" type="button" style="color: white">领取优惠券</button>
       <button (click)="product(2)" type="button" style="color: white">我的优惠券</button>
     </div>
-    <!--</div>-->
+  <!--</div>-->
   </div>
   <nz-modal [nzVisible]="isVisibleOpenDoor" [nzContent]="modalContents" [nzFooter]="modalFooters" [nzClosable]="false">
     <ng-template #modalContents #modalFooters style="text-align: center">
@@ -165,5 +176,20 @@
            style="width: 10%; position: absolute;right: 10px;top: 10px;">
     </ng-template>
   </nz-modal>
-
+  <nz-modal [nzVisible]="isVisibleCouponFour" [nzContent]="modalContentCouponFour" [nzFooter]="false" [nzClosable]="false">
+    <ng-template #modalContentCouponFour>
+      <div class="suggestionCont">
+        <div class="suggestionTitle">请输入您的建议与投诉</div>
+        <div style="padding: 10px 10px 0 10px">
+          <textarea rows="3" cols="20" style="width: 100%;height: 100px;resize: none"
+                    [(ngModel)]="userSuggestion" placeholder="请输入您的建议与投诉"></textarea>
+          <span style="color: red" *ngIf="showSuggestion">*内容不能为空</span>
+        </div>
+        <div class="suggestionSubmit">
+          <button type="button" (click)="submitSuggestion()" style="color: #ffffff;font-size: 14px;letter-spacing: 4px">提交</button>
+        </div>
+        <i class="anticon anticon-close suggestionClose" (click)="closeSuggestion()"></i>
+      </div>
+    </ng-template>
+  </nz-modal>
 </div>

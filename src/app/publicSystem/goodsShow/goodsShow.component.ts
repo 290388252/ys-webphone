@@ -39,11 +39,11 @@ export class GoodsShowComponent implements OnInit {
   public couponName;
   public carryWaterCouponName;
   public orderId;
-  public price: string;
+  public price: number;
   public couponId: string;
   public type: string;
   public isFollow: number;
-  public sumDeductionMoney: string;
+  public sumDeductionMoney: number;
   public couponList;
   public waterVoucherList = [];
 
@@ -198,6 +198,7 @@ export class GoodsShowComponent implements OnInit {
             this.router.navigate(['addMain'], {
               queryParams: {
                 vmCode: urlParse(window.location.search)['vmCode'],
+                token: sessionStorage.getItem('token'),
                 payType: 1
               }});
           } else {
@@ -211,6 +212,7 @@ export class GoodsShowComponent implements OnInit {
             this.router.navigate(['addMain'], {
               queryParams: {
                 vmCode: urlParse(window.location.search)['vmCode'],
+                token: sessionStorage.getItem('token'),
                 payType: 2
               }});
           } else {
@@ -289,11 +291,11 @@ export class GoodsShowComponent implements OnInit {
                 this.couponName = data4.couponName;
                 this.carryWaterCouponName = data4.carryWaterCouponName;
                 this.orderId = data4.orderId;
-                this.price = data4.price;
+                this.price = parseFloat(data4.price);
                 this.couponId = data4.couponId;
                 this.type = data4.type;
                 this.isFollow = data4.follow;
-                this.sumDeductionMoney = data4.sumDeductionMoney;
+                this.sumDeductionMoney = parseFloat(data4.sumDeductionMoney);
                 console.log(this.price);
                 console.log(this.sumDeductionMoney);
               },
