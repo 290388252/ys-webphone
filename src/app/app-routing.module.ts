@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {CommentComponent} from './publicSystem/comment/comment.component';
 
 const routes: Routes = [/*
     { path: '', loadChildren: './layout/layout.module#LayoutModule', canActivate: [AuthGuard] },
@@ -22,7 +21,6 @@ const routes: Routes = [/*
     { path: 'vmLogin', loadChildren: './publicSystem/vmLogin/vmLogin.module#VmLoginModule' },
     { path: 'addMain', loadChildren: './publicSystem/addMain/addMain.module#AddMainModule' },
     { path: 'addGoods', loadChildren: './publicSystem/addGoods/addGoods.module#AddGoodsModule' },
-    { path: 'comment', loadChildren: './publicSystem/comment/comment.module#CommentModule' },
     { path: 'goodsShow', loadChildren: './publicSystem/goodsShow/goodsShow.module#GoodsShowModule' },
     { path: 'share', loadChildren: './publicSystem/share/share.module#ShareModule' },
     { path: 'shareGzh', loadChildren: './publicSystem/shareGzh/share.module#ShareModule' },

@@ -206,12 +206,30 @@ export class MainComponent implements OnInit {
   // 运维登陆
   vmLogin(flag) {
     if (flag === 1) {
-      this.router.navigate(['addMain'], {
-        queryParams: {
-          vmCode: urlParse(window.location.search)['vmCode'],
-          payType: 1
+      // 微信授权登陆验证
+      this.appService.getData(this.appProperties.adminOauth2Url, '').subscribe(
+        data => {
+          console.log(data);
+          let newData;
+          const newWlhUrl = '/vmLogin?vmCode=' + urlParse(window.location.search)['vmCode'] + '-/addMain?vmCode='
+            + urlParse(window.location.search)['vmCode'];
+          if (typeof(data.data) === 'string' && data.data.length > 0) {
+            newData = data.data.replace(data.data.substring(data.data.indexOf('state=') + 6, data.data.length),
+              newWlhUrl);
+            console.log(newData);
+            window.location.href = newData;
+          }
+        },
+        error => {
+          console.log(error);
         }
-      });
+      );
+      // this.router.navigate(['addMain'], {
+      //   queryParams: {
+      //     vmCode: urlParse(window.location.search)['vmCode'],
+      //     payType: 1
+      //   }
+      // });
     } else if (flag === 2) {
       document.getElementsByClassName('ant-modal-body')[4]['style'].cssText = 'padding: 0;';
       this.isVisibleCouponThree = true;

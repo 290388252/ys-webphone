@@ -303,12 +303,24 @@ export class MainComponent implements OnInit {
   // 补货人员登陆界面入口
   vmLogin(flag) {
     if (flag === 1) {
-      this.router.navigate(['addMain'], {
-        queryParams: {
-          vmCode: urlParse(window.location.search)['vmCode'],
-          payType: 2
+      // 支付宝授权登陆验证
+      const newWlhUrl = '?state=/vmLogin?vmCode=' + urlParse(window.location.search)['vmCode'] + '-/addMain?vmCode='
+        + urlParse(window.location.search)['vmCode'];
+      this.appService.getData(this.appProperties.aliVmGetUserIdUrl + '?vmCode=' + urlParse(window.location.search)['vmCode'], '').subscribe(
+        data2 => {
+          console.log(data2);
+          window.location.href = data2.returnObject + newWlhUrl;
+        },
+        error2 => {
+          console.log(error2);
         }
-      });
+      );
+      // this.router.navigate(['addMain'], {
+      //   queryParams: {
+      //     vmCode: urlParse(window.location.search)['vmCode'],
+      //     payType: 2
+      //   }
+      // });
     } else if (flag === 2) {
       document.getElementsByClassName('ant-modal-body')[2]['style'].cssText = 'padding: 0;';
       this.isVisibleCouponThree = true;
