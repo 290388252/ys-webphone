@@ -71,6 +71,7 @@ export class AddMainComponent implements OnInit {
   ngOnInit() {
     // 数据初始化
     this.getCookies();
+    this.token = urlParse(window.location.search)['token'];
     // 数据初始化
     this.getInitData();
     if (this.token === null
@@ -159,7 +160,8 @@ export class AddMainComponent implements OnInit {
         data => {
           console.log(data);
           let newData;
-          const newWlhUrl = '/vmLogin?vmCode=' + urlParse(window.location.search)['vmCode'] + '&payType=1';
+          const newWlhUrl = '/vmLogin?vmCode=' + urlParse(window.location.search)['vmCode'] + '&payType=1-/addMain?vmCode='
+            + urlParse(window.location.search)['vmCode'];
           if (typeof(data.data) === 'string' && data.data.length > 0) {
             newData = data.data.replace(data.data.substring(data.data.indexOf('state=') + 6, data.data.length),
               newWlhUrl);
@@ -173,7 +175,8 @@ export class AddMainComponent implements OnInit {
       );
     } else if (urlParse(window.location.search)['payType'] === '2') {
       // 支付宝授权登陆验证
-      const newWlhUrl = '?state=/vmLogin?vmCode=' + urlParse(window.location.search)['vmCode'] + '&payType=2';
+      const newWlhUrl = '?state=/vmLogin?vmCode=' + urlParse(window.location.search)['vmCode'] + '&payType=2-/addMain?vmCode='
+        + urlParse(window.location.search)['vmCode'];
       this.appService.getData(this.appProperties.aliVmGetUserIdUrl + '?vmCode=' + urlParse(window.location.search)['vmCode'], '').subscribe(
         data2 => {
           console.log(data2);
