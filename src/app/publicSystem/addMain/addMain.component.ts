@@ -27,7 +27,6 @@ export class AddMainComponent implements OnInit {
   // public radioValue: string;
   public count = 1;
   public restartTimes = 15; // 重启时间（秒）
-  public times = 1;
   public num: number;
   public num2: number;
   public wayNo: number;
@@ -417,7 +416,6 @@ export class AddMainComponent implements OnInit {
   resetWeight() {
     this.wayNo = undefined;
     this.num = undefined;
-    this.times = 1;
     this.count = 1;
     if (this.isEightDoor) {
       this.isVisibleOpenEightDoor = true;
