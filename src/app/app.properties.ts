@@ -44,6 +44,8 @@ export class AppProperties {
   public findMachineHistoryUrl: string;
   public wechatShareInfoUrl: string;
   public couponAvailable: string;
+  public applyRefundUrl: string;
+  public IfApplayRefundUrl: string;
   // AliPay
   public aliIndexListUrl: string;
   public aliGetUserIdUrl: string;
@@ -107,6 +109,8 @@ export class AppProperties {
     this.findMachineHistoryUrl = this.adminUrl + '/payRecord/findMachineHistory';
     this.wechatShareInfoUrl = this.appUrl + '/wechat/shareInfo';
     this.couponAvailable = this.appUrl + '/coupon/available';
+    this.applyRefundUrl = this.appUrl + '/refundApplication/do';
+    this.IfApplayRefundUrl = this.appUrl + '/refundApplication/get';
 
     // AliPay
     this.aliIndexListUrl = this.appUrl + '/aliUser/queryItem';

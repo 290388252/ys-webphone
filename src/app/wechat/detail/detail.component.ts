@@ -26,6 +26,11 @@ export class DetailComponent implements OnInit , AfterViewChecked {
   public closedTime = '无';
   public couponEffectiveList;
   public imgUrl;
+  public orderItemList;
+  public payCode;
+  public refundPrice;
+  public refundReason;
+  public maxPrice;
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private appProperties: AppProperties,
   private appService: AppService) {
     this.list = [];
@@ -111,6 +116,59 @@ export class DetailComponent implements OnInit , AfterViewChecked {
         console.log(error);
       }
     );
+  }
+  applyRefund(item) {
+    this.payCode = item.payCode;
+    this.orderItemList = item.itemList;
+    this.maxPrice = item.totalPrice;
+    this.refundPrice = this.maxPrice;
+    this.appService.postFormData(this.appProperties.IfApplayRefundUrl, {
+        payCode: this.payCode,
+      }, this.token).subscribe(
+      data => {
+        console.log(data);
+        if (data.status === 0) {
+          this.id = '3';
+        } else {
+          alert(data.returnObject[0].stateName);
+        }
+      },
+      error2 => {
+        console.log(error2);
+      }
+    );
+  }
+  /*提交*/
+  applySubmit() {
+    if (this.refundReason === null || this.refundReason === undefined || this.refundReason === '') {
+      alert('请输入退款原因!');
+      return;
+    } else if (this.refundPrice === null || this.refundPrice === undefined || this.refundPrice === '') {
+      alert('请输入退款金额！');
+      return;
+    } else if (this.refundPrice > this.totalPrice) {
+      alert('退款金额不能大于最大金额，请重新输入！');
+      return;
+    } else {
+      this.appService.postAliData(this.appProperties.applyRefundUrl, {
+        payCode: this.payCode,
+        orderType: 1,
+        reason: this.refundReason,
+        refundPrice: this.refundPrice
+      }, this.token).subscribe(
+        data => {
+          if (data.status === 1) {
+            alert(data.message);
+            this.id = '1';
+          } else {
+            alert(data.message);
+          }
+        },
+        error => {
+          console.log(error);
+        }
+      );
+    }
   }
   // 调用微信支付接口
   onBridgeUndefindeReady(data, item) {

@@ -1,9 +1,10 @@
 <div id="containers" class="containers">
   <div class="page__hd" style="padding: 10px 10px 10px 20px;background: white">
-    <h1 [hidden]="id === '2'" class="page__title">我的订单</h1>
-    <h1 [hidden]="id === '1'" class="page__title">我的优惠卷</h1>
+    <h1 [hidden]="id !== '1'" class="page__title">我的订单</h1>
+    <h1 [hidden]="id !== '2'" class="page__title">我的优惠卷</h1>
+    <h1 [hidden]="id !== '3'" class="page__title">退款申请</h1>
   </div>
-  <div id="content" class="content" [hidden]="id === '2'">
+  <div id="content" class="content" [hidden]="id !== '1'">
     <!--<div class="weui-form-preview" *ngFor="let item of list">-->
       <!--<div class="weui-form-preview__hd">-->
         <!--<div class="weui-form-preview__item">-->
@@ -93,13 +94,50 @@
         <!--<img src="../../../../../assets/icon/payIcon.png" class="unPay_img" (click)="pay(item)">-->
       <!--</div>-->
       <div class="unPay">
+        <div class="refund-btn" (click)="applyRefund(item)" *ngIf="item.stateName === '已支付'">申请退款</div>
         <div class="unPay_img" (click)="pay(item)" *ngIf="item.stateName === '未支付'">去支付</div>
         <div class="details" (click)="detail(item.payCode)">查看详情</div>
         <!--<img src="../../../../../assets/icon/payIcon.png" class="unPay_img" (click)="pay(item)">-->
       </div>
     </div>
   </div>
-  <div id="contents" class="content" [hidden]="id === '1'">
+  <!--申请退款-->
+  <div class="applyRefund" [hidden]="id !== '3'">
+    <div class="order-style">
+      <div class="order-layout" *ngFor="let item of orderItemList">
+        <div class="left order-img">
+          <img style="width: 80px;height: 80px; display: block" [src]="imgUrl+item.pic">
+        </div>
+        <div class="left order-detail">
+        <span class="span-style name-style" style="">
+          {{item.itemName}}
+        </span>
+          <span style="font-size: 12px;">产品数量：{{item.num}}</span>
+        </div>
+      </div>
+    </div>
+    <div class="refund-select">
+      <div class="left">
+      <span class="span-style">退款金额：<span style="color: #3E85FF; font-size: 16px;">￥
+        <input type="text" [(ngModel)]="refundPrice" style="border: none;">
+      </span></span>
+      </div>
+      <div class="right">
+        <span style="font-size: 12px;">最多￥{{maxPrice}}</span>
+      </div>
+      <div class="clear-fix"></div>
+    </div>
+    <div class="refund-info">
+      <span class="span-style">退款原因：</span>
+      <textarea name="more" class="text-style" [(ngModel)]="refundReason" placeholder="请您详细的填写退款说明，10-170个字，以便客服为您尽快处理"></textarea>
+    </div>
+    <div style="height: 120px;"></div>
+    <div class="footer-btn">
+      <button nz-button class="but-style" (click)="applySubmit()">提交</button>
+    </div>
+  </div>
+  <!--优惠券-->
+  <div id="contents" class="content" [hidden]="id !== '2'">
     <div class="layout">
       <div class="card" *ngFor="let item of couponEffectiveList">
         <div style="float: left;margin-top: 20px" *ngIf="(item.type === 1)">
