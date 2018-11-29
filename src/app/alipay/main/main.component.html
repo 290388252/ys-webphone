@@ -121,17 +121,33 @@
           <p class="text-eight" style="color: #f4725c;margin-top: 10px">{{turn(item['wayItemList'], 'price')}}元</p>
         </div>
       </div>
+
     </div>
-    <div class="my-product">
-      <button (click)="product(1)" type="button" style="color: white">我的订单</button>
+    <div class="myProduct">
+      <div class="myCoupon">
+        <button (click)="show()" type="button" style="color: white">查看优惠券</button>
+      </div>
+      <div class="myCoupon">
+        <button (click)="openSuggestion()" type="button" style="color: white">投诉建议</button>
+      </div>
+      <div class="myCoupon">
+        <button (click)="product(1)" type="button" style="color: white">我的订单</button>
+      </div>
+      <div class="my-coupons" [hidden]="couponButtonHidden">
+        <button (click)="vmLogin(2)" type="button" style="color: white">领取优惠券</button>
+        <button (click)="product(2)" type="button" style="color: white">我的优惠券</button>
+      </div>
     </div>
-    <div class="my-coupon">
-      <button (click)="show()" type="button" style="color: white">查看优惠券</button>
-    </div>
-    <div class="my-coupons" [hidden]="couponButtonHidden">
-      <button (click)="vmLogin(2)" type="button" style="color: white">领取优惠券</button>
-      <button (click)="product(2)" type="button" style="color: white">我的优惠券</button>
-    </div>
+    <!--<div class="my-product">-->
+      <!--<button (click)="product(1)" type="button" style="color: white">我的订单</button>-->
+    <!--</div>-->
+    <!--<div class="my-coupon">-->
+      <!--<button (click)="show()" type="button" style="color: white">查看优惠券</button>-->
+    <!--</div>-->
+    <!--<div class="my-coupons" [hidden]="couponButtonHidden">-->
+      <!--<button (click)="vmLogin(2)" type="button" style="color: white">领取优惠券</button>-->
+      <!--<button (click)="product(2)" type="button" style="color: white">我的优惠券</button>-->
+    <!--</div>-->
   </div>
 
   <!--<div class="my-share">-->
@@ -189,6 +205,22 @@
       <!--<img src="../../../assets/main/follow.png" (click)="follow()" alt="" style="width: 20%;position: absolute;left: 40%;top: 260px;">-->
       <img (click)="closemodalContentPromotions()" src="../../../assets/main/close.png" alt=""
            style="width: 10%; position: absolute;right: 10px;top: 10px;">
+    </ng-template>
+  </nz-modal>
+  <nz-modal [nzVisible]="isVisibleCouponFour" [nzContent]="modalContentCouponFour" [nzFooter]="false" [nzClosable]="false">
+    <ng-template #modalContentCouponFour>
+      <div class="suggestionCont">
+        <div class="suggestionTitle">请输入您的建议与投诉</div>
+        <div style="padding: 10px 10px 0 10px">
+          <textarea rows="3" cols="20" style="width: 100%;height: 100px;resize: none"
+                    [(ngModel)]="userSuggestion" placeholder="请输入您的建议与投诉"></textarea>
+          <span style="color: red" *ngIf="showSuggestion">*内容不能为空</span>
+        </div>
+        <div class="suggestionSubmit">
+          <button type="button" (click)="submitSuggestion()" style="color: #ffffff;font-size: 14px;letter-spacing: 4px">提交</button>
+        </div>
+        <i class="anticon anticon-close suggestionClose" (click)="closeSuggestion()"></i>
+      </div>
     </ng-template>
   </nz-modal>
 </div>

@@ -119,6 +119,10 @@
       <div class="myCoupon">
         <button (click)="product(1)" type="button" style="color: white">我的订单</button>
       </div>
+      <div class="my-coupons" [hidden]="couponButtonHidden">
+        <button [hidden]="youshuiCompany" (click)="vmLogin(2)" type="button" style="color: white">领取优惠券</button>
+        <button (click)="product(2)" type="button" style="color: white">我的优惠券</button>
+      </div>
     </div>
     <!--<div class="my-product">-->
       <!--<button (click)="product(1)" type="button" style="color: white">我的订单</button>-->
@@ -126,10 +130,7 @@
     <!--<div class="my-coupon">-->
       <!--<button (click)="show()" type="button" style="color: white">查看优惠券</button>-->
     <!--</div>-->
-    <div class="my-coupons" [hidden]="couponButtonHidden">
-      <button [hidden]="youshuiCompany" (click)="vmLogin(2)" type="button" style="color: white">领取优惠券</button>
-      <button (click)="product(2)" type="button" style="color: white">我的优惠券</button>
-    </div>
+
   <!--</div>-->
   </div>
   <nz-modal [nzVisible]="isVisibleOpenDoor" [nzContent]="modalContents" [nzFooter]="modalFooters" [nzClosable]="false">

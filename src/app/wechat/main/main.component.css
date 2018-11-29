@@ -293,9 +293,8 @@
 
 .my-coupons {
   position: absolute;
-  bottom: 39px;
-  width: 50%;
-  left: 1px;
+  bottom: 30px;
+  width: 33.33%;
   display: grid;
 }
 
@@ -504,6 +503,7 @@
   .context {
     width: 320px;
     margin: 0 auto;
+    padding: 0 6px;
     /*margin-left: 20px;*/
   }
 
@@ -725,7 +725,7 @@
 
 @media screen and (max-height: 539px) {
   .context {
-    width: 275px;
+    width: 290px;
     margin: 0 auto;
   }
 
@@ -848,7 +848,7 @@
 
 @media screen and (max-height: 539px) and (min-height: 500px) {
   .context {
-    width: 305px;
+    width: 320px;
     margin: 0 auto;
   }
 

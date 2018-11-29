@@ -36,6 +36,9 @@ export class MainComponent implements OnInit {
   public baoliCompany = false;
   public openDoorMsg = '是否要开门？';
   public isConfirmLoading = false;
+  public isVisibleCouponFour = false;
+  public userSuggestion: string;
+  public showSuggestion;
   constructor(private router: Router,
               private activatedRoute: ActivatedRoute,
               private appProperties: AppProperties,
@@ -348,6 +351,43 @@ export class MainComponent implements OnInit {
     });
     // TODO;
   }
+  openSuggestion() {
+    document.getElementsByClassName('ant-modal-body')[5]['style'].cssText = 'padding: 0;';
+    this.isVisibleCouponFour = true;
+    this.showSuggestion = false;
+  }
+
+  closeSuggestion() {
+    this.isVisibleCouponFour = false;
+  }
+
+
+  submitSuggestion() {
+    if (this.userSuggestion === undefined || this.userSuggestion === null || this.userSuggestion === '') {
+      this.showSuggestion = true;
+      return;
+    } else {
+      this.showSuggestion = false;
+    }
+    this.appService.postDataOpen(this.appProperties.machineSuggestionUrl, {
+      'vmCode': urlParse(window.location.search)['vmCode'],
+      'content': this.userSuggestion
+    }, this.token).subscribe(
+      data => {
+        console.log(data);
+        if (data.status === 1) {
+          alert('提交成功');
+          this.userSuggestion = undefined;
+          this.isVisibleCouponFour = false;
+        } else {
+          alert(data.message);
+        }
+      },
+      error2 => {
+        console.log(error2);
+      });
+  }
+
   show() {
     this.couponButtonHidden = !this.couponButtonHidden;
   }

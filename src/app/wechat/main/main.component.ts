@@ -246,6 +246,7 @@ export class MainComponent implements OnInit {
     this.isVisibleCouponFour = false;
   }
 
+
   submitSuggestion() {
     if (this.userSuggestion === undefined || this.userSuggestion === null || this.userSuggestion === '') {
       this.showSuggestion = true;
