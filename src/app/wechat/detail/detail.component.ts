@@ -44,6 +44,7 @@ export class DetailComponent implements OnInit , AfterViewChecked {
     } else {
       this.token = urlParse(window.location.search)['token'];
     }
+    console.log(this.id);
     console.log(this.token);
     this.getData(this.appProperties.findAllUserOrderUrl);
   }

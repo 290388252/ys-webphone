@@ -1,6 +1,50 @@
 .ant-table-placeholder{
   display: none!important;
 }
-.test{
-
+.icon-img{
+  width:21px;
+  height:21px;
+  margin-bottom: 3px;
+  transition: all 0.4s;
+}
+.icon-img-second{
+  width:23px;
+  height:23px;
+  padding-bottom: 1px;
+  margin-bottom: 1px;
+  transition: all 0.4s;
+}
+.icon-img-last{
+  width:19px;
+  height:19px;
+  padding-top: 1px;
+  margin-bottom: 5px;
+  transition: all 0.4s;
+}
+.footer{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: white;
+  height: 59px;
+}
+.footer-btn{
+  border-top: 1px solid #d9d9d9;
+  /*border-right: 1px solid #d9d9d9;*/
+  text-align: center;
+  padding-top: 10px;
+}
+.footer-btn:last-child{
+  border-top: 1px solid #d9d9d9;
+  /*border-right: 0 solid #d9d9d9;*/
+  text-align: center;
+}
+.footer-btn:active {
+  color: #1890ff;
+}
+.icon-active{
+  transform: scale(1.4);
+}
+.active {
+  color: #1890ff;
 }
