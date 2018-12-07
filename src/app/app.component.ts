@@ -23,15 +23,14 @@ export class AppComponent implements OnInit {
         }
       });
     } else if (flag === 2) {
-      window.location.href = `/detail?vmCode=${urlParse(window.location.search)['vmCode']}&flag=1`;
+      window.location.href = `http://sms.youshuidaojia.com:9800/shopGuide?vmCode=${urlParse(window.location.search)['vmCode']}&flag=2`;
     } else if (flag === 3) {
-      window.location.href = `/detail?vmCode=${urlParse(window.location.search)['vmCode']}&flag=2`;
+      window.location.href = `http://sms.youshuidaojia.com:9800/user?vmCode=${urlParse(window.location.search)['vmCode']}&flag=3`;
     } else if (flag === 4) {
-      this.router.navigate(['main'], {
-        queryParams: {
-          vmCode: urlParse(window.location.search)['vmCode'],
-        }
-      });
+      window.location.href = `http://sms.youshuidaojia.com:9800/problem?vmCode=${urlParse(window.location.search)['vmCode']}&flag=4`;
+    } else if (flag === 5) {
+      window.location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxa41aef1ebf72a4b2&redirect_uri=' +
+        'http://yms.youshuidaojia.com/admin/getShopToken2&response_type=code&scope=snsapi_userinfo&state=/cMain/firstPage?vm=1-1';
     }
   }
 }

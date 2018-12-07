@@ -123,6 +123,17 @@ export class AppService {
     url += (url.indexOf('?') < 0 ? '?' : '&') + this.param(options);
     return this.http.get(url, { headers: myHeaders });
   }
+  postScanData(url: string, body: any, tokens?: any | null): Observable<any> {
+    const form = new FormData();
+    const myHttpHead = { headers: new HttpHeaders({
+        // 'Content-Type': 'formdata',
+        // 'Content-Type': 'multipart/form-data',
+      })};
+    for (const k in body) {
+      form.append(k, body[k]);
+    }
+    return this.http.post(url, form, myHttpHead);
+  }
 
   postAliData(url: string, options: any, tokens?: any | null): Observable<any> {
     const myHttpHead = new HttpHeaders({

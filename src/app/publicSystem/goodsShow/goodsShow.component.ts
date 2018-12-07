@@ -202,7 +202,13 @@ export class GoodsShowComponent implements OnInit {
                 payType: 1
               }});
           } else {
-            WeixinJSBridge.call('closeWindow');
+            // WeixinJSBridge.call('closeWindow');
+            this.router.navigate(['main'], {
+              queryParams: {
+                vmCode: urlParse(window.location.search)['vmCode'],
+                token: sessionStorage.getItem('token'),
+                close: '1'
+              }});
           }
         }
       } else if (ua.match(/AlipayClient/i)) {

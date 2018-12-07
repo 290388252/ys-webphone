@@ -21,7 +21,6 @@ export class MainComponent implements OnInit {
   // public img = 'http://lenvar-resource-products.oss-cn-shenzhen.aliyuncs.com/';
   public img = this.appProperties.imgUrl; // 图片地址
   // public img = 'http://119.23.233.123:6662/ys_admin/files/'; // 图片地址
-  public isVisibleOpen = false;
   public isVisibleOpenDoor = false;
   public clickMore = false;
   public item;
@@ -30,15 +29,14 @@ export class MainComponent implements OnInit {
   public isEightDoor = false; // 八门
   public isVisibleCouponThree = false;
   public isVisiblePromotions = false;
-  public couponButtonHidden = true;
+  public isVisibleNoMoney = false;
   public youshuiCompany = true;
   public otherCompany = true;
   public baoliCompany = false;
   public openDoorMsg = '是否要开门？';
+  public openDoorMsgKey = '';
+  public activeImg = '';
   public isConfirmLoading = false;
-  public isVisibleCouponFour = false;
-  public userSuggestion: string;
-  public showSuggestion;
   constructor(private router: Router,
               private activatedRoute: ActivatedRoute,
               private appProperties: AppProperties,
@@ -165,7 +163,28 @@ export class MainComponent implements OnInit {
     if (item.num <= 0) {
       alert('水已经卖完无法开门');
     } else {
-      this.isVisibleOpenDoor = true;
+      this.appService.postAliData(this.appProperties.openBeforeCanDo + urlParse(window.location.href)['vmCode']
+        + '&wayNum=' + this.item.wayNumber, '', this.token).subscribe(
+        data => {
+          console.log(data);
+          if (data.status === 1) {
+            if (data.returnObject !== '') {
+              this.openDoorMsg = '活动:' + data.returnObject.activityName + ',是否开门';
+              this.openDoorMsgKey = '活动商品:' + data.returnObject.partakeItemList[0].key;
+              this.activeImg = this.appProperties.imgUrl + data.returnObject.partakeItemList[0].value;
+            }
+            this.isVisibleOpenDoor = true;
+          } else if (data.status === 91) {
+            this.isVisibleNoMoney = true;
+            this.openDoorMsg = '您的余额不足是否要开通微信免密支付或者是充值！';
+          } else if (data.status === -1 || data.code === -1) {
+            this.noTokenOath();
+          }
+        },
+        error => {
+          console.log(error);
+        }
+      );
     }
   }
   eigthDoorChoose(flag) {
@@ -175,9 +194,6 @@ export class MainComponent implements OnInit {
     } else if (flag === 1) {
       this.eightIndexList = this.indexList.slice(4, 8);
     }
-  }
-  openOk() {
-    this.isClosed(urlParse(window.location.search)['vmCode']);
   }
   // 是否开门（是）
   yesOpenDoor() {
@@ -260,24 +276,14 @@ export class MainComponent implements OnInit {
   // 是否开门（否）
   noOpenDoor() {
     this.isVisibleOpenDoor = false;
+    this.isVisibleNoMoney = false;
+    this.activeImg = '';
+    this.openDoorMsg = '是否要开门?';
+    this.openDoorMsgKey = '';
   }
-  // 检测是否关门
-  isClosed(vmCode) {
-    this.appService.getDataOpen(this.appProperties.isClosedUrl, {vmCode: vmCode}, this.token).subscribe(
-      data2 => {
-        if (data2.data === false) {
-          this.isVisibleOpen = true;
-          // this.isClosed(urlParse(window.location.search)['vmCode']);
-        } else if (data2.data === true) {
-          this.getInitData();
-          this.isVisibleOpen = false;
-          this.isAttention();
-        }
-      },
-      error2 => {
-        console.log(error2);
-      }
-    );
+  openNoPassMoney() {
+  }
+  gotoSendMoney() {
   }
   // 关注支付宝生活号接口
   isAttention() {
@@ -350,46 +356,6 @@ export class MainComponent implements OnInit {
       }
     });
     // TODO;
-  }
-  openSuggestion() {
-    document.getElementsByClassName('ant-modal-body')[5]['style'].cssText = 'padding: 0;';
-    this.isVisibleCouponFour = true;
-    this.showSuggestion = false;
-  }
-
-  closeSuggestion() {
-    this.isVisibleCouponFour = false;
-  }
-
-
-  submitSuggestion() {
-    if (this.userSuggestion === undefined || this.userSuggestion === null || this.userSuggestion === '') {
-      this.showSuggestion = true;
-      return;
-    } else {
-      this.showSuggestion = false;
-    }
-    this.appService.postDataOpen(this.appProperties.machineSuggestionUrl, {
-      'vmCode': urlParse(window.location.search)['vmCode'],
-      'content': this.userSuggestion
-    }, this.token).subscribe(
-      data => {
-        console.log(data);
-        if (data.status === 1) {
-          alert('提交成功');
-          this.userSuggestion = undefined;
-          this.isVisibleCouponFour = false;
-        } else {
-          alert(data.message);
-        }
-      },
-      error2 => {
-        console.log(error2);
-      });
-  }
-
-  show() {
-    this.couponButtonHidden = !this.couponButtonHidden;
   }
   getCookies () {
     if (this.token === null || this.token === undefined || this.token === 'undefined') {

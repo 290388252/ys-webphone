@@ -8,28 +8,14 @@ export class AppProperties {
   public adminUrl: string;
   public imgUrl: string;
   public isClosedUrl: string;
-  public adminLoginUrl: string;
   public adminOauth2Url: string;
-  public addOpendoorUrl: string;
-  public operateOpendoorUrl: string;
-  public orderResetWaysNumUrl: string;
-  public aliMachineQueryVMListUrl: string;
-  public aliMachineQueryDetailUrl: string;
-  public aliMachineQueryTradeDetailUrl: string;
-  public reviseUrl: string;
-  public restartUrl: string;
-  public volumeUrl: string;
-  public canReplenishUrl: string;
   public gameGetGamePrize: string;
   public gameLottery: string;
-  public gameGetCusPrize: string;
-  public gameReceive: string;
   public machineControlUrl: string;
   public machineControlGetReplenishInfoUrl: string;
   public machineInfoGetCompanyIdUrl: string;
   public adminCreateForeverStrQrUrl: string;
   public machineControlAdjustReplenish: string;
-  public machineSuggestionUrl: string;
   // WeChat
   public indexListUrl: string;
   public indexOpenDoor: string;
@@ -46,6 +32,10 @@ export class AppProperties {
   public couponAvailable: string;
   public applyRefundUrl: string;
   public IfApplayRefundUrl: string;
+  public openBeforeCanDo: string;
+  public closedBeforePrecomputation: string;
+  public wechatLoginCheckSend: string;
+  public wechatCheckSend: string;
   // AliPay
   public aliIndexListUrl: string;
   public aliGetUserIdUrl: string;
@@ -68,32 +58,18 @@ export class AppProperties {
   constructor() {
     // Public
     this.appUrl = 'http://47.106.92.82:6662/ys_sms';
-    // this.appUrl = 'http://192.168.0.108:6662/ys_mms';
+    // this.appUrl = 'http://192.168.0.112:8769/ys_sms';
     this.adminUrl = 'http://119.23.233.123:6662/ys_admin';
     this.imgUrl = this.adminUrl + '/files/';
     this.isClosedUrl = this.appUrl + '/wechat/isClosed';
-    this.adminLoginUrl = this.appUrl + '/admin/login';
-    this.addOpendoorUrl = this.appUrl + '/index/yunWeiOpenDoor';
-    this.operateOpendoorUrl = this.appUrl + '/index/operateOpenDoor';
-    this.orderResetWaysNumUrl = this.appUrl + '/order/resetWaysNum/';
-    this.aliMachineQueryVMListUrl = this.appUrl + '/aliMachine/queryVMList';
-    this.aliMachineQueryDetailUrl = this.appUrl + '/aliMachine/queryDetail';
-    this.aliMachineQueryTradeDetailUrl = this.appUrl + '/aliMachine/queryTradeDetail';
     this.adminOauth2Url = this.appUrl + '/admin/oauth2';
-    this.reviseUrl = this.appUrl + '/index/revise';
-    this.restartUrl = this.appUrl + '/machineControl/restart?vmCode=';
-    this.volumeUrl = this.appUrl + '/index/updateVolume';
-    this.canReplenishUrl = this.appUrl + '/index/canReplenish';
     this.gameGetGamePrize = this.appUrl + '/game/getGamePrize';
     this.gameLottery = this.appUrl + '/game/lottery';
-    this.gameGetCusPrize = this.appUrl + '/game/getCusPrize';
-    this.gameReceive = this.appUrl + '/game/receive';
     this.machineControlUrl = this.appUrl + '/machineControl/getChangeInfo';
     this.machineControlGetReplenishInfoUrl = this.appUrl + '/machineControl/getReplenishInfo?vmCode=';
     this.machineInfoGetCompanyIdUrl = this.appUrl + '/machineInfo/getCompanyId?vmCode=';
     this.adminCreateForeverStrQrUrl = this.appUrl + '/admin/createStrQr';
     this.machineControlAdjustReplenish = this.appUrl + '/machineControl/adjustReplenish?';
-    this.machineSuggestionUrl = this.appUrl + '/tblCustomerComplain/add';
     // WeChat
     this.indexListUrl = this.appUrl + '/index/listWay';
     this.indexOpenDoor = this.appUrl + '/index/openDoor';
@@ -111,6 +87,10 @@ export class AppProperties {
     this.couponAvailable = this.appUrl + '/coupon/available';
     this.applyRefundUrl = this.appUrl + '/refundApplication/do';
     this.IfApplayRefundUrl = this.appUrl + '/refundApplication/get';
+    this.openBeforeCanDo = this.appUrl + '/openBefore/canDo?vmCode=';
+    this.closedBeforePrecomputation = this.appUrl + '/closedBefore/precomputation';
+    this.wechatLoginCheckSend = this.appUrl + '/wechat/loginCheckSend';
+    this.wechatCheckSend = this.appUrl + '/wechat/checkSend';
 
     // AliPay
     this.aliIndexListUrl = this.appUrl + '/aliUser/queryItem';

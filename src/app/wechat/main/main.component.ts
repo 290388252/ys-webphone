@@ -23,18 +23,15 @@ export class MainComponent implements OnInit {
   public eightDoorFlag = 0;
   private token: string;
   private wayNumber: number;
-  public isVisibleOpen = false;
   public isVisibleOpenDoor = false;
+  public isVisibleNoMoney = false;
   public isVisibleCoupon = false;
   public isVisibleCouponTwo = false;
   public isVisibleCouponThree = false;
-  public isVisibleCouponFour = false;
   public couponButtonHidden = true;
   public clickMore = false;
-  public userSuggestion: string;
-  public showSuggestion;
   // public img = 'http://lenvar-resource-products.oss-cn-shenzhen.aliyuncs.com/';
-  // public img = 'http://119.23.233.123:6662/ys_admin/files/';
+  public activeImg;
   public img = this.appProperties.imgUrl;
   public item;
   currentModal;
@@ -46,7 +43,9 @@ export class MainComponent implements OnInit {
   public baoliCompany = false;
   public vmCode;
   public openDoorMsg = '是否要开门？';
+  public openDoorMsgKey = '';
   public isConfirmLoading = false;
+  public isScanImg = false;
 
   constructor(private router: Router,
               private modalService: NzModalService,
@@ -56,7 +55,15 @@ export class MainComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getInitData();
+    if (urlParse(window.location.search)['close'] === undefined) {
+      this.isScanImg = false;
+      this.getInitData();
+    } else {
+      this.youshuiCompany = false;
+      this.otherCompany = false;
+      this.baoliCompany = false;
+      this.isScanImg = true;
+    }
     console.log(urlParse(window.location.search)['token'] === undefined);
     if (urlParse(window.location.search)['token'] === undefined) {
       this.getCookies();
@@ -91,6 +98,18 @@ export class MainComponent implements OnInit {
 
   // 数据初始化
   getInitData() {
+    this.appService.getAliData(this.appProperties.wechatLoginCheckSend
+      + '?openId=' + urlParse(window.location.search)['openId'], '').subscribe(
+      data => {
+        console.log(data);
+        if (data.code === 3) {
+          document.getElementsByClassName('ant-modal-body')[4]['style'].cssText = 'padding: 0;';
+          this.isVisibleCouponThree = true;
+        }
+      },
+      error => {
+        console.log(error);
+      });
     this.appService.postData(this.appProperties.machineInfoGetCompanyIdUrl + urlParse(window.location.search)['vmCode'], '').subscribe(
       data2 => {
         console.log(data2);
@@ -179,7 +198,28 @@ export class MainComponent implements OnInit {
     if (item.num <= 0) {
       alert('水已经卖完无法开门');
     } else {
-      this.isVisibleOpenDoor = true;
+        this.appService.postAliData(this.appProperties.openBeforeCanDo + urlParse(window.location.href)['vmCode']
+          + '&wayNum=' + this.item.wayNumber, '', this.token).subscribe(
+          data => {
+            console.log(data);
+            if (data.status === 1) {
+              if (data.returnObject !== '') {
+                this.openDoorMsg = '活动:' + data.returnObject.activityName + ',是否开门';
+                this.openDoorMsgKey = '活动商品:' + data.returnObject.partakeItemList[0].key;
+                this.activeImg = this.appProperties.imgUrl + data.returnObject.partakeItemList[0].value;
+              }
+              this.isVisibleOpenDoor = true;
+            } else if (data.status === 91) {
+              this.isVisibleNoMoney = true;
+              this.openDoorMsg = '您的余额不足是否要开通免密支付或者是充值！';
+            } else if (data.status === -1 || data.code === -1) {
+              this.login();
+            }
+          },
+          error => {
+            console.log(error);
+          }
+        );
     }
   }
 
@@ -232,45 +272,20 @@ export class MainComponent implements OnInit {
       // });
     } else if (flag === 2) {
       document.getElementsByClassName('ant-modal-body')[4]['style'].cssText = 'padding: 0;';
-      this.isVisibleCouponThree = true;
+      this.appService.getAliData(this.appProperties.wechatCheckSend
+        + '?openId=' + urlParse(window.location.search)['openId'], '').subscribe(
+        data2 => {
+          console.log(data2);
+          if (data2.code !== 3) {
+            alert(data2.msg);
+          } else {
+            this.isVisibleCouponThree = true;
+          }
+        },
+        error2 => {
+          console.log(error2);
+        });
     }
-  }
-
-  openSuggestion() {
-    document.getElementsByClassName('ant-modal-body')[5]['style'].cssText = 'padding: 0;';
-    this.isVisibleCouponFour = true;
-    this.showSuggestion = false;
-  }
-
-  closeSuggestion() {
-    this.isVisibleCouponFour = false;
-  }
-
-
-  submitSuggestion() {
-    if (this.userSuggestion === undefined || this.userSuggestion === null || this.userSuggestion === '') {
-      this.showSuggestion = true;
-      return;
-    } else {
-      this.showSuggestion = false;
-    }
-    this.appService.postDataOpen(this.appProperties.machineSuggestionUrl, {
-      'vmCode': urlParse(window.location.search)['vmCode'],
-      'content': this.userSuggestion
-    }, this.token).subscribe(
-      data => {
-        console.log(data);
-        if (data.status === 1) {
-          alert('提交成功');
-          this.userSuggestion = undefined;
-          this.isVisibleCouponFour = false;
-        } else {
-          alert(data.message);
-        }
-      },
-      error2 => {
-        console.log(error2);
-      });
   }
 
   // 订单详情
@@ -291,26 +306,6 @@ export class MainComponent implements OnInit {
 
   show() {
     this.couponButtonHidden = !this.couponButtonHidden;
-  }
-
-  // 是否已关门
-  isClosed(vmCode) {
-    this.appService.getDataOpen(this.appProperties.isClosedUrl, {vmCode: vmCode}, this.token).subscribe(
-      data2 => {
-        console.log(data2);
-        if (data2.data === false) {
-          // alert('您的门还未关闭！优水到家提醒您,为了您账号资金安全,提水后请随手关门');
-          this.isVisibleOpen = true;
-        } else if (data2.data === true) {
-          this.isVisibleOpen = false;
-          // this.router.navigate(['detail']);
-          alert('广州优水到家工程感谢你的惠顾,系统将从零钱或者银行卡中自动扣取本次购买费用。');
-        }
-      },
-      error2 => {
-        console.log(error2);
-      }
-    );
   }
 
   // 新用户登陆
@@ -342,12 +337,6 @@ export class MainComponent implements OnInit {
   handleOk($event) {
     window.location.href = this.appProperties.followWechatSubscription;
     this.currentModal.destroy('onOk');
-  }
-
-  // 检测关门
-  openOk() {
-    this.isVisibleOpen = true;
-    this.isClosed(urlParse(window.location.search)['vmCode']);
   }
 
   // 确定开门
@@ -448,44 +437,72 @@ export class MainComponent implements OnInit {
   // 确定关门
   noOpenDoor() {
     this.isVisibleOpenDoor = false;
+    this.isVisibleNoMoney = false;
+    this.activeImg = '';
+    this.openDoorMsg = '是否要开门?';
+    this.openDoorMsgKey = '';
   }
 
-  // 测试支付
-  test(data) {
-    wx.config({
-      debug: false,
-      appId: data.config.appId,
-      timestamp: data.config.timestamp,
-      nonceStr: data.config.nonceStr,
-      signature: data.config.signature,
-      jsApiList: ['checkJsApi',
-        'chooseWXPay',
-      ]
-    });
-    wx.ready(() => {
-      wx.chooseWXPay({
-        debug: false,
-        timestamp: data.payInfo.timeStamp, // 支付签名时间戳，注意微信jssdk中的所有使用timestamp字段均为小写。但最新版的支付后台生成签名使用的timeStamp字段名需大写其中的S字符
-        nonceStr: data.payInfo.nonceStr, // 支付签名随机串，不长于 32 位
-        package: data.payInfo.package,
-        signType: 'MD5', // 签名方式，默认为'SHA1'，使用新版支付需传入'MD5'
-        paySign: data.payInfo.sign, // 支付签名
-        success: (res) => {
-          if (res.errMsg === 'chooseWXPay:ok') {
-            alert('支付成功');
-          } else {
-            alert('支付失败');
-          }
+  openNoPassMoney() {
+    this.appService.getDataOpen(this.appProperties.nonePassWordPayUrl,
+      {vmCode: urlParse(window.location.href)['vmCode']}).subscribe(
+      data1 => {
+        window.location.href = data1;
+        sessionStorage.setItem('wayNumber', this.item.wayNumber);
+      },
+      error1 => {
+        console.log(error1);
+      }
+    );
+  }
+  gotoSendMoney() {
+    window.location.href = 'http://sms.youshuidaojia.com:9800/prepaid?openId='
+      + urlParse(window.location.href)['openId'] + '&vmCode=' + urlParse(window.location.href)['vmCode'];
+  }
+  scan() {
+    const u = navigator.userAgent, app = navigator.appVersion;
+    const isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+    if (isIOS) {
+      window.location.href = 'http://sms.youshuidaojia.com/scan';
+    } else {
+      this.appService.postScanData(this.appProperties.wechatShareInfoUrl,
+        {url: window.location.href}).subscribe(
+        data => {
+          console.log(data);
+          wx.config({
+            debug: false,
+            appId: data.data.appId,
+            timestamp: data.data.timestamp,
+            nonceStr: data.data.nonceStr,
+            signature: data.data.signature,
+            jsApiList: ['checkJsApi',
+              'onMenuShareAppMessage',
+              'onMenuShareTimeline',
+              'onMenuShareQQ',
+              'onMenuShareWeibo',
+              'scanQRCode'
+            ]
+          });
+          wx.ready(function () {
+            console.log(123);
+            wx.scanQRCode({
+              needResult: 1, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
+              scanType: ['qrCode', 'barCode'], // 可以指定扫二维码还是一维码，默认二者都有
+              success: function (res) {
+                console.log(res.resultStr); // 当needResult 为 1 时，扫码返回的结果
+                window.location.href = res.resultStr;
+              }
+            });
+          });
+          wx.error(function (res) {
+            console.log(res);
+          });
         },
-        cancel: (res) => {
-          alert('您取消了支付');
-          // 支付取消
-        },
-        error: (res) => {
-          alert('出错了，请联系优水到家管理员');
+        error2 => {
+          console.log(error2);
         }
-      });
-    });
+      );
+    }
   }
 
   // 获取token

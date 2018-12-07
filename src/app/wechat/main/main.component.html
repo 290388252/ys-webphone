@@ -7,7 +7,7 @@
     <div class="logo">
       <carousel>
         <slide>
-          <img [hidden]="youshuiCompany" src="../../../assets/main/banner1.png" alt="first slide" style="display: block; width: 100%;height: 86px;" onclick="javascript:{window.location.href = 'http://localhost:4202/cMain/promotions?vmCode=' + document.getElementById('vmCode').innerHTML}">
+          <img [hidden]="youshuiCompany" src="../../../assets/main/banner1.png" alt="first slide" style="display: block; width: 100%;height: 86px;">
           <img [hidden]="otherCompany" src="../../../assets/main/banner2.png" alt="first slide" style="display: block; width: 100%;height: 86px;">
           <div class="carousel-caption d-none d-md-block">
             <h3>First slide label</h3>。
@@ -20,9 +20,7 @@
       <img (click)="vmLogin(1)" src="../../../assets/main/logos.png" alt="..."
            class="rounded-circle">
       <span id="vmCode" style="display: none">{{vmCode}}</span>
-      <!--<img [hidden]="otherCompany" (click)="vmLogin(0)" src="../../../assets/main/guoqing.png" alt="..."-->
            <!--class="rounded-circle-center" style="display: inline-block">-->
-      <!--<img [hidden]="youshuiCompany" (click)="vmLogin(2)" src="../../../assets/main/69.png" alt="..."-->
            <!--class="rounded-circle-sixnight" style="display: inline-block">-->
       <br/>
       <!--<div class="logo_title">-->
@@ -37,7 +35,8 @@
       <img (click)="eigthDoorChoose(0)" [src]="(eightDoorFlag === 0) ?'../../../assets/main/normal.png':'../../../assets/main/cold.png'"  alt="" style="width: 50%;height: 30px"><span (click)="eigthDoorChoose(0)" style="position: absolute;left: 15%;color: white;top: 44px;">点击冷藏商品</span>
       <img (click)="eigthDoorChoose(1)" [src]="(eightDoorFlag === 1) ?'../../../assets/main/normal.png':'../../../assets/main/cold.png'"   alt="" style="width: 50%;height: 30px"><span (click)="eigthDoorChoose(1)" style="position: absolute;right: 15%;color: white;top: 44px;">点击常温商品</span>
     </div>
-    <p class="title">.</p>
+    <p class="title" [hidden]="isScanImg">.</p>
+    <img (click)="scan()" *ngIf="isScanImg" src="../../../assets/main/scan.png" alt="" style="width: 90%;margin-top: 25%;margin-left: 5%">
     <div class="context-five" *ngIf="isFiveDoor">
       <div style="float: left">
         <div (click)="openDoor(item)" *ngFor="let item of fiveIndexList" [ngClass]="item['wayItemList'].length === 1 ? 'boxssf-one' : 'boxssf'" class=" card text-white addMain-bottom">
@@ -109,26 +108,20 @@
         </div>
       </div>
     </div>
-    <div class="myProduct">
-      <div class="myCoupon">
-        <button (click)="show()" type="button" style="color: white">查看优惠券</button>
-      </div>
-      <div class="myCoupon">
-        <button (click)="openSuggestion()" type="button" style="color: white">投诉建议</button>
-      </div>
-      <div class="myCoupon">
-        <button (click)="product(1)" type="button" style="color: white">我的订单</button>
-      </div>
-      <div class="my-coupons" [hidden]="couponButtonHidden">
-        <button [hidden]="youshuiCompany" (click)="vmLogin(2)" type="button" style="color: white">领取优惠券</button>
-        <button (click)="product(2)" type="button" style="color: white">我的优惠券</button>
-      </div>
-    </div>
-    <!--<div class="my-product">-->
-      <!--<button (click)="product(1)" type="button" style="color: white">我的订单</button>-->
-    <!--</div>-->
-    <!--<div class="my-coupon">-->
-      <!--<button (click)="show()" type="button" style="color: white">查看优惠券</button>-->
+    <!--<div class="myProduct">-->
+      <!--<div class="myCoupon">-->
+        <!--<button (click)="show()" type="button" style="color: white">查看优惠券</button>-->
+      <!--</div>-->
+      <!--<div class="myCoupon">-->
+        <!--<button (click)="openSuggestion()" type="button" style="color: white">投诉建议</button>-->
+      <!--</div>-->
+      <!--<div class="myCoupon">-->
+        <!--<button (click)="product(1)" type="button" style="color: white">我的订单</button>-->
+      <!--</div>-->
+      <!--<div class="my-coupons" [hidden]="couponButtonHidden">-->
+        <!--<button [hidden]="youshuiCompany" (click)="vmLogin(2)" type="button" style="color: white">领取优惠券</button>-->
+        <!--<button (click)="product(2)" type="button" style="color: white">我的优惠券</button>-->
+      <!--</div>-->
     <!--</div>-->
 
   <!--</div>-->
@@ -136,6 +129,7 @@
   <nz-modal [nzVisible]="isVisibleOpenDoor" [nzContent]="modalContents" [nzFooter]="modalFooters" [nzClosable]="false">
     <ng-template #modalContents #modalFooters style="text-align: center">
       <p style="font-size: medium;">{{openDoorMsg}}</p>
+      <span style="font-size: medium;" [hidden]="activeImg === ''">{{openDoorMsgKey}}</span><img style="width: 50px" [src]="activeImg" alt="" [hidden]="activeImg === ''">
     </ng-template>
     <ng-template #modalFooters style="text-align: center" >
       <button nz-button nzType="primary" style="visibility: hidden">否</button>
@@ -146,14 +140,17 @@
     </ng-template>
   </nz-modal>
 
-  <nz-modal [nzVisible]="isVisibleOpen" [nzContent]="modalContent" [nzFooter]="modalFooter" [nzClosable]="false">
-    <ng-template #modalContent>
-      <p style="font-size: medium;">门已开，优水到家提醒您,为了您账号资金安全,提水后请随手关门，请勿让陌生人拿水！</p>
+  <nz-modal [nzVisible]="isVisibleNoMoney" [nzContent]="modalContentsNoMoney" [nzFooter]="modalFootersNoMoney" [nzClosable]="false">
+    <ng-template #modalContentsNoMoney #modalFootersNoMoney style="text-align: center">
+      <p style="font-size: medium;">您已经关闭的了微信免密支付功能，并且余额不足，请选择充值或者开通免密支付功能</p>
     </ng-template>
-    <ng-template #modalFooter>
-      <button nz-button nzType="primary" (click)="openOk()">关闭</button>
+    <ng-template #modalFootersNoMoney style="text-align: center" >
+      <!--<button nz-button nzType="primary" (click)="noOpenDoor()">否</button>-->
+      <button nz-button nzType="primary" (click)="openNoPassMoney()">开通微信免密支付</button>
+      <button nz-button nzType="primary" (click)="gotoSendMoney()">充值</button>
     </ng-template>
   </nz-modal>
+
 
   <nz-modal [nzVisible]="isVisibleCoupon" [nzContent]="modalContentCoupon" [nzFooter]="false" [nzClosable]="false">
     <ng-template #modalContentCoupon>
@@ -175,22 +172,6 @@
       <!--<img src="../../../assets/main/follow-button.png" (click)="follow()" alt="" style="width: 20%;position: absolute;left: 40%;top: 260px;">-->
       <img (click)="closeCoupon()" src="../../../assets/main/close.png" alt=""
            style="width: 10%; position: absolute;right: 10px;top: 10px;">
-    </ng-template>
-  </nz-modal>
-  <nz-modal [nzVisible]="isVisibleCouponFour" [nzContent]="modalContentCouponFour" [nzFooter]="false" [nzClosable]="false">
-    <ng-template #modalContentCouponFour>
-      <div class="suggestionCont">
-        <div class="suggestionTitle">请输入您的建议与投诉</div>
-        <div style="padding: 10px 10px 0 10px">
-          <textarea rows="3" cols="20" style="width: 100%;height: 100px;resize: none"
-                    [(ngModel)]="userSuggestion" placeholder="请输入您的建议与投诉"></textarea>
-          <span style="color: red" *ngIf="showSuggestion">*内容不能为空</span>
-        </div>
-        <div class="suggestionSubmit">
-          <button type="button" (click)="submitSuggestion()" style="color: #ffffff;font-size: 14px;letter-spacing: 4px">提交</button>
-        </div>
-        <i class="anticon anticon-close suggestionClose" (click)="closeSuggestion()"></i>
-      </div>
     </ng-template>
   </nz-modal>
 </div>

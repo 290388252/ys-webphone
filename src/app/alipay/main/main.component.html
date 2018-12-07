@@ -17,9 +17,7 @@
     <!--<p *ngIf="isFiveDoor" style="font-weight: 600">联业智能</p>-->
     <img (click)="vmLogin(1)" src="../../../assets/main/logos.png" alt="..."
          class="rounded-circle">
-    <!--<img [hidden]="otherCompany" (click)="vmLogin(0)" src="../../../assets/main/guoqing.png" alt="..."-->
     <!--class="rounded-circle-center" style="display: inline-block">-->
-    <!--<img [hidden]="youshuiCompany" (click)="vmLogin(2)" src="../../../assets/main/69.png" alt="..."-->
     <!--class="rounded-circle-sixnight" style="display: inline-block">-->
     <br/>
     <!--<div class="logo_title">-->
@@ -123,52 +121,31 @@
       </div>
 
     </div>
-    <div class="myProduct">
-      <div class="myCoupon">
-        <button (click)="show()" type="button" style="color: white">查看优惠券</button>
-      </div>
-      <div class="myCoupon">
-        <button (click)="openSuggestion()" type="button" style="color: white">投诉建议</button>
-      </div>
-      <div class="myCoupon">
-        <button (click)="product(1)" type="button" style="color: white">我的订单</button>
-      </div>
-      <div class="my-coupons" [hidden]="couponButtonHidden">
-        <button (click)="vmLogin(2)" type="button" style="color: white">领取优惠券</button>
-        <button (click)="product(2)" type="button" style="color: white">我的优惠券</button>
-      </div>
-    </div>
-    <!--<div class="my-product">-->
-      <!--<button (click)="product(1)" type="button" style="color: white">我的订单</button>-->
-    <!--</div>-->
-    <!--<div class="my-coupon">-->
-      <!--<button (click)="show()" type="button" style="color: white">查看优惠券</button>-->
-    <!--</div>-->
-    <!--<div class="my-coupons" [hidden]="couponButtonHidden">-->
-      <!--<button (click)="vmLogin(2)" type="button" style="color: white">领取优惠券</button>-->
-      <!--<button (click)="product(2)" type="button" style="color: white">我的优惠券</button>-->
+    <!--<div class="myProduct">-->
+      <!--<div class="myCoupon">-->
+        <!--<button (click)="show()" type="button" style="color: white">查看优惠券</button>-->
+      <!--</div>-->
+      <!--<div class="myCoupon">-->
+        <!--<button (click)="openSuggestion()" type="button" style="color: white">投诉建议</button>-->
+      <!--</div>-->
+      <!--<div class="myCoupon">-->
+        <!--<button (click)="product(1)" type="button" style="color: white">我的订单</button>-->
+      <!--</div>-->
+      <!--<div class="my-coupons" [hidden]="couponButtonHidden">-->
+        <!--<button (click)="vmLogin(2)" type="button" style="color: white">领取优惠券</button>-->
+        <!--<button (click)="product(2)" type="button" style="color: white">我的优惠券</button>-->
+      <!--</div>-->
     <!--</div>-->
   </div>
 
   <!--<div class="my-share">-->
   <!--<button (click)="share()" type="button" class="btn btn-primary small" style="background: #117cbb">分享</button>-->
   <!--</div>-->
-  <nz-modal [nzVisible]="isVisibleOpenDoor" [nzContent]="modalContents" [nzFooter]="modalFooters" [nzClosable]="false">
-    <ng-template #modalContents #modalFooters style="text-align: center">
-      <p style="font-size: medium;">是否要开门？</p>
-    </ng-template>
-    <ng-template #modalFooters style="text-align: center">
-      <button nz-button nzType="primary" style="visibility: hidden">否</button>
-      <button nz-button nzType="primary" (click)="noOpenDoor()">否</button>
-      <button nz-button nzType="primary" (click)="yesOpenDoor()">是</button>
-      <button nz-button nzType="primary" style="visibility: hidden">否</button>
-      <button nz-button nzType="primary" style="visibility: hidden">否</button>
-    </ng-template>
-  </nz-modal>
 
   <nz-modal [nzVisible]="isVisibleOpenDoor" [nzContent]="modalContents" [nzFooter]="modalFooters" [nzClosable]="false">
     <ng-template #modalContents #modalFooters style="text-align: center">
       <p style="font-size: medium;">{{openDoorMsg}}</p>
+      <span style="font-size: medium;" [hidden]="activeImg === ''">{{openDoorMsgKey}}</span><img style="width: 50px" [src]="activeImg" alt="" [hidden]="activeImg === ''">
     </ng-template>
     <ng-template #modalFooters style="text-align: center" >
       <button nz-button nzType="primary" style="visibility: hidden">否</button>
@@ -178,13 +155,14 @@
       <button nz-button nzType="primary" style="visibility: hidden">否</button>
     </ng-template>
   </nz-modal>
-
-  <nz-modal [nzVisible]="isVisibleOpen" [nzContent]="modalContent" [nzFooter]="modalFooter" [nzClosable]="false">
-    <ng-template #modalContent>
-      <p style="font-size: medium;">门已开，优水到家提醒您,为了您账号资金安全,提水后请随手关门，请勿让陌生人拿水！</p>
+  <nz-modal [nzVisible]="isVisibleNoMoney" [nzContent]="modalContentsNoMoney" [nzFooter]="modalFootersNoMoney" [nzClosable]="false">
+    <ng-template #modalContentsNoMoney #modalFootersNoMoney style="text-align: center">
+      <p style="font-size: medium;">您已经关闭的了微信免密支付功能，并且余额不足，请选择充值或者开通免密支付功能</p>
     </ng-template>
-    <ng-template #modalFooter>
-      <button nz-button nzType="primary" (click)="openOk()">关闭</button>
+    <ng-template #modalFootersNoMoney style="text-align: center" >
+      <button nz-button nzType="primary" (click)="noOpenDoor()">否</button>
+      <button nz-button nzType="primary" (click)="openNoPassMoney()">开通微信免密支付</button>
+      <!--<button nz-button nzType="primary" (click)="gotoSendMoney()">充值</button>-->
     </ng-template>
   </nz-modal>
 
@@ -207,20 +185,5 @@
            style="width: 10%; position: absolute;right: 10px;top: 10px;">
     </ng-template>
   </nz-modal>
-  <nz-modal [nzVisible]="isVisibleCouponFour" [nzContent]="modalContentCouponFour" [nzFooter]="false" [nzClosable]="false">
-    <ng-template #modalContentCouponFour>
-      <div class="suggestionCont">
-        <div class="suggestionTitle">请输入您的建议与投诉</div>
-        <div style="padding: 10px 10px 0 10px">
-          <textarea rows="3" cols="20" style="width: 100%;height: 100px;resize: none"
-                    [(ngModel)]="userSuggestion" placeholder="请输入您的建议与投诉"></textarea>
-          <span style="color: red" *ngIf="showSuggestion">*内容不能为空</span>
-        </div>
-        <div class="suggestionSubmit">
-          <button type="button" (click)="submitSuggestion()" style="color: #ffffff;font-size: 14px;letter-spacing: 4px">提交</button>
-        </div>
-        <i class="anticon anticon-close suggestionClose" (click)="closeSuggestion()"></i>
-      </div>
-    </ng-template>
-  </nz-modal>
+
 </div>
