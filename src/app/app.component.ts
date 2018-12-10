@@ -1,6 +1,6 @@
 import { Component , OnInit} from '@angular/core';
 import {urlParse} from './utils/util';
-import {Router} from '@angular/router';
+import {NavigationEnd, Router} from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -9,9 +9,18 @@ import {Router} from '@angular/router';
 })
 export class AppComponent implements OnInit {
   public curId: number;
+  public footerHidden = false;
   constructor(private router: Router) {
   }
   ngOnInit(): void {
+    this.router.events
+      .filter((event) => event instanceof NavigationEnd)
+      .subscribe((event: NavigationEnd) => {
+        const refUrl = window.location.href;
+        console.log(refUrl);
+        console.log(refUrl.indexOf('share'));
+        refUrl.indexOf('share') !== -1 ? this.footerHidden = true : this.footerHidden = false;
+      });
   }
   // 获取选中状态
   selected(flag) {

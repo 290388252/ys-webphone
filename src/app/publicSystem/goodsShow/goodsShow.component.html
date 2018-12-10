@@ -32,7 +32,7 @@
   </div>
   <div style="margin-top: 18px;margin-bottom: 5px;">
     <button nz-button nzType="default" (click)="exit()">返回首页</button>
-    <button nz-button nzType="dash" style="background-color: #eee;" (click)="seeOrder()" *ngIf="isFollow === 1">查看订单
+    <button nz-button nzType="dash" style="background-color: #eee;" (click)="seeOrder()" *ngIf="isFollow === 1" [disabled]="checkOrderText === '订单正在支付...'">{{checkOrderText}}
     </button>
   </div>
   <div [hidden]="flag === '3' || flag === '4'" *ngIf="isFollow === 0"

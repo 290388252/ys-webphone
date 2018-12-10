@@ -21,6 +21,7 @@ export class MainComponent implements OnInit {
   // public img = 'http://lenvar-resource-products.oss-cn-shenzhen.aliyuncs.com/';
   public img = this.appProperties.imgUrl; // 图片地址
   // public img = 'http://119.23.233.123:6662/ys_admin/files/'; // 图片地址
+  public nopassMoneyUrl;
   public isVisibleOpenDoor = false;
   public clickMore = false;
   public item;
@@ -177,6 +178,10 @@ export class MainComponent implements OnInit {
           } else if (data.status === 91) {
             this.isVisibleNoMoney = true;
             this.openDoorMsg = '您的余额不足是否要开通微信免密支付或者是充值！';
+          } else if (data.status === 4007) {
+            this.nopassMoneyUrl = data.returnObject;
+            this.isVisibleNoMoney = true;
+            this.openDoorMsg = '您的余额不足是否要开通微信免密支付或者是充值！';
           } else if (data.status === -1 || data.code === -1) {
             this.noTokenOath();
           }
@@ -282,6 +287,7 @@ export class MainComponent implements OnInit {
     this.openDoorMsgKey = '';
   }
   openNoPassMoney() {
+    window.location.href = this.nopassMoneyUrl;
   }
   gotoSendMoney() {
   }

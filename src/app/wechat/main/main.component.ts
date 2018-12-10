@@ -31,7 +31,7 @@ export class MainComponent implements OnInit {
   public couponButtonHidden = true;
   public clickMore = false;
   // public img = 'http://lenvar-resource-products.oss-cn-shenzhen.aliyuncs.com/';
-  public activeImg;
+  public activeImg = '';
   public img = this.appProperties.imgUrl;
   public item;
   currentModal;
@@ -456,8 +456,7 @@ export class MainComponent implements OnInit {
     );
   }
   gotoSendMoney() {
-    window.location.href = 'http://sms.youshuidaojia.com:9800/prepaid?openId='
-      + urlParse(window.location.href)['openId'] + '&vmCode=' + urlParse(window.location.href)['vmCode'];
+    window.location.href = 'http://sms.youshuidaojia.com:9800/prepaid?vmCode=' + urlParse(window.location.href)['vmCode'];
   }
   scan() {
     const u = navigator.userAgent, app = navigator.appVersion;

@@ -43,6 +43,7 @@ export class GoodsShowComponent implements OnInit {
   public couponId: string;
   public type: string;
   public isFollow: number;
+  public checkOrderText = '订单正在支付...';
   public sumDeductionMoney: number;
   public couponList;
   public waterVoucherList = [];
@@ -302,8 +303,9 @@ export class GoodsShowComponent implements OnInit {
                 this.type = data4.type;
                 this.isFollow = data4.follow;
                 this.sumDeductionMoney = parseFloat(data4.sumDeductionMoney);
-                console.log(this.price);
-                console.log(this.sumDeductionMoney);
+                setTimeout(() => {
+                  this.checkOrderText = '点击查看订单';
+                }, 3000);
               },
             error4 => {
                 console.log(error4);
@@ -414,6 +416,6 @@ export class GoodsShowComponent implements OnInit {
     this.wechatVisible = false;
   }
   seeOrder () {
-    window.location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxa41aef1ebf72a4b2&redirect_uri=http://yms.youshuidaojia.com/admin/getCustomerToken&response_type=code&scope=snsapi_userinfo&state=/detail?flag=1';
+    window.location.href = `http://sms.youshuidaojia.com:9800/orderDetails?token=${this.token}&payType=1`;
   }
 }
