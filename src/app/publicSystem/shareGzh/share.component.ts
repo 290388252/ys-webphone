@@ -12,74 +12,43 @@ import {urlParse} from '../../utils/util';
 export class ShareComponent implements OnInit {
   private token: string;
   public img: string;
+  public customerNum: number;
   constructor(private router: Router,
               private appProperties: AppProperties,
               private appService: AppService) {
   }
   ngOnInit() {
-    this.token = urlParse(window.location.href)['token'];
-    this.share();
-    this.appService.postAliData(this.appProperties.adminCreateForeverStrQrUrl, '', this.token).subscribe(
+    this.token = urlParse(window.location.search)['token'];
+    if (this.token !== undefined && this.token !== '') {
+      const exp = new Date();
+      exp.setTime(exp.getTime() + 1000 * 60 * 60 * 24 * 30);
+      document.cookie = 'token=' + this.token + ';expires=' + exp.toUTCString();
+    }
+    this.appService.postAliData(this.appProperties.tblCustomerMyInviteRewards, {}, this.token).subscribe(
       data => {
         console.log(data);
-        if (data.code === 0) {
-          this.img = data.data;
-        }
+        this.customerNum = data.returnObject.length;
       },
-      error2 => {
-        console.log(error2);
+      error => {
+        console.log(error);
       }
     );
   }
-  share() {
-    this.appService.postAliData(this.appProperties.wechatShareInfoUrl + '?url=http://sms.youshuidaojia.com/shareGzh?token=' + this.token,
-      '', this.token).subscribe(
-      data => {
-        console.log(data);
-        wx.config({
-          debug: false,
-          appId: data.data.appId,
-          timestamp: data.data.timestamp,
-          nonceStr: data.data.nonceStr,
-          signature: data.data.signature,
-          jsApiList: ['checkJsApi',
-            'onMenuShareAppMessage',
-            'onMenuShareTimeline',
-            'onMenuShareQQ',
-            'onMenuShareWeibo',
-          ]
-        });
-        const link = 'http://sms.youshuidaojia.com/share?token=' + this.token;
-        console.log(link);
-        wx.ready(function () {
-          const shareData = {
-            title: '优水到家',
-            desc: '分享领取优惠', // 这里请特别注意是要去除html
-            link: link,
-            imgUrl: 'http://119.23.233.123:6662/ys_admin/companyLogo/20181008_142714.png',
-            // imgUrl: '../../../assets/main/logo.png',
-            success: function () {
-              // 用户确认分享后执行的回调函数
-              console.log('success');
-            },
-            cancel: function () {
-              // 用户取消分享后执行的回调函数
-              console.log('cancel');
-            }
-          };
-          wx.onMenuShareAppMessage(shareData);
-          wx.onMenuShareTimeline(shareData);
-          wx.onMenuShareQQ(shareData);
-          wx.onMenuShareWeibo(shareData);
-        });
-        wx.error(function (res) {
-          console.log(res);
-        });
-      },
-      error2 => {
-        console.log(error2);
+  goto(val) {
+    if (val === 1) {
+      this.router.navigate(['shareInfo'], {
+        queryParams: {
+          token: this.token
+        }
+      });
+    } else if (val === 2) {
+      if (this.customerNum === 0) {
+        alert('您还没有成功邀请到好友，无法查看奖励！');
+      } else {
+        window.location.href = `http://localhost:81/myInviteRewards`;
+        //window.location.href = `http://sms.youshuidaojia.com:9800/myInviteRewards`;
       }
-    );
+    }
   }
   // 判断是微信登陆还是支付宝登陆
   urlParse(url): object {

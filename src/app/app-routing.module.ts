@@ -21,6 +21,7 @@ const routes: Routes = [/*
     { path: 'share', loadChildren: './publicSystem/share/share.module#ShareModule' },
     { path: 'shareGzh', loadChildren: './publicSystem/shareGzh/share.module#ShareModule' },
     { path: 'rotate', loadChildren: './publicSystem/rotate/rotate.module#RotateModule' },
+    { path: 'shareInfo', loadChildren: './publicSystem/shareInfo/share.module#ShareModule' },
 ];
 
 @NgModule({

@@ -34,7 +34,7 @@ export class MainComponent implements OnInit {
   public youshuiCompany = true;
   public otherCompany = true;
   public baoliCompany = false;
-  public openDoorMsg = '是否要开门？';
+  public openDoorMsg = '点击‘是’开门，祝您购物愉快！';
   public openDoorMsgKey = '';
   public activeImg = '';
   public isConfirmLoading = false;

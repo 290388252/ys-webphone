@@ -1,19 +1,69 @@
 .share {
-  background: url("../../../assets/main/shareGzh.png");
+  background: url("../../../assets/main/activity-info.png");
   width: 100%;
   height: 100%;
   background-size: 100% 100%;
+ /* margin-bottom: 60px;*/
 }
-.center-button{
+.center{
   width: 100%;
-  height: 20%;
-  top: 47%;
+  top: 70%;
+  left: 0px;
   position: absolute;
 }
-.center-img{
-  width: 40%;
-  height: 24%;
-  top: 29%;
-  left: 30%;
-  position: absolute;
+.button{
+  width: 70%;
+  height: 50px;
+  margin: 25px auto;
+  background: url("../../../assets/main/user-btn.png");
+  background-size: 100% 100%;
 }
+.list-style{
+  width: 94%;
+  margin: 0px auto;
+  background: #FFFFFF;
+}
+.list{
+  width: 100%;
+  position: relative;
+  padding: 10px;
+}
+h6{
+  color: #1890ff;
+  display: block;
+  width: 100%;
+  font-size: 14px !important;
+}
+span{
+  height: 20px;
+  line-height: 20px;
+  padding-top: 10px;
+}
+.icon-arrow{
+  position: absolute;
+  width: 15px;
+  height: 20px;
+  top: 20px;
+  right: 10px;
+  background: url("../../../assets/main/icon-arrow.png");
+  background-size: 100% 100%;
+}
+@media screen and (max-width: 720px) {
+  .button{
+    width: 75%;
+    height: 50px;
+    margin: 20px auto;
+    background: url("../../../assets/main/user-btn.png");
+    background-size: 100% 100%;
+  }
+}
+@media screen and (min-width: 720px) {
+  .button{
+    width: 70%;
+    height: 70px;
+    margin: 25px auto;
+    background: url("../../../assets/main/user-btn.png");
+    background-size: 100% 100%;
+  }
+}
+

@@ -16,6 +16,7 @@ export class AppProperties {
   public machineInfoGetCompanyIdUrl: string;
   public adminCreateForeverStrQrUrl: string;
   public machineControlAdjustReplenish: string;
+  public tblCustomerMyInviteRewards: string;
   // WeChat
   public indexListUrl: string;
   public indexOpenDoor: string;
@@ -70,6 +71,7 @@ export class AppProperties {
     this.machineInfoGetCompanyIdUrl = this.appUrl + '/machineInfo/getCompanyId?vmCode=';
     this.adminCreateForeverStrQrUrl = this.appUrl + '/admin/createStrQr';
     this.machineControlAdjustReplenish = this.appUrl + '/machineControl/adjustReplenish?';
+    this.tblCustomerMyInviteRewards  = this.appUrl + '/tblCustomer/myInviteRewards';
     // WeChat
     this.indexListUrl = this.appUrl + '/index/listWay';
     this.indexOpenDoor = this.appUrl + '/index/openDoor';

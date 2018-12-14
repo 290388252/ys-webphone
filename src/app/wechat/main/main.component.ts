@@ -42,7 +42,7 @@ export class MainComponent implements OnInit {
   public otherCompany = true;
   public baoliCompany = false;
   public vmCode;
-  public openDoorMsg = '是否要开门？';
+  public openDoorMsg = '点击‘是’开门，祝你购物愉快！';
   public openDoorMsgKey = '';
   public isConfirmLoading = false;
   public isScanImg = false;
@@ -55,7 +55,7 @@ export class MainComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (urlParse(window.location.search)['close'] === undefined) {
+    if (urlParse(window.location.search)['vmCode'] !== undefined) {
       this.isScanImg = false;
       this.getInitData();
     } else {

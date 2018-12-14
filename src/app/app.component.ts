@@ -13,13 +13,11 @@ export class AppComponent implements OnInit {
   constructor(private router: Router) {
   }
   ngOnInit(): void {
-    this.router.events
-      .filter((event) => event instanceof NavigationEnd)
-      .subscribe((event: NavigationEnd) => {
+    this.router.events.subscribe((event: NavigationEnd) => {
+      if (event instanceof NavigationEnd) {
         const refUrl = window.location.href;
-        console.log(refUrl);
-        console.log(refUrl.indexOf('share'));
         refUrl.indexOf('share') !== -1 ? this.footerHidden = true : this.footerHidden = false;
+      }
       });
   }
   // 获取选中状态

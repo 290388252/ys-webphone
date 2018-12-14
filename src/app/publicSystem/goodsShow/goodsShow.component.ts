@@ -47,7 +47,7 @@ export class GoodsShowComponent implements OnInit {
   public sumDeductionMoney: number;
   public couponList;
   public waterVoucherList = [];
-
+  public payType;
   constructor(private router: Router,
               private appProperties: AppProperties,
               private appService: AppService) {
@@ -295,6 +295,7 @@ export class GoodsShowComponent implements OnInit {
             this.token).subscribe(
               data4 => {
                 console.log(data4);
+                this.payType = data4.payType;
                 this.couponName = data4.couponName;
                 this.carryWaterCouponName = data4.carryWaterCouponName;
                 this.orderId = data4.orderId;

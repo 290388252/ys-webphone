@@ -74,14 +74,14 @@
 
     <div class="context" *ngIf="isFourDoor">
       <div (click)="openDoor(item)" *ngFor="let item of indexList" [ngClass]="item['wayItemList'].length === 1 ? 'box-one' : 'box'" class=" card text-white mb-3">
-        <img [hidden]="showActiveItem(item['wayItemList'], baoliCompany)" src="../../../assets/main/send.png" alt="" width="40" style="position: absolute">
+        <img [hidden]="showActiveItem(item['wayItemList'], baoliCompany)" src="../../../assets/main/send.png" alt="" width="60" style="position: absolute">
         <div [ngClass]="item['wayItemList'].length === 1 ? 'box-body-one' : 'box-body'">
           <img class="col-img" src="{{img}}{{item['wayItemList'][0]['pic']}}" alt="">
           <br/>
           <p class="card-title text" style="color:#333333;font-weight: 900;">
             {{item['wayItemList'][0]['itemName']}}
           </p>
-          <span class="card-title" style="color: #f4725c;font-weight: 900;">{{item['wayItemList'][0]['price']}}元</span>
+          <p class="card-title" style="color: #f4725c;font-weight: 900;">{{item['wayItemList'][0]['price']}}元</p>
         </div>
         <div [hidden]="item['wayItemList'].length === 1" class="box-body" >
           <img class="col-img" [src]="turnImg(item['wayItemList'])" alt="">
@@ -126,10 +126,14 @@
 
   <!--</div>-->
   </div>
-  <nz-modal [nzVisible]="isVisibleOpenDoor" [nzContent]="modalContents" [nzFooter]="modalFooters" [nzClosable]="false">
-    <ng-template #modalContents #modalFooters style="text-align: center">
+  <nz-modal [nzVisible]="isVisibleOpenDoor" [nzTitle]="modalTitle" [nzContent]="modalContents" [nzFooter]="modalFooters" [nzClosable]="false">
+    <ng-template #modalTitle>
+      <h6>购水提醒</h6>
+    </ng-template>
+    <ng-template #modalContents #modalFooters style="text-align: center; width: 100%;">
+      <img style="width: 50px; display: block; margin: 5px auto" [src]="activeImg" alt="" [hidden]="activeImg === ''">
+      <span style="font-size: medium;" [hidden]="activeImg === ''">{{openDoorMsgKey}}</span>
       <p style="font-size: medium;">{{openDoorMsg}}</p>
-      <span style="font-size: medium;" [hidden]="activeImg === ''">{{openDoorMsgKey}}</span><img style="width: 50px" [src]="activeImg" alt="" [hidden]="activeImg === ''">
     </ng-template>
     <ng-template #modalFooters style="text-align: center" >
       <button nz-button nzType="primary" style="visibility: hidden">否</button>
@@ -140,7 +144,10 @@
     </ng-template>
   </nz-modal>
 
-  <nz-modal [nzVisible]="isVisibleNoMoney" [nzContent]="modalContentsNoMoney" [nzFooter]="modalFootersNoMoney" [nzClosable]="false">
+  <nz-modal [nzVisible]="isVisibleNoMoney" [nzTitle]="modalTitleMoney" [nzContent]="modalContentsNoMoney" [nzFooter]="modalFootersNoMoney" [nzClosable]="false">
+    <ng-template #modalTitleMoney>
+      <h6>优水到家提醒</h6>
+    </ng-template>
     <ng-template #modalContentsNoMoney #modalFootersNoMoney style="text-align: center">
       <p style="font-size: medium;">您已经关闭的了微信免密支付功能，并且余额不足，请选择充值或者开通免密支付功能</p>
     </ng-template>

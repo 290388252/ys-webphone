@@ -110,8 +110,7 @@
 }
 
 .context {
-  width: 350px;
-  margin: 0 auto;
+  width: 100%;
 }
 
 .context-five {
@@ -351,7 +350,7 @@
 
 .box-one {
   float: left;
-  width: 150px;
+  width: 47%;
   height: 150px;
   margin-left: 6px;
   border: 0;
@@ -362,7 +361,7 @@
 
 .box {
   float: left;
-  width: 150px;
+  width: 47%;
   height: 150px;
   margin-left: 6px;
   border: 0;
@@ -397,7 +396,7 @@
 }
 
 .boxs-one {
-  width: 150px;
+  width: 47%;
   height: 90px;
   margin: 0 auto;
   background: url("../../../assets/main/kuan4.png");
@@ -415,7 +414,7 @@
 }
 
 .boxs {
-  width: 150px;
+  width: 47%;
   height: 90px;
   margin: 0 auto;
   background: url("../../../assets/main/kuan3.png");
@@ -501,10 +500,9 @@
   }
 
   .context {
-    width: 320px;
-    margin: 0 auto;
-    padding: 0 6px;
-    /*margin-left: 20px;*/
+    width: 100%;
+    /*margin: 0 auto;*/
+    /*padding: 0 6px;*/
   }
 
   .rounded-circle {
@@ -515,7 +513,7 @@
 
   .box-one {
     float: left;
-    width: 144px;
+    width: 47%;
     height: 150px;
     margin-left: 6px;
     border: 0;
@@ -526,7 +524,7 @@
 
   .box {
     float: left;
-    width: 144px;
+    width: 47%;
     height: 150px;
     margin-left: 7px;
     background: url("../../../assets/main/kuan3.png");
@@ -591,8 +589,7 @@
   }
 
   .context {
-    width: 311px;
-    margin: 0 auto;
+    width: 100%;
   }
 
   .rounded-circle {
@@ -603,7 +600,7 @@
 
   .box-one {
     float: left;
-    width: 144px;
+    width: 47%;
     height: 150px;
     margin-left: 6px;
     border: 0;
@@ -623,7 +620,7 @@
 
   .box {
     float: left;
-    width: 144px;
+    width: 47%;
     height: 150px;
     margin-left: 5px;
     background: url("../../../assets/main/kuan3.png");
@@ -725,8 +722,7 @@
 
 @media screen and (max-height: 539px) {
   .context {
-    width: 290px;
-    margin: 0 auto;
+    width: 100%;
   }
 
   .rounded-circle {
@@ -746,9 +742,8 @@
 
   .box-one {
     float: left;
-    width: 120px;
-    height: 115px;
-    margin-right: 10px;
+    width: 47%;
+    height: 125px;
     background: url("../../../assets/main/kuan4.png");
     border: 0;
     background-size: 100% 100%;
@@ -757,9 +752,8 @@
 
   .box {
     float: left;
-    width: 120px;
-    height: 115px;
-    margin-right: 10px;
+    width: 47%;
+    height: 125px;
     background: url("../../../assets/main/kuan3.png");
     border: 0;
     background-size: 100% 100%;
@@ -848,8 +842,7 @@
 
 @media screen and (max-height: 539px) and (min-height: 500px) {
   .context {
-    width: 320px;
-    margin: 0 auto;
+    width: 100%;
   }
 
   .rounded-circle {
@@ -869,9 +862,8 @@
 
   .box-one {
     float: left;
-    width: 135px;
-    height: 125px;
-    margin-right: 10px;
+    width: 47%;
+    height: 130px;
     background: url("../../../assets/main/kuan4.png");
     border: 0;
     background-size: 100% 100%;
@@ -880,9 +872,8 @@
 
   .box {
     float: left;
-    width: 135px;
-    height: 125px;
-    margin-right: 10px;
+    width: 47%;
+    height: 130px;
     background: url("../../../assets/main/kuan3.png");
     border: 0;
     background-size: 100% 100%;

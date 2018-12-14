@@ -12,10 +12,17 @@
     <img src="../../../assets/main/my_success.png" style="width: 24px;height: 24px;margin-top: -12px;">
     <span style="font-size: 18px;color: #333333;font-weight: bolder;">购买成功</span>
   </div>
-  <div [hidden]="flag === '3' || flag === '4'" class="am-message-main"
-       style="color: #333333; font-size: 14px;margin-top: 26px;font-weight: bold;">实付金额：￥{{price}}&nbsp;&nbsp;&nbsp;&nbsp;
-    <span *ngIf="sumDeductionMoney" style="color: #F6151C; font-size: 12px; font-weight: bold; ">优惠金额：￥{{sumDeductionMoney}}</span>
+  <div [hidden]="flag === '3' || flag === '4'">
+    <div class="am-message-main"
+         style="color: #333333; font-size: 14px;margin-top: 26px;font-weight: bold;" *ngIf="payType === '1'">余额金额：￥{{price}}&nbsp;&nbsp;&nbsp;&nbsp;
+      <span *ngIf="sumDeductionMoney" style="color: #F6151C; font-size: 12px; font-weight: bold; ">优惠金额：￥{{sumDeductionMoney}}</span>
+    </div>
+    <div class="am-message-main"
+         style="color: #333333; font-size: 14px;margin-top: 26px;font-weight: bold;" *ngIf="payType !== '1'">实付金额：￥{{price}}&nbsp;&nbsp;&nbsp;&nbsp;
+      <span *ngIf="sumDeductionMoney" style="color: #F6151C; font-size: 12px; font-weight: bold; ">优惠金额：￥{{sumDeductionMoney}}</span>
+    </div>
   </div>
+
   <div style="margin-top: 55px">
     <a [hidden]="item.changeNum > 0 && flag === '1'" href="javascript:void(0);"
        *ngFor="let item of replenishList;let i = index" class="weui-media-box weui-media-box_appmsg">
@@ -153,10 +160,13 @@
     <img style="width: 100%;" src="../../../assets/main/tips.png" alt="">
   </div>
 </div>
-<nz-modal [nzVisible]="isVisibleOpen" [nzContent]="modalContent" [nzFooter]="modalFooter" [nzClosable]="false">
+<nz-modal [nzVisible]="isVisibleOpen" [nzTitle]="modalTitle" [nzContent]="modalContent" [nzFooter]="modalFooter" [nzClosable]="false">
+  <ng-template #modalTitle>
+    <h6>优水到家提醒</h6>
+  </ng-template>
   <ng-template #modalContent>
-    <p [hidden]="flag === '3' || flag === '4'" style="font-size: medium;">您的门还未关闭！优水到家提醒您,为了您账号资金安全,提水后请随手关门！</p>
-    <p [hidden]="flag === '1' || flag === '2'" style="font-size: medium;">您的门还未关闭！优水到家提醒您,提水后请随手关门！</p>
+    <p [hidden]="flag === '3' || flag === '4'" style="font-size: medium;">温馨提示：买完水记得关门，不然别人买水你买单哦！</p>
+    <p [hidden]="flag === '1' || flag === '2'" style="font-size: medium;">温馨提示：买完水记得关门，不然别人买水你买单哦！</p>
   </ng-template>
   <ng-template #modalFooter>
     <button nz-button nzType="primary" (click)="openOk()">好的</button>
@@ -172,7 +182,10 @@
     <button nz-button nzType="primary" (click)="fixedYes()">修改</button>
   </ng-template>
 </nz-modal>
-<nz-modal [nzVisible]="isVisibleWarn" [nzContent]="modalContentWarn" [nzFooter]="modalFooterWarn" [nzClosable]="false">
+<nz-modal [nzVisible]="isVisibleWarn" [nzTitle]="modalTitleWarn" [nzContent]="modalContentWarn" [nzFooter]="modalFooterWarn" [nzClosable]="false">
+  <ng-template #modalTitleWarn>
+    <h6>优水到家提醒</h6>
+  </ng-template>
   <ng-template #modalContentWarn>
     <p>请检查补货数量是否正确，如不正确请点击修正数量校准！</p>
   </ng-template>

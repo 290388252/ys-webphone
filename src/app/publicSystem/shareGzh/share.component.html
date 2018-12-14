@@ -1,4 +1,12 @@
 <div class="share">
-  <!--<div (click)="register()" class="center-button"></div>-->
-  <img class="center-img" [src]="img" alt="">
+  <div class="center">
+    <div class="button" (click)="goto(1)"></div>
+    <div class="list-style">
+      <div class="list" (click)="goto(2)">
+        <h6>我的邀请记录和获得的奖励</h6>
+        <span>已成功邀请{{customerNum}}人</span>
+        <i class="icon-arrow"></i>
+      </div>
+    </div>
+  </div>
 </div>
