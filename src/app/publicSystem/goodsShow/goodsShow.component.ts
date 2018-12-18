@@ -40,6 +40,7 @@ export class GoodsShowComponent implements OnInit {
   public carryWaterCouponName;
   public orderId;
   public price: number;
+  public priceTwo: number;
   public couponId: string;
   public type: string;
   public isFollow: number;
@@ -295,15 +296,18 @@ export class GoodsShowComponent implements OnInit {
             this.token).subscribe(
               data4 => {
                 console.log(data4);
-                this.payType = data4.payType;
-                this.couponName = data4.couponName;
-                this.carryWaterCouponName = data4.carryWaterCouponName;
-                this.orderId = data4.orderId;
-                this.price = parseFloat(data4.price);
-                this.couponId = data4.couponId;
-                this.type = data4.type;
-                this.isFollow = data4.follow;
-                this.sumDeductionMoney = parseFloat(data4.sumDeductionMoney);
+                if (data4 !== null) {
+                  this.payType = data4.payType;
+                  this.couponName = data4.couponName;
+                  this.carryWaterCouponName = data4.carryWaterCouponName;
+                  this.orderId = data4.orderId;
+                  this.price = parseFloat(data4.price);
+                  this.priceTwo = parseFloat(data4.memberMoney);
+                  this.couponId = data4.couponId;
+                  this.type = data4.type;
+                  this.isFollow = data4.follow;
+                  this.sumDeductionMoney = parseFloat(data4.sumDeductionMoney);
+                }
                 setTimeout(() => {
                   this.checkOrderText = '点击查看订单';
                 }, 3000);

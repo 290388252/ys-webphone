@@ -45,8 +45,8 @@ export class ShareComponent implements OnInit {
       if (this.customerNum === 0) {
         alert('您还没有成功邀请到好友，无法查看奖励！');
       } else {
-        window.location.href = `http://localhost:81/myInviteRewards`;
-        //window.location.href = `http://sms.youshuidaojia.com:9800/myInviteRewards`;
+        // window.location.href = `http://localhost:81/myInviteRewards`;
+        window.location.href = `http://sms.youshuidaojia.com:9800/myInviteRewards`;
       }
     }
   }

@@ -14,7 +14,7 @@
   </div>
   <div [hidden]="flag === '3' || flag === '4'">
     <div class="am-message-main"
-         style="color: #333333; font-size: 14px;margin-top: 26px;font-weight: bold;" *ngIf="payType === '1'">余额金额：￥{{price}}&nbsp;&nbsp;&nbsp;&nbsp;
+         style="color: #333333; font-size: 14px;margin-top: 26px;font-weight: bold;" *ngIf="payType === '1'">余额支付金额：￥{{priceTwo}}&nbsp;&nbsp;&nbsp;&nbsp;
       <span *ngIf="sumDeductionMoney" style="color: #F6151C; font-size: 12px; font-weight: bold; ">优惠金额：￥{{sumDeductionMoney}}</span>
     </div>
     <div class="am-message-main"
@@ -60,7 +60,7 @@
     <div nz-col nzSpan="12"></div>
     <div nz-col nzSpan="4" style="font-size: 14px;color: #333333;" (click)="openDrawer()">{{carryWaterCouponName}}&nbsp;&nbsp;&gt;</div>
   </a>
-  <div [hidden]="flag === '3' || flag === '4'" style="background-color: #f3f3f3;height: 124px;padding-top: 5px;">
+  <div [hidden]="flag === '3' || flag === '4' || youshuiCompany === false" style="background-color: #f3f3f3;height: 124px;padding-top: 5px;">
     <div
       style="width: 100%;height: 108px;margin-top: 5px;background-image: url('../../../assets/main/my_recommon.png');background-size: 100% 100%;">
       <div style="padding-top: 25px;font-size: 12px;">
