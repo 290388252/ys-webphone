@@ -224,7 +224,13 @@ export class GoodsShowComponent implements OnInit {
                 payType: 2
               }});
           } else {
-            window['AlipayJSBridge'].call('closeWebview');
+            // window['AlipayJSBridge'].call('closeWebview');
+            this.router.navigate(['aliMain'], {
+              queryParams: {
+                vmCode: urlParse(window.location.search)['vmCode'],
+                token: sessionStorage.getItem('token'),
+                close: '1'
+              }});
           }
         }
       }
@@ -421,6 +427,6 @@ export class GoodsShowComponent implements OnInit {
     this.wechatVisible = false;
   }
   seeOrder () {
-    window.location.href = `http://sms.youshuidaojia.com:9800/orderDetails?token=${this.token}&payType=1`;
+    window.location.href = `http://sms.youshuidaojia.com:9800/orderDetails?token=${this.token}&payType=1&vmCode=${urlParse(window.location.search)['vmCode']}`;
   }
 }
