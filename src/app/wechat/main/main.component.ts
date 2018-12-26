@@ -32,6 +32,7 @@ export class MainComponent implements OnInit {
   public clickMore = false;
   // public img = 'http://lenvar-resource-products.oss-cn-shenzhen.aliyuncs.com/';
   public activeImg = '';
+  public showActiveImg = '';
   public img = this.appProperties.imgUrl;
   public item;
   currentModal;
@@ -46,6 +47,8 @@ export class MainComponent implements OnInit {
   public openDoorMsgKey = '';
   public isConfirmLoading = false;
   public isScanImg = false;
+  public advertiseMentShow = false;
+  public advertiseMentPic: string;
 
   constructor(private router: Router,
               private modalService: NzModalService,
@@ -55,16 +58,9 @@ export class MainComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (urlParse(window.location.search)['vmCode'] !== undefined) {
-      this.isScanImg = false;
-      this.getInitData();
-    } else {
-      this.youshuiCompany = false;
-      this.otherCompany = false;
-      this.baoliCompany = false;
-      this.isScanImg = true;
-    }
-    console.log(urlParse(window.location.search)['token'] === undefined);
+    setTimeout(() => {
+      this.advertiseMentShow = true;
+    }, 3000);
     if (urlParse(window.location.search)['token'] === undefined) {
       this.getCookies();
     } else {
@@ -79,7 +75,6 @@ export class MainComponent implements OnInit {
     } else if (getCoupon() === '2') {
       this.isVisibleCouponTwo = true;
     }
-    console.log(urlParse(window.location.search)['vmCode']);
     // // 新用户进入界面
     if (getNewUser() === '1') {
       document.cookie = 'newUser=' + 0;
@@ -94,8 +89,17 @@ export class MainComponent implements OnInit {
       );
     }
     this.vmCode = urlParse(window.location.search)['vmCode'];
+    if (urlParse(window.location.search)['vmCode'] !== undefined) {
+      this.isScanImg = false;
+      this.getInitData();
+    } else {
+      this.youshuiCompany = false;
+      this.otherCompany = false;
+      this.baoliCompany = false;
+      this.isScanImg = true;
+    }
   }
-
+  closeAdvertise() {this.advertiseMentShow = true; }
   // 数据初始化
   getInitData() {
     this.appService.getAliData(this.appProperties.wechatLoginCheckSend
@@ -167,6 +171,17 @@ export class MainComponent implements OnInit {
         console.log(error);
       }
     );
+    // this.appService.postFormData(this.appProperties.vdAdvertisingMachinesShowAdvertisingUrl,
+    //   {vmCode: urlParse(window.location.search)['vmCode']}, this.token).subscribe(
+    //   data => {
+    //     console.log(data);
+    //     if (data.status === 1) {
+    //       this.advertiseMentPic = this.appProperties.vmAdvertisingImg + data.returnObject[0].homeImg;
+    //     }
+    //   }, error => {
+    //     console.log(error);
+    //   }
+    // );
   }
 
   showActiveItem(item, baoliCompany) {
@@ -177,12 +192,22 @@ export class MainComponent implements OnInit {
     } else {
       if (item.length > 1) {
         if (list.includes(item[0].basicItemId) || list.includes(item[1].basicItemId)) {
+          if (item[0].basicItemId === '2194' || item[1].basicItemId === '2194') {
+            this.showActiveImg = '../../../assets/main/send.png';
+          } else if (item[0].basicItemId === '2975' || item[1].basicItemId === '2975') {
+            this.showActiveImg = '../../../assets/main/send2.png';
+          }
           flag = false;
         } else {
           flag = true;
         }
       } else {
         if (list.includes(item[0].basicItemId)) {
+          if (item[0].basicItemId === '2194') {
+            this.showActiveImg = '../../../assets/main/send.png';
+          } else if (item[0].basicItemId === '2975') {
+            this.showActiveImg = '../../../assets/main/send2.png';
+          }
           flag = false;
         } else {
           flag = true;

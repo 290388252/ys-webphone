@@ -66,7 +66,7 @@ export let getNewUser = () => {
   return newUser;
 };
 export let getActiveItemId = () => {
-  return ['2194'];
+  return ['2194', '2975'];
 };
 export let getActiveCompanyId = () => {
   return ['76', '113', '114', '115', '116', '117', '119'];

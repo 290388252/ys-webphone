@@ -1,6 +1,6 @@
-<!--<div style="width: 100%;height: 100%;position: relative;">-->
-  <!--<img style="width: 100%;height: 100%;position: relative;" src="../../../assets/main/bg.png">-->
-  <!--<span style="width: 10%; position: absolute;right: 25px;top: 15px;font-size: 16px;color: #030303;">跳过</span>-->
+<!--<div style="width: 100%;height: 100%;position: relative;" [hidden]="advertiseMentShow">-->
+  <!--<img style="width: 100%;height: 100%;position: relative;" [src]="advertiseMentPic">-->
+  <!--<span (click)="closeAdvertise()" style="width: 10%; position: absolute;right: 25px;top: 15px;font-size: 16px;color: #ffffff;">跳过</span>-->
 <!--</div>-->
 <div class="contain_all">
 
@@ -78,7 +78,7 @@
 
     <div class="context" *ngIf="isFourDoor">
       <div (click)="openDoor(item)" *ngFor="let item of indexList" [ngClass]="item['wayItemList'].length === 1 ? 'box-one' : 'box'" class=" card text-white mb-3">
-        <img [hidden]="showActiveItem(item['wayItemList'], baoliCompany)" src="../../../assets/main/send.png" alt="" width="60" style="position: absolute">
+        <img [hidden]="showActiveItem(item['wayItemList'], baoliCompany)" [src]="showActiveImg" alt="" width="60" style="position: absolute">
         <div [ngClass]="item['wayItemList'].length === 1 ? 'box-body-one' : 'box-body'">
           <img class="col-img" src="{{img}}{{item['wayItemList'][0]['pic']}}" alt="">
           <br/>

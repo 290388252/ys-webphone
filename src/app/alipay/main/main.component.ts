@@ -38,17 +38,17 @@ export class MainComponent implements OnInit {
   public openDoorMsgKey = '';
   public activeImg = '';
   public isConfirmLoading = false;
+  public advertiseMentShow = false;
+  public advertiseMentPic: string;
   constructor(private router: Router,
               private activatedRoute: ActivatedRoute,
               private appProperties: AppProperties,
               private appService: AppService) {}
   ngOnInit() {
     this.IsWeixinOrAlipay();
-    // this.activatedRoute.queryParams.subscribe(queryParams => {
-    //   this.token = queryParams.token;
-    // });
-    // 初始化数据
-    this.getInitData();
+    setTimeout(() => {
+      this.advertiseMentShow = true;
+    }, 3000);
     // 获取token值
     if (urlParse(window.location.search)['token'] === undefined) {
       this.getCookies();
@@ -58,8 +58,8 @@ export class MainComponent implements OnInit {
       exp.setTime(exp.getTime() + 1000 * 60 * 60 * 24 * 365 * 10);
       document.cookie = 'token=' + this.token + ';expires=' + exp.toUTCString();
     }
-    console.log(this.token);
-    console.log(urlParse(window.location.search)['vmCode']);
+    // 初始化数据
+    this.getInitData();
     sessionStorage.setItem('vmCode', urlParse(window.location.search)['vmCode']);
   }
   IsWeixinOrAlipay() {
@@ -70,6 +70,7 @@ export class MainComponent implements OnInit {
       }
     }
   }
+  closeAdvertise() {this.advertiseMentShow = true; }
   // 初始化数据
   getInitData() {
     // 选水界面接口
@@ -135,6 +136,17 @@ export class MainComponent implements OnInit {
         console.log(error);
       }
     );
+    // this.appService.postFormData(this.appProperties.vdAdvertisingMachinesShowAdvertisingUrl,
+    //   {vmCode: urlParse(window.location.search)['vmCode']}, this.token).subscribe(
+    //   data => {
+    //     console.log(data);
+    //     if (data.status === 1) {
+    //       this.advertiseMentPic = this.appProperties.vmAdvertisingImg + data.returnObject[0].homeImg;
+    //     }
+    //   }, error => {
+    //     console.log(error);
+    //   }
+    // );
   }
   showActiveItem(item, baoliCompany) {
     let flag;

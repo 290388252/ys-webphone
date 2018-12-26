@@ -7,6 +7,7 @@ export class AppProperties {
   public appUrl: string;
   public adminUrl: string;
   public imgUrl: string;
+  public vmAdvertisingImg: string;
   public isClosedUrl: string;
   public adminOauth2Url: string;
   public gameGetGamePrize: string;
@@ -17,6 +18,7 @@ export class AppProperties {
   public adminCreateForeverStrQrUrl: string;
   public machineControlAdjustReplenish: string;
   public tblCustomerMyInviteRewards: string;
+  public vdAdvertisingMachinesShowAdvertisingUrl: string;
   // WeChat
   public indexListUrl: string;
   public indexOpenDoor: string;
@@ -59,8 +61,8 @@ export class AppProperties {
   constructor() {
     // Public
     this.appUrl = 'http://47.106.92.82:6662/ys_sms';
-    // this.appUrl = 'http://192.168.0.112:8769/ys_sms';
     this.adminUrl = 'http://119.23.233.123:6662/ys_admin';
+    this.vmAdvertisingImg = this.adminUrl + '/vmAdvertisingImg/';
     this.imgUrl = this.adminUrl + '/files/';
     this.isClosedUrl = this.appUrl + '/wechat/isClosed';
     this.adminOauth2Url = this.appUrl + '/admin/oauth2';
@@ -72,6 +74,7 @@ export class AppProperties {
     this.adminCreateForeverStrQrUrl = this.appUrl + '/admin/createStrQr';
     this.machineControlAdjustReplenish = this.appUrl + '/machineControl/adjustReplenish?';
     this.tblCustomerMyInviteRewards  = this.appUrl + '/tblCustomer/myInviteRewards';
+    this.vdAdvertisingMachinesShowAdvertisingUrl  = this.appUrl + '/vendingAdvertisingMachines/showMachinesAdvertising';
     // WeChat
     this.indexListUrl = this.appUrl + '/index/listWay';
     this.indexOpenDoor = this.appUrl + '/index/openDoor';
