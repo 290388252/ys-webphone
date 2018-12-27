@@ -48,7 +48,7 @@ export class MainComponent implements OnInit {
   public isConfirmLoading = false;
   public isScanImg = false;
   public advertiseMentShow = false;
-  public advertiseMentPic: string;
+  public advertiseMentPic = '';
 
   constructor(private router: Router,
               private modalService: NzModalService,
@@ -58,9 +58,6 @@ export class MainComponent implements OnInit {
   }
 
   ngOnInit() {
-    setTimeout(() => {
-      this.advertiseMentShow = true;
-    }, 3000);
     if (urlParse(window.location.search)['token'] === undefined) {
       this.getCookies();
     } else {
@@ -99,21 +96,9 @@ export class MainComponent implements OnInit {
       this.isScanImg = true;
     }
   }
-  closeAdvertise() {this.advertiseMentShow = true; }
+  closeAdvertise() {this.advertiseMentShow = false; }
   // 数据初始化
   getInitData() {
-    this.appService.getAliData(this.appProperties.wechatLoginCheckSend
-      + '?openId=' + urlParse(window.location.search)['openId'], '').subscribe(
-      data => {
-        console.log(data);
-        if (data.code === 3) {
-          document.getElementsByClassName('ant-modal-body')[4]['style'].cssText = 'padding: 0;';
-          this.isVisibleCouponThree = true;
-        }
-      },
-      error => {
-        console.log(error);
-      });
     this.appService.postData(this.appProperties.machineInfoGetCompanyIdUrl + urlParse(window.location.search)['vmCode'], '').subscribe(
       data2 => {
         console.log(data2);
@@ -121,6 +106,18 @@ export class MainComponent implements OnInit {
           this.youshuiCompany = false;
           this.otherCompany = true;
           this.baoliCompany = false;
+          this.appService.getAliData(this.appProperties.wechatLoginCheckSend
+            + '?openId=' + urlParse(window.location.search)['openId'], '').subscribe(
+            data => {
+              console.log(data);
+              if (data.code === 3) {
+                document.getElementsByClassName('ant-modal-body')[4]['style'].cssText = 'padding: 0;';
+                this.isVisibleCouponThree = true;
+              }
+            },
+            error => {
+              console.log(error);
+            });
         } else if (data2.returnObject === 104) {
           this.youshuiCompany = true;
           this.otherCompany = false;
@@ -171,17 +168,21 @@ export class MainComponent implements OnInit {
         console.log(error);
       }
     );
-    // this.appService.postFormData(this.appProperties.vdAdvertisingMachinesShowAdvertisingUrl,
-    //   {vmCode: urlParse(window.location.search)['vmCode']}, this.token).subscribe(
-    //   data => {
-    //     console.log(data);
-    //     if (data.status === 1) {
-    //       this.advertiseMentPic = this.appProperties.vmAdvertisingImg + data.returnObject[0].homeImg;
-    //     }
-    //   }, error => {
-    //     console.log(error);
-    //   }
-    // );
+    this.appService.postFormData(this.appProperties.vdAdvertisingMachinesShowAdvertisingUrl,
+      {vmCode: urlParse(window.location.search)['vmCode']}, this.token).subscribe(
+      data => {
+        console.log(data);
+        if (data.status === 1 && data.returnObject.length > 0) {
+          this.advertiseMentShow = true;
+          this.advertiseMentPic = this.appProperties.vmAdvertisingImg + data.returnObject[0].homeImg;
+          setTimeout(() => {
+            this.advertiseMentShow = false;
+          }, 3000);
+        }
+      }, error => {
+        console.log(error);
+      }
+    );
   }
 
   showActiveItem(item, baoliCompany) {
@@ -295,7 +296,7 @@ export class MainComponent implements OnInit {
       //     payType: 1
       //   }
       // });
-    } else if (flag === 2) {
+    } else if (flag === 2 && !this.youshuiCompany) {
       document.getElementsByClassName('ant-modal-body')[4]['style'].cssText = 'padding: 0;';
       this.appService.getAliData(this.appProperties.wechatCheckSend
         + '?openId=' + urlParse(window.location.search)['openId'], '').subscribe(

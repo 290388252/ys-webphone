@@ -46,9 +46,6 @@ export class MainComponent implements OnInit {
               private appService: AppService) {}
   ngOnInit() {
     this.IsWeixinOrAlipay();
-    setTimeout(() => {
-      this.advertiseMentShow = true;
-    }, 3000);
     // 获取token值
     if (urlParse(window.location.search)['token'] === undefined) {
       this.getCookies();
@@ -70,7 +67,7 @@ export class MainComponent implements OnInit {
       }
     }
   }
-  closeAdvertise() {this.advertiseMentShow = true; }
+  closeAdvertise() {this.advertiseMentShow = false; }
   // 初始化数据
   getInitData() {
     // 选水界面接口
@@ -136,17 +133,21 @@ export class MainComponent implements OnInit {
         console.log(error);
       }
     );
-    // this.appService.postFormData(this.appProperties.vdAdvertisingMachinesShowAdvertisingUrl,
-    //   {vmCode: urlParse(window.location.search)['vmCode']}, this.token).subscribe(
-    //   data => {
-    //     console.log(data);
-    //     if (data.status === 1) {
-    //       this.advertiseMentPic = this.appProperties.vmAdvertisingImg + data.returnObject[0].homeImg;
-    //     }
-    //   }, error => {
-    //     console.log(error);
-    //   }
-    // );
+    this.appService.postFormData(this.appProperties.vdAdvertisingMachinesShowAdvertisingUrl,
+      {vmCode: urlParse(window.location.search)['vmCode']}, this.token).subscribe(
+      data => {
+        console.log(data);
+        if (data.status === 1 && data.returnObject.length > 0) {
+          this.advertiseMentShow = true;
+          this.advertiseMentPic = this.appProperties.vmAdvertisingImg + data.returnObject[0].homeImg;
+          setTimeout(() => {
+            this.advertiseMentShow = false;
+          }, 3000);
+        }
+      }, error => {
+        console.log(error);
+      }
+    );
   }
   showActiveItem(item, baoliCompany) {
     let flag;
