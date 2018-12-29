@@ -14,7 +14,7 @@
 
 .contain_btm {
   position: absolute;
-  top: 82px;
+  top: 102px;
   left: 0;
   bottom: 0;
   width: 100%;
@@ -30,7 +30,7 @@
 
 .col-img {
   margin-top: 8px;
-  margin-bottom: 5px;
+  /*margin-bottom: 5px;*/
   margin-left: -14px;
   width: 85px;
   height: 75px;
