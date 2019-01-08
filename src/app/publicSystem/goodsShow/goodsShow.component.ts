@@ -240,8 +240,9 @@ export class GoodsShowComponent implements OnInit {
       {vmCode:  urlParse(window.location.search)['vmCode']}, this.token).subscribe(
       data => {
         console.log(data);
-        console.log(this.token);
-        this.goodsList = data.data.itemList;
+        if (data.data.itemList !== '') {
+          this.goodsList = data.data.itemList;
+        }
         this.totalPrice = data.data.totalPrice;
         this.isClosed();
       },
