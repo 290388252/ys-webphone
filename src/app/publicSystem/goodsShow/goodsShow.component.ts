@@ -243,6 +243,7 @@ export class GoodsShowComponent implements OnInit {
         if (data.data.itemList !== '') {
           this.goodsList = data.data.itemList;
         }
+        console.log(this.goodsList);
         this.totalPrice = data.data.totalPrice;
         this.isClosed();
       },

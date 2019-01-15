@@ -174,6 +174,7 @@ export class MainComponent implements OnInit {
         console.log(data);
         if (data.status === 1 && data.returnObject.length > 0) {
           this.advertiseMentShow = true;
+          document.getElementsByClassName('ant-modal-body')[5]['style'].cssText = 'padding: 0;';
           this.advertiseMentPic = this.appProperties.vmAdvertisingImg + data.returnObject[0].homeImg;
           setTimeout(() => {
             this.advertiseMentShow = false;
