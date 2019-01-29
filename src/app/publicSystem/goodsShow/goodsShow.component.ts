@@ -49,6 +49,7 @@ export class GoodsShowComponent implements OnInit {
   public couponList;
   public waterVoucherList = [];
   public payType;
+  public grouponList;
   constructor(private router: Router,
               private appProperties: AppProperties,
               private appService: AppService) {
@@ -87,6 +88,19 @@ export class GoodsShowComponent implements OnInit {
     console.log(this.token);
     console.log(this.flag);
     this.oneGoodsOrMore();
+    this.getInit();
+  }
+  getInit() {
+    this.appService.postAliData(this.appProperties.payFinishGrouponUrl, '', this.token).subscribe(
+      data => {
+        console.log('123');
+        console.log(data);
+        this.grouponList = data.returnObject;
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
   turnText(item) {
     let text;
@@ -300,34 +314,44 @@ export class GoodsShowComponent implements OnInit {
           );
           // alert('广州优水到家工程感谢你的惠顾,系统将从零钱或者银行卡中自动扣取本次购买费用。');
           // 支付完成后拿到要显示的数据
-          this.appService.getAliData(this.appProperties.storeOrderFininshPayUrl, {vmCode: urlParse(window.location.search)['vmCode']},
-            this.token).subscribe(
-              data4 => {
-                console.log(data4);
-                if (data4 !== null) {
-                  this.payType = data4.payType;
-                  this.couponName = data4.couponName;
-                  this.carryWaterCouponName = data4.carryWaterCouponName;
-                  this.orderId = data4.orderId;
-                  this.price = parseFloat(data4.price);
-                  this.priceTwo = parseFloat(data4.memberMoney);
-                  this.couponId = data4.couponId;
-                  this.type = data4.type;
-                  this.isFollow = data4.follow;
-                  this.sumDeductionMoney = parseFloat(data4.sumDeductionMoney);
-                }
-                setTimeout(() => {
-                  this.checkOrderText = '点击查看订单';
-                }, 3000);
-              },
-            error4 => {
-                console.log(error4);
-            }
-          );
+          this.checkEndData();
         }
       },
       error2 => {
         console.log(error2);
+      }
+    );
+  }
+  checkEndData() {
+    // 支付完成后拿到要显示的数据
+    let time;
+    this.appService.getAliData(this.appProperties.storeOrderFininshPayUrl, {vmCode: urlParse(window.location.search)['vmCode']},
+      this.token).subscribe(
+      data4 => {
+        console.log(data4);
+        if (data4 !== null) {
+          clearTimeout(time);
+          this.payType = data4.payType;
+          this.couponName = data4.couponName;
+          this.carryWaterCouponName = data4.carryWaterCouponName;
+          this.orderId = data4.orderId;
+          this.price = parseFloat(data4.price);
+          this.priceTwo = parseFloat(data4.memberMoney);
+          this.couponId = data4.couponId;
+          this.type = data4.type;
+          this.isFollow = data4.follow;
+          this.sumDeductionMoney = parseFloat(data4.sumDeductionMoney);
+          setTimeout(() => {
+            this.checkOrderText = '点击查看订单';
+          }, 3000);
+        } else {
+          time = setTimeout(() => {
+            this.checkEndData();
+          }, 1000);
+        }
+      },
+      error4 => {
+        console.log(error4);
       }
     );
   }
@@ -415,7 +439,6 @@ export class GoodsShowComponent implements OnInit {
         }
       );
     }
-
   }
 
   sureModel() {
@@ -430,5 +453,8 @@ export class GoodsShowComponent implements OnInit {
   }
   seeOrder () {
     window.location.href = `http://sms.youshuidaojia.com:9800/orderDetails?token=${this.token}&payType=1&vmCode=${urlParse(window.location.search)['vmCode']}`;
+  }
+  goTo(id, pic, spellgroupId) {
+    window.location.href = `http://webapp.youshuidaojia.com/cMain/detail?id=${id}&spellgroupId=${spellgroupId}&pic=${pic}&type=1`;
   }
 }

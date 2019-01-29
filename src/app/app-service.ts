@@ -1,12 +1,14 @@
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import { HttpClient } from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs/Observable';
+import {HttpClient} from '@angular/common/http';
 import {HttpHeaders} from '@angular/common/http';
 import {RequestOptions} from '@angular/http';
 
 @Injectable()
 export class AppService {
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
+
   /**
    * @param {string} url地址
    * @param {any} [options]可选提交的参数
@@ -22,8 +24,9 @@ export class AppService {
     });
     // tslint:disable-next-line:forin
     url += (url.indexOf('?') < 0 ? '?' : '&') + this.param(options);
-    return this.http.get(url, { headers: myHeaders });
+    return this.http.get(url, {headers: myHeaders});
   }
+
   getShareData(url: string, options?: any, tokens?: string) {
     // 配置请求头
     const myHeaders: HttpHeaders = new HttpHeaders({
@@ -32,7 +35,7 @@ export class AppService {
     });
     // tslint:disable-next-line:forin
     url += (url.indexOf('?') < 0 ? '?' : '&') + this.param(options);
-    return this.http.get(url, { headers: myHeaders });
+    return this.http.get(url, {headers: myHeaders});
   }
 
   getDataGzh(url: string, options?: any): Observable<any> {
@@ -43,7 +46,7 @@ export class AppService {
     });
     // tslint:disable-next-line:forin
     url += (url.indexOf('?') < 0 ? '?' : '&') + this.param(options);
-    return this.http.get(url, { headers: myHeaders });
+    return this.http.get(url, {headers: myHeaders});
   }
 
   getDataOpen(url: string, options?: any, tokens?: string): Observable<any> {
@@ -54,17 +57,21 @@ export class AppService {
       'ysToken': 'Bearer ' + tokens
     });
     url += (url.indexOf('?') < 0 ? '?' : '&') + this.param(options);
-    return this.http.get(url, { headers: myHeaders });
+    return this.http.get(url, {headers: myHeaders});
   }
+
   postDataOpen(url: string, options?: any, tokens?: string): Observable<any> {
     // 配置请求头
-    const myHttpHead = { headers: new HttpHeaders({
+    const myHttpHead = {
+      headers: new HttpHeaders({
         'Content-Type': 'application/json',
         // 'Authorization': tokens
         'ysToken': 'Bearer ' + tokens
-      })};
+      })
+    };
     return this.http.post(url, options, myHttpHead);
   }
+
   /**
    * @param url地址
    * @param options提交的数据
@@ -72,10 +79,12 @@ export class AppService {
    * @title:封装一个post请求数据的
    */
   postData(url: string, options: any, tokens?: any | null): Observable<any> {
-    const myHttpHead = { headers: new HttpHeaders({
+    const myHttpHead = {
+      headers: new HttpHeaders({
         'Content-Type': 'application/json',
         // 'token': sessionStorage.getItem('token')
-      })};
+      })
+    };
     /* const myHeaders: HttpHeaders = new HttpHeaders();
      myHeaders.append('Content-Type', 'application/json');
      myHeaders.append('token', myheaders);
@@ -85,13 +94,16 @@ export class AppService {
      }*/
     return this.http.post(url, options, myHttpHead);
   }
+
   postFormData(url: string, body: any, tokens?: any | null): Observable<any> {
     const form = new FormData();
-    const myHttpHead = { headers: new HttpHeaders({
+    const myHttpHead = {
+      headers: new HttpHeaders({
         // 'Content-Type': 'formdata',
         // 'Content-Type': 'multipart/form-data',
         'ysToken': 'Bearer ' + tokens
-      })};
+      })
+    };
     for (const k in body) {
       form.append(k, body[k]);
     }
@@ -99,10 +111,12 @@ export class AppService {
   }
 
   postDetailData(url: string, options: any, tokens?: any | null): Observable<any> {
-    const myHttpHead = { headers: new HttpHeaders({
+    const myHttpHead = {
+      headers: new HttpHeaders({
         'Content-Type': 'application/json',
         'token': 'webapp'
-      })};
+      })
+    };
     /* const myHeaders: HttpHeaders = new HttpHeaders();
      myHeaders.append('Content-Type', 'application/json');
      myHeaders.append('token', myheaders);
@@ -121,7 +135,7 @@ export class AppService {
     });
     // tslint:disable-next-line:forin
     url += (url.indexOf('?') < 0 ? '?' : '&') + this.param(options);
-    return this.http.get(url, { headers: myHeaders });
+    return this.http.get(url, {headers: myHeaders});
   }
   postScanData(url: string, body: any, tokens?: any | null): Observable<any> {
     const form = new FormData();
@@ -146,6 +160,7 @@ export class AppService {
   postDataDownLoad(url: string, body: any): Observable<any> {
     return this.http.post(url, body, {responseType: 'arraybuffer', headers: {'token': sessionStorage.getItem('token')}});
   }
+
   /**
    * @param {any} data
    * @returns

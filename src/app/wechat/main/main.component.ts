@@ -28,6 +28,7 @@ export class MainComponent implements OnInit {
   public isVisibleCoupon = false;
   public isVisibleCouponTwo = false;
   public isVisibleCouponThree = false;
+  public isVisibleCouponFour = false;
   public couponButtonHidden = true;
   public clickMore = false;
   // public img = 'http://lenvar-resource-products.oss-cn-shenzhen.aliyuncs.com/';
@@ -49,6 +50,7 @@ export class MainComponent implements OnInit {
   public isScanImg = false;
   public advertiseMentShow = false;
   public advertiseMentPic = '';
+  public checkTimes = 10;
 
   constructor(private router: Router,
               private modalService: NzModalService,
@@ -95,8 +97,14 @@ export class MainComponent implements OnInit {
       this.baoliCompany = false;
       this.isScanImg = true;
     }
+
+    // document.getElementsByClassName('carousel-control')[1]['style'].cssText = 'opacity: 0;';
   }
-  closeAdvertise() {this.advertiseMentShow = false; }
+
+  closeAdvertise() {
+    this.advertiseMentShow = false;
+  }
+
   // 数据初始化
   getInitData() {
     this.appService.postData(this.appProperties.machineInfoGetCompanyIdUrl + urlParse(window.location.search)['vmCode'], '').subscribe(
@@ -113,6 +121,12 @@ export class MainComponent implements OnInit {
               if (data.code === 3) {
                 document.getElementsByClassName('ant-modal-body')[4]['style'].cssText = 'padding: 0;';
                 this.isVisibleCouponThree = true;
+              } else {
+                // this.isVisibleCouponFour = true;
+                // document.getElementsByClassName('ant-modal-body')[1]['style'].cssText = 'padding: 0;';
+                // setTimeout(() => {
+                //   this.isVisibleCouponFour = false;
+                // }, 100000);
               }
             },
             error => {
@@ -225,28 +239,28 @@ export class MainComponent implements OnInit {
     if (item.num <= 0) {
       alert('水已经卖完无法开门');
     } else {
-        this.appService.postAliData(this.appProperties.openBeforeCanDo + urlParse(window.location.href)['vmCode']
-          + '&wayNum=' + this.item.wayNumber, '', this.token).subscribe(
-          data => {
-            console.log(data);
-            if (data.status === 1) {
-              if (data.returnObject !== '') {
-                this.openDoorMsg = '活动:' + data.returnObject.activityName + ',是否开门';
-                this.openDoorMsgKey = '活动商品:' + data.returnObject.partakeItemList[0].key;
-                this.activeImg = this.appProperties.imgUrl + data.returnObject.partakeItemList[0].value;
-              }
-              this.isVisibleOpenDoor = true;
-            } else if (data.status === 91) {
-              this.isVisibleNoMoney = true;
-              this.openDoorMsg = '您的余额不足是否要开通免密支付或者是充值！';
-            } else if (data.status === -1 || data.code === -1) {
-              this.login();
+      this.appService.postAliData(this.appProperties.openBeforeCanDo + urlParse(window.location.href)['vmCode']
+        + '&wayNum=' + this.item.wayNumber, '', this.token).subscribe(
+        data => {
+          console.log(data);
+          if (data.status === 1) {
+            if (data.returnObject !== '') {
+              this.openDoorMsg = '活动:' + data.returnObject.activityName + ',是否开门';
+              this.openDoorMsgKey = '活动商品:' + data.returnObject.partakeItemList[0].key;
+              this.activeImg = this.appProperties.imgUrl + data.returnObject.partakeItemList[0].value;
             }
-          },
-          error => {
-            console.log(error);
+            this.isVisibleOpenDoor = true;
+          } else if (data.status === 91) {
+            this.isVisibleNoMoney = true;
+            this.openDoorMsg = '您的余额不足是否要开通免密支付或者是充值！';
+          } else if (data.status === -1 || data.code === -1) {
+            this.login();
           }
-        );
+        },
+        error => {
+          console.log(error);
+        }
+      );
     }
   }
 
@@ -267,6 +281,7 @@ export class MainComponent implements OnInit {
     this.isVisibleCoupon = false;
     this.isVisibleCouponTwo = false;
     this.isVisibleCouponThree = false;
+    this.isVisibleCouponFour = false;
     document.cookie = 'coupon=' + 1;
   }
 
@@ -371,8 +386,6 @@ export class MainComponent implements OnInit {
     this.isConfirmLoading = true;
     this.openDoorMsg = '正在开门请稍等！';
     setTimeout(() => {
-      this.isVisibleOpenDoor = false;
-      this.isConfirmLoading = false;
       if (this.clickMore) {
         alert('亲,服务器还没反应过来,请勿再点击');
       } else {
@@ -383,50 +396,32 @@ export class MainComponent implements OnInit {
           // alert('请点击确认，注册登陆');
           this.login();
         } else {
-          this.appService.getDataOpen(this.appProperties.indexOpenDoor,
+          this.appService.postFormData(this.appProperties.indexOpenDoor,
             {vmCode: urlParse(window.location.search)['vmCode'], way: this.item.wayNumber}, this.token).subscribe(
             data => {
               console.log(data);
               this.clickMore = false;
-              if (data.code === 0) {
+              if (data.status === 1) {
                 // alert('优水到家提醒您,为了您账号资金安全,提水后请随手关门');
                 // this.isVisibleOpen = true;
-                const u = navigator.userAgent;
-                const isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); // ios终端
-                if (isiOS) {
-                  sessionStorage.setItem('flag', '1');
-                  window.location.href = 'http://sms.youshuidaojia.com/goodsShow?vmCode=' + urlParse(window.location.search)['vmCode'];
-                } else {
-                  sessionStorage.setItem('flag', '1');
-                  this.router.navigate(['goodsShow'], {
-                    queryParams: {
-                      vmCode: urlParse(window.location.search)['vmCode'],
-                      // flag: 1,
-                    }
-                  });
-                }
-              } else if (data.code === 4) {
-                const u = navigator.userAgent;
-                const isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); // ios终端
-                if (isiOS) {
-                  sessionStorage.setItem('flag', '2');
-                  window.location.href = 'http://sms.youshuidaojia.com/goodsShow?vmCode=' + urlParse(window.location.search)['vmCode'];
-                } else {
-                  sessionStorage.setItem('flag', '2');
-                  this.router.navigate(['goodsShow'], {
-                    queryParams: {
-                      vmCode: urlParse(window.location.search)['vmCode'],
-                      // flag: 2,
-                    }
-                  });
-                }
-              } else if (data.code === 3) {
+                this.checkIsOpen(1);
+              } else if (data.status === 4000) {
+                this.checkIsOpen(2);
+              } else if (data.status === 3) {
+                this.isVisibleOpenDoor = false;
+                this.isConfirmLoading = false;
                 alert('网络延时，请重试！');
-              } else if (data.code === -1) {
+              } else if (data.status === -1) {
+                this.isVisibleOpenDoor = false;
+                this.isConfirmLoading = false;
                 this.login();
-              } else if (data.code === -87) {
+              } else if (data.status === -87) {
+                this.isVisibleOpenDoor = false;
+                this.isConfirmLoading = false;
                 window.location.href = this.appProperties.followWechatSubscription;
-              } else if (data.code === -88) {
+              } else if (data.status === 4003) {
+                this.isVisibleOpenDoor = false;
+                this.isConfirmLoading = false;
                 alert('您有未支付订单请点击我的订单支付完毕再进行购水！');
                 this.router.navigate(['detail'], {
                   queryParams: {
@@ -434,9 +429,13 @@ export class MainComponent implements OnInit {
                     flag: 1
                   }
                 });
-              } else if (data.code === -89) {
-                alert('他人在买水，请稍后扫码,文明购买，请勿争抢');
-              } else if (data.code === -90) {
+              } else if (data.status === 0) {
+                this.isVisibleOpenDoor = false;
+                this.isConfirmLoading = false;
+                alert('开门失败');
+              } else if (data.status === 91) {
+                this.isVisibleOpenDoor = false;
+                this.isConfirmLoading = false;
                 this.appService.getDataOpen(this.appProperties.nonePassWordPayUrl,
                   {vmCode: urlParse(window.location.href)['vmCode']}).subscribe(
                   data1 => {
@@ -449,7 +448,9 @@ export class MainComponent implements OnInit {
                   }
                 );
               } else {
-                alert(data.msg);
+                this.isVisibleOpenDoor = false;
+                this.isConfirmLoading = false;
+                alert(data.message);
               }
             },
             error => {
@@ -459,6 +460,51 @@ export class MainComponent implements OnInit {
         }
       }
     }, 1000);
+  }
+
+  checkIsOpen(flag) {
+    this.checkTimes--;
+    let time;
+    this.appService.postFormData(this.appProperties.cusOpenIsOpened,
+      {vmCode: urlParse(window.location.search)['vmCode']}, this.token).subscribe(
+      data => {
+        console.log(data);
+        if (data.status === 1) {
+          clearTimeout(time);
+          const u = navigator.userAgent;
+          const isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); // ios终端
+          if (isiOS) {
+            this.isVisibleOpenDoor = false;
+            this.isConfirmLoading = false;
+            sessionStorage.setItem('flag', flag);
+            window.location.href = 'http://sms.youshuidaojia.com/goodsShow?vmCode=' + urlParse(window.location.search)['vmCode'];
+          } else {
+            this.isVisibleOpenDoor = false;
+            this.isConfirmLoading = false;
+            sessionStorage.setItem('flag', flag);
+            this.router.navigate(['goodsShow'], {
+              queryParams: {
+                vmCode: urlParse(window.location.search)['vmCode'],
+                // flag: 2,
+              }
+            });
+          }
+        } else if (data.status === 0) {
+          if (this.checkTimes === 0) {
+            alert('网络延迟，请重试开门');
+            clearTimeout(time);
+            this.checkTimes = 10;
+          } else {
+            time = setTimeout(() => {
+              this.checkIsOpen(flag);
+            }, 1000);
+          }
+        }
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
 
   // 确定关门
@@ -482,9 +528,24 @@ export class MainComponent implements OnInit {
       }
     );
   }
+
   gotoSendMoney() {
-    window.location.href = 'http://sms.youshuidaojia.com:9800/prepaid?vmCode=' + urlParse(window.location.href)['vmCode'];
+    // 判断是否为优水用户
+    this.appService.postAliData(this.appProperties.tblCustomerMyInfo, {}, urlParse(window.location.search)['token']).subscribe(
+      data => {
+        if (data.status === -66) {
+          alert(data.message);
+          return;
+        } else {
+          window.location.href = 'http://sms.youshuidaojia.com:9800/prepaid?vmCode=' + urlParse(window.location.href)['vmCode'];
+        }
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
+
   scan() {
     const u = navigator.userAgent, app = navigator.appVersion;
     const isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
@@ -563,5 +624,16 @@ export class MainComponent implements OnInit {
       variable = '';
     }
     return variable;
+  }
+
+  bannerTo(val) {
+    if (val === '1') {
+      window.location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxa41aef1ebf72a4b2&redirect_uri=' +
+        'http://yms.youshuidaojia.com/admin/getShopToken2&response_type=code&scope=snsapi_userinfo&state=/cMain/firstPage?vm=1-1';
+    } else if (val === '2') {
+      window.location.href = 'http://sms.youshuidaojia.com:9800/user?vmCode=' + urlParse(window.location.href)['vmCode'] + '&flag=3';
+    } else if (val === '4') {
+      window.location.href = 'http://webapp.youshuidaojia.com/cMain/detail?id=63&spellgroupId=0&pic=6d4d5864-7cf9-40a1-82df-a6acea58da10.jpg&type=1';
+    }
   }
 }

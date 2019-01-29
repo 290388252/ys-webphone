@@ -1,15 +1,16 @@
-import { Component , OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AppService} from '../../app-service';
 import {AppProperties} from '../../app.properties';
 import {getActiveCompanyId, getActiveItemId, urlParse} from '../../utils/util';
-import { CarouselConfig } from 'ngx-bootstrap/carousel';
+import {CarouselConfig} from 'ngx-bootstrap/carousel';
+
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.css'],
   providers: [
-    { provide: CarouselConfig, useValue: { interval: 1500, noPause: true, showIndicators: true } }
+    {provide: CarouselConfig, useValue: {interval: 1500, noPause: true, showIndicators: true}}
   ]
 })
 export class MainComponent implements OnInit {
@@ -40,10 +41,13 @@ export class MainComponent implements OnInit {
   public isConfirmLoading = false;
   public advertiseMentShow = false;
   public advertiseMentPic: string;
+  public checkTimes = 10;
   constructor(private router: Router,
               private activatedRoute: ActivatedRoute,
               private appProperties: AppProperties,
-              private appService: AppService) {}
+              private appService: AppService) {
+  }
+
   ngOnInit() {
     this.IsWeixinOrAlipay();
     // 获取token值
@@ -59,6 +63,7 @@ export class MainComponent implements OnInit {
     this.getInitData();
     sessionStorage.setItem('vmCode', urlParse(window.location.search)['vmCode']);
   }
+
   IsWeixinOrAlipay() {
     const ua = window.navigator.userAgent.toLowerCase();
     if (ua.match(/MicroMessenger/i)) {
@@ -67,7 +72,11 @@ export class MainComponent implements OnInit {
       }
     }
   }
-  closeAdvertise() {this.advertiseMentShow = false; }
+
+  closeAdvertise() {
+    this.advertiseMentShow = false;
+  }
+
   // 初始化数据
   getInitData() {
     // 选水界面接口
@@ -149,6 +158,7 @@ export class MainComponent implements OnInit {
       }
     );
   }
+
   showActiveItem(item, baoliCompany) {
     let flag;
     const list = getActiveItemId();
@@ -171,6 +181,7 @@ export class MainComponent implements OnInit {
     }
     return flag;
   }
+
   // 开门接口
   openDoor(item) {
     this.item = item;
@@ -205,6 +216,7 @@ export class MainComponent implements OnInit {
       );
     }
   }
+
   eigthDoorChoose(flag) {
     this.eightDoorFlag = flag;
     if (flag === 0) {
@@ -213,13 +225,12 @@ export class MainComponent implements OnInit {
       this.eightIndexList = this.indexList.slice(4, 8);
     }
   }
+
   // 是否开门（是）
   yesOpenDoor() {
     this.isConfirmLoading = true;
     this.openDoorMsg = '正在开门请稍等！';
     setTimeout(() => {
-      this.isVisibleOpenDoor = false;
-      this.isConfirmLoading = false;
       if (this.clickMore) {
         alert('亲,服务器还没反应过来,请勿再点击');
       } else {
@@ -231,46 +242,24 @@ export class MainComponent implements OnInit {
             this.clickMore = false;
             if (data.status === 1) {
               // this.isVisibleOpen = true;
-              const u = navigator.userAgent;
-              const isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); // ios终端
-              if (isiOS) {
-                sessionStorage.setItem('flag', '1');
-                window.location.href = 'http://sms.youshuidaojia.com/goodsShow?vmCode=' + urlParse(window.location.search)['vmCode'];
-              } else {
-                sessionStorage.setItem('flag', '1');
-                this.router.navigate(['goodsShow'], {
-                  queryParams: {
-                    vmCode: urlParse(window.location.search)['vmCode'],
-                    // flag: 1,
-                  }
-                });
-              }
+              this.checkIsOpen(1);
             } else if (data.status === 4000) {
-              const u = navigator.userAgent;
-              const isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); // ios终端
-              if (isiOS) {
-                sessionStorage.setItem('flag', '2');
-                window.location.href = 'http://sms.youshuidaojia.com/goodsShow?vmCode=' + urlParse(window.location.search)['vmCode'];
-              } else {
-                sessionStorage.setItem('flag', '2');
-                this.router.navigate(['goodsShow'], {
-                  queryParams: {
-                    vmCode: urlParse(window.location.search)['vmCode'],
-                    // flag: 2,
-                  }
-                });
-              }
+              this.checkIsOpen(2);
             } else if (data.status === -1) {
-             this.noTokenOath();
+              this.isVisibleOpenDoor = false;
+              this.isConfirmLoading = false;
+              this.noTokenOath();
             } else {
-             if (data.code === -1) {
-               this.noTokenOath();
+              this.isVisibleOpenDoor = false;
+              this.isConfirmLoading = false;
+              if (data.status === -1) {
+                this.noTokenOath();
               } else {
-                 alert(data.message);
-                 if (data.willGo) {
-                   window.location.href = data.returnObject;
-                 }
-             }
+                alert(data.message);
+                if (data.willGo) {
+                  window.location.href = data.returnObject;
+                }
+              }
             }
           },
           error => {
@@ -280,6 +269,7 @@ export class MainComponent implements OnInit {
       }
     }, 1000);
   }
+
   noTokenOath() {
     this.appService.getData(this.appProperties.aliGetUserIdUrl + '?vmCode=' + urlParse(window.location.search)['vmCode'], '').subscribe(
       data2 => {
@@ -291,6 +281,7 @@ export class MainComponent implements OnInit {
       }
     );
   }
+
   // 是否开门（否）
   noOpenDoor() {
     this.isVisibleOpenDoor = false;
@@ -299,14 +290,29 @@ export class MainComponent implements OnInit {
     this.openDoorMsg = '是否要开门?';
     this.openDoorMsgKey = '';
   }
+
   openNoPassMoney() {
-    window.location.href = this.nopassMoneyUrl;
+    this.appService.postAliData(this.appProperties.tblCustomerMyInfo, {}, urlParse(window.location.search)['token']).subscribe(
+      data => {
+        if (data.status === -66) {
+          alert(data.message);
+          return;
+        } else {
+          window.location.href = this.nopassMoneyUrl;
+        }
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
+
   gotoSendMoney() {
   }
+
   // 关注支付宝生活号接口
   isAttention() {
-    this.appService.getAliData(this.appProperties.aliBusinessIsAttentionUrl, '' , this.token).subscribe(
+    this.appService.getAliData(this.appProperties.aliBusinessIsAttentionUrl, '', this.token).subscribe(
       data2 => {
         if (data2.status === 1) {
           // stop
@@ -322,12 +328,15 @@ export class MainComponent implements OnInit {
       }
     );
   }
+
   follow() {
     window.location.href = 'https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzU0NzQ4MTY0Mg==&scene=124#wechat_redirect';
   }
+
   closeCoupon() {
     this.isVisibleCouponThree = false;
   }
+
   // 补货人员登陆界面入口
   vmLogin(flag) {
     if (flag === 1) {
@@ -354,13 +363,59 @@ export class MainComponent implements OnInit {
       this.isVisibleCouponThree = true;
     }
   }
+
   // 双十一
   openPromotions() {
     document.getElementsByClassName('ant-modal-body')[3]['style'].cssText = 'padding: 0;';
     this.isVisiblePromotions = true;
   }
+
   closemodalContentPromotions() {
     this.isVisiblePromotions = false;
+  }
+  checkIsOpen(flag) {
+    this.checkTimes--;
+    let time;
+    this.appService.postFormData(this.appProperties.cusOpenIsOpened,
+      {vmCode: urlParse(window.location.search)['vmCode']}, this.token).subscribe(
+      data => {
+        console.log(data);
+        if (data.status === 1) {
+          clearTimeout(time);
+          const u = navigator.userAgent;
+          const isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); // ios终端
+          if (isiOS) {
+            this.isVisibleOpenDoor = false;
+            this.isConfirmLoading = false;
+            sessionStorage.setItem('flag', flag);
+            window.location.href = 'http://sms.youshuidaojia.com/goodsShow?vmCode=' + urlParse(window.location.search)['vmCode'];
+          } else {
+            this.isVisibleOpenDoor = false;
+            this.isConfirmLoading = false;
+            sessionStorage.setItem('flag', flag);
+            this.router.navigate(['goodsShow'], {
+              queryParams: {
+                vmCode: urlParse(window.location.search)['vmCode'],
+                // flag: 2,
+              }
+            });
+          }
+        } else if (data.status === 0) {
+          if (this.checkTimes === 0) {
+            alert('网络延迟，请重试开门');
+            clearTimeout(time);
+            this.checkTimes = 10;
+          } else {
+            time = setTimeout(() => {
+              this.checkIsOpen(flag);
+            }, 1000);
+          }
+        }
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
   // 订单详情
   product(flag) {
@@ -376,7 +431,8 @@ export class MainComponent implements OnInit {
     });
     // TODO;
   }
-  getCookies () {
+
+  getCookies() {
     if (this.token === null || this.token === undefined || this.token === 'undefined') {
       const strCookie = document.cookie;
       const arrCookie = strCookie.split(';');
@@ -388,15 +444,17 @@ export class MainComponent implements OnInit {
       }
     }
   }
+
   turnImg(item) {
     let img;
-    if  (item.length > 1) {
+    if (item.length > 1) {
       img = this.img + item[1].pic;
     } else {
       img = '';
     }
     return img;
   }
+
   turn(item, name) {
     let variable;
     if (item.length > 1) {

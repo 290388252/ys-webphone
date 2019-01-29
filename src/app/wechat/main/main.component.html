@@ -5,16 +5,33 @@
   <!--</div>-->
   <!--<div class="bgimg">-->
     <div class="logo">
-      <carousel>
+
+      <!--<carousel>-->
+        <!--<slide>-->
+          <!--&lt;!&ndash;onclick="window.location.href='http://webapp.youshuidaojia.com/cMain/promotions'">&ndash;&gt;-->
+          <!--<img [hidden]="youshuiCompany" src="../../../assets/main/banner1.png" alt="first slide" style="display: block; width: 100%;height: 110px;">-->
+          <!--<img [hidden]="otherCompany" src="../../../assets/main/banner2.png" alt="first slide" style="display: block; width: 100%;height: 110px;">-->
+          <!--<div class="carousel-caption d-none d-md-block">-->
+            <!--<h3>First slide label</h3>.-->
+            <!--<p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>-->
+          <!--</div>-->
+        <!--</slide>-->
+      <!--</carousel>-->
+      <!---->
+      <carousel [showIndicators]="false" [interval]="3000">
+        <!--新年主题-->
         <slide>
-          <!--onclick="window.location.href='http://webapp.youshuidaojia.com/cMain/promotions'">-->
-          <img [hidden]="youshuiCompany" src="../../../assets/main/banner1.png" alt="first slide" style="display: block; width: 100%;height: 110px;">
-          <img [hidden]="otherCompany" src="../../../assets/main/banner2.png" alt="first slide" style="display: block; width: 100%;height: 110px;">
-          <div class="carousel-caption d-none d-md-block">
-            <h3>First slide label</h3>.
-            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-          </div>
+          <img src="../../../assets/main/newyearBanner.png" alt="first slide" style="display: block; width: 100%;" (click)="bannerTo('1')">
         </slide>
+        <!--充值主题-->
+        <slide >
+          <img src="../../../assets/main/prepaidBanner.png" alt="second slide" style="display: block; width: 100%;" (click)="bannerTo('2')">
+        </slide>
+        <!--招商主题-->
+        <slide>
+          <img src="../../../assets/main/leasingBanner.png" alt="third slide" style="display: block; width: 100%;">
+        </slide>
+        <!--198水机-->
       </carousel>
       <!--<img *ngIf="isFiveDoor" (click)="vmLogin()" src="../../../assets/main/lianye.png" alt="..." class="lianye-logo">-->
       <!--<p *ngIf="isFiveDoor" style="font-weight: 600">联业智能</p>-->
@@ -30,8 +47,30 @@
       <!--立即参与-->
       <!--<p class="title">.</p>-->
     </div>
-  <div class="contain_btm">
-    <img [hidden]="youshuiCompany" (click)="vmLogin(2)" src="../../../assets/main/advertisement.png" alt="" class="advertisement">
+  <div class="titleList">
+    <div class="titleList_in">
+      <img src="../../../assets/main/mainIcon1.png" class="title_topImg">
+      <div class="title_bottom">充&nbsp;&nbsp;&nbsp;&nbsp;值</div>
+    </div>
+    <div class="titleList_in">
+      <img src="../../../assets/main/mainIcon2.png" class="title_topImg">
+      <div class="title_bottom">购物指南</div>
+    </div>
+    <div class="titleList_in">
+      <img src="../../../assets/main/mainIcon3.png" class="title_topImg">
+      <div class="title_bottom">推荐有奖</div>
+    </div>
+    <div class="titleList_in">
+      <img src="../../../assets/main/mainIcon4.png" class="title_topImg">
+      <div class="title_bottom">领取优惠券</div>
+    </div>
+    <div class="titleList_in">
+      <img src="../../../assets/main/mainIcon5.png" class="title_topImg">
+      <div class="title_bottom">关注公众号</div>
+    </div>
+  </div>
+  <div class="contain_btm clearfix">
+    <!--<img [hidden]="youshuiCompany" (click)="vmLogin(2)" src="../../../assets/main/advertisement.png" alt="" class="advertisement">-->
     <div style="display: flex;width: 100%;height: 20px;margin-bottom: 12px" *ngIf="isEightDoor">
       <img (click)="eigthDoorChoose(0)" [src]="(eightDoorFlag === 0) ?'../../../assets/main/normal.png':'../../../assets/main/cold.png'"  alt="" style="width: 50%;height: 30px"><span (click)="eigthDoorChoose(0)" style="position: absolute;left: 15%;color: white;top: 44px;">点击冷藏商品</span>
       <img (click)="eigthDoorChoose(1)" [src]="(eightDoorFlag === 1) ?'../../../assets/main/normal.png':'../../../assets/main/cold.png'"   alt="" style="width: 50%;height: 30px"><span (click)="eigthDoorChoose(1)" style="position: absolute;right: 15%;color: white;top: 44px;">点击常温商品</span>
@@ -75,7 +114,7 @@
 
     <div class="context" *ngIf="isFourDoor">
       <div (click)="openDoor(item)" *ngFor="let item of indexList" [ngClass]="item['wayItemList'].length === 1 ? 'box-one' : 'box'" class=" card text-white mb-3">
-        <img [hidden]="showActiveItem(item['wayItemList'], baoliCompany)" [src]="showActiveImg" alt="" width="60" style="position: absolute">
+        <img [hidden]="showActiveItem(item['wayItemList'], baoliCompany)" [src]="" alt="" width="60" style="position: absolute">
         <div [ngClass]="item['wayItemList'].length === 1 ? 'box-body-one' : 'box-body'">
           <img class="col-img" src="{{img}}{{item['wayItemList'][0]['pic']}}" alt="">
           <br/>
@@ -103,7 +142,7 @@
           <img src="../../../assets/main/eight-bt.png" alt="" class="eight-bt">
         </div>
         <div style="text-align: center" [hidden]="item['wayItemList'].length === 1">
-          <img class="eight-img" [src]="turnImg(item['wayItemList'])" h40w100%alt="">
+          <img class="eight-img" [src]="turnImg(item['wayItemList'])" alt="">
           <p class="text-eight" style="color: #333333;">{{turn(item['wayItemList'], 'itemName')}}</p>
           <p class="text-eight" style="color: #f4725c;margin-top: 10px">{{turn(item['wayItemList'], 'price')}}元</p>
         </div>
@@ -186,6 +225,14 @@
     <ng-template #modalContentCoupon>
       <img [src]="advertiseMentPic" alt="" style="width: 100%;position: absolute;right: 0;top: 0;">
       <img (click)="closeAdvertise()" src="../../../assets/main/cancel.png" alt=""
+           style="width: 10%; position: absolute;right: 10px;top: 10px;">
+    </ng-template>
+  </nz-modal>
+  <nz-modal [nzVisible]="isVisibleCouponFour" [nzContent]="modalContentCouponFour" [nzFooter]="false" [nzClosable]="false">
+    <ng-template #modalContentCouponFour>
+      <img src="../../../assets/main/getCoupon.png" alt="" style="width: 100%;position: absolute;right: 0;top: -40px;opacity: 1">
+      <!--<img src="../../../assets/main/follow-button.png" (click)="follow()" alt="" style="width: 20%;position: absolute;left: 40%;top: 260px;">-->
+      <img (click)="closeCoupon()" src="../../../assets/main/prepaidAdv.png" alt=""
            style="width: 10%; position: absolute;right: 10px;top: 10px;">
     </ng-template>
   </nz-modal>
