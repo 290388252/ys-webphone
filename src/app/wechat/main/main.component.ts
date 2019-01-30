@@ -51,6 +51,7 @@ export class MainComponent implements OnInit {
   public advertiseMentShow = false;
   public advertiseMentPic = '';
   public checkTimes = 10;
+  public showPrepaid = false;
 
   constructor(private router: Router,
               private modalService: NzModalService,
@@ -105,10 +106,16 @@ export class MainComponent implements OnInit {
     this.advertiseMentShow = false;
   }
 
+  prepaid() {
+    window.location.href = 'http://sms.youshuidaojia.com:9800/prepaid?vmCode=' + urlParse(window.location.href)['vmCode'];
+  }
+
   // 数据初始化
   getInitData() {
+    console.log('111');
     this.appService.postData(this.appProperties.machineInfoGetCompanyIdUrl + urlParse(window.location.search)['vmCode'], '').subscribe(
       data2 => {
+
         console.log(data2);
         if (getActiveCompanyId().includes(data2.returnObject.toString())) {
           this.youshuiCompany = false;
@@ -161,13 +168,14 @@ export class MainComponent implements OnInit {
             this.isFourDoor = false;
             this.isFiveDoor = true;
             this.isEightDoor = false;
-            data.data.forEach((item, index) => {
-              if (index > 1) {
-                this.indexList.push(item);
-              } else {
-                this.fiveIndexList.push(item);
-              }
-            });
+            this.indexList = data.data;
+            // data.data.forEach((item, index) => {
+            //   if (index > 1) {
+            //     this.indexList.push(item);
+            //   } else {
+            //     this.fiveIndexList.push(item);
+            //   }
+            // });
           } else if (data.data.length === 8) {
             this.isFourDoor = false;
             this.isFiveDoor = false;
@@ -182,22 +190,40 @@ export class MainComponent implements OnInit {
         console.log(error);
       }
     );
-    this.appService.postFormData(this.appProperties.vdAdvertisingMachinesShowAdvertisingUrl,
-      {vmCode: urlParse(window.location.search)['vmCode']}, this.token).subscribe(
+    this.appService.postFormDataNone(this.appProperties.vdAdvertisingMachinesFindShowAdvertisingUrl,
+      {vmCode: urlParse(window.location.search)['vmCode']}).subscribe(
       data => {
-        console.log(data);
-        if (data.status === 1 && data.returnObject.length > 0) {
+        if (data.status === 1) {
           this.advertiseMentShow = true;
+          this.showPrepaid = true;
           document.getElementsByClassName('ant-modal-body')[5]['style'].cssText = 'padding: 0;';
-          this.advertiseMentPic = this.appProperties.vmAdvertisingImg + data.returnObject[0].homeImg;
+          this.advertiseMentPic = this.appProperties.vmAdvertisingImg + data.returnObject;
           setTimeout(() => {
             this.advertiseMentShow = false;
           }, 3000);
+        } else {
+          this.appService.postFormDataNone(this.appProperties.vdAdvertisingMachinesShowAdvertisingUrl,
+            {vmCode: urlParse(window.location.search)['vmCode']}).subscribe(
+            data1 => {
+              if (data1.status === 1 && data1.returnObject.length > 0) {
+                this.advertiseMentShow = true;
+                this.showPrepaid = false;
+                document.getElementsByClassName('ant-modal-body')[5]['style'].cssText = 'padding: 0;';
+                this.advertiseMentPic = this.appProperties.vmAdvertisingImg + data1.returnObject[0].homeImg;
+                setTimeout(() => {
+                  this.advertiseMentShow = false;
+                }, 3000);
+              }
+            }, error => {
+              console.log(error);
+            }
+          );
         }
       }, error => {
         console.log(error);
       }
     );
+
   }
 
   showActiveItem(item, baoliCompany) {
@@ -628,12 +654,28 @@ export class MainComponent implements OnInit {
 
   bannerTo(val) {
     if (val === '1') {
-      window.location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxa41aef1ebf72a4b2&redirect_uri=' +
-        'http://yms.youshuidaojia.com/admin/getShopToken2&response_type=code&scope=snsapi_userinfo&state=/cMain/firstPage?vm=1-1';
+      window.location.href = 'http://webapp.youshuidaojia.com/cMain/recommendB?itemType=0';
     } else if (val === '2') {
-      window.location.href = 'http://sms.youshuidaojia.com:9800/user?vmCode=' + urlParse(window.location.href)['vmCode'] + '&flag=3';
+      window.location.href = 'http://sms.youshuidaojia.com:9800/prepaid?vmCode=' + urlParse(window.location.href)['vmCode'];
+      // window.location.href = 'http://sms.youshuidaojia.com:9800/user?vmCode=' + urlParse(window.location.href)['vmCode'] + '&flag=3';
     } else if (val === '4') {
-      window.location.href = 'http://webapp.youshuidaojia.com/cMain/detail?id=63&spellgroupId=0&pic=6d4d5864-7cf9-40a1-82df-a6acea58da10.jpg&type=1';
+      // window.location.href = 'http://webapp.youshuidaojia.com/cMain/detail?id=63&spellgroupId=0&pic=6d4d5864-7cf9-40a1-82df-a6acea58da10.jpg&type=1';
+    }
+  }
+  circleBtn(flag) {
+    if (flag === 1) {
+      window.location.href
+        = `http://sms.youshuidaojia.com:9800/prepaid?vmCode=${urlParse(window.location.search)['vmCode']}&token=${this.token}`;
+    } else if (flag === 2) {
+      window.location.href = `http://sms.youshuidaojia.com:9800/shopGuide?vmCode=${urlParse(window.location.search)['vmCode']}&flag=2`;
+    } else if (flag === 3) {
+      window.location.href = `http://sms.youshuidaojia.com:9800/user?vmCode=${urlParse(window.location.search)['vmCode']}&flag=3`;
+    } else if (flag === 4) {
+      document.getElementsByClassName('ant-modal-body')[4]['style'].cssText = 'padding: 0;';
+      this.isVisibleCouponThree = true;
+    } else if (flag === 5) {
+      document.getElementsByClassName('ant-modal-body')[4]['style'].cssText = 'padding: 0;';
+      this.isVisibleCouponThree = true;
     }
   }
 }

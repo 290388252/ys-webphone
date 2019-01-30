@@ -20,6 +20,7 @@ export class AppProperties {
   public machineControlAdjustReplenish: string;
   public tblCustomerMyInviteRewards: string;
   public vdAdvertisingMachinesShowAdvertisingUrl: string;
+  public vdAdvertisingMachinesFindShowAdvertisingUrl: string;
   // WeChat
   public tblCustomerMyInfo: string;
   public indexListUrl: string;
@@ -63,8 +64,8 @@ export class AppProperties {
 
   constructor() {
     // Public
-    // this.appUrl = 'http://192.168.0.113:6662/ys_sms';
-    // this.adminUrl = 'http://192.168.0.113:6662/ys_admin';
+    // this.appUrl = 'http://192.168.0.106:6662/ys_sms';
+    // this.adminUrl = 'http://192.168.0.106:6662/ys_admin';
     this.appUrl = 'http://47.106.92.82:6662/ys_sms';
     this.adminUrl = 'http://119.23.233.123:6662/ys_admin';
     this.vmAdvertisingImg = this.adminUrl + '/vmAdvertisingImg/';
@@ -74,13 +75,14 @@ export class AppProperties {
     this.gameGetGamePrize = this.appUrl + '/game/getGamePrize';
     this.gameLottery = this.appUrl + '/game/lottery';
     this.machineControlUrl = this.appUrl + '/machineControl/getChangeInfo';
-    this.payFinishGrouponUrl = this.appUrl + '/shoppingGoods/list';
+    this.payFinishGrouponUrl = this.appUrl + '/shoppingGoods/listPage';
     this.machineControlGetReplenishInfoUrl = this.appUrl + '/machineControl/getReplenishInfo?vmCode=';
     this.machineInfoGetCompanyIdUrl = this.appUrl + '/machineInfo/getCompanyId?vmCode=';
     this.adminCreateForeverStrQrUrl = this.appUrl + '/admin/createStrQr';
     this.machineControlAdjustReplenish = this.appUrl + '/machineControl/adjustReplenish?';
     this.tblCustomerMyInviteRewards  = this.appUrl + '/tblCustomer/myInviteRewards';
-    this.vdAdvertisingMachinesShowAdvertisingUrl  = this.appUrl + '/vendingAdvertisingMachines/showMachinesAdvertising';
+    this.vdAdvertisingMachinesShowAdvertisingUrl  = this.adminUrl + '/vendingMachinesAdvertising/showMachinesAdvertising';
+    this.vdAdvertisingMachinesFindShowAdvertisingUrl = this.adminUrl + '/vendingMachinesAdvertising/findVendingSlideshow';
     // WeChat
     this.tblCustomerMyInfo  = this.appUrl + '/tblCustomer/myInfo';
     this.indexListUrl = this.appUrl + '/index/listWay';

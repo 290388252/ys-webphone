@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import { Router } from '@angular/router';
+import {Router} from '@angular/router';
 import {AppService} from '../../app-service';
 import {AppProperties} from '../../app.properties';
 import {getActiveCompanyId, urlParse} from '../../utils/util';
+
 declare var WeixinJSBridge: any;
 declare var wx: any;
 
@@ -50,10 +51,12 @@ export class GoodsShowComponent implements OnInit {
   public waterVoucherList = [];
   public payType;
   public grouponList;
+
   constructor(private router: Router,
               private appProperties: AppProperties,
               private appService: AppService) {
   }
+
   ngOnInit() {
     this.wechatVisible = false;
     this.couponList = [];
@@ -61,6 +64,7 @@ export class GoodsShowComponent implements OnInit {
     this.flag = sessionStorage.getItem('flag');
     // this.flag = urlParse(window.location.search)['flag'];
     this.getToken();
+    this.getInit();
     this.share();
     this.goodsList = [];
     this.appService.postData(this.appProperties.machineInfoGetCompanyIdUrl + urlParse(window.location.search)['vmCode'], '').subscribe(
@@ -88,13 +92,11 @@ export class GoodsShowComponent implements OnInit {
     console.log(this.token);
     console.log(this.flag);
     this.oneGoodsOrMore();
-    this.getInit();
   }
+
   getInit() {
-    this.appService.postAliData(this.appProperties.payFinishGrouponUrl, '', this.token).subscribe(
+    this.appService.postFormData(this.appProperties.payFinishGrouponUrl, '', this.token).subscribe(
       data => {
-        console.log('123');
-        console.log(data);
         this.grouponList = data.returnObject;
       },
       error => {
@@ -102,18 +104,21 @@ export class GoodsShowComponent implements OnInit {
       }
     );
   }
+
   turnText(item) {
     let text;
-      if (item.changeNum < 0) {
-        text = item.changeNewNum === undefined ? `拿取数量${-item.changeNum}` : `拿取数量${-item.changeNum},修正后数量${item.changeNewNum}`;
-      } else if (item.changeNum > 0 && (this.flag === '3' || this.flag === '4')) {
-        text = item.changeNewNum === undefined ? `补货数量${item.changeNum}` : `补货数量${item.changeNum},修正后数量${item.changeNewNum}`;
-      }
+    if (item.changeNum < 0) {
+      text = item.changeNewNum === undefined ? `拿取数量${-item.changeNum}` : `拿取数量${-item.changeNum},修正后数量${item.changeNewNum}`;
+    } else if (item.changeNum > 0 && (this.flag === '3' || this.flag === '4')) {
+      text = item.changeNewNum === undefined ? `补货数量${item.changeNum}` : `补货数量${item.changeNum},修正后数量${item.changeNewNum}`;
+    }
     return text;
   }
+
   follow() {
     window.location.href = 'https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzU0NzQ4MTY0Mg==&scene=124#wechat_redirect';
   }
+
   share() {
     this.appService.postAliData(this.appProperties.wechatShareInfoUrl
       + '?url=http://sms.youshuidaojia.com/goodsShow?vmCode=' + urlParse(window.location.href)['vmCode'],
@@ -177,15 +182,18 @@ export class GoodsShowComponent implements OnInit {
       }
     );
   }
+
   fixedNum(item, index) {
     this.isVisibleFixed = true;
     this.wayNum = item.wayNum;
     this.basicItemId = item.basicItemId;
     this.index = index;
   }
+
   yes() {
     this.isVisibleWarn = false;
   }
+
   fixedYes() {
     this.appService.postAliData(this.appProperties.machineControlAdjustReplenish +
       `vmCode=${urlParse(window.location.search)['vmCode']}&wayNum=${this.wayNum}&basicItemId=${this.basicItemId}&adjustNum=${this.num}`,
@@ -205,53 +213,59 @@ export class GoodsShowComponent implements OnInit {
       }
     );
   }
+
   exit() {
-      const ua = window.navigator.userAgent.toLowerCase();
-      if (ua.match(/MicroMessenger/i)) {
-        if (ua.match(/MicroMessenger/i)[0] === 'micromessenger') {
-          if (this.flag === 3 || this.flag === '3'
-            || this.flag === 4 || this.flag === '4') {
-            this.router.navigate(['addMain'], {
-              queryParams: {
-                vmCode: urlParse(window.location.search)['vmCode'],
-                token: sessionStorage.getItem('token'),
-                payType: 1
-              }});
-          } else {
-            // WeixinJSBridge.call('closeWindow');
-            this.router.navigate(['main'], {
-              queryParams: {
-                vmCode: urlParse(window.location.search)['vmCode'],
-                token: sessionStorage.getItem('token'),
-                close: '1'
-              }});
-          }
-        }
-      } else if (ua.match(/AlipayClient/i)) {
-        if (ua.match(/AlipayClient/i)[0] === 'alipayclient') {
-          if (this.flag === 3 || this.flag === '3'
-            || this.flag === 4 || this.flag === '4') {
-            this.router.navigate(['addMain'], {
-              queryParams: {
-                vmCode: urlParse(window.location.search)['vmCode'],
-                token: sessionStorage.getItem('token'),
-                payType: 2
-              }});
-          } else {
-            // window['AlipayJSBridge'].call('closeWebview');
-            this.router.navigate(['aliMain'], {
-              queryParams: {
-                vmCode: urlParse(window.location.search)['vmCode'],
-                token: sessionStorage.getItem('token'),
-                close: '1'
-              }});
-          }
+    const ua = window.navigator.userAgent.toLowerCase();
+    if (ua.match(/MicroMessenger/i)) {
+      if (ua.match(/MicroMessenger/i)[0] === 'micromessenger') {
+        if (this.flag === 3 || this.flag === '3'
+          || this.flag === 4 || this.flag === '4') {
+          this.router.navigate(['addMain'], {
+            queryParams: {
+              vmCode: urlParse(window.location.search)['vmCode'],
+              token: sessionStorage.getItem('token'),
+              payType: 1
+            }
+          });
+        } else {
+          // WeixinJSBridge.call('closeWindow');
+          this.router.navigate(['main'], {
+            queryParams: {
+              vmCode: urlParse(window.location.search)['vmCode'],
+              token: sessionStorage.getItem('token'),
+              close: '1'
+            }
+          });
         }
       }
+    } else if (ua.match(/AlipayClient/i)) {
+      if (ua.match(/AlipayClient/i)[0] === 'alipayclient') {
+        if (this.flag === 3 || this.flag === '3'
+          || this.flag === 4 || this.flag === '4') {
+          this.router.navigate(['addMain'], {
+            queryParams: {
+              vmCode: urlParse(window.location.search)['vmCode'],
+              token: sessionStorage.getItem('token'),
+              payType: 2
+            }
+          });
+        } else {
+          // window['AlipayJSBridge'].call('closeWebview');
+          this.router.navigate(['aliMain'], {
+            queryParams: {
+              vmCode: urlParse(window.location.search)['vmCode'],
+              token: sessionStorage.getItem('token'),
+              close: '1'
+            }
+          });
+        }
+      }
+    }
   }
+
   getData() {
     this.appService.getAliData(this.appProperties.machineControlUrl,
-      {vmCode:  urlParse(window.location.search)['vmCode']}, this.token).subscribe(
+      {vmCode: urlParse(window.location.search)['vmCode']}, this.token).subscribe(
       data => {
         console.log(data);
         if (data.data.itemList !== '') {
@@ -266,6 +280,7 @@ export class GoodsShowComponent implements OnInit {
       }
     );
   }
+
   // 检测是否关门
   isClosed() {
     this.appService.getDataOpen(this.appProperties.isClosedUrl,
@@ -301,7 +316,7 @@ export class GoodsShowComponent implements OnInit {
               console.log(data3);
               if (data3.data === '') {
                 this.replenishList = [];
-              }  else {
+              } else {
                 this.replenishList = data3.data;
               }
               if (this.flag === 3 || this.flag === '3' || this.flag === 4 || this.flag === '4') {
@@ -322,6 +337,7 @@ export class GoodsShowComponent implements OnInit {
       }
     );
   }
+
   checkEndData() {
     // 支付完成后拿到要显示的数据
     let time;
@@ -355,15 +371,17 @@ export class GoodsShowComponent implements OnInit {
       }
     );
   }
+
   openOk() {
     this.isVisibleOpen = false;
     this.count = 0;
     this.oneGoodsOrMore();
   }
+
   oneGoodsOrMore() {
     const _this = this;
     if (this.flag === 1 || this.flag === '1'
-    || this.flag === 4 || this.flag === '4') {
+      || this.flag === 4 || this.flag === '4') {
       this.timeInterval = setInterval(() => {
         _this.isClosed();
       }, 800);
@@ -380,7 +398,8 @@ export class GoodsShowComponent implements OnInit {
       this.single = true;
     }
   }
-  getToken () {
+
+  getToken() {
     let token;
     if (this.flag === 1 || this.flag === '1'
       || this.flag === 2 || this.flag === '2') {
@@ -401,7 +420,7 @@ export class GoodsShowComponent implements OnInit {
   }
 
   // 查看优惠券
-  openDrawer () {
+  openDrawer() {
 
     const model = document.getElementById('myModel');
     const closed = document.getElementById('closed');
@@ -445,16 +464,24 @@ export class GoodsShowComponent implements OnInit {
     const model = document.getElementById('myModel');
     model.style.display = 'none';
   }
+
   openShowModel() {
     this.wechatVisible = true;
   }
+
   showCancel() {
     this.wechatVisible = false;
   }
-  seeOrder () {
+
+  seeOrder() {
     window.location.href = `http://sms.youshuidaojia.com:9800/orderDetails?token=${this.token}&payType=1&vmCode=${urlParse(window.location.search)['vmCode']}`;
   }
+
   goTo(id, pic, spellgroupId) {
     window.location.href = `http://webapp.youshuidaojia.com/cMain/detail?id=${id}&spellgroupId=${spellgroupId}&pic=${pic}&type=1`;
+  }
+
+  showMore() {
+    window.location.href = 'http://webapp.youshuidaojia.com/cMain/recommendB?itemType=0';
   }
 }

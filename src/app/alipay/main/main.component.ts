@@ -118,13 +118,14 @@ export class MainComponent implements OnInit {
               this.isFourDoor = false;
               this.isFiveDoor = true;
               this.isEightDoor = false;
-              data.returnObject.forEach((item, index) => {
-                if (index > 1) {
-                  this.indexList.push(item);
-                } else {
-                  this.fiveIndexList.push(item);
-                }
-              });
+              this.indexList = data.returnObject;
+              // data.returnObject.forEach((item, index) => {
+              //   if (index > 1) {
+              //     this.indexList.push(item);
+              //   } else {
+              //     this.fiveIndexList.push(item);
+              //   }
+              // });
             } else if (data.returnObject.length === 8) {
               this.isFourDoor = false;
               this.isFiveDoor = false;
@@ -463,5 +464,21 @@ export class MainComponent implements OnInit {
       variable = '';
     }
     return variable;
+  }
+  circleBtn(flag) {
+    if (flag === 1) {
+      window.location.href
+        = `http://sms.youshuidaojia.com:9800/prepaid?vmCode=${urlParse(window.location.search)['vmCode']}&token=${this.token}`;
+    } else if (flag === 2) {
+      window.location.href = `http://sms.youshuidaojia.com:9800/shopGuide?vmCode=${urlParse(window.location.search)['vmCode']}&flag=2`;
+    } else if (flag === 3) {
+      window.location.href = `http://sms.youshuidaojia.com:9800/user?vmCode=${urlParse(window.location.search)['vmCode']}&flag=3`;
+    } else if (flag === 4) {
+      document.getElementsByClassName('ant-modal-body')[2]['style'].cssText = 'padding: 0;';
+      this.isVisibleCouponThree = true;
+    } else if (flag === 5) {
+      document.getElementsByClassName('ant-modal-body')[2]['style'].cssText = 'padding: 0;';
+      this.isVisibleCouponThree = true;
+    }
   }
 }

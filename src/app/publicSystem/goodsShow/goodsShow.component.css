@@ -139,5 +139,6 @@
 .d_theme {
   font-size: 15px;
   margin-top: 4px;
-  color: red
+  color: red;
+  text-align: left;
 }

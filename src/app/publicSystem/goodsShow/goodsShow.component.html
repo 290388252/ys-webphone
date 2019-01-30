@@ -14,11 +14,13 @@
   </div>
   <div [hidden]="flag === '3' || flag === '4'">
     <div class="am-message-main"
-         style="color: #333333; font-size: 14px;margin-top: 26px;font-weight: bold;" *ngIf="payType === '1'">余额支付金额：￥{{priceTwo}}&nbsp;&nbsp;&nbsp;&nbsp;
+         style="color: #333333; font-size: 14px;margin-top: 26px;font-weight: bold;" *ngIf="payType === '1'">
+      余额支付金额：￥{{priceTwo}}&nbsp;&nbsp;&nbsp;&nbsp;
       <span *ngIf="sumDeductionMoney" style="color: #F6151C; font-size: 12px; font-weight: bold; ">优惠金额：￥{{sumDeductionMoney}}</span>
     </div>
     <div class="am-message-main"
-         style="color: #333333; font-size: 14px;margin-top: 26px;font-weight: bold;" *ngIf="payType !== '1'">实付金额：￥{{price}}&nbsp;&nbsp;&nbsp;&nbsp;
+         style="color: #333333; font-size: 14px;margin-top: 26px;font-weight: bold;" *ngIf="payType !== '1'">
+      实付金额：￥{{price}}&nbsp;&nbsp;&nbsp;&nbsp;
       <span *ngIf="sumDeductionMoney" style="color: #F6151C; font-size: 12px; font-weight: bold; ">优惠金额：￥{{sumDeductionMoney}}</span>
     </div>
   </div>
@@ -52,14 +54,16 @@
   </div>
   <div style="margin-top: 18px;margin-bottom: 5px;">
     <button nz-button nzType="default" (click)="exit()">返回首页</button>
-    <button nz-button nzType="dash" style="background-color: #eee;" (click)="seeOrder()" *ngIf="isFollow === 1" [disabled]="checkOrderText === '订单正在支付...'">{{checkOrderText}}
+    <button nz-button nzType="dash" style="background-color: #eee;" (click)="seeOrder()" *ngIf="isFollow === 1"
+            [disabled]="checkOrderText === '订单正在支付...'">{{checkOrderText}}
     </button>
   </div>
   <div [hidden]="flag === '3' || flag === '4'" *ngIf="isFollow === 0"
        style="margin: 20px 0px; color: #3e85ff; font-size: 12px;">
     <a href="javascript:void(0);" (click)="openShowModel()">关注公众号查看订单&nbsp;&gt;</a>
   </div>
-  <div [hidden]="flag === '3' || flag === '4' || youshuiCompany === false" style="background-color: #f3f3f3;height: 124px;padding-top: 5px;">
+  <div [hidden]="flag === '3' || flag === '4' || youshuiCompany === false"
+       style="background-color: #f3f3f3;height: 124px;padding-top: 5px;">
     <div
       style="width: 100%;height: 108px;margin-top: 5px;background-image: url('../../../assets/main/my_recommon.png');background-size: 100% 100%;">
       <div style="padding-top: 25px;font-size: 12px;">
@@ -81,6 +85,26 @@
       <p style="color: #666666;font-size: 12px;"><img src="../../../assets/main/my_wechat.png">&nbsp;微信用户长按二维码点击“关注”</p>
       <p style="color: #666666;font-size: 12px;"><img src="../../../assets/main/my_ailipay.png">&nbsp;支付宝用户长按保存二维码到微信扫码关注
       </p>
+    </div>
+  </div>
+  <div style="margin-bottom: 66px;">
+    <div
+      style="width: 100%;height: 40px;line-height: 42px;font-size: 14px;font-weight: bold;position: relative;text-align: left;padding-left: 4px;border-top: 1px solid #dedede;border-bottom: 1px solid #dedede">
+      拼团进行中 <span
+      style="height: 40px;font-size: 14px;position: absolute;right: 4px;top: 1px;color: #666666" (click)="showMore()">查看更多></span>
+    </div>
+    <div class="detail" (click)="goTo(item.id, item.pic, item.spellgroupId)" *ngFor="let item of grouponList">
+      <div class="detail_left">
+        <img [src]="img+item.pic" style="width: 100%;height: 100%;">
+      </div>
+      <div class="detail_right">
+        <div class="d_title">
+          <img class="d_icon" src="../../../assets/main/icon-group.png" alt=""/>
+          {{item.name}}
+        </div>
+        <div class="d_theme">{{item.spellgroupName}}</div>
+        <div style="text-align: left">￥{{item.salesPrice}}元</div>
+      </div>
     </div>
   </div>
   <!--<div [hidden]="flag === '3' || flag === '4'" class="am-message-sub">广州优水到家工程感谢你的惠顾,系统将从零钱或者银行卡中自动扣取本次购买费用。点击右上角分享给好友可一起领取优惠券</div>-->
@@ -159,7 +183,8 @@
     <img style="width: 100%;" src="../../../assets/main/tips.png" alt="">
   </div>
 </div>
-<nz-modal [nzVisible]="isVisibleOpen" [nzTitle]="modalTitle" [nzContent]="modalContent" [nzFooter]="modalFooter" [nzClosable]="false">
+<nz-modal [nzVisible]="isVisibleOpen" [nzTitle]="modalTitle" [nzContent]="modalContent" [nzFooter]="modalFooter"
+          [nzClosable]="false">
   <ng-template #modalTitle>
     <h6>优水到家提醒</h6>
   </ng-template>
@@ -181,7 +206,8 @@
     <button nz-button nzType="primary" (click)="fixedYes()">修改</button>
   </ng-template>
 </nz-modal>
-<nz-modal [nzVisible]="isVisibleWarn" [nzTitle]="modalTitleWarn" [nzContent]="modalContentWarn" [nzFooter]="modalFooterWarn" [nzClosable]="false">
+<nz-modal [nzVisible]="isVisibleWarn" [nzTitle]="modalTitleWarn" [nzContent]="modalContentWarn"
+          [nzFooter]="modalFooterWarn" [nzClosable]="false">
   <ng-template #modalTitleWarn>
     <h6>优水到家提醒</h6>
   </ng-template>
@@ -252,18 +278,4 @@
     </div>
   </div>
 </div>
-<div style="margin-bottom: 66px;">
-  <div class="detail" (click)="goTo(item.id, item.pic, item.spellgroupId)" *ngFor="let item of grouponList">
-    <div class="detail_left">
-      <img [src]="img+item.pic" style="width: 100%;height: 100%;">
-    </div>
-    <div class="detail_right">
-      <div class="d_title">
-        <img class="d_icon" src="../../../assets/main/icon-group.png" alt="" />
-        {{item.name}}
-      </div>
-      <div class="d_theme">{{item.spellgroupName}}</div>
-      <div>￥{{item.salesPrice}}元</div>
-    </div>
-  </div>
-</div>
+
