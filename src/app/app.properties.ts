@@ -7,6 +7,7 @@ export class AppProperties {
   public appUrl: string;
   public adminUrl: string;
   public imgUrl: string;
+  public grouponImgUrl: string;
   public vmAdvertisingImg: string;
   public isClosedUrl: string;
   public adminOauth2Url: string;
@@ -70,6 +71,7 @@ export class AppProperties {
     this.adminUrl = 'http://119.23.233.123:6662/ys_admin';
     this.vmAdvertisingImg = this.adminUrl + '/vmAdvertisingImg/';
     this.imgUrl = this.adminUrl + '/files/';
+    this.grouponImgUrl = this.adminUrl + '/shoppingGoodsImg/';
     this.isClosedUrl = this.appUrl + '/wechat/isClosed';
     this.adminOauth2Url = this.appUrl + '/admin/oauth2';
     this.gameGetGamePrize = this.appUrl + '/game/getGamePrize';

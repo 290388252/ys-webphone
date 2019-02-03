@@ -30,7 +30,7 @@ export class AppComponent implements OnInit {
         }
       });
     } else if (flag === 2) {
-      window.location.href = `http://sms.youshuidaojia.com:9800/shopGuide?vmCode=${urlParse(window.location.search)['vmCode']}&flag=2`;
+      window.location.href = `http://sms.youshuidaojia.com:9800/coupon?vmCode=${urlParse(window.location.search)['vmCode']}&coupon=1&flag=2`;
     } else if (flag === 3) {
       window.location.href = `http://sms.youshuidaojia.com:9800/user?vmCode=${urlParse(window.location.search)['vmCode']}&flag=3`;
     } else if (flag === 4) {

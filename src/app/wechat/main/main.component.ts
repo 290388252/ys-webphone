@@ -112,10 +112,8 @@ export class MainComponent implements OnInit {
 
   // 数据初始化
   getInitData() {
-    console.log('111');
     this.appService.postData(this.appProperties.machineInfoGetCompanyIdUrl + urlParse(window.location.search)['vmCode'], '').subscribe(
       data2 => {
-
         console.log(data2);
         if (getActiveCompanyId().includes(data2.returnObject.toString())) {
           this.youshuiCompany = false;
@@ -448,7 +446,7 @@ export class MainComponent implements OnInit {
               } else if (data.status === 4003) {
                 this.isVisibleOpenDoor = false;
                 this.isConfirmLoading = false;
-                alert('您有未支付订单请点击我的订单支付完毕再进行购水！');
+                alert('您有未支付订单请点击我的订单支付完毕再进行购水！感谢您的光临！');
                 this.router.navigate(['detail'], {
                   queryParams: {
                     vmCode: urlParse(window.location.search)['vmCode'],
@@ -458,7 +456,7 @@ export class MainComponent implements OnInit {
               } else if (data.status === 0) {
                 this.isVisibleOpenDoor = false;
                 this.isConfirmLoading = false;
-                alert('开门失败');
+                alert('因当前网络信号弱，机器未能收到您的开门请求，请网络恢复后再进行购买，给您带来不便我们深感抱歉！感谢您的光临！');
               } else if (data.status === 91) {
                 this.isVisibleOpenDoor = false;
                 this.isConfirmLoading = false;
@@ -669,7 +667,12 @@ export class MainComponent implements OnInit {
     } else if (flag === 2) {
       window.location.href = `http://sms.youshuidaojia.com:9800/shopGuide?vmCode=${urlParse(window.location.search)['vmCode']}&flag=2`;
     } else if (flag === 3) {
-      window.location.href = `http://sms.youshuidaojia.com:9800/user?vmCode=${urlParse(window.location.search)['vmCode']}&flag=3`;
+      this.router.navigate(['shareGzh'], {
+        queryParams: {
+          vmCode: urlParse(window.location.search)['vmCode'],
+          token: this.token
+        }
+      });
     } else if (flag === 4) {
       document.getElementsByClassName('ant-modal-body')[4]['style'].cssText = 'padding: 0;';
       this.isVisibleCouponThree = true;

@@ -30,6 +30,7 @@ export class GoodsShowComponent implements OnInit {
   private timeInterval;
   public flag;
   public img = this.appProperties.imgUrl;
+  public grouponImg = this.appProperties.grouponImgUrl;
   public replenishList = [];
   public aliPay = false;
   public youshuiCompany = false;
@@ -51,6 +52,7 @@ export class GoodsShowComponent implements OnInit {
   public waterVoucherList = [];
   public payType;
   public grouponList;
+  public grouponShow;
 
   constructor(private router: Router,
               private appProperties: AppProperties,
@@ -98,6 +100,12 @@ export class GoodsShowComponent implements OnInit {
     this.appService.postFormData(this.appProperties.payFinishGrouponUrl, '', this.token).subscribe(
       data => {
         this.grouponList = data.returnObject;
+        console.log(this.grouponList.length > 0);
+        if (this.grouponList.length > 0) {
+          this.grouponShow = true;
+        } else {
+          this.grouponShow = false;
+        }
       },
       error => {
         console.log(error);

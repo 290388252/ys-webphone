@@ -472,7 +472,12 @@ export class MainComponent implements OnInit {
     } else if (flag === 2) {
       window.location.href = `http://sms.youshuidaojia.com:9800/shopGuide?vmCode=${urlParse(window.location.search)['vmCode']}&flag=2`;
     } else if (flag === 3) {
-      window.location.href = `http://sms.youshuidaojia.com:9800/user?vmCode=${urlParse(window.location.search)['vmCode']}&flag=3`;
+      this.router.navigate(['shareGzh'], {
+        queryParams: {
+          vmCode: urlParse(window.location.search)['vmCode'],
+        token: this.token
+        }
+      });
     } else if (flag === 4) {
       document.getElementsByClassName('ant-modal-body')[2]['style'].cssText = 'padding: 0;';
       this.isVisibleCouponThree = true;

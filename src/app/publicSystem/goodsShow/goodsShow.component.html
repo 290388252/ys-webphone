@@ -58,6 +58,26 @@
             [disabled]="checkOrderText === '订单正在支付...'">{{checkOrderText}}
     </button>
   </div>
+  <div style="margin-bottom: 4px;margin-top: 4px;" *ngIf="grouponShow">
+    <div
+      style="width: 100%;height: 40px;line-height: 42px;font-size: 14px;font-weight: bold;position: relative;text-align: left;padding-left: 4px;border-top: 1px solid #dedede;border-bottom: 1px solid #dedede">
+      拼团进行中 <span
+      style="height: 40px;font-size: 14px;position: absolute;right: 4px;top: 1px;color: #666666" (click)="showMore()">查看更多></span>
+    </div>
+    <div class="detail" (click)="goTo(item.id, item.pic, item.spellgroupId)" *ngFor="let item of grouponList">
+      <div class="detail_left">
+        <img [src]="grouponImg+item.pic" style="width: 100%;height: 100%;">
+      </div>
+      <div class="detail_right">
+        <div class="d_title">
+          <img class="d_icon" src="../../../assets/main/icon-group.png" alt=""/>
+          {{item.name}}
+        </div>
+        <div class="d_theme">{{item.spellgroupName}}</div>
+        <div style="text-align: left">￥{{item.salesPrice}}元</div>
+      </div>
+    </div>
+  </div>
   <div [hidden]="flag === '3' || flag === '4'" *ngIf="isFollow === 0"
        style="margin: 20px 0px; color: #3e85ff; font-size: 12px;">
     <a href="javascript:void(0);" (click)="openShowModel()">关注公众号查看订单&nbsp;&gt;</a>
@@ -87,26 +107,7 @@
       </p>
     </div>
   </div>
-  <div style="margin-bottom: 66px;">
-    <div
-      style="width: 100%;height: 40px;line-height: 42px;font-size: 14px;font-weight: bold;position: relative;text-align: left;padding-left: 4px;border-top: 1px solid #dedede;border-bottom: 1px solid #dedede">
-      拼团进行中 <span
-      style="height: 40px;font-size: 14px;position: absolute;right: 4px;top: 1px;color: #666666" (click)="showMore()">查看更多></span>
-    </div>
-    <div class="detail" (click)="goTo(item.id, item.pic, item.spellgroupId)" *ngFor="let item of grouponList">
-      <div class="detail_left">
-        <img [src]="img+item.pic" style="width: 100%;height: 100%;">
-      </div>
-      <div class="detail_right">
-        <div class="d_title">
-          <img class="d_icon" src="../../../assets/main/icon-group.png" alt=""/>
-          {{item.name}}
-        </div>
-        <div class="d_theme">{{item.spellgroupName}}</div>
-        <div style="text-align: left">￥{{item.salesPrice}}元</div>
-      </div>
-    </div>
-  </div>
+
   <!--<div [hidden]="flag === '3' || flag === '4'" class="am-message-sub">广州优水到家工程感谢你的惠顾,系统将从零钱或者银行卡中自动扣取本次购买费用。点击右上角分享给好友可一起领取优惠券</div>-->
   <!--<div *ngIf="youshuiCompany" [hidden]="flag === '3' || flag === '4'" class="am-message-sub" style="color: #118ee8;font-weight: 600">关注“优水到家”微信公众号，领取100元购水大礼包</div>-->
   <!--<div *ngIf="youshuiCompany" [hidden]="flag === '3' || flag === '4'">-->

@@ -18,7 +18,7 @@
         <!--</slide>-->
       <!--</carousel>-->
       <!---->
-      <carousel [showIndicators]="false" [interval]="3000">
+      <carousel [showIndicators]="false" [interval]="3000" style="position: relative;">
         <!--新年主题-->
         <slide>
           <img src="../../../assets/main/newyearBanner.png" alt="first slide" style="display: block; width: 100%;" (click)="bannerTo('1')">
@@ -32,6 +32,8 @@
           <img src="../../../assets/main/leasingBanner.png" alt="third slide" style="display: block; width: 100%;">
         </slide>
         <!--198水机-->
+        <!--icon-->
+        <img src="../../../assets/main/vipcnIcon.png" class="vipcnIcon">
       </carousel>
       <!--<img *ngIf="isFiveDoor" (click)="vmLogin()" src="../../../assets/main/lianye.png" alt="..." class="lianye-logo">-->
       <!--<p *ngIf="isFiveDoor" style="font-weight: 600">联业智能</p>-->
