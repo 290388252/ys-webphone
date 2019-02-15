@@ -650,6 +650,11 @@ export class MainComponent implements OnInit {
     return variable;
   }
 
+  /**
+   * 2018-01-01
+   * @author 严超
+   * 内容.................
+   */
   bannerTo(val) {
     if (val === '1') {
       window.location.href = 'http://webapp.youshuidaojia.com/cMain/recommendB?itemType=0';

@@ -49,7 +49,7 @@
       <!--立即参与-->
       <!--<p class="title">.</p>-->
     </div>
-  <div class="titleList">
+  <div class="titleList" [hidden]="youshuiCompany">
     <div class="titleList_in" (click)="circleBtn(1)">
       <img src="../../../assets/main/mainIcon1.png" class="title_topImg">
       <div class="title_bottom">充&nbsp;&nbsp;&nbsp;&nbsp;值</div>
@@ -239,10 +239,10 @@
   </nz-modal>
   <nz-modal [nzVisible]="advertiseMentShow" [nzContent]="modalContentCoupon" [nzFooter]="false" [nzClosable]="false">
     <ng-template #modalContentCoupon>
-      <img [src]="advertiseMentPic" alt="" style="width: 100%;position: absolute;right: 0;top: 0;">
+      <img [src]="advertiseMentPic" alt="" style="width: 84%;position: absolute;right: 8%;top: 0;">
       <img (click)="closeAdvertise()" src="../../../assets/main/cancel.png" alt=""
-           style="width: 10%; position: absolute;right: 10px;top: 10px;">
-      <div style="text-align: center;width: 100%;position: absolute;margin-top: 70%;" *ngIf="showPrepaid">
+           style="width: 8%; position: absolute;right: 10%;top: 2px;">
+      <div style="text-align: center;width: 100%;position: absolute;margin-top: 65%;" *ngIf="showPrepaid">
         <img (click)="prepaid()" src="../../../assets/main/prepaidIcon.png" alt=""
              style="width: 30%;">
       </div>

@@ -89,10 +89,9 @@ export class GoodsShowComponent implements OnInit {
     } else {
       this.aliPay = false;
     }
-    this.isVisibleOpen = false;
+    document.getElementsByClassName('ant-modal-body')[0]['style'].cssText = 'padding: 0;';
+    this.isVisibleOpen = true;
     this.isVisibleFixed = false;
-    console.log(this.token);
-    console.log(this.flag);
     this.oneGoodsOrMore();
   }
 
@@ -295,7 +294,8 @@ export class GoodsShowComponent implements OnInit {
       {vmCode: urlParse(window.location.search)['vmCode']}, this.token).subscribe(
       data2 => {
         this.count++;
-        if (this.count === 25) {
+        if (this.count === 10) {
+          document.getElementsByClassName('ant-modal-body')[0]['style'].cssText = 'padding: 0;';
           this.isVisibleOpen = true;
           clearInterval(this.timeInterval);
         }

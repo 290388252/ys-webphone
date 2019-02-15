@@ -184,19 +184,13 @@
     <img style="width: 100%;" src="../../../assets/main/tips.png" alt="">
   </div>
 </div>
-<nz-modal [nzVisible]="isVisibleOpen" [nzTitle]="modalTitle" [nzContent]="modalContent" [nzFooter]="modalFooter"
-          [nzClosable]="false">
-  <ng-template #modalTitle>
-    <h6>优水到家提醒</h6>
-  </ng-template>
-  <ng-template #modalContent>
-    <p [hidden]="flag === '3' || flag === '4'" style="font-size: medium;">温馨提示：买完水记得关门，不然别人买水你买单哦！</p>
-    <p [hidden]="flag === '1' || flag === '2'" style="font-size: medium;">温馨提示：买完水记得关门，不然别人买水你买单哦！</p>
-  </ng-template>
-  <ng-template #modalFooter>
-    <button nz-button nzType="primary" (click)="openOk()">好的</button>
+<nz-modal [nzVisible]="isVisibleOpen" [nzContent]="modalContentCoupon" [nzFooter]="false" [nzClosable]="false">
+  <ng-template #modalContentCoupon>
+    <img  src="../../../assets/main/openTips.png" alt="" style="width: 100%">
+    <img class="all-right-btn" src="../../../assets/main/allright.png" alt="" (click)="openOk()">
   </ng-template>
 </nz-modal>
+
 <nz-modal [nzVisible]="isVisibleFixed" [nzContent]="modalContentFixed" [nzFooter]="modalFooterFixed"
           [nzClosable]="false">
   <ng-template #modalContentFixed>

@@ -19,6 +19,20 @@
   background-color: rgba(0, 0, 0, 0.4);
 }
 
+.openTips{
+  width: 98%;
+  position: absolute;
+  top: 20%;
+  margin-left: 1%;
+  border: 1px solid #c3c3c3;
+  border-radius: 5px;
+}
+.all-right-btn{
+  width: 80px;
+  position: absolute;
+  bottom: 8px;
+  left: 35%;
+}
 .model-content {
   position: fixed;
   width: 100%;
