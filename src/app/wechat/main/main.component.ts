@@ -110,8 +110,17 @@ export class MainComponent implements OnInit {
     window.location.href = 'http://sms.youshuidaojia.com:9800/prepaid?vmCode=' + urlParse(window.location.href)['vmCode'];
   }
 
-  // 数据初始化
+  /**
+   * 2019-02-16
+   * @author YanChao
+   * 数据初始化
+   */
   getInitData() {
+    /**
+     * 2019-02-16
+     * @author YanChao
+     * 判断公司id
+     */
     this.appService.postData(this.appProperties.machineInfoGetCompanyIdUrl + urlParse(window.location.search)['vmCode'], '').subscribe(
       data2 => {
         console.log(data2);
@@ -150,6 +159,11 @@ export class MainComponent implements OnInit {
       error2 => {
         console.log(error2);
       });
+    /**
+     * 2019-02-16
+     * @author YanChao
+     * 获取机器数据
+     */
     this.appService.getData(this.appProperties.indexListUrl, {vmCode: urlParse(window.location.search)['vmCode'], type: 1}).subscribe(
       data => {
         console.log(data);
@@ -188,6 +202,11 @@ export class MainComponent implements OnInit {
         console.log(error);
       }
     );
+    /**
+     * 2019-02-16
+     * @author YanChao
+     * 广告弹窗
+     */
     this.appService.postFormDataNone(this.appProperties.vdAdvertisingMachinesFindShowAdvertisingUrl,
       {vmCode: urlParse(window.location.search)['vmCode']}).subscribe(
       data => {
@@ -223,7 +242,11 @@ export class MainComponent implements OnInit {
     );
 
   }
-
+  /**
+   * 2019-02-16
+   * @author YanChao
+   * 买一送一活动图片
+   */
   showActiveItem(item, baoliCompany) {
     let flag;
     const list = getActiveItemId();
@@ -257,7 +280,11 @@ export class MainComponent implements OnInit {
     return flag;
   }
 
-  // 开门
+  /**
+   * 2019-02-16
+   * @author YanChao
+   * 开门
+   */
   openDoor(item) {
     this.item = item;
     if (item.num <= 0) {
@@ -296,7 +323,11 @@ export class MainComponent implements OnInit {
       this.eightIndexList = this.indexList.slice(4, 8);
     }
   }
-
+  /**
+   * 2019-02-16
+   * @author YanChao
+   * 关注公众号
+   */
   follow() {
     window.location.href = 'https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzU0NzQ4MTY0Mg==&scene=124#wechat_redirect';
   }
@@ -309,7 +340,11 @@ export class MainComponent implements OnInit {
     document.cookie = 'coupon=' + 1;
   }
 
-  // 运维登陆
+  /**
+   * 2019-02-16
+   * @author YanChao
+   * 运维登陆
+   */
   vmLogin(flag) {
     if (flag === 1) {
       // 微信授权登陆验证
@@ -354,7 +389,11 @@ export class MainComponent implements OnInit {
     }
   }
 
-  // 订单详情
+  /**
+   * 2019-02-16
+   * @author YanChao
+   * 订单详情
+   */
   product(flag) {
     // this.router.navigate(['product'], {
     //   queryParams: {
@@ -374,7 +413,11 @@ export class MainComponent implements OnInit {
     this.couponButtonHidden = !this.couponButtonHidden;
   }
 
-  // 新用户登陆
+  /**
+   * 2019-02-16
+   * @author YanChao
+   * 新用户登陆
+   */
   login() {
     this.appService.getData(this.appProperties.wechatOauth2Url, {vmCode: urlParse(window.location.href)['vmCode']}).subscribe(
       data => {
@@ -405,7 +448,11 @@ export class MainComponent implements OnInit {
     this.currentModal.destroy('onOk');
   }
 
-  // 确定开门
+  /**
+   * 2019-02-16
+   * @author YanChao
+   * 确定开门
+   */
   yesOpenDoor() {
     this.isConfirmLoading = true;
     this.openDoorMsg = '正在开门请稍等！';
@@ -485,7 +532,11 @@ export class MainComponent implements OnInit {
       }
     }, 1000);
   }
-
+  /**
+   * 2019-02-16
+   * @author YanChao
+   * 检测是否开门
+   */
   checkIsOpen(flag) {
     this.checkTimes--;
     let time;
@@ -516,6 +567,7 @@ export class MainComponent implements OnInit {
         } else if (data.status === 0) {
           if (this.checkTimes === 0) {
             alert('网络延迟，请重试开门');
+            this.isVisibleOpenDoor = false;
             clearTimeout(time);
             this.checkTimes = 10;
           } else {
@@ -531,7 +583,11 @@ export class MainComponent implements OnInit {
     );
   }
 
-  // 确定关门
+  /**
+   * 2019-02-16
+   * @author YanChao
+   * 确定关门
+   */
   noOpenDoor() {
     this.isVisibleOpenDoor = false;
     this.isVisibleNoMoney = false;
@@ -539,7 +595,11 @@ export class MainComponent implements OnInit {
     this.openDoorMsg = '是否要开门?';
     this.openDoorMsgKey = '';
   }
-
+  /**
+   * 2019-02-16
+   * @author YanChao
+   * 免密支付
+   */
   openNoPassMoney() {
     this.appService.getDataOpen(this.appProperties.nonePassWordPayUrl,
       {vmCode: urlParse(window.location.href)['vmCode']}).subscribe(
@@ -552,9 +612,12 @@ export class MainComponent implements OnInit {
       }
     );
   }
-
+  /**
+   * 2019-02-16
+   * @author YanChao
+   * 判断是否为优水用户
+   */
   gotoSendMoney() {
-    // 判断是否为优水用户
     this.appService.postAliData(this.appProperties.tblCustomerMyInfo, {}, urlParse(window.location.search)['token']).subscribe(
       data => {
         if (data.status === -66) {
@@ -569,7 +632,11 @@ export class MainComponent implements OnInit {
       }
     );
   }
-
+  /**
+   * 2019-02-16
+   * @author YanChao
+   * 扫码
+   */
   scan() {
     const u = navigator.userAgent, app = navigator.appVersion;
     const isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
@@ -616,7 +683,11 @@ export class MainComponent implements OnInit {
     }
   }
 
-  // 获取token
+  /**
+   * 2019-02-16
+   * @author YanChao
+   * 获取token
+   */
   getCookies() {
     if (this.token === null || this.token === undefined || this.token === 'undefined') {
       const strCookie = document.cookie;
@@ -629,7 +700,11 @@ export class MainComponent implements OnInit {
       }
     }
   }
-
+  /**
+   * 2019-02-16
+   * @author YanChao
+   * 图片转换和判空
+   */
   turnImg(item) {
     let img;
     if (item.length > 1) {
@@ -652,8 +727,8 @@ export class MainComponent implements OnInit {
 
   /**
    * 2018-01-01
-   * @author 严超
-   * 内容.................
+   * @author Yanchao
+   * 轮播图
    */
   bannerTo(val) {
     if (val === '1') {
@@ -665,6 +740,11 @@ export class MainComponent implements OnInit {
       // window.location.href = 'http://webapp.youshuidaojia.com/cMain/detail?id=63&spellgroupId=0&pic=6d4d5864-7cf9-40a1-82df-a6acea58da10.jpg&type=1';
     }
   }
+  /**
+   * 2019-02-16
+   * @author YanChao
+   * 菜单选择
+   */
   circleBtn(flag) {
     if (flag === 1) {
       window.location.href

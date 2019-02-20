@@ -1,4 +1,9 @@
 // Created by Yanchao in 16/05/2018
+/**
+ * 2019-02-16
+ * @author YanChao
+ * 获取url地址信息
+ */
 export let urlParse = (url) => {
   const obj = {};
   const reg = /[?&][^?&]+=[^?&]+/g;
@@ -14,6 +19,11 @@ export let urlParse = (url) => {
   }
   return obj;
 };
+/**
+ * 2019-02-16
+ * @author YanChao
+ * 获取OpenId
+ */
 export let getOpenId = () => {
   const url = window.location.href.toString();
   const arrUrl = url.split('?');
@@ -26,6 +36,11 @@ export let getOpenId = () => {
   }
   return openId;
 };
+/**
+ * 2019-02-16
+ * @author YanChao
+ * 获取机器编码
+ */
 export let getVmCode = () => {
   const url = window.location.href.toString();
   const arrUrl = url.split('?');
@@ -38,9 +53,19 @@ export let getVmCode = () => {
   }
   return vmCode;
 };
+/**
+ * 2019-02-16
+ * @author YanChao
+ * 检测手机号码
+ */
 export let checkPhone = (phone) => {
   return /^1[0123456789]\d{9}$/.test(phone);
 };
+/**
+ * 2019-02-16
+ * @author YanChao
+ * 获取coupon值
+ */
 export let getCoupon = () => {
   let coupon;
   const strCookie = document.cookie;
@@ -53,6 +78,11 @@ export let getCoupon = () => {
   }
   return coupon;
 };
+/**
+ * 2019-02-16
+ * @author YanChao
+ * 获取newUser值
+ */
 export let getNewUser = () => {
   let newUser;
   const strCookie = document.cookie;
@@ -65,9 +95,19 @@ export let getNewUser = () => {
   }
   return newUser;
 };
+/**
+ * 2019-02-16
+ * @author YanChao
+ * 活动id
+ */
 export let getActiveItemId = () => {
   return ['2194', '2975'];
 };
+/**
+ * 2019-02-16
+ * @author YanChao
+ * 活动公司id
+ */
 export let getActiveCompanyId = () => {
   return ['76', '113', '114', '115', '116', '117', '119', '130', '113', '141', '142', '143', '144', '147', '148', '123'];
 };

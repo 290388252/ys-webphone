@@ -16,7 +16,11 @@ export class MiddleComponent implements OnInit {
   ngOnInit() {
     this.IsWeixinOrAlipay();
   }
-  // 判断是微信登陆还是支付宝登陆
+  /**
+   * 2019-02-16
+   * @author YanChao
+   * 判断是微信登陆还是支付宝登陆
+   */
   IsWeixinOrAlipay() {
     const ua = window.navigator.userAgent.toLowerCase();
     if (ua.match(/MicroMessenger/i)) {
@@ -66,7 +70,11 @@ export class MiddleComponent implements OnInit {
       // );
     }
   }
-  // 获取页面地址参数
+  /**
+   * 2019-02-16
+   * @author YanChao
+   * 获取页面地址参数
+   */
   urlParse(url): object {
     const obj = {};
     const reg = /[?&][^?&]+=[^?&]+/g;
@@ -81,7 +89,11 @@ export class MiddleComponent implements OnInit {
     }
     return obj;
   }
-  // 新用户登陆
+  /**
+   * 2019-02-16
+   * @author YanChao
+   * 新用户登陆
+   */
   login() {
     this.appService.getData(this.appProperties.wechatOauth2Url, {vmCode: urlParse(window.location.href)['vmCode']}).subscribe(
       data => {

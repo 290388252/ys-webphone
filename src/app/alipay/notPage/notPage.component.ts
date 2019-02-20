@@ -19,7 +19,11 @@ export class NotPageComponent implements OnInit {
   }
   ngOnInit() {}
 
-  // 判断是微信登陆还是支付宝登陆
+  /**
+   * 2019-02-16
+   * @author YanChao
+   * 判断是微信登陆还是支付宝登陆
+   */
   urlParse(url): object {
     const obj = {};
     const reg = /[?&][^?&]+=[^?&]+/g;

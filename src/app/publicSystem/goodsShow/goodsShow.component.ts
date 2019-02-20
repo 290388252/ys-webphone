@@ -90,11 +90,15 @@ export class GoodsShowComponent implements OnInit {
       this.aliPay = false;
     }
     document.getElementsByClassName('ant-modal-body')[0]['style'].cssText = 'padding: 0;';
-    this.isVisibleOpen = true;
+    this.isVisibleOpen = false;
     this.isVisibleFixed = false;
     this.oneGoodsOrMore();
   }
-
+  /**
+   * 2019-02-16
+   * @author YanChao
+   * 数据初始化
+   */
   getInit() {
     this.appService.postFormData(this.appProperties.payFinishGrouponUrl, '', this.token).subscribe(
       data => {
@@ -111,7 +115,11 @@ export class GoodsShowComponent implements OnInit {
       }
     );
   }
-
+  /**
+   * 2019-02-16
+   * @author YanChao
+   * 文字转换
+   */
   turnText(item) {
     let text;
     if (item.changeNum < 0) {
@@ -121,11 +129,19 @@ export class GoodsShowComponent implements OnInit {
     }
     return text;
   }
-
+  /**
+   * 2019-02-16
+   * @author YanChao
+   * 关注公众号
+   */
   follow() {
     window.location.href = 'https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzU0NzQ4MTY0Mg==&scene=124#wechat_redirect';
   }
-
+  /**
+   * 2019-02-16
+   * @author YanChao
+   * 分享连接
+   */
   share() {
     this.appService.postAliData(this.appProperties.wechatShareInfoUrl
       + '?url=http://sms.youshuidaojia.com/goodsShow?vmCode=' + urlParse(window.location.href)['vmCode'],
@@ -200,7 +216,11 @@ export class GoodsShowComponent implements OnInit {
   yes() {
     this.isVisibleWarn = false;
   }
-
+  /**
+   * 2019-02-16
+   * @author YanChao
+   * 补货人员修改补货数据
+   */
   fixedYes() {
     this.appService.postAliData(this.appProperties.machineControlAdjustReplenish +
       `vmCode=${urlParse(window.location.search)['vmCode']}&wayNum=${this.wayNum}&basicItemId=${this.basicItemId}&adjustNum=${this.num}`,
@@ -220,7 +240,11 @@ export class GoodsShowComponent implements OnInit {
       }
     );
   }
-
+  /**
+   * 2019-02-16
+   * @author YanChao
+   * 返回首页，判断微信or支付宝
+   */
   exit() {
     const ua = window.navigator.userAgent.toLowerCase();
     if (ua.match(/MicroMessenger/i)) {
@@ -269,7 +293,11 @@ export class GoodsShowComponent implements OnInit {
       }
     }
   }
-
+  /**
+   * 2019-02-16
+   * @author YanChao
+   * 获取机器数据
+   */
   getData() {
     this.appService.getAliData(this.appProperties.machineControlUrl,
       {vmCode: urlParse(window.location.search)['vmCode']}, this.token).subscribe(
@@ -287,8 +315,11 @@ export class GoodsShowComponent implements OnInit {
       }
     );
   }
-
-  // 检测是否关门
+  /**
+   * 2019-02-16
+   * @author YanChao
+   * 检测是否关门
+   */
   isClosed() {
     this.appService.getDataOpen(this.appProperties.isClosedUrl,
       {vmCode: urlParse(window.location.search)['vmCode']}, this.token).subscribe(
@@ -345,9 +376,12 @@ export class GoodsShowComponent implements OnInit {
       }
     );
   }
-
+  /**
+   * 2019-02-16
+   * @author YanChao
+   * 支付完成后拿到要显示的数据
+   */
   checkEndData() {
-    // 支付完成后拿到要显示的数据
     let time;
     this.appService.getAliData(this.appProperties.storeOrderFininshPayUrl, {vmCode: urlParse(window.location.search)['vmCode']},
       this.token).subscribe(
@@ -385,7 +419,11 @@ export class GoodsShowComponent implements OnInit {
     this.count = 0;
     this.oneGoodsOrMore();
   }
-
+  /**
+   * 2019-02-16
+   * @author YanChao
+   * 判断单商品还是多商品机器
+   */
   oneGoodsOrMore() {
     const _this = this;
     if (this.flag === 1 || this.flag === '1'
@@ -406,7 +444,11 @@ export class GoodsShowComponent implements OnInit {
       this.single = true;
     }
   }
-
+  /**
+   * 2019-02-16
+   * @author YanChao
+   * 获取token
+   */
   getToken() {
     let token;
     if (this.flag === 1 || this.flag === '1'
@@ -427,7 +469,11 @@ export class GoodsShowComponent implements OnInit {
     }
   }
 
-  // 查看优惠券
+  /**
+   * 2019-02-16
+   * @author YanChao
+   * // 查看优惠券
+   */
   openDrawer() {
 
     const model = document.getElementById('myModel');
@@ -441,8 +487,12 @@ export class GoodsShowComponent implements OnInit {
       }
     });
 
-    // 判断是使用优惠券还是提水券type为1是优惠券，type=2为提水券
-    // 使用优惠券
+    /**
+     * 2019-02-16
+     * @author YanChao
+     * 判断是使用优惠券还是提水券type为1是优惠券，type=2为提水券
+     * 使用优惠券
+     */
     if (this.type === '1') {
       this.appService.postAliData(this.appProperties.useCouponUrl, this.couponId, this.token).subscribe(
         data => {
@@ -455,7 +505,11 @@ export class GoodsShowComponent implements OnInit {
         }
       );
     }
-    // 使用提水券
+    /**
+     * 2019-02-16
+     * @author YanChao
+     * 使用提水券
+     */
     if (this.type === '2') {
       this.appService.postAliData(this.appProperties.useWaterVouchersUrl, {orderId: this.orderId}, this.token).subscribe(
         data => {
@@ -476,15 +530,27 @@ export class GoodsShowComponent implements OnInit {
   openShowModel() {
     this.wechatVisible = true;
   }
-
+  /**
+   * 2019-02-16
+   * @author YanChao
+   * 取消弹框
+   */
   showCancel() {
     this.wechatVisible = false;
   }
-
+  /**
+   * 2019-02-16
+   * @author YanChao
+   * 跳转去订单详情支付
+   */
   seeOrder() {
     window.location.href = `http://sms.youshuidaojia.com:9800/orderDetails?token=${this.token}&payType=1&vmCode=${urlParse(window.location.search)['vmCode']}`;
   }
-
+  /**
+   * 2019-02-16
+   * @author YanChao
+   * 跳转去订单详情
+   */
   goTo(id, pic, spellgroupId) {
     window.location.href = `http://webapp.youshuidaojia.com/cMain/detail?id=${id}&spellgroupId=${spellgroupId}&pic=${pic}&type=1`;
   }

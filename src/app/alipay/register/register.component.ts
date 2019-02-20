@@ -35,11 +35,19 @@ export class RegisterComponent implements OnInit {
       password: [ null, [ Validators.required ] ]
     });
   }
-  // 手机点击小键盘时获取焦点更改屏幕高度
+  /**
+   * 2019-02-16
+   * @author YanChao
+   * 手机点击小键盘时获取焦点更改屏幕高度
+   */
   focusCode() {
     document.getElementById('containers').style.height = (document.documentElement.offsetWidth + 50) + 'px';
   }
-  // 提交表单数据
+  /**
+   * 2019-02-16
+   * @author YanChao
+   * 提交表单数据
+   */
   _submitForm() {
     for (const i in this.validateForm.controls) {
       if (true) {
@@ -73,7 +81,11 @@ export class RegisterComponent implements OnInit {
       alert('请输入手机号码');
     }
   }
-  // 发送验证码
+  /**
+   * 2019-02-16
+   * @author YanChao
+   * 发送验证码
+   */
   sendCode(e: TouchEvent) {
     e.preventDefault();
     if (checkPhone(this.phone)) {
@@ -105,6 +117,11 @@ export class RegisterComponent implements OnInit {
       this.truePhone = false;
     }
   }
+  /**
+   * 2019-02-16
+   * @author YanChao
+   * 获取token
+   */
   getCookies () {
     if (this.token === null || this.token === undefined || this.token === 'undefined') {
       const strCookie = document.cookie;

@@ -63,7 +63,11 @@ export class MainComponent implements OnInit {
     this.getInitData();
     sessionStorage.setItem('vmCode', urlParse(window.location.search)['vmCode']);
   }
-
+  /**
+   * 2019-02-16
+   * @author YanChao
+   * 判断微信登陆还是支付宝
+   */
   IsWeixinOrAlipay() {
     const ua = window.navigator.userAgent.toLowerCase();
     if (ua.match(/MicroMessenger/i)) {
@@ -72,14 +76,25 @@ export class MainComponent implements OnInit {
       }
     }
   }
-
+  /**
+   * 2019-02-16
+   * @author YanChao
+   * 关闭广告弹窗
+   */
   closeAdvertise() {
     this.advertiseMentShow = false;
   }
-
-  // 初始化数据
+  /**
+   * 2019-02-16
+   * @author YanChao
+   * 初始化数据
+   */
   getInitData() {
-    // 选水界面接口
+    /**
+     * 2019-02-16
+     * @author YanChao
+     * 判断所属公司
+     */
     this.appService.postData(this.appProperties.machineInfoGetCompanyIdUrl + urlParse(window.location.search)['vmCode'], '').subscribe(
       data2 => {
         console.log(data2);
@@ -100,6 +115,11 @@ export class MainComponent implements OnInit {
       error2 => {
         console.log(error2);
       });
+    /**
+     * 2019-02-16
+     * @author YanChao
+     * 选水界面接口
+     */
     this.appService.getAliData(this.appProperties.aliIndexListUrl,
       {vmCode: urlParse(window.location.search)['vmCode']}, this.token).subscribe(
       data => {
@@ -143,6 +163,11 @@ export class MainComponent implements OnInit {
         console.log(error);
       }
     );
+    /**
+     * 2019-02-16
+     * @author YanChao
+     * 广告显示判断
+     */
     this.appService.postFormData(this.appProperties.vdAdvertisingMachinesShowAdvertisingUrl,
       {vmCode: urlParse(window.location.search)['vmCode']}, this.token).subscribe(
       data => {
@@ -159,7 +184,11 @@ export class MainComponent implements OnInit {
       }
     );
   }
-
+  /**
+   * 2019-02-16
+   * @author YanChao
+   * 判断保利公司活动
+   */
   showActiveItem(item, baoliCompany) {
     let flag;
     const list = getActiveItemId();
@@ -182,8 +211,11 @@ export class MainComponent implements OnInit {
     }
     return flag;
   }
-
-  // 开门接口
+  /**
+   * 2019-02-16
+   * @author YanChao
+   * 开门接口
+   */
   openDoor(item) {
     this.item = item;
     if (item.num <= 0) {
@@ -217,7 +249,11 @@ export class MainComponent implements OnInit {
       );
     }
   }
-
+  /**
+   * 2019-02-16
+   * @author YanChao
+   * 8门选择框
+   */
   eigthDoorChoose(flag) {
     this.eightDoorFlag = flag;
     if (flag === 0) {
@@ -226,8 +262,11 @@ export class MainComponent implements OnInit {
       this.eightIndexList = this.indexList.slice(4, 8);
     }
   }
-
-  // 是否开门（是）
+  /**
+   * 2019-02-16
+   * @author YanChao
+   * 是否开门（是）
+   */
   yesOpenDoor() {
     this.isConfirmLoading = true;
     this.openDoorMsg = '正在开门请稍等！';
@@ -270,7 +309,11 @@ export class MainComponent implements OnInit {
       }
     }, 1000);
   }
-
+  /**
+   * 2019-02-16
+   * @author YanChao
+   * 没有token时页面跳转授权
+   */
   noTokenOath() {
     this.appService.getData(this.appProperties.aliGetUserIdUrl + '?vmCode=' + urlParse(window.location.search)['vmCode'], '').subscribe(
       data2 => {
@@ -282,8 +325,11 @@ export class MainComponent implements OnInit {
       }
     );
   }
-
-  // 是否开门（否）
+  /**
+   * 2019-02-16
+   * @author YanChao
+   * 是否开门（否）
+   */
   noOpenDoor() {
     this.isVisibleOpenDoor = false;
     this.isVisibleNoMoney = false;
@@ -291,7 +337,11 @@ export class MainComponent implements OnInit {
     this.openDoorMsg = '是否要开门?';
     this.openDoorMsgKey = '';
   }
-
+  /**
+   * 2019-02-16
+   * @author YanChao
+   * 免密支付
+   */
   openNoPassMoney() {
     this.appService.postAliData(this.appProperties.tblCustomerMyInfo, {}, urlParse(window.location.search)['token']).subscribe(
       data => {
@@ -311,7 +361,11 @@ export class MainComponent implements OnInit {
   gotoSendMoney() {
   }
 
-  // 关注支付宝生活号接口
+  /**
+   * 2019-02-16
+   * @author YanChao
+   * 关注支付宝生活号接口
+   */
   isAttention() {
     this.appService.getAliData(this.appProperties.aliBusinessIsAttentionUrl, '', this.token).subscribe(
       data2 => {
@@ -329,16 +383,28 @@ export class MainComponent implements OnInit {
       }
     );
   }
-
+  /**
+   * 2019-02-16
+   * @author YanChao
+   * 关注公众号
+   */
   follow() {
     window.location.href = 'https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzU0NzQ4MTY0Mg==&scene=124#wechat_redirect';
   }
-
+  /**
+   * 2019-02-16
+   * @author YanChao
+   * 关闭优惠弹窗
+   */
   closeCoupon() {
     this.isVisibleCouponThree = false;
   }
 
-  // 补货人员登陆界面入口
+  /**
+   * 2019-02-16
+   * @author YanChao
+   * 补货人员登陆界面入口
+   */
   vmLogin(flag) {
     if (flag === 1) {
       // 支付宝授权登陆验证
@@ -370,10 +436,19 @@ export class MainComponent implements OnInit {
     document.getElementsByClassName('ant-modal-body')[3]['style'].cssText = 'padding: 0;';
     this.isVisiblePromotions = true;
   }
-
+  /**
+   * 2019-02-16
+   * @author YanChao
+   * 关闭优惠弹窗
+   */
   closemodalContentPromotions() {
     this.isVisiblePromotions = false;
   }
+  /**
+   * 2019-02-16
+   * @author YanChao
+   * 确认是否开门成功
+   */
   checkIsOpen(flag) {
     this.checkTimes--;
     let time;
@@ -404,6 +479,7 @@ export class MainComponent implements OnInit {
         } else if (data.status === 0) {
           if (this.checkTimes === 0) {
             alert('网络延迟，请重试开门');
+            this.isVisibleOpenDoor = false;
             clearTimeout(time);
             this.checkTimes = 10;
           } else {
@@ -418,7 +494,11 @@ export class MainComponent implements OnInit {
       }
     );
   }
-  // 订单详情
+  /**
+   * 2019-02-16
+   * @author YanChao
+   * 订单详情
+   */
   product(flag) {
     // this.router.navigate(['product'], {
     //   queryParams: {
@@ -432,7 +512,11 @@ export class MainComponent implements OnInit {
     });
     // TODO;
   }
-
+  /**
+   * 2019-02-16
+   * @author YanChao
+   * 获取cookies
+   */
   getCookies() {
     if (this.token === null || this.token === undefined || this.token === 'undefined') {
       const strCookie = document.cookie;
@@ -445,7 +529,11 @@ export class MainComponent implements OnInit {
       }
     }
   }
-
+  /**
+   * 2019-02-16
+   * @author YanChao
+   * 获取cookies
+   */
   turnImg(item) {
     let img;
     if (item.length > 1) {
@@ -455,7 +543,11 @@ export class MainComponent implements OnInit {
     }
     return img;
   }
-
+  /**
+   * 2019-02-16
+   * @author YanChao
+   * 获取cookies
+   */
   turn(item, name) {
     let variable;
     if (item.length > 1) {
@@ -465,6 +557,11 @@ export class MainComponent implements OnInit {
     }
     return variable;
   }
+  /**
+   * 2019-02-16
+   * @author YanChao
+   * 底部菜单点击事件
+   */
   circleBtn(flag) {
     if (flag === 1) {
       window.location.href

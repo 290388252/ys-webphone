@@ -34,6 +34,11 @@ export class ShareComponent implements OnInit {
       }
     );
   }
+  /**
+   * 2019-02-16
+   * @author YanChao
+   * 页面跳转
+   */
   goto(val) {
     if (val === 1) {
       this.router.navigate(['shareInfo'], {
@@ -50,7 +55,11 @@ export class ShareComponent implements OnInit {
       }
     }
   }
-  // 判断是微信登陆还是支付宝登陆
+  /**
+   * 2019-02-16
+   * @author YanChao
+   * 判断是微信登陆还是支付宝登陆
+   */
   urlParse(url): object {
     const obj = {};
     const reg = /[?&][^?&]+=[^?&]+/g;

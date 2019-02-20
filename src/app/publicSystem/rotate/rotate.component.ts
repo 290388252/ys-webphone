@@ -35,7 +35,11 @@ export class RotateComponent implements OnInit {
     );
 
   }
-
+  /**
+   * 2019-02-16
+   * @author YanChao
+   * 获取旋转角度
+   */
   getRotate(info, appProperties, appService, token) {
     // 旋转角度
     let angles;
@@ -95,7 +99,11 @@ export class RotateComponent implements OnInit {
       // }
     });
 
-    // 转盘旋转
+    /**
+     * 2019-02-16
+     * @author YanChao
+     * 转盘旋转
+     */
     function runCup(num) {
       // probability();
       // const num = Math.floor(Math.random() * (7));
@@ -135,7 +143,11 @@ export class RotateComponent implements OnInit {
       $('#myCanvas').css('transform', degValue);
     }
 
-    // 绘制转盘
+    /**
+     * 2019-02-16
+     * @author YanChao
+     * 绘制转盘
+     */
     function canvasRun() {
       const canvas = document.getElementById('myCanvas');
       const canvas01 = document.getElementById('myCanvas01');
@@ -149,7 +161,11 @@ export class RotateComponent implements OnInit {
       createCirText();
       initPoint();
 
-      // 外圆
+      /**
+       * 2019-02-16
+       * @author YanChao
+       * 外圆
+       */
       function createCircle() {
         let startAngle = 0; // 扇形的开始弧度
         let endAngle = 0; // 扇形的终止弧度
@@ -173,7 +189,11 @@ export class RotateComponent implements OnInit {
         }
       }
 
-      // 各奖项
+      /**
+       * 2019-02-16
+       * @author YanChao
+       * 各奖项
+       */
       function createCirText() {
         ctx.textAlign = 'start';
         ctx.textBaseline = 'middle';
@@ -240,7 +260,11 @@ export class RotateComponent implements OnInit {
       }
     }
   }
-  // 判断是微信登陆还是支付宝登陆
+  /**
+   * 2019-02-16
+   * @author YanChao
+   * 判断是微信登陆还是支付宝登陆
+   */
   urlParse(url): object {
     const obj = {};
     const reg = /[?&][^?&]+=[^?&]+/g;
