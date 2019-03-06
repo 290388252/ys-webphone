@@ -1,14 +1,17 @@
 .contain_all {
   width: 100%;
+  height: 102%;
   position: relative;
   background: url("../../../assets/main/bg.png") no-repeat;
+  background-size: 100% 70%;
 }
 @media screen and (min-height: 581px) {
   .contain_all {
     width: 100%;
-    height: 711px;
+    height: 102%;
     position: relative;
     background: url("../../../assets/main/bg.png") no-repeat;
+    background-size: 100% 70%;
   }
 }
 .logo {
@@ -59,7 +62,7 @@
   font-size: 12px;
   width: 100%;
   text-align: center;
-  color: #fff;
+  color: #333333;
 }
 .clearfix:after {
   content: '\20';
@@ -737,7 +740,7 @@
   }
   .text{
     width: 98%;
-    margin-bottom: -5px;
+    margin-bottom: -8px;
     color: #fff;
     font-weight: 100;
     overflow: hidden;

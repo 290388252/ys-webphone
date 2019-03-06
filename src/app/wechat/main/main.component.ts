@@ -256,7 +256,8 @@ export class MainComponent implements OnInit {
       if (item.length > 1) {
         if (list.includes(item[0].basicItemId) || list.includes(item[1].basicItemId)) {
           if (item[0].basicItemId === '2194' || item[1].basicItemId === '2194') {
-            this.showActiveImg = '../../../assets/main/send.png';
+            // this.showActiveImg = '../../../assets/main/send.png';
+            this.showActiveImg = '';
           } else if (item[0].basicItemId === '2975' || item[1].basicItemId === '2975') {
             this.showActiveImg = '../../../assets/main/send2.png';
           }
@@ -267,7 +268,8 @@ export class MainComponent implements OnInit {
       } else {
         if (list.includes(item[0].basicItemId)) {
           if (item[0].basicItemId === '2194') {
-            this.showActiveImg = '../../../assets/main/send.png';
+            // this.showActiveImg = '../../../assets/main/send.png';
+            this.showActiveImg = '';
           } else if (item[0].basicItemId === '2975') {
             this.showActiveImg = '../../../assets/main/send2.png';
           }
@@ -530,7 +532,7 @@ export class MainComponent implements OnInit {
           );
         }
       }
-    }, 1000);
+    }, 100);
   }
   /**
    * 2019-02-16
@@ -568,12 +570,13 @@ export class MainComponent implements OnInit {
           if (this.checkTimes === 0) {
             alert('网络延迟，请重试开门');
             this.isVisibleOpenDoor = false;
+            this.isConfirmLoading = false;
             clearTimeout(time);
             this.checkTimes = 10;
           } else {
             time = setTimeout(() => {
               this.checkIsOpen(flag);
-            }, 1000);
+            }, 500);
           }
         }
       },

@@ -307,7 +307,7 @@ export class MainComponent implements OnInit {
           }
         );
       }
-    }, 1000);
+    }, 100);
   }
   /**
    * 2019-02-16
@@ -480,6 +480,7 @@ export class MainComponent implements OnInit {
           if (this.checkTimes === 0) {
             alert('网络延迟，请重试开门');
             this.isVisibleOpenDoor = false;
+            this.isConfirmLoading = false;
             clearTimeout(time);
             this.checkTimes = 10;
           } else {

@@ -1,4 +1,3 @@
-<div class="contain_all">
 
   <div class="logo">
     <carousel>
@@ -27,6 +26,7 @@
     <!--立即参与-->
     <!--<p class="title">.</p>-->
   </div>
+  <div class="contain_all">
   <div class="titleList" [hidden]="youshuiCompany">
     <div class="titleList_in" (click)="circleBtn(1)">
       <img src="../../../assets/main/mainIcon1.png" class="title_topImg">
@@ -52,8 +52,8 @@
   <div class="contain_btm clearfix">
     <!--<img [hidden]="youshuiCompany" (click)="vmLogin(2)" src="../../../assets/main/advertisement.png" alt="" class="advertisement">-->
     <div style="display: flex;width: 100%;height: 20px;margin-bottom: 12px" *ngIf="isEightDoor">
-      <img (click)="eigthDoorChoose(0)" [src]="(eightDoorFlag === 0) ?'../../../assets/main/normal.png':'../../../assets/main/cold.png'"  alt="" style="width: 50%;height: 30px"><span (click)="eigthDoorChoose(0)" style="position: absolute;left: 15%;color: white;top: 172px;">点击冷藏商品</span>
-      <img (click)="eigthDoorChoose(1)" [src]="(eightDoorFlag === 1) ?'../../../assets/main/normal.png':'../../../assets/main/cold.png'"   alt="" style="width: 50%;height: 30px"><span (click)="eigthDoorChoose(1)" style="position: absolute;right: 15%;color: white;top: 172px;">点击常温商品</span>
+      <img (click)="eigthDoorChoose(0)" [src]="(eightDoorFlag === 0) ?'../../../assets/main/normal.png':'../../../assets/main/cold.png'"  alt="" style="width: 50%;height: 30px"><span (click)="eigthDoorChoose(0)" style="position: absolute;left: 15%;color: white;top: 77px;">点击冷藏商品</span>
+      <img (click)="eigthDoorChoose(1)" [src]="(eightDoorFlag === 1) ?'../../../assets/main/normal.png':'../../../assets/main/cold.png'"   alt="" style="width: 50%;height: 30px"><span (click)="eigthDoorChoose(1)" style="position: absolute;right: 15%;color: white;top: 77px;">点击常温商品</span>
     </div>
     <p class="title">.</p>
     <div class="context-five" *ngIf="isFiveDoor">
@@ -121,7 +121,7 @@
     <div class="context" *ngIf="isFourDoor">
       <div (click)="openDoor(item)" *ngFor="let item of indexList"
            [ngClass]="item['wayItemList'].length === 1 ? 'box-one' : 'box'" class=" card text-white mb-3">
-        <img [hidden]="showActiveItem(item['wayItemList'], baoliCompany)" src="../../../assets/main/send.png" alt="" width="60" style="position: absolute">
+        <img [hidden]="showActiveItem(item['wayItemList'], baoliCompany)" src="" alt="" width="60" style="position: absolute">
         <div [ngClass]="item['wayItemList'].length === 1 ? 'box-body-one' : 'box-body'">
           <img class="col-img" src="{{img}}{{item['wayItemList'][0]['pic']}}" alt="">
           <br/>
