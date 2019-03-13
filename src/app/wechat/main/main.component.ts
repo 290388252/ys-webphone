@@ -35,6 +35,7 @@ export class MainComponent implements OnInit {
   public activeImg = '';
   public showActiveImg = '';
   public img = this.appProperties.imgUrl;
+  public vmAdvertisingImg = this.appProperties.vmAdvertisingImg;
   public item;
   currentModal;
   public isFourDoor = false;

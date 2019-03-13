@@ -1,0 +1,164 @@
+/*@import "~ngx-weui/index.css";*/
+
+.user-container {
+  position: absolute;
+  padding-bottom: 60px;
+  height: 100%;
+  width: 100%;
+  background: #f3f3f3;
+}
+
+.title {
+  width: 100%;
+  height: 36px;
+  text-align: center;
+  position: relative;
+  font-size: 16px;
+  line-height: 24px;
+  padding: 6px 10px;
+  background: #ffffff;
+}
+
+.title_l {
+  position: absolute;
+  left: 6px;
+}
+
+.title_r {
+  position: absolute;
+  right: 10px;
+  font-size: 12px;
+}
+
+.cont {
+  width: 100%;
+  margin-top: 1px;
+  background: #f3f3f3;
+  margin-bottom: 70px;
+}
+
+.cont_none {
+  width: 182px;
+  height: 115px;
+  position: absolute;
+  top: 50%;
+  margin-top: -150px;
+  left: 50%;
+  margin-left: -91px;
+  text-align: center;
+}
+
+.contAll {
+  margin-bottom: 10px;
+  background: #ffffff;
+}
+
+.contIn {
+  width: 100%;
+  padding: 6px 28px 6px 10px;
+  border-bottom: 1px solid #e5e5e5;
+  position: relative;
+}
+
+.contIn_t_name {
+  font-size: 16px;
+  color: black
+}
+
+.contTn_t_phone {
+  margin-left: 10px;
+  font-size: 12px;
+  color: grey
+}
+
+.contIn_Img {
+  width: 22px;
+  height: 22px;
+  font-size: 22px;
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  margin-top: -11px;
+  font-weight: bold;
+  color: #3399ff
+}
+
+.contIn_t {
+  height: 22px;
+  line-height: 22px;
+}
+
+.contSet {
+  width: 100%;
+  height: 35px;
+  font-size: 12px;
+  position: relative;
+  line-height: 35px;
+}
+
+.contSet_imgA {
+  width: 80px;
+  position: absolute;
+  line-height: 35px;
+  left: 34px;
+  color: #4187FF;
+}
+
+.contSet_imgB {
+  width: 72px;
+  position: absolute;
+  line-height: 35px;
+  left: 34px;
+  color: #666666;
+}
+
+.contSet_a {
+  position: absolute;
+  right: 64px;
+}
+
+.contSet_d {
+  position: absolute;
+  right: 10px;
+}
+
+.contSet_d_img {
+  width: 12px;
+  height: 12px;
+  position: absolute;
+  top: 50%;
+  margin-top: -6px;
+  right: 29px;
+}
+
+.contSet_radio {
+  display: inline-block;
+  position: absolute;
+  width: 13px;
+  height: 13px;
+  left: 10px;
+  top: 50%;
+  margin-top: -6px;
+}
+
+.ant-modal-footer {
+  text-align: center;
+}
+
+.modalTwoOut {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background: rgba(0, 0, 0, 0.65);
+  z-index: 999;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.modalTwoIn {
+  width: 78%;
+  z-index: 999999;
+  position: relative;
+}

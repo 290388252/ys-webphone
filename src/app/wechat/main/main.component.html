@@ -127,7 +127,8 @@
 
     <div class="context" *ngIf="isFourDoor">
       <div (click)="openDoor(item)" *ngFor="let item of indexList" [ngClass]="item['wayItemList'].length === 1 ? 'box-one' : 'box'" class=" card text-white mb-3">
-        <img [hidden]="showActiveItem(item['wayItemList'], baoliCompany)" [src]="showActiveImg" alt="" width="60" style="position: absolute">
+        <!--<img [hidden]="showActiveItem(item['wayItemList'], baoliCompany)" [src]="showActiveImg" alt="" width="60" style="position: absolute">-->
+        <img *ngIf="item['wayItemList'][0]['img'] !== ''" [src]="vmAdvertisingImg+item['wayItemList'][0]['img']" alt="" width="60" style="position: absolute">
         <div [ngClass]="item['wayItemList'].length === 1 ? 'box-body-one' : 'box-body'">
           <img class="col-img" src="{{img}}{{item['wayItemList'][0]['pic']}}" alt="">
           <br/>

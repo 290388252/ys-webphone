@@ -3,6 +3,7 @@ import {Router} from '@angular/router';
 import {AppService} from '../../app-service';
 import {AppProperties} from '../../app.properties';
 import {getActiveCompanyId, urlParse} from '../../utils/util';
+import {toNumber} from 'ngx-bootstrap/timepicker/timepicker.utils';
 
 declare var WeixinJSBridge: any;
 declare var wx: any;
@@ -53,7 +54,7 @@ export class GoodsShowComponent implements OnInit {
   public payType;
   public grouponList;
   public grouponShow;
-
+  public showPrize;
   constructor(private router: Router,
               private appProperties: AppProperties,
               private appService: AppService) {
@@ -64,7 +65,6 @@ export class GoodsShowComponent implements OnInit {
     this.couponList = [];
     this.waterVoucherList = [];
     this.flag = sessionStorage.getItem('flag');
-    // this.flag = urlParse(window.location.search)['flag'];
     this.getToken();
     this.getInit();
     this.share();
@@ -93,7 +93,9 @@ export class GoodsShowComponent implements OnInit {
     this.isVisibleOpen = false;
     this.isVisibleFixed = false;
     this.oneGoodsOrMore();
+    this.isPrize();
   }
+
   /**
    * 2019-02-16
    * @author YanChao
@@ -115,6 +117,7 @@ export class GoodsShowComponent implements OnInit {
       }
     );
   }
+
   /**
    * 2019-02-16
    * @author YanChao
@@ -129,6 +132,7 @@ export class GoodsShowComponent implements OnInit {
     }
     return text;
   }
+
   /**
    * 2019-02-16
    * @author YanChao
@@ -137,6 +141,7 @@ export class GoodsShowComponent implements OnInit {
   follow() {
     window.location.href = 'https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzU0NzQ4MTY0Mg==&scene=124#wechat_redirect';
   }
+
   /**
    * 2019-02-16
    * @author YanChao
@@ -216,6 +221,7 @@ export class GoodsShowComponent implements OnInit {
   yes() {
     this.isVisibleWarn = false;
   }
+
   /**
    * 2019-02-16
    * @author YanChao
@@ -240,6 +246,7 @@ export class GoodsShowComponent implements OnInit {
       }
     );
   }
+
   /**
    * 2019-02-16
    * @author YanChao
@@ -293,6 +300,7 @@ export class GoodsShowComponent implements OnInit {
       }
     }
   }
+
   /**
    * 2019-02-16
    * @author YanChao
@@ -315,6 +323,7 @@ export class GoodsShowComponent implements OnInit {
       }
     );
   }
+
   /**
    * 2019-02-16
    * @author YanChao
@@ -376,6 +385,7 @@ export class GoodsShowComponent implements OnInit {
       }
     );
   }
+
   /**
    * 2019-02-16
    * @author YanChao
@@ -419,6 +429,7 @@ export class GoodsShowComponent implements OnInit {
     this.count = 0;
     this.oneGoodsOrMore();
   }
+
   /**
    * 2019-02-16
    * @author YanChao
@@ -444,6 +455,7 @@ export class GoodsShowComponent implements OnInit {
       this.single = true;
     }
   }
+
   /**
    * 2019-02-16
    * @author YanChao
@@ -530,6 +542,7 @@ export class GoodsShowComponent implements OnInit {
   openShowModel() {
     this.wechatVisible = true;
   }
+
   /**
    * 2019-02-16
    * @author YanChao
@@ -538,6 +551,7 @@ export class GoodsShowComponent implements OnInit {
   showCancel() {
     this.wechatVisible = false;
   }
+
   /**
    * 2019-02-16
    * @author YanChao
@@ -546,6 +560,7 @@ export class GoodsShowComponent implements OnInit {
   seeOrder() {
     window.location.href = `http://sms.youshuidaojia.com:9800/orderDetails?token=${this.token}&payType=1&vmCode=${urlParse(window.location.search)['vmCode']}`;
   }
+
   /**
    * 2019-02-16
    * @author YanChao
@@ -557,5 +572,44 @@ export class GoodsShowComponent implements OnInit {
 
   showMore() {
     window.location.href = 'http://webapp.youshuidaojia.com/cMain/recommendB?itemType=0';
+  }
+
+  /**
+   * 2019-03-06
+   * @author mzy
+   * 判断是否显示抽奖按钮
+   */
+  isPrize() {
+    this.appService.postAliData(this.appProperties.gameGetGamePrize + '?vmCode=' + urlParse(window.location.search)['vmCode'], '', this.token).subscribe(
+      data => {
+        console.log(data);
+        if (toNumber(data.status) === 0) {
+          this.showPrize = false;
+        } else {
+          this.showPrize = true;
+        }
+      },
+      error2 => {
+        console.log(error2);
+      }
+    );
+  }
+
+  /**
+   * 2019-03-06
+   * @author mzy
+   * 跳转到抽奖页面
+   */
+  toPrize() {
+    if (this.flag === 1 || this.flag === '1'
+      || this.flag === 2 || this.flag === '2') {
+      this.router.navigate(['rotate'], {
+        queryParams: {
+          vmCode: urlParse(window.location.search)['vmCode'],
+          token: this.token,
+          flag: this.flag
+        }
+      });
+    }
   }
 }

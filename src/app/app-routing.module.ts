@@ -22,6 +22,9 @@ const routes: Routes = [/*
     { path: 'shareGzh', loadChildren: './publicSystem/shareGzh/share.module#ShareModule' },
     { path: 'rotate', loadChildren: './publicSystem/rotate/rotate.module#RotateModule' },
     { path: 'shareInfo', loadChildren: './publicSystem/shareInfo/share.module#ShareModule' },
+    { path: 'address', loadChildren: './publicSystem/address/address.module#AddressModule' },
+    { path: 'addAddress', loadChildren: './publicSystem/addAddress/addAddress.module#AddAddressModule' },
+
 ];
 
 @NgModule({

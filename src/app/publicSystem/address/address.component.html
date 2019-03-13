@@ -1,0 +1,81 @@
+<div class="user-container">
+  <div class="title">
+    <!--<span class="title_l" (click)="goTo()"><i class="anticon anticon-left"></i></span>-->
+    <span>请选择收货地址</span>
+    <!--<span class="title_r">+新增地址</span>-->
+    <span class="title_r" (click)="addAddress()">+新增地址</span>
+  </div>
+  <div class="cont" *ngIf="!emptyAddress">
+    <div class="contAll" *ngFor="let item of list;" [hidden]="!list">
+      <!--<div class="contIn" *ngIf="select === '1'" (click)="selectAddress(item)">-->
+      <!--<div class="contIn_t">-->
+      <!--<span class="contIn_t_name">{{item.receiver}}</span>-->
+      <!--<span class="contTn_t_phone">{{item.phone}}</span>-->
+      <!--</div>-->
+      <!--<div style="font-size: 13px;">{{item.name}}</div>-->
+      <!--<div style="width: 46px;height: 100%;position: absolute;right: 0;top: 0;z-index: 999;font-size: 12px;line-height: 53px;"-->
+      <!--(click)="alterAddress(item)">-->
+      <!--<i class="anticon anticon-form contSet_d_img" style="right: 32px;"></i>-->
+      <!--<span style="margin-left: 16px;">编辑</span>-->
+      <!--</div>-->
+      <!--</div>-->
+      <div class="contIn" (click)="selectAddress(item)">
+        <div class="contIn_t">
+          <span class="contIn_t_name">{{item.receiver}}</span>
+          <span class="contTn_t_phone">{{item.phone}}</span>
+        </div>
+        <div style="font-size: 13px;">{{item.name}}</div>
+        <i class="anticon anticon-check contIn_Img" style="font-weight: bold;color: #3399ff"
+           *ngIf="item.defaultFlag === 1"></i>
+      </div>
+      <div class="contSet">
+        <input type="checkbox" name="default" class="contSet_radio" [id]="('a' + item.id)" (click)="setDefault(item)">
+        <div class="contSet_imgA" *ngIf="item.defaultFlag === 1">已设置为默认</div>
+        <div class="contSet_imgB" *ngIf="item.defaultFlag === 0">设置为默认</div>
+        <span class="contSet_a" (click)="alterAddress(item)">
+          <i class="anticon anticon-form contSet_d_img"></i>
+          <span>编辑</span>
+        </span>
+        <span class="contSet_d" (click)="delAddress(item)">
+          <i class="anticon anticon-delete contSet_d_img"></i>
+          <span>删除</span>
+        </span>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="emptyAddress" class="cont_none">
+    <img src="../../../assets/main/noneAddress.png" style="width: 115px;height: 115px;">
+    <div style="color: #666666;margin-top: 10px;">暂无收货地址</div>
+  </div>
+  <nz-modal [(nzVisible)]="isVisible" [nzTitle]="null" [nzContent]="modalContent" [nzFooter]="modalFooter"
+            (nzOnCancel)="handleCancel()">
+    <ng-template #modalTitle>
+
+    </ng-template>
+    <ng-template #modalContent>
+      <div style="width: 100%;text-align: center;">确定要删除该地址吗?</div>
+    </ng-template>
+    <ng-template #modalFooter>
+      <button nz-button nzType="default" (click)="handleCancel()">取消</button>
+      <button nz-button nzType="primary" (click)="handleOk()">删除</button>
+    </ng-template>
+  </nz-modal>
+  <nz-modal [(nzVisible)]="isVisibleCouponOne" [nzTitle]="modalTitleOne" [nzContent]="modalContentOne"
+            [nzFooter]="modalFooterOne" (nzOnCancel)="false">
+    <ng-template #modalTitleOne>
+      <div style="width: 100%;text-align: center;font-weight: bold;font-size: 16px;color: #666666">请确认您的收货地址!</div>
+    </ng-template>
+    <ng-template #modalContentOne>
+
+      <div style="width: 100%;text-align: left;margin-top: 10px;font-size: 17px;color: #999999">
+        <h5>收货人:{{showName}}</h5>
+        <h5>联系方式:{{showPhone}}</h5>
+        <h5>收货地址:{{showAddress}}</h5>
+      </div>
+    </ng-template>
+    <ng-template #modalFooterOne>
+      <button nz-button nzType="default" (click)="closeCoupon(0)">取消</button>
+      <button nz-button nzType="primary" (click)="closeCoupon(1)">确认</button>
+    </ng-template>
+  </nz-modal>
+</div>

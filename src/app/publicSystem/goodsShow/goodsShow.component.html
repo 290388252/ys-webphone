@@ -58,6 +58,9 @@
             [disabled]="checkOrderText === '订单正在支付...'">{{checkOrderText}}
     </button>
   </div>
+  <div class="prizeButton" *ngIf="showPrize">
+    <button (click)="toPrize()">幸运大转盘</button>
+  </div>
   <div style="margin-bottom: 4px;margin-top: 4px;" *ngIf="grouponShow">
     <div
       style="width: 100%;height: 40px;line-height: 42px;font-size: 14px;font-weight: bold;position: relative;text-align: left;padding-left: 4px;border-top: 1px solid #dedede;border-bottom: 1px solid #dedede">
