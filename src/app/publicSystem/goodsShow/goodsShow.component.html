@@ -58,6 +58,9 @@
             [disabled]="checkOrderText === '订单正在支付...'">{{checkOrderText}}
     </button>
   </div>
+  <div style="width: 100%;text-align: center;color: red;font-size: 14px;" *ngIf="showPrize">
+    {{prizeMessage}}
+  </div>
   <div class="prizeButton" *ngIf="showPrize">
     <button (click)="toPrize()">幸运大转盘</button>
   </div>

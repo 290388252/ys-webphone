@@ -55,6 +55,7 @@ export class GoodsShowComponent implements OnInit {
   public grouponList;
   public grouponShow;
   public showPrize;
+  public prizeMessage;
   constructor(private router: Router,
               private appProperties: AppProperties,
               private appService: AppService) {
@@ -580,13 +581,15 @@ export class GoodsShowComponent implements OnInit {
    * 判断是否显示抽奖按钮
    */
   isPrize() {
-    this.appService.postAliData(this.appProperties.gameGetGamePrize + '?vmCode=' + urlParse(window.location.search)['vmCode'], '', this.token).subscribe(
+    this.appService.postAliData(this.appProperties.judgeGame + '?vmCode=' + urlParse(window.location.search)['vmCode'], '', this.token).subscribe(
       data => {
+        console.log('data');
         console.log(data);
         if (toNumber(data.status) === 0) {
           this.showPrize = false;
         } else {
           this.showPrize = true;
+          this.prizeMessage = data.message;
         }
       },
       error2 => {

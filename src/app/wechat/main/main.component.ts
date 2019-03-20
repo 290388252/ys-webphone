@@ -51,7 +51,7 @@ export class MainComponent implements OnInit {
   public isScanImg = false;
   public advertiseMentShow = false;
   public advertiseMentPic = '';
-  public checkTimes = 10;
+  public checkTimes = 20;
   public showPrepaid = false;
 
   constructor(private router: Router,

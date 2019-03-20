@@ -12,6 +12,7 @@ export class AppProperties {
   public isClosedUrl: string;
   public adminOauth2Url: string;
   public gameGetGamePrize: string;
+  public judgeGame: string;
   public gameLottery: string;
   public machineControlUrl: string;
   public payFinishGrouponUrl: string;
@@ -72,6 +73,8 @@ export class AppProperties {
     // Public
     // this.appUrl = 'http://192.168.0.119:8769/ys_sms';
     // this.adminUrl = 'http://192.168.0.105:6662/ys_admin';
+    // this.appUrl = 'http://192.168.0.102:8769/ys_sms';
+    // this.adminUrl = 'http://192.168.0.102:8769/ys_admin';
     this.appUrl = 'http://47.106.92.82:6662/ys_sms';
     this.adminUrl = 'http://119.23.233.123:6662/ys_admin';
     this.vmAdvertisingImg = this.adminUrl + '/vmAdvertisingImg/';
@@ -79,8 +82,9 @@ export class AppProperties {
     this.grouponImgUrl = this.adminUrl + '/shoppingGoodsImg/';
     this.isClosedUrl = this.appUrl + '/wechat/isClosed';
     this.adminOauth2Url = this.appUrl + '/admin/oauth2';
-    this.gameGetGamePrize = this.appUrl + '/game/getAvailableGame';
-    this.gameLottery = this.appUrl + '/game/lottery';
+    this.gameGetGamePrize = this.adminUrl + '/game/getAvailableGame';
+    this.judgeGame = this.adminUrl + '/game/raffle';
+    this.gameLottery = this.adminUrl + '/game/lottery';
     this.machineControlUrl = this.appUrl + '/machineControl/getChangeInfo';
     this.payFinishGrouponUrl = this.appUrl + '/shoppingGoods/listPage';
     this.machineControlGetReplenishInfoUrl = this.appUrl + '/machineControl/getReplenishInfo?vmCode=';
@@ -90,11 +94,11 @@ export class AppProperties {
     this.tblCustomerMyInviteRewards  = this.appUrl + '/tblCustomer/myInviteRewards';
     this.vdAdvertisingMachinesShowAdvertisingUrl  = this.adminUrl + '/vendingMachinesAdvertising/showMachinesAdvertising';
     this.vdAdvertisingMachinesFindShowAdvertisingUrl = this.adminUrl + '/vendingMachinesAdvertising/findVendingSlideshow';
-    this.addressUrl = this.appUrl + '/address/select';
-    this.choiceAddressUrl = this.appUrl +　'/game/updateAddress';
-    this.shopAddressUpdateUrl = this.appUrl + '/address/update';
-    this.shopAddressCheckUrl = this.appUrl + '/address/selectById';
-    this.shopAddressAddUrl = this.appUrl + '/address/add';
+    this.addressUrl = this.adminUrl + '/address/select';
+    this.choiceAddressUrl = this.adminUrl +　'/game/updateAddress';
+    this.shopAddressUpdateUrl = this.adminUrl + '/address/update';
+    this.shopAddressCheckUrl = this.adminUrl + '/address/selectById';
+    this.shopAddressAddUrl = this.adminUrl + '/address/add';
     // WeChat
     this.tblCustomerMyInfo  = this.appUrl + '/tblCustomer/myInfo';
     this.indexListUrl = this.appUrl + '/index/listWay';
