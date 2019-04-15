@@ -410,6 +410,9 @@ export class GoodsShowComponent implements OnInit {
           this.type = data4.type;
           this.isFollow = data4.follow;
           this.sumDeductionMoney = parseFloat(data4.sumDeductionMoney);
+          if (data4.payState === '0') {
+            alert('订单异常请点击查看订单或咨询客服');
+          }
           setTimeout(() => {
             this.checkOrderText = '点击查看订单';
           }, 3000);
@@ -458,7 +461,7 @@ export class GoodsShowComponent implements OnInit {
   }
 
   /**
-   * 2019-02-16
+   * 2019-04-04
    * @author YanChao
    * 获取token
    */

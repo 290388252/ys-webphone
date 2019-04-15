@@ -523,4 +523,16 @@ export class RotateComponent implements OnInit {
       }
     );
   }
+  /**
+   * 2019-03-06
+   * @author mzy
+   * 跳转到抽奖页面
+   */
+  toPrize() {
+      this.router.navigate(['shareInfo'], {
+        queryParams: {
+          token: this.token,
+        }
+      });
+    }
 }

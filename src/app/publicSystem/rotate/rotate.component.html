@@ -25,6 +25,7 @@
   <ng-template #modalFooter>
     <button nz-button nzType="default" (click)="handleCancel()" *ngIf="!choiceAddress">好的</button>
     <button nz-button nzType="primary" (click)="handleOk()" *ngIf="!choiceAddress">个人信息</button>
+    <button nz-button nzType="primary" (click)="toPrize()" *ngIf="!choiceAddress">分享给好友</button>
     <button nz-button nzType="primary" (click)="goAddress()" *ngIf="choiceAddress">前往</button>
   </ng-template>
 </nz-modal>

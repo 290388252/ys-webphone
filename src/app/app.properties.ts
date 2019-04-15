@@ -73,9 +73,10 @@ export class AppProperties {
     // Public
     // this.appUrl = 'http://192.168.0.119:8769/ys_sms';
     // this.adminUrl = 'http://192.168.0.105:6662/ys_admin';
-    // this.appUrl = 'http://192.168.0.102:8769/ys_sms';
-    // this.adminUrl = 'http://192.168.0.102:8769/ys_admin';
-    this.appUrl = 'http://47.106.92.82:6662/ys_sms';
+    // this.appUrl = 'http://192.168.0.101:6662/ys_sms';
+    // this.adminUrl = 'http://192.168.0.101:6662/ys_admin';
+    this.appUrl = 'http://120.79.74.231:6662/ys_sms';
+    // this.appUrl = 'http://47.106.92.82:6662/ys_sms';
     this.adminUrl = 'http://119.23.233.123:6662/ys_admin';
     this.vmAdvertisingImg = this.adminUrl + '/vmAdvertisingImg/';
     this.imgUrl = this.adminUrl + '/files/';
