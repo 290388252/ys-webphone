@@ -40,6 +40,7 @@ export class NotPageComponent implements OnInit {
   }
 
   close() {
-    WeixinJSBridge.call('closeWindow');
+    // WeixinJSBridge.call('closeWindow');
+    window['AlipayJSBridge'].call('closeWebview');
   }
 }

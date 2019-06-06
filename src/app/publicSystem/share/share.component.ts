@@ -21,8 +21,8 @@ export class ShareComponent implements OnInit {
     this.appService.postAliData(this.appProperties.adminCreateForeverStrQrUrl, '', this.token).subscribe(
       data => {
         console.log(data);
-        if (data.code === 0) {
-          this.img = data.data;
+        if (data.status === 1) {
+          this.img = data.returnObject;
         }
         },
       error2 => {

@@ -106,6 +106,11 @@ export class MainComponent implements OnInit {
           this.youshuiCompany = true;
           this.otherCompany = false;
           this.baoliCompany = true;
+          this.router.navigate(['notPage'], {
+            queryParams: {
+              vmCode: urlParse(window.location.search)['vmCode'],
+            }
+          });
         } else {
           this.youshuiCompany = true;
           this.otherCompany = false;
@@ -405,7 +410,8 @@ export class MainComponent implements OnInit {
    * @author YanChao
    * 补货人员登陆界面入口
    */
-  vmLogin(flag) {
+  vmLogin(flag, e) {
+    e.preventDefault();
     if (flag === 1) {
       // 支付宝授权登陆验证
       const newWlhUrl = '?state=/vmLogin?vmCode=' + urlParse(window.location.search)['vmCode'] + '-/addMain?vmCode='

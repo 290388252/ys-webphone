@@ -17,6 +17,7 @@ import {toNumber} from 'ngx-bootstrap/timepicker/timepicker.utils';
 export class RotateComponent implements OnInit {
   private info = [];
   public clickNum: any;
+  public integral: any;
   public vmCode = urlParse(window.location.search)['vmCode'];
   public flag = urlParse(window.location.search)['flag'];
   public gameId;
@@ -64,6 +65,7 @@ export class RotateComponent implements OnInit {
         });
         this.gameId = data.returnObject.game.id;
         this.clickNum = data.returnObject.game.times;
+        this.integral = data.returnObject.integral;
         console.log(this.gameId);
         this.getRotate(this.info, this.appProperties, this.appService, this.token);
       },
@@ -137,6 +139,7 @@ export class RotateComponent implements OnInit {
               document.getElementsByClassName('ant-modal-close')[0]['style'].cssText = 'display: none;';
               _this.isVisible = true;
               _this.prize = data.message;
+              _this.integral = data.returnObject.integral;
               // _this.getData();
               $('#tupBtn').removeAttr('disabled');
             }, 6000);

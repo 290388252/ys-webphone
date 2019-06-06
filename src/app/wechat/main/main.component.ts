@@ -72,7 +72,7 @@ export class MainComponent implements OnInit {
       // window.localStorage.setItem('token', urlParse(window.location.search)['token']);
     }
     if (getCoupon() === '0') {
-      this.isVisibleCoupon = true;
+      this.isVisibleCoupon = false;
     } else if (getCoupon() === '2') {
       this.isVisibleCouponTwo = true;
     }
@@ -103,7 +103,7 @@ export class MainComponent implements OnInit {
     // document.getElementsByClassName('carousel-control')[1]['style'].cssText = 'opacity: 0;';
   }
 
-  closeAdvertise() {
+  closeAdvertiseWechat() {
     this.advertiseMentShow = false;
   }
 
@@ -211,10 +211,12 @@ export class MainComponent implements OnInit {
     this.appService.postFormDataNone(this.appProperties.vdAdvertisingMachinesFindShowAdvertisingUrl,
       {vmCode: urlParse(window.location.search)['vmCode']}).subscribe(
       data => {
+        console.log(data);
         if (data.status === 1) {
           this.advertiseMentShow = true;
           this.showPrepaid = true;
-          document.getElementsByClassName('ant-modal-body')[5]['style'].cssText = 'padding: 0;';
+          document.getElementsByClassName('ant-modal-body')[2]['style'].cssText = 'padding: 0;';
+          document.getElementsByClassName('ant-modal-body')[4]['style'].cssText = 'padding: 0;';
           this.advertiseMentPic = this.appProperties.vmAdvertisingImg + data.returnObject;
           setTimeout(() => {
             this.advertiseMentShow = false;
@@ -223,10 +225,12 @@ export class MainComponent implements OnInit {
           this.appService.postFormDataNone(this.appProperties.vdAdvertisingMachinesShowAdvertisingUrl,
             {vmCode: urlParse(window.location.search)['vmCode']}).subscribe(
             data1 => {
+              console.log(data1);
               if (data1.status === 1 && data1.returnObject.length > 0) {
                 this.advertiseMentShow = true;
                 this.showPrepaid = false;
-                document.getElementsByClassName('ant-modal-body')[5]['style'].cssText = 'padding: 0;';
+                document.getElementsByClassName('ant-modal-body')[2]['style'].cssText = 'padding: 0;';
+                document.getElementsByClassName('ant-modal-body')[4]['style'].cssText = 'padding: 0;';
                 this.advertiseMentPic = this.appProperties.vmAdvertisingImg + data1.returnObject[0].homeImg;
                 setTimeout(() => {
                   this.advertiseMentShow = false;
@@ -294,9 +298,9 @@ export class MainComponent implements OnInit {
       alert('水已经卖完无法开门');
     } else {
       this.appService.postAliData(this.appProperties.openBeforeCanDo + urlParse(window.location.href)['vmCode']
-        + '&wayNum=' + this.item.wayNumber, '', this.token).subscribe(
-        data => {
-          console.log(data);
+            + '&wayNum=' + this.item.wayNumber, '', this.token).subscribe(
+            data => {
+              console.log(data);
           if (data.status === 1) {
             if (data.returnObject !== '') {
               this.openDoorMsg = '活动:' + data.returnObject.activityName + ',是否开门';
@@ -335,7 +339,7 @@ export class MainComponent implements OnInit {
     window.location.href = 'https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzU0NzQ4MTY0Mg==&scene=124#wechat_redirect';
   }
 
-  closeCoupon() {
+  closeCouponWechat() {
     this.isVisibleCoupon = false;
     this.isVisibleCouponTwo = false;
     this.isVisibleCouponThree = false;
@@ -348,7 +352,8 @@ export class MainComponent implements OnInit {
    * @author YanChao
    * 运维登陆
    */
-  vmLogin(flag) {
+  vmLogin(flag, e) {
+    e.preventDefault();
     if (flag === 1) {
       // 微信授权登陆验证
       this.appService.getData(this.appProperties.adminOauth2Url, '').subscribe(

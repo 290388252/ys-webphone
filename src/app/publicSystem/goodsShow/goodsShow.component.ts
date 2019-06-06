@@ -38,6 +38,7 @@ export class GoodsShowComponent implements OnInit {
   public visible = false;
   public placement = 'left';
   public wechatVisible;
+  public getpriceVisible = false;
 
   public couponName;
   public carryWaterCouponName;
@@ -94,7 +95,6 @@ export class GoodsShowComponent implements OnInit {
     this.isVisibleOpen = false;
     this.isVisibleFixed = false;
     this.oneGoodsOrMore();
-    this.isPrize();
   }
 
   /**
@@ -354,6 +354,7 @@ export class GoodsShowComponent implements OnInit {
             this.single = true;
           }
         } else if (data2.data === true) {
+          this.isPrize();
           this.isVisibleOpen = false;
           this.close = false;
           this.more = true;
@@ -554,6 +555,7 @@ export class GoodsShowComponent implements OnInit {
    */
   showCancel() {
     this.wechatVisible = false;
+    this.getpriceVisible = false;
   }
 
   /**
@@ -586,12 +588,14 @@ export class GoodsShowComponent implements OnInit {
   isPrize() {
     this.appService.postAliData(this.appProperties.judgeGame + '?vmCode=' + urlParse(window.location.search)['vmCode'], '', this.token).subscribe(
       data => {
-        console.log('data');
         console.log(data);
         if (toNumber(data.status) === 0) {
           this.showPrize = false;
-        } else {
+          this.getpriceVisible = false;
+        } else if (toNumber(data.status) === 82) {
           this.showPrize = true;
+          this.getpriceVisible = false;
+          // this.getpriceVisible = true;
           this.prizeMessage = data.message;
         }
       },
@@ -609,6 +613,7 @@ export class GoodsShowComponent implements OnInit {
   toPrize() {
     if (this.flag === 1 || this.flag === '1'
       || this.flag === 2 || this.flag === '2') {
+      clearInterval(this.timeInterval);
       this.router.navigate(['rotate'], {
         queryParams: {
           vmCode: urlParse(window.location.search)['vmCode'],

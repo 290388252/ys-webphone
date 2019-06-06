@@ -6,6 +6,7 @@ import { ShareComponent } from './share.component';
 import { ShareRoutingModule } from './share-routing.module';
 import {AppService} from '../../app-service';
 import {AppProperties} from '../../app.properties';
+import {NgZorroAntdModule} from 'ng-zorro-antd';
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import {AppProperties} from '../../app.properties';
     FormsModule,
     HttpClientModule,
     CommonModule,
+    NgZorroAntdModule,
     ShareRoutingModule
   ],
   providers: [AppService, AppProperties],

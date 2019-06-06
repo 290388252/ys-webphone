@@ -76,7 +76,7 @@ export class AppProperties {
     // this.appUrl = 'http://192.168.0.101:6662/ys_sms';
     // this.adminUrl = 'http://192.168.0.101:6662/ys_admin';
     this.appUrl = 'http://120.79.74.231:6662/ys_sms';
-    // this.appUrl = 'http://47.106.92.82:6662/ys_sms';
+    // this.appUrl = 'http://47.106.92.82:6662/ys_sms'; // old useless
     this.adminUrl = 'http://119.23.233.123:6662/ys_admin';
     this.vmAdvertisingImg = this.adminUrl + '/vmAdvertisingImg/';
     this.imgUrl = this.adminUrl + '/files/';
@@ -90,7 +90,7 @@ export class AppProperties {
     this.payFinishGrouponUrl = this.appUrl + '/shoppingGoods/listPage';
     this.machineControlGetReplenishInfoUrl = this.appUrl + '/machineControl/getReplenishInfo?vmCode=';
     this.machineInfoGetCompanyIdUrl = this.appUrl + '/machineInfo/getCompanyId?vmCode=';
-    this.adminCreateForeverStrQrUrl = this.appUrl + '/admin/createStrQr';
+    this.adminCreateForeverStrQrUrl = this.adminUrl + '/vendingMachinesInfo/createUrl'; // admin/createStrQr
     this.machineControlAdjustReplenish = this.appUrl + '/machineControl/adjustReplenish?';
     this.tblCustomerMyInviteRewards  = this.appUrl + '/tblCustomer/myInviteRewards';
     this.vdAdvertisingMachinesShowAdvertisingUrl  = this.adminUrl + '/vendingMachinesAdvertising/showMachinesAdvertising';

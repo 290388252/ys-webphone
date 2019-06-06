@@ -34,7 +34,7 @@
       </carousel>
       <!--<img *ngIf="isFiveDoor" (click)="vmLogin()" src="../../../assets/main/lianye.png" alt="..." class="lianye-logo">-->
       <!--<p *ngIf="isFiveDoor" style="font-weight: 600">联业智能</p>-->
-      <img (click)="vmLogin(1)" src="../../../assets/main/logos.png" alt="..."
+      <img (click)="vmLogin(1, $event)" src="../../../assets/main/logos.png" alt="..."
            class="rounded-circle">
       <span id="vmCode" style="display: none">{{vmCode}}</span>
            <!--class="rounded-circle-center" style="display: inline-block">-->
@@ -80,13 +80,13 @@
     <div class="context-five" *ngIf="isFiveDoor">
       <div (click)="openDoor(item)" *ngFor="let item of indexList" [ngClass]="item['wayItemList'].length === 1 ? 'boxs-eight-one' : 'boxs-eight'" class=" card text-white addMain-bottom">
         <div style="text-align: center">
-          <img class="eight-img-one" src="{{img}}{{item['wayItemList'][0]['pic']}}" alt="">
+          <img onclick="return false" class="eight-img-one" src="{{img}}{{item['wayItemList'][0]['pic']}}" alt="">
           <p class="text-eight-one"  style="color:#333333;font-weight: 900;">{{item['wayItemList'][0]['itemName']}}</p>
           <p class="text-eight-one" style="color: #f4725c;font-weight: 900;margin-top: 10px">{{item['wayItemList'][0]['price']}}元</p>
           <img src="../../../assets/main/eight-bt.png" alt="" class="eight-bt">
         </div>
         <div style="text-align: center" [hidden]="item['wayItemList'].length === 1">
-          <img class="eight-img" [src]="turnImg(item['wayItemList'])" alt="">
+          <img onclick="return false" class="eight-img" [src]="turnImg(item['wayItemList'])" alt="">
           <p class="text-eight" style="color: #333333;">{{turn(item['wayItemList'], 'itemName')}}</p>
           <p class="text-eight" style="color: #f4725c;margin-top: 10px">{{turn(item['wayItemList'], 'price')}}元</p>
         </div>
@@ -128,9 +128,9 @@
     <div class="context" *ngIf="isFourDoor">
       <div (click)="openDoor(item)" *ngFor="let item of indexList" [ngClass]="item['wayItemList'].length === 1 ? 'box-one' : 'box'" class=" card text-white mb-3">
         <!--<img [hidden]="showActiveItem(item['wayItemList'], baoliCompany)" [src]="showActiveImg" alt="" width="60" style="position: absolute">-->
-        <img *ngIf="item['wayItemList'][0]['img'] !== ''" [src]="vmAdvertisingImg+item['wayItemList'][0]['img']" alt="" width="60" style="position: absolute">
+        <img onclick="return false" *ngIf="item['wayItemList'][0]['img'] !== ''" [src]="vmAdvertisingImg+item['wayItemList'][0]['img']" alt="" width="60" style="position: absolute">
         <div [ngClass]="item['wayItemList'].length === 1 ? 'box-body-one' : 'box-body'">
-          <img class="col-img" src="{{img}}{{item['wayItemList'][0]['pic']}}" alt="">
+          <img onclick="return false" class="col-img" src="{{img}}{{item['wayItemList'][0]['pic']}}" alt="">
           <br/>
           <p class="card-title text" style="color:#333333;font-weight: 900;">
             {{item['wayItemList'][0]['itemName']}}
@@ -138,7 +138,7 @@
           <p class="card-title" style="color: #f4725c;font-weight: 900;">{{item['wayItemList'][0]['price']}}元</p>
         </div>
         <div [hidden]="item['wayItemList'].length === 1" class="box-body" >
-          <img class="col-img" [src]="turnImg(item['wayItemList'])" alt="">
+          <img onclick="return false" class="col-img" [src]="turnImg(item['wayItemList'])" alt="">
           <br/>
           <p class="card-title text" style="color:#333333;font-weight: 900;">
             {{turn(item['wayItemList'], 'itemName')}}</p>
@@ -150,13 +150,13 @@
     <div class="context" *ngIf="isEightDoor">
       <div (click)="openDoor(item)" *ngFor="let item of eightIndexList" [ngClass]="item['wayItemList'].length === 1 ? 'boxs-eight-one' : 'boxs-eight'" class=" card text-white addMain-bottom">
         <div style="text-align: center">
-          <img class="eight-img-one" src="{{img}}{{item['wayItemList'][0]['pic']}}" alt="">
+          <img onclick="return false" class="eight-img-one" src="{{img}}{{item['wayItemList'][0]['pic']}}" alt="">
           <p class="text-eight-one"  style="color:#333333;font-weight: 900;">{{item['wayItemList'][0]['itemName']}}</p>
           <p class="text-eight-one" style="color: #f4725c;font-weight: 900;margin-top: 10px">{{item['wayItemList'][0]['price']}}元</p>
           <img src="../../../assets/main/eight-bt.png" alt="" class="eight-bt">
         </div>
         <div style="text-align: center" [hidden]="item['wayItemList'].length === 1">
-          <img class="eight-img" [src]="turnImg(item['wayItemList'])" alt="">
+          <img onclick="return false" class="eight-img" [src]="turnImg(item['wayItemList'])" alt="">
           <p class="text-eight" style="color: #333333;">{{turn(item['wayItemList'], 'itemName')}}</p>
           <p class="text-eight" style="color: #f4725c;margin-top: 10px">{{turn(item['wayItemList'], 'price')}}元</p>
         </div>
@@ -212,39 +212,40 @@
     </ng-template>
   </nz-modal>
 
-
+<!--100元优惠券-->
   <nz-modal [nzVisible]="isVisibleCoupon" [nzContent]="modalContentCoupon" [nzFooter]="false" [nzClosable]="false">
     <ng-template #modalContentCoupon>
       <img src="../../../assets/main/coupon.png" alt="" style="width: 100%;position: absolute;right: 0;top: 0;">
-      <img (click)="closeCoupon()" src="../../../assets/main/cancel.png" alt=""
+      <img (click)="closeCouponWechat()" src="../../../assets/main/cancel.png" alt=""
            style="width: 10%; position: absolute;right: 10px;top: 10px;">
     </ng-template>
   </nz-modal>
   <nz-modal [nzVisible]="isVisibleCouponTwo" [nzContent]="modalContentCouponTwo" [nzFooter]="false" [nzClosable]="false">
     <ng-template #modalContentCouponTwo>
       <img src="../../../assets/main/coupon2.png" alt="" style="width: 100%;position: absolute;right: 0;top: 0;">
-      <img (click)="closeCoupon()" src="../../../assets/main/cancel.png" alt=""
+      <img (click)="closeCouponWechat()" src="../../../assets/main/cancel.png" alt=""
            style="width: 10%; position: absolute;right: 10px;top: 10px;">
     </ng-template>
   </nz-modal>
-  <nz-modal [nzVisible]="isVisibleCouponThree" [nzContent]="modalContentCouponThree" [nzFooter]="false" [nzClosable]="false">
-    <ng-template #modalContentCouponThree>
-      <img src="../../../assets/main/getCoupon.png" alt="" style="width: 100%;position: absolute;right: 0;top: -40px;opacity: 1">
-      <!--<img src="../../../assets/main/follow-button.png" (click)="follow()" alt="" style="width: 20%;position: absolute;left: 40%;top: 260px;">-->
-      <img (click)="closeCoupon()" src="../../../assets/main/close.png" alt=""
-           style="width: 10%; position: absolute;right: 10px;top: 10px;">
+    <!--领取优惠券，关注公众号-->
+  <!--<nz-modal [nzVisible]="isVisibleCouponThree" [nzContent]="modalContentCouponThree" [nzFooter]="false" [nzClosable]="false">-->
+    <!--<ng-template #modalContentCouponThree>-->
+      <!--<img src="../../../assets/main/getCoupon.png" alt="" style="width: 100%;position: absolute;right: 0;top: -40px;opacity: 1">-->
+      <!--&lt;!&ndash;<img src="../../../assets/main/follow-button.png" (click)="follow()" alt="" style="width: 20%;position: absolute;left: 40%;top: 260px;">&ndash;&gt;-->
+      <!--<img (click)="closeCouponWechat()" src="../../../assets/main/close.png" alt=""-->
+           <!--style="width: 10%; position: absolute;right: 10px;top: 10px;">-->
 
-    </ng-template>
-  </nz-modal>
-  <nz-modal [nzVisible]="advertiseMentShow" [nzContent]="modalContentCoupon" [nzFooter]="false" [nzClosable]="false">
-    <ng-template #modalContentCoupon>
+    <!--</ng-template>-->
+  <!--</nz-modal>-->
+  <nz-modal [nzVisible]="advertiseMentShow" [nzContent]="modalContentCouponAdvertise" [nzFooter]="false" [nzClosable]="false">
+    <ng-template #modalContentCouponAdvertise>
       <img [src]="advertiseMentPic" alt="" style="width: 84%;position: absolute;right: 8%;top: 0;">
-      <img (click)="closeAdvertise()" src="../../../assets/main/cancel.png" alt=""
+      <img (click)="closeAdvertiseWechat()" src="../../../assets/main/cancel.png" alt=""
            style="width: 8%; position: absolute;right: 10%;top: 2px;">
-      <div style="text-align: center;width: 100%;position: absolute;margin-top: 65%;" *ngIf="showPrepaid">
-        <img (click)="prepaid()" src="../../../assets/main/prepaidIcon.png" alt=""
-             style="width: 30%;">
-      </div>
+      <!--<div style="text-align: center;width: 100%;position: absolute;margin-top: 65%;" *ngIf="showPrepaid">-->
+        <!--<img (click)="prepaid()" src="../../../assets/main/prepaidIcon.png" alt=""-->
+             <!--style="width: 30%;">-->
+      <!--</div>-->
 
     </ng-template>
   </nz-modal>

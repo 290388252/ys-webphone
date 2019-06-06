@@ -12,6 +12,7 @@ import {urlParse} from '../../utils/util';
 export class ShareComponent implements OnInit {
   private token: string;
   public img: string;
+  public sharesBtn = true;
   constructor(private router: Router,
               private appProperties: AppProperties,
               private appService: AppService) {
@@ -22,8 +23,8 @@ export class ShareComponent implements OnInit {
     this.appService.postAliData(this.appProperties.adminCreateForeverStrQrUrl, '', this.token).subscribe(
       data => {
         console.log(data);
-        if (data.code === 0) {
-          this.img = data.data;
+        if (data.status === 1) {
+          this.img = data.returnObject;
         }
       },
       error2 => {
@@ -100,5 +101,7 @@ export class ShareComponent implements OnInit {
     }
     return obj;
   }
-
+  shares() {
+    this.sharesBtn = !this.sharesBtn;
+  }
 }

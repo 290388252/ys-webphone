@@ -226,6 +226,16 @@
     </div>
   </ng-template>
 </nz-modal>
+<nz-modal [(nzVisible)]="getpriceVisible" [nzContent]="modalContentEr" [nzFooter]="null" (nzOnCancel)="showCancel()">
+  <ng-template #modalContentEr>
+    <div style="margin: 0 auto;text-align: center;">
+      <img width="90%" src="../../../assets/main/getprice.png">
+    </div>
+    <div class="prizeButton" style="width: 100%;">
+      <button (click)="toPrize()">点击进入幸运大转盘</button>
+    </div>
+  </ng-template>
+</nz-modal>
 <!--自定义抽屉-->
 <div id="myModel">
   <div class="model-content">

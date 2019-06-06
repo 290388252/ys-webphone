@@ -19,13 +19,14 @@ export class RegisterComponent implements OnInit {
   public truePhone = true;
   public times = 60;
   private openId: string;
+  private id: string;
   private phoneValidator = (control: FormControl): { [s: string]: boolean } => {
     if (!control.value) {
       return {required: true};
     } else if (!/^1[23456789]\d{9}$/.test(control.value)) {
       return {error: true, phoneForm: true};
     }
-  };
+  }
 
   constructor(private fb: FormBuilder,
               private router: Router,
@@ -38,8 +39,36 @@ export class RegisterComponent implements OnInit {
       phoneForm: [null, [this.phoneValidator]],
       password: [null, [Validators.required]]
     });
-    this.openId = getOpenId();
     console.log(getOpenId());
+    console.log(sessionStorage.getItem('Id'));
+    this.openId = getOpenId();
+    if (sessionStorage.getItem('Id') === '' || sessionStorage.getItem('Id') === undefined
+      || sessionStorage.getItem('Id') === null) {
+      this.id = ' ';
+    } else {
+      this.id = sessionStorage.getItem('Id');
+    }
+    if (urlParse(window.location.href)['flag'] === '1') {
+      sessionStorage.setItem('Id', urlParse(window.location.href)['Id']);
+      this.appService.getData(this.appProperties.wechatOauth2Url, {vmCode: urlParse(window.location.href)['vmCode']}).subscribe(
+        data => {
+          console.log(data);
+          let newData;
+          const wlhUrl = ':9800/main?vmCode=' + urlParse(window.location.href)['vmCode'];
+          const newWlhUrl = '/register?vmCode=' + urlParse(window.location.href)['vmCode'];
+          const state = urlParse(data.data)['state'];
+          if (typeof(data.data) === 'string' && data.data.length > 0) {
+            newData = data.data.replace(data.data.substring(data.data.indexOf('state=') + 6, data.data.length),
+              newWlhUrl + '-' + wlhUrl + '-' + state);
+            console.log(newData);
+            window.location.href = newData;
+          }
+        },
+        error => {
+          console.log(error);
+        }
+      );
+    }
   }
 
   // 手机点击小键盘时获取焦点更改屏幕高度
@@ -60,7 +89,8 @@ export class RegisterComponent implements OnInit {
           openId: this.openId,
           phone: this.validateForm.controls.phoneForm.value,
           smsCode: this.validateForm.controls.password.value,
-          vmCode: getVmCode()
+          vmCode: getVmCode(),
+          inviteId: this.id
         }).subscribe(
         data => {
           if (data.code !== 0) {
@@ -77,11 +107,17 @@ export class RegisterComponent implements OnInit {
               document.cookie = 'coupon=' + 2;
             }
             document.cookie = 'newUser=' + 1;
-            this.router.navigate(['main'], {
-              queryParams: {
-                vmCode: getVmCode(),
-              }
-            });
+            if (sessionStorage.getItem('flag') === '' || sessionStorage.getItem('flag') === undefined
+            || sessionStorage.getItem('flag') === null) {
+              this.router.navigate(['main'], {
+                queryParams: {
+                  vmCode: getVmCode(),
+                  token: data.data.token
+                }
+              });
+            } else {
+              window.location.href = `http://sms.youshuidaojia.com:9800/main?vmCode=${urlParse(window.location.search)['vmCode']}`;
+            }
             // this.router.navigate(['main'], {queryParams: {'token': data.data.token}});
           }
         },

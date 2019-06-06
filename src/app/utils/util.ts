@@ -27,6 +27,7 @@ export let urlParse = (url) => {
 export let getOpenId = () => {
   const url = window.location.href.toString();
   const arrUrl = url.split('?');
+  console.log(arrUrl)
   let openId: string;
   if (arrUrl[1] !== undefined) {
     const firstArr = arrUrl[1].split('&')[1];
