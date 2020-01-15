@@ -100,6 +100,9 @@ export class MainComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (urlParse(window.location.search)['openDoor'] === '1') {
+      this.yesOpenDoor();
+    }
     this.validateForm = this.fb.group({
       phoneForm: [null, [this.phoneValidator]],
       password: [null, [Validators.required]]
