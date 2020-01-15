@@ -1,0 +1,1301 @@
+.contain_all {
+  width: 100%;
+  height: 102%;
+  position: relative;
+  background: url("../../../assets/main/fob.jpg") no-repeat;
+  background-size: 100% 100%;
+}
+.prepaid {
+  width: 100%;
+  padding: 12px;
+  position: relative;
+}
+.prepaid_title {
+  display: block;
+  font-size: 14px;
+  width: 60px;
+}
+.correct {
+  color: red;
+  font-size: 12px;
+}
+.prepaid_cont {
+  width: 100%;
+  margin-top: 14px;
+  /*overflow: hidden;*/
+  display: flex;
+}
+.prepaid_contIn {
+  flex: 1;
+  height: 50px;
+  border-radius: 4px;
+  text-align: center;
+  font-size: 12px;
+  background: #EEEEEE;
+  color: #000;
+}
+.focus_money {
+  background: #00acff;
+  color: #fff;
+}
+
+.prepaid_span {
+  display: block;
+}
+.prepaidOther {
+  width: 100%;
+  margin-top: 10px;
+  height: 28px;
+  line-height: 28px;
+}
+.prepaidOther_title {
+  font-size: 14px;
+}
+.friend {
+  width: 90px;
+  height: 24px;
+  border-radius: 4px;
+  overflow: hidden;
+  position: absolute;
+  top: 12px;
+  left: 78px;
+}
+.friend button {
+  width: 100%;
+  height:24px;
+  border: none;
+  background: #f76126;
+  font-size: 14px;
+  text-align: center;
+  line-height:22px;
+  color: #ffffff;
+  border-radius: 4px;
+}
+.prepaidPhone {
+  width: 100%;
+  margin-top: 10px;
+  position: relative;
+}
+.prepaidPhone_icon {
+  position: absolute;
+  right: 14px;
+  top: 7px;
+  width: 28px;
+  height: 28px;
+  z-index: 999;
+}
+.prepaidPhone_title {
+
+}
+.prepaidPhone_input {
+  width: 100%;
+  height: 42px;
+  font-size: 22px;
+  border: none;
+  border: 1px solid #40a9ff;
+  border-radius: 4px;
+}
+.prepaidOther_input {
+  display: inline-block;
+  width: 80px;
+  height: 100%;
+  font-size: 14px;
+}
+.errorNum {
+  /*display: block;*/
+  font-size: 12px;
+  color: red;
+  margin-left: 10px;
+}
+.prepaidOther_phone{
+  display: inline-block;
+  width: 150px;
+  height: 100%;
+  border: none;
+  border: 1px solid #999999;
+}
+.prepaidFooter {
+  width: 100%;
+}
+.prepaidButton {
+  width: 64%;
+  margin: 0 auto;
+  height: 44px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.prepaidButton button {
+  width: 100%;
+  height: 44px;
+  border: none;
+  font-size: 15px;
+  text-align: center;
+  line-height: 44px;
+  color: #ffffff;
+  background: #f76126;
+  border-radius: 4px;
+}
+.prepaidText {
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin-top: 18px;
+  color: grey;
+  font-size: 12px;
+}
+.file {
+  position: relative;
+  display: inline-block;
+  background:antiquewhite;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  width: 92px;
+  height: 92px;
+  overflow: hidden;
+  text-decoration: none;
+  text-indent: 0;
+}
+
+@media screen and (min-height: 581px) {
+  .contain_all {
+    width: 100%;
+    height: 102%;
+    position: relative;
+    background: url("../../../assets/main/fob.jpg") no-repeat;
+    background-size: 100% 100%;
+  }
+}
+.logo {
+  text-align: center;
+  position: relative;
+}
+.vipcnIcon {
+  position: absolute;
+  width: 18%;
+  bottom: 4%;
+  right: 4%;
+}
+.contain_btm {
+  width: 100%;
+  margin-top: -10px;
+  text-align: center;
+  padding-top: 2px;
+}
+.titleList {
+  display: flex;
+  width: 100%;
+  height: 60px;
+  margin-bottom: 4px;
+  margin-top: -18px;
+}
+
+.titleList_in {
+  flex: 1;
+  height: 100%;
+  text-align: center;
+}
+
+.title_top {
+  width: 100%;
+  text-align: center;
+  margin-top: 7px;
+}
+
+.title_topImg {
+  height: 30px;
+  width: 30px;
+  margin-top: 7px;
+  vertical-align: top
+}
+
+.title_bottom {
+  height: 20px;
+  font-size: 12px;
+  width: 100%;
+  text-align: center;
+  color: #333333;
+}
+.clearfix:after {
+  content: '\20';
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+  overflow: hidden;
+}
+.advertisement {
+  width: 65%;
+  height: 40px;
+  /*margin-left: 19%;*/
+}
+
+.col-img {
+  margin-top: 8px;
+  /*margin-bottom: 5px;*/
+  margin-left: -14px;
+  width: 85px;
+  height: 75px;
+}
+
+.text {
+  width: 98%;
+  margin-bottom: 0;
+  color: white;
+  font-weight: 100;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: '宋体';
+}
+
+.title {
+  font-size: 12px;
+  background: url("../../../assets/main/textbg.png");
+  background-size: 100% 100%;
+  width: 35%;
+  height: 21px;
+  margin-left: 31%;
+}
+
+.logo_title {
+  position: absolute;
+  width: 224px;
+  height: 20px;
+  background: #bd3e0d;
+  border-radius: 2px;
+  padding-top: 2px;
+  top: 132px;
+  left: 50%;
+  margin-left: -112px;
+}
+
+.logo_title_inner {
+  width: 216px;
+  height: 16px;
+  border: 1px solid #ffffff;
+  border-radius: 2px;
+  margin: 0 auto;
+  color: #B8996A;
+  line-height: 13px;
+}
+
+.lianye-logo {
+  margin: 40px 0 1px 0;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+}
+
+.rounded-circle-center {
+  top: 10%;
+  position: absolute;
+  left: 28%;
+  width: 150px;
+}
+
+.rounded-circle-sixnight {
+  position: absolute;
+  left: 28%;
+  top: 10%;
+  width: 150px;
+}
+
+.rounded-circle {
+  position: absolute;
+  left: 2px;
+  top: 1%;
+  width: 60px;
+}
+
+.rounded-circle {
+  border-radius: 0 !important;
+}
+
+.context {
+  width: 100%;
+}
+
+.context-five {
+  width: 305px;
+  margin: 0 auto;
+}
+
+.col-img-six {
+  width: 47px;
+  height: 48px;
+}
+
+.boxssf-one {
+  width: 150px;
+  height: 140px;
+  margin: 0 auto;
+  background: url("../../../assets/main/kuan4.png");
+  border: 0;
+  background-size: 100% 100%;
+}
+
+.boxssf {
+  width: 150px;
+  height: 140px;
+  margin: 0 auto;
+  background: url("../../../assets/main/kuan3.png");
+  border: 0;
+  background-size: 100% 100%;
+}
+
+.text-custom-one {
+  color: white;
+  font-weight: 900;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-left: 40px;
+  font-family: "宋体";
+  width: 64px;
+  top: 50px;
+  position: absolute;
+}
+
+.text-custom {
+  color: white;
+  font-weight: 900;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-left: 10px;
+  font-family: "宋体";
+  width: 64px;
+  top: 38px;
+  position: absolute;
+}
+
+.boxs-eight-one {
+  width: 80%;
+  height: 70px;
+  margin: 0 auto;
+  background: url("../../../assets/main/oged.png");
+  border: 0;
+  background-size: 100% 100%;
+}
+
+.boxs-eight {
+  width: 80%;
+  height: 70px;
+  margin: 0 auto;
+  background: url("../../../assets/main/mged.png");
+  border: 0;
+  background-size: 100% 100%;
+}
+
+.text-eight-one {
+  color: white;
+  font-weight: 900;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-left: 40px;
+  font-family: "宋体";
+  /*width: 55px;*/
+  left: 88px;
+  top: 10px;
+  position: absolute;
+}
+
+.text-eight {
+  color: white;
+  font-weight: 900;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-left: 10px;
+  font-family: "宋体";
+  width: 55px;
+  left: 170px;
+  top: 10px;
+  position: absolute;
+}
+
+.eight-img-one {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: 11px;
+  left: 18px;
+}
+
+.eight-img {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: 11px;
+  left: 80px;
+}
+
+.eight-bt {
+  width: 100px;
+  position: absolute;
+  top: 38px;
+  right: 10px;
+}
+
+.my-product {
+  position: absolute;
+  bottom: 10px;
+  right: 1px;
+  width: 50%;
+}
+
+.my-product button {
+  background: url("../../../assets/main/button.png");
+  background-size: 100% 100%;
+  width: 100%;
+  height: 30px;
+  border: none;
+}
+
+.my-coupon {
+  position: absolute;
+  bottom: 10px;
+  left: 1px;
+  width: 50%;
+}
+
+.myProduct {
+  display: flex;
+  height: 30px;
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+}
+
+.myCoupon {
+  flex: 1;
+  height: 30px;
+  width: 100%;
+  background: antiquewhite;
+  margin: auto;
+}
+
+.myCoupon button {
+  background: url("../../../assets/main/button.png");
+  background-size: 100% 100%;
+  width: 100%;
+  height: 30px;
+  border: none;
+}
+
+.my-coupon button {
+  background: url("../../../assets/main/button.png");
+  background-size: 100% 100%;
+  width: 100%;
+  height: 30px;
+  border: none;
+}
+
+.my-coupons {
+  position: absolute;
+  bottom: 30px;
+  width: 33.33%;
+  display: grid;
+}
+
+.my-coupons button {
+  background: url("../../../assets/main/button.png");
+  background-size: 100% 100%;
+  width: 100%;
+  height: 30px;
+  border: none;
+}
+
+.suggestionCont {
+  width: 100%;
+  position: absolute;
+  opacity: 1;
+  top: 56px;
+  height: 203px;
+  background: #ffffff;
+  padding-top: 20px;
+  border-radius: 6px
+}
+
+.suggestionTitle {
+  width: 100%;
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.suggestionSubmit {
+  width: 100%;
+  height: 30px;
+  position: absolute;
+  bottom: 0;
+}
+
+.suggestionSubmit button {
+  background: url("../../../assets/main/submit.png");
+  background-size: 100% 100%;
+  width: 100%;
+  height: 30px;
+  border: none;
+}
+
+.suggestionClose {
+  display: inline-block;
+  position: absolute;
+  font-size: 16px;
+  font-weight: bold;
+  top: 8px;
+  right: 10px;
+
+}
+
+.box-one {
+  float: left;
+  width: 47%;
+  height: 150px;
+  margin-left: 6px;
+  border: 0;
+  background: url("../../../assets/main/kuan4.png");
+  background-size: 100% 100%;
+  display: -webkit-box;
+}
+
+.box {
+  float: left;
+  width: 47%;
+  height: 150px;
+  margin-left: 6px;
+  border: 0;
+  background: url("../../../assets/main/kuan3.png");
+  background-size: 100% 100%;
+  display: -webkit-box;
+}
+
+.box:active {
+  transform: scale(1.2);
+  -webkit-transform: scale(1.2);
+  -moz-transform: scale(1.2);
+  -o-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+}
+
+.box:after {
+  -webkit-filter: blur(2px);
+  -moz-filter: blur(2px);
+  -ms-filter: blur(2px);
+  -o-filter: blur(2px);
+  filter: blur(2px);
+}
+
+.boxss-one {
+  width: 150px;
+  height: 90px;
+  margin: 0 auto;
+  background: url("../../../assets/main/kuan4.png");
+  border: 0;
+  background-size: 100% 100%;
+}
+
+.boxs-one {
+  width: 47%;
+  height: 90px;
+  margin: 0 auto;
+  background: url("../../../assets/main/kuan4.png");
+  border: 0;
+  background-size: 100% 100%;
+}
+
+.boxss {
+  width: 150px;
+  height: 90px;
+  margin: 0 auto;
+  background: url("../../../assets/main/kuan3.png");
+  border: 0;
+  background-size: 100% 100%;
+}
+
+.boxs {
+  width: 47%;
+  height: 90px;
+  margin: 0 auto;
+  background: url("../../../assets/main/kuan3.png");
+  border: 0;
+  background-size: 100% 100%;
+}
+
+.boxs:after {
+  -webkit-filter: blur(2px);
+  -moz-filter: blur(2px);
+  -ms-filter: blur(2px);
+  -o-filter: blur(2px);
+  filter: blur(2px);
+}
+
+.box-body-one {
+  padding-left: 10px;
+  text-align: center;
+  width: 95%;
+}
+
+.box-body {
+  padding-left: 20px;
+  text-align: center;
+  width: 50%;
+}
+
+.box:active {
+  box-shadow: 2px 2px 2px 2px #acacac;
+}
+
+.ant-modal-footer {
+  text-align: center !important;
+}
+
+.addMain-img-onef {
+  width: 60px;
+  height: 60px;
+  margin-top: 10px;
+}
+
+.addMain-imgf {
+  width: 60px;
+  height: 60px;
+  position: absolute;
+  top: 7px;
+  left: 12px;
+}
+
+.addMain-img-one {
+  width: 40px;
+  height: 40px;
+  margin-top: 10px;
+}
+
+.addMain-img {
+  width: 35px;
+  height: 35px;
+  position: absolute;
+  top: 5px;
+  left: 22px;
+}
+
+.addMain-bottom {
+  margin-bottom: 4px !important;
+}
+
+@media screen and (max-height: 570px) {
+  .min-padding {
+    padding: 5px;
+  }
+
+  .box-body-one {
+    padding-left: 10px;
+    text-align: center;
+    width: 95%;
+  }
+
+  .box-body {
+    padding-left: 10px;
+    text-align: center;
+    width: 50%;
+  }
+
+  .context {
+    width: 100%;
+    /*margin: 0 auto;*/
+    /*padding: 0 6px;*/
+  }
+
+  .rounded-circle {
+    height: 43px;
+    position: absolute;
+    left: 2px;
+  }
+
+  .box-one {
+    float: left;
+    width: 47%;
+    height: 150px;
+    margin-left: 6px;
+    border: 0;
+    background: url("../../../assets/main/kuan4.png");
+    background-size: 100% 100%;
+    display: -webkit-box;
+  }
+
+  .box {
+    float: left;
+    width: 47%;
+    height: 150px;
+    margin-left: 7px;
+    background: url("../../../assets/main/kuan3.png");
+    border: 0;
+    background-size: 100% 100%;
+  }
+
+  .boxss-one {
+    /*float: left;*/
+    width: 150px;
+    height: 90px;
+    margin: 0 auto;
+    background: url("../../../assets/main/kuan4.png");
+    border: 0;
+    background-size: 100% 100%;
+  }
+
+  .boxs-one {
+    /*float: left;*/
+    width: 150px;
+    height: 90px;
+    margin: 0 auto;
+    background: url("../../../assets/main/kuan4.png");
+    border: 0;
+    background-size: 100% 100%;
+  }
+
+  .boxss {
+    width: 150px;
+    height: 90px;
+    margin: 0 auto;
+    background: url("../../../assets/main/kuan3.png");
+    border: 0;
+    background-size: 100% 100%;
+  }
+
+  .boxs {
+    width: 150px;
+    height: 90px;
+    margin: 0 auto;
+    background: url("../../../assets/main/kuan3.png");
+    border: 0;
+    background-size: 100% 100%;
+  }
+  /*.titleList {*/
+  /*display: flex;*/
+  /*width: 100%;*/
+  /*height: 60px;*/
+  /*margin-bottom: 4px;*/
+  /*margin-top: -24px;*/
+  /*}*/
+
+  /*.titleList_in {*/
+  /*flex: 1;*/
+  /*height: 100%;*/
+  /*text-align: center;*/
+  /*}*/
+
+  /*.title_top {*/
+  /*width: 100%;*/
+  /*text-align: center;*/
+  /*margin-top: 7px;*/
+  /*}*/
+
+  /*.title_topImg {*/
+  /*height: 25px;*/
+  /*width: 25px;*/
+  /*margin-top: 7px;*/
+  /*vertical-align: top*/
+  /*}*/
+
+  /*.title_bottom {*/
+  /*height: 20px;*/
+  /*font-size: 12px;*/
+  /*width: 100%;*/
+  /*text-align: center;*/
+  /*color: #fff;*/
+  /*}*/
+  .contain_btm {
+    width: 100%;
+    text-align: center;
+    margin-top: -10px;
+    padding-bottom: 58px;
+  }
+}
+
+@media screen and (min-height: 571px) {
+  .min-padding {
+    padding: 10px;
+  }
+
+  .box-body-one {
+    padding-left: 20px;
+    text-align: center;
+    width: 95%;
+  }
+
+  .box-body {
+    padding-left: 20px;
+    text-align: center;
+    width: 50%;
+  }
+
+  .context {
+    width: 100%;
+  }
+
+  .rounded-circle {
+    height: 43px;
+    position: absolute;
+    left: 2px;
+  }
+
+  .box-one {
+    float: left;
+    width: 47%;
+    height: 150px;
+    margin-left: 6px;
+    border: 0;
+    background: url("../../../assets/main/kuan4.png");
+    background-size: 100% 100%;
+    display: -webkit-box;
+  }
+
+  .col-img {
+    margin-top: 8px;
+    margin-bottom: 5px;
+    margin-left: -24px;
+    /*margin-bottom: 21px;*/
+    width: 85px;
+    height: 75px;
+  }
+
+  .box {
+    float: left;
+    width: 47%;
+    height: 150px;
+    margin-left: 5px;
+    background: url("../../../assets/main/kuan3.png");
+    border: 0;
+    background-size: 100% 100%;
+  }
+
+  .boxss {
+    /*float: left;*/
+    width: 150px;
+    height: 90px;
+    margin: 0 auto;
+    background: url("../../../assets/main/kuan3.png");
+    border: 0;
+    background-size: 100% 100%;
+  }
+
+  .boxs {
+    /*float: left;*/
+    width: 150px;
+    height: 90px;
+    margin: 0 auto;
+    background: url("../../../assets/main/kuan3.png");
+    border: 0;
+    background-size: 100% 100%;
+  }
+  .text{
+    width: 98%;
+    margin-bottom: -8px;
+    color: #fff;
+    font-weight: 100;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-family: '宋体';
+  }
+}
+
+@media screen and (max-height: 510px) {
+  .boxs-eight-one {
+    width: 80%;
+    height: 65px;
+    margin: 0 auto;
+    background: url("../../../assets/main/oged.png");
+    border: 0;
+    background-size: 100% 100%;
+  }
+
+  .boxs-eight {
+    width: 80%;
+    height: 65px;
+    margin: 0 auto;
+    background: url("../../../assets/main/mged.png");
+    border: 0;
+    background-size: 100% 100%;
+  }
+
+  .text-eight-one {
+    color: white;
+    font-weight: 900;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-left: 40px;
+    font-family: "宋体";
+    width: 40px;
+    left: 88px;
+    top: 10px;
+    position: absolute;
+  }
+
+  .text-eight {
+    color: white;
+    font-weight: 900;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-left: 10px;
+    font-family: "宋体";
+    width: 40px;
+    left: 170px;
+    top: 10px;
+    position: absolute;
+  }
+
+  .eight-img-one {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: 11px;
+    left: 18px;
+  }
+
+  .eight-img {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: 11px;
+    left: 80px;
+  }
+
+  .eight-bt {
+    width: 85px;
+    position: absolute;
+    top: 34px;
+    right: 8px;
+  }
+}
+
+/*@media screen and (max-height: 579px) {*/
+/*.context {*/
+/*width: 100%;*/
+/*}*/
+
+/*.rounded-circle {*/
+/*margin-bottom: 10%;*/
+/*}*/
+
+/*.text {*/
+/*width: 100%;*/
+/*margin-bottom: -7px;*/
+/*color: white;*/
+/*font-weight: 100;*/
+/*overflow: hidden;*/
+/*text-overflow: ellipsis;*/
+/*white-space: nowrap;*/
+/*font-family: '宋体';*/
+/*}*/
+
+/*.box-one {*/
+/*float: left;*/
+/*width: 47%;*/
+/*height: 125px;*/
+/*background: url("../../../assets/main/kuan4.png");*/
+/*border: 0;*/
+/*background-size: 100% 100%;*/
+/*display: -webkit-box;*/
+/*}*/
+
+/*.box {*/
+/*float: left;*/
+/*width: 47%;*/
+/*height: 125px;*/
+/*background: url("../../../assets/main/kuan3.png");*/
+/*border: 0;*/
+/*background-size: 100% 100%;*/
+/*}*/
+
+/*.col-img {*/
+/*margin-top: 3px;*/
+/*margin-bottom: -2px;*/
+/*margin-left: -15px;*/
+/*width: 75px;*/
+/*height: 65px;*/
+/*}*/
+
+/*.boxss-one {*/
+/*width: 150px;*/
+/*height: 80px;*/
+/*margin: 0 auto;*/
+/*background: url("../../../assets/main/kuan4.png");*/
+/*border: 0;*/
+/*background-size: 100% 100%;*/
+/*}*/
+
+/*.boxssf-one {*/
+/*width: 150px;*/
+/*height: 124px;*/
+/*margin: 0 auto;*/
+/*background: url("../../../assets/main/kuan4.png");*/
+/*border: 0;*/
+/*background-size: 100% 100%;*/
+/*}*/
+
+/*.boxs-one {*/
+/*width: 150px;*/
+/*height: 80px;*/
+/*margin: 0 auto;*/
+/*background: url("../../../assets/main/kuan4.png");*/
+/*border: 0;*/
+/*background-size: 100% 100%;*/
+/*}*/
+
+/*.boxssf {*/
+/*width: 150px;*/
+/*height: 124px;*/
+/*margin: 0 auto;*/
+/*background: url("../../../assets/main/kuan3.png");*/
+/*border: 0;*/
+/*background-size: 100% 100%;*/
+/*}*/
+
+/*.boxss {*/
+/*width: 150px;*/
+/*height: 80px;*/
+/*margin: 0 auto;*/
+/*background: url("../../../assets/main/kuan3.png");*/
+/*border: 0;*/
+/*background-size: 100% 100%;*/
+/*}*/
+
+/*.addMain-img-one {*/
+/*width: 30px;*/
+/*height: 30px;*/
+/*margin-top: 10px;*/
+/*}*/
+
+/*.addMain-img {*/
+/*width: 25px;*/
+/*height: 25px;*/
+/*position: absolute;*/
+/*top: 5px;*/
+/*left: 22px;*/
+/*}*/
+
+/*.text-custom-one {*/
+/*color: white;*/
+/*font-weight: 900;*/
+/*overflow: hidden;*/
+/*text-overflow: ellipsis;*/
+/*white-space: nowrap;*/
+/*margin-left: 40px;*/
+/*font-family: "宋体";*/
+/*width: 64px;*/
+/*top: 40px;*/
+/*position: absolute;*/
+/*}*/
+/*}*/
+
+@media screen and (max-height: 570px) {
+  .context {
+    width: 100%;
+  }
+
+  .rounded-circle {
+    margin-bottom: 10%;
+  }
+
+  .text {
+    width: 100%;
+    margin-bottom: -7px;
+    color: white;
+    font-weight: 100;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-family: '宋体';
+  }
+
+  .box-one {
+    float: left;
+    width: 47%;
+    height: 110px;
+    background: url("../../../assets/main/kuan4.png");
+    border: 0;
+    background-size: 100% 100%;
+    display: -webkit-box;
+  }
+
+  .box {
+    float: left;
+    width: 47%;
+    height: 110px;
+    background: url("../../../assets/main/kuan3.png");
+    border: 0;
+    background-size: 100% 100%;
+  }
+
+  .col-img {
+    margin-top: 3px;
+    margin-bottom: -2px;
+    margin-left: -15px;
+    width: 70px;
+    height: 60px;
+  }
+
+  .boxss-one {
+    width: 150px;
+    height: 80px;
+    margin: 0 auto;
+    background: url("../../../assets/main/kuan4.png");
+    border: 0;
+    background-size: 100% 100%;
+  }
+
+  .boxssf-one {
+    width: 150px;
+    height: 124px;
+    margin: 0 auto;
+    background: url("../../../assets/main/kuan4.png");
+    border: 0;
+    background-size: 100% 100%;
+  }
+
+  .boxs-one {
+    width: 150px;
+    height: 80px;
+    margin: 0 auto;
+    background: url("../../../assets/main/kuan4.png");
+    border: 0;
+    background-size: 100% 100%;
+  }
+
+  .boxssf {
+    width: 150px;
+    height: 124px;
+    margin: 0 auto;
+    background: url("../../../assets/main/kuan3.png");
+    border: 0;
+    background-size: 100% 100%;
+  }
+
+  .boxss {
+    width: 150px;
+    height: 80px;
+    margin: 0 auto;
+    background: url("../../../assets/main/kuan3.png");
+    border: 0;
+    background-size: 100% 100%;
+  }
+
+  .addMain-img-one {
+    width: 30px;
+    height: 30px;
+    margin-top: 10px;
+  }
+
+  .addMain-img {
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    top: 5px;
+    left: 22px;
+  }
+
+  .text-custom-one {
+    color: white;
+    font-weight: 900;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-left: 40px;
+    font-family: "宋体";
+    width: 64px;
+    top: 40px;
+    position: absolute;
+  }
+}
+
+@media screen and (max-width: 291px) {
+  .col-img {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: -25px;
+    width: 69px;
+    height: 59px;
+  }
+
+  .box-body-one {
+    padding-left: 20px;
+    text-align: center;
+    width: 95%;
+  }
+
+  .box-body {
+    padding-left: 20px;
+    text-align: center;
+    width: 50%;
+  }
+
+  .context {
+    width: 220px;
+    margin: 0 auto;
+  }
+
+  .rounded-circle {
+    height: 43px;
+    position: absolute;
+    left: 2px;
+  }
+
+  .lianye-logo {
+    margin: 20px 0 1px 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+  }
+
+  .box-one {
+    float: left;
+    width: 100px;
+    height: 100px;
+    border: 0;
+    background: url("../../../assets/main/kuan4.png");
+    background-size: 100% 100%;
+    display: -webkit-box;
+  }
+
+  .box {
+    float: left;
+    width: 100px;
+    height: 100px;
+    background: url("../../../assets/main/kuan3.png");
+    border: 0;
+    background-size: 100% 100%;
+  }
+
+  .boxss-one {
+    width: 200px;
+    height: 65px;
+    margin: 0 auto;
+    background: url("../../../assets/main/kuan4.png");
+    border: 0;
+    background-size: 100% 100%;
+  }
+
+  .boxs-one {
+    width: 200px;
+    height: 65px;
+    margin: 0 auto;
+    background: url("../../../assets/main/kuan4.png");
+    border: 0;
+    background-size: 100% 100%;
+  }
+
+  .boxss {
+    width: 200px;
+    height: 55px;
+    margin: 0 auto;
+    background: url("../../../assets/main/kuan3.png");
+    border: 0;
+    background-size: 100% 100%;
+  }
+
+}
+
