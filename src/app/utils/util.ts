@@ -112,3 +112,9 @@ export let getActiveItemId = () => {
 export let getActiveCompanyId = () => {
   return ['76', '113', '114', '115', '116', '117', '119', '130', '113', '141', '142', '143', '144', '147', '148', '123'];
 };
+export let getZhuHaiCompanyId = () => {
+  return ['83', '84', '118', '131'];
+};
+export let getVmCodes = () => {
+  return ['1996000101', '1996000003'];
+};

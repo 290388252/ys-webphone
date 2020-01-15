@@ -38,15 +38,15 @@ export class AppService {
     return this.http.get(url, {headers: myHeaders});
   }
 
-  getDataGzh(url: string, options?: any): Observable<any> {
+  getDataAliPay(url: string, options?: any,  tokens?: string): Observable<any> {
     // 配置请求头
     const myHeaders: HttpHeaders = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'token': 'webapp'
+      'Content-Type': 'text/plain',
+      'ysToken': 'Bearer ' + tokens
     });
     // tslint:disable-next-line:forin
     url += (url.indexOf('?') < 0 ? '?' : '&') + this.param(options);
-    return this.http.get(url, {headers: myHeaders});
+    return this.http.get(url, {headers: myHeaders,responseType: 'text'});
   }
 
   getDataOpen(url: string, options?: any, tokens?: string): Observable<any> {

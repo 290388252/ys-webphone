@@ -2,8 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AppService} from '../../app-service';
 import {AppProperties} from '../../app.properties';
-import {getActiveCompanyId, getActiveItemId, urlParse} from '../../utils/util';
+import {checkPhone, getActiveCompanyId, getActiveItemId, getVmCode, urlParse} from '../../utils/util';
 import {CarouselConfig} from 'ngx-bootstrap/carousel';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-main',
@@ -42,14 +43,37 @@ export class MainComponent implements OnInit {
   public advertiseMentShow = false;
   public advertiseMentPic: string;
   public checkTimes = 10;
+  public loginShow = false;
+// ---------------------login
+  validateForm: FormGroup;
+  public validateValue = true;
+  public phone: number;
+  public buttonNoTouch = false;
+  public truePhone = true;
+  public times = 60;
+  private openId: string;
+  private id: string;
+// ---------------------login
+  private phoneValidator = (control: FormControl): { [s: string]: boolean } => {
+    if (!control.value) {
+      return {required: true};
+    } else if (!/^1[23456789]\d{9}$/.test(control.value)) {
+      return {error: true, phoneForm: true};
+    }
+  }
   constructor(private router: Router,
               private activatedRoute: ActivatedRoute,
               private appProperties: AppProperties,
+              private fb: FormBuilder,
               private appService: AppService) {
   }
 
   ngOnInit() {
     this.IsWeixinOrAlipay();
+    this.validateForm = this.fb.group({
+      phoneForm: [null, [this.phoneValidator]],
+      password: [null, [Validators.required]]
+    });
     // 获取token值
     if (urlParse(window.location.search)['token'] === undefined) {
       this.getCookies();
@@ -62,6 +86,11 @@ export class MainComponent implements OnInit {
     // 初始化数据
     this.getInitData();
     sessionStorage.setItem('vmCode', urlParse(window.location.search)['vmCode']);
+  }
+  // 关闭注册弹框
+  handleCancel (e) {
+    console.log(e);
+    this.loginShow = false;
   }
   /**
    * 2019-02-16
@@ -233,8 +262,10 @@ export class MainComponent implements OnInit {
           if (data.status === 1) {
             if (data.returnObject !== '') {
               this.openDoorMsg = '活动:' + data.returnObject.activityName + ',是否开门';
-              this.openDoorMsgKey = '活动商品:' + data.returnObject.partakeItemList[0].key;
-              this.activeImg = this.appProperties.imgUrl + data.returnObject.partakeItemList[0].value;
+              if (data.returnObject.isAll !== 1) {
+                this.openDoorMsgKey = '活动商品:' + data.returnObject.partakeItemList[0].key;
+                this.activeImg = this.appProperties.imgUrl + data.returnObject.partakeItemList[0].value;
+              }
             }
             this.isVisibleOpenDoor = true;
           } else if (data.status === 91) {
@@ -320,15 +351,17 @@ export class MainComponent implements OnInit {
    * 没有token时页面跳转授权
    */
   noTokenOath() {
-    this.appService.getData(this.appProperties.aliGetUserIdUrl + '?vmCode=' + urlParse(window.location.search)['vmCode'], '').subscribe(
-      data2 => {
-        console.log(data2);
-        window.location.href = data2.returnObject;
-      },
-      error2 => {
-        console.log(error2);
-      }
-    );
+    this.loginShow = true;
+   // old login
+    // this.appService.getData(this.appProperties.aliGetUserIdUrl + '?vmCode=' + urlParse(window.location.search)['vmCode'], '').subscribe(
+    //   data2 => {
+    //     console.log(data2);
+    //     window.location.href = data2.returnObject;
+    //   },
+    //   error2 => {
+    //     console.log(error2);
+    //   }
+    // );
   }
   /**
    * 2019-02-16
@@ -433,10 +466,84 @@ export class MainComponent implements OnInit {
       // });
     } else if (flag === 2) {
       document.getElementsByClassName('ant-modal-body')[2]['style'].cssText = 'padding: 0;';
-      this.isVisibleCouponThree = true;
+      this.isVisibleCouponThree = false;
     }
   }
 
+
+  _submitForm() {
+    for (const i in this.validateForm.controls) {
+      if (true) {
+        this.validateForm.controls[i].markAsDirty();
+      }
+    }
+    if (this.validateForm.controls.phoneForm.value !== null && this.validateForm.controls.password.value !== null) {
+      this.appService.postAliData(this.appProperties.aliRegisterUrl,
+        {
+          phone: this.validateForm.controls.phoneForm.value,
+          code: this.validateForm.controls.password.value,
+          vmCode: urlParse(window.location.search)['vmCode']
+        }, this.token).subscribe(
+        data => {
+          if (data.status !== 1) {
+            alert(data.message);
+          } else if (data.status === 1) {
+            console.log(data);
+            if (data.willGo) {
+              this.loginShow = false;
+              window.location.href = data.returnObject;
+            }
+          }
+        },
+        error => {
+          console.log(error);
+        }
+      );
+      console.log(this.validateForm.controls.phoneForm.value);
+      console.log(this.validateForm.controls.password.value);
+    } else {
+      alert('请输入手机号码');
+    }
+  }
+  /**
+   * 2019-02-16
+   * @author YanChao
+   * 发送验证码
+   */
+  sendCode(e: TouchEvent) {
+    e.preventDefault();
+    if (checkPhone(this.phone)) {
+      this.appService.postAliData(this.appProperties.aliSmsSendUrl, {phone: this.phone}, this.token).subscribe(
+        data => {
+          if (data.status !== 1) {
+            alert('发送失败');
+          } else {
+            this.times = 60;
+            this.buttonNoTouch = true;
+            this.truePhone = true;
+            const timer = setInterval(() => {
+              this.times --;
+              if (this.times <= 0) {
+                this.buttonNoTouch = false;
+                clearInterval(timer);
+              }
+            }, 1000);
+            setTimeout(() => {
+              this.buttonNoTouch = false;
+            }, 60100);
+          }
+        },
+        error => {
+          console.log(error);
+        }
+      );
+    } else {
+      this.truePhone = false;
+    }
+  }
+  focusCode() {
+    document.getElementById('ag-bk').style.height = (document.documentElement.offsetWidth + 100) + 'px';
+  }
   // 双十一
   openPromotions() {
     document.getElementsByClassName('ant-modal-body')[3]['style'].cssText = 'padding: 0;';
@@ -571,23 +678,35 @@ export class MainComponent implements OnInit {
    */
   circleBtn(flag) {
     if (flag === 1) {
-      window.location.href
+      this.appService.postAliData(this.appProperties.shopUserMoneyUrl, {}, this.token).subscribe(
+        data => {
+          if (data.status === -66) {
+            alert(data.message);
+            return;
+          } else {
+            window.location.href
         = `http://sms.youshuidaojia.com:9800/prepaid?vmCode=${urlParse(window.location.search)['vmCode']}&token=${this.token}`;
+          }
+        },
+        error => {
+          console.log(error);
+        }
+      );
     } else if (flag === 2) {
       window.location.href = `http://sms.youshuidaojia.com:9800/shopGuide?vmCode=${urlParse(window.location.search)['vmCode']}&flag=2`;
     } else if (flag === 3) {
-      this.router.navigate(['shareGzh'], {
-        queryParams: {
-          vmCode: urlParse(window.location.search)['vmCode'],
-        token: this.token
-        }
-      });
+      // this.router.navigate(['shareGzh'], {
+      //   queryParams: {
+      //     vmCode: urlParse(window.location.search)['vmCode'],
+      //     token: this.token
+      //   }
+      // });
     } else if (flag === 4) {
       document.getElementsByClassName('ant-modal-body')[2]['style'].cssText = 'padding: 0;';
-      this.isVisibleCouponThree = true;
+      this.isVisibleCouponThree = false;
     } else if (flag === 5) {
       document.getElementsByClassName('ant-modal-body')[2]['style'].cssText = 'padding: 0;';
-      this.isVisibleCouponThree = true;
+      this.isVisibleCouponThree = false;
     }
   }
 }

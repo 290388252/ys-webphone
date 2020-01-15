@@ -1,5 +1,5 @@
 import { Component , OnInit} from '@angular/core';
-import {urlParse} from './utils/util';
+import {getActiveCompanyId, getVmCodes, urlParse} from './utils/util';
 import {NavigationEnd, Router} from '@angular/router';
 
 @Component({
@@ -9,16 +9,19 @@ import {NavigationEnd, Router} from '@angular/router';
 })
 export class AppComponent implements OnInit {
   public curId: number;
-  public footerHidden = false;
+  public footerHidden = true;
   constructor(private router: Router) {
   }
   ngOnInit(): void {
     this.router.events.subscribe((event: NavigationEnd) => {
       if (event instanceof NavigationEnd) {
         const refUrl = window.location.href;
-        refUrl.indexOf('share') !== -1 ? this.footerHidden = true : this.footerHidden = false;
+        // refUrl.indexOf('share') !== -1 ? this.footerHidden = true : this.footerHidden = false;
       }
       });
+    if (getVmCodes().includes(urlParse(window.location.search)['vmCode'])) {
+      this.footerHidden = false;
+    }
   }
   // 获取选中状态
   selected(flag) {

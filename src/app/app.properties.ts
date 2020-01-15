@@ -68,6 +68,7 @@ export class AppProperties {
   public storeOrderFininshPayUrl: string;
   public useCouponUrl: string;
   public useWaterVouchersUrl: string;
+  public shopUserMoneyUrl: string;
 
   constructor() {
     // Public

@@ -23,7 +23,8 @@ export class CreditPaymentComponent implements OnInit {
      */
     this.appService.getAliData(this.appProperties.aliGetCreditWithheldUrl + urlParse(window.location.href)['vmCode']).subscribe(
       data => {
-        document.write(data.returnObject);
+        // document.write(data.returnObject);
+        console.log(data);
       },
       error => {
         console.log(error);

@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {AppService} from '../../app-service';
 import {AppProperties} from '../../app.properties';
-import {getActiveCompanyId, urlParse} from '../../utils/util';
+import {getActiveCompanyId, getZhuHaiCompanyId, urlParse} from '../../utils/util';
 import {toNumber} from 'ngx-bootstrap/timepicker/timepicker.utils';
 
 declare var WeixinJSBridge: any;
@@ -35,6 +35,7 @@ export class GoodsShowComponent implements OnInit {
   public replenishList = [];
   public aliPay = false;
   public youshuiCompany = false;
+  public zhuHaiCompany = false;
   public visible = false;
   public placement = 'left';
   public wechatVisible;
@@ -57,12 +58,15 @@ export class GoodsShowComponent implements OnInit {
   public grouponShow;
   public showPrize;
   public prizeMessage;
+  public sm;
   constructor(private router: Router,
               private appProperties: AppProperties,
               private appService: AppService) {
   }
 
   ngOnInit() {
+    this.sm = urlParse(window.location.search)['sm'];
+    console.log(this.sm)
     this.wechatVisible = false;
     this.couponList = [];
     this.waterVoucherList = [];
@@ -76,8 +80,13 @@ export class GoodsShowComponent implements OnInit {
         console.log(data2);
         if (getActiveCompanyId().includes(data2.returnObject.toString())) {
           this.youshuiCompany = true;
+          this.zhuHaiCompany = false;
+        } else if (getZhuHaiCompanyId().includes(data2.returnObject.toString())) {
+          this.youshuiCompany = false;
+          this.zhuHaiCompany = true;
         } else {
           this.youshuiCompany = false;
+          this.zhuHaiCompany = false;
         }
       },
       error2 => {
@@ -170,7 +179,6 @@ export class GoodsShowComponent implements OnInit {
         const link = 'http://sms.youshuidaojia.com/share?token=' + this.token;
         console.log(link);
         wx.ready(function () {
-          console.log(123);
           // wx.ready(function () {   // 需在用户可能点击分享按钮前就先调用
           //   wx.updateAppMessageShareData({
           //     title: '优水到家', // 分享标题
@@ -268,13 +276,23 @@ export class GoodsShowComponent implements OnInit {
           });
         } else {
           // WeixinJSBridge.call('closeWindow');
-          this.router.navigate(['main'], {
-            queryParams: {
-              vmCode: urlParse(window.location.search)['vmCode'],
-              token: sessionStorage.getItem('token'),
-              close: '1'
-            }
-          });
+          if (urlParse(window.location.search)['sm'] === '1') {
+            this.router.navigate(['smain'], {
+              queryParams: {
+                vmCode: urlParse(window.location.search)['vmCode'],
+                token: sessionStorage.getItem('token'),
+                close: '1'
+              }
+            });
+          } else {
+            this.router.navigate(['main'], {
+              queryParams: {
+                vmCode: urlParse(window.location.search)['vmCode'],
+                token: sessionStorage.getItem('token'),
+                close: '1'
+              }
+            });
+          }
         }
       }
     } else if (ua.match(/AlipayClient/i)) {
@@ -290,13 +308,23 @@ export class GoodsShowComponent implements OnInit {
           });
         } else {
           // window['AlipayJSBridge'].call('closeWebview');
-          this.router.navigate(['aliMain'], {
-            queryParams: {
-              vmCode: urlParse(window.location.search)['vmCode'],
-              token: sessionStorage.getItem('token'),
-              close: '1'
-            }
-          });
+          if (urlParse(window.location.search)['sm'] === '1') {
+            this.router.navigate(['aliSMain'], {
+              queryParams: {
+                vmCode: urlParse(window.location.search)['vmCode'],
+                token: sessionStorage.getItem('token'),
+                close: '1'
+              }
+            });
+          } else {
+            this.router.navigate(['aliMain'], {
+              queryParams: {
+                vmCode: urlParse(window.location.search)['vmCode'],
+                token: sessionStorage.getItem('token'),
+                close: '1'
+              }
+            });
+          }
         }
       }
     }

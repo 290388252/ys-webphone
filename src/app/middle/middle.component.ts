@@ -2,7 +2,7 @@ import { Component , OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {AppService} from '../app-service';
 import {AppProperties} from '../app.properties';
-import {urlParse} from '../utils/util';
+import {getVmCodes, urlParse} from '../utils/util';
 
 @Component({
   selector: 'app-middle',
@@ -99,8 +99,15 @@ export class MiddleComponent implements OnInit {
       data => {
         console.log(data);
         let newData;
-        const wlhUrl = '/main?vmCode=' + urlParse(window.location.href)['vmCode'];
-        const newWlhUrl = '/main?vmCode=' + urlParse(window.location.href)['vmCode'];
+        let wlhUrl;
+        let newWlhUrl;
+        if (getVmCodes().includes(urlParse(window.location.search)['vmCode'])) {
+          wlhUrl = '/smain?vmCode=' + urlParse(window.location.href)['vmCode'];
+          newWlhUrl = '/smain?vmCode=' + urlParse(window.location.href)['vmCode'];
+        } else {
+           wlhUrl = '/main?vmCode=' + urlParse(window.location.href)['vmCode'];
+           newWlhUrl = '/main?vmCode=' + urlParse(window.location.href)['vmCode'];
+        }
         // const newWlhUrl = '/register?vmCode=' + urlParse(window.location.href)['vmCode']; // old
         const state = urlParse(data.data)['state'];
         if (typeof(data.data) === 'string' && data.data.length > 0) {

@@ -9,13 +9,16 @@ const routes: Routes = [/*
     { path: 'register', loadChildren: './wechat/register/register.module#RegisterModule' },
     { path: 'middle', loadChildren: './middle/middle.module#MiddleModule' },
     { path: 'main', loadChildren: './wechat/main/main.module#MainModule' },
+    { path: 'smain', loadChildren: './wechat/shimiaomain/main.module#MainModule' },
     { path: 'scan', loadChildren: './wechat/scan/scan.module#ScanModule' },
 // alipay
     { path: 'aliRegister', loadChildren: './alipay/register/register.module#RegisterModule' },
     { path: 'aliMain', loadChildren: './alipay/main/main.module#MainModule' },
+    { path: 'aliSMain', loadChildren: './alipay/shimiaomain/main.module#MainModule' },
     { path: 'aliProduct', loadChildren: './alipay/product/product.module#ProductModule' },
     { path: 'aliCreditPayment', loadChildren: './alipay/creditPayment/creditPayment.module#CreditPaymentModule' },
     { path: 'notPage', loadChildren: './alipay/notPage/notPage.module#NotPageModule' },
+    { path: 'payPage', loadChildren: './alipay/pay/pay.module#PayPageModule' },
 // public
     { path: 'goodsShow', loadChildren: './publicSystem/goodsShow/goodsShow.module#GoodsShowModule' },
     { path: 'share', loadChildren: './publicSystem/share/share.module#ShareModule' },

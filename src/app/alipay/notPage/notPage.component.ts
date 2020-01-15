@@ -18,13 +18,7 @@ export class NotPageComponent implements OnInit {
               private appService: AppService) {
   }
   ngOnInit() {}
-
-  /**
-   * 2019-02-16
-   * @author YanChao
-   * 判断是微信登陆还是支付宝登陆
-   */
-  urlParse(url): object {
+  urlParse(url): object   {
     const obj = {};
     const reg = /[?&][^?&]+=[^?&]+/g;
     const arr = url.match(reg);

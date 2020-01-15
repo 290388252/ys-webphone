@@ -3,10 +3,13 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {AppService} from '../../app-service';
 import {AppProperties} from '../../app.properties';
 import {NzModalService} from 'ng-zorro-antd';
-import {getActiveCompanyId, getActiveItemId, getCoupon, getNewUser, urlParse} from '../../utils/util';
+import {checkPhone, getActiveCompanyId, getActiveItemId, getCoupon, getNewUser, getVmCode, urlParse} from '../../utils/util';
 import {CarouselConfig} from 'ngx-bootstrap/carousel';
+import {el} from '@angular/platform-browser/testing/src/browser_util';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
 declare var wx: any;
+declare var WeixinJSBridge: any;
 
 @Component({
   selector: 'app-main',
@@ -50,18 +53,58 @@ export class MainComponent implements OnInit {
   public isConfirmLoading = false;
   public isScanImg = false;
   public advertiseMentShow = false;
+  public loginShow = false;
+// ---------------------login
+  validateForm: FormGroup;
+  public validateValue = true;
+  public phone: number;
+  public buttonNoTouch = false;
+  public truePhone = true;
+  public times = 60;
+  private openId: string;
+  private id: string;
+// ---------------------login
   public advertiseMentPic = '';
   public checkTimes = 20;
   public showPrepaid = false;
+
+
+  public isFocusA;
+  public isFocusB;
+  public isFocusD;
+  public isFocusE;
+  public isFocusF;
+  public isFocusG;
+  public errorSumit;
+  public prepaidMoney;
+  public errorNum;
+  public endMoney;
+  public endPhone;
+  public prepaidPhone;
+  public judgeFriend;
+  public correct;
+  public orderId;
+  private phoneValidator = (control: FormControl): { [s: string]: boolean } => {
+    if (!control.value) {
+      return {required: true};
+    } else if (!/^1[23456789]\d{9}$/.test(control.value)) {
+      return {error: true, phoneForm: true};
+    }
+  }
 
   constructor(private router: Router,
               private modalService: NzModalService,
               private activatedRoute: ActivatedRoute,
               private appProperties: AppProperties,
+              private fb: FormBuilder,
               private appService: AppService) {
   }
 
   ngOnInit() {
+    this.validateForm = this.fb.group({
+      phoneForm: [null, [this.phoneValidator]],
+      password: [null, [Validators.required]]
+    });
     if (urlParse(window.location.search)['token'] === undefined) {
       this.getCookies();
     } else {
@@ -77,18 +120,18 @@ export class MainComponent implements OnInit {
       this.isVisibleCouponTwo = true;
     }
     // // 新用户进入界面
-    if (getNewUser() === '1') {
-      document.cookie = 'newUser=' + 0;
-      this.appService.getDataOpen(this.appProperties.nonePassWordPayUrl,
-        {vmCode: urlParse(window.location.href)['vmCode']}).subscribe(
-        data1 => {
-          window.location.href = data1;
-        },
-        error1 => {
-          console.log(error1);
-        }
-      );
-    }
+    // if (getNewUser() === '1') {
+    //   document.cookie = 'newUser=' + 0;
+    //   this.appService.getDataOpen(this.appProperties.nonePassWordPayUrl,
+    //     {vmCode: urlParse(window.location.href)['vmCode']}).subscribe(
+    //     data1 => {
+    //       window.location.href = data1;
+    //     },
+    //     error1 => {
+    //       console.log(error1);
+    //     }
+    //   );
+    // }
     this.vmCode = urlParse(window.location.search)['vmCode'];
     if (urlParse(window.location.search)['vmCode'] !== undefined) {
       this.isScanImg = false;
@@ -102,9 +145,18 @@ export class MainComponent implements OnInit {
 
     // document.getElementsByClassName('carousel-control')[1]['style'].cssText = 'opacity: 0;';
   }
+// 关闭注册弹框
+  handleCancel (e) {
+    console.log(e);
+    this.loginShow = false;
+  }
 
   closeAdvertiseWechat() {
     this.advertiseMentShow = false;
+  }
+
+  focusCode() {
+    document.getElementById('ag-bk').style.height = (document.documentElement.offsetWidth + 100) + 'px';
   }
 
   prepaid() {
@@ -129,24 +181,24 @@ export class MainComponent implements OnInit {
           this.youshuiCompany = false;
           this.otherCompany = true;
           this.baoliCompany = false;
-          this.appService.getAliData(this.appProperties.wechatLoginCheckSend
-            + '?openId=' + urlParse(window.location.search)['openId'], '').subscribe(
-            data => {
-              console.log(data);
-              if (data.code === 3) {
-                document.getElementsByClassName('ant-modal-body')[4]['style'].cssText = 'padding: 0;';
-                this.isVisibleCouponThree = true;
-              } else {
-                // this.isVisibleCouponFour = true;
-                // document.getElementsByClassName('ant-modal-body')[1]['style'].cssText = 'padding: 0;';
-                // setTimeout(() => {
-                //   this.isVisibleCouponFour = false;
-                // }, 100000);
-              }
-            },
-            error => {
-              console.log(error);
-            });
+          // this.appService.getAliData(this.appProperties.wechatLoginCheckSend
+          //   + '?openId=' + urlParse(window.location.search)['openId'], '').subscribe(
+          //   data => {
+          //     console.log(data);
+          //     if (data.code === 3) {
+          //       document.getElementsByClassName('ant-modal-body')[4]['style'].cssText = 'padding: 0;';
+          //       this.isVisibleCouponThree = true;
+          //     } else {
+          //       // this.isVisibleCouponFour = true;
+          //       // document.getElementsByClassName('ant-modal-body')[1]['style'].cssText = 'padding: 0;';
+          //       // setTimeout(() => {
+          //       //   this.isVisibleCouponFour = false;
+          //       // }, 100000);
+          //     }
+          //   },
+          //   error => {
+          //     console.log(error);
+          //   });
         } else if (data2.returnObject === 104) {
           this.youshuiCompany = true;
           this.otherCompany = false;
@@ -298,14 +350,16 @@ export class MainComponent implements OnInit {
       alert('水已经卖完无法开门');
     } else {
       this.appService.postAliData(this.appProperties.openBeforeCanDo + urlParse(window.location.href)['vmCode']
-            + '&wayNum=' + this.item.wayNumber, '', this.token).subscribe(
-            data => {
-              console.log(data);
+        + '&wayNum=' + this.item.wayNumber, '', this.token).subscribe(
+        data => {
+          console.log(data);
           if (data.status === 1) {
             if (data.returnObject !== '') {
               this.openDoorMsg = '活动:' + data.returnObject.activityName + ',是否开门';
-              this.openDoorMsgKey = '活动商品:' + data.returnObject.partakeItemList[0].key;
-              this.activeImg = this.appProperties.imgUrl + data.returnObject.partakeItemList[0].value;
+              if (data.returnObject.isAll !== 1) {
+                this.openDoorMsgKey = '活动商品:' + data.returnObject.partakeItemList[0].key;
+                this.activeImg = this.appProperties.imgUrl + data.returnObject.partakeItemList[0].value;
+              }
             }
             this.isVisibleOpenDoor = true;
           } else if (data.status === 91) {
@@ -388,7 +442,7 @@ export class MainComponent implements OnInit {
           if (data2.code !== 3) {
             alert(data2.msg);
           } else {
-            this.isVisibleCouponThree = true;
+            this.isVisibleCouponThree = false;
           }
         },
         error2 => {
@@ -427,6 +481,11 @@ export class MainComponent implements OnInit {
    * 新用户登陆
    */
   login() {
+    this.loginShow = true;
+    this.openId = urlParse(window.location.search)['openId'];
+  }
+  logins() {
+    this.openId = urlParse(window.location.search)['openId'];
     this.appService.getData(this.appProperties.wechatOauth2Url, {vmCode: urlParse(window.location.href)['vmCode']}).subscribe(
       data => {
         console.log(data);
@@ -441,7 +500,6 @@ export class MainComponent implements OnInit {
         if (typeof(data.data) === 'string' && data.data.length > 0) {
           newData = data.data.replace(data.data.substring(data.data.indexOf('state=') + 6, data.data.length),
             newWlhUrl + '-' + wlhUrl + '-' + state);
-          console.log(newData);
           window.location.href = newData;
         }
       },
@@ -449,6 +507,99 @@ export class MainComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+
+  _submitForm() {
+    for (const i in this.validateForm.controls) {
+      if (true) {
+        this.validateForm.controls[i].markAsDirty();
+      }
+    }
+    if (this.validateForm.controls.phoneForm.value !== null && this.validateForm.controls.password.value !== null) {
+      this.appService.getData(this.appProperties.wechatRegisterUrl,
+        {
+          openId: this.openId,
+          phone: this.validateForm.controls.phoneForm.value,
+          smsCode: this.validateForm.controls.password.value,
+          vmCode: getVmCode(),
+          inviteId: ''
+        }).subscribe(
+        data => {
+          if (data.code !== 0) {
+            alert('登陆失败');
+          } else if (data.code === 0) {
+            console.log(data);
+            const exp = new Date();
+            // exp.setTime(exp.getTime() + 1000 * 60 * 60);
+            exp.setTime(exp.getTime() + 1000 * 60 * 60 * 24 * 365 * 10);
+            document.cookie = 'token=' + data.data.token + ';expires=' + exp.toUTCString();
+            if (data.data.registerCoupon === 1 || data.data.registerCoupon === '1') {
+              document.cookie = 'coupon=' + 0;
+            } else if (data.data.registerCoupon === 2 || data.data.registerCoupon === '2') {
+              document.cookie = 'coupon=' + 2;
+            }
+            document.cookie = 'newUser=' + 1;
+            if (sessionStorage.getItem('flag') === '' || sessionStorage.getItem('flag') === undefined
+              || sessionStorage.getItem('flag') === null) {
+              this.token = data.data.token;
+              this.loginShow = false;
+              this.appService.getDataOpen(this.appProperties.nonePassWordPayUrl,
+                {vmCode: urlParse(window.location.href)['vmCode']}).subscribe(
+                data11 => {
+                  window.location.href = data11;
+                },
+                error11 => {
+                  console.log(error11);
+                }
+              );
+            } else {
+              window.location.href = `http://sms.youshuidaojia.com:9800/main?vmCode=${urlParse(window.location.search)['vmCode']}`;
+            }
+            // this.router.navigate(['main'], {queryParams: {'token': data.data.token}});
+          }
+        },
+        error => {
+          console.log(error);
+        }
+      );
+      console.log(this.validateForm.controls.phoneForm.value);
+      console.log(this.validateForm.controls.password.value);
+    } else {
+      alert('请输入手机号码');
+    }
+  }
+
+  // 发送验证码
+  sendCode(e: TouchEvent) {
+    e.preventDefault();
+    if (checkPhone(this.phone)) {
+      this.appService.postData(this.appProperties.smsSendUrl, {phone: this.phone}).subscribe(
+        data => {
+          if (data.code !== 0) {
+            alert('发送失败');
+          } else {
+            this.times = 60;
+            this.buttonNoTouch = true;
+            this.truePhone = true;
+            const timer = setInterval(() => {
+              this.times--;
+              if (this.times <= 0) {
+                this.buttonNoTouch = false;
+                clearInterval(timer);
+              }
+            }, 1000);
+            setTimeout(() => {
+              this.buttonNoTouch = false;
+            }, 60100);
+          }
+        },
+        error => {
+          console.log(error);
+        }
+      );
+    } else {
+      this.truePhone = false;
+    }
   }
 
   handleOk($event) {
@@ -501,13 +652,14 @@ export class MainComponent implements OnInit {
               } else if (data.status === 4003) {
                 this.isVisibleOpenDoor = false;
                 this.isConfirmLoading = false;
-                alert('您有未支付订单请点击我的订单支付完毕再进行购水！感谢您的光临！');
-                this.router.navigate(['detail'], {
-                  queryParams: {
-                    vmCode: urlParse(window.location.search)['vmCode'],
-                    flag: 1
-                  }
-                });
+                alert('您有未支付订单请点击确定进行支付！感谢您的光临！');
+                window.location.href = `http://sms.youshuidaojia.com:9800/orderDetails?vmCode=${urlParse(window.location.search)['vmCode']}&token=${this.token}&pays=1`;
+                // this.router.navigate(['detail'], {
+                //   queryParams: {
+                //     vmCode: urlParse(window.location.search)['vmCode'],
+                //     flag: 1
+                //   }
+                // });
               } else if (data.status === 0) {
                 this.isVisibleOpenDoor = false;
                 this.isConfirmLoading = false;
@@ -560,7 +712,7 @@ export class MainComponent implements OnInit {
             this.isVisibleOpenDoor = false;
             this.isConfirmLoading = false;
             sessionStorage.setItem('flag', flag);
-            window.location.href = 'http://sms.youshuidaojia.com/goodsShow?vmCode=' + urlParse(window.location.search)['vmCode'];
+            window.location.href = 'http://sms.youshuidaojia.com/goodsShow?vmCode=' + urlParse(window.location.search)['vmCode'] + '&sm=1';
           } else {
             this.isVisibleOpenDoor = false;
             this.isConfirmLoading = false;
@@ -568,7 +720,7 @@ export class MainComponent implements OnInit {
             this.router.navigate(['goodsShow'], {
               queryParams: {
                 vmCode: urlParse(window.location.search)['vmCode'],
-                // flag: 2,
+                sm: 1,
               }
             });
           }
@@ -756,17 +908,29 @@ export class MainComponent implements OnInit {
    */
   circleBtn(flag) {
     if (flag === 1) {
-      window.location.href
-        = `http://sms.youshuidaojia.com:9800/prepaid?vmCode=${urlParse(window.location.search)['vmCode']}&token=${this.token}`;
+      this.appService.postAliData(this.appProperties.shopUserMoneyUrl, {}, this.token).subscribe(
+        data => {
+          if (data.status === -66) {
+            alert(data.message);
+            return;
+          } else {
+            window.location.href
+              = `http://sms.youshuidaojia.com:9800/prepaid?vmCode=${urlParse(window.location.search)['vmCode']}&token=${this.token}`;
+          }
+        },
+        error => {
+          console.log(error);
+        }
+      );
     } else if (flag === 2) {
       window.location.href = `http://sms.youshuidaojia.com:9800/shopGuide?vmCode=${urlParse(window.location.search)['vmCode']}&flag=2`;
     } else if (flag === 3) {
-      this.router.navigate(['shareGzh'], {
-        queryParams: {
-          vmCode: urlParse(window.location.search)['vmCode'],
-          token: this.token
-        }
-      });
+      // this.router.navigate(['shareGzh'], {
+      //   queryParams: {
+      //     vmCode: urlParse(window.location.search)['vmCode'],
+      //     token: this.token
+      //   }
+      // });
     } else if (flag === 4) {
       document.getElementsByClassName('ant-modal-body')[4]['style'].cssText = 'padding: 0;';
       this.isVisibleCouponThree = true;
@@ -775,4 +939,5 @@ export class MainComponent implements OnInit {
       this.isVisibleCouponThree = true;
     }
   }
+
 }

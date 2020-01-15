@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { MainComponent } from './main.component';
@@ -19,6 +19,7 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
     CommonModule,
     MainRoutingModule,
     NgZorroAntdModule,
+    ReactiveFormsModule,
     CarouselModule.forRoot()
   ],
   providers: [AppService, AppProperties],
