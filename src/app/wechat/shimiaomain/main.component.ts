@@ -1059,7 +1059,8 @@ export class MainComponent implements OnInit {
       this.appService.postAliData('http://120.79.74.231:6662/ys_sms/tblCustomer/addOrder', {
         price: this.endMoney,
         friendPhone: this.endPhone,
-        vmCode: urlParse(window.location.search)['vmCode']
+        vmCode: urlParse(window.location.search)['vmCode'],
+        wayNumber: this.item.wayNumber
       }, this.token).subscribe(
         data2 => {
           alert(data2.message);

@@ -712,7 +712,7 @@ export class MainComponent implements OnInit {
             this.isVisibleOpenDoor = false;
             this.isConfirmLoading = false;
             sessionStorage.setItem('flag', flag);
-            window.location.href = 'http://sms.youshuidaojia.com/goodsShow?vmCode=' + urlParse(window.location.search)['vmCode'] + '&sm=1';
+            window.location.href = 'http://sms.youshuidaojia.com/goodsShow?vmCode=' + urlParse(window.location.search)['vmCode'];
           } else {
             this.isVisibleOpenDoor = false;
             this.isConfirmLoading = false;

@@ -623,6 +623,12 @@ export class MainComponent implements OnInit {
   yesOpenDoor() {
     this.isConfirmLoading = true;
     this.openDoorMsg = '正在开门请稍等！';
+    let wayNumber;
+    if (this.item === null || this.item === undefined || this.item === 'undefined') {
+      wayNumber = urlParse(window.location.search)['wayNumber']
+    } else {
+      wayNumber = this.item.wayNumber
+    }
     setTimeout(() => {
       if (this.clickMore) {
         alert('亲,服务器还没反应过来,请勿再点击');
@@ -630,12 +636,12 @@ export class MainComponent implements OnInit {
         this.clickMore = true;
         if (this.token === null || this.token === undefined || this.token === 'undefined') {
           this.clickMore = false;
-          sessionStorage.setItem('wayNumber', this.item.wayNumber);
+          sessionStorage.setItem('wayNumber', wayNumber);
           // alert('请点击确认，注册登陆');
           this.login();
         } else {
           this.appService.postFormData(this.appProperties.indexOpenDoor,
-            {vmCode: urlParse(window.location.search)['vmCode'], way: this.item.wayNumber}, this.token).subscribe(
+            {vmCode: urlParse(window.location.search)['vmCode'], way: wayNumber}, this.token).subscribe(
             data => {
               console.log(data);
               this.clickMore = false;
@@ -680,7 +686,7 @@ export class MainComponent implements OnInit {
                   data1 => {
                     window.location.href = data1;
                     // sessionStorage.setItem('open', '1');
-                    sessionStorage.setItem('wayNumber', this.item.wayNumber);
+                    sessionStorage.setItem('wayNumber', wayNumber);
                   },
                   error1 => {
                     console.log(error1);
@@ -1021,7 +1027,8 @@ export class MainComponent implements OnInit {
       this.appService.postAliData('http://120.79.74.231:6662/ys_sms/tblCustomer/addOrder', {
         price: this.endMoney,
         friendPhone: this.endPhone,
-        vmCode: urlParse(window.location.search)['vmCode']
+        vmCode: urlParse(window.location.search)['vmCode'],
+        wayNumber: this.item.wayNumber
       }, this.token).subscribe(
         data2 => {
           // alert(data2.message);
@@ -1041,7 +1048,7 @@ export class MainComponent implements OnInit {
               'http://120.79.74.231:6662/ys_sms/alipay/balanceAliPay',
               {
               payCode: data2.returnObject.payCode,
-              vmCode: urlParse(window.location.search)['vmCode']
+              vmCode: urlParse(window.location.search)['vmCode'],
             }, this.token).subscribe(
               data4 => {
                 console.log(data4);
