@@ -578,7 +578,7 @@ export class MainComponent implements OnInit {
   }
 
   // 发送验证码
-  sendCode(e: TouchEvent) {
+  sendCode(e: TouchEvent){
     e.preventDefault();
     if (checkPhone(this.phone)) {
       this.appService.postData(this.appProperties.smsSendUrl, {phone: this.phone}).subscribe(
@@ -708,9 +708,9 @@ export class MainComponent implements OnInit {
   }
 
   /**
-   * 2019-02-16
+   * 2019-02-
    * @author YanChao
-   * 检测是否开门
+   * 检测是否开门16
    */
   checkIsOpen(flag) {
     this.checkTimes--;

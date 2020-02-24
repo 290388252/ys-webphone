@@ -439,6 +439,10 @@ export class GoodsShowComponent implements OnInit {
           this.type = data4.type;
           this.isFollow = data4.follow;
           this.sumDeductionMoney = parseFloat(data4.sumDeductionMoney);
+          this.wechatVisible = true;
+          setTimeout(() => {
+            this.wechatVisible = false;
+          }, 5000);
           if (data4.payState === '0') {
             alert('订单异常请点击查看订单或咨询客服');
           }
@@ -585,7 +589,9 @@ export class GoodsShowComponent implements OnInit {
     this.wechatVisible = false;
     this.getpriceVisible = false;
   }
-
+  s() {
+    window.location.href = `http://webapp.youshuidaojia.com:8080/cMain/prepaid`;
+  }
   /**
    * 2019-02-16
    * @author YanChao

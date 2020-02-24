@@ -720,7 +720,7 @@ export class MainComponent implements OnInit {
             this.router.navigate(['goodsShow'], {
               queryParams: {
                 vmCode: urlParse(window.location.search)['vmCode'],
-                sm: 1,
+                // sm: 1,
               }
             });
           }

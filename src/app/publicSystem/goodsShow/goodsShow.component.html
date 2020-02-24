@@ -237,7 +237,7 @@
 </nz-modal>
 <nz-modal [(nzVisible)]="wechatVisible" [nzContent]="modalContentwechat" [nzFooter]="null" (nzOnCancel)="showCancel()">
   <ng-template #modalContentwechat>
-    <div style="margin: 0 auto;text-align: center;">
+    <div (click)="s()" style="margin: 0 auto;text-align: center;">
       <img src="../../../assets/main/my_erweima.png">
     </div>
   </ng-template>

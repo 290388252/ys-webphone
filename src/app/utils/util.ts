@@ -116,5 +116,5 @@ export let getZhuHaiCompanyId = () => {
   return ['83', '84', '118', '131'];
 };
 export let getVmCodes = () => {
-  return ['1996000101', '1996000003'];
+  return ['1996000101', '1996000003', '1996000041'];
 };
