@@ -239,7 +239,9 @@
   <!--</nz-modal>-->
   <nz-modal [nzVisible]="advertiseMentShow" [nzContent]="modalContentCouponAdvertise" [nzFooter]="false" [nzClosable]="false">
     <ng-template #modalContentCouponAdvertise>
-      <img [src]="advertiseMentPic" alt="" style="width: 84%;position: absolute;right: 8%;top: 0;">
+<!--      <img [src]="advertiseMentPic" alt="" style="width: 84%;position: absolute;right: 8%;top: 0;">-->
+      <img *ngIf="kouzao" (click)="s()" style="width: 84%;position: absolute;right: 8%;top: 0;" src="../../../assets/main/kouzap.png">
+      <img *ngIf="mi"  style="width: 84%;position: absolute;right: 8%;top: 0;" src="../../../assets/main/mi.png">
       <img (click)="closeAdvertiseWechat()" src="../../../assets/main/cancel.png" alt=""
            style="width: 8%; position: absolute;right: 10%;top: 2px;">
       <!--<div style="text-align: center;width: 100%;position: absolute;margin-top: 65%;" *ngIf="showPrepaid">-->

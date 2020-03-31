@@ -3,7 +3,17 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {AppService} from '../../app-service';
 import {AppProperties} from '../../app.properties';
 import {NzModalService} from 'ng-zorro-antd';
-import {checkPhone, getActiveCompanyId, getActiveItemId, getCoupon, getNewUser, getVmCode, urlParse} from '../../utils/util';
+import {
+  checkPhone,
+  getActiveCompanyId,
+  getActiveItemId,
+  getCoupon,
+  getMiVmCodes,
+  getNewUser,
+  getVmCode,
+  getVmCodes,
+  urlParse
+} from '../../utils/util';
 import {CarouselConfig} from 'ngx-bootstrap/carousel';
 import {el} from '@angular/platform-browser/testing/src/browser_util';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
@@ -67,6 +77,7 @@ export class MainComponent implements OnInit {
   public advertiseMentPic = '';
   public checkTimes = 20;
   public showPrepaid = false;
+  public companyId;
 
 
   public isFocusA;
@@ -84,6 +95,8 @@ export class MainComponent implements OnInit {
   public judgeFriend;
   public correct;
   public orderId;
+  public kouzao;
+  public mi;
   private phoneValidator = (control: FormControl): { [s: string]: boolean } => {
     if (!control.value) {
       return {required: true};
@@ -101,6 +114,7 @@ export class MainComponent implements OnInit {
   }
 
   ngOnInit() {
+    document.getElementsByClassName('ant-modal-body')[4]['style'].cssText = 'padding: 0;';
     this.validateForm = this.fb.group({
       phoneForm: [null, [this.phoneValidator]],
       password: [null, [Validators.required]]
@@ -119,19 +133,6 @@ export class MainComponent implements OnInit {
     } else if (getCoupon() === '2') {
       this.isVisibleCouponTwo = true;
     }
-    // // 新用户进入界面
-    // if (getNewUser() === '1') {
-    //   document.cookie = 'newUser=' + 0;
-    //   this.appService.getDataOpen(this.appProperties.nonePassWordPayUrl,
-    //     {vmCode: urlParse(window.location.href)['vmCode']}).subscribe(
-    //     data1 => {
-    //       window.location.href = data1;
-    //     },
-    //     error1 => {
-    //       console.log(error1);
-    //     }
-    //   );
-    // }
     this.vmCode = urlParse(window.location.search)['vmCode'];
     if (urlParse(window.location.search)['vmCode'] !== undefined) {
       this.isScanImg = false;
@@ -154,6 +155,9 @@ export class MainComponent implements OnInit {
   closeAdvertiseWechat() {
     this.advertiseMentShow = false;
   }
+  s() {
+    window.location.href = `http://webapp.youshuidaojia.com:8080/cMain/prepaid`;
+  }
 
   focusCode() {
     document.getElementById('ag-bk').style.height = (document.documentElement.offsetWidth + 100) + 'px';
@@ -174,9 +178,12 @@ export class MainComponent implements OnInit {
      * @author YanChao
      * 判断公司id
      */
+
     this.appService.postData(this.appProperties.machineInfoGetCompanyIdUrl + urlParse(window.location.search)['vmCode'], '').subscribe(
       data2 => {
         console.log(data2);
+        this.companyId = data2.returnObject.toString();
+        this.getKouZhao();
         if (getActiveCompanyId().includes(data2.returnObject.toString())) {
           this.youshuiCompany = false;
           this.otherCompany = true;
@@ -203,7 +210,7 @@ export class MainComponent implements OnInit {
           this.youshuiCompany = true;
           this.otherCompany = false;
           this.baoliCompany = true;
-        } else {
+        }else {
           this.youshuiCompany = true;
           this.otherCompany = false;
           this.baoliCompany = false;
@@ -265,7 +272,7 @@ export class MainComponent implements OnInit {
       data => {
         console.log(data);
         if (data.status === 1) {
-          this.advertiseMentShow = true;
+          this.companyId === '171' ? this.advertiseMentShow = false : this.advertiseMentShow = true;
           this.showPrepaid = true;
           document.getElementsByClassName('ant-modal-body')[2]['style'].cssText = 'padding: 0;';
           document.getElementsByClassName('ant-modal-body')[4]['style'].cssText = 'padding: 0;';
@@ -279,7 +286,7 @@ export class MainComponent implements OnInit {
             data1 => {
               console.log(data1);
               if (data1.status === 1 && data1.returnObject.length > 0) {
-                this.advertiseMentShow = true;
+                this.companyId === '171' ? this.advertiseMentShow = false : this.advertiseMentShow = true;
                 this.showPrepaid = false;
                 document.getElementsByClassName('ant-modal-body')[2]['style'].cssText = 'padding: 0;';
                 document.getElementsByClassName('ant-modal-body')[4]['style'].cssText = 'padding: 0;';
@@ -299,6 +306,22 @@ export class MainComponent implements OnInit {
     );
 
   }
+
+  getKouZhao() {
+    if (this.companyId === '171') {
+      this.kouzao = false;
+      this.mi = false;
+    } else {
+      if (getMiVmCodes().includes(urlParse(window.location.search)['vmCode'])) {
+        this.kouzao = false;
+        this.mi = true;
+      } else {
+        this.kouzao = true;
+        this.mi = false;
+      }
+    }
+  }
+
   /**
    * 2019-02-16
    * @author YanChao

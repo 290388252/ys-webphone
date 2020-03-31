@@ -59,6 +59,7 @@ export class GoodsShowComponent implements OnInit {
   public showPrize;
   public prizeMessage;
   public sm;
+  public companyId;
   constructor(private router: Router,
               private appProperties: AppProperties,
               private appService: AppService) {
@@ -78,6 +79,7 @@ export class GoodsShowComponent implements OnInit {
     this.appService.postData(this.appProperties.machineInfoGetCompanyIdUrl + urlParse(window.location.search)['vmCode'], '').subscribe(
       data2 => {
         console.log(data2);
+        this.companyId = data2.returnObject.toString();
         if (getActiveCompanyId().includes(data2.returnObject.toString())) {
           this.youshuiCompany = true;
           this.zhuHaiCompany = false;
@@ -439,10 +441,12 @@ export class GoodsShowComponent implements OnInit {
           this.type = data4.type;
           this.isFollow = data4.follow;
           this.sumDeductionMoney = parseFloat(data4.sumDeductionMoney);
-          this.wechatVisible = true;
-          setTimeout(() => {
-            this.wechatVisible = false;
-          }, 5000);
+          this.companyId === '171' ? this.wechatVisible = false : this.wechatVisible = true;
+          if (this.wechatVisible) {
+            setTimeout(() => {
+              this.wechatVisible = false;
+            }, 5000);
+          }
           if (data4.payState === '0') {
             alert('订单异常请点击查看订单或咨询客服');
           }
@@ -577,7 +581,7 @@ export class GoodsShowComponent implements OnInit {
   }
 
   openShowModel() {
-    this.wechatVisible = true;
+    // this.wechatVisible = true;
   }
 
   /**
