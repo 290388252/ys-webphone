@@ -4,6 +4,7 @@ import {AppService} from '../../app-service';
 import {AppProperties} from '../../app.properties';
 
 import {urlParse} from '../../utils/util';
+declare var WeixinJSBridge: any;
 @Component({
   selector: 'app-share',
   templateUrl: './share.component.html',

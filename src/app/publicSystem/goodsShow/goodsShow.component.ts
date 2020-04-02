@@ -277,24 +277,24 @@ export class GoodsShowComponent implements OnInit {
             }
           });
         } else {
-          // WeixinJSBridge.call('closeWindow');
-          if (urlParse(window.location.search)['sm'] === '1') {
-            this.router.navigate(['smain'], {
-              queryParams: {
-                vmCode: urlParse(window.location.search)['vmCode'],
-                token: sessionStorage.getItem('token'),
-                close: '1'
-              }
-            });
-          } else {
-            this.router.navigate(['main'], {
-              queryParams: {
-                vmCode: urlParse(window.location.search)['vmCode'],
-                token: sessionStorage.getItem('token'),
-                close: '1'
-              }
-            });
-          }
+          WeixinJSBridge.call('closeWindow');
+          // if (urlParse(window.location.search)['sm'] === '1') {
+          //   this.router.navigate(['smain'], {
+          //     queryParams: {
+          //       vmCode: urlParse(window.location.search)['vmCode'],
+          //       token: sessionStorage.getItem('token'),
+          //       close: '1'
+          //     }
+          //   });
+          // } else {
+          //   this.router.navigate(['main'], {
+          //     queryParams: {
+          //       vmCode: urlParse(window.location.search)['vmCode'],
+          //       token: sessionStorage.getItem('token'),
+          //       close: '1'
+          //     }
+          //   });
+          // }
         }
       }
     } else if (ua.match(/AlipayClient/i)) {
@@ -309,24 +309,24 @@ export class GoodsShowComponent implements OnInit {
             }
           });
         } else {
-          // window['AlipayJSBridge'].call('closeWebview');
-          if (urlParse(window.location.search)['sm'] === '1') {
-            this.router.navigate(['aliSMain'], {
-              queryParams: {
-                vmCode: urlParse(window.location.search)['vmCode'],
-                token: sessionStorage.getItem('token'),
-                close: '1'
-              }
-            });
-          } else {
-            this.router.navigate(['aliMain'], {
-              queryParams: {
-                vmCode: urlParse(window.location.search)['vmCode'],
-                token: sessionStorage.getItem('token'),
-                close: '1'
-              }
-            });
-          }
+          window['AlipayJSBridge'].call('closeWebview');
+          // if (urlParse(window.location.search)['sm'] === '1') {
+          //   this.router.navigate(['aliSMain'], {
+          //     queryParams: {
+          //       vmCode: urlParse(window.location.search)['vmCode'],
+          //       token: sessionStorage.getItem('token'),
+          //       close: '1'
+          //     }
+          //   });
+          // } else {
+          //   this.router.navigate(['aliMain'], {
+          //     queryParams: {
+          //       vmCode: urlParse(window.location.search)['vmCode'],
+          //       token: sessionStorage.getItem('token'),
+          //       close: '1'
+          //     }
+          //   });
+          // }
         }
       }
     }

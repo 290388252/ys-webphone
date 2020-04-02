@@ -37,7 +37,7 @@ export class MainComponent implements OnInit {
   private token: string;
   private wayNumber: number;
   public isVisibleOpenDoor = false;
-  public isVisibleNoMoney = true;
+  public isVisibleNoMoney = false;
   public isVisibleCoupon = false;
   public isVisibleCouponTwo = false;
   public isVisibleCouponThree = false;
@@ -273,7 +273,7 @@ export class MainComponent implements OnInit {
       data => {
         console.log(data);
         if (data.status === 1) {
-          // this.companyId === '171' ? this.advertiseMentShow = false : this.advertiseMentShow = true;
+          this.advertiseMentShow = true;
           this.showPrepaid = true;
           document.getElementsByClassName('ant-modal-body')[2]['style'].cssText = 'padding: 0;';
           document.getElementsByClassName('ant-modal-body')[4]['style'].cssText = 'padding: 0;';
@@ -287,7 +287,7 @@ export class MainComponent implements OnInit {
             data1 => {
               console.log(data1);
               if (data1.status === 1 && data1.returnObject.length > 0) {
-                // this.companyId === '171' ? this.advertiseMentShow = false : this.advertiseMentShow = true;
+                this.advertiseMentShow = true;
                 this.showPrepaid = false;
                 document.getElementsByClassName('ant-modal-body')[2]['style'].cssText = 'padding: 0;';
                 document.getElementsByClassName('ant-modal-body')[4]['style'].cssText = 'padding: 0;';
