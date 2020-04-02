@@ -198,7 +198,7 @@
     </ng-template>
   </nz-modal>
 
-  <nz-modal [nzVisible]="isVisibleNoMoney" [nzTitle]="modalTitleMoney" [nzContent]="modalContentsNoMoney" [nzFooter]="modalFootersNoMoney" [nzClosable]="false">
+  <nz-modal [nzVisible]="isVisibleNoMoney" [nzTitle]="modalTitleMoney" [nzContent]="modalContentsNoMoney" [nzFooter]="modalFootersNoMoney" (nzOnCancel)="handleCancel($event)">
     <ng-template #modalTitleMoney>
       <h6>优水到家提醒</h6>
     </ng-template>

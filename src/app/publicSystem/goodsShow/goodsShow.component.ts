@@ -441,7 +441,7 @@ export class GoodsShowComponent implements OnInit {
           this.type = data4.type;
           this.isFollow = data4.follow;
           this.sumDeductionMoney = parseFloat(data4.sumDeductionMoney);
-          this.companyId === '171' ? this.wechatVisible = false : this.wechatVisible = true;
+          // this.companyId === '171' ? this.wechatVisible = false : this.wechatVisible = true;
           if (this.wechatVisible) {
             setTimeout(() => {
               this.wechatVisible = false;
