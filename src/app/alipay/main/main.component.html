@@ -1,17 +1,31 @@
 
   <div class="logo">
-    <carousel>
+    <carousel [showIndicators]="false" [interval]="3000" style="position: relative;" *ngIf="beijixiong">
+      <!--新年主题-->
       <slide>
-        <!--<img src="../../../assets/main/banner1.png" alt="first slide"-->
-             <!--style="display: block; width: 100%;height: 86px;">-->
-        <!--<img [hidden]="youshuiCompany" src="../../../assets/main/banner1.png" alt="first slide" style="display: block; width: 100%;height: 110px;" (click)="openPromotions()">-->
-        <img [hidden]="youshuiCompany" src="../../../assets/main/banner1.png" alt="first slide" style="display: block; width: 100%;height: 110px;">
-        <img [hidden]="otherCompany" src="../../../assets/main/banner2.png" alt="first slide" style="display: block; width: 100%;height: 110px;">
-        <div class="carousel-caption d-none d-md-block">
-          <h3>First slide label</h3>
-          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-        </div>
+        <img src="../../../assets/main/beiji1.png" alt="first slide" style="display: block; width: 100%;" (click)="bannerTo('1')">
       </slide>
+      <!--充值主题-->
+      <slide >
+        <img src="../../../assets/main/beiji2.png" alt="second slide" style="display: block; width: 100%;" (click)="bannerTo('2')">
+      </slide>
+    </carousel>
+    <carousel [showIndicators]="false" [interval]="3000" style="position: relative;" *ngIf="putong">
+      <!--新年主题-->
+      <slide>
+        <img src="../../../assets/main/newyearBanner.png" alt="first slide" style="display: block; width: 100%;" (click)="bannerTo('1')">
+      </slide>
+      <!--充值主题-->
+      <slide >
+        <img src="../../../assets/main/prepaidBanner.png" alt="second slide" style="display: block; width: 100%;" (click)="bannerTo('2')">
+      </slide>
+      <!--招商主题-->
+      <slide>
+        <img src="../../../assets/main/leasingBanner.png" alt="third slide" style="display: block; width: 100%;">
+      </slide>
+      <!--198水机-->
+      <!--icon-->
+      <img src="../../../assets/main/vipcnIcon.png" class="vipcnIcon">
     </carousel>
     <!--<img *ngIf="isFiveDoor" (click)="vmLogin()" src="../../../assets/main/lianye.png" alt="..." class="lianye-logo">-->
     <!--<p *ngIf="isFiveDoor" style="font-weight: 600">联业智能</p>-->
@@ -19,7 +33,6 @@
          class="rounded-circle">
     <!--class="rounded-circle-center" style="display: inline-block">-->
     <!--class="rounded-circle-sixnight" style="display: inline-block">-->
-    <br/>
     <!--<div class="logo_title">-->
     <!--<div class="logo_title_inner"></div>-->
     <!--</div>-->

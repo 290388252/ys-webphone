@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AppService} from '../../app-service';
 import {AppProperties} from '../../app.properties';
-import {checkPhone, getActiveCompanyId, getActiveItemId, getVmCode, urlParse} from '../../utils/util';
+import {checkPhone, getActiveCompanyId, getActiveItemId, getMiVmCodes, getVmCode, urlParse} from '../../utils/util';
 import {CarouselConfig} from 'ngx-bootstrap/carousel';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
@@ -53,6 +53,9 @@ export class MainComponent implements OnInit {
   public times = 60;
   private openId: string;
   private id: string;
+  public beijixiong;
+  public putong;
+  public companyId;
 // ---------------------login
   private phoneValidator = (control: FormControl): { [s: string]: boolean } => {
     if (!control.value) {
@@ -127,6 +130,14 @@ export class MainComponent implements OnInit {
     this.appService.postData(this.appProperties.machineInfoGetCompanyIdUrl + urlParse(window.location.search)['vmCode'], '').subscribe(
       data2 => {
         console.log(data2);
+        this.companyId = data2.returnObject.toString();
+        if (this.companyId === '171') {
+          this.beijixiong = true;
+          this.putong = false;
+        } else {
+          this.beijixiong = false;
+          this.putong = true;
+        }
         if (getActiveCompanyId().includes(data2.returnObject.toString())) {
           this.youshuiCompany = false;
           this.otherCompany = true;

@@ -15,7 +15,17 @@
         <!--</slide>-->
       <!--</carousel>-->
       <!---->
-      <carousel [showIndicators]="false" [interval]="3000" style="position: relative;">
+      <carousel [showIndicators]="false" [interval]="3000" style="position: relative;" *ngIf="beijixiong">
+        <!--新年主题-->
+        <slide>
+          <img src="../../../assets/main/beiji1.png" alt="first slide" style="display: block; width: 100%;" (click)="bannerTo('1')">
+        </slide>
+        <!--充值主题-->
+        <slide >
+          <img src="../../../assets/main/beiji2.png" alt="second slide" style="display: block; width: 100%;" (click)="bannerTo('2')">
+        </slide>
+      </carousel>
+      <carousel [showIndicators]="false" [interval]="3000" style="position: relative;" *ngIf="putong">
         <!--新年主题-->
         <slide>
           <img src="../../../assets/main/newyearBanner.png" alt="first slide" style="display: block; width: 100%;" (click)="bannerTo('1')">
@@ -39,7 +49,6 @@
       <span id="vmCode" style="display: none">{{vmCode}}</span>
            <!--class="rounded-circle-center" style="display: inline-block">-->
            <!--class="rounded-circle-sixnight" style="display: inline-block">-->
-      <br/>
       <!--<div class="logo_title">-->
         <!--<div class="logo_title_inner"></div>-->
       <!--</div>-->

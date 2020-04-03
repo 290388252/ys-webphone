@@ -97,6 +97,8 @@ export class MainComponent implements OnInit {
   public orderId;
   public kouzao;
   public mi;
+  public beijixiong;
+  public putong;
   private phoneValidator = (control: FormControl): { [s: string]: boolean } => {
     if (!control.value) {
       return {required: true};
@@ -310,9 +312,13 @@ export class MainComponent implements OnInit {
 
   getKouZhao() {
     if (this.companyId === '171') {
+      this.beijixiong = true;
+      this.putong = false;
       this.kouzao = false;
       this.mi = false;
     } else {
+      this.beijixiong = false;
+      this.putong = true;
       if (getMiVmCodes().includes(urlParse(window.location.search)['vmCode'])) {
         this.kouzao = false;
         this.mi = true;
